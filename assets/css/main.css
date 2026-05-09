@@ -229,35 +229,34 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   margin-top: 3px;
 }
 @media (max-width: 920px) {
-  .nav-logo {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
+  .nav-logo .logo-img { height: 40px; }
   .nav-logo .region-tag {
-    border-left: none;
-    padding-left: 0;
-    margin-left: 0;
-    font-size: 9px;
+    font-size: 10px;
+    padding-left: 10px;
     letter-spacing: 1.2px;
-    line-height: 1;
   }
   .nav-logo .region-tag small {
-    display: inline;
-    font-size: 9px;
-    margin-top: 0;
-    margin-left: 8px;
-    color: var(--mc-mute);
+    font-size: 8px;
+    letter-spacing: 1px;
+    margin-top: 2px;
   }
 }
 @media (max-width: 600px) {
-  .nav-logo .logo-img { height: 38px; }
-  .nav { padding: 12px 0; gap: 12px; }
-  .nav-logo .region-tag { font-size: 8.5px; letter-spacing: 1px; }
-  .nav-logo .region-tag small { font-size: 8.5px; margin-left: 6px; }
+  .nav-logo .logo-img { height: 34px; }
+  .nav { padding: 12px 0; gap: 10px; }
+  .nav-logo .region-tag {
+    font-size: 9px;
+    padding-left: 8px;
+    letter-spacing: 1px;
+  }
+  .nav-logo .region-tag small {
+    font-size: 7.5px;
+    letter-spacing: .8px;
+  }
 }
 @media (max-width: 380px) {
-  .nav-logo .logo-img { height: 32px; }
+  .nav-logo .logo-img { height: 30px; }
+  .nav-logo .region-tag { font-size: 8.5px; padding-left: 6px; }
   .nav-logo .region-tag small { display: none; }
 }
 
