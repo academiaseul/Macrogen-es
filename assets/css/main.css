@@ -198,9 +198,14 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   text-transform: uppercase;
   margin-top: 2px;
 }
+.nav-logo {
+  min-width: 0;
+  flex-shrink: 1;
+}
 .nav-logo .logo-img {
   height: 44px;
   width: auto;
+  max-width: 100%;
   display: block;
 }
 .nav-logo .region-tag {
@@ -223,11 +228,37 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   letter-spacing: 1.2px;
   margin-top: 3px;
 }
-@media (max-width: 720px) {
-  .nav-logo .region-tag { display: none; }
+@media (max-width: 920px) {
+  .nav-logo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .nav-logo .region-tag {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    line-height: 1;
+  }
+  .nav-logo .region-tag small {
+    display: inline;
+    font-size: 9px;
+    margin-top: 0;
+    margin-left: 8px;
+    color: var(--mc-mute);
+  }
 }
-@media (max-width: 480px) {
-  .nav-logo .logo-img { height: 36px; }
+@media (max-width: 600px) {
+  .nav-logo .logo-img { height: 38px; }
+  .nav { padding: 12px 0; gap: 12px; }
+  .nav-logo .region-tag { font-size: 8.5px; letter-spacing: 1px; }
+  .nav-logo .region-tag small { font-size: 8.5px; margin-left: 6px; }
+}
+@media (max-width: 380px) {
+  .nav-logo .logo-img { height: 32px; }
+  .nav-logo .region-tag small { display: none; }
 }
 
 /* Regional partners grid (about page) */
