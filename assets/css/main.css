@@ -203,8 +203,68 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   width: auto;
   display: block;
 }
+.nav-logo .region-tag {
+  display: inline-block;
+  border-left: 2px solid var(--mc-line);
+  padding-left: 12px;
+  margin-left: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mc-red);
+  line-height: 1.25;
+}
+.nav-logo .region-tag small {
+  display: block;
+  font-size: 9px;
+  color: var(--mc-mute);
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-top: 3px;
+}
+@media (max-width: 720px) {
+  .nav-logo .region-tag { display: none; }
+}
 @media (max-width: 480px) {
   .nav-logo .logo-img { height: 36px; }
+}
+
+/* Regional partners grid (about page) */
+.regional-partners {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 24px 0;
+}
+@media (max-width: 600px) { .regional-partners { grid-template-columns: 1fr; } }
+.regional-partner-card {
+  background: var(--mc-white);
+  border: 1px solid var(--mc-line);
+  border-radius: var(--mc-radius);
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow: var(--mc-shadow-sm);
+  transition: all .25s ease;
+}
+.regional-partner-card:hover { box-shadow: var(--mc-shadow); transform: translateY(-3px); }
+.regional-partner-card img {
+  max-height: 90px;
+  width: auto;
+  margin: 0 auto 16px;
+}
+.regional-partner-card h4 {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mc-red);
+  margin-bottom: 8px;
+}
+.regional-partner-card p {
+  font-size: .9rem;
+  margin-bottom: 0;
+  color: var(--mc-mute);
 }
 .footer-brand .logo-img {
   height: 56px;
@@ -231,6 +291,25 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 .nav-menu a:hover { color: var(--mc-teal); }
 .nav-menu a.active { color: var(--mc-navy); }
+.nav-menu a.nav-order {
+  background: var(--mc-green);
+  color: var(--mc-white) !important;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(132,189,0,.28);
+  transition: all .2s ease;
+}
+.nav-menu a.nav-order:hover {
+  background: #6ea000;
+  color: var(--mc-white) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(132,189,0,.4);
+}
+.nav-menu a.nav-order::after { display: none !important; }
 .nav-menu a.active::after {
   content: '';
   position: absolute;
