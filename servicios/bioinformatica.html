@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bioinformática · Soluciones 360° | Macrogen Chile</title>
+<meta name="description" content="Pipelines bioinformáticos validados con GATK Best Practices, Bioconductor y herramientas estándar de oro. Análisis a medida y soporte 24/7 en español.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="../index.html" class="nav-logo">
+      <span class="logo-mark">M</span>
+      <span>Macrogen Chile<span class="logo-sub">Humanizing Genomics</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../nosotros.html">Nosotros</a></li>
+      <li><a href="../servicios.html" class="active">Servicios</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../newsletter.html">Newsletter</a></li>
+      <li><a href="../contacto.html">Contacto</a></li>
+      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm">Cotizar</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero hero-mini">
+  <div class="container">
+    <div class="breadcrumb" style="color:var(--mc-light-blue);"><a href="../servicios.html" style="color:var(--mc-teal);">Servicios</a> <span class="sep">/</span> Bioinformática</div>
+    <span class="eyebrow">Bioinformatics 360°</span>
+    <h1>Bioinformática · <span class="accent">datos en conocimiento</span> accionable.</h1>
+    <p class="lead">Pipelines validados con estándares GATK Best Practices y Bioconductor para que tus datos NGS se traduzcan en hallazgos publicables en revistas Q1.</p>
+    <div class="hero-actions">
+      <a href="../contacto.html" class="btn btn-primary">Hablar con un bioinformático</a>
+      <a href="#stack" class="btn btn-ghost-light">Ver stack técnico →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2" style="gap:48px; align-items:start;">
+      <div>
+        <span class="eyebrow on-light">Descripción</span>
+        <h2>Tres tipos de servicio bioinformático.</h2>
+        <p><strong>1. Pipelines incluidos.</strong> Cada servicio NGS viene con su análisis bioinformático estándar. Tú no levantas un dedo.</p>
+        <p><strong>2. Reanálisis de datos existentes.</strong> ¿Datos secuenciados en otro proveedor? Los reprocesamos con nuestro stack actualizado y entregamos resultados comparables.</p>
+        <p><strong>3. Análisis a medida.</strong> Pipelines no estándar, integración multi-ómica, machine learning sobre datos genómicos. Nuestro equipo diseña flujos para tu pregunta específica.</p>
+      </div>
+      <div>
+        <h3>Áreas de especialización</h3>
+        <table class="spec-table">
+          <tr><th>Variantes</th><td>Germinales, somáticas, SVs, CNVs</td></tr>
+          <tr><th>Transcriptoma</th><td>DEG, splicing, fusiones, lncRNA</td></tr>
+          <tr><th>Single Cell</th><td>Seurat, Scanpy, anotación, trayectorias</td></tr>
+          <tr><th>Microbioma</th><td>DADA2, QIIME2, MetaPhlAn, MAGs</td></tr>
+          <tr><th>Epigenética</th><td>Bismark, methylKit, MACS3</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="section section-navy">
+  <div class="container">
+    <div class="text-center" style="max-width:680px; margin:0 auto 36px;">
+      <span class="eyebrow">Pipeline Stack</span>
+      <h2 style="color:#fff;">Herramientas estándar de oro.</h2>
+      <p>Software validado por la industria y la academia para garantizar resultados publicables.</p>
+    </div>
+    <div style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:var(--mc-radius); overflow:hidden;">
+      <table class="spec-table" style="background:transparent; border:none;">
+        <thead>
+          <tr><th style="background:rgba(0,0,0,.25); color:var(--mc-teal);">Proceso</th><th style="background:rgba(0,0,0,.25); color:var(--mc-teal);">Software</th><th style="background:rgba(0,0,0,.25); color:var(--mc-teal); text-align:right;">Status</th></tr>
+        </thead>
+        <tbody style="color:#fff;">
+          <tr><th style="background:transparent; color:#fff; border-color:rgba(255,255,255,.08);">QC inicial</th><td style="color:var(--mc-light-blue); border-color:rgba(255,255,255,.08);">FastQC + MultiQC</td><td style="color:var(--mc-green); text-align:right; font-weight:700; border-color:rgba(255,255,255,.08);">● Optimizado</td></tr>
+          <tr><th style="background:transparent; color:#fff; border-color:rgba(255,255,255,.08);">Trimming</th><td style="color:var(--mc-light-blue); border-color:rgba(255,255,255,.08);">Cutadapt / fastp / Trimmomatic</td><td style="color:var(--mc-green); text-align:right; font-weight:700; border-color:rgba(255,255,255,.08);">● Optimizado</td></tr>
+          <tr><th style="background:transparent; color:#fff; border-color:rgba(255,255,255,.08);">Alineamiento DNA</th><td style="color:var(--mc-light-blue); border-color:rgba(255,255,255,.08);">BWA-MEM2 / Bowtie2</td><td style="color:var(--mc-green); text-align:right; font-weight:700; border-color:rgba(255,255,255,.08);">● Optimizado</td></tr>
+          <tr><th style="background:transparent; color:#fff; border-color:rgba(255,255,255,.08);">Alineamiento RNA</th><td style="color:var(--mc-light-blue); border-color:rgba(255,255,255,.08);">STAR / HISAT2 / Salmon</td><td style="color:var(--mc-green); text-align:right; font-weight:700; border-color:rgba(255,255,255,.08);">● Optimizado</td></tr>
+          <tr><th style="background:transparent; color:#fff; border-color:rgba(255,255,255,.08);">Variant calling</th><td style="color:var(--mc-light-blue); border-color:rgba(255,255,255,.08);">GATK4 / DeepVariant / Mutect2</td><td style="color:var(--mc-green); text-align:right; font-weight:700; border-color:rgba(255,255,255,.08);">● Optimizado</td></tr>
+          <tr><th style="background:transparent; color:#fff; border-color:rgba(255,255,255,.08);">Anotación</th><td style="color:var(--mc-light-blue); border-color:rgba(255,255,255,.08);">VEP · SnpEff · ClinVar · gnomAD</td><td style="color:var(--mc-green); text-align:right; font-weight:700; border-color:rgba(255,255,255,.08);">● Optimizado</td></tr>
+          <tr><th style="background:transparent; color:#fff; border-color:rgba(255,255,255,.08);">Estadística</th><td style="color:var(--mc-light-blue); border-color:rgba(255,255,255,.08);">R + Bioconductor (DESeq2, edgeR, limma)</td><td style="color:var(--mc-green); text-align:right; font-weight:700; border-color:rgba(255,255,255,.08);">● Optimizado</td></tr>
+          <tr><th style="background:transparent; color:#fff; border:none;">Microbioma</th><td style="color:var(--mc-light-blue); border:none;">DADA2 · QIIME2 · MetaPhlAn4</td><td style="color:var(--mc-green); text-align:right; font-weight:700; border:none;">● Optimizado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:680px; margin:0 auto 36px;">
+      <span class="eyebrow on-light">Garantías</span>
+      <h2>Calidad publicable, soporte local.</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="pillar-card">
+        <div class="pillar-icon">📑</div>
+        <h3>Reportes en español</h3>
+        <p>Cada proyecto incluye un reporte ejecutivo en español + reporte técnico HTML interactivo.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon teal">🔁</div>
+        <h3>Reproducibilidad total</h3>
+        <p>Todos los pipelines son versionados (Nextflow / Snakemake) y los reportes incluyen versiones de software y referencias.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon green">🇨🇱</div>
+        <h3>Soporte local</h3>
+        <p>Equipo bioinformático con base en Santiago. Reuniones técnicas en español sin diferencia horaria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-bg">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Conversemos sobre tu análisis.</h2>
+      <p>Consultoría inicial sin costo. Te ayudamos a decidir entre pipeline estándar, reanálisis o análisis a medida.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="../contacto.html" class="btn btn-primary">Solicitar reunión</a>
+        <a href="https://wa.me/56958451395" class="btn btn-ghost-light">WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo-mark">M</div><h4 style="margin-bottom:6px;">Macrogen Chile</h4><p>Agencia local de Macrogen Inc. en Chile.<br><br><strong style="color:#fff;">One Team. One Macrogen.</strong></p></div>
+      <div><h4>Servicios</h4><a href="wgs.html">WGS</a><a href="rna-seq.html">RNA-Seq</a><a href="bioinformatica.html">Bioinformática</a><a href="../servicios.html">Ver todos →</a></div>
+      <div><h4>Compañía</h4><a href="../nosotros.html">Nosotros</a><a href="../blog.html">Blog</a><a href="../newsletter.html">Newsletter</a><a href="../contacto.html">Contacto</a></div>
+      <div><h4>Contacto</h4><a href="mailto:info-chile@macrogen.com">info-chile@macrogen.com</a><a href="https://wa.me/56958451395">+56 9 5845 1395</a><p style="margin-top:14px; font-size:12px; color:var(--mc-light-blue);">Magdalena 140, Of. 401<br>Las Condes, Santiago</p></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Macrogen Chile</span><span><a href="https://dna.macrogen.com" target="_blank" rel="noopener">Portal global ↗</a></span></div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

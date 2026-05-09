@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Macrogen Chile</title>
+<meta name="description" content="Tutoriales, casos de uso y guías técnicas sobre genómica, NGS, bioinformática y aplicaciones científicas para la comunidad chilena.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-mark">M</span>
+      <span>Macrogen Chile<span class="logo-sub">Humanizing Genomics</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="newsletter.html">Newsletter</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm">Cotizar</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero hero-mini">
+  <div class="container">
+    <span class="eyebrow">Blog Macrogen Chile</span>
+    <h1>Conocimiento desde el <span class="accent">laboratorio.</span></h1>
+    <p class="lead">Tutoriales, casos de uso, guías técnicas y novedades de la red Macrogen — escritas en español por nuestro equipo en Santiago y por colaboradores internacionales.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <!-- Filter chips (visual only) -->
+    <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:48px;">
+      <span class="cert-chip" style="background:var(--mc-navy); color:#fff; border-color:var(--mc-navy);"><span class="dot"></span>Todos</span>
+      <span class="cert-chip">Tutorial</span>
+      <span class="cert-chip">Caso de uso</span>
+      <span class="cert-chip">Empresa</span>
+      <span class="cert-chip">Bioinformática</span>
+      <span class="cert-chip">Microbioma</span>
+    </div>
+
+    <div class="grid grid-3">
+      <a href="blog/lanzamiento-macrogen-chile.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb"></div>
+        <div class="post-body">
+          <div class="post-meta"><span class="cat">Empresa</span> · 2 May 2026 · 4 min lectura</div>
+          <h3>Macrogen Chile abre oficina en Santiago</h3>
+          <p>Conoce nuestro modelo "Local-Global" y por qué llegamos a Chile a apoyar a la comunidad científica nacional con servicios de secuenciación de clase mundial.</p>
+          <span class="read-more">Leer artículo →</span>
+        </div>
+      </a>
+      <a href="blog/que-es-ngs.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb t2"></div>
+        <div class="post-body">
+          <div class="post-meta"><span class="cat">Tutorial</span> · 25 Abr 2026 · 8 min lectura</div>
+          <h3>¿Qué es NGS y cómo elegir el servicio adecuado?</h3>
+          <p>Una guía clara y sin jerga para investigadores que se acercan por primera vez a la secuenciación de nueva generación. Comparativa entre WGS, WES y RNA-Seq.</p>
+          <span class="read-more">Leer artículo →</span>
+        </div>
+      </a>
+      <a href="blog/microbioma-chile.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb t3"></div>
+        <div class="post-body">
+          <div class="post-meta"><span class="cat">Caso de uso</span> · 18 Abr 2026 · 6 min lectura</div>
+          <h3>Microbioma del salmón chileno: 5 lecciones aprendidas</h3>
+          <p>Resumen de un proyecto colaborativo de metagenómica 16S aplicada a la acuicultura del sur de Chile, en alianza con dos universidades regionales.</p>
+          <span class="read-more">Leer artículo →</span>
+        </div>
+      </a>
+      <a href="blog/cobertura-secuenciacion.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb t4"></div>
+        <div class="post-body">
+          <div class="post-meta"><span class="cat">Bioinformática</span> · 10 Abr 2026 · 7 min lectura</div>
+          <h3>¿Cuánta cobertura necesito? Guía práctica para WGS y WES</h3>
+          <p>30x, 60x, 100x… ¿Qué profundidad pedir según tu pregunta científica? Discutimos los trade-offs entre costo, precisión y reproducibilidad.</p>
+          <span class="read-more">Leer artículo →</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="text-center" style="margin-top:48px; color:var(--mc-mute); font-size:14px;">
+      Más artículos próximamente. <a href="newsletter.html">Suscríbete al newsletter</a> para no perderte ninguno.
+    </div>
+  </div>
+</section>
+
+<section class="section section-bg">
+  <div class="container">
+    <div class="newsletter-box">
+      <div class="nl-inner">
+        <span class="eyebrow">Newsletter mensual</span>
+        <h2>Recibe los nuevos posts en tu bandeja.</h2>
+        <p>Una vez al mes te enviamos novedades técnicas, casos de uso y descuentos exclusivos para la comunidad chilena.</p>
+        <form class="nl-form" data-demo>
+          <input type="email" name="email" placeholder="tu@laboratorio.cl" required>
+          <button type="submit" class="btn btn-primary">Suscribirme</button>
+        </form>
+        <div class="nl-mini-note" data-demo-msg>Sin spam. Puedes darte de baja en cualquier momento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-mark">M</div>
+        <h4 style="margin-bottom:6px;">Macrogen Chile</h4>
+        <p>Agencia local de Macrogen Inc. en Chile. Humanizando la genómica desde 1997 — ahora también desde Santiago.<br><br><strong style="color:#fff;">One Team. One Macrogen.</strong></p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <a href="servicios/wgs.html">WGS</a>
+        <a href="servicios/wes.html">WES</a>
+        <a href="servicios/rna-seq.html">RNA-Seq</a>
+        <a href="servicios/single-cell.html">Single Cell</a>
+        <a href="servicios/metagenoma.html">Metagenómica</a>
+        <a href="servicios/sanger.html">Sanger / CES</a>
+        <a href="servicios.html">Ver todos →</a>
+      </div>
+      <div>
+        <h4>Compañía</h4>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="blog.html">Blog</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="mailto:info-chile@macrogen.com">info-chile@macrogen.com</a>
+        <a href="https://wa.me/56958451395">+56 9 5845 1395</a>
+        <a href="https://www.instagram.com/macrogenchile/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/company/macrogen-inc-chile/" target="_blank" rel="noopener">LinkedIn</a>
+        <p style="margin-top:14px; font-size:12px; color:var(--mc-light-blue);">Magdalena 140, Of. 401<br>Las Condes, Santiago</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Macrogen Chile · Agencia de Macrogen Inc. · Todos los derechos reservados.</span>
+      <span>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="https://dna.macrogen.com" target="_blank" rel="noopener">Portal global ↗</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

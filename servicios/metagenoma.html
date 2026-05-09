@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metagenómica · Microbioma | Macrogen Chile</title>
+<meta name="description" content="Metagenómica en Macrogen Chile: 16S/18S/ITS por ASV (DADA2) y shotgun metagenomics para análisis funcional completo de comunidades microbianas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="../index.html" class="nav-logo">
+      <span class="logo-mark">M</span>
+      <span>Macrogen Chile<span class="logo-sub">Humanizing Genomics</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../nosotros.html">Nosotros</a></li>
+      <li><a href="../servicios.html" class="active">Servicios</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../newsletter.html">Newsletter</a></li>
+      <li><a href="../contacto.html">Contacto</a></li>
+      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm">Cotizar</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero hero-mini">
+  <div class="container">
+    <div class="breadcrumb" style="color:var(--mc-light-blue);"><a href="../servicios.html" style="color:var(--mc-teal);">Servicios</a> <span class="sep">/</span> Metagenómica</div>
+    <span class="eyebrow">Microbiome</span>
+    <h1>Metagenómica · <span class="accent">comunidades microbianas</span></h1>
+    <p class="lead">Perfila bacterias, arqueas y hongos con resolución de un solo nucleótido (ASV) o reconstruye genomas completos desde una muestra ambiental.</p>
+    <div class="hero-actions">
+      <a href="../contacto.html" class="btn btn-primary">Cotizar metagenómica</a>
+      <a href="#opciones" class="btn btn-ghost-light">Ver opciones →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2" style="gap:48px; align-items:start;">
+      <div>
+        <span class="eyebrow on-light">Descripción</span>
+        <h2>De amplicones a metagenoma completo.</h2>
+        <p>Ofrecemos las dos grandes familias de análisis microbiómico: <strong>amplicones marcadores</strong> (16S rRNA para bacterias/arqueas, ITS para hongos, 18S para eucariontes), y <strong>shotgun metagenomics</strong> para resolución funcional y a nivel de cepa.</p>
+        <p>Nuestro pipeline estándar de amplicones usa DADA2 para resolución por ASV (Amplicon Sequence Variant), eliminando los problemas de OTUs al 97% y permitiendo distinguir especies por una sola base.</p>
+        <p style="margin-bottom:0;">Aplicaciones: microbioma humano (intestinal, oral, vaginal, piel), microbioma animal, suelos agrícolas, ambientes acuáticos, fermentaciones industriales, vigilancia de patógenos.</p>
+      </div>
+      <div>
+        <h3>Lo que recibes</h3>
+        <table class="spec-table">
+          <tr><th>FASTQ crudos</th><td>R1 + R2 demultiplexados</td></tr>
+          <tr><th>Tabla ASV/OTU</th><td>Por muestra · biom + tsv</td></tr>
+          <tr><th>Taxonomía</th><td>SILVA · UNITE · GTDB</td></tr>
+          <tr><th>Diversidad α</th><td>Shannon · Simpson · Chao1</td></tr>
+          <tr><th>Diversidad β</th><td>UniFrac · Bray-Curtis · PCoA</td></tr>
+          <tr><th>Reporte interactivo</th><td>HTML con plots dinámicos</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="opciones" class="section section-bg">
+  <div class="container">
+    <div class="text-center" style="max-width:680px; margin:0 auto 36px;">
+      <span class="eyebrow on-light">Opciones disponibles</span>
+      <h2>Marcador o shotgun · tú eliges la resolución.</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="pillar-card">
+        <div class="pillar-icon green">🦠</div>
+        <h3>16S rRNA</h3>
+        <p>Bacterias y arqueas. Regiones V3-V4, V4 o full-length disponibles.</p>
+        <table class="spec-table">
+          <tr><th>Reads</th><td>~50.000 / muestra</td></tr>
+          <tr><th>Costo</th><td>Más económico</td></tr>
+          <tr><th>TAT</th><td>4 semanas</td></tr>
+        </table>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon green">🍄</div>
+        <h3>ITS · 18S</h3>
+        <p>ITS1/ITS2 para hongos. 18S para eucariontes (protistas, microalgas).</p>
+        <table class="spec-table">
+          <tr><th>Reads</th><td>~50.000 / muestra</td></tr>
+          <tr><th>Pipeline</th><td>DADA2 + UNITE</td></tr>
+          <tr><th>TAT</th><td>4 semanas</td></tr>
+        </table>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon green">🧬</div>
+        <h3>Shotgun metagenomics</h3>
+        <p>Resolución a nivel de gen funcional, cepa y reconstrucción de MAGs.</p>
+        <table class="spec-table">
+          <tr><th>Reads</th><td>20–50 M / muestra</td></tr>
+          <tr><th>Pipeline</th><td>nf-core/mag · MetaPhlAn</td></tr>
+          <tr><th>TAT</th><td>6–8 semanas</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 style="text-align:center; margin-bottom:36px;">Requerimientos de muestra</h2>
+    <div style="max-width:760px; margin:0 auto;">
+      <table class="spec-table">
+        <tr><th>Tipo</th><td>Heces · saliva · hisopado · tejido · suelo · agua · sedimento · DNA extraído</td></tr>
+        <tr><th>Cantidad mín. (DNA)</th><td>50 ng (ideal ≥100 ng)</td></tr>
+        <tr><th>Cantidad mín. (muestra fresca)</th><td>200 mg sólido · 2 mL líquido</td></tr>
+        <tr><th>Conservante</th><td>RNAlater · DNA/RNA Shield · -80°C</td></tr>
+        <tr><th>Controles</th><td>Recomendamos incluir mock community + extracción negativa</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section section-bg">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Cotiza tu proyecto microbiómico.</h2>
+      <p>Asesoría en diseño de cohorte, controles y elección entre amplicón vs shotgun.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="../contacto.html" class="btn btn-primary">Solicitar cotización</a>
+        <a href="https://wa.me/56958451395" class="btn btn-ghost-light">WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-mark">M</div>
+        <h4 style="margin-bottom:6px;">Macrogen Chile</h4>
+        <p>Agencia local de Macrogen Inc. en Chile.<br><br><strong style="color:#fff;">One Team. One Macrogen.</strong></p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <a href="wgs.html">WGS</a>
+        <a href="metagenoma.html">Metagenómica</a>
+        <a href="rna-seq.html">RNA-Seq</a>
+        <a href="../servicios.html">Ver todos →</a>
+      </div>
+      <div>
+        <h4>Compañía</h4>
+        <a href="../nosotros.html">Nosotros</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../newsletter.html">Newsletter</a>
+        <a href="../contacto.html">Contacto</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="mailto:info-chile@macrogen.com">info-chile@macrogen.com</a>
+        <a href="https://wa.me/56958451395">+56 9 5845 1395</a>
+        <p style="margin-top:14px; font-size:12px; color:var(--mc-light-blue);">Magdalena 140, Of. 401<br>Las Condes, Santiago</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Macrogen Chile</span>
+      <span><a href="https://dna.macrogen.com" target="_blank" rel="noopener">Portal global ↗</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
