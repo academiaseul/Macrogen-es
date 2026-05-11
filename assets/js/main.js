@@ -1,5 +1,5 @@
-// Macrogen Chile - main.js
-// Mobile nav toggle + smooth interactions
+// Macrogen Iberoamérica - main.js
+// Mobile nav toggle + smooth interactions + country selector
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -53,6 +53,81 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('¡Gracias! Recibimos tu solicitud. Nuestro equipo te contactará en breve.');
       }
       form.reset();
+      // After reset, restore inbox note to default
+      const inboxNote = form.querySelector('[data-inbox-note]');
+      if (inboxNote) {
+        inboxNote.innerHTML = 'Selecciona tu país para que tu solicitud llegue al hub correspondiente.';
+        inboxNote.style.borderLeftColor = 'var(--mc-line)';
+        inboxNote.style.color = 'var(--mc-mute)';
+      }
+    });
+  });
+
+  // ----- Country selector: auto-update email/phone placeholders + show inbox routing -----
+  const countryConfig = {
+    'ES': {
+      flag: '🇪🇸', label: 'España',
+      email: 'tu@laboratorio.es',
+      phone: '+34 ...',
+      inbox: 'info-spain@macrogen.com',
+      hub: 'Madrid'
+    },
+    'PT': {
+      flag: '🇵🇹', label: 'Portugal',
+      email: 'tu@laboratorio.pt',
+      phone: '+351 ...',
+      inbox: 'info-spain@macrogen.com',
+      hub: 'Madrid'
+    },
+    'CL': {
+      flag: '🇨🇱', label: 'Chile',
+      email: 'tu@laboratorio.cl',
+      phone: '+56 9 ...',
+      inbox: 'info-chile@macrogen.com',
+      hub: 'Santiago'
+    },
+    'PE': {
+      flag: '🇵🇪', label: 'Perú',
+      email: 'tu@laboratorio.pe',
+      phone: '+51 ...',
+      inbox: 'info-chile@macrogen.com',
+      hub: 'Santiago'
+    },
+    'OTRO': {
+      flag: '🌎', label: 'Otro país',
+      email: 'tu@laboratorio.com',
+      phone: '+ código país ...',
+      inbox: 'info-spain@macrogen.com',
+      hub: 'Madrid o Santiago según ubicación'
+    }
+  };
+
+  document.querySelectorAll('form[data-country-form]').forEach(form => {
+    const select = form.querySelector('[data-country]');
+    const emailInput = form.querySelector('[data-email]');
+    const phoneInput = form.querySelector('[data-phone]');
+    const note = form.querySelector('[data-inbox-note]');
+    if (!select) return;
+
+    select.addEventListener('change', (e) => {
+      const config = countryConfig[e.target.value];
+      if (!config) {
+        if (note) {
+          note.innerHTML = 'Selecciona tu país para que tu solicitud llegue al hub correspondiente.';
+          note.style.borderLeftColor = 'var(--mc-line)';
+          note.style.color = 'var(--mc-mute)';
+        }
+        if (emailInput) emailInput.placeholder = 'tu@laboratorio.com';
+        if (phoneInput) phoneInput.placeholder = 'Selecciona país primero';
+        return;
+      }
+      if (emailInput) emailInput.placeholder = config.email;
+      if (phoneInput) phoneInput.placeholder = config.phone;
+      if (note) {
+        note.innerHTML = `${config.flag} <strong style="color:var(--mc-navy);">Tu solicitud llegará al hub ${config.hub}</strong><br><span style="font-size:11px;">Atención por <a href="mailto:${config.inbox}" style="color:var(--mc-teal); font-weight:700;">${config.inbox}</a></span>`;
+        note.style.borderLeftColor = 'var(--mc-green)';
+        note.style.color = 'var(--mc-ink)';
+      }
     });
   });
 

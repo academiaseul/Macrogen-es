@@ -47,9 +47,23 @@
       <!-- FORM -->
       <div>
         <h2>Solicita una cotización</h2>
-        <p>Cuéntanos los detalles preliminares de tu proyecto. Si prefieres, también puedes escribir directo a <a href="mailto:info-spain@macrogen.com">info-spain@macrogen.com</a> (España/Portugal) o <a href="mailto:info-chile@macrogen.com">info-chile@macrogen.com</a> (Chile/Perú).</p>
-        <form data-demo style="margin-top:24px;">
+        <p>Cuéntanos los detalles preliminares de tu proyecto. Te responderemos en menos de 24h hábiles desde el hub que sirve a tu país.</p>
+        <form data-demo data-country-form style="margin-top:24px;">
           <div class="form-grid">
+            <div class="field full">
+              <label>País <span style="color:var(--mc-red);">*</span></label>
+              <select name="pais" data-country required>
+                <option value="">— Selecciona tu país —</option>
+                <option value="ES">🇪🇸 España</option>
+                <option value="PT">🇵🇹 Portugal</option>
+                <option value="CL">🇨🇱 Chile</option>
+                <option value="PE">🇵🇪 Perú</option>
+                <option value="OTRO">🌎 Otro país</option>
+              </select>
+              <div data-inbox-note style="margin-top:10px; padding:10px 14px; background:var(--mc-bg); border-radius:6px; font-size:12px; color:var(--mc-mute); border-left:3px solid var(--mc-line);">
+                Selecciona tu país para que tu solicitud llegue al hub correspondiente.
+              </div>
+            </div>
             <div class="field">
               <label>Nombre</label>
               <input type="text" name="nombre" placeholder="Nombre completo" required>
@@ -60,11 +74,11 @@
             </div>
             <div class="field">
               <label>Correo electrónico</label>
-              <input type="email" name="email" placeholder="tu@laboratorio.cl" required>
+              <input type="email" name="email" data-email placeholder="tu@laboratorio.com" required>
             </div>
             <div class="field">
               <label>Teléfono / WhatsApp</label>
-              <input type="tel" name="telefono" placeholder="+56 9 ...">
+              <input type="tel" name="telefono" data-phone placeholder="Selecciona país primero">
             </div>
             <div class="field full">
               <label>Servicio de interés</label>
@@ -100,9 +114,14 @@
       <div>
         <h2>Información directa</h2>
         <div class="pillar-card" style="margin-bottom:18px;">
-          <div class="pillar-icon">📍</div>
+          <div class="pillar-icon">🇪🇸</div>
+          <h3 style="font-size:1.05rem;">Oficina en Madrid</h3>
+          <p>C. de Martínez Villergas, 52<br>28027 Madrid<br>España<br><span style="font-size:.85rem; color:var(--mc-mute);">Cubre España y Portugal</span></p>
+        </div>
+        <div class="pillar-card" style="margin-bottom:18px;">
+          <div class="pillar-icon red">🇨🇱</div>
           <h3 style="font-size:1.05rem;">Oficina en Santiago</h3>
-          <p>Magdalena 140, Of. 401<br>Las Condes, Región Metropolitana<br>Chile</p>
+          <p>Magdalena 140, Of. 401<br>Las Condes, Región Metropolitana<br>Chile<br><span style="font-size:.85rem; color:var(--mc-mute);">Cubre Chile y Perú</span></p>
         </div>
         <div class="pillar-card" style="margin-bottom:18px;">
           <div class="pillar-icon teal">📧</div>
@@ -116,8 +135,14 @@
         </div>
         <div class="pillar-card" style="margin-bottom:18px;">
           <div class="pillar-icon green">💬</div>
-          <h3 style="font-size:1.05rem;">WhatsApp directo</h3>
-          <p><a href="https://wa.me/56958451395">+56 9 5845 1395</a><br><span style="font-size:.85rem;">Soporte 24/7 en español</span></p>
+          <h3 style="font-size:1.05rem;">WhatsApp y teléfono</h3>
+          <p>
+            <strong style="color:var(--mc-navy);">🇪🇸 Madrid:</strong><br>
+            <a href="tel:+34911138378">+34 911 138 378</a><br><br>
+            <strong style="color:var(--mc-navy);">🇨🇱 Santiago:</strong><br>
+            <a href="https://wa.me/56958451395">+56 9 5845 1395</a> (WhatsApp)<br>
+            <span style="font-size:.85rem; color:var(--mc-mute);">Soporte 24/7 en español</span>
+          </p>
         </div>
         <div class="pillar-card" style="margin-bottom:18px;">
           <div class="pillar-icon red">📦</div>
@@ -144,9 +169,25 @@
 <section class="section section-bg">
   <div class="container">
     <div class="note-bar">
-      <span><strong>💼 Facturación CLP / USD (exenta IVA)</strong></span>
-      <span><strong>📦 Retiro nacional Chilexpress · DHL · FedEx</strong></span>
-      <span><strong>🇨🇱 Equipo local en Santiago</strong></span>
+      <span><strong>💼 Facturación en USD o EUR (exenta IVA)</strong></span>
+      <span><strong>📦 Logística internacional Chilexpress · DHL · FedEx</strong></span>
+      <span><strong>🇪🇸🇨🇱 Equipos locales en Madrid y Santiago</strong></span>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER NOW CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner" style="background:linear-gradient(120deg, #84BD00 0%, #6ea000 60%, #4d7000 100%); text-align:center;">
+      <span class="eyebrow" style="color:#ffffff; opacity:.85;">¿Ya sabes lo que necesitas?</span>
+      <h2 style="color:#ffffff; max-width:680px; margin:0 auto 14px;">Salta la cotización y haz tu pedido directo.</h2>
+      <p style="color:rgba(255,255,255,.9); max-width:560px; margin:0 auto 28px;">Si ya conoces el servicio que requieres, accede al portal oficial de pedidos Macrogen y comienza tu solicitud en línea ahora mismo.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="https://dna.macrogen.com" target="_blank" rel="noopener" class="btn" style="background:#ffffff; color:#4d7000; font-weight:900; box-shadow:0 8px 24px rgba(0,0,0,.18);">Order Now ↗</a>
+        <a href="servicios.html" class="btn btn-ghost-light">Ver catálogo de servicios →</a>
+      </div>
+      <p style="margin-top:18px; font-size:11px; color:rgba(255,255,255,.7); letter-spacing:.5px;">Portal seguro · acceso 24/7 · trazabilidad completa de tu muestra</p>
     </div>
   </div>
 </section>
