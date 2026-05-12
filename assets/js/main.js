@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       email: 'tu@laboratorio.com',
       phone: '+ código país ...',
       inbox: 'info-spain@macrogen.com',
-      hub: 'Madrid o Santiago según ubicación'
+      hub: 'Madrid'
     }
   };
 
