@@ -57,7 +57,7 @@
         aria-label="Buscar en preguntas frecuentes">
       <button type="button" class="faq-search-clear" data-faq-clear aria-label="Limpiar búsqueda" hidden>×</button>
     </div>
-    <div class="faq-search-meta" data-faq-count>Mostrando todas las <strong>14</strong> preguntas</div>
+    <div class="faq-search-meta" data-faq-count>Mostrando todas las <strong>39</strong> preguntas</div>
 
     <!-- EMPTY STATE (hidden by default, shown when no results) -->
     <div class="faq-empty-state" data-faq-empty hidden>
@@ -97,6 +97,22 @@
         <summary>¿Cuál es el coste de envío de las muestras?</summary>
         <div class="faq-answer">
           <p>El coste estándar es de <strong>100 EUR</strong>. Sin embargo, si el valor total del pedido es superior a 100 EUR, el envío es <strong>gratuito</strong> (sin coste para el cliente).</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tienen servicio de pick-up gratis?</summary>
+        <div class="faq-answer">
+          <p>Sí. <strong>En Santiago de Chile ofrecemos pick-up GRATIS</strong> dentro de la Región Metropolitana. Para coordinar el retiro, contáctanos vía WhatsApp al <a href="https://wa.me/56958451395" style="color:var(--mc-teal); font-weight:700;">+56 9 5845 1395</a>.</p>
+          <p>En España, coordinamos retiros desde tu laboratorio vía DHL o FedEx. Contacta a <a href="mailto:info-spain@macrogen.com" style="color:var(--mc-teal); font-weight:700;">info-spain@macrogen.com</a> para coordinar.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Hay un día recomendado para enviar muestras?</summary>
+        <div class="faq-answer">
+          <p>Sí. Se recomienda realizar los envíos los días <strong>lunes o martes</strong> para evitar que el paquete quede retenido en aduanas o en tránsito durante el fin de semana. Esto es especialmente crítico para muestras de RNA enviadas con hielo seco.</p>
+          <p>Para envíos urgentes, contáctanos antes para coordinar.</p>
         </div>
       </details>
 
@@ -156,6 +172,66 @@
         </div>
       </details>
 
+      <details class="faq-item">
+        <summary>¿Cómo debo preparar mis muestras de DNA?</summary>
+        <div class="faq-answer">
+          <p>Las muestras de DNA deben cumplir los siguientes criterios para garantizar resultados óptimos:</p>
+          <ul>
+            <li><strong>Buffer:</strong> tampón TE comercial o agua tratada con DEPC (diethyl pyrocarbonate)</li>
+            <li><strong>Concentración mínima:</strong> 50 ng/μL</li>
+            <li><strong>Volumen mínimo:</strong> 10 a 15 μL</li>
+            <li><strong>Pureza:</strong> ratio A260/280 entre <strong>1.7 y 2.0</strong></li>
+            <li><strong>Calidad:</strong> doble cadena, no degradado, sin partículas en suspensión</li>
+            <li><strong>Purificación:</strong> protocolo de columna o gel</li>
+          </ul>
+          <p>Etiqueta los tubos (microcentrifuge 1.5–2.0 mL o placas de 96 pocillos) con marcador permanente, sella con parafilm, y los IDs deben coincidir con la hoja de pedido.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuáles son los criterios de calidad (QC) para muestras de RNA?</summary>
+        <div class="faq-answer">
+          <p>Las muestras de RNA tienen requisitos más estrictos por su mayor degradabilidad:</p>
+          <ul>
+            <li><strong>Buffer:</strong> agua tratada con DEPC (preferido). La precipitación con etanol es posible pero no recomendada para cantidades pequeñas.</li>
+            <li><strong>Concentración mínima:</strong> 50–100 ng/μL (depende del servicio)</li>
+            <li><strong>Volumen:</strong> 10 μL mínimo</li>
+            <li><strong>RIN (RNA Integrity Number):</strong> <strong>≥ 7</strong> (medido con Agilent Bioanalyzer)</li>
+            <li><strong>Pureza:</strong> A260/280 entre 1.9 y 2.1</li>
+            <li><strong>Envío:</strong> obligatorio en hielo seco</li>
+          </ul>
+          <p>Como alternativa al hielo seco, puedes usar reactivos estabilizadores de RNA (ej. RNAlater) — indícalo en la sección de comentarios del pedido.</p>
+          <p>Consulta los criterios SQC detallados:</p>
+          <a href="assets/docs/SQC_Criteria_SRS.pdf" class="download-link" target="_blank" rel="noopener">🧬 SQC Short Read Sequencing</a>
+          <a href="assets/docs/SQC_Criteria_LRS.pdf" class="download-link" target="_blank" rel="noopener">🧬 SQC Long Read Sequencing</a>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué métodos usa Macrogen para QC de muestras?</summary>
+        <div class="faq-answer">
+          <ul>
+            <li><strong>DNA:</strong> cuantificación por <strong>fluorescencia</strong> (Qubit) y pureza por absorbancia A260/280 (espectrofotómetro NanoDrop)</li>
+            <li><strong>RNA:</strong> cuantificación por fluorescencia + medición del <strong>RIN (RNA Integrity Number)</strong> con Agilent Bioanalyzer</li>
+            <li><strong>Librerías Illumina:</strong> tamaño de fragmento por Bioanalyzer (chip DNA 1000) + cuantificación por <strong>qPCR</strong> según el protocolo Illumina, garantizando densidad de cluster óptima en cada flow cell</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cómo verifico la integridad de los archivos descargados?</summary>
+        <div class="faq-answer">
+          <p>Cada entrega de datos NGS incluye valores <strong>MD5 checksum</strong> en el reporte. Para verificar integridad:</p>
+          <ol>
+            <li>Descarga los archivos desde el link FTP seguro proporcionado</li>
+            <li><strong>NO descomprimas</strong> los archivos inmediatamente</li>
+            <li>Calcula el MD5 de cada archivo descargado (en Linux/Mac: <code>md5sum archivo.fastq.gz</code>; en Windows PowerShell: <code>Get-FileHash archivo.fastq.gz -Algorithm MD5</code>)</li>
+            <li>Compara con el MD5 indicado en el reporte</li>
+          </ol>
+          <p>Si los valores coinciden, no hay corrupción ni manipulación durante la transferencia.</p>
+        </div>
+      </details>
+
     </div>
     </div>
 
@@ -187,7 +263,41 @@
       <details class="faq-item">
         <summary>¿Cuál es el tiempo de entrega para secuenciación Sanger (CES)?</summary>
         <div class="faq-answer">
-          <p>Los resultados de CES se entregan en un plazo de <strong>24 horas</strong> tras la recepción de la muestra en nuestras instalaciones.</p>
+          <p>Los resultados de CES se entregan en un plazo de <strong>24 horas</strong> tras la recepción de la muestra en nuestras instalaciones (servicio EZ-Seq).</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué plataformas de secuenciación utilizan?</summary>
+        <div class="faq-answer">
+          <p>Operamos las plataformas más avanzadas del mercado:</p>
+          <ul>
+            <li><strong>Short reads (Illumina):</strong> NovaSeq X Plus, NovaSeq 6000, HiSeq X Ten, HiSeq 4000, HiSeq 2500, NextSeq 500, MiSeq</li>
+            <li><strong>Long reads (PacBio):</strong> PacBio Revio, Sequel I & Sequel II, RS II</li>
+            <li><strong>Long reads (Oxford Nanopore):</strong> tecnología ONT para aplicaciones específicas</li>
+            <li><strong>Sanger / CES:</strong> Applied Biosystems 3730xl DNA Analyzer</li>
+          </ul>
+          <p>La plataforma se selecciona automáticamente según el servicio que solicites. Si tienes preferencia específica, indícalo en tu pedido.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué longitud máxima de lectura ofrece Sanger?</summary>
+        <div class="faq-answer">
+          <p>Depende de la calidad de la muestra, pero en condiciones óptimas leemos <strong>aproximadamente 1.050 bases</strong>, con <strong>Q20 o superior en más de 650 bases</strong>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué tecnologías de captura de exoma utilizan?</summary>
+        <div class="faq-answer">
+          <p>Para WES (Whole Exome Sequencing) ofrecemos los principales kits de captura del mercado:</p>
+          <ul>
+            <li><strong>Agilent SureSelect Exome Capture Kit</strong> (estándar de oro)</li>
+            <li><strong>Illumina TruSeq Exome Enrichment Kit</strong></li>
+            <li><strong>Twist Human Core Exome Kit</strong></li>
+          </ul>
+          <p>Si tienes una preferencia o requerimiento específico, indícalo al solicitar tu cotización.</p>
         </div>
       </details>
 
@@ -249,6 +359,235 @@
         <summary>¿Puedo usar mis propios primers (custom primers)?</summary>
         <div class="faq-answer">
           <p>Sí, es posible realizar el servicio con primers personalizados con un <strong>coste adicional de 100 EUR</strong> por proyecto.</p>
+        </div>
+      </details>
+
+    </div>
+    </div>
+
+    <!-- SECCIÓN 5: Pago y facturación -->
+    <div class="faq-section-block" data-faq-section>
+    <h2 class="faq-section-title"><span class="num">5</span> Pago y facturación</h2>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>¿Qué métodos de pago aceptan?</summary>
+        <div class="faq-answer">
+          <p>Aceptamos los siguientes métodos:</p>
+          <ul>
+            <li><strong>Transferencia bancaria</strong> (Telegraphic Transfer)</li>
+            <li><strong>Tarjeta de crédito</strong> (Visa o MasterCard)</li>
+            <li><strong>Prepago</strong> (depósito anticipado, recomendado para clientes recurrentes)</li>
+          </ul>
+          <p>Los pagos pueden realizarse en <strong>USD, EUR, JPY o GBP</strong>. La factura se emite en la moneda acordada en la cotización.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuáles son los términos de pago?</summary>
+        <div class="faq-answer">
+          <p>Nuestros términos estándar son <strong>NET 30 días</strong>. La factura se emite tras la entrega de los datos o el envío del producto, y debe pagarse dentro de 30 días desde la fecha de emisión.</p>
+          <p>Si el pago no se realiza dentro del plazo, se aplica una <strong>penalización del 10% anual</strong> sobre el saldo pendiente, salvo acuerdo escrito previo.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Por qué hay 21% IVA en mi factura?</summary>
+        <div class="faq-answer">
+          <p>Por normativa de la Unión Europea, debemos aplicar IVA según las siguientes reglas:</p>
+          <ul>
+            <li><strong>Clientes en España (y resto de UE sin VIES válido):</strong> se aplica 21% IVA</li>
+            <li><strong>Clientes UE con VIES válido (fuera de España):</strong> sin IVA (operación intracomunitaria)</li>
+            <li><strong>Clientes fuera de la UE (Chile, Perú, otros):</strong> facturación <strong>exenta de IVA</strong></li>
+          </ul>
+          <p>Si tienes dudas sobre tu caso específico, contáctanos antes de realizar el pedido.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Puedo cambiar la información de facturación de una factura ya recibida?</summary>
+        <div class="faq-answer">
+          <p>Sí, pero requiere notificación previa. Contacta:</p>
+          <ul>
+            <li>España/Portugal: <a href="mailto:info-spain@macrogen.com" style="color:var(--mc-teal);">info-spain@macrogen.com</a></li>
+            <li>Chile/Perú: <a href="mailto:info-chile@macrogen.com" style="color:var(--mc-teal);">info-chile@macrogen.com</a></li>
+          </ul>
+          <p>Cuanto antes notifiques el cambio, más fácil será procesarlo.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cuánto tiempo tengo para reclamar sobre los resultados?</summary>
+        <div class="faq-answer">
+          <p>Tienes <strong>10 días hábiles</strong> desde la recepción de los resultados o productos para inspeccionarlos y notificar cualquier defecto o problema. Si no recibimos notificación dentro de este plazo, los resultados se consideran aceptados sin defectos.</p>
+          <p>Si hay un problema válido (ej. error técnico nuestro), repetimos el análisis sin costo adicional. Si el problema se debe a la muestra del cliente (ej. degradación), el costo del re-análisis lo asume el cliente.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Tienen política de prepago o créditos?</summary>
+        <div class="faq-answer">
+          <p>Sí. Puedes <strong>realizar un depósito anticipado</strong> y consumirlo a medida que solicitas servicios. Esto es ideal para laboratorios con flujo recurrente de pedidos.</p>
+          <p>Los créditos prepagados <strong>no tienen fecha de caducidad</strong> actualmente. Si esta política cambia, te notificaremos.</p>
+          <p>Para coordinar un prepago, contacta a tu hub correspondiente.</p>
+        </div>
+      </details>
+
+    </div>
+    </div>
+
+    <!-- SECCIÓN 6: Servicios disponibles -->
+    <div class="faq-section-block" data-faq-section>
+    <h2 class="faq-section-title"><span class="num">6</span> Servicios disponibles</h2>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>¿Qué servicios de NGS ofrecen?</summary>
+        <div class="faq-answer">
+          <p>Nuestro catálogo NGS incluye:</p>
+          <ul>
+            <li><strong>Whole Genome Sequencing (WGS):</strong> de novo y resequencing</li>
+            <li><strong>Whole Exome Sequencing (WES):</strong> con kits Agilent, Illumina, Twist</li>
+            <li><strong>Transcriptome Sequencing:</strong> mRNA, mRNA+lncRNA, Single Cell RNA, Small RNA, Iso-Seq</li>
+            <li><strong>Targeted Sequencing:</strong> paneles personalizados</li>
+            <li><strong>Metagenome Sequencing:</strong> amplicones (16S, 18S, ITS, COI) y shotgun</li>
+            <li><strong>Epigenome Sequencing:</strong> WGBS, RRBS, Methyl-Capture, ChIP-seq</li>
+            <li><strong>Spatial Transcriptomics:</strong> Visium, GeoMx</li>
+            <li><strong>Single Cell:</strong> 10x Genomics Chromium (3' GEX, 5' GEX, V(D)J)</li>
+          </ul>
+          <p>Consulta el catálogo completo en <a href="servicios.html" style="color:var(--mc-teal); font-weight:700;">servicios</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué tipos de servicios Sanger (CES) ofrecen?</summary>
+        <div class="faq-answer">
+          <p>Nuestra línea CES cubre 6 productos:</p>
+          <ul>
+            <li><strong>Sequencing Service</strong> — secuenciación estándar</li>
+            <li><strong>Customized Sequencing</strong> — flujos a medida (PCR + cloning + secuenciación)</li>
+            <li><strong>Identification</strong> — identificación de cepas (16S/ITS) con análisis BLAST</li>
+            <li><strong>Fragment Analysis</strong> — STR, AFLP, MLPA, microsatélites</li>
+            <li><strong>PyroSequencing</strong> — secuenciación por pirofosfato</li>
+            <li><strong>Cloning</strong> — clonación de productos PCR</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Hacen síntesis de oligonucleótidos?</summary>
+        <div class="faq-answer">
+          <p>Sí. Sintetizamos oligonucleótidos a múltiples escalas y purificaciones, con todas las modificaciones químicas estándar:</p>
+          <ul>
+            <li><strong>Escalas:</strong> 25 nmol → 10 μmol (incluyendo gBlocks de hasta 3.000 bp)</li>
+            <li><strong>Purificación:</strong> desalado, HPLC, PAGE</li>
+            <li><strong>Fluoróforos:</strong> FAM, HEX, TET, Cy3, Cy5, Texas Red</li>
+            <li><strong>Quenchers:</strong> BHQ-1, BHQ-2, TAMRA, MGB</li>
+            <li><strong>Modificaciones funcionales:</strong> biotina, amino-link, tiol, fosforilación</li>
+            <li><strong>Modificaciones internas:</strong> LNA, 2'-O-Me, deoxyU, dSpacer</li>
+          </ul>
+          <p>Para sondas TaqMan, Molecular Beacons y FRET ofrecemos purificación HPLC estándar.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué servicios Long Read tienen disponibles?</summary>
+        <div class="faq-answer">
+          <p>Operamos las dos principales tecnologías long-read del mercado:</p>
+          <ul>
+            <li><strong>PacBio HiFi (Revio, Sequel I & II, RS II):</strong> lecturas largas de alta fidelidad (>99.9% Q30, 15-20 kb). Ideal para ensamblajes <em>de novo</em>, variantes estructurales, full-length 16S rRNA, Iso-Seq, metilación.</li>
+            <li><strong>Oxford Nanopore Technology (ONT):</strong> tecnología ONT para aplicaciones específicas como long-read RNA-Seq, detección de modificaciones epigenéticas en tiempo real, secuenciación rápida portátil.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Ofrecen análisis bioinformático?</summary>
+        <div class="faq-answer">
+          <p>Sí. Cada servicio NGS incluye <strong>análisis bioinformático estándar</strong> con pipelines validados:</p>
+          <ul>
+            <li>Variant calling (GATK Best Practices, DeepVariant, Mutect2)</li>
+            <li>Análisis de expresión diferencial (DESeq2, edgeR, limma)</li>
+            <li>Single Cell (Seurat, Scanpy, anotación con SingleR/Azimuth)</li>
+            <li>Microbioma (DADA2, QIIME2, MetaPhlAn4)</li>
+            <li>Epigenética (Bismark, methylKit, MACS3)</li>
+          </ul>
+          <p>También ofrecemos <strong>análisis a medida</strong> y reanálisis de datos existentes. Consulta nuestra <a href="servicios/bioinformatica.html" style="color:var(--mc-teal); font-weight:700;">página de bioinformática</a>.</p>
+        </div>
+      </details>
+
+    </div>
+    </div>
+
+    <!-- SECCIÓN 7: Resultados y datos -->
+    <div class="faq-section-block" data-faq-section>
+    <h2 class="faq-section-title"><span class="num">7</span> Resultados y datos</h2>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>¿En qué formato recibo mis resultados?</summary>
+        <div class="faq-answer">
+          <p>Los formatos de entrega varían según el servicio:</p>
+          <ul>
+            <li><strong>Sanger / CES:</strong> AB1 (cromatograma raw con quality score), SEQ (texto plano), PHD (quality score), PDF (visualización). Comprimidos en ZIP.</li>
+            <li><strong>NGS — datos crudos:</strong> FASTQ (R1 + R2 por muestra), comprimidos con gzip</li>
+            <li><strong>NGS — alineamiento:</strong> BAM ordenado e indexado, BedGraph, BED peaks (según servicio)</li>
+            <li><strong>NGS — variantes:</strong> VCF anotado (VEP / SnpEff con ClinVar, gnomAD, dbSNP)</li>
+            <li><strong>RNA-Seq:</strong> matrices de cuentas (raw, TPM, FPKM), reporte HTML interactivo con PCA, volcano plots, heatmaps, enriquecimiento GO/KEGG</li>
+            <li><strong>Reporte ejecutivo:</strong> PDF en español resumiendo metodología y resultados clave</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Por cuánto tiempo guardan mis muestras y datos?</summary>
+        <div class="faq-answer">
+          <p>Política de almacenamiento estándar (sin solicitud especial del cliente):</p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr><th>Servicio</th><th>Muestras</th><th>Datos</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>CES (Sanger)</td><td>90 días calendario</td><td>3 años</td></tr>
+                <tr><td>Oligo</td><td>N/A</td><td>3 años</td></tr>
+                <tr><td>NGS</td><td>90 días calendario</td><td>30 días calendario</td></tr>
+                <tr><td>Clínico</td><td>90 días calendario</td><td>90 días calendario</td></tr>
+                <tr><td>Microarray</td><td>90 días calendario</td><td>90 días calendario</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Tras estos plazos, las muestras y datos se eliminan automáticamente. Si necesitas almacenamiento extendido, indícanoslo <strong>antes</strong> del envío (puede tener costo adicional).</p>
+          <p>Para descargar tus datos NGS, dispones de los <strong>30 días</strong> tras la entrega — recomendamos descargar inmediatamente.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cómo descargo mis resultados NGS?</summary>
+        <div class="faq-answer">
+          <p>Los resultados NGS pueden entregarse por tres vías:</p>
+          <ul>
+            <li><strong>FTP seguro</strong> (más común) — recibes link y credenciales por email; descarga directa</li>
+            <li><strong>Disco duro físico (HDD)</strong> — para volúmenes grandes (&gt;500 GB), enviado por mensajería con costo adicional</li>
+            <li><strong>Cloud transfer</strong> (AWS S3, Google Cloud, Azure) — coordinación previa requerida</li>
+          </ul>
+          <p>Las credenciales FTP llegan automáticamente al email del titular del pedido cuando los datos están listos. Verifica tu bandeja de entrada (también la carpeta de spam).</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Puedo solicitar la destrucción anticipada de mis muestras o datos?</summary>
+        <div class="faq-answer">
+          <p>Sí. Si por razones de confidencialidad o cumplimiento normativo necesitas que destruyamos las muestras o los datos antes del plazo estándar, debes solicitarlo <strong>por escrito</strong> (email a tu hub correspondiente).</p>
+          <p>Una vez recibida la solicitud, ejecutamos la destrucción siguiendo nuestros protocolos internos certificados ISO 27001, y emitimos un certificado de destrucción si lo solicitas.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Pueden enviar mis datos a un repositorio público (NCBI, ENA, GEO)?</summary>
+        <div class="faq-answer">
+          <p>La carga de datos en repositorios públicos es responsabilidad del cliente — Macrogen entrega los archivos en formatos compatibles (FASTQ con MD5 verificado), pero el envío a NCBI SRA, ENA o GEO debe hacerlo tu equipo siguiendo los formularios y metadatos requeridos por cada repositorio.</p>
+          <p>Si necesitas asesoría técnica para preparar el envío a un repositorio, nuestro equipo bioinformático puede ayudarte como servicio adicional. <a href="contacto.html" style="color:var(--mc-teal); font-weight:700;">Contáctanos</a> para coordinar.</p>
         </div>
       </details>
 
