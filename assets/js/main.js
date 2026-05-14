@@ -108,6 +108,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ========== FAQ live search: filter questions by keyword ==========
+  const faqInput = document.querySelector('[data-faq-search]');
+  if (faqInput) {
+    const allItems = document.querySelectorAll('.faq-item');
+    const allSections = document.querySelectorAll('[data-faq-section]');
+    const countEl = document.querySelector('[data-faq-count]');
+    const emptyState = document.querySelector('[data-faq-empty]');
+    const emptyQuery = document.querySelector('[data-faq-empty-query]');
+    const clearBtn = document.querySelector('[data-faq-clear]');
+    const totalCount = allItems.length;
+
+    // Pre-cache lowercased text for each item (faster filtering)
+    const itemTexts = Array.from(allItems).map(item => item.textContent.toLowerCase());
+
+    const runFilter = () => {
+      const q = faqInput.value.toLowerCase().trim();
+      let visible = 0;
+
+      // Show/hide clear button
+      if (clearBtn) clearBtn.hidden = !q;
+
+      // Filter items
+      allItems.forEach((item, i) => {
+        const matches = !q || itemTexts[i].includes(q);
+        item.classList.toggle('is-hidden', !matches);
+        if (matches) visible++;
+      });
+
+      // Hide sections that have no visible items
+      allSections.forEach(section => {
+        const visibleInSection = section.querySelectorAll('.faq-item:not(.is-hidden)').length;
+        section.classList.toggle('is-hidden', visibleInSection === 0);
+      });
+
+      // Update count + empty state
+      if (q && visible === 0) {
+        if (emptyState) emptyState.hidden = false;
+        if (emptyQuery) emptyQuery.textContent = q;
+        if (countEl) countEl.innerHTML = `Sin resultados para "<strong>${q}</strong>"`;
+      } else {
+        if (emptyState) emptyState.hidden = true;
+        if (countEl) {
+          if (q) {
+            countEl.innerHTML = `Mostrando <strong>${visible}</strong> de ${totalCount} preguntas para "<strong>${q}</strong>"`;
+          } else {
+            countEl.innerHTML = `Mostrando todas las <strong>${totalCount}</strong> preguntas`;
+          }
+        }
+      }
+    };
+
+    // Debounce input for smoother typing
+    let debounceTimer;
+    faqInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runFilter, 80);
+    });
+
+    // Clear button
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        faqInput.value = '';
+        runFilter();
+        faqInput.focus();
+      });
+    }
+
+    // Esc key to clear
+    faqInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        faqInput.value = '';
+        runFilter();
+      }
+    });
+  }
+
   // ========== Form submit: send to Formspree with country routing ==========
   document.querySelectorAll('form[data-demo]').forEach(form => {
     form.addEventListener('submit', async (e) => {
