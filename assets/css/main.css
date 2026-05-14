@@ -864,6 +864,176 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 .cert-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mc-green); }
 
+/* ----------- Global Network office cards ----------- */
+.network-region {
+  margin-bottom: 50px;
+}
+.network-region-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mc-navy);
+  margin: 0 0 22px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--mc-line);
+}
+.network-region-title .flag { font-size: 22px; letter-spacing: 0; }
+.network-region-title .count {
+  margin-left: auto;
+  background: var(--mc-bg);
+  color: var(--mc-navy);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.network-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.office-card {
+  background: var(--mc-white);
+  border: 1px solid var(--mc-line);
+  border-radius: var(--mc-radius);
+  overflow: hidden;
+  transition: all .25s ease;
+  display: flex;
+  flex-direction: column;
+}
+.office-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--mc-shadow);
+  border-color: var(--mc-teal);
+}
+.office-card.is-hub {
+  border: 2px solid var(--mc-red);
+  box-shadow: 0 4px 14px rgba(224,0,77,.12);
+}
+.office-card.is-hub:hover {
+  border-color: var(--mc-red);
+  box-shadow: 0 12px 30px rgba(224,0,77,.20);
+}
+.office-card.is-soon {
+  background: var(--mc-bg);
+  border-style: dashed;
+  opacity: .85;
+}
+.office-photo {
+  height: 130px;
+  background: var(--mc-navy);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.office-photo .hub-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--mc-red);
+  color: var(--mc-white);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(224,0,77,.35);
+}
+.office-photo .country-flag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 22px;
+  background: rgba(255,255,255,.95);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.office-photo.no-image {
+  background: linear-gradient(135deg, var(--mc-bg), #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.office-photo.no-image .placeholder-icon {
+  font-size: 40px;
+  opacity: .35;
+}
+.office-info {
+  padding: 18px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.office-info h4 {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--mc-navy);
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+.office-info .city {
+  font-size: 12px;
+  color: var(--mc-mute);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.office-info .established {
+  font-size: 10.5px;
+  color: var(--mc-teal);
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.office-info .established.soon { color: var(--mc-mute); font-style: italic; }
+
+/* Network stats banner */
+.network-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: var(--mc-navy);
+  border-radius: var(--mc-radius-lg);
+  padding: 32px 24px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.network-stats > div {
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+.network-stats > div:last-child { border-right: none; }
+.network-stats .stat-num {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--mc-teal);
+  line-height: 1;
+}
+.network-stats .stat-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mc-light-blue);
+  margin-top: 8px;
+}
+@media (max-width: 600px) {
+  .network-stats { grid-template-columns: repeat(2, 1fr); }
+  .network-stats > div:nth-child(2) { border-right: none; }
+}
+
 /* ----------- Tech partners marquee (auto-scroll horizontal strip) ----------- */
 .tech-partners {
   background: var(--mc-white);
