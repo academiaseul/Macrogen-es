@@ -42,42 +42,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========== COUNTRY ROUTING CONFIG ==========
-  // Each country routes the email to a primary inbox + a backup/test inbox
+  // Each country routes to ONE recipient (no more dual recipients)
+  // ES, PT  → chash@macrogen.com   (Madrid hub)
+  // CL, PE, OTRO → jaykim@macrogen.com (Santiago hub)
   const countryConfig = {
     'ES': {
       flag: '🇪🇸', label: 'España',
       email: 'tu@laboratorio.es', phone: '+34 ...',
-      to: 'info-spain@macrogen.com',
-      cc: 'macrogenmad@gmail.com',
+      to: 'chash@macrogen.com',
       hub: 'Madrid'
     },
     'PT': {
       flag: '🇵🇹', label: 'Portugal',
       email: 'tu@laboratorio.pt', phone: '+351 ...',
-      to: 'info-spain@macrogen.com',
-      cc: 'macrogenmad@gmail.com',
+      to: 'chash@macrogen.com',
       hub: 'Madrid'
     },
     'CL': {
       flag: '🇨🇱', label: 'Chile',
       email: 'tu@laboratorio.cl', phone: '+56 9 ...',
-      to: 'info-chile@macrogen.com',
-      cc: 'macrogencl@gmail.com',
+      to: 'jaykim@macrogen.com',
       hub: 'Santiago'
     },
     'PE': {
       flag: '🇵🇪', label: 'Perú',
       email: 'tu@laboratorio.pe', phone: '+51 ...',
-      to: 'info-chile@macrogen.com',
-      cc: 'macrogencl@gmail.com',
+      to: 'jaykim@macrogen.com',
       hub: 'Santiago'
     },
     'OTRO': {
       flag: '🌎', label: 'Otro país',
       email: 'tu@laboratorio.com', phone: '+ código país ...',
-      to: 'info-spain@macrogen.com',
-      cc: 'macrogenmad@gmail.com',
-      hub: 'Madrid'
+      to: 'jaykim@macrogen.com',
+      hub: 'Santiago'
     }
   };
 
@@ -104,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (emailInput) emailInput.placeholder = config.email;
       if (phoneInput) phoneInput.placeholder = config.phone;
       if (note) {
-        note.innerHTML = `${config.flag} <strong style="color:var(--mc-navy);">Tu solicitud llegará al hub ${config.hub}</strong><br><span style="font-size:11px;">Atención por <a href="mailto:${config.to}" style="color:var(--mc-teal); font-weight:700;">${config.to}</a> · <span style="color:var(--mc-mute);">copia a ${config.cc}</span></span>`;
+        note.innerHTML = `${config.flag} <strong style="color:var(--mc-navy);">Tu solicitud llegará al hub ${config.hub}</strong><br><span style="font-size:11px;">Atención por <a href="mailto:${config.to}" style="color:var(--mc-teal); font-weight:700;">${config.to}</a></span>`;
         note.style.borderLeftColor = 'var(--mc-green)';
         note.style.color = 'var(--mc-ink)';
       }
@@ -154,11 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const visitorEmail = (formData.get('email') || '').trim();
 
       // Append Formspree configuration fields
-      // _cc: comma-separated list of CC recipients (the email will reach all of them)
+      // _cc: SINGLE recipient based on country (no more dual emails to avoid duplicates)
       // _replyto: clicking Reply in the email goes to the visitor
       // _subject: human-readable subject line
-      // _format: plain text email instead of fancy HTML
-      formData.set('_cc', `${config.to},${config.cc}`);
+      // _format: plain text email
+      formData.set('_cc', config.to);
       formData.set('_replyto', visitorEmail);
       formData.set('_subject', `Nueva cotización · ${config.flag} ${config.label} · ${servicio} · ${institucion}`);
       formData.set('_format', 'plain');
@@ -166,8 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add helpful metadata fields (visible in the email body and Formspree dashboard)
       formData.set('Hub asignado', config.hub);
       formData.set('País (display)', `${config.flag} ${config.label}`);
-      formData.set('Destino primario', config.to);
-      formData.set('Copia a', config.cc);
+      formData.set('Destinatario', config.to);
       formData.set('Origen', 'macrogen-es.com / contacto.html');
 
       // Submit to Formspree
