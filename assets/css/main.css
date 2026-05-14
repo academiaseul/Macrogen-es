@@ -864,6 +864,164 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 .cert-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mc-green); }
 
+/* ----------- Tech partners marquee (auto-scroll horizontal strip) ----------- */
+.tech-partners {
+  background: var(--mc-white);
+  padding: 50px 0;
+  overflow: hidden;
+}
+.tech-partners-header { text-align: center; margin-bottom: 32px; }
+.tech-partners-header .eyebrow { color: var(--mc-teal); }
+.tech-partners-header h3 {
+  color: var(--mc-navy);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 8px 0 6px;
+}
+.tech-partners-header p {
+  color: var(--mc-mute);
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.tech-partners-track {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  width: max-content;
+  animation: techScroll 40s linear infinite;
+}
+.tech-partners:hover .tech-partners-track { animation-play-state: paused; }
+.tech-partners-track img {
+  height: 36px;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: .55;
+  transition: filter .3s ease, opacity .3s ease;
+  flex-shrink: 0;
+}
+.tech-partners-track img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+@keyframes techScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.tech-partners-fade {
+  position: relative;
+}
+.tech-partners-fade::before,
+.tech-partners-fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.tech-partners-fade::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--mc-white), transparent);
+}
+.tech-partners-fade::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--mc-white), transparent);
+}
+
+/* ----------- Partner logos (Confían en nosotros) ----------- */
+.partners-section { padding: 70px 0; background: #fff; }
+.partners-group { margin-bottom: 50px; }
+.partners-group:last-child { margin-bottom: 0; }
+.partners-group-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mc-mute);
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--mc-line);
+}
+.partners-group-title .flag { font-size: 18px; letter-spacing: 0; }
+.partners-group-title .count {
+  margin-left: auto;
+  background: var(--mc-bg);
+  color: var(--mc-navy);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+.partner-card {
+  background: var(--mc-bg);
+  border: 1px solid var(--mc-line);
+  border-radius: var(--mc-radius);
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 130px;
+  transition: all .25s ease;
+  text-align: center;
+}
+.partner-card:hover {
+  border-color: var(--mc-teal);
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(0,191,178,.10);
+  transform: translateY(-2px);
+}
+.partner-card img {
+  max-height: 56px;
+  max-width: 100%;
+  width: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: .7;
+  transition: filter .25s ease, opacity .25s ease;
+}
+.partner-card:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+.partner-card .partner-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mc-mute);
+  letter-spacing: .3px;
+  margin-top: 12px;
+  line-height: 1.35;
+}
+.partner-card:hover .partner-name { color: var(--mc-navy); }
+/* Placeholder state when no image is loaded */
+.partner-card.placeholder {
+  background: linear-gradient(135deg, #f4f7f9, #fff);
+  border-style: dashed;
+}
+.partner-card.placeholder .partner-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--mc-navy);
+  margin: 0;
+}
+.partner-card.placeholder .partner-sub {
+  font-size: 10px;
+  color: var(--mc-mute);
+  font-style: italic;
+  margin-top: 6px;
+}
+
 /* ----------- FAQ search bar ----------- */
 .faq-search {
   position: relative;
