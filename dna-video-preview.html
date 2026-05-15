@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DNA Video Hero · Preview · Macrogen Iberoamérica</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0A2240;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    height: 100vh;
+  }
+
+  #stage { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+
+  /* ============== VIDEO LAYER ============== */
+  #bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    object-fit: cover;
+  }
+
+  /* ============== OVERLAY LAYER (darken + tint) ============== */
+  #overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(135deg,
+        rgba(10, 34, 64, 0.85) 0%,
+        rgba(10, 34, 64, 0.65) 40%,
+        rgba(10, 34, 64, 0.30) 100%);
+    transition: opacity .3s ease;
+  }
+
+  /* Vignette ring on top */
+  #vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(6,24,46,.65) 100%);
+    pointer-events: none;
+  }
+
+  /* ============== HERO TEXT LAYER ============== */
+  #hero-content {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .hero-text { max-width: 720px; }
+
+  .eyebrow {
+    color: #00A1A7;
+    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(0, 161, 167, 0.15);
+    border: 1px solid rgba(0, 161, 167, 0.4);
+    border-radius: 999px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+  }
+
+  h1 .accent {
+    background: linear-gradient(120deg, #84BD00 0%, #00A1A7 50%, #00A1A7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: #84BD00; /* fallback */
+  }
+
+  .lead {
+    color: #d8e4f5;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 600px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+
+  .lead strong { color: #fff; }
+
+  .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn {
+    padding: 16px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: .3px;
+  }
+  .btn-primary {
+    background: #84BD00;
+    color: #0A2240;
+    box-shadow: 0 12px 30px rgba(132,189,0,.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(132,189,0,.5);
+  }
+  .btn-ghost {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,.4);
+    backdrop-filter: blur(8px);
+  }
+  .btn-ghost:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,.12);
+    transform: translateY(-2px);
+  }
+
+  /* Stats strip at bottom of hero */
+  #stats-strip {
+    position: absolute;
+    bottom: 40px;
+    left: 80px;
+    right: 80px;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    background: rgba(10, 34, 64, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 18px 24px;
+    border-radius: 12px;
+    max-width: 760px;
+  }
+  .stat .num {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+  .stat .num span { color: #84BD00; }
+  .stat .lbl {
+    font-size: 11px;
+    color: #a3b6d4;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-top: 6px;
+  }
+
+  /* ============== CONTROL PANEL ============== */
+  #panel {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(6, 24, 46, 0.92);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 20px 24px;
+    border-radius: 14px;
+    z-index: 999;
+    color: #fff;
+    font-size: 13px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    max-width: 300px;
+  }
+  #panel h4 {
+    font-size: 11px;
+    color: #00A1A7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 800;
+  }
+  #panel .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 4px;
+  }
+  #panel .row label {
+    color: #c5d6ed;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  #panel .val { color: #84BD00; font-weight: 800; font-size: 12px; }
+  #panel input[type="range"] {
+    width: 100%;
+    accent-color: #84BD00;
+    margin-bottom: 4px;
+  }
+  #panel select {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 4px;
+    font-family: inherit;
+  }
+  #panel hr { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 14px 0; }
+  #panel .note {
+    font-size: 10px;
+    color: #7a90ad;
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+  #panel .check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #c5d6ed;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 6px 0;
+  }
+  #panel .check input { accent-color: #84BD00; }
+
+  /* ============== ERROR STATE if video missing ============== */
+  #video-missing {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(135deg, #0A2240 0%, #06182E 100%);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    padding: 40px;
+  }
+  #video-missing.show { display: flex; }
+  #video-missing .icon {
+    font-size: 48px;
+    color: #E0004D;
+  }
+  #video-missing h3 {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+  }
+  #video-missing p {
+    color: #c5d6ed;
+    font-size: 14px;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  #video-missing code {
+    background: rgba(0,0,0,.4);
+    color: #84BD00;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    word-break: break-all;
+  }
+
+  @media (max-width: 768px) {
+    #hero-content { padding: 80px 24px 40px; }
+    #stats-strip { display: none; }
+    #panel { left: 12px; right: 12px; bottom: 12px; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- Layer 1: Video -->
+  <video id="bg-video" autoplay muted loop playsinline preload="auto">
+    <source src="assets/video/dna-hero.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <!-- Layer 2: Overlay tint -->
+  <div id="overlay"></div>
+
+  <!-- Layer 3: Vignette -->
+  <div id="vignette"></div>
+
+  <!-- Layer 4: Hero text -->
+  <div id="hero-content">
+    <div class="hero-text">
+      <span class="eyebrow">One Team · One Macrogen · Madrid + Santiago</span>
+      <h1>Humanizando la <span class="accent">genómica</span><br>en toda Iberoamérica.</h1>
+      <p class="lead">Operación regional conjunta de <strong>Macrogen Spain</strong> y <strong>Macrogen Chile</strong>: dos hubs, una sola red, sirviendo a la comunidad científica de España, Portugal, Chile y Perú.</p>
+      <div class="actions">
+        <a href="#" class="btn btn-primary">Ver servicios</a>
+        <a href="#" class="btn btn-ghost">Solicitar cotización →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layer 5: Stats strip -->
+  <div id="stats-strip">
+    <div class="stat"><div class="num"><span>18.000</span>+</div><div class="lbl">Clientes globales</div></div>
+    <div class="stat"><div class="num"><span>150</span></div><div class="lbl">Países atendidos</div></div>
+    <div class="stat"><div class="num"><span>28</span></div><div class="lbl">Años</div></div>
+    <div class="stat"><div class="num"><span>24/7</span></div><div class="lbl">Soporte español</div></div>
+  </div>
+
+  <!-- Error fallback -->
+  <div id="video-missing">
+    <div class="icon">⚠️</div>
+    <h3>Video no encontrado</h3>
+    <p>El preview espera el video en:<br><code>assets/video/dna-hero.mp4</code></p>
+    <p>Para ver este preview, copia tu archivo <code>14774636_1920_1080_30fps.mp4</code> a la ruta:<br><code>C:\Users\Chingu\Documents\Claude\Projects\Macrogen-es\assets\video\dna-hero.mp4</code></p>
+    <p style="margin-top: 20px;">Crea la carpeta <code>assets\video\</code> si no existe.</p>
+  </div>
+
+</div>
+
+<!-- ============== CONTROL PANEL ============== -->
+<div id="panel">
+  <h4>🎬 Video Hero · Preview</h4>
+
+  <div class="row">
+    <label>Oscuridad overlay</label>
+    <span class="val" id="darkVal">75%</span>
+  </div>
+  <input type="range" id="darkSlider" min="0" max="100" step="5" value="75">
+
+  <div class="row">
+    <label>Tinte color</label>
+  </div>
+  <select id="tintSel">
+    <option value="navy" selected>Navy Macrogen (default)</option>
+    <option value="teal">Teal — más biotech</option>
+    <option value="dark">Negro neutro — cinematic</option>
+    <option value="green">Verde — natural</option>
+    <option value="none">Sin tinte (solo vignette)</option>
+  </select>
+
+  <div class="row">
+    <label>Posición texto</label>
+  </div>
+  <select id="alignSel">
+    <option value="left" selected>Izquierda (default)</option>
+    <option value="center">Centrado</option>
+    <option value="right">Derecha</option>
+  </select>
+
+  <hr>
+
+  <label class="check">
+    <input type="checkbox" id="vignetteCheck" checked> Vignette dramático
+  </label>
+  <label class="check">
+    <input type="checkbox" id="statsCheck" checked> Mostrar stats strip
+  </label>
+  <label class="check">
+    <input type="checkbox" id="speedCheck"> Cámara lenta (0.5x)
+  </label>
+
+  <p class="note">
+    Si ves el mensaje de "Video no encontrado", revisa que copiaste el archivo .mp4 a <code style="color:#84BD00">assets/video/dna-hero.mp4</code>
+  </p>
+</div>
+
+<script>
+  const video = document.getElementById('bg-video');
+  const overlay = document.getElementById('overlay');
+  const vignette = document.getElementById('vignette');
+  const stats = document.getElementById('stats-strip');
+  const heroContent = document.getElementById('hero-content');
+  const heroText = document.querySelector('.hero-text');
+  const missing = document.getElementById('video-missing');
+
+  // Detect video failure
+  video.addEventListener('error', () => {
+    missing.classList.add('show');
+    video.style.display = 'none';
+  });
+  // Some browsers don't fire 'error' for missing src — also check after load attempt
+  setTimeout(() => {
+    if (video.readyState === 0 && video.networkState === 3) {
+      missing.classList.add('show');
+      video.style.display = 'none';
+    }
+  }, 2000);
+
+  // ============== Overlay darkness slider ==============
+  const darkSlider = document.getElementById('darkSlider');
+  const darkVal = document.getElementById('darkVal');
+  const tintSel = document.getElementById('tintSel');
+
+  const tintColors = {
+    navy:  [10, 34, 64],
+    teal:  [4, 60, 65],
+    dark:  [0, 0, 0],
+    green: [40, 70, 0],
+    none:  null
+  };
+
+  function updateOverlay() {
+    const dark = parseInt(darkSlider.value, 10) / 100;
+    const tint = tintColors[tintSel.value];
+    darkVal.textContent = darkSlider.value + '%';
+    if (!tint) {
+      overlay.style.background = 'transparent';
+      return;
+    }
+    const [r,g,b] = tint;
+    const a1 = (dark * 1.0).toFixed(2);
+    const a2 = (dark * 0.75).toFixed(2);
+    const a3 = (dark * 0.35).toFixed(2);
+    overlay.style.background = `linear-gradient(135deg,
+      rgba(${r},${g},${b}, ${a1}) 0%,
+      rgba(${r},${g},${b}, ${a2}) 40%,
+      rgba(${r},${g},${b}, ${a3}) 100%)`;
+  }
+  darkSlider.addEventListener('input', updateOverlay);
+  tintSel.addEventListener('change', updateOverlay);
+
+  // ============== Text alignment ==============
+  document.getElementById('alignSel').addEventListener('change', e => {
+    if (e.target.value === 'center') {
+      heroContent.style.justifyContent = 'center';
+      heroContent.style.textAlign = 'center';
+      heroText.style.margin = '0 auto';
+      heroText.querySelector('.actions').style.justifyContent = 'center';
+    } else if (e.target.value === 'right') {
+      heroContent.style.justifyContent = 'flex-end';
+      heroContent.style.textAlign = 'right';
+      heroText.style.margin = '0';
+      heroText.querySelector('.actions').style.justifyContent = 'flex-end';
+    } else {
+      heroContent.style.justifyContent = 'flex-start';
+      heroContent.style.textAlign = 'left';
+      heroText.style.margin = '0';
+      heroText.querySelector('.actions').style.justifyContent = 'flex-start';
+    }
+  });
+
+  // ============== Toggles ==============
+  document.getElementById('vignetteCheck').addEventListener('change', e => {
+    vignette.style.display = e.target.checked ? 'block' : 'none';
+  });
+  document.getElementById('statsCheck').addEventListener('change', e => {
+    stats.style.display = e.target.checked ? 'grid' : 'none';
+  });
+  document.getElementById('speedCheck').addEventListener('change', e => {
+    video.playbackRate = e.target.checked ? 0.5 : 1.0;
+  });
+</script>
+</body>
+</html>

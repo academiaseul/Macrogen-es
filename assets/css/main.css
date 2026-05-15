@@ -427,6 +427,70 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 .hero-mini h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
 
+/* ----------- Hero with video background (used on index.html) ----------- */
+.hero.has-video {
+  padding: 130px 0 140px;
+  min-height: 600px;
+}
+.hero.has-video::before,
+.hero.has-video::after {
+  display: none;
+}
+.hero-video {
+  position: absolute;
+  top: 50%; left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  object-fit: cover;
+  pointer-events: none;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(135deg,
+    rgba(10, 34, 64, 0.85) 0%,
+    rgba(10, 34, 64, 0.65) 40%,
+    rgba(10, 34, 64, 0.30) 100%);
+  pointer-events: none;
+}
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(6, 24, 46, .65) 100%);
+  pointer-events: none;
+}
+.hero.has-video .container {
+  position: relative;
+  z-index: 5;
+}
+.hero.has-video h1 {
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+.hero.has-video p.lead {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  color: #d8e4f5;
+}
+
+/* WCAG: respect users who prefer reduced motion — hide video, fall back to navy bg */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+  .hero.has-video { background: var(--mc-navy); }
+}
+
+/* Mobile: keep video but adjust min-height */
+@media (max-width: 768px) {
+  .hero.has-video {
+    padding: 80px 0 90px;
+    min-height: 480px;
+  }
+}
+
 /* ----------- Pillars / Stat Cards ----------- */
 .pillar-card {
   background: var(--mc-white);

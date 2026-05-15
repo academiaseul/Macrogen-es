@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DNA 3D · Preview Hero · Macrogen Iberoamérica</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0A2240;
+    background: radial-gradient(ellipse at center, #143665 0%, #0A2240 70%, #06182E 100%);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    height: 100vh;
+  }
+
+  #stage { position: relative; width: 100vw; height: 100vh; }
+
+  #canvas-host {
+    position: absolute; inset: 0;
+    z-index: 1;
+  }
+
+  #hero-overlay {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 80px;
+    pointer-events: none;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .hero-text { pointer-events: auto; }
+
+  .eyebrow {
+    color: #00A1A7;
+    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+
+  h1 {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+
+  h1 .accent {
+    color: #84BD00;
+    background: linear-gradient(120deg, #84BD00 0%, #00A1A7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .lead {
+    color: #c5d6ed;
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+
+  .lead strong { color: #fff; }
+
+  .actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn {
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: #84BD00;
+    color: #0A2240;
+    box-shadow: 0 8px 24px rgba(132,189,0,.25);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(132,189,0,.4); }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,.4);
+  }
+  .btn-ghost:hover { border-color: #fff; transform: translateY(-2px); }
+
+  /* Right column reserved for the DNA visual */
+  .hero-visual { position: relative; }
+
+  /* Floating control panel */
+  #panel {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(6, 24, 46, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 18px 22px;
+    border-radius: 12px;
+    z-index: 100;
+    color: #fff;
+    font-size: 13px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.4);
+    max-width: 280px;
+  }
+  #panel h4 {
+    font-size: 11px;
+    color: #00A1A7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  #panel .row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+  #panel label { flex: 1; color: #c5d6ed; font-size: 12px; }
+  #panel input[type="range"] { width: 100%; accent-color: #84BD00; }
+  #panel select {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    width: 100%;
+    cursor: pointer;
+  }
+  #panel button {
+    background: #84BD00;
+    color: #0A2240;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 8px;
+    width: 100%;
+    font-family: inherit;
+  }
+
+  #fps {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: rgba(0,0,0,.4);
+    color: #84BD00;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    z-index: 100;
+  }
+
+  @media (max-width: 768px) {
+    #hero-overlay { grid-template-columns: 1fr; padding: 80px 24px; }
+    .hero-visual { display: none; }
+    #panel { left: 16px; right: 16px; bottom: 16px; max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="canvas-host"></div>
+
+  <div id="hero-overlay">
+    <div class="hero-text">
+      <span class="eyebrow">One Team · One Macrogen · Madrid + Santiago</span>
+      <h1>Humanizando la <span class="accent">genómica</span><br>en toda Iberoamérica.</h1>
+      <p class="lead">Operación conjunta de <strong>Macrogen Spain</strong> y <strong>Macrogen Chile</strong>: dos hubs, una sola red. Sirviendo a la comunidad científica de España, Portugal, Chile y Perú.</p>
+      <div class="actions">
+        <a href="#" class="btn btn-primary">Ver servicios</a>
+        <a href="#" class="btn btn-ghost">Solicitar cotización →</a>
+      </div>
+    </div>
+    <div class="hero-visual"></div>
+  </div>
+</div>
+
+<div id="fps">FPS: 60</div>
+
+<div id="panel">
+  <h4>🧬 DNA Hero · Preview</h4>
+  <div class="row">
+    <label>Estilo</label>
+  </div>
+  <select id="styleSel">
+    <option value="solid">A · Sólido (helix tubular)</option>
+    <option value="wireframe">B · Wireframe (minimalista)</option>
+    <option value="particle">C · Partículas (neón)</option>
+  </select>
+  <div class="row">
+    <label>Velocidad</label>
+    <span id="speedVal" style="color:#84BD00;font-weight:700;">1.0x</span>
+  </div>
+  <input type="range" id="speedSlider" min="0" max="3" step="0.1" value="1">
+  <div class="row">
+    <label>Pares de bases</label>
+    <span id="bpVal" style="color:#84BD00;font-weight:700;">32</span>
+  </div>
+  <input type="range" id="bpSlider" min="12" max="60" step="2" value="32">
+  <button onclick="window.location.reload()">↻ Reiniciar</button>
+  <p style="margin-top:10px; font-size:10px; color:#7a90ad; line-height:1.4;">
+    Mueve el mouse para parallax · Cambia estilo arriba ↑
+  </p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function() {
+  // ============== Setup ==============
+  const host = document.getElementById('canvas-host');
+  const W = () => window.innerWidth;
+  const H = () => window.innerHeight;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, W() / H(), 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(W(), H());
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  host.appendChild(renderer.domElement);
+
+  // ============== Lights ==============
+  scene.add(new THREE.AmbientLight(0x4a6f9d, 0.55));
+  const keyLight = new THREE.DirectionalLight(0xffffff, 0.9);
+  keyLight.position.set(5, 8, 6);
+  scene.add(keyLight);
+  const tealRim = new THREE.PointLight(0x00A1A7, 1.2, 30);
+  tealRim.position.set(-6, 0, 4);
+  scene.add(tealRim);
+  const greenAccent = new THREE.PointLight(0x84BD00, 1.0, 25);
+  greenAccent.position.set(6, 2, 3);
+  scene.add(greenAccent);
+  const pinkBack = new THREE.PointLight(0xE0004D, 0.6, 20);
+  pinkBack.position.set(0, -5, -5);
+  scene.add(pinkBack);
+
+  // ============== State ==============
+  const state = {
+    style: 'solid',
+    speed: 1.0,
+    basePairs: 32
+  };
+
+  let dnaGroup = null;
+
+  // ============== DNA Builder ==============
+  const COLORS = {
+    backbone1: 0x00A1A7,  // teal
+    backbone2: 0x84BD00,  // green
+    baseA: 0xE0004D,      // pink/red
+    baseT: 0xF39200,      // orange
+    baseG: 0x00A1A7,      // teal
+    baseC: 0x84BD00,      // green
+    rung: 0xc5d6ed,
+    glow: 0x84BD00
+  };
+
+  function buildHelixPositions(bp) {
+    const radius = 1.7;
+    const heightPerTurn = 4;
+    const turns = 4;
+    const totalHeight = turns * heightPerTurn;
+    const p1 = [], p2 = [];
+    for (let i = 0; i <= bp; i++) {
+      const t = i / bp;
+      const angle = t * turns * Math.PI * 2;
+      const y = -totalHeight / 2 + t * totalHeight;
+      p1.push(new THREE.Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius));
+      p2.push(new THREE.Vector3(Math.cos(angle + Math.PI) * radius, y, Math.sin(angle + Math.PI) * radius));
+    }
+    return { p1, p2, radius, totalHeight };
+  }
+
+  function buildSolid(bp) {
+    const group = new THREE.Group();
+    const { p1, p2 } = buildHelixPositions(bp);
+
+    // Backbones — smooth tubes
+    const curve1 = new THREE.CatmullRomCurve3(p1);
+    const curve2 = new THREE.CatmullRomCurve3(p2);
+    const tubeGeom1 = new THREE.TubeGeometry(curve1, 240, 0.13, 10, false);
+    const tubeGeom2 = new THREE.TubeGeometry(curve2, 240, 0.13, 10, false);
+    const matBack1 = new THREE.MeshStandardMaterial({
+      color: COLORS.backbone1, metalness: 0.4, roughness: 0.35,
+      emissive: COLORS.backbone1, emissiveIntensity: 0.18
+    });
+    const matBack2 = new THREE.MeshStandardMaterial({
+      color: COLORS.backbone2, metalness: 0.4, roughness: 0.35,
+      emissive: COLORS.backbone2, emissiveIntensity: 0.18
+    });
+    group.add(new THREE.Mesh(tubeGeom1, matBack1));
+    group.add(new THREE.Mesh(tubeGeom2, matBack2));
+
+    // Bases + rungs
+    const sphereGeom = new THREE.SphereGeometry(0.20, 18, 18);
+    const baseColors = [COLORS.baseA, COLORS.baseT, COLORS.baseG, COLORS.baseC];
+    for (let i = 0; i < p1.length; i += 1) {
+      const cA = baseColors[i % 4];
+      const cB = baseColors[(i + 2) % 4];
+
+      const sA = new THREE.Mesh(sphereGeom, new THREE.MeshStandardMaterial({
+        color: cA, emissive: cA, emissiveIntensity: 0.45,
+        metalness: 0.3, roughness: 0.4
+      }));
+      sA.position.copy(p1[i]);
+      group.add(sA);
+
+      const sB = new THREE.Mesh(sphereGeom, new THREE.MeshStandardMaterial({
+        color: cB, emissive: cB, emissiveIntensity: 0.45,
+        metalness: 0.3, roughness: 0.4
+      }));
+      sB.position.copy(p2[i]);
+      group.add(sB);
+
+      // Rung connecting the base pair
+      const dist = p1[i].distanceTo(p2[i]);
+      const rungGeom = new THREE.CylinderGeometry(0.045, 0.045, dist, 8);
+      const rungMat = new THREE.MeshStandardMaterial({
+        color: COLORS.rung, opacity: 0.55, transparent: true,
+        metalness: 0.2, roughness: 0.5
+      });
+      const rung = new THREE.Mesh(rungGeom, rungMat);
+      rung.position.copy(p1[i]).lerp(p2[i], 0.5);
+      const dir = new THREE.Vector3().subVectors(p2[i], p1[i]).normalize();
+      const up = new THREE.Vector3(0, 1, 0);
+      const quat = new THREE.Quaternion().setFromUnitVectors(up, dir);
+      rung.quaternion.copy(quat);
+      group.add(rung);
+    }
+
+    return group;
+  }
+
+  function buildWireframe(bp) {
+    const group = new THREE.Group();
+    const { p1, p2 } = buildHelixPositions(bp);
+
+    // Helix curves rendered as glowing lines
+    const geom1 = new THREE.BufferGeometry().setFromPoints(p1);
+    const geom2 = new THREE.BufferGeometry().setFromPoints(p2);
+    const mat1 = new THREE.LineBasicMaterial({ color: COLORS.backbone1, linewidth: 2 });
+    const mat2 = new THREE.LineBasicMaterial({ color: COLORS.backbone2, linewidth: 2 });
+    group.add(new THREE.Line(geom1, mat1));
+    group.add(new THREE.Line(geom2, mat2));
+
+    // Smooth backbones too as thin tubes
+    const curve1 = new THREE.CatmullRomCurve3(p1);
+    const curve2 = new THREE.CatmullRomCurve3(p2);
+    group.add(new THREE.Mesh(
+      new THREE.TubeGeometry(curve1, 200, 0.04, 6, false),
+      new THREE.MeshBasicMaterial({ color: COLORS.backbone1 })
+    ));
+    group.add(new THREE.Mesh(
+      new THREE.TubeGeometry(curve2, 200, 0.04, 6, false),
+      new THREE.MeshBasicMaterial({ color: COLORS.backbone2 })
+    ));
+
+    // Sparse base nodes (small wireframe spheres)
+    for (let i = 0; i < p1.length; i += 2) {
+      const sphereGeom = new THREE.SphereGeometry(0.10, 8, 8);
+      const sphereMat = new THREE.MeshBasicMaterial({
+        color: i % 4 === 0 ? COLORS.baseA : COLORS.baseT,
+        wireframe: true
+      });
+      const s1 = new THREE.Mesh(sphereGeom, sphereMat);
+      const s2 = new THREE.Mesh(sphereGeom, sphereMat);
+      s1.position.copy(p1[i]);
+      s2.position.copy(p2[i]);
+      group.add(s1);
+      group.add(s2);
+
+      // Rung as line
+      const rungGeom = new THREE.BufferGeometry().setFromPoints([p1[i], p2[i]]);
+      const rungMat = new THREE.LineBasicMaterial({
+        color: COLORS.rung, transparent: true, opacity: 0.4
+      });
+      group.add(new THREE.Line(rungGeom, rungMat));
+    }
+
+    return group;
+  }
+
+  function buildParticle(bp) {
+    const group = new THREE.Group();
+    const { p1, p2 } = buildHelixPositions(bp);
+
+    // Many small particles forming the helix
+    const particleCount = 800;
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    const radius = 1.7;
+    const heightPerTurn = 4;
+    const turns = 4;
+    const totalHeight = turns * heightPerTurn;
+
+    const cTeal = new THREE.Color(COLORS.backbone1);
+    const cGreen = new THREE.Color(COLORS.backbone2);
+    const cPink = new THREE.Color(COLORS.baseA);
+    const cOrange = new THREE.Color(COLORS.baseT);
+
+    for (let i = 0; i < particleCount; i++) {
+      const t = i / particleCount;
+      const angle = t * turns * Math.PI * 2;
+      const y = -totalHeight / 2 + t * totalHeight;
+      const isStrand2 = i % 2 === 0;
+      const a = isStrand2 ? angle + Math.PI : angle;
+      const r = radius + (Math.random() - 0.5) * 0.15;
+
+      positions[i * 3]     = Math.cos(a) * r;
+      positions[i * 3 + 1] = y + (Math.random() - 0.5) * 0.1;
+      positions[i * 3 + 2] = Math.sin(a) * r;
+
+      const baseColor = isStrand2 ? cGreen : cTeal;
+      const accent = i % 13 === 0 ? cPink : (i % 17 === 0 ? cOrange : baseColor);
+      colors[i * 3]     = accent.r;
+      colors[i * 3 + 1] = accent.g;
+      colors[i * 3 + 2] = accent.b;
+    }
+
+    const particleGeom = new THREE.BufferGeometry();
+    particleGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particleGeom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      size: 0.10,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.9,
+      blending: THREE.AdditiveBlending,
+      sizeAttenuation: true
+    });
+    group.add(new THREE.Points(particleGeom, particleMat));
+
+    // Faint backbone curve for structure hint
+    const curve1 = new THREE.CatmullRomCurve3(p1);
+    const curve2 = new THREE.CatmullRomCurve3(p2);
+    group.add(new THREE.Mesh(
+      new THREE.TubeGeometry(curve1, 200, 0.025, 6, false),
+      new THREE.MeshBasicMaterial({ color: COLORS.backbone1, transparent: true, opacity: 0.5 })
+    ));
+    group.add(new THREE.Mesh(
+      new THREE.TubeGeometry(curve2, 200, 0.025, 6, false),
+      new THREE.MeshBasicMaterial({ color: COLORS.backbone2, transparent: true, opacity: 0.5 })
+    ));
+
+    return group;
+  }
+
+  function rebuild() {
+    if (dnaGroup) {
+      scene.remove(dnaGroup);
+      dnaGroup.traverse(obj => {
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) obj.material.dispose();
+      });
+    }
+    if (state.style === 'solid')        dnaGroup = buildSolid(state.basePairs);
+    else if (state.style === 'wireframe') dnaGroup = buildWireframe(state.basePairs);
+    else                                  dnaGroup = buildParticle(state.basePairs);
+    // Slight tilt for cinematic feel
+    dnaGroup.rotation.z = -0.1;
+    scene.add(dnaGroup);
+  }
+
+  rebuild();
+
+  // ============== Camera ==============
+  // Position camera off-center so DNA lives in the right half (where hero-visual column sits)
+  function positionCamera() {
+    const aspect = W() / H();
+    if (aspect > 1) {
+      // desktop: DNA on right
+      camera.position.set(-2.5, 0.5, 9);
+      camera.lookAt(2, 0, 0);
+    } else {
+      // mobile: center DNA behind text
+      camera.position.set(0, 0, 11);
+      camera.lookAt(0, 0, 0);
+    }
+  }
+  positionCamera();
+
+  // ============== Mouse parallax ==============
+  let mouseX = 0, mouseY = 0;
+  window.addEventListener('mousemove', e => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  // ============== Animation ==============
+  let time = 0;
+  let lastFrame = performance.now();
+  let fps = 60;
+  const fpsEl = document.getElementById('fps');
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const now = performance.now();
+    const delta = (now - lastFrame) / 1000;
+    lastFrame = now;
+    fps = fps * 0.92 + (1 / Math.max(delta, 0.001)) * 0.08;
+    if (Math.random() < 0.05) fpsEl.textContent = 'FPS: ' + Math.round(fps);
+
+    time += delta * state.speed;
+    if (dnaGroup) {
+      dnaGroup.rotation.y = time * 0.4;
+      dnaGroup.position.y = Math.sin(time * 0.5) * 0.2;
+    }
+
+    // Camera parallax (subtle)
+    const targetX = (W() / H() > 1 ? -2.5 : 0) + mouseX * 0.4;
+    const targetY = 0.5 + mouseY * 0.25;
+    camera.position.x += (targetX - camera.position.x) * 0.05;
+    camera.position.y += (targetY - camera.position.y) * 0.05;
+    camera.lookAt(W() / H() > 1 ? 2 : 0, 0, 0);
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // ============== Resize ==============
+  window.addEventListener('resize', () => {
+    camera.aspect = W() / H();
+    camera.updateProjectionMatrix();
+    renderer.setSize(W(), H());
+    positionCamera();
+  });
+
+  // ============== UI Controls ==============
+  document.getElementById('styleSel').addEventListener('change', e => {
+    state.style = e.target.value;
+    rebuild();
+  });
+  document.getElementById('speedSlider').addEventListener('input', e => {
+    state.speed = parseFloat(e.target.value);
+    document.getElementById('speedVal').textContent = state.speed.toFixed(1) + 'x';
+  });
+  document.getElementById('bpSlider').addEventListener('input', e => {
+    state.basePairs = parseInt(e.target.value, 10);
+    document.getElementById('bpVal').textContent = state.basePairs;
+    rebuild();
+  });
+})();
+</script>
+</body>
+</html>
