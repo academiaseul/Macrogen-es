@@ -184,7 +184,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========== Form submit: send to Formspree with country routing ==========
+  // ========== Form submit: handles BOTH cotización + newsletter forms ==========
+  // Cotización form has data-country-form (routes by country)
+  // Newsletter form has only data-demo (just email)
   document.querySelectorAll('form[data-demo]').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -192,15 +194,58 @@ document.addEventListener('DOMContentLoaded', () => {
       const note = form.querySelector('[data-demo-msg]');
       const inboxNote = form.querySelector('[data-inbox-note]');
       const submitBtn = form.querySelector('button[type="submit"]');
+      const isNewsletter = !form.hasAttribute('data-country-form');
 
       // Disable submit while sending
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.dataset.originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Enviando...';
+        submitBtn.textContent = isNewsletter ? 'Suscribiendo...' : 'Enviando...';
       }
 
       const formData = new FormData(form);
+
+      // ============== NEWSLETTER FORM PATH ==============
+      if (isNewsletter) {
+        const email = (formData.get('email') || '').trim();
+        if (!email) {
+          if (note) note.innerHTML = '⚠️ <strong style="color:#E0004D;">Por favor introduce un correo electrónico válido.</strong>';
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitBtn.dataset.originalText || 'Suscribirme';
+          }
+          return;
+        }
+        // Inject Formspree metadata for newsletter
+        formData.set('_subject', `Nueva suscripción newsletter · ${email}`);
+        formData.set('_format', 'plain');
+        formData.set('form_type', 'newsletter');
+        formData.set('Origen', 'macrogen-es.com / newsletter');
+
+        try {
+          const res = await fetch('https://formspree.io/f/xaqvkoaw', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            if (note) note.innerHTML = '✅ <strong style="color:#84BD00;">¡Te suscribiste correctamente!</strong> Recibirás el primer newsletter el próximo lunes.';
+            form.reset();
+          } else {
+            if (note) note.innerHTML = '⚠️ <strong style="color:#E0004D;">Hubo un problema. Intenta de nuevo o escribe a info-spain@macrogen.com.</strong>';
+          }
+        } catch (err) {
+          if (note) note.innerHTML = '⚠️ <strong style="color:#E0004D;">Error de conexión. Verifica tu internet.</strong>';
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitBtn.dataset.originalText || 'Suscribirme';
+          }
+        }
+        return;
+      }
+
+      // ============== COTIZACIÓN FORM PATH (country routing) ==============
       const country = formData.get('pais');
 
       // Validate country was picked

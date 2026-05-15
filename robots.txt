@@ -1,0 +1,25 @@
+# robots.txt for macrogen-es.com
+# Last updated: 2026-05-14
+
+User-agent: *
+Allow: /
+
+# Block admin / private folders if any (none for now)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Block AI crawlers from training (optional — remove if you WANT AI to index your content)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemaps
+Sitemap: https://macrogen-es.com/sitemap.xml

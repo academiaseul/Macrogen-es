@@ -1447,3 +1447,96 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   justify-content: center;
 }
 .note-bar strong { color: var(--mc-red); }
+
+
+/* ============================================
+   WCAG 2.1 ACCESSIBILITY FIXES (Mayo 2026)
+   ============================================ */
+
+/* Skip-to-content link — only visible when focused via keyboard.
+   Critical for screen reader users to skip header on each page. */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--mc-navy);
+  color: #fff;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  z-index: 9999;
+  border-radius: 0 0 8px 0;
+  transition: top .15s ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 0;
+  outline: 3px solid var(--mc-teal);
+  outline-offset: 2px;
+}
+
+/* Focus visible — outline navy 2px on all interactive elements
+   when navigated by keyboard, but NOT when clicked by mouse.
+   :focus-visible is the modern standard. */
+:focus { outline: none; } /* reset default browser dotted */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--mc-teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Reduced motion — pause all animations for users with vestibular disorders
+   or low-power devices. Required by WCAG 2.3.3. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .tech-partners-track {
+    animation: none !important;
+    transform: translateX(0);
+  }
+}
+
+/* Cookie banner — minimal styling for the Cookiebot/Iubenda script,
+   in case we self-host a banner instead. */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--mc-navy);
+  color: #fff;
+  padding: 18px 24px;
+  z-index: 9998;
+  box-shadow: 0 -4px 24px rgba(0,0,0,.18);
+  display: none; /* shown by JS only when needed */
+}
+.cookie-banner.is-active { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+.cookie-banner p { margin: 0; flex: 1 1 320px; font-size: 13px; line-height: 1.5; color: #d8e1ee; }
+.cookie-banner p a { color: var(--mc-teal); text-decoration: underline; font-weight: 600; }
+.cookie-banner-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.cookie-banner button {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 12.5px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: .3px;
+}
+.cookie-banner .btn-accept { background: var(--mc-green); color: #fff; }
+.cookie-banner .btn-reject { background: rgba(255,255,255,.12); color: #fff; }
+.cookie-banner .btn-config { background: transparent; color: #fff; text-decoration: underline; padding: 9px 4px; }

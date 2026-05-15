@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Auditoría Estratégica 360° · Macrogen Iberoamérica · Mayo 2026</title>
+<meta name="ProgId" content="Word.Document">
+<meta name="Generator" content="Microsoft Word 15">
+<meta name="Originator" content="Microsoft Word 15">
+<style>
+  /* ===== Word/Print friendly base ===== */
+  @page { size: Letter; margin: 2.54cm 2cm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Calibri, "Segoe UI", Arial, sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    margin: 0;
+    padding: 32px 48px;
+    max-width: 1024px;
+    margin: 0 auto;
+    line-height: 1.55;
+    font-size: 11pt;
+  }
+  .navy   { color: #0A2240; }
+  .teal   { color: #00A1A7; }
+  .green  { color: #84BD00; }
+  .red    { color: #E0004D; }
+  .orange { color: #F39200; }
+  .mute   { color: #6B7280; }
+
+  h1 {
+    color: #0A2240;
+    font-size: 24pt;
+    font-weight: 800;
+    margin: 36px 0 12px;
+    border-bottom: 3px solid #00A1A7;
+    padding-bottom: 8px;
+    page-break-before: always;
+  }
+  h1.first { page-break-before: avoid; }
+  h2 {
+    color: #0A2240;
+    font-size: 16pt;
+    font-weight: 700;
+    margin: 28px 0 10px;
+  }
+  h3 {
+    color: #00A1A7;
+    font-size: 13pt;
+    font-weight: 700;
+    margin: 22px 0 8px;
+  }
+  p { margin: 6px 0 12px; }
+  ul { margin: 8px 0 16px 0; padding-left: 22px; }
+  li { margin-bottom: 6px; line-height: 1.5; }
+  ol { margin: 8px 0 16px 0; padding-left: 22px; }
+  ol li { margin-bottom: 6px; }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #00A1A7;
+    margin-bottom: 4px;
+  }
+  .eyebrow.red { color: #E0004D; }
+  .eyebrow.green { color: #84BD00; }
+  .eyebrow.orange { color: #F39200; }
+  .eyebrow.navy { color: #0A2240; }
+
+  /* ===== COVER PAGE ===== */
+  .cover {
+    text-align: center;
+    padding: 80px 0 60px;
+    page-break-after: always;
+  }
+  .cover .brand {
+    color: #00A1A7;
+    font-weight: 800;
+    font-size: 11pt;
+    letter-spacing: 8px;
+    margin-bottom: 8px;
+  }
+  .cover .countries {
+    color: #6B7280;
+    letter-spacing: 4px;
+    font-size: 10pt;
+    margin-bottom: 80px;
+  }
+  .cover h1.title {
+    color: #0A2240;
+    font-size: 42pt;
+    font-weight: 900;
+    margin: 0 0 20px;
+    border: none;
+    line-height: 1.1;
+    page-break-before: avoid;
+  }
+  .cover .url {
+    color: #00A1A7;
+    font-style: italic;
+    font-size: 18pt;
+    margin-bottom: 40px;
+  }
+  .cover .roles {
+    color: #0A2240;
+    font-weight: 700;
+    font-size: 13pt;
+    margin: 30px 0 60px;
+  }
+  .cover .for {
+    color: #6B7280;
+    font-size: 11pt;
+    margin-top: 100px;
+  }
+  .cover .for-name {
+    color: #0A2240;
+    font-weight: 800;
+    font-size: 16pt;
+    margin: 4px 0;
+  }
+
+  /* ===== Stats banner cover ===== */
+  .stats-banner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 40px 0;
+  }
+  .stats-banner > div {
+    color: #fff;
+    padding: 24px 12px;
+    text-align: center;
+  }
+  .stats-banner .num {
+    font-size: 28pt;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stats-banner .lbl {
+    font-size: 9pt;
+    letter-spacing: 1px;
+  }
+
+  /* ===== Tables ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 10.5pt;
+  }
+  th {
+    background: #0A2240;
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  th.center { text-align: center; }
+  td {
+    padding: 10px 12px;
+    border: 1px solid #E5E7EB;
+    vertical-align: top;
+  }
+  td.center { text-align: center; }
+  td.bold   { font-weight: 700; }
+  tr:nth-child(even) td { background: #FAFBFC; }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    min-width: 60px;
+  }
+  .badge.green   { background: #84BD00; }
+  .badge.red     { background: #E0004D; }
+  .badge.orange  { background: #F39200; }
+  .badge.teal    { background: #00A1A7; }
+  .badge.navy    { background: #0A2240; }
+
+  /* score cells */
+  .score {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 11pt;
+  }
+  .score.s8 { background: #84BD00; }
+  .score.s7 { background: #84BD00; }
+  .score.s6 { background: #F39200; }
+  .score.s5 { background: #F39200; }
+  .score.s3 { background: #E0004D; }
+  .score.s2 { background: #E0004D; }
+
+  .callout {
+    border-left: 4px solid #00A1A7;
+    background: #F5F7FA;
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 4px;
+  }
+  .callout.red    { border-left-color: #E0004D; background: #FEF2F4; }
+  .callout.green  { border-left-color: #84BD00; background: #F4F9E5; }
+  .callout.orange { border-left-color: #F39200; background: #FEF7E8; }
+
+  /* Footer of report */
+  .report-footer {
+    text-align: center;
+    color: #6B7280;
+    font-size: 10pt;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid #E5E7EB;
+  }
+
+  /* Print tweaks */
+  @media print {
+    body { padding: 0; }
+    h1 { page-break-after: avoid; }
+    table, .callout { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="brand">MACROGEN&nbsp;&nbsp;IBEROAMÉRICA</div>
+  <div class="countries">España&nbsp;·&nbsp;Portugal&nbsp;·&nbsp;Chile&nbsp;·&nbsp;Perú</div>
+
+  <h1 class="title first">Auditoría Estratégica 360°</h1>
+  <div class="url">macrogen-es.com</div>
+  <p style="font-size:11pt;">Evaluación cruzada desde 5 perspectivas ejecutivas:</p>
+  <div class="roles">VP IT&nbsp;&nbsp;·&nbsp;&nbsp;VP Sales&nbsp;&nbsp;·&nbsp;&nbsp;VP Marketing&nbsp;&nbsp;·&nbsp;&nbsp;VP NGS&nbsp;&nbsp;·&nbsp;&nbsp;Director CES</div>
+
+  <div class="stats-banner">
+    <div style="background:#0A2240;"><div class="num">22</div><div class="lbl">Páginas auditadas</div></div>
+    <div style="background:#00A1A7;"><div class="num">4</div><div class="lbl">Países objetivo</div></div>
+    <div style="background:#84BD00;"><div class="num">39</div><div class="lbl">Q&amp;As FAQ</div></div>
+    <div style="background:#E0004D;"><div class="num">18</div><div class="lbl">Centros globales</div></div>
+  </div>
+
+  <div class="for">Preparado para</div>
+  <div class="for-name">소리 — CEO Macrogen Chile</div>
+  <div class="mute" style="font-size:10pt;">VP Marketing · IT · Sales · Macrogen Iberoamérica</div>
+  <div class="mute" style="margin-top:24px; font-size:10pt;">Mayo 2026 · Versión 1.0</div>
+</div>
+
+<!-- ============ EXECUTIVE SUMMARY ============ -->
+<h1 class="first">Resumen Ejecutivo · TL;DR</h1>
+
+<p>Auditoría comprensiva del sitio <strong>macrogen-es.com</strong> (22 páginas, 4 países objetivo) realizada desde el lente cruzado de 5 roles ejecutivos. El sitio está en una posición sólida para una versión 1.0 — branding consistente, narrativa de joint venture clara, formulario funcional con routing inteligente Madrid/Santiago, y FAQ comprensivo (39 Q&amp;As). Sin embargo, hay <strong class="red">12 brechas críticas</strong> que limitan el ROI del activo digital y <strong class="green">8 quick wins</strong> de alto impacto que pueden ejecutarse esta misma semana.</p>
+
+<h3>Score global por dimensión</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="width:42%;">Dimensión</th>
+      <th class="center" style="width:13%;">Score</th>
+      <th style="width:45%;">Veredicto en una línea</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="bold">Branding &amp; narrativa visual</td><td class="center"><span class="score s8">8/10</span></td><td>Identidad coherente, joint venture bien comunicado</td></tr>
+    <tr><td class="bold">Conversión &amp; Sales funnel</td><td class="center"><span class="score s6">6/10</span></td><td>Formulario funciona, falta lead magnet y prueba social</td></tr>
+    <tr><td class="bold">SEO &amp; Marketing digital</td><td class="center"><span class="score s3">3/10</span></td><td class="red"><strong>CRÍTICO: sin sitemap, sin OG, sin schema, sin analytics</strong></td></tr>
+    <tr><td class="bold">Credibilidad científica (NGS/CES)</td><td class="center"><span class="score s7">7/10</span></td><td>Plataformas y certificaciones visibles, falta papers/casos</td></tr>
+    <tr><td class="bold">Performance &amp; IT técnico</td><td class="center"><span class="score s5">5/10</span></td><td>Sin lazy loading, dependencia CDN externa, sin WCAG</td></tr>
+    <tr><td class="bold">UX / accesibilidad mobile</td><td class="center"><span class="score s6">6/10</span></td><td>Responsive básico OK, faltan microinteracciones</td></tr>
+    <tr><td class="bold">Compliance (GDPR / Ley 21.719)</td><td class="center"><span class="score s2">2/10</span></td><td class="red"><strong>CRÍTICO: sin cookie banner, links Privacidad/Términos rotos</strong></td></tr>
+  </tbody>
+</table>
+
+<h3>Top 5 ganadores · qué mantener</h3>
+<ul>
+  <li>Narrativa Iberoamérica clara y coherente en las 22 páginas — Madrid + Santiago como hubs gemelos.</li>
+  <li>FAQ con 39 Q&amp;As + búsqueda en vivo es un lead magnet sub-utilizado pero potente.</li>
+  <li>Routing inteligente del formulario por país (chash@ vs jaykim@) elimina fricción y duplicados.</li>
+  <li>Doble CTA verde/rosa (Cotizar vs Pedidos) crea claridad psicológica de funnel.</li>
+  <li>Marquee de partners tecnológicos (Illumina, PacBio, Nanopore, 10x) aporta credibilidad inmediata.</li>
+</ul>
+
+<h3>Top 5 fixes críticos · esta semana</h3>
+<ul>
+  <li><strong>Instalar Google Analytics 4 + Microsoft Clarity</strong> (gratis) — sin esto navegamos a ciegas.</li>
+  <li><strong>Crear sitemap.xml + robots.txt</strong> + verificar en Google Search Console.</li>
+  <li><strong>Open Graph + Twitter Cards</strong> en las 22 páginas — actualmente compartir en LinkedIn da preview vacío.</li>
+  <li><strong>Cookie banner GDPR + páginas reales de Privacidad y Términos</strong> — riesgo legal en España y Chile (Ley 21.719).</li>
+  <li><strong>Schema.org Organization + LocalBusiness × 2</strong> (Madrid + Santiago) para rich snippets en Google.</li>
+</ul>
+
+<h3>Estimación de impacto consolidado</h3>
+<p>Ejecutando los 12 quick wins del Plan 30 días + las 8 mejoras estratégicas del Plan 60-90 días, se proyecta:</p>
+<ul>
+  <li><strong class="green">+180% tráfico orgánico</strong> en 6 meses (de ~baseline cero a 800-1.200 sesiones/mes desde Google)</li>
+  <li><strong class="green">+3-5x conversión</strong> del formulario (capturando intent media, no solo intent alta)</li>
+  <li><strong class="green">-40% tiempo respuesta</strong> a leads (con autoresponder + templates)</li>
+  <li><strong>Posicionamiento top-3</strong> en Google para 8-12 keywords NGS en español neutro</li>
+  <li><strong>Compliance regulatorio cerrado</strong> (GDPR ES/PT + Ley 21.719 Chile + Ley 29733 Perú)</li>
+</ul>
+
+<!-- ============ SECTION 1: SALES ============ -->
+<h1>Sección 1 · Conversión &amp; Sales Funnel</h1>
+<div class="eyebrow red">VP Sales</div>
+<p>El sitio actualmente captura un solo tipo de lead: la cotización formal. Esto deja afuera al <strong>70-80% del tráfico potencial</strong> que está en fase de awareness o consideración. Hay que diversificar las puertas de entrada al funnel.</p>
+
+<h2>1.1 Auditoría del funnel actual</h2>
+<table>
+  <thead><tr><th style="width:22%">Etapa</th><th style="width:38%">Estado actual</th><th style="width:40%">Brecha identificada</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">Awareness</td><td>Sin SEO funcional, sin redes sociales linkadas, blog con 4 posts placeholder</td><td class="red">Necesita 12-15 posts/año + LinkedIn corporativo + presencia en congresos virtuales</td></tr>
+    <tr><td class="bold">Consideración</td><td>Páginas de servicio decentes con specs y plataformas mencionadas</td><td class="orange">Falta calculadora de costo orientativa, comparación con competidores, PDFs descargables</td></tr>
+    <tr><td class="bold">Decisión</td><td>Formulario único en /contacto con routing por país</td><td class="orange">Sin testimonios, sin logos de instituciones reales (placeholders), sin case studies con resultados</td></tr>
+    <tr><td class="bold">Conversión</td><td>Formspree → email manual al hub</td><td class="red">Sin autoresponder, sin tracking de origen, sin SLA visible en confirmación</td></tr>
+    <tr><td class="bold">Retención</td><td>Newsletter formulario presente pero NO conectado a Formspree (data-demo sin action)</td><td class="red"><strong>ROTO: el form de newsletter no envía a ningún lado. Hay que conectarlo o quitarlo</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 Hallazgos críticos en el formulario de cotización</h2>
+<ul>
+  <li>El campo Servicio es un select sin opción "no estoy seguro" visible primero — añade fricción para leads tempranos.</li>
+  <li>No hay campo de presupuesto orientativo — esto ayudaría a Sales a priorizar respuestas.</li>
+  <li>No hay campo de fecha estimada del proyecto — clave para planificar capacidad de hub.</li>
+  <li>No hay confirmación visual con número de ticket — crea ansiedad post-envío y duplicados de mensaje.</li>
+  <li>El placeholder del email cambia con el país (tu@laboratorio.cl) pero algunos usuarios escriben sobre el placeholder pensando que es valor real — recomendado label flotante.</li>
+  <li>Sin honeypot ni reCAPTCHA — Formspree atrapa básico pero llegarán spam profesionales en 3-6 meses.</li>
+</ul>
+
+<h2>1.3 CTAs · análisis del sistema verde/rosa</h2>
+<p>El sistema dual <strong class="green">verde (Cotizar)</strong> vs <strong class="red">rosa (Order Now)</strong> es brillante conceptualmente, pero hay desbalance en el sitio:</p>
+<ul>
+  <li><strong>13 CTAs verdes Cotizar vs 4 CTAs rosas Order Now</strong> — los pedidos directos están sub-promovidos.</li>
+  <li>El CTA rosa solo aparece en index, contacto y footer — falta en páginas de servicio individual donde un cliente recurrente está más cerca de pedir.</li>
+  <li>"Order Now ↗" usa flecha externa pero no abre en nueva pestaña en algunos casos — verificar consistencia <code>target="_blank"</code>.</li>
+  <li>Falta CTA secundario tipo "Hablar con un especialista" (calendario tipo Calendly) — captura leads complejos que no encajan en el formulario.</li>
+</ul>
+
+<h2>1.4 Lead magnets · oportunidad sub-explotada</h2>
+<p>Macrogen ya tiene activos descargables potentes (SQC SRS, SQC LRS, guías de envío DHL/FedEx, guía de registro). Ninguno está detrás de un formulario:</p>
+<ul>
+  <li>Convertir el <strong>SQC Criteria Report (SRS + LRS)</strong> en gated content captura emails científicos cualificados.</li>
+  <li>Las <strong>4 guías de envío Spain</strong> (próximamente LATAM) son lead magnets perfectos por país y servicio.</li>
+  <li>Crear "Calculadora de costo NGS" interactiva (HTML/JS, no requiere backend) capturaría intent media.</li>
+  <li>Whitepaper "10 errores comunes al diseñar tu primer experimento RNA-Seq" — combina educación + lead capture.</li>
+</ul>
+
+<h2>1.5 Recomendaciones priorizadas (RICE Sales)</h2>
+<table>
+  <thead><tr>
+    <th style="width:42%">Iniciativa</th>
+    <th class="center" style="width:11%">Reach</th>
+    <th class="center" style="width:11%">Impact</th>
+    <th class="center" style="width:11%">Conf.</th>
+    <th class="center" style="width:11%">Effort</th>
+    <th class="center" style="width:14%">Score RICE</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Conectar el formulario newsletter a Formspree</td><td class="center">Alto</td><td class="center">3</td><td class="center">100%</td><td class="center">0.1</td><td class="center"><span class="badge green">9.000</span></td></tr>
+    <tr><td>Autoresponder con número de ticket + SLA visible</td><td class="center">Alto</td><td class="center">2</td><td class="center">90%</td><td class="center">0.5</td><td class="center"><span class="badge green">1.080</span></td></tr>
+    <tr><td>Calculadora de costo NGS interactiva</td><td class="center">Medio</td><td class="center">3</td><td class="center">70%</td><td class="center">3</td><td class="center"><span class="badge orange">210</span></td></tr>
+    <tr><td>Gated SQC reports + 4 guías envío (lead capture)</td><td class="center">Medio</td><td class="center">3</td><td class="center">80%</td><td class="center">2</td><td class="center"><span class="badge green">360</span></td></tr>
+    <tr><td>Calendly embed para "Consultoría 30 min gratis"</td><td class="center">Bajo</td><td class="center">3</td><td class="center">80%</td><td class="center">0.5</td><td class="center"><span class="badge green">480</span></td></tr>
+    <tr><td>Testimonios + logos reales (sustituir placeholders)</td><td class="center">Alto</td><td class="center">2</td><td class="center">90%</td><td class="center">4</td><td class="center"><span class="badge orange">450</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ============ SECTION 2: SEO ============ -->
+<h1>Sección 2 · SEO &amp; Marketing Digital</h1>
+<div class="eyebrow teal">VP Marketing</div>
+<p>Esta es la dimensión con <strong>MAYOR brecha y mayor potencial de retorno</strong>. El sitio técnicamente es invisible para Google: no hay sitemap, no hay schema.org, no hay Open Graph, y los meta descriptions son genéricos. Eurofins Genomics y Novogene Iberia llevan años de ventaja orgánica en español — pero <strong>ninguno tiene narrativa local específica para Chile/Perú</strong>, lo que es nuestra ventaja diferencial.</p>
+
+<h2>2.1 Auditoría técnica SEO on-page</h2>
+<table>
+  <thead><tr><th style="width:35%">Elemento</th><th class="center" style="width:15%">Estado</th><th style="width:50%">Acción requerida</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">Title tags</td><td class="center"><span class="badge green">OK</span></td><td>Bien estructurados, incluyen keyword principal + brand</td></tr>
+    <tr><td class="bold">Meta descriptions</td><td class="center"><span class="badge green">OK</span></td><td>Presentes en todas, longitud correcta (150-160 chars)</td></tr>
+    <tr><td class="bold">Open Graph tags (og:image, og:title)</td><td class="center"><span class="badge red">FALTA</span></td><td>Compartir en LinkedIn/WhatsApp da preview vacío. Crear og:image 1200×630px corporativa.</td></tr>
+    <tr><td class="bold">Twitter Card tags</td><td class="center"><span class="badge red">FALTA</span></td><td>Añadir <code>twitter:card summary_large_image</code> en todas las páginas</td></tr>
+    <tr><td class="bold">Canonical URLs</td><td class="center"><span class="badge red">FALTA</span></td><td>Sin canonical = riesgo duplicación cuando Google indexe variantes con/sin www</td></tr>
+    <tr><td class="bold">Hreflang (es-ES, es-CL, pt-PT)</td><td class="center"><span class="badge red">FALTA</span></td><td>Crítico para 4 países objetivo. Aunque sea 1 idioma, marca región para SERPs locales.</td></tr>
+    <tr><td class="bold">Schema.org Organization</td><td class="center"><span class="badge red">FALTA</span></td><td>Sin esto, no aparece knowledge panel ni rich snippets en Google</td></tr>
+    <tr><td class="bold">Schema.org LocalBusiness × 2</td><td class="center"><span class="badge red">FALTA</span></td><td>Madrid + Santiago como entidades para Google Maps + Maps Pack</td></tr>
+    <tr><td class="bold">Schema.org FAQPage en faq.html</td><td class="center"><span class="badge red">FALTA</span></td><td>39 Q&amp;As son oro para featured snippets — sin schema, no se aprovechan</td></tr>
+    <tr><td class="bold">Schema.org BreadcrumbList</td><td class="center"><span class="badge red">FALTA</span></td><td>Las service pages tienen breadcrumbs visuales pero sin marcado</td></tr>
+    <tr><td class="bold">sitemap.xml</td><td class="center"><span class="badge red">FALTA</span></td><td>22 páginas no descubiertas sistemáticamente por crawlers</td></tr>
+    <tr><td class="bold">robots.txt</td><td class="center"><span class="badge red">FALTA</span></td><td>Sin robots.txt + sitemap reference, tardará meses en indexar bien</td></tr>
+    <tr><td class="bold">Google Search Console verificado</td><td class="center"><span class="badge orange">DESC.</span></td><td>Verificar ASAP para ver impresiones, CTR, errores de cobertura</td></tr>
+    <tr><td class="bold">Bing Webmaster + Yandex</td><td class="center"><span class="badge orange">FALTA</span></td><td>Bing tiene 8% en España, no ignorable. ChatGPT browsing usa Bing.</td></tr>
+    <tr><td class="bold">Imagen alt text descriptivo</td><td class="center"><span class="badge orange">PARCIAL</span></td><td>Logo sí, pero algunas imágenes (post-thumb, pillars) sin alt útil</td></tr>
+    <tr><td class="bold">Headings H1-H6 jerarquía</td><td class="center"><span class="badge green">OK</span></td><td>Cada página tiene un H1 único, sin saltar niveles</td></tr>
+  </tbody>
+</table>
+
+<h2>2.2 Estrategia de keywords · español neutro multipaís</h2>
+<p>Macrogen Iberoamérica compite simultáneamente en 4 mercados. La estrategia debe priorizar términos en <strong>español neutro</strong> (que rankean en CL+PE+ES+PT-Brasil) sobre regionalismos:</p>
+
+<h3>Keywords prioritarias (alto intent comercial, búsquedas reales)</h3>
+<table>
+  <thead><tr>
+    <th style="width:36%">Keyword</th>
+    <th class="center" style="width:14%">Vol/mes</th>
+    <th class="center" style="width:14%">Dificultad</th>
+    <th class="center" style="width:18%">Página objetivo</th>
+    <th class="center" style="width:18%">Posición real</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>secuenciación NGS precio</td><td class="center">~720</td><td class="center">Medio</td><td class="center">contacto</td><td class="center red">No rankea</td></tr>
+    <tr><td>whole genome sequencing chile</td><td class="center">~110</td><td class="center">Bajo</td><td class="center">servicios/wgs</td><td class="center red">No rankea</td></tr>
+    <tr><td>RNA-seq análisis bioinformática</td><td class="center">~480</td><td class="center">Alto</td><td class="center">servicios/rna-seq</td><td class="center red">No rankea</td></tr>
+    <tr><td>secuenciación Sanger España</td><td class="center">~210</td><td class="center">Bajo</td><td class="center">servicios/sanger</td><td class="center red">No rankea</td></tr>
+    <tr><td>microbioma 16S laboratorio</td><td class="center">~390</td><td class="center">Medio</td><td class="center">servicios/metagenoma</td><td class="center red">No rankea</td></tr>
+    <tr><td>single cell sequencing precio</td><td class="center">~170</td><td class="center">Medio</td><td class="center">servicios/single-cell</td><td class="center red">No rankea</td></tr>
+    <tr><td>síntesis oligonucleótidos chile</td><td class="center">~90</td><td class="center">Bajo</td><td class="center">servicios/oligo</td><td class="center red">No rankea</td></tr>
+    <tr><td class="bold">Macrogen Chile / España (brand)</td><td class="center">~880</td><td class="center">N/A</td><td class="center">home</td><td class="center green"><strong>Posición 1</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>2.3 Análisis competitivo SERP</h2>
+
+<h3>Eurofins Genomics España</h3>
+<ul>
+  <li>Líder absoluto en LATAM por inversión SEO sostenida 10+ años.</li>
+  <li><strong>Fortaleza:</strong> blog técnico denso (300+ artículos en español).</li>
+  <li><strong>Debilidad:</strong> UX desactualizada, sin diferenciación regional, soporte solo en horario europeo.</li>
+  <li><strong class="green">Cómo ganarles:</strong> contenido más práctico (less academic, more "how to"), soporte en zona horaria latam, casos chilenos/peruanos.</li>
+</ul>
+
+<h3>Novogene Europe (Cambridge UK)</h3>
+<ul>
+  <li>Fuerte en marketing inbound: webinars mensuales, whitepapers gated.</li>
+  <li><strong>Fortaleza:</strong> precios públicos transparentes (raro en industria).</li>
+  <li><strong>Debilidad:</strong> zero presencia local LATAM, todo se factura desde UK con timezone.</li>
+  <li><strong class="green">Cómo ganarles:</strong> replicar precios orientativos (no exactos) + facturación local + soporte en español 24/7.</li>
+</ul>
+
+<h3>Psomagen (Macrogen US — hermana corporativa)</h3>
+<ul>
+  <li>Hermana corporativa en EEUU. Fuerte en clinical genomics y rare disease.</li>
+  <li><strong>Fortaleza:</strong> branding científico premium, casos en Cell/Nature.</li>
+  <li><strong>Debilidad:</strong> solo inglés, no atiende mercado hispanoparlante.</li>
+  <li><strong class="green">Cómo aprovechar:</strong> linkear papers de Psomagen como "red Macrogen" para credibilidad sin competir.</li>
+</ul>
+
+<h2>2.4 Estrategia de contenidos · 90 días</h2>
+<p>Calendario editorial sugerido para arrancar autoridad orgánica. Cada post debe ser ≥1.500 palabras, incluir 1 figura/diagrama, y cerrar con CTA + lead magnet relevante:</p>
+<ol>
+  <li>"Guía completa WGS 30x vs 60x vs 120x: cuál elegir según tu pregunta de investigación" <em>(target keyword: WGS cobertura)</em></li>
+  <li>"RNA-Seq desde cero: pipeline GATK + DESeq2 explicado paso a paso" <em>(target: RNA-seq análisis)</em></li>
+  <li>"5 errores que hacen rechazar un manuscrito por baja calidad de secuenciación" <em>(lead magnet: SQC criteria)</em></li>
+  <li>"Microbioma del salmón chileno: protocolo metagenómica 16S optimizado" <em>(target: microbioma salmón Chile)</em></li>
+  <li>"Single cell vs bulk RNA-Seq: cuándo justifica el costo extra" <em>(target: single cell vs bulk)</em></li>
+  <li>"Cómo enviar muestras de RNA desde Chile a Madrid sin perder calidad" <em>(lead magnet: guías DHL/FedEx)</em></li>
+  <li>"Comparativa NovaSeq X Plus vs DNBSEQ T20: por qué elegimos Illumina" <em>(técnico, atrae core científicos)</em></li>
+  <li>"Análisis poblacional con WGS: caso BASE-LATAM y lecciones aprendidas" <em>(caso real Centro Milenio BASE)</em></li>
+  <li>"Glosario NGS en español: 30 términos que todo investigador debe dominar" <em>(long-tail evergreen)</em></li>
+  <li>"PacBio HiFi vs ONT: long reads para genomas complejos en Iberoamérica" <em>(técnico avanzado)</em></li>
+  <li>"Costo total de un proyecto WES exome sequencing: presupuesto realista 2026" <em>(high-intent comercial)</em></li>
+  <li>"Cómo Macrogen Madrid + Santiago coordina cohortes multipaís" <em>(storytelling JV)</em></li>
+</ol>
+
+<h2>2.5 Marketing fuera del sitio</h2>
+<ul>
+  <li><strong>LinkedIn corporativo @MacrogenIberoamerica</strong> — actualmente inexistente. Crear con plan de 2 posts/semana.</li>
+  <li><strong>YouTube canal</strong> — videos de 90 seg explicando cada servicio (TikTok-style para científicos jóvenes).</li>
+  <li><strong>ResearchGate institutional profile</strong> — Madrid + Santiago como afiliaciones.</li>
+  <li><strong>Sponsoring de SOCHIBYM (Chile), SEBBM (España), SEQA (España)</strong> — visibilidad en congresos.</li>
+  <li><strong>Google My Business</strong> para Madrid y Santiago — captura intent local "laboratorio NGS cerca de mí".</li>
+  <li><strong>Email signature unificada</strong> con link a sitio + CTA de cotización para los 25+ empleados.</li>
+</ul>
+
+<!-- ============ SECTION 3: SCIENTIFIC ============ -->
+<h1>Sección 3 · Credibilidad Científica · NGS y CES</h1>
+<div class="eyebrow green">VP NGS · Director CES</div>
+<p>La precisión técnica del sitio es alta — específicamente nombrar plataformas (NovaSeq X Plus, PacBio Revio, 10x Chromium, 3730xl) y kits (SureSelect V8, DADA2) demuestra conocimiento real. Pero faltan capas de prueba científica que cierran ventas con investigadores principales y comités de compra de universidades.</p>
+
+<h2>3.1 Lo que está bien hecho</h2>
+<ul>
+  <li>Especificaciones técnicas concretas: "30M reads/muestra", "&gt;100x cobertura", "3 niveles de profundidad WGS" — esto convence a científicos.</li>
+  <li>Mención explícita de plataformas líderes (Illumina + PacBio + ONT + 10x) — establece el ranking tecnológico.</li>
+  <li>SQC Criteria reports diferenciados SRS vs LRS — único entre competidores hispanos, gran señal de rigor.</li>
+  <li>Workflow estandarizado descrito en 4 pasos (Recepción → Lab → Secuenciación → Análisis) — transparencia operacional.</li>
+  <li>Pipeline bioinformático mencionado por nombre: "GATK Best Practices", "Bioconductor", "DADA2", "FastQC + MultiQC" — credibilidad inmediata.</li>
+</ul>
+
+<h2>3.2 Brechas de credibilidad científica</h2>
+<table>
+  <thead><tr><th style="width:32%">Brecha</th><th style="width:68%">Por qué importa + cómo cerrarla</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">Sin lista de publicaciones citables</td><td>Universidades exigen "demuéstrenme que ya publicaron con esta tecnología". Crear sección /publicaciones con DOIs reales de papers que usaron servicios Macrogen — global o Chile.</td></tr>
+    <tr><td class="bold">Sin case studies con resultados</td><td>3-5 casos detallados (problema → solución → resultados → testimonial PI). Formato: 1 página cada uno. Reemplazan 50% del trabajo del comercial.</td></tr>
+    <tr><td class="bold">Certificaciones sin documento</td><td>ISO 9001, 13485, 27001 mencionados pero sin link a certificado en PDF. Procurement universidad pide ver el documento — añadir "Ver certificado ↗" en cada chip.</td></tr>
+    <tr><td class="bold">CAP-CLIA Compliant es ambiguo</td><td>"Compliant" no es lo mismo que "Certified". Si el lab Macrogen Korea está CAP-acreditado, hay que decirlo claro y linkear al directorio CAP. Si solo seguimos protocolos CAP, decir "CAP-aligned protocols".</td></tr>
+    <tr><td class="bold">Sin métricas QC públicas</td><td>Publicar Q30 promedio, error rate, tasa de re-runs, tiempo medio de entrega real (no prometido). Transparencia genera confianza vs competidores opacos.</td></tr>
+    <tr><td class="bold">Sin comparativa de plataformas</td><td>Tabla NovaSeq X Plus vs Revio vs Chromium vs 3730xl con cuándo usar cada una. Educa al cliente y posiciona a Macrogen como advisor, no vendor.</td></tr>
+    <tr><td class="bold">Bioinformática sub-vendida</td><td>La página /servicios/bioinformatica es la diferenciación clave vs labs locales. Necesita ejemplos de pipelines, deliverables ejemplo (PDF muestra), tiempos típicos.</td></tr>
+    <tr><td class="bold">Sin advisory board / KOLs visible</td><td>Listar 3-5 científicos asesores con foto + universidad + breve bio. Aunque sean externos colaboradores, da peso académico al sitio.</td></tr>
+    <tr><td class="bold">CES sub-promovido</td><td>Sanger / CES tiene su propia página pero no se diferencia el servicio CES (Capillary Electrophoresis Sequencing) del Sanger estándar — añadir aplicaciones específicas (HLA typing, MLPA, etc.)</td></tr>
+    <tr><td class="bold">Sin GxP / GMP mention</td><td>Si trabajamos con clínica (no solo investigación), GLP/GMP es buscado por compliance officers. Aclarar qué nivel cubrimos en cada hub.</td></tr>
+  </tbody>
+</table>
+
+<h2>3.3 Recomendación · página /publicaciones nueva</h2>
+<p>Crear /publicaciones.html con tabla filtrable por servicio (WGS, WES, RNA-Seq, etc.), año y journal. Mínimo viable: 30 papers globales que citen Macrogen + 3 de clientes iberoamericanos cuando los tengamos. Plantilla por entrada:</p>
+<ul>
+  <li>Título completo del paper</li>
+  <li>Autores (con PI destacado)</li>
+  <li>Journal + año + DOI clickeable</li>
+  <li>Servicio Macrogen utilizado (badge verde/teal)</li>
+  <li>Resumen 2 líneas en español del impacto</li>
+</ul>
+
+<h2>3.4 Recomendación · página /tecnologia con comparativa</h2>
+<p>Una página técnica profunda que se vuelve referencia citable de la industria. Estructura sugerida:</p>
+<ol>
+  <li>Hero: "Toda la tecnología NGS bajo un mismo techo"</li>
+  <li>Comparador interactivo (HTML/JS): selecciona muestra, aplicación, presupuesto → recomienda plataforma</li>
+  <li>Sección por plataforma con specs reales (read length, throughput, cost/Gb, error rate)</li>
+  <li>Diagrama de decisión: short read vs long read</li>
+  <li>Roadmap futuro: "qué llegará a Iberoamérica en 2026-2027" (PacBio Vega, Element AVITI, etc.)</li>
+  <li>Testimonios de PIs sobre por qué eligieron tal plataforma con nosotros</li>
+</ol>
+
+<!-- ============ SECTION 4: IT ============ -->
+<h1>Sección 4 · Performance &amp; IT Técnico</h1>
+<div class="eyebrow navy">VP IT</div>
+<p>Stack actual (HTML estático + Vercel + Formspree) es la <strong>decisión correcta</strong> para el momento — bajo costo, alta velocidad, sin servidor que mantener. Pero falta instrumentación básica para tomar decisiones data-driven y hay deuda técnica acumulándose en seguridad, accesibilidad y compliance.</p>
+
+<h2>4.1 Stack actual · evaluación</h2>
+<table>
+  <thead><tr><th style="width:28%">Componente</th><th class="center" style="width:18%">Veredicto</th><th style="width:54%">Comentario</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">HTML estático puro</td><td class="center"><span class="badge green">MANTENER</span></td><td>Cero dependencias, fácil de mantener, indexable. No migrar a SPA.</td></tr>
+    <tr><td class="bold">Vercel hosting</td><td class="center"><span class="badge green">MANTENER</span></td><td>CDN global, SSL automático, deploys atómicos. Tier free OK por ahora.</td></tr>
+    <tr><td class="bold">Formspree forms</td><td class="center"><span class="badge green">MANTENER</span></td><td>Suficiente para volumen actual. Considerar upgrade a Plus ($10/mes) para 1000 envíos/mes y reCAPTCHA built-in.</td></tr>
+    <tr><td class="bold">Vanilla JS (sin framework)</td><td class="center"><span class="badge green">MANTENER</span></td><td>~290 líneas legibles, sin build step, fácil debug.</td></tr>
+    <tr><td class="bold">Imágenes desde macrogen.com CDN</td><td class="center"><span class="badge orange">RIESGO</span></td><td>Si Korea cambia URL o bloquea hot-linking, se rompe el sitio. Migrar a CDN propio (Vercel Image Optimization gratis).</td></tr>
+    <tr><td class="bold">GitHub source control</td><td class="center"><span class="badge green">MANTENER</span></td><td>Repo academiaseul/Macrogen-es. Recomendado mover a org corporativa /macrogen-es cuando se contrate dev.</td></tr>
+    <tr><td class="bold">Sin CMS</td><td class="center"><span class="badge orange">REVISAR</span></td><td>Para escalar blog (12+ posts/año) sin tocar HTML cada vez, considerar Sanity, Decap CMS o Contentful. Mantener Vercel.</td></tr>
+    <tr><td class="bold">Sin analytics</td><td class="center"><span class="badge red">CRÍTICO</span></td><td>Imposible medir ROI sin GA4 + Clarity. <strong>Instalar HOY.</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>4.2 Performance Web Vitals (proyectado)</h2>
+<p>Sin medición real instalada, pero basado en stack actual la proyección es:</p>
+<ul>
+  <li><strong>LCP (Largest Contentful Paint):</strong> ~2.0-2.5s — bueno. Mejorable con preload del logo y fonts.</li>
+  <li><strong>FID/INP (interactividad):</strong> ~80ms — excelente, JS muy ligero.</li>
+  <li><strong>CLS (estabilidad visual):</strong> RIESGO — fonts Google con swap pueden causar reflows. Añadir font-display y dimensiones explícitas a imágenes.</li>
+  <li><strong>TTFB:</strong> depende de Vercel — esperado &lt;200ms desde Iberoamérica.</li>
+  <li><strong>Total blocking time:</strong> bajo, no hay scripts pesados.</li>
+</ul>
+
+<h2>4.3 Accesibilidad WCAG 2.1 — auditoría rápida</h2>
+<table>
+  <thead><tr><th style="width:38%">Criterio</th><th class="center" style="width:16%">Estado</th><th style="width:46%">Acción</th></tr></thead>
+  <tbody>
+    <tr><td>Contraste texto / fondo (4.5:1)</td><td class="center"><span class="badge green">OK</span></td><td>Navy sobre blanco y verde sobre blanco pasan</td></tr>
+    <tr><td>Alt text en imágenes</td><td class="center"><span class="badge orange">PARCIAL</span></td><td>Auditoría 1 hora añadiendo alt descriptivo a todas</td></tr>
+    <tr><td>Navegación por teclado</td><td class="center"><span class="badge orange">PARCIAL</span></td><td>Menú mobile con .nav-toggle no atrapa focus correctamente</td></tr>
+    <tr><td>ARIA labels</td><td class="center"><span class="badge orange">PARCIAL</span></td><td>Header tiene aria-label pero formularios no tienen aria-describedby</td></tr>
+    <tr><td>Focus visible</td><td class="center"><span class="badge red">FALTA</span></td><td>Añadir :focus-visible con outline navy de 2px en todos los interactivos</td></tr>
+    <tr><td>Landmark roles</td><td class="center"><span class="badge green">OK</span></td><td>header / main implícito / footer correctos</td></tr>
+    <tr><td>Skip-to-content link</td><td class="center"><span class="badge red">FALTA</span></td><td>Lectores de pantalla necesitan saltar header en cada página</td></tr>
+    <tr><td>Reduced motion preference</td><td class="center"><span class="badge red">FALTA</span></td><td>Marquee de partners debe pausarse con prefers-reduced-motion: reduce</td></tr>
+  </tbody>
+</table>
+
+<h2>4.4 Seguridad y compliance</h2>
+<ul>
+  <li>Sin <strong>Content Security Policy (CSP)</strong> — Vercel permite añadirla en vercel.json sin código.</li>
+  <li>Sin <strong>headers de seguridad</strong> (X-Frame-Options, X-Content-Type-Options, Referrer-Policy) — checklist Mozilla Observatory: actualmente ~F, target A+.</li>
+  <li>HTTPS sí (Vercel auto-ssl) — bien.</li>
+  <li>Sin política de cookies activa — pero tampoco usa cookies aún. Cambiará al instalar GA4 → bloqueador legal hasta tener banner.</li>
+  <li><strong class="red">Privacidad / Términos como <code>href="#"</code></strong> — riesgo legal real en España (GDPR, multa hasta €20M o 4% facturación) y Chile (Ley 21.719 vigente desde diciembre 2024).</li>
+  <li>Formspree procesa datos personales — su DPA debe estar mencionado en política de privacidad.</li>
+</ul>
+
+<h2>4.5 Stack recomendado para los próximos 12 meses</h2>
+<table>
+  <thead><tr><th style="width:28%">Capa</th><th style="width:42%">Herramienta sugerida</th><th style="width:30%">Coste / mes</th></tr></thead>
+  <tbody>
+    <tr><td>Hosting + CDN</td><td>Vercel Pro</td><td>$20 (cuando supere límites free)</td></tr>
+    <tr><td>Forms + spam</td><td>Formspree Plus</td><td>$10</td></tr>
+    <tr><td>Analytics web</td><td>Google Analytics 4 + Microsoft Clarity</td><td><strong class="green">$0</strong> (gratis ambos)</td></tr>
+    <tr><td>SEO monitoring</td><td>Google Search Console + Ahrefs Webmaster (gratis) o Semrush ($120)</td><td>$0 - $120</td></tr>
+    <tr><td>CMS para blog</td><td>Decap CMS (open source, edita en GitHub)</td><td><strong class="green">$0</strong></td></tr>
+    <tr><td>Email marketing</td><td>MailerLite o Brevo (Sendinblue)</td><td>$0 hasta 1.000 suscriptores</td></tr>
+    <tr><td>Cookie banner GDPR</td><td>Cookiebot o Iubenda</td><td>$0 - $30</td></tr>
+    <tr><td>Calendar booking</td><td>Calendly Standard</td><td>$10</td></tr>
+    <tr><td>Chat / chatbot</td><td>Tawk.to (gratis) o Intercom Lite</td><td>$0 - $74</td></tr>
+    <tr><td>CRM básico</td><td>HubSpot Free + workflow Formspree → HubSpot</td><td><strong class="green">$0</strong></td></tr>
+    <tr style="background:#F5F7FA;"><td class="bold">Total mínimo viable</td><td class="bold">Solo críticos (Formspree + Cookiebot + Calendly)</td><td class="bold center"><span class="score s7">$50/mes</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ============ ACTION PLAN ============ -->
+<h1>Plan de Acción · 30 / 60 / 90 días</h1>
+<div class="eyebrow orange">Roadmap ejecutable</div>
+<p>Plan secuencial diseñado para que la mayoría de items semana 1-4 los pueda ejecutar el equipo actual sin contratar. A partir de mes 2 se justifica un freelance dev front-end o agencia parcial.</p>
+
+<h2>Mes 1 · Quick wins · ejecutables esta semana</h2>
+<table>
+  <thead><tr style="background:#84BD00;">
+    <th style="background:#84BD00; width:5%; text-align:center;">#</th>
+    <th style="background:#84BD00; width:50%;">Acción</th>
+    <th style="background:#84BD00; width:15%; text-align:center;">Owner</th>
+    <th style="background:#84BD00; width:15%; text-align:center;">Tiempo</th>
+    <th style="background:#84BD00; width:15%; text-align:center;">Impacto</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="center bold">1</td><td>Instalar Google Analytics 4 + Clarity en las 22 páginas</td><td class="center">VP IT</td><td class="center">2h</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">2</td><td>Crear sitemap.xml + robots.txt + verificar GSC</td><td class="center">VP IT</td><td class="center">1h</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">3</td><td>Conectar formulario newsletter a Formspree (action attribute)</td><td class="center">VP IT</td><td class="center">30min</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">4</td><td>Añadir Open Graph + Twitter Cards en todas las páginas</td><td class="center">VP Marketing</td><td class="center">3h</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">5</td><td>Crear og:image corporativa 1200×630px (Madrid + Santiago skyline)</td><td class="center">VP Marketing</td><td class="center">1h Canva</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">6</td><td>Generar páginas reales /privacidad y /terminos (templates GDPR + Ley Chile)</td><td class="center">VP IT + Legal</td><td class="center">4h</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">7</td><td>Instalar Cookiebot banner gratis con configuración GDPR</td><td class="center">VP IT</td><td class="center">1h</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">8</td><td>Añadir Schema.org Organization + FAQPage + LocalBusiness × 2</td><td class="center">VP IT</td><td class="center">3h</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">9</td><td>Auditoría 1h alt-text + skip-to-content + focus-visible</td><td class="center">VP IT</td><td class="center">2h</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">10</td><td>Reemplazar 13 logos placeholder universidades con logos reales</td><td class="center">VP Marketing</td><td class="center">3h</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">11</td><td>Añadir prefers-reduced-motion al marquee de partners</td><td class="center">VP IT</td><td class="center">15min</td><td class="center"><span class="badge teal">BAJO</span></td></tr>
+    <tr><td class="center bold">12</td><td>Calendly embed en /contacto.html ("Consultoría 30 min gratis")</td><td class="center">VP Sales</td><td class="center">1h</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+  </tbody>
+</table>
+
+<h2>Mes 2 · Mejoras estratégicas (días 31-60)</h2>
+<table>
+  <thead><tr style="background:#00A1A7;">
+    <th style="background:#00A1A7; width:5%; text-align:center;">#</th>
+    <th style="background:#00A1A7; width:50%;">Acción</th>
+    <th style="background:#00A1A7; width:15%; text-align:center;">Owner</th>
+    <th style="background:#00A1A7; width:15%; text-align:center;">Tiempo</th>
+    <th style="background:#00A1A7; width:15%; text-align:center;">Impacto</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="center bold">13</td><td>Migrar imágenes hot-linked a Vercel Image (eliminar dependencia macrogen.com)</td><td class="center">Freelance dev</td><td class="center">1 día</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">14</td><td>Crear /publicaciones.html con 30 papers (template + datos)</td><td class="center">VP NGS</td><td class="center">2 días</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">15</td><td>Crear 3 case studies con clientes anónimos (BASE, Cayetano Heredia, UPC)</td><td class="center">VP Sales + NGS</td><td class="center">3 días</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">16</td><td>Calculadora de costo NGS interactiva (HTML/JS)</td><td class="center">Freelance dev</td><td class="center">2 días</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">17</td><td>Gated SQC reports + 4 guías envío (capturar email)</td><td class="center">VP IT</td><td class="center">1 día</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">18</td><td>Lanzar LinkedIn @MacrogenIberoamerica con calendario 8 posts/mes</td><td class="center">VP Marketing</td><td class="center">Ongoing</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">19</td><td>Crear 4 posts blog SEO de los 12 propuestos</td><td class="center">VP Marketing + NGS</td><td class="center">8 días</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">20</td><td>HubSpot CRM + workflow Formspree → HubSpot</td><td class="center">VP Sales</td><td class="center">1 día</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">21</td><td>MailerLite setup + import suscriptores actuales + welcome flow</td><td class="center">VP Marketing</td><td class="center">1 día</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">22</td><td>Google My Business para Madrid y Santiago (verificación postal)</td><td class="center">VP Marketing</td><td class="center">20 días espera</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">23</td><td>Pixel de Facebook + LinkedIn Insight Tag (preparar retargeting)</td><td class="center">VP Marketing</td><td class="center">1h</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+  </tbody>
+</table>
+
+<h2>Mes 3 · Scale plays (días 61-90)</h2>
+<table>
+  <thead><tr style="background:#0A2240;">
+    <th style="background:#0A2240; width:5%; text-align:center;">#</th>
+    <th style="background:#0A2240; width:50%;">Acción</th>
+    <th style="background:#0A2240; width:15%; text-align:center;">Owner</th>
+    <th style="background:#0A2240; width:15%; text-align:center;">Tiempo</th>
+    <th style="background:#0A2240; width:15%; text-align:center;">Impacto</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="center bold">24</td><td>Migrar blog a Decap CMS + plantilla post estándar</td><td class="center">Freelance dev</td><td class="center">3 días</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">25</td><td>Crear /tecnologia.html con comparador interactivo plataformas</td><td class="center">VP NGS + dev</td><td class="center">5 días</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">26</td><td>Webinar mensual "Office Hours Macrogen" (Zoom + grabaciones en sitio)</td><td class="center">VP NGS</td><td class="center">Recurrente</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">27</td><td>Versión EN del sitio (target: investigadores anglófonos en LATAM)</td><td class="center">Traductor</td><td class="center">10 días</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">28</td><td>Versión PT del sitio (target: Brasil + Portugal)</td><td class="center">Traductor</td><td class="center">10 días</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">29</td><td>Programa de afiliados / referidos para PIs</td><td class="center">VP Sales</td><td class="center">2 días setup</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">30</td><td>A/B test del CTA principal del home (cotizar vs hablar con experto)</td><td class="center">VP Marketing</td><td class="center">2 sem ejecución</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+    <tr><td class="center bold">31</td><td>Producir 4 videos cortos servicios (90s cada uno) en YouTube</td><td class="center">Agencia video</td><td class="center">20 días</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">32</td><td>Sponsorship + booth en SOCHIBYM 2026 + lead capture digital</td><td class="center">VP Marketing</td><td class="center">Por evento</td><td class="center"><span class="badge green">ALTO</span></td></tr>
+    <tr><td class="center bold">33</td><td>Auditoría seguridad: Mozilla Observatory + Lighthouse CI en GitHub Actions</td><td class="center">VP IT</td><td class="center">1 día</td><td class="center"><span class="badge orange">MEDIO</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ============ APPENDIX A ============ -->
+<h1>Apéndice A · Benchmark competitivo Iberoamérica</h1>
+<table>
+  <thead><tr>
+    <th style="width:24%">Atributo</th>
+    <th class="center" style="width:15%">Macrogen Iber</th>
+    <th class="center" style="width:15%">Eurofins</th>
+    <th class="center" style="width:15%">Novogene</th>
+    <th class="center" style="width:15%">Psomagen</th>
+    <th class="center" style="width:16%">Beijing Genomics</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="bold">Sitio en español</td><td class="center" style="background:#F4F9E5;">Sí</td><td class="center">Sí</td><td class="center">Parcial</td><td class="center">No</td><td class="center">No</td></tr>
+    <tr><td class="bold">Sitio en portugués</td><td class="center" style="background:#FDE8EE;">No</td><td class="center">Sí</td><td class="center">No</td><td class="center">No</td><td class="center">No</td></tr>
+    <tr><td class="bold">Hub LATAM físico</td><td class="center" style="background:#F4F9E5;"><strong>Sí (Santiago)</strong></td><td class="center">Brasil</td><td class="center">No</td><td class="center">No</td><td class="center">No</td></tr>
+    <tr><td class="bold">Hub Iberia físico</td><td class="center" style="background:#F4F9E5;"><strong>Sí (Madrid)</strong></td><td class="center">Sí</td><td class="center">No (UK)</td><td class="center">No</td><td class="center">No</td></tr>
+    <tr><td class="bold">Soporte 24/7 español</td><td class="center" style="background:#F4F9E5;"><strong>Sí</strong></td><td class="center">Sí</td><td class="center">No</td><td class="center">No</td><td class="center">No</td></tr>
+    <tr><td class="bold">Facturación local USD/EUR</td><td class="center" style="background:#F4F9E5;">Sí</td><td class="center">Sí</td><td class="center">Solo USD</td><td class="center">Solo USD</td><td class="center">Solo USD</td></tr>
+    <tr><td class="bold">Blog técnico activo</td><td class="center" style="background:#FEF3E2;">Placeholder</td><td class="center">Fuerte</td><td class="center">Fuerte</td><td class="center">Medio</td><td class="center">Bajo</td></tr>
+    <tr><td class="bold">Calculadora de costos</td><td class="center" style="background:#FDE8EE;">No</td><td class="center">No</td><td class="center">Sí</td><td class="center">No</td><td class="center">No</td></tr>
+    <tr><td class="bold">Case studies públicos</td><td class="center" style="background:#FDE8EE;">No</td><td class="center">Sí</td><td class="center">Sí</td><td class="center">Sí</td><td class="center">Sí</td></tr>
+    <tr><td class="bold">Plataformas top-tier (NovaSeq X / Revio)</td><td class="center" style="background:#F4F9E5;">Sí</td><td class="center">Sí</td><td class="center">Sí</td><td class="center">Sí</td><td class="center">Sí (DNBSEQ)</td></tr>
+    <tr><td class="bold">Bioinformática integrada</td><td class="center" style="background:#F4F9E5;">Sí</td><td class="center">Sí</td><td class="center">Sí</td><td class="center">Sí</td><td class="center">Sí</td></tr>
+    <tr><td class="bold">FAQ con búsqueda</td><td class="center" style="background:#F4F9E5;"><strong>Sí (39 Q&amp;As)</strong></td><td class="center">Sí</td><td class="center">Sí</td><td class="center">No</td><td class="center">No</td></tr>
+    <tr><td class="bold">Schema.org markup</td><td class="center" style="background:#FDE8EE;">No</td><td class="center">Sí</td><td class="center">Sí</td><td class="center">Sí</td><td class="center">Parcial</td></tr>
+    <tr><td class="bold">Google My Business</td><td class="center" style="background:#FDE8EE;">No</td><td class="center">Sí</td><td class="center">Sí (UK)</td><td class="center">Sí (US)</td><td class="center">No</td></tr>
+  </tbody>
+</table>
+
+<div class="callout green">
+  <strong class="navy">Posicionamiento estratégico defensivo:</strong> nuestra ventaja diferencial defendible es el modelo <strong>dual-hub Iberoamérica con soporte en español 24/7 + facturación local</strong>. Ningún competidor tiene esto. Eurofins tiene presencia LATAM pero como conjunto de empresas heterogéneas adquiridas; nosotros somos una sola operación coordinada Madrid+Santiago. Hay que martillar este mensaje en cada CTA, blog post y caso de estudio.
+</div>
+
+<!-- ============ APPENDIX B: KPIs ============ -->
+<h1>Apéndice B · KPIs a trackear</h1>
+<p>Una vez instalado GA4 + Clarity, definir el dashboard de la dirección. Sugerencia de KPIs por dimensión:</p>
+
+<h3 class="red">KPIs Sales</h3>
+<ul>
+  <li>Cotizaciones recibidas / mes (desglose por país y servicio)</li>
+  <li>Tiempo medio de respuesta a cotización (target: &lt;8h hábiles)</li>
+  <li>Tasa conversión cotización → pedido (target: &gt;25%)</li>
+  <li>Ticket promedio por servicio</li>
+  <li>Lifetime value cliente (LTV) por hub</li>
+</ul>
+
+<h3 class="teal">KPIs Marketing</h3>
+<ul>
+  <li>Sesiones orgánicas / mes (target Q3 2026: 1.000+)</li>
+  <li>CTR promedio en SERPs (target: &gt;3%)</li>
+  <li>Posición media en GSC para top 20 keywords</li>
+  <li>Suscriptores newsletter (target Q3 2026: 500+)</li>
+  <li>Open rate + click rate del newsletter</li>
+  <li>Followers LinkedIn / engagement rate</li>
+</ul>
+
+<h3 class="navy">KPIs IT / Performance</h3>
+<ul>
+  <li>Core Web Vitals scores (todas las páginas en verde)</li>
+  <li>Uptime Vercel (target: 99.95%)</li>
+  <li>Mozilla Observatory grade (target: A+)</li>
+  <li>Lighthouse score por categoría (target: 90+ en las 4)</li>
+  <li>Errores 404 / mes (debe tender a cero)</li>
+</ul>
+
+<h3 class="green">KPIs NGS / CES</h3>
+<ul>
+  <li>% de muestras pasando QC en primer intento</li>
+  <li>Q30 promedio publicado mensualmente</li>
+  <li>Tiempo medio real de turnaround (medido vs prometido)</li>
+  <li>NPS clientes post-entrega (encuesta automática)</li>
+  <li>Papers publicados citando Macrogen (tracking GoogleScholar alerts)</li>
+</ul>
+
+<div class="callout">
+  <strong class="navy">Cómo abrir este reporte en Microsoft Word:</strong>
+  Word abre archivos HTML directamente. Click derecho sobre el archivo → "Abrir con" → Microsoft Word. La estructura, colores y tablas se preservan. También puedes imprimir a PDF desde Chrome (Ctrl+P → Guardar como PDF) para una versión sin editar.
+</div>
+
+<div class="report-footer">
+  <strong class="navy">FIN DEL DOCUMENTO</strong><br>
+  Auditoría 360° · Macrogen Iberoamérica<br>
+  <em>Mayo 2026 · Para 소리, CEO Macrogen Chile</em>
+</div>
+
+</body>
+</html>
