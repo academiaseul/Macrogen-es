@@ -3,6 +3,53 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ========== Hero video: force autoplay on iOS Safari ==========
+  // iOS Safari (and some Android browsers) block autoplay even with all the correct
+  // attributes until JS explicitly calls .play(). This also handles Low Power Mode
+  // gracefully by falling back to the poster image.
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    // Make sure attributes are set programmatically (some browsers ignore HTML attrs on autoplay)
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.playsInline = true;
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('webkit-playsinline', '');
+
+    // Try to play immediately
+    const tryPlay = () => {
+      const promise = heroVideo.play();
+      if (promise !== undefined) {
+        promise.catch(err => {
+          // Autoplay blocked (Low Power Mode, Data Saver, etc.) — try once more on user interaction
+          const resumeOnce = () => {
+            heroVideo.play().catch(() => {});
+            document.removeEventListener('touchstart', resumeOnce);
+            document.removeEventListener('click', resumeOnce);
+            document.removeEventListener('scroll', resumeOnce);
+          };
+          document.addEventListener('touchstart', resumeOnce, { once: true, passive: true });
+          document.addEventListener('click', resumeOnce, { once: true });
+          document.addEventListener('scroll', resumeOnce, { once: true, passive: true });
+        });
+      }
+    };
+
+    // Try immediately, plus retry once metadata loads (covers slow connections)
+    tryPlay();
+    heroVideo.addEventListener('loadedmetadata', tryPlay, { once: true });
+    heroVideo.addEventListener('canplay', tryPlay, { once: true });
+
+    // Pause when tab is hidden (saves battery on mobile) and resume when visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        heroVideo.pause();
+      } else {
+        heroVideo.play().catch(() => {});
+      }
+    });
+  }
+
   // ========== Mobile nav toggle ==========
   const toggle = document.querySelector('.nav-toggle');
   const menu = document.querySelector('.nav-menu');

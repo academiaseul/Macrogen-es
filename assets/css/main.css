@@ -427,10 +427,14 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 .hero-mini h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
 
-/* ----------- Hero with video background (used on index.html) ----------- */
-.hero.has-video {
+/* ----------- Hero with video background (used on index.html + inner pages) ----------- */
+.hero.has-video:not(.hero-mini) {
   padding: 130px 0 140px;
   min-height: 600px;
+}
+.hero.hero-mini.has-video {
+  padding: 70px 0 80px;
+  min-height: 340px;
 }
 .hero.has-video::before,
 .hero.has-video::after {
