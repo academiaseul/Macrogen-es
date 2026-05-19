@@ -41,22 +41,22 @@
   }
 
   // ============ Language detection ============
+  // Default to Spanish always. Browser language is NOT auto-detected anymore —
+  // user must explicitly choose another language via the switcher (then we
+  // remember their choice in localStorage).
   function detectLanguage() {
-    // Priority 1: explicit URL parameter ?lang=en
+    // Priority 1: explicit URL parameter ?lang=en (useful for email marketing links)
     const urlLang = new URLSearchParams(window.location.search).get('lang');
     if (urlLang && SUPPORTED.includes(urlLang)) {
       localStorage.setItem(STORAGE_KEY, urlLang);
       return urlLang;
     }
 
-    // Priority 2: stored preference
+    // Priority 2: previously chosen language stored in localStorage
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored && SUPPORTED.includes(stored)) return stored;
 
-    // Priority 3: browser language
-    const navLang = (navigator.language || 'es').slice(0, 2).toLowerCase();
-    if (SUPPORTED.includes(navLang)) return navLang;
-
+    // Default: Spanish for all first-time visitors
     return DEFAULT_LANG;
   }
 

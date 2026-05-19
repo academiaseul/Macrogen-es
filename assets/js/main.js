@@ -49,20 +49,43 @@ document.addEventListener('DOMContentLoaded', () => {
   (function initPromoPopup() {
     const STORAGE_KEY = 'mc_promo_jun26_dismissed_until';
     const EXPIRES_AT = new Date('2026-07-01T00:00:00Z').getTime();
-    const SHOW_AFTER_MS = 4000;
+    const SHOW_AFTER_MS = 3000;
     const SNOOZE_DAYS = 7;
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Force-show escape hatch for testing/demos: macrogen-es.com/?showpromo=1
+    // Also clears the snooze flag so subsequent visits show it again naturally.
+    const forceShow = urlParams.get('showpromo') === '1';
+    if (forceShow) {
+      localStorage.removeItem(STORAGE_KEY);
+      console.log('[promo] force-show triggered, snooze cleared');
+    }
 
     // Bail if past expiry
     if (Date.now() >= EXPIRES_AT) return;
 
-    // Only show on home page
-    const path = window.location.pathname.replace(/\/$/, '');
-    const isHome = path === '' || path === '/index.html' || path.endsWith('/index.html') && !path.includes('/blog/') && !path.includes('/servicios/');
-    if (!isHome) return;
+    // Only show on home page (unless force-show)
+    const path = window.location.pathname.replace(/\/$/, '').toLowerCase();
+    const isHome =
+      path === '' ||
+      path === '/' ||
+      path.endsWith('/index.html') ||
+      path.endsWith('index.html') ||
+      path === '/macrogen-es' ||
+      path === '/macrogen-es/';
+    if (!forceShow && !isHome) {
+      console.log('[promo] not on home page, skipping. path:', path);
+      return;
+    }
 
-    // Bail if recently dismissed
+    // Bail if recently dismissed (unless force-show)
     const dismissedUntil = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
-    if (dismissedUntil > Date.now()) return;
+    if (!forceShow && dismissedUntil > Date.now()) {
+      const daysLeft = Math.ceil((dismissedUntil - Date.now()) / 86400000);
+      console.log('[promo] snoozed for', daysLeft, 'more days. To force show: append ?showpromo=1 to URL');
+      return;
+    }
 
     // Build popup HTML
     const overlay = document.createElement('div');
