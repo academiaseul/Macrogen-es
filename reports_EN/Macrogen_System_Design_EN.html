@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Macrogen Ibero-America — Website System Design</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1.5cm 1.8cm;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.55;
+    color: #0F1B2D;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 50px 60px;
+    background: #ffffff;
+  }
+  /* Cover */
+  .cover {
+    page-break-after: always;
+    text-align: center;
+    padding: 100px 0 60px;
+    border-bottom: 4px solid #001E62;
+    margin-bottom: 40px;
+  }
+  .cover .eyebrow {
+    font-size: 10pt;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #00BFB2;
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-size: 32pt;
+    font-weight: 900;
+    color: #001E62;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    letter-spacing: -0.5pt;
+  }
+  .cover .subtitle {
+    font-size: 14pt;
+    color: #5a6d80;
+    margin-bottom: 60px;
+  }
+  .cover .meta {
+    text-align: left;
+    max-width: 460px;
+    margin: 60px auto 0;
+    background: #f4f7f9;
+    padding: 24px 30px;
+    border-left: 4px solid #E0004D;
+    border-radius: 4px;
+    font-size: 10.5pt;
+  }
+  .cover .meta strong { color: #001E62; }
+  .cover .meta div { margin-bottom: 8px; }
+  .cover .country-tag {
+    display: inline-block;
+    background: #001E62;
+    color: #fff;
+    font-size: 9pt;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-top: 30px;
+  }
+  /* Headings */
+  h1, h2, h3, h4 { color: #001E62; font-weight: 800; }
+  h1 { font-size: 22pt; margin: 0 0 16px; letter-spacing: -0.3pt; page-break-after: avoid; }
+  h2 {
+    font-size: 16pt;
+    margin: 36px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #00BFB2;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 13pt;
+    margin: 24px 0 10px;
+    color: #0a2b6e;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-size: 11.5pt;
+    margin: 18px 0 8px;
+    page-break-after: avoid;
+  }
+  p { margin: 0 0 12px; }
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 22px;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid #e5ebf1;
+    vertical-align: top;
+  }
+  thead th {
+    background: #001E62;
+    color: #fff;
+    font-weight: 700;
+    font-size: 9.5pt;
+    letter-spacing: 0.3pt;
+    text-transform: uppercase;
+  }
+  tbody tr:nth-child(even) { background: #f4f7f9; }
+  /* Lists */
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
+  ul li, ol li { margin-bottom: 6px; }
+  /* Code */
+  code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    background: #f4f7f9;
+    color: #001E62;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 9.5pt;
+  }
+  pre {
+    background: #001E62;
+    color: #ffffff;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    line-height: 1.5;
+    padding: 18px 22px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 14px 0 22px;
+    page-break-inside: avoid;
+    white-space: pre-wrap;
+  }
+  pre code { background: transparent; color: #84BD00; padding: 0; }
+  hr { border: none; border-top: 1px solid #e5ebf1; margin: 30px 0; }
+  /* TOC */
+  .toc {
+    background: #f4f7f9;
+    border: 1px solid #e5ebf1;
+    border-radius: 6px;
+    padding: 22px 28px;
+    margin: 0 0 36px;
+    page-break-after: always;
+  }
+  .toc h2 { margin-top: 0; border: none; padding: 0; font-size: 14pt; }
+  .toc ol { padding-left: 20px; counter-reset: toc; list-style: none; }
+  .toc ol li { counter-increment: toc; padding: 4px 0; font-size: 10.5pt; }
+  .toc ol li::before { content: counter(toc) ". "; color: #00BFB2; font-weight: 800; margin-right: 6px; }
+  /* Callouts */
+  .callout {
+    background: #FFF6EF;
+    border: 1px solid #F7D3B4;
+    border-left: 4px solid #E0004D;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0 22px;
+    font-size: 10.5pt;
+  }
+  .callout strong { color: #E0004D; }
+  /* Badges */
+  .badge {
+    display: inline-block;
+    font-size: 9pt;
+    font-weight: 800;
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+  }
+  .badge-green { background: #84BD00; color: #fff; }
+  .badge-pink { background: #E0004D; color: #fff; }
+  .doc-footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #e5ebf1;
+    font-size: 9pt;
+    color: #8696a8;
+    text-align: center;
+    font-style: italic;
+  }
+  @media print {
+    body { padding: 0; max-width: 100%; }
+    .no-print { display: none; }
+    pre, table, .callout { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">Engineering Process Document</div>
+  <h1>Macrogen Ibero-America<br>Website System Design</h1>
+  <div class="subtitle">macrogen-es.com — architecture, deployment & maintenance guide</div>
+  <div class="country-tag">Spain · Portugal · Chile · Peru</div>
+  <div class="meta">
+    <div><strong>Audience:</strong> internal teammates (technical and non-technical) who need to understand how the website is built, deployed, and maintained.</div>
+    <div><strong>Owner:</strong> VP Marketing, IT &amp; Sales — Macrogen Chile</div>
+    <div><strong>Last updated:</strong> May 2026</div>
+    <div><strong>Live URL:</strong> https://macrogen-es.com</div>
+    <div><strong>Repository:</strong> github.com/academiaseul/Macrogen-es</div>
+  </div>
+</div>
+
+<div class="toc">
+  <h2>Table of contents</h2>
+  <ol>
+    <li>Executive summary</li>
+    <li>System architecture (high-level)</li>
+    <li>Information architecture (sitemap)</li>
+    <li>Technology stack &amp; rationale</li>
+    <li>Folder &amp; file structure</li>
+    <li>Design system</li>
+    <li>Form logic &amp; smart country routing</li>
+    <li>Deployment pipeline (GitHub → Vercel → DNS → Live)</li>
+    <li>Day-to-day update workflow</li>
+    <li>Hosting, domain &amp; monthly costs</li>
+    <li>Future roadmap &amp; known limitations</li>
+    <li>Glossary</li>
+  </ol>
+</div>
+
+<h2>1. Executive summary</h2>
+
+<h3>What this is</h3>
+<p><code>macrogen-es.com</code> is the public-facing website for <strong>Macrogen Ibero-America</strong> — the joint operation of two official Macrogen Inc. branches:</p>
+<ul>
+  <li><strong>Macrogen Spain</strong> (Madrid, established 2016) — serves Spain and Portugal</li>
+  <li><strong>Macrogen Chile</strong> (Santiago, newest branch) — serves Chile and Peru</li>
+</ul>
+<p>The site presents the regional unit as one brand under the umbrella of Macrogen Inc. (Seoul HQ) while preserving the local identity of both branches.</p>
+
+<h3>Why we built it the way we did</h3>
+<p>The architectural goal was <strong>maximum simplicity, maximum control, near-zero recurring cost</strong>:</p>
+<ul>
+  <li><strong>No CMS, no database, no backend</strong> → no security patches, no server bills, no downtime risk</li>
+  <li><strong>Static HTML, CSS, vanilla JS</strong> → editable by anyone with a text editor, deployable anywhere, indestructible</li>
+  <li><strong>Git-based content workflow</strong> → every change is versioned and reviewable; rollback is instant</li>
+  <li><strong>Free-tier hosting on Vercel</strong> → global CDN, automatic HTTPS, ~$0/month forever for our traffic level</li>
+</ul>
+
+<h3>Key numbers</h3>
+<table>
+  <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Total pages</td><td>20 HTML files</td></tr>
+    <tr><td>Service detail pages</td><td>10</td></tr>
+    <tr><td>Blog posts (placeholders)</td><td>4</td></tr>
+    <tr><td>Total file count (incl. assets)</td><td>~25</td></tr>
+    <tr><td>Repo size</td><td>&lt;500 KB</td></tr>
+    <tr><td>Page load time</td><td>&lt;500 ms (global CDN)</td></tr>
+    <tr><td>Annual cost</td><td>~$15 (domain only)</td></tr>
+    <tr><td>Hosting cost</td><td>$0 (free Vercel tier)</td></tr>
+  </tbody>
+</table>
+
+<h2>2. System architecture (high-level)</h2>
+
+<pre>
+                          ┌──────────────────────────────────┐
+                          │   Visitor                          │
+                          │   (browser on any device)        │
+                          └──────────────┬───────────────────┘
+                                         │ types macrogen-es.com
+                                         ▼
+                          ┌──────────────────────────────────┐
+                          │   GoDaddy DNS                      │
+                          │   (we own the domain here)       │
+                          │   A record  @ → 76.76.21.21      │
+                          │   CNAME  www → cname.vercel-dns  │
+                          └──────────────┬───────────────────┘
+                                         │ resolves to
+                                         ▼
+                          ┌──────────────────────────────────┐
+                          │   Vercel Edge Network              │
+                          │   (global CDN, 100+ locations)   │
+                          │   Free SSL/HTTPS automatic       │
+                          └──────────────┬───────────────────┘
+                                         │ serves static files from
+                                         ▼
+                          ┌──────────────────────────────────┐
+                          │   GitHub Repo                      │
+                          │   academiaseul/Macrogen-es       │
+                          │   main branch                    │
+                          └──────────────┬───────────────────┘
+                                         │ deploys on every push
+                                         ▼
+                          ┌──────────────────────────────────┐
+                          │   Local Folder (your computer)     │
+                          │   Documents/Claude/Projects/     │
+                          │   Macrogen-es/                   │
+                          │   ↑ This is where edits start    │
+                          └──────────────────────────────────┘
+
+         Edit locally → push to GitHub → Vercel auto-deploys in 30 seconds
+</pre>
+
+<h3>What's running where</h3>
+<table>
+  <thead><tr><th>Component</th><th>Where it lives</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td>Domain</td><td>GoDaddy</td><td>macrogen-es.com registered to us</td></tr>
+    <tr><td>DNS records</td><td>GoDaddy DNS panel</td><td>Tells the internet where to find us</td></tr>
+    <tr><td>Source code</td><td>GitHub repo</td><td>Single source of truth for all content</td></tr>
+    <tr><td>Hosting</td><td>Vercel (free tier)</td><td>Serves the site globally with HTTPS</td></tr>
+    <tr><td>Local development</td><td>Your computer</td><td>Where edits happen before pushing</td></tr>
+    <tr><td>Email forwarding</td><td>Macrogen Inc. corporate</td><td>info-spain@ and info-chile@ already work</td></tr>
+    <tr><td>Analytics</td><td>(not yet enabled)</td><td>Optional: Vercel Analytics free tier</td></tr>
+  </tbody>
+</table>
+
+<h2>3. Information architecture (sitemap)</h2>
+
+<h3>Top-level navigation</h3>
+<p>The header navigation is consistent across every page:</p>
+<pre>[Logo Macrogen | IBEROAMÉRICA chip]   Home · About · Services · ORDERS↗ · Blog · Newsletter · Contact · GET QUOTE</pre>
+
+<ul>
+  <li><span class="badge badge-pink">Pink</span> <strong>ORDERS</strong> → external link to https://dna.macrogen.com (Macrogen's official ordering portal). Pink/magenta to signal "purchase intent".</li>
+  <li><span class="badge badge-green">Green</span> <strong>GET QUOTE</strong> → internal link to contact form. Green to signal "request a quote".</li>
+</ul>
+<p>The two-color CTA system gives visitors an immediate understanding of the two paths: <strong>order directly</strong> vs <strong>request a quote</strong>.</p>
+
+<h3>Full page tree</h3>
+<pre>macrogen-es.com/
+├── index.html                  Home page
+├── nosotros.html               About page
+├── services.html              Services overview
+├── blog.html                   Blog index (4 posts)
+├── newsletter.html             Newsletter signup
+├── contacto.html               Contact form (smart country routing) + Order Now
+│
+├── services/                  Service detail pages (10)
+│   ├── wgs.html                Whole Genome Sequencing
+│   ├── wes.html                Whole Exome Sequencing
+│   ├── rna-seq.html            Transcriptome / RNA-Seq
+│   ├── single-cell.html        Single Cell Sequencing
+│   ├── metagenoma.html         Metagenomics (16S, shotgun)
+│   ├── epigenoma.html          Epigenome (WGBS, RRBS, ChIP-seq)
+│   ├── sanger.html             Sanger / CES
+│   ├── oligo.html              Oligonucleotide synthesis
+│   ├── microarray.html         Microarrays
+│   └── bioinformatica.html     Bioinformatics solutions 360°
+│
+├── blog/                       Blog post pages (4)
+│   ├── launch-macrogen-chile.html
+│   ├── que-es-ngs.html
+│   ├── microbioma-chile.html
+│   └── coverage-sequencing.html
+│
+└── assets/
+    ├── css/main.css            Single shared stylesheet (~25 KB)
+    ├── js/main.js              Single shared JavaScript
+    └── img/
+        ├── logo.png            Corporate Macrogen logo (no country)
+        ├── logo-spain.png      Macrogen SPAIN regional lockup
+        └── logo-chile.png      Macrogen CHILE regional lockup
+</pre>
+
+<h2>4. Technology stack &amp; rationale</h2>
+
+<h3>Why static HTML + CSS + vanilla JS</h3>
+<table>
+  <thead><tr><th>Decision</th><th>Rationale</th></tr></thead>
+  <tbody>
+    <tr><td>No framework (React, Vue, Svelte)</td><td>Site is content-driven, not interactive app. Frameworks add complexity, build steps, and dependencies for zero functional benefit.</td></tr>
+    <tr><td>No CMS (WordPress, Contentful)</td><td>No database = no security patches, no $30/month hosting, no plugin breakage.</td></tr>
+    <tr><td>No build tools (Webpack, Vite)</td><td>Source = production. What you write is what ships.</td></tr>
+    <tr><td>No CSS framework (Tailwind, Bootstrap)</td><td>Custom CSS is ~25 KB and gives full design control.</td></tr>
+    <tr><td>Vanilla JS only</td><td>Total JS is &lt;100 lines. No need for jQuery or libraries.</td></tr>
+  </tbody>
+</table>
+
+<h3>Stack summary</h3>
+<pre>Frontend     HTML5 (semantic) + CSS3 (custom) + Vanilla JS (ES6)
+Fonts        Google Fonts (Inter family) — loaded from CDN
+Icons        Unicode emoji
+Hosting      Vercel (free tier, global edge CDN)
+DNS          GoDaddy
+Repository   GitHub (private)
+Source ctrl  Git (via GitHub Desktop GUI)
+Editor       Any (VS Code recommended)
+</pre>
+
+<h2>5. Folder &amp; file structure</h2>
+
+<table>
+  <thead><tr><th>File</th><th>Purpose</th><th>When to edit</th></tr></thead>
+  <tbody>
+    <tr><td><code>index.html</code></td><td>Home page</td><td>Hero copy, stats, services preview</td></tr>
+    <tr><td><code>nosotros.html</code></td><td>About page</td><td>Company narrative, hub descriptions</td></tr>
+    <tr><td><code>services.html</code></td><td>Services overview</td><td>When adding/removing service categories</td></tr>
+    <tr><td><code>blog.html</code></td><td>Blog index</td><td>When publishing new posts</td></tr>
+    <tr><td><code>newsletter.html</code></td><td>Newsletter signup</td><td>When publishing new editions</td></tr>
+    <tr><td><code>contacto.html</code></td><td>Contact form + offices</td><td>Office addresses, form fields</td></tr>
+    <tr><td><code>services/*.html</code> (×10)</td><td>Service detail pages</td><td>Specs, deliverables, sample requirements</td></tr>
+    <tr><td><code>blog/*.html</code> (×4)</td><td>Blog post articles</td><td>Replace lorem ipsum with real content</td></tr>
+    <tr><td><code>assets/css/main.css</code></td><td>All styling</td><td>Brand colors, typography, components</td></tr>
+    <tr><td><code>assets/js/main.js</code></td><td>All interactivity</td><td>Mobile nav, form logic, country selector</td></tr>
+    <tr><td><code>assets/img/logo.png</code></td><td>Corporate logo</td><td>Used in header &amp; footer of every page</td></tr>
+    <tr><td><code>assets/img/logo-spain.png</code></td><td>SPAIN regional lockup</td><td>About page partners section</td></tr>
+    <tr><td><code>assets/img/logo-chile.png</code></td><td>CHILE regional lockup</td><td>About page partners section</td></tr>
+  </tbody>
+</table>
+
+<h2>6. Design system</h2>
+
+<h3>Brand colors</h3>
+<table>
+  <thead><tr><th>Variable</th><th>Hex</th><th>Use</th></tr></thead>
+  <tbody>
+    <tr><td><code>--mc-navy</code></td><td>#001E62</td><td>Primary brand blue</td></tr>
+    <tr><td><code>--mc-teal</code></td><td>#00BFB2</td><td>Accent science (eyebrows, hover states)</td></tr>
+    <tr><td><code>--mc-green</code></td><td>#84BD00</td><td>Quotation/contact CTAs (cotizar, enviar)</td></tr>
+    <tr><td><code>--mc-red</code></td><td>#E0004D</td><td><strong>Order Now / Orders CTAs</strong></td></tr>
+    <tr><td><code>--mc-ink</code></td><td>#0F1B2D</td><td>Body text</td></tr>
+    <tr><td><code>--mc-mute</code></td><td>#5a6d80</td><td>Secondary text</td></tr>
+    <tr><td><code>--mc-bg</code></td><td>#f4f7f9</td><td>Light section background</td></tr>
+    <tr><td><code>--mc-line</code></td><td>#e5ebf1</td><td>Borders</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Color rule: green vs pink CTAs.</strong> We deliberately split CTAs into two color families:
+  <ul style="margin:10px 0 0;">
+    <li><span class="badge badge-green">Green</span> = "Get a quote / talk to us"</li>
+    <li><span class="badge badge-pink">Pink</span> = "Order directly (skip the quote)"</li>
+  </ul>
+  Apply consistently — never use green for "Order Now" or pink for "Get quote".
+</div>
+
+<h3>Typography</h3>
+<ul>
+  <li><strong>Font family:</strong> Inter (Google Fonts) — modern, scientific, excellent at small sizes</li>
+  <li><strong>Weights:</strong> 300, 400, 500, 600, 700, 800, 900</li>
+  <li><strong>Type scale:</strong> H1 auto-scales by viewport, body 16px line-height 1.6</li>
+</ul>
+
+<h3>Responsive breakpoints</h3>
+<pre>≥920px    Desktop (full nav, two-col layouts)
+600-920px Tablet (stacked grids, smaller chip)
+380-600px Phone (hamburger nav, single column)
+&lt;380px    Tiny phone (max compression)
+</pre>
+
+<h2>7. Form logic &amp; smart country routing</h2>
+
+<h3>The flow</h3>
+<ol>
+  <li>Visitor lands on <code>contacto.html</code></li>
+  <li>First form field is a required country dropdown</li>
+  <li>They select their country (Spain / Portugal / Chile / Peru / Otro)</li>
+  <li>JavaScript updates 3 things in real time:
+    <ol type="a">
+      <li>Email field placeholder → country-specific TLD (e.g., tu@laboratory.cl)</li>
+      <li>Phone field placeholder → country-specific code (e.g., +56 9 ...)</li>
+      <li>Visible info box → shows which inbox will receive the request</li>
+    </ol>
+  </li>
+  <li>Visitor fills the form, hits "Enviar Solicitud"</li>
+  <li>(Currently demo) Friendly thank-you message appears<br>(Future, with Formspree) Email is sent to info-spain@ or info-chile@</li>
+</ol>
+
+<h3>Routing matrix</h3>
+<table>
+  <thead><tr><th>Country selected</th><th>Hub assigned</th><th>Email destination</th></tr></thead>
+  <tbody>
+    <tr><td>Spain</td><td>Madrid</td><td><strong>info-spain@macrogen.com</strong></td></tr>
+    <tr><td>Portugal</td><td>Madrid</td><td><strong>info-spain@macrogen.com</strong></td></tr>
+    <tr><td>Chile</td><td>Santiago</td><td><strong>info-chile@macrogen.com</strong></td></tr>
+    <tr><td>Peru</td><td>Santiago</td><td><strong>info-chile@macrogen.com</strong></td></tr>
+    <tr><td>Other country</td><td>Madrid (default)</td><td><strong>info-spain@macrogen.com</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="callout"><strong>Current state (demo):</strong> Form has <code>data-demo</code> attribute. On submit, JavaScript shows "thanks" message but doesn't send anywhere. To activate real lead capture: sign up at formspree.io, get unique form endpoint URL, replace form's <code>action</code> attribute, remove <code>data-demo</code>.</div>
+
+<h2>8. Deployment pipeline</h2>
+
+<h3>The full chain (Edit → Live, ~1 minute)</h3>
+<pre>Step 1: Edit on your computer
+        Open any .html or .css file in a text editor
+        Make changes, save the file
+        ↓
+Step 2: Commit &amp; push via GitHub Desktop
+        Open GitHub Desktop app
+        Type a commit message
+        Click "Commit to main" → "Push origin"
+        (~5 seconds)
+        ↓
+Step 3: Vercel auto-deploys
+        Vercel sees the GitHub push within 5 seconds
+        Builds (no build needed for static HTML — instant)
+        Deploys to all CDN edge locations globally
+        (~30 seconds total)
+        ↓
+Step 4: Live for visitors
+        macrogen-es.com serves the new version
+        Old version preserved as instant rollback
+</pre>
+
+<h3>Rollback procedure</h3>
+<ol>
+  <li>Go to vercel.com/dashboard → click <code>macrogen-es</code> project</li>
+  <li>Click "Deployments" tab</li>
+  <li>Find the last working deployment (status: "Ready")</li>
+  <li>Click the "⋯" menu → "Promote to Production"</li>
+  <li>Live within seconds</li>
+</ol>
+
+<h2>9. Day-to-day update workflow</h2>
+
+<h3>Update existing copy (text changes)</h3>
+<ol>
+  <li>Open File Explorer → <code>Documents/Claude/Projects/Macrogen-es/</code></li>
+  <li>Open the relevant <code>.html</code> file in a text editor</li>
+  <li>Use Find (Ctrl+F) to locate the text you want to change</li>
+  <li>Edit the text — keep HTML tags intact, only change text between them</li>
+  <li>Save (Ctrl+S)</li>
+  <li>Open GitHub Desktop → commit + push</li>
+</ol>
+
+<h3>Add a new blog post</h3>
+<ol>
+  <li>Copy an existing blog file (e.g., <code>blog/que-es-ngs.html</code>) and rename</li>
+  <li>Update the title, meta description, header content</li>
+  <li>Replace the article body content</li>
+  <li>Open <code>blog.html</code> and add a new card pointing to your new post</li>
+  <li>Commit + push</li>
+</ol>
+
+<h3>Update brand colors site-wide</h3>
+<ol>
+  <li>Open <code>assets/css/main.css</code></li>
+  <li>Find the <code>:root</code> block at the top</li>
+  <li>Change the hex values</li>
+  <li>Save → commit + push</li>
+  <li>Every page updates automatically</li>
+</ol>
+
+<h3>Replace a logo</h3>
+<ol>
+  <li>Save the new logo file as <code>logo.png</code> in <code>assets/img/</code> (overwriting)</li>
+  <li>Commit + push</li>
+</ol>
+
+<div class="callout"><strong>What NEVER to touch:</strong> the <code>.git/</code> folder (hidden, GitHub Desktop manages it), the <code>&lt;head&gt;</code> section of HTML files unless you understand <code>&lt;meta&gt;</code>, and the <code>&lt;script&gt;</code> / <code>&lt;style&gt;</code> tags.</div>
+
+<h2>10. Hosting, domain &amp; monthly costs</h2>
+
+<table>
+  <thead><tr><th>Service</th><th>Cost</th><th>What we get</th></tr></thead>
+  <tbody>
+    <tr><td><strong>GoDaddy</strong> (domain)</td><td>$15-25/year</td><td>macrogen-es.com ownership</td></tr>
+    <tr><td><strong>Vercel</strong> (hosting)</td><td>$0 forever</td><td>Global CDN, HTTPS, auto-deploy</td></tr>
+    <tr><td><strong>GitHub</strong> (repo)</td><td>$0 forever</td><td>Source control, version history</td></tr>
+    <tr><td><strong>Email forwarding</strong></td><td>$0</td><td>info-spain@ and info-chile@ already work</td></tr>
+  </tbody>
+</table>
+
+<h3>When we'd start paying more</h3>
+<table>
+  <thead><tr><th>Trigger</th><th>New service</th><th>Cost</th></tr></thead>
+  <tbody>
+    <tr><td>Form submissions exceed 50/month</td><td>Formspree paid tier</td><td>$10/month</td></tr>
+    <tr><td>Want detailed visitor analytics</td><td>Vercel Analytics Pro</td><td>$10/month</td></tr>
+    <tr><td>Need custom email like hello@macrogen-es.com</td><td>Google Workspace</td><td>$6-7/user/month</td></tr>
+  </tbody>
+</table>
+
+<pre>Realistic 12-month budget:
+Domain renewal             $20
+Form service (Formspree)   $0  (under 50 submissions/month)
+Email forwarding           $0
+Analytics                  $0
+Hosting                    $0
+─────────────────────────────────
+TOTAL YEAR 1               $20</pre>
+
+<h2>11. Future roadmap &amp; known limitations</h2>
+
+<h3>Known limitations (deliberate trade-offs)</h3>
+<table>
+  <thead><tr><th>Limitation</th><th>Why we accepted it</th><th>When to revisit</th></tr></thead>
+  <tbody>
+    <tr><td>Form is demo-only (doesn't send)</td><td>Wanted to ship visual UX first</td><td>When you have real visitor traffic</td></tr>
+    <tr><td>No multi-language (Spanish only)</td><td>Audience speaks Spanish</td><td>If we open ads to English-speaking institutions</td></tr>
+    <tr><td>Blog posts have lorem ipsum bodies</td><td>Wanted structure first</td><td>Replace before announcing publicly</td></tr>
+    <tr><td>No cookie consent banner</td><td>Currently no cookies set</td><td>Add when we enable analytics</td></tr>
+  </tbody>
+</table>
+
+<h3>Roadmap (suggested priority order)</h3>
+<p><strong>Priority 1 — Make the form functional</strong></p>
+<ul>
+  <li>Wire to Formspree (~5 minutes setup)</li>
+  <li>Smart routing to info-spain@ or info-chile@ based on country dropdown</li>
+</ul>
+
+<p><strong>Priority 2 — Real content</strong></p>
+<ul>
+  <li>Replace lorem ipsum in 4 blog posts</li>
+  <li>Add real team bios on About page</li>
+  <li>Add real client logos / testimonials section</li>
+</ul>
+
+<p><strong>Priority 3 — Reinforce Chile presence</strong></p>
+<ul>
+  <li>Reorder mentions to lead with Chile in joint copy</li>
+  <li>Add a dedicated "Anclados en Santiago" section on home</li>
+  <li>Position Macrogen Chile as the operational lead in About narrative</li>
+</ul>
+
+<p><strong>Priority 4 — SEO &amp; analytics</strong></p>
+<ul>
+  <li>Add Google Analytics or Plausible</li>
+  <li>Submit sitemap.xml to Google Search Console</li>
+  <li>Add Open Graph images for nice link previews</li>
+</ul>
+
+<h3>Things explicitly OUT of scope</h3>
+<ul>
+  <li>E-commerce checkout (we link to dna.macrogen.com instead)</li>
+  <li>User accounts / login (Macrogen has its own portal)</li>
+  <li>Real-time order tracking (lives on dna.macrogen.com)</li>
+  <li>Sample submission forms (live on dna.macrogen.com)</li>
+</ul>
+
+<h2>12. Glossary</h2>
+
+<table>
+  <thead><tr><th>Term</th><th>Plain-language meaning</th></tr></thead>
+  <tbody>
+    <tr><td><strong>HTML</strong></td><td>The language web pages are written in. <code>.html</code> files.</td></tr>
+    <tr><td><strong>CSS</strong></td><td>The language that makes web pages pretty (colors, fonts, layout).</td></tr>
+    <tr><td><strong>JavaScript / JS</strong></td><td>The language that adds interactivity (buttons, forms validating).</td></tr>
+    <tr><td><strong>Repo / Repository</strong></td><td>A folder of code with full history of every change. Stored on GitHub.</td></tr>
+    <tr><td><strong>Commit</strong></td><td>A saved snapshot of your changes with a descriptive message.</td></tr>
+    <tr><td><strong>Push</strong></td><td>Uploading your commits from your computer to GitHub.</td></tr>
+    <tr><td><strong>Branch</strong></td><td>A parallel version of the code. We use one (<code>main</code>).</td></tr>
+    <tr><td><strong>Deploy</strong></td><td>Publishing the website so the internet can see the latest version.</td></tr>
+    <tr><td><strong>CDN</strong></td><td>"Content Delivery Network" — copies of the site stored globally for fast loading.</td></tr>
+    <tr><td><strong>DNS</strong></td><td>The internet's address book — translates macrogen-es.com into a computer's location.</td></tr>
+    <tr><td><strong>A record</strong></td><td>A type of DNS entry that points a domain to an IP address.</td></tr>
+    <tr><td><strong>CNAME</strong></td><td>A DNS entry that points a subdomain (like <code>www</code>) to another domain.</td></tr>
+    <tr><td><strong>HTTPS / SSL</strong></td><td>The lock icon in the browser bar. Free and automatic on Vercel.</td></tr>
+    <tr><td><strong>Static site</strong></td><td>A website made of pre-written files (no database, no server-side processing).</td></tr>
+    <tr><td><strong>Vercel</strong></td><td>The company that hosts our site for free.</td></tr>
+    <tr><td><strong>GitHub</strong></td><td>The company that stores our code with version history.</td></tr>
+    <tr><td><strong>GoDaddy</strong></td><td>The company that sold us our domain name.</td></tr>
+    <tr><td><strong>Form action</strong></td><td>Where a form's submitted data goes. Currently nowhere (demo); will be Formspree.</td></tr>
+    <tr><td><strong>Favicon</strong></td><td>The small icon in the browser tab.</td></tr>
+    <tr><td><strong>CTA</strong></td><td>"Call to action" — a button that asks the visitor to do something.</td></tr>
+    <tr><td><strong>Hero</strong></td><td>The big top section of a page (usually navy with the headline).</td></tr>
+    <tr><td><strong>Eyebrow</strong></td><td>The small text label above a headline.</td></tr>
+    <tr><td><strong>Pillar</strong></td><td>A reusable card showing a value proposition.</td></tr>
+    <tr><td><strong>Lorem ipsum</strong></td><td>Placeholder Latin text used to mock up layouts.</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Quick reference card</h2>
+<p><strong>To see the live site:</strong> https://macrogen-es.com<br>
+<strong>To see the source code:</strong> https://github.com/academiaseul/Macrogen-es<br>
+<strong>To deploy a change:</strong> Edit local file → GitHub Desktop → Commit → Push → wait 30 sec<br>
+<strong>To rollback:</strong> Vercel dashboard → Deployments → "Promote to Production" on previous deploy</p>
+
+<p><strong>Brand colors at a glance:</strong> Navy #001E62 · Teal #00BFB2 · Green #84BD00 (Get quote) · Pink #E0004D (Order Now)</p>
+
+<p><strong>Email routing logic:</strong></p>
+<ul>
+  <li>Spain / Portugal / Other → info-spain@macrogen.com</li>
+  <li>Chile / Peru → info-chile@macrogen.com</li>
+</ul>
+
+<p><strong>Two-CTA color rule:</strong></p>
+<ul>
+  <li><span class="badge badge-green">Green</span> = "Talk to us / get a quote"</li>
+  <li><span class="badge badge-pink">Pink</span> = "Order directly via dna.macrogen.com"</li>
+</ul>
+
+<div class="doc-footer">
+  This document is part of the Macrogen Ibero-America project. Update it whenever the architecture changes — keeping it accurate is everyone's job.
+</div>
+
+</body>
+</html>

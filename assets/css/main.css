@@ -2036,3 +2036,32 @@ textarea:focus-visible,
 @media (prefers-reduced-motion: reduce) {
   .promo-banner-inline { animation: none; }
 }
+
+
+/* ============================================
+   Google Translate widget — hide UI, keep engine
+   We use it as a translation engine; our custom
+   switcher is the visible UI. Hide all Google chrome.
+   ============================================ */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight,
+#goog-gt-tt,
+.goog-gt-tt {
+  display: none !important;
+  visibility: hidden !important;
+}
+body {
+  top: 0 !important;
+  position: static !important;
+}
+/* Prevent Google's wrapper from breaking layout */
+.skiptranslate iframe { display: none !important; }
+font[style*="vertical-align"] { vertical-align: inherit !important; }
+font[style*="background-color"] { background-color: transparent !important; }
+/* Hidden Google Translate element */
+#google_translate_element {
+  display: none !important;
+}

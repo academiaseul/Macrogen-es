@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Macrogen Ibero-America — Team Presentation</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #1a1a1a;
+    color: #0F1B2D;
+  }
+  .slide {
+    width: 13.333in;
+    height: 7.5in;
+    background: #ffffff;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    margin: 16px auto;
+    box-shadow: 0 8px 30px rgba(0,0,0,.4);
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* Brand */
+  .navy { color: #001E62; }
+  .teal { color: #00BFB2; }
+  .green { color: #84BD00; }
+  .pink { color: #E0004D; }
+  .mute { color: #5a6d80; }
+  .bg-navy { background: #001E62; color: #fff; }
+  .bg-teal { background: #00BFB2; color: #fff; }
+  .bg-green { background: #84BD00; color: #fff; }
+  .bg-pink { background: #E0004D; color: #fff; }
+  .bg-bg { background: #f4f7f9; }
+
+  /* Slide chrome */
+  .chrome-num {
+    position: absolute;
+    bottom: 24px;
+    right: 36px;
+    font-size: 11pt;
+    color: #5a6d80;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .chrome-brand {
+    position: absolute;
+    bottom: 24px;
+    left: 36px;
+    font-size: 10pt;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #001E62;
+  }
+  .chrome-brand .accent { color: #E0004D; }
+
+  /* Type */
+  .eyebrow {
+    font-size: 11pt;
+    font-weight: 800;
+    letter-spacing: 3pt;
+    text-transform: uppercase;
+    color: #00BFB2;
+  }
+  .eyebrow-pink { color: #E0004D; }
+  h1.title {
+    font-size: 56pt;
+    font-weight: 900;
+    line-height: 1.05;
+    color: #001E62;
+    letter-spacing: -1pt;
+  }
+  h2.head {
+    font-size: 38pt;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #001E62;
+    letter-spacing: -0.5pt;
+  }
+  h3.sub {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #5a6d80;
+    line-height: 1.25;
+  }
+  p.body { font-size: 16pt; line-height: 1.5; color: #2a3f57; }
+  p.small { font-size: 12pt; line-height: 1.5; color: #5a6d80; }
+
+  /* ==== SLIDE LAYOUTS ==== */
+
+  /* Cover */
+  .s-cover {
+    background: linear-gradient(135deg, #001E62 0%, #002080 60%, #001340 100%);
+    color: #fff;
+    padding: 80px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .s-cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,191,178,.25), transparent 60%);
+  }
+  .s-cover::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; left: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(132,189,0,.15), transparent 60%);
+  }
+  .s-cover .eyebrow { color: #00BFB2; }
+  .s-cover h1 { color: #fff; }
+  .s-cover .meta { margin-top: 80px; display: flex; gap: 40px; }
+  .s-cover .meta div { font-size: 14pt; color: #a8c0e0; }
+  .s-cover .meta div strong { color: #fff; display: block; font-size: 18pt; font-weight: 800; }
+
+  /* Standard padded slide */
+  .s-pad { padding: 70px 100px; display: flex; flex-direction: column; }
+
+  /* Two column */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; flex: 1; align-items: center; }
+
+  /* Stat callout */
+  .big-stat {
+    font-size: 110pt;
+    font-weight: 900;
+    color: #001E62;
+    line-height: 1;
+    letter-spacing: -3pt;
+  }
+  .big-stat .unit { font-size: 36pt; color: #00BFB2; vertical-align: super; margin-left: 8px; }
+
+  /* Cards */
+  .card-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+  .card {
+    background: #f4f7f9;
+    border-radius: 14px;
+    padding: 36px 30px;
+    border-top: 5px solid #001E62;
+  }
+  .card.t-teal { border-top-color: #00BFB2; }
+  .card.t-green { border-top-color: #84BD00; }
+  .card.t-pink { border-top-color: #E0004D; }
+  .card .icon {
+    font-size: 36pt;
+    margin-bottom: 16px;
+  }
+  .card h4 {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #001E62;
+    margin-bottom: 10px;
+  }
+  .card p { font-size: 13pt; color: #5a6d80; line-height: 1.5; }
+
+  /* Prompt box */
+  .prompt-box {
+    background: #001E62;
+    color: #fff;
+    padding: 36px 44px;
+    border-radius: 14px;
+    border-left: 8px solid #E0004D;
+    font-size: 17pt;
+    line-height: 1.55;
+    font-style: italic;
+    position: relative;
+  }
+  .prompt-box::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    font-size: 80pt;
+    color: #E0004D;
+    line-height: 1;
+    font-style: normal;
+    font-weight: 900;
+  }
+  .prompt-box .speaker {
+    display: block;
+    margin-top: 18px;
+    font-size: 11pt;
+    color: #a8c0e0;
+    font-style: normal;
+    letter-spacing: 1.5pt;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* Result/insight box */
+  .insight {
+    background: #84BD00;
+    color: #fff;
+    padding: 24px 30px;
+    border-radius: 12px;
+    font-size: 14pt;
+    line-height: 1.5;
+    margin-top: 24px;
+  }
+  .insight strong { font-size: 13pt; letter-spacing: 1.5pt; text-transform: uppercase; display: block; margin-bottom: 6px; opacity: .85; }
+
+  /* Logo comparison */
+  .logo-compare { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 30px; align-items: center; margin-top: 40px; }
+  .logo-box {
+    background: #f4f7f9;
+    padding: 50px 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px dashed #e5ebf1;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .logo-box.after { border-style: solid; border-color: #84BD00; background: #fff; box-shadow: 0 8px 24px rgba(132,189,0,.15); }
+  .logo-box .placeholder-tile {
+    width: 80px; height: 80px;
+    background: #001E62;
+    color: #fff;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36pt;
+    font-weight: 900;
+    margin: 0 auto 18px;
+  }
+  .logo-box .real-logo {
+    font-size: 34pt;
+    font-weight: 900;
+    color: #001E62;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .logo-box .real-logo .helix {
+    color: #00BFB2;
+    font-size: 30pt;
+    margin-right: 8px;
+  }
+  .logo-box .label-tag {
+    font-size: 10pt;
+    font-weight: 800;
+    letter-spacing: 2pt;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .logo-box .arrow-text {
+    font-size: 16pt;
+    font-weight: 800;
+    color: #001E62;
+  }
+  .arrow-mid { text-align: center; font-size: 50pt; color: #84BD00; font-weight: 900; }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    align-items: stretch;
+    margin-top: 40px;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background: linear-gradient(90deg, #001E62, #00BFB2, #84BD00);
+    z-index: 0;
+  }
+  .tl-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 6px;
+  }
+  .tl-step .dot {
+    width: 32px; height: 32px;
+    background: #fff;
+    border: 5px solid #001E62;
+    border-radius: 50%;
+    margin: 35px auto 0;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-step:nth-child(1) .dot { border-color: #001E62; }
+  .tl-step:nth-child(2) .dot { border-color: #001E62; }
+  .tl-step:nth-child(3) .dot { border-color: #00BFB2; }
+  .tl-step:nth-child(4) .dot { border-color: #00BFB2; }
+  .tl-step:nth-child(5) .dot { border-color: #84BD00; background: #84BD00; }
+  .tl-step .day {
+    font-size: 11pt;
+    font-weight: 800;
+    color: #5a6d80;
+    letter-spacing: 1.5pt;
+    text-transform: uppercase;
+    margin-top: 18px;
+  }
+  .tl-step h4 {
+    font-size: 15pt;
+    font-weight: 800;
+    color: #001E62;
+    margin: 8px 0 6px;
+  }
+  .tl-step p { font-size: 11pt; color: #5a6d80; line-height: 1.4; }
+
+  /* Cost chart */
+  .bar-chart { margin-top: 40px; }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 120px;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+  .bar-row .lbl { font-size: 14pt; font-weight: 700; color: #001E62; }
+  .bar-row .bar-track {
+    height: 36px;
+    background: #f4f7f9;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-row .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 11pt;
+    letter-spacing: 1pt;
+  }
+  .bar-row .price {
+    font-size: 18pt;
+    font-weight: 900;
+    color: #001E62;
+    text-align: right;
+  }
+  .bar-row .price.win { color: #84BD00; }
+
+  /* Sitemap diagram */
+  .sitemap {
+    margin-top: 30px;
+    padding: 30px;
+    background: #f4f7f9;
+    border-radius: 14px;
+    flex: 1;
+  }
+
+  /* Demo screenshot mockup */
+  .browser-mockup {
+    background: #fff;
+    border: 2px solid #e5ebf1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0,0,0,.15);
+  }
+  .browser-bar {
+    background: #f4f7f9;
+    padding: 10px 16px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border-bottom: 1px solid #e5ebf1;
+  }
+  .browser-bar .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .browser-bar .dot1 { background: #ff5f57; }
+  .browser-bar .dot2 { background: #febc2e; }
+  .browser-bar .dot3 { background: #28c840; }
+  .browser-bar .url {
+    margin-left: 16px;
+    background: #fff;
+    border: 1px solid #e5ebf1;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 10pt;
+    color: #5a6d80;
+    flex: 1;
+  }
+  .browser-content {
+    background: #001E62;
+    color: #fff;
+    padding: 40px 30px;
+    min-height: 280px;
+  }
+  .browser-content .nav-bar {
+    background: #fff;
+    color: #001E62;
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin: -40px -30px 30px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 10pt;
+    font-weight: 700;
+  }
+  .browser-content .nav-bar .pill-pink { background: #E0004D; color: #fff; padding: 3px 8px; border-radius: 999px; font-size: 8pt; }
+  .browser-content .nav-bar .pill-green { background: #84BD00; color: #fff; padding: 3px 8px; border-radius: 999px; font-size: 8pt; }
+  .browser-content h3 { font-size: 22pt; font-weight: 900; margin-bottom: 10px; line-height: 1.2; }
+  .browser-content h3 .acc { color: #00BFB2; }
+  .browser-content p { font-size: 11pt; color: #a8c0e0; }
+
+  /* Tag chips */
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .chip {
+    background: #f4f7f9;
+    color: #001E62;
+    border: 1px solid #e5ebf1;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 11pt;
+    font-weight: 700;
+  }
+  .chip.pink { background: #E0004D; color: #fff; border-color: #E0004D; }
+  .chip.green { background: #84BD00; color: #fff; border-color: #84BD00; }
+  .chip.teal { background: #00BFB2; color: #fff; border-color: #00BFB2; }
+
+  /* Print helpers */
+  .print-only-instructions {
+    background: #fff;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 1280px;
+    border-radius: 12px;
+    font-family: 'Calibri', sans-serif;
+  }
+  @media print {
+    body { background: #fff; }
+    .slide { box-shadow: none; margin: 0; }
+    .print-only-instructions { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-only-instructions">
+  <h1 style="color:#001E62; font-size:24pt; margin-bottom:10px;">📊 Macrogen Ibero-America — Team Presentation</h1>
+  <p style="color:#5a6d80; font-size:14pt; line-height:1.5;">
+    <strong>To convert to PDF:</strong> Press Ctrl+P → Destination "Save as PDF" → Layout "Landscape" → Margins "None" → check "Background graphics" → Save.<br>
+    <strong>To copy into real PowerPoint:</strong> Take a screenshot of each slide (Win+Shift+S) and paste into a blank PowerPoint slide.<br>
+    <strong>To present from browser:</strong> Press F11 for fullscreen, then Page Down / Page Up to advance slides.
+  </p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 1 — COVER -->
+<!-- ============================================================ -->
+<div class="slide s-cover">
+  <div class="eyebrow">Engineering & Marketing Update · May 2026</div>
+  <h1 class="title" style="margin-top: 30px;">Our new<br>website<br><span style="color:#00BFB2;">macrogen-es.com</span></h1>
+  <p class="body" style="color:#a8c0e0; font-size:18pt; margin-top:20px; max-width:700px;">
+    Built together by the Madrid and Santiago teams — serving Spain, Portugal, Chile and Peru.
+  </p>
+  <div class="meta">
+    <div><strong>Macrogen Ibero-America</strong>Spain · Portugal · Chile · Peru</div>
+    <div><strong>One Team. One Macrogen.</strong>Two hubs, one network</div>
+  </div>
+  <div class="chrome-num" style="color:#a8c0e0;">01 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2 — THE STORY -->
+<!-- ============================================================ -->
+<div class="slide s-pad">
+  <div class="eyebrow eyebrow-pink">The story</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:30px; max-width:1000px;">Why we built this</h2>
+  <div class="two-col">
+    <div>
+      <p class="body" style="margin-bottom:20px;">
+        Macrogen has spent 28 years connecting science and genomics. Today, with two active branches in Ibero-America
+        — <strong class="navy">Madrid (2016)</strong> y <strong class="navy">Santiago (nuevo)</strong> —
+        we decided to unify our regional digital presence.
+      </p>
+      <p class="body">
+        The domain <strong class="pink">macrogen-es.com</strong> gives us one voice for 4 countries,
+        while preserving the local identity of each hub.
+      </p>
+    </div>
+    <div class="card t-pink" style="background: linear-gradient(135deg, #001E62, #0a2b6e); color: #fff;">
+      <div style="font-size:14pt; font-weight:800; letter-spacing:2pt; color:#00BFB2; text-transform:uppercase; margin-bottom:14px;">Our promise</div>
+      <h3 style="font-size:28pt; font-weight:900; line-height:1.15; color:#fff; margin-bottom:16px;">"One Team.<br>One Macrogen."</h3>
+      <p style="font-size:13pt; color:#a8c0e0; line-height:1.5;">
+        A unified regional operation, anchored in two hubs and backed by the global Macrogen Inc. network.
+      </p>
+    </div>
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">02 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3 — LIVE SITE PREVIEW -->
+<!-- ============================================================ -->
+<div class="slide s-pad bg-bg">
+  <div class="eyebrow">Demo</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:30px;">This is how the site looks</h2>
+  <div class="two-col">
+    <div class="browser-mockup">
+      <div class="browser-bar">
+        <div class="dot dot1"></div>
+        <div class="dot dot2"></div>
+        <div class="dot dot3"></div>
+        <div class="url">🔒 https://macrogen-es.com</div>
+      </div>
+      <div class="browser-content">
+        <div class="nav-bar">
+          <span style="color:#001E62; font-weight:900;">macrogen <span style="color:#E0004D; font-size:8pt;">|</span> <span style="color:#E0004D; font-size:8pt;">IBERO-AMERICA</span></span>
+          <span style="margin-left:auto;">Home · About · Services</span>
+          <span class="pill-pink">ORDERS ↗</span>
+          <span>Blog · Contact</span>
+          <span class="pill-green">GET QUOTE</span>
+        </div>
+        <h3>Humanizing <span class="acc">genomics</span><br>across Ibero-America.</h3>
+        <p>Joint operation of Macrogen Spain and Macrogen Chile · 18,000+ clients · 150 countries</p>
+        <div class="chips" style="margin-top:18px;">
+          <span class="chip green">Request a quote</span>
+          <span class="chip pink">Order Now ↗</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub" style="color:#001E62; font-size:24pt; font-weight:900; margin-bottom:18px;">What you will see</h3>
+      <p class="body" style="font-size:14pt; line-height:1.55;">
+        ✅ Corporate logo + <strong class="pink">IBERO-AMERICA</strong> tag<br>
+        ✅ Navigation across 6 sections<br>
+        ✅ <strong class="pink">ORDERS</strong> button linking to dna.macrogen.com<br>
+        ✅ <strong class="green">GET QUOTE</strong> button linking to the form<br>
+        ✅ Mobile-first, multilingual-ready hero<br>
+        ✅ Madrid + Santiago hubs in footer<br>
+        ✅ Country selector with automatic routing
+      </p>
+    </div>
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">03 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4 — SITE STRUCTURE -->
+<!-- ============================================================ -->
+<div class="slide s-pad">
+  <div class="eyebrow">Information architecture</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:20px;">Site structure · 20 pages</h2>
+  <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:24px; flex:1;">
+    <div class="card t-pink">
+      <div style="font-size:30pt; margin-bottom:8px;">🏠</div>
+      <h4>Main pages (6)</h4>
+      <p style="font-size:13pt; line-height:1.7;">
+        • Home (entry point)<br>
+        • About us<br>
+        • Services (catalog)<br>
+        • Blog (index)<br>
+        • Newsletter<br>
+        • Contact + form
+      </p>
+    </div>
+    <div class="card t-teal">
+      <div style="font-size:30pt; margin-bottom:8px;">🧬</div>
+      <h4>Service detail pages (10)</h4>
+      <p style="font-size:13pt; line-height:1.55;">
+        WGS · WES · RNA-Seq ·<br>
+        Single Cell · Metagenomics ·<br>
+        Epigenome · Sanger ·<br>
+        Oligo · Microarray ·<br>
+        Bioinformatics
+      </p>
+    </div>
+    <div class="card t-green">
+      <div style="font-size:30pt; margin-bottom:8px;">📰</div>
+      <h4>Blog posts (4)</h4>
+      <p style="font-size:13pt; line-height:1.6;">
+        Macrogen Chile launch<br>
+        What is NGS?<br>
+        Salmon microbiome<br>
+        Sequencing coverage
+      </p>
+    </div>
+  </div>
+  <div style="margin-top:30px; background:#f4f7f9; padding:24px 30px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <strong class="navy" style="font-size:14pt;">+ Shared system:</strong>
+      <span class="mute" style="font-size:13pt;"> 1 stylesheet · 1 JS file · 3 logos. Change once, everything updates.</span>
+    </div>
+    <div class="chip teal" style="font-size:12pt;">~25 KB total</div>
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">04 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5 — SYSTEM ARCHITECTURE -->
+<!-- ============================================================ -->
+<div class="slide s-pad bg-bg">
+  <div class="eyebrow">System architecture</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:30px;">How the site reaches the visitor</h2>
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:18px; padding:30px; background:#fff; border-radius:14px; flex:1;">
+    <!-- 5 boxes -->
+    <div style="flex:1; text-align:center; background:#001E62; color:#fff; padding:30px 14px; border-radius:12px; min-height:200px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-size:40pt;">💻</div>
+      <div style="font-weight:900; font-size:14pt; margin:10px 0 6px;">Your computer</div>
+      <div style="font-size:10pt; color:#a8c0e0;">Editor + GitHub Desktop</div>
+    </div>
+    <div style="font-size:30pt; color:#001E62;">→</div>
+    <div style="flex:1; text-align:center; background:#fff; border:3px solid #001E62; padding:30px 14px; border-radius:12px; min-height:200px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-size:40pt;">📦</div>
+      <div style="font-weight:900; font-size:14pt; color:#001E62; margin:10px 0 6px;">GitHub</div>
+      <div style="font-size:10pt; color:#5a6d80;">Code repository</div>
+    </div>
+    <div style="font-size:30pt; color:#001E62;">→</div>
+    <div style="flex:1; text-align:center; background:#00BFB2; color:#fff; padding:30px 14px; border-radius:12px; min-height:200px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-size:40pt;">☁️</div>
+      <div style="font-weight:900; font-size:14pt; margin:10px 0 6px;">Vercel CDN</div>
+      <div style="font-size:10pt; color:#fff; opacity:.85;">100+ cities · free</div>
+    </div>
+    <div style="font-size:30pt; color:#001E62;">→</div>
+    <div style="flex:1; text-align:center; background:#fff; border:3px solid #001E62; padding:30px 14px; border-radius:12px; min-height:200px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-size:40pt;">🌐</div>
+      <div style="font-weight:900; font-size:14pt; color:#001E62; margin:10px 0 6px;">GoDaddy DNS</div>
+      <div style="font-size:10pt; color:#5a6d80;">macrogen-es.com</div>
+    </div>
+    <div style="font-size:30pt; color:#001E62;">→</div>
+    <div style="flex:1; text-align:center; background:#84BD00; color:#fff; padding:30px 14px; border-radius:12px; min-height:200px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-size:40pt;">👤</div>
+      <div style="font-weight:900; font-size:14pt; margin:10px 0 6px;">Visitor</div>
+      <div style="font-size:10pt; color:#fff; opacity:.85;">Any browser</div>
+    </div>
+  </div>
+  <p class="small" style="margin-top:20px; text-align:center;">
+    <strong class="navy">Static site:</strong> no database · no CMS · no server · no security patches · total cost: <strong class="green">$20 / year</strong>
+  </p>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">05 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6 — HOW WE BUILT IT (intro to AI) -->
+<!-- ============================================================ -->
+<div class="slide s-pad bg-navy" style="background:linear-gradient(135deg, #001E62, #0a2b6e);">
+  <div style="color:#00BFB2; font-size:11pt; font-weight:800; letter-spacing:3pt; text-transform:uppercase;">How we built it</div>
+  <h2 class="head" style="color:#fff; margin-top:14px; margin-bottom:30px; font-size:46pt;">
+    AI-assisted development
+  </h2>
+  <div class="two-col">
+    <div>
+      <p class="body" style="color:#a8c0e0; font-size:16pt; line-height:1.55;">
+        We used <strong style="color:#fff;">Claude AI</strong> as our development partner.
+        We gave it business context, requirements, and let it structure, code, and deploy the site.
+      </p>
+      <p class="body" style="color:#a8c0e0; font-size:16pt; line-height:1.55; margin-top:20px;">
+        The result: <strong style="color:#fff;">20 pages, 5 days, $20</strong>.
+        No external agency. No hired developers. No technical learning curve.
+      </p>
+    </div>
+    <div style="background:rgba(255,255,255,.08); padding:40px; border-radius:16px; backdrop-filter:blur(10px);">
+      <div style="font-size:80pt; font-weight:900; color:#84BD00; line-height:1;">5</div>
+      <div style="font-size:18pt; color:#fff; font-weight:800; margin-top:8px;">essential prompts</div>
+      <div style="font-size:13pt; color:#a8c0e0; margin-top:8px;">guided the entire build</div>
+      <div style="height:2px; background:rgba(255,255,255,.15); margin:24px 0;"></div>
+      <div style="font-size:11pt; font-weight:800; color:#00BFB2; letter-spacing:2pt; text-transform:uppercase;">What comes next</div>
+      <p style="color:#a8c0e0; font-size:13pt; line-height:1.5; margin-top:8px;">
+        The next 5 slides show the actual prompts we used, organized by phase.
+      </p>
+    </div>
+  </div>
+  <div class="chrome-brand" style="color:#a8c0e0;">MACROGEN <span style="color:#E0004D;">IBERO-AMERICA</span></div>
+  <div class="chrome-num" style="color:#a8c0e0;">06 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7 — PROMPT 1 -->
+<!-- ============================================================ -->
+<div class="slide s-pad">
+  <div class="eyebrow">Prompt 1 · Kickoff phase</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:24px; font-size:32pt;">Set the role + context + goal</h2>
+  <div class="prompt-box" style="margin-bottom:24px;">
+    Hey, I'm the CEO of Macrogen Chile. I need you to act as VP of Marketing, IT and Sales. [+ full context: company, services, global presence] Please build a Macrogen Chile website based on Academia Seoul. I have updated corporate identity. One team, one Macrogen. The site must include blog, newsletters, and different services. Research macrogen.com, macrogen-europe.com, dna.macrogen.com.
+    <span class="speaker">— Original prompt, day 1</span>
+  </div>
+  <div class="insight">
+    <strong>Why it worked</strong>
+    Combines three things in a single prompt: (1) clear role assignment, (2) substantial business context up front (no need to ask 20 questions), (3) a specific deliverable. The reference URLs let me research the actual brand voice.
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">07 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8 — PROMPT 2 -->
+<!-- ============================================================ -->
+<div class="slide s-pad bg-bg">
+  <div class="eyebrow">Prompt 2 · Fase de despliegue</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:24px; font-size:32pt;">Simple decisions, big impact</h2>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+    <div class="prompt-box" style="font-size:18pt;">
+      I prefer Vercel.
+      <span class="speaker">— Short phrase, full decision</span>
+    </div>
+    <div class="prompt-box" style="font-size:14pt; background:#001E62;">
+      Step by step to make a demo version… it got tricky on Vercel because it wouldn't let me upload more than 20 files.
+      <span class="speaker">— Describe the friction</span>
+    </div>
+  </div>
+  <div class="insight">
+    <strong>Why it worked</strong>
+    When something doesn't work, describe the friction. The hint about the 20-file limit let me immediately suggest the right fix: use GitHub instead of drag-and-drop.
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">08 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9 — PROMPT 3 -->
+<!-- ============================================================ -->
+<div class="slide s-pad">
+  <div class="eyebrow">Prompt 3 · Branding phase</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:24px; font-size:32pt;">Iterative refinement</h2>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+    <div class="prompt-box" style="font-size:14pt; padding:24px 30px;">
+      Lets use the original Macrogen website [logo].
+      <span class="speaker" style="margin-top:10px;">— Surgical change</span>
+    </div>
+    <div class="prompt-box" style="font-size:14pt; padding:24px 30px;">
+      Look up the other logos of Macrogen, we need to make this Macrogen logo Spain Portugal Chile Peru.
+      <span class="speaker" style="margin-top:10px;">— Regional expansion</span>
+    </div>
+  </div>
+  <div class="prompt-box" style="font-size:15pt; padding:24px 30px;">
+    Make all the order now CTA in the pink color for Macrogen to differentiate from the quotation.
+    <span class="speaker" style="margin-top:10px;">— System-wide change with a clear reason</span>
+  </div>
+  <div class="insight">
+    <strong>Why it worked</strong>
+    Each one is a small prompt that triggers system-wide changes. The intent is clear ("differentiate from the quote color") — that gives me a reason to apply the principle consistently across all 20 pages, not just fix one button.
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">09 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10 — PROMPT 4 -->
+<!-- ============================================================ -->
+<div class="slide s-pad bg-bg">
+  <div class="eyebrow">Prompt 4 · Smart features</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:24px; font-size:32pt;">Specify behavior, not implementation</h2>
+  <div class="prompt-box" style="margin-bottom:18px; font-size:15pt;">
+    On the quote request, above the "name" field add a country selector — Spain, Portugal, Chile, Peru, other — so people pick their country and the info below auto-adapts: email TLDs like .pe / .es, and the WhatsApp section with the matching country code.
+    <span class="speaker">— Specify the WHAT, not the HOW</span>
+  </div>
+  <div class="prompt-box" style="margin-bottom:24px; font-size:15pt; background:#001E62;">
+    For Spain, Portugal and others, route the email to info-spain@macrogen.com. For Chile and Peru, route it to info-chile@macrogen.com.
+    <span class="speaker">— Explicit business rules</span>
+  </div>
+  <div class="insight">
+    <strong>Why it worked</strong>
+    Describe the experience the user should have ("the information converts automatically") instead of the technical implementation. I figured out how to wire the JavaScript + routing matrix from those two sentences alone.
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">10 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11 — PROMPT 5 + meta lesson -->
+<!-- ============================================================ -->
+<div class="slide s-pad">
+  <div class="eyebrow">Prompt 5 · Documentation</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:24px; font-size:32pt;">Ask for systems thinking</h2>
+  <div class="prompt-box" style="margin-bottom:24px; font-size:16pt;">
+    Can you create a logical process document so my team can see the site structure and the system? I want them to understand the engineering design process.
+    <span class="speaker">— Specify audience + goal</span>
+  </div>
+  <div style="background:#001E62; color:#fff; padding:30px 36px; border-radius:14px; border-left:8px solid #84BD00;">
+    <div style="font-size:11pt; font-weight:800; letter-spacing:2pt; color:#84BD00; text-transform:uppercase; margin-bottom:14px;">The meta lesson for your team</div>
+    <p style="font-size:15pt; line-height:1.55; color:#fff;">
+      The pattern across all these prompts: <strong style="color:#84BD00;">short, specific, with clear intent</strong>.
+      None of them is a paragraph of technical specs. They're what you'd say to a smart colleague over coffee.
+    </p>
+    <ol style="margin-top:18px; padding-left:24px; font-size:13pt; color:#a8c0e0; line-height:1.7;">
+      <li>State the desired outcome, not the implementation</li>
+      <li>Provide context when it changes the answer (role, audience, constraint)</li>
+      <li>Specify the "why" so the AI can apply the principle in many places</li>
+      <li>Iterate fast — small prompts that build on prior work</li>
+    </ol>
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">11 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12 — FORM ROUTING MAGIC -->
+<!-- ============================================================ -->
+<div class="slide s-pad bg-bg">
+  <div class="eyebrow">Star feature</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:30px;">Smart country selector</h2>
+  <div style="display:flex; align-items:center; justify-content:center; gap:18px; flex:1;">
+    <!-- Step 1 -->
+    <div style="background:#fff; padding:30px 24px; border-radius:14px; min-width:200px; text-align:center; border:2px solid #e5ebf1;">
+      <div style="font-size:36pt; margin-bottom:10px;">👤</div>
+      <div style="font-weight:800; color:#001E62; font-size:14pt; margin-bottom:8px;">Visitor picks country</div>
+      <div style="font-size:11pt; color:#5a6d80;">🇪🇸 ES / 🇵🇹 PT / 🇨🇱 CL / 🇵🇪 PE / 🌎 Other</div>
+    </div>
+    <div style="font-size:30pt; color:#001E62;">→</div>
+    <!-- Step 2 -->
+    <div style="background:#001E62; color:#fff; padding:30px 24px; border-radius:14px; min-width:200px; text-align:center;">
+      <div style="font-size:36pt; margin-bottom:10px;">⚡</div>
+      <div style="font-weight:800; font-size:14pt; margin-bottom:8px;">JS updates in real time</div>
+      <div style="font-size:11pt; color:#a8c0e0;">Email TLD + country code + info card</div>
+    </div>
+    <div style="font-size:30pt; color:#001E62;">→</div>
+    <!-- Step 3 -->
+    <div style="display:flex; flex-direction:column; gap:14px; min-width:240px;">
+      <div style="background:#00BFB2; color:#fff; padding:18px 20px; border-radius:12px;">
+        <div style="font-weight:800; font-size:13pt;">🇪🇸 Madrid Hub</div>
+        <div style="font-size:11pt; opacity:.9;">info-spain@macrogen.com</div>
+        <div style="font-size:10pt; opacity:.75; margin-top:4px;">ES · PT · Other</div>
+      </div>
+      <div style="background:#E0004D; color:#fff; padding:18px 20px; border-radius:12px;">
+        <div style="font-weight:800; font-size:13pt;">🇨🇱 Santiago Hub</div>
+        <div style="font-size:11pt; opacity:.9;">info-chile@macrogen.com</div>
+        <div style="font-size:10pt; opacity:.75; margin-top:4px;">CL · PE</div>
+      </div>
+    </div>
+  </div>
+  <p class="small" style="text-align:center; margin-top:30px; font-size:14pt;">
+    <strong class="navy">The visitor SEES where their request is heading before they submit.</strong> Builds trust and prevents "did you get it?" follow-ups.
+  </p>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">12 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 13 — WHAT'S NEXT -->
+<!-- ============================================================ -->
+<div class="slide s-pad">
+  <div class="eyebrow">What's next</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:30px;">Roadmap · next 4 weeks</h2>
+  <div class="card-row" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="card t-pink">
+      <div class="icon">📝</div>
+      <h4 style="font-size:15pt;">Activate formulario</h4>
+      <p style="font-size:12pt;">Connect Formspree (~5 min). Real lead capture into info-spain@ and info-chile@.</p>
+    </div>
+    <div class="card t-teal">
+      <div class="icon">✍️</div>
+      <h4 style="font-size:15pt;">Real content</h4>
+      <p style="font-size:12pt;">Replace lorem ipsum across 4 blog posts. Real team bios. Real client logos.</p>
+    </div>
+    <div class="card t-pink">
+      <div class="icon">🇨🇱</div>
+      <h4 style="font-size:15pt;">Reinforce Chile</h4>
+      <p style="font-size:12pt;">Lead with Chile in joint mentions. New "Anchored in Santiago" section. Team photo.</p>
+    </div>
+    <div class="card t-green">
+      <div class="icon">📈</div>
+      <h4 style="font-size:15pt;">SEO + analytics</h4>
+      <p style="font-size:12pt;">Google Analytics, sitemap.xml, Open Graph for LinkedIn / WhatsApp.</p>
+    </div>
+  </div>
+  <div style="margin-top:30px; background:#f4f7f9; padding:20px 30px; border-radius:12px; text-align:center;">
+    <span style="font-size:12pt; color:#5a6d80;">Once approved by the director: bilingual (EN), PT-PT version, dedicated Chile landing page.</span>
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">13 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- BONUS SLIDE 14 — BEFORE / AFTER LOGO -->
+<!-- ============================================================ -->
+<div class="slide s-pad bg-bg">
+  <div class="eyebrow eyebrow-pink">Bonus 1 · Visual branding</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:10px;">Before and after the logo</h2>
+  <p class="small" style="font-size:14pt;">The first build used a placeholder. When the official logo arrived, the entire site updated.</p>
+  <div class="logo-compare" style="flex:1;">
+    <div class="logo-box">
+      <div style="font-size:11pt; font-weight:800; letter-spacing:2pt; color:#5a6d80; text-transform:uppercase; margin-bottom:18px;">BEFORE (day 1)</div>
+      <div class="placeholder-tile">M</div>
+      <div style="font-size:14pt; font-weight:800; color:#001E62;">Macrogen Chile</div>
+      <div style="font-size:9pt; color:#00BFB2; letter-spacing:2pt; margin-top:6px;">HUMANIZING GENOMICS</div>
+      <div style="font-size:10pt; color:#5a6d80; margin-top:18px; font-style:italic;">Navy placeholder with M</div>
+    </div>
+    <div class="arrow-mid">→</div>
+    <div class="logo-box after">
+      <div style="font-size:11pt; font-weight:800; letter-spacing:2pt; color:#84BD00; text-transform:uppercase; margin-bottom:18px;">AFTER</div>
+      <div class="real-logo">
+        <span class="helix">⌬</span>macrogen
+      </div>
+      <div style="font-size:11pt; color:#5a6d80; margin-bottom:14px;">Humanizing Genomics</div>
+      <div style="display:inline-flex; gap:8px; align-items:center; margin-top:6px; padding-top:8px; border-top:1px solid #e5ebf1;">
+        <span style="font-size:11pt; font-weight:800; color:#E0004D; letter-spacing:1.5pt;">IBERO-AMERICA</span>
+      </div>
+      <div style="font-size:9pt; color:#5a6d80; margin-top:6px; letter-spacing:1pt;">ES · PT · CL · PE</div>
+    </div>
+  </div>
+  <div class="insight" style="margin-top:14px;">
+    <strong>Engineering lesson</strong>
+    A single CSS variable and a single logo file control the ENTIRE visual presence. Switching the placeholder for the official logo took editing 1 file + 1 find-and-replace across 20 HTML pages. ~5 minutes. Nothing else in the design was touched.
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">14 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- BONUS SLIDE 15 — TIMELINE -->
+<!-- ============================================================ -->
+<div class="slide s-pad">
+  <div class="eyebrow eyebrow-pink">Bonus 2 · Timeline</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:10px;">How it was built · 5 phases</h2>
+  <p class="small" style="font-size:14pt;">From idea to production site in under a week.</p>
+  <div class="timeline">
+    <div class="tl-step">
+      <div class="dot"></div>
+      <div class="day">Day 1</div>
+      <h4>Setup + Brief</h4>
+      <p>Initial brief, corporate identity, brand research</p>
+    </div>
+    <div class="tl-step">
+      <div class="dot"></div>
+      <div class="day">Day 1-2</div>
+      <h4>Build</h4>
+      <p>20 HTML pages, shared CSS, interactive JS, blog</p>
+    </div>
+    <div class="tl-step">
+      <div class="dot"></div>
+      <div class="day">Day 3</div>
+      <h4>Despliegue</h4>
+      <p>GitHub setup, Vercel deploy, macrogen-es.com domain on GoDaddy</p>
+    </div>
+    <div class="tl-step">
+      <div class="dot"></div>
+      <div class="day">Day 4</div>
+      <h4>Branding + UX</h4>
+      <p>Official logo, IBERO-AMERICA tag, pink/green CTA system, country form</p>
+    </div>
+    <div class="tl-step">
+      <div class="dot"></div>
+      <div class="day">Day 5</div>
+      <h4>LIVE 🚀</h4>
+      <p>macrogen-es.com in production + documentation for the team</p>
+    </div>
+  </div>
+  <div style="margin-top:50px; display:grid; grid-template-columns: repeat(4, 1fr); gap:20px;">
+    <div style="text-align:center;"><div class="big-stat" style="font-size:60pt;">5</div><div style="font-size:12pt; color:#5a6d80; font-weight:700;">DAYS</div></div>
+    <div style="text-align:center;"><div class="big-stat" style="font-size:60pt;">20</div><div style="font-size:12pt; color:#5a6d80; font-weight:700;">PAGES</div></div>
+    <div style="text-align:center;"><div class="big-stat" style="font-size:60pt;">$20</div><div style="font-size:12pt; color:#5a6d80; font-weight:700;">ANNUAL COST</div></div>
+    <div style="text-align:center;"><div class="big-stat" style="font-size:60pt; color:#84BD00;">0</div><div style="font-size:12pt; color:#5a6d80; font-weight:700;">HIRED DEVELOPERS</div></div>
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">15 / 16</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- BONUS SLIDE 16 — COST COMPARISON -->
+<!-- ============================================================ -->
+<div class="slide s-pad bg-bg">
+  <div class="eyebrow eyebrow-pink">Bonus 3 · Cost vs alternatives</div>
+  <h2 class="head" style="margin-top:14px; margin-bottom:10px;">What we paid vs what it would have cost to buy this</h2>
+  <p class="small" style="font-size:14pt;">Annual cost comparison for a similar site (regional B2B, 20 pages).</p>
+  <div class="bar-chart" style="flex:1;">
+    <div class="bar-row">
+      <div class="lbl">LATAM digital agency</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="background:#E0004D; width:100%;">DEVELOPMENT + 12 MONTHS SUPPORT</div>
+      </div>
+      <div class="price">$15,000+</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Webflow + designer</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="background:#001E62; width:60%;">DESIGN + HOSTING + MAINTENANCE</div>
+      </div>
+      <div class="price">$8,000</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">WordPress + plugins + hosting</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="background:#001E62; width:30%;">SETUP + LICENSES + MAINTENANCE</div>
+      </div>
+      <div class="price">$3,500</div>
+    </div>
+    <div class="bar-row">
+      <div class="lbl">Squarespace / Wix</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="background:#00BFB2; width:8%;">PLATFORM + DOMAIN</div>
+      </div>
+      <div class="price">$600</div>
+    </div>
+    <div class="bar-row" style="background:#84BD00; padding:14px 18px; border-radius:8px;">
+      <div class="lbl" style="color:#fff;">⭐ Our solution</div>
+      <div class="bar-track" style="background:rgba(255,255,255,.25);">
+        <div class="bar-fill" style="background:#fff; color:#84BD00; width:1.5%;">$20</div>
+      </div>
+      <div class="price win" style="color:#fff;">$20</div>
+    </div>
+  </div>
+  <div style="margin-top:24px; background:#001E62; color:#fff; padding:18px 28px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <div style="font-size:11pt; font-weight:800; color:#00BFB2; letter-spacing:2pt; text-transform:uppercase;">Ahorro vs agencia</div>
+      <div style="font-size:24pt; font-weight:900; color:#fff; margin-top:4px;">~$14,980 year 1</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:11pt; color:#a8c0e0;">Equivalente a invertir</div>
+      <div style="font-size:18pt; font-weight:800; color:#84BD00;">5+ NovaSeq runs</div>
+    </div>
+  </div>
+  <div class="chrome-brand">MACROGEN <span class="accent">IBERO-AMERICA</span></div>
+  <div class="chrome-num">16 / 16</div>
+</div>
+
+</body>
+</html>

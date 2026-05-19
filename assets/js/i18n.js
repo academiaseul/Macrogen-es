@@ -127,9 +127,74 @@
     if (currentLang) document.documentElement.setAttribute('lang', currentLang);
   }
 
+  // ============ Google Translate integration ============
+  // We layer Google Translate underneath our curated translations to cover
+  // the body content of all 22 pages without manually tagging every <p>.
+  // Curated translations (header/footer/hero) load first from JSON for quality;
+  // GT then translates the rest of the body.
+  let gtReady = false;
+  let pendingGtLang = null;
+
+  function injectGoogleTranslate() {
+    if (document.getElementById('google_translate_element')) return;
+    const div = document.createElement('div');
+    div.id = 'google_translate_element';
+    div.style.cssText = 'position:absolute; top:-9999px; left:-9999px; visibility:hidden;';
+    document.body.appendChild(div);
+
+    window.googleTranslateElementInit = function () {
+      new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        includedLanguages: 'en,pt,ko',
+        autoDisplay: false,
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+      gtReady = true;
+      if (pendingGtLang) {
+        applyGoogleTranslate(pendingGtLang);
+        pendingGtLang = null;
+      }
+    };
+
+    const script = document.createElement('script');
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
+  function applyGoogleTranslate(lang) {
+    if (!gtReady) { pendingGtLang = lang; return; }
+
+    if (lang === 'es') {
+      // Restore original Spanish — reload to clear GT translation
+      // (GT has no clean "untranslate" API, reload is the safest path)
+      const cookieDomain = '.' + window.location.hostname.replace(/^www\./, '');
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + cookieDomain + ';';
+      return;
+    }
+
+    // Set GT cookie so the language sticks across pages (no flash on navigation)
+    document.cookie = 'googtrans=/es/' + lang + '; path=/;';
+
+    // Trigger GT via its hidden combo select
+    const tryTrigger = (attempts) => {
+      const select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event('change'));
+      } else if (attempts < 30) {
+        setTimeout(() => tryTrigger(attempts + 1), 200);
+      }
+    };
+    tryTrigger(0);
+  }
+
   // ============ Apply language ============
   async function applyLanguage(lang) {
     if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
+    const previousLang = document.documentElement.getAttribute('data-active-lang') || DEFAULT_LANG;
     document.documentElement.setAttribute('data-active-lang', lang);
 
     const dict = await loadDict(lang);
@@ -144,6 +209,19 @@
     document.querySelectorAll('[data-lang-option]').forEach(el => {
       el.classList.toggle('is-active', el.dataset.langOption === lang);
     });
+
+    // Trigger Google Translate for body content (header/footer/hero already curated)
+    if (lang === 'es' && previousLang !== 'es') {
+      // Switching back to Spanish — clear GT cookie + reload to wipe DOM mutations
+      const host = window.location.hostname;
+      const expire = 'expires=Thu, 01 Jan 1970 00:00:00 UTC';
+      document.cookie = 'googtrans=; ' + expire + '; path=/;';
+      document.cookie = 'googtrans=; ' + expire + '; path=/; domain=' + host + ';';
+      document.cookie = 'googtrans=; ' + expire + '; path=/; domain=.' + host + ';';
+      setTimeout(() => window.location.reload(), 100);
+    } else if (lang !== 'es') {
+      applyGoogleTranslate(lang);
+    }
 
     // Dispatch event for other scripts that may need to react
     document.dispatchEvent(new CustomEvent('i18n:changed', { detail: { lang } }));
@@ -225,6 +303,7 @@
   // ============ Init ============
   function init() {
     buildSwitcher();
+    injectGoogleTranslate();
     const lang = detectLanguage();
     applyLanguage(lang);
   }
