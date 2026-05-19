@@ -1,0 +1,176 @@
+{
+  "_meta": {
+    "lang": "ko",
+    "label": "한국어",
+    "flag": "🇰🇷",
+    "version": "1.0",
+    "updated": "2026-05-18"
+  },
+  "nav": {
+    "home": "홈",
+    "about": "회사 소개",
+    "services": "서비스",
+    "orders": "주문 ↗",
+    "blog": "블로그",
+    "newsletter": "뉴스레터",
+    "faq": "FAQ",
+    "contact": "문의",
+    "quote_cta": "견적 요청",
+    "menu_open": "메뉴 열기",
+    "skip_to_content": "본문으로 건너뛰기"
+  },
+  "footer": {
+    "brand_name": "Macrogen Iberoamérica",
+    "brand_countries": "스페인 · 포르투갈 · 칠레 · 페루",
+    "brand_description": "Macrogen Spain과 Macrogen Chile의 공동 운영으로, 마드리드와 산티아고 두 허브를 통해 이베로아메리카 과학 커뮤니티에 서비스를 제공합니다.",
+    "brand_tagline": "One Team. One Macrogen.",
+    "services_heading": "서비스",
+    "service_view_all": "전체 보기 →",
+    "company_heading": "회사 정보",
+    "hubs_heading": "허브",
+    "rights": "© 2026 Macrogen Iberoamérica · Macrogen Inc. 대행사 · 모든 권리 보유.",
+    "privacy": "개인정보처리방침",
+    "terms": "이용약관",
+    "global_portal": "글로벌 포털 ↗"
+  },
+  "common": {
+    "btn_quote": "견적 요청하기",
+    "btn_quote_arrow": "견적 요청하기 →",
+    "btn_order_now": "Order Now ↗",
+    "btn_services": "서비스 보기",
+    "btn_catalog": "카탈로그 보기 →",
+    "btn_contact": "문의하기",
+    "btn_whatsapp": "WhatsApp 바로가기 →",
+    "btn_more": "자세히 보기 →"
+  },
+  "hero_index": {
+    "eyebrow": "One Team · One Macrogen · 마드리드 + 산티아고",
+    "title_part1": "이베로아메리카 전역의",
+    "title_accent": "유전체학",
+    "title_part2": "을(를) 인간화합니다.",
+    "lead": "<strong>Macrogen Spain</strong>과 <strong>Macrogen Chile</strong>의 공동 운영입니다. 두 개의 허브, 하나의 네트워크로 스페인, 포르투갈, 칠레, 페루의 과학 커뮤니티에 서비스를 제공합니다. 150개국 18,000명 이상의 고객이 글로벌 Macrogen 플랫폼을 신뢰합니다. 이제 마드리드와 산티아고에서 현지 언어와 시간대로 지원을 받을 수 있습니다. USD 또는 EUR로 청구."
+  },
+  "hero_nosotros": {
+    "eyebrow": "회사 소개",
+    "title_part1": "두 개의 허브. 네 개의 국가.",
+    "title_accent": "하나의 사명.",
+    "lead": "Macrogen Iberoamérica는 <strong style=\"color:#fff;\">Macrogen Spain</strong>과 <strong style=\"color:#fff;\">Macrogen Chile</strong>의 공동 지역 운영으로, 스페인, 포르투갈, 칠레, 페루의 과학 커뮤니티에 서비스를 제공합니다."
+  },
+  "hero_servicios": {
+    "eyebrow": "전체 카탈로그",
+    "title_part1": "유전체 서비스",
+    "title_accent": "엔드 투 엔드.",
+    "lead": "단일 Sanger 반응부터 수천 개 샘플의 WGS 코호트까지. 하나의 창구, 하나의 글로벌 네트워크."
+  },
+  "hero_contacto": {
+    "eyebrow": "함께 이야기합시다",
+    "title_part1": "당신의 다음 프로젝트에",
+    "title_accent": "대해 이야기합시다.",
+    "lead": "마드리드와 산티아고의 생물정보학 팀이 귀하의 의견을 들을 준비가 되어 있습니다. 24영업시간 이내에 귀하의 언어와 시간대로 견적에 응답합니다."
+  },
+  "hero_faq": {
+    "eyebrow": "도움말 센터",
+    "title_part1": "자주 묻는",
+    "title_accent": "질문",
+    "lead": "물류, 샘플 준비, 기술 개념 및 Macrogen Iberoamérica 서비스에 관한 가장 일반적인 질문에 대한 빠른 답변."
+  },
+  "hero_blog": {
+    "eyebrow": "Macrogen Iberoamérica 블로그",
+    "title_part1": "실험실에서 전하는",
+    "title_accent": "지식.",
+    "lead": "Macrogen 네트워크의 튜토리얼, 사용 사례, 기술 가이드 및 뉴스 — 마드리드와 산티아고의 팀과 국제 협력자들이 스페인어로 작성합니다."
+  },
+  "hero_newsletter": {
+    "eyebrow": "월간 뉴스레터",
+    "title_part1": "이베로아메리카 유전체학,",
+    "title_accent": "매월",
+    "title_part2": "받은편지함에서.",
+    "lead": "저희 팀이 큐레이션한 에디션: 주목할 만한 논문, 생물정보학 튜토리얼, 기술 혜택 및 글로벌 Macrogen 네트워크의 최신 소식."
+  },
+  "pillars": {
+    "section_eyebrow": "Macrogen을 선택하는 이유",
+    "section_title": "세계적 수준의 유전체학을 위한 세 가지 핵심 가치.",
+    "section_subtitle": "글로벌 표준 기술. 현지 서비스 제공.",
+    "speed_title": "속도",
+    "speed_body": "Chilexpress, DHL, FedEx와의 국제 물류. 글로벌 Macrogen 허브 네트워크 덕분에 업계 선도적인 처리 시간.",
+    "precision_title": "정밀도",
+    "precision_body": "ISO 9001, ISO 13485, ISO 27001 인증. Illumina 및 10x Genomics 공식 인증 서비스 제공업체(CSP).",
+    "connectivity_title": "연결성",
+    "connectivity_body": "서울이나 뉴욕의 연구자가 받는 동일한 데이터가 현지 포털을 통해 산티아고의 귀하의 실험실에 도착합니다."
+  },
+  "stats": {
+    "clients_global": "글로벌 고객",
+    "countries_served": "서비스 국가",
+    "years_experience": "경력 연수",
+    "support_spanish": "스페인어 지원"
+  },
+  "workflow": {
+    "section_eyebrow": "작업 방식",
+    "section_title": "샘플에서 출판 가능한 인사이트까지.",
+    "section_subtitle": "표준화되고 추적 가능하며 감사 가능한 워크플로우.",
+    "step1_label": "01 · 접수",
+    "step1_title": "견적 및 배송",
+    "step1_body": "온라인으로 견적을 요청하고 가이드에 따라 샘플을 준비하면 가장 가까운 허브로 배송합니다.",
+    "step2_label": "02 · 실험실",
+    "step2_title": "QC + 라이브러리",
+    "step2_body": "핵산 품질 관리, 검증된 Illumina/PacBio/ONT 키트를 사용한 라이브러리 준비.",
+    "step3_label": "03 · 시퀀싱",
+    "step3_title": "NGS 런",
+    "step3_body": "응용 분야에 따라 NovaSeq X Plus, PacBio Revio 또는 특수 장비.",
+    "step4_label": "04 · 분석",
+    "step4_title": "생물정보학 + 전달",
+    "step4_body": "GATK Best Practices 파이프라인, Bioconductor 및 스페인어 과학 보고서. 안전한 포털을 통한 데이터 전달."
+  },
+  "cta_block": {
+    "eyebrow": "협력할 준비가 되었습니다",
+    "title": "프로젝트가 있으신가요?",
+    "lead": "마드리드 또는 산티아고의 생물정보학 팀과 상담하세요. 초기 컨설팅 무료."
+  },
+  "order_block": {
+    "eyebrow": "이미 필요한 것을 알고 계신가요?",
+    "title": "견적을 건너뛰고 바로 주문하세요.",
+    "lead": "필요한 서비스를 이미 알고 계신다면 공식 Macrogen 주문 포털에 접속하여 지금 바로 온라인으로 요청을 시작하세요.",
+    "trust": "안전한 포털 · 24/7 접근 · 샘플 전체 추적성"
+  },
+  "newsletter_form": {
+    "label": "이메일",
+    "placeholder": "you@laboratory.com",
+    "btn": "구독하기",
+    "note": "확인 이메일을 보내드립니다. 언제든지 구독을 취소할 수 있습니다."
+  },
+  "form": {
+    "section_title": "견적 요청",
+    "section_lead": "프로젝트의 예비 세부 사항을 알려주세요. 귀하의 국가를 담당하는 허브에서 24영업시간 이내에 답변드립니다.",
+    "field_country": "국가",
+    "field_country_placeholder": "— 국가를 선택하세요 —",
+    "field_name": "이름",
+    "field_name_placeholder": "전체 이름",
+    "field_institution": "소속 기관",
+    "field_institution_placeholder": "대학교 / 회사",
+    "field_email": "이메일",
+    "field_email_placeholder": "you@laboratory.com",
+    "field_phone": "전화 / WhatsApp",
+    "field_phone_placeholder": "먼저 국가를 선택하세요",
+    "field_service": "관심 서비스",
+    "field_message": "프로젝트 세부 사항",
+    "field_message_placeholder": "샘플 유형, 수량, 예상 예산, 희망 일정, 모든 질문...",
+    "btn_submit": "요청 제출",
+    "country_note": "귀하의 요청이 올바른 허브로 전달되도록 국가를 선택하세요."
+  },
+  "service_card": {
+    "view": "보기 →",
+    "wgs_title": "Whole Genome Sequencing",
+    "wgs_body": "전체 게놈 커버리지로 SNP, InDel, CNV 및 구조 변이를 가능한 최대 해상도로 감지합니다.",
+    "wes_title": "Whole Exome Sequencing",
+    "wes_body": "Agilent SureSelect V8을 사용한 게놈 코딩 영역의 표적 캡처. 임상 진단을 위한 >100x 커버리지.",
+    "rnaseq_title": "전사체 (RNA-Seq)",
+    "rnaseq_body": "Volcano-plot 및 GO/KEGG 기능 농축을 포함한 차등 발현의 완전한 분석.",
+    "singlecell_title": "Single Cell Sequencing",
+    "singlecell_body": "10x Genomics Chromium 플랫폼을 사용한 단일 세포 해상도. 전사체 및 다중 오믹스 프로파일링.",
+    "metagenoma_title": "메타게노믹스",
+    "metagenoma_body": "복잡한 미생물 군집을 위한 ASV (DADA2) 기반 16S/18S/ITS 프로파일링 또는 shotgun 메타게노믹스.",
+    "sanger_title": "Sanger 시퀀싱",
+    "sanger_body": "검증을 위한 골드 스탠다드. 표준, 식별, 단편 분석 및 맞춤형 시퀀싱 서비스.",
+    "btn_full_catalog": "전체 카탈로그 보기"
+  }
+}

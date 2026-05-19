@@ -48,17 +48,18 @@
       <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
       <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
     </a>
-    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
     <ul class="nav-menu">
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../nosotros.html">Nosotros</a></li>
-      <li><a href="../servicios.html" class="active">Servicios</a></li>
-      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener">Pedidos ↗</a></li>
-      <li><a href="../blog.html">Blog</a></li>
-      <li><a href="../newsletter.html">Newsletter</a></li>
-      <li><a href="../faq.html">FAQ</a></li>
-      <li><a href="../contacto.html">Contacto</a></li>
-      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm">Cotizar</a></li>
+      <li><a href="../index.html" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="../servicios.html" class="active" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
+      <li><a href="../blog.html" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>
+      <li><a href="../faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
     </ul>
   </div>
 </header>
@@ -179,5 +180,6 @@
 </footer>
 
 <script src="../assets/js/main.js"></script>
+<script src="../assets/js/i18n.js"></script>
 </body>
 </html>

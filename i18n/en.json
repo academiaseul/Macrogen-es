@@ -1,0 +1,176 @@
+{
+  "_meta": {
+    "lang": "en",
+    "label": "English",
+    "flag": "🇬🇧",
+    "version": "1.0",
+    "updated": "2026-05-18"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "services": "Services",
+    "orders": "Orders ↗",
+    "blog": "Blog",
+    "newsletter": "Newsletter",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "quote_cta": "Get quote",
+    "menu_open": "Open menu",
+    "skip_to_content": "Skip to content"
+  },
+  "footer": {
+    "brand_name": "Macrogen Iberoamérica",
+    "brand_countries": "Spain · Portugal · Chile · Peru",
+    "brand_description": "Joint operation of Macrogen Spain and Macrogen Chile, serving the Ibero-American scientific community from two hubs: Madrid and Santiago.",
+    "brand_tagline": "One Team. One Macrogen.",
+    "services_heading": "Services",
+    "service_view_all": "View all →",
+    "company_heading": "Company",
+    "hubs_heading": "Hubs",
+    "rights": "© 2026 Macrogen Iberoamérica · Agency of Macrogen Inc. · All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "global_portal": "Global portal ↗"
+  },
+  "common": {
+    "btn_quote": "Request a quote",
+    "btn_quote_arrow": "Request a quote →",
+    "btn_order_now": "Order Now ↗",
+    "btn_services": "View services",
+    "btn_catalog": "View catalog →",
+    "btn_contact": "Contact",
+    "btn_whatsapp": "WhatsApp direct →",
+    "btn_more": "Read more →"
+  },
+  "hero_index": {
+    "eyebrow": "One Team · One Macrogen · Madrid + Santiago",
+    "title_part1": "Humanizing",
+    "title_accent": "genomics",
+    "title_part2": "across Ibero-America.",
+    "lead": "We are the joint operation of <strong>Macrogen Spain</strong> and <strong>Macrogen Chile</strong>: two hubs, one network, serving the scientific community of Spain, Portugal, Chile and Peru. Over 18,000 clients in 150 countries trust the global Macrogen platform — now with local support from Madrid and Santiago, in your language and time zone. Billing in USD or EUR."
+  },
+  "hero_nosotros": {
+    "eyebrow": "About us",
+    "title_part1": "Two hubs. Four countries.",
+    "title_accent": "One mission.",
+    "lead": "Macrogen Iberoamérica is the joint regional operation of <strong style=\"color:#fff;\">Macrogen Spain</strong> and <strong style=\"color:#fff;\">Macrogen Chile</strong>, serving the scientific community of Spain, Portugal, Chile and Peru."
+  },
+  "hero_servicios": {
+    "eyebrow": "Full catalog",
+    "title_part1": "Genomic services",
+    "title_accent": "end to end.",
+    "lead": "From a single Sanger reaction to WGS cohorts of thousands of samples. One window, one global network."
+  },
+  "hero_contacto": {
+    "eyebrow": "Let's talk",
+    "title_part1": "Let's discuss",
+    "title_accent": "your next project.",
+    "lead": "Bioinformatics teams in Madrid and Santiago, ready to listen. We respond to quotes in under 24 business hours, in your language and time zone."
+  },
+  "hero_faq": {
+    "eyebrow": "Help center",
+    "title_part1": "Frequently asked",
+    "title_accent": "questions",
+    "lead": "Quick answers to the most common questions about logistics, sample preparation, technical concepts and Macrogen Iberoamérica services."
+  },
+  "hero_blog": {
+    "eyebrow": "Macrogen Iberoamérica Blog",
+    "title_part1": "Knowledge from the",
+    "title_accent": "laboratory.",
+    "lead": "Tutorials, use cases, technical guides and updates from the Macrogen network — written in Spanish by our teams in Madrid and Santiago, and by international contributors."
+  },
+  "hero_newsletter": {
+    "eyebrow": "Monthly newsletter",
+    "title_part1": "Ibero-American genomics,",
+    "title_accent": "every month",
+    "title_part2": "in your inbox.",
+    "lead": "An edition curated by our team: featured papers, bioinformatics tutorials, technical offers and updates from the global Macrogen network."
+  },
+  "pillars": {
+    "section_eyebrow": "Why choose Macrogen",
+    "section_title": "Three pillars for world-class genomics.",
+    "section_subtitle": "Globally standardized technology. Locally delivered service.",
+    "speed_title": "Speed",
+    "speed_body": "International logistics with Chilexpress, DHL and FedEx. Industry-leading turnaround times thanks to the global Macrogen hub network.",
+    "precision_title": "Precision",
+    "precision_body": "ISO 9001, ISO 13485 and ISO 27001 certifications. Official Certified Service Provider (CSP) status for Illumina and 10x Genomics.",
+    "connectivity_title": "Connectivity",
+    "connectivity_body": "The same data a researcher receives in Seoul or New York arrives at your lab in Santiago, through our local portal."
+  },
+  "stats": {
+    "clients_global": "Global clients",
+    "countries_served": "Countries served",
+    "years_experience": "Years of experience",
+    "support_spanish": "Spanish support"
+  },
+  "workflow": {
+    "section_eyebrow": "How we work",
+    "section_title": "From sample to publishable insight.",
+    "section_subtitle": "Standardized workflow, traceable and auditable at every stage.",
+    "step1_label": "01 · Intake",
+    "step1_title": "Quote & shipping",
+    "step1_body": "Request a quote online, prepare your sample following our guides, and we ship to the nearest hub.",
+    "step2_label": "02 · Lab",
+    "step2_title": "QC + library prep",
+    "step2_body": "Nucleic acid quality control, library preparation with validated Illumina/PacBio/ONT kits.",
+    "step3_label": "03 · Sequencing",
+    "step3_title": "NGS run",
+    "step3_body": "NovaSeq X Plus, PacBio Revio or specialized platforms depending on your application.",
+    "step4_label": "04 · Analysis",
+    "step4_title": "Bioinformatics + delivery",
+    "step4_body": "GATK Best Practices pipelines, Bioconductor and scientific reports in Spanish. Data via secure portal."
+  },
+  "cta_block": {
+    "eyebrow": "Ready to collaborate",
+    "title": "Have a project in mind?",
+    "lead": "Talk to our bioinformatics teams in Madrid or Santiago. Free initial consultation."
+  },
+  "order_block": {
+    "eyebrow": "Already know what you need?",
+    "title": "Skip the quote and place your order directly.",
+    "lead": "If you already know which service you need, access the official Macrogen ordering portal and start your request online right now.",
+    "trust": "Secure portal · 24/7 access · full sample traceability"
+  },
+  "newsletter_form": {
+    "label": "Your email",
+    "placeholder": "you@laboratory.com",
+    "btn": "Subscribe",
+    "note": "We'll send a confirmation email. You can unsubscribe anytime."
+  },
+  "form": {
+    "section_title": "Request a quote",
+    "section_lead": "Tell us the preliminary details of your project. We'll respond within 24 business hours from the hub serving your country.",
+    "field_country": "Country",
+    "field_country_placeholder": "— Select your country —",
+    "field_name": "Name",
+    "field_name_placeholder": "Full name",
+    "field_institution": "Institution",
+    "field_institution_placeholder": "University / company",
+    "field_email": "Email",
+    "field_email_placeholder": "you@laboratory.com",
+    "field_phone": "Phone / WhatsApp",
+    "field_phone_placeholder": "Select country first",
+    "field_service": "Service of interest",
+    "field_message": "Project details",
+    "field_message_placeholder": "Sample type, quantity, target budget, desired timeline, any question...",
+    "btn_submit": "Submit request",
+    "country_note": "Select your country so your request reaches the right hub."
+  },
+  "service_card": {
+    "view": "View →",
+    "wgs_title": "Whole Genome Sequencing",
+    "wgs_body": "Full genome coverage to detect SNPs, InDels, CNVs and structural variants at the highest possible resolution.",
+    "wes_title": "Whole Exome Sequencing",
+    "wes_body": "Targeted capture of the coding region with Agilent SureSelect V8. >100x coverage for clinical diagnosis.",
+    "rnaseq_title": "Transcriptome (RNA-Seq)",
+    "rnaseq_body": "Complete differential expression analysis, including volcano plots and GO/KEGG functional enrichment.",
+    "singlecell_title": "Single Cell Sequencing",
+    "singlecell_body": "Single-cell resolution with the 10x Genomics Chromium platform. Transcriptomic and multiomic profiling.",
+    "metagenoma_title": "Metagenomics",
+    "metagenoma_body": "16S/18S/ITS profiling by ASV (DADA2) or shotgun metagenomics for complex microbial communities.",
+    "sanger_title": "Sanger Sequencing",
+    "sanger_body": "The gold standard for validation. Standard, identification, fragment analysis and customized sequencing services.",
+    "btn_full_catalog": "View full catalog"
+  }
+}

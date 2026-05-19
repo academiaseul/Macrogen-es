@@ -1,0 +1,176 @@
+{
+  "_meta": {
+    "lang": "pt",
+    "label": "Português",
+    "flag": "🇵🇹",
+    "version": "1.0",
+    "updated": "2026-05-18"
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre nós",
+    "services": "Serviços",
+    "orders": "Pedidos ↗",
+    "blog": "Blog",
+    "newsletter": "Newsletter",
+    "faq": "FAQ",
+    "contact": "Contacto",
+    "quote_cta": "Orçamento",
+    "menu_open": "Abrir menu",
+    "skip_to_content": "Saltar para o conteúdo"
+  },
+  "footer": {
+    "brand_name": "Macrogen Iberoamérica",
+    "brand_countries": "Espanha · Portugal · Chile · Peru",
+    "brand_description": "Operação conjunta da Macrogen Spain e Macrogen Chile, ao serviço da comunidade científica ibero-americana a partir de dois hubs: Madrid e Santiago.",
+    "brand_tagline": "One Team. One Macrogen.",
+    "services_heading": "Serviços",
+    "service_view_all": "Ver todos →",
+    "company_heading": "Empresa",
+    "hubs_heading": "Hubs",
+    "rights": "© 2026 Macrogen Iberoamérica · Agência da Macrogen Inc. · Todos os direitos reservados.",
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "global_portal": "Portal global ↗"
+  },
+  "common": {
+    "btn_quote": "Pedir orçamento",
+    "btn_quote_arrow": "Pedir orçamento →",
+    "btn_order_now": "Order Now ↗",
+    "btn_services": "Ver serviços",
+    "btn_catalog": "Ver catálogo →",
+    "btn_contact": "Contacto",
+    "btn_whatsapp": "WhatsApp direto →",
+    "btn_more": "Ler mais →"
+  },
+  "hero_index": {
+    "eyebrow": "One Team · One Macrogen · Madrid + Santiago",
+    "title_part1": "Humanizando a",
+    "title_accent": "genómica",
+    "title_part2": "em toda a Ibero-América.",
+    "lead": "Somos a operação conjunta da <strong>Macrogen Spain</strong> e da <strong>Macrogen Chile</strong>: dois hubs, uma só rede, ao serviço da comunidade científica de Espanha, Portugal, Chile e Peru. Mais de 18.000 clientes em 150 países confiam na plataforma global Macrogen — agora também com apoio local a partir de Madrid e Santiago, no seu idioma e fuso horário. Faturação em USD ou EUR."
+  },
+  "hero_nosotros": {
+    "eyebrow": "Sobre nós",
+    "title_part1": "Dois hubs. Quatro países.",
+    "title_accent": "Uma só missão.",
+    "lead": "Macrogen Iberoamérica é a operação regional conjunta da <strong style=\"color:#fff;\">Macrogen Spain</strong> e da <strong style=\"color:#fff;\">Macrogen Chile</strong>, ao serviço da comunidade científica de Espanha, Portugal, Chile e Peru."
+  },
+  "hero_servicios": {
+    "eyebrow": "Catálogo completo",
+    "title_part1": "Serviços genómicos",
+    "title_accent": "de ponta a ponta.",
+    "lead": "Desde uma reação de Sanger até coortes WGS de milhares de amostras. Uma janela única, uma rede global."
+  },
+  "hero_contacto": {
+    "eyebrow": "Vamos falar",
+    "title_part1": "Conversemos sobre",
+    "title_accent": "o seu próximo projeto.",
+    "lead": "Equipas de bioinformática em Madrid e Santiago, prontas a ouvi-lo. Respondemos a orçamentos em menos de 24h úteis, no seu idioma e fuso horário."
+  },
+  "hero_faq": {
+    "eyebrow": "Centro de ajuda",
+    "title_part1": "Perguntas",
+    "title_accent": "frequentes",
+    "lead": "Respostas rápidas às dúvidas mais comuns sobre logística, preparação de amostras, conceitos técnicos e serviços da Macrogen Iberoamérica."
+  },
+  "hero_blog": {
+    "eyebrow": "Blog Macrogen Iberoamérica",
+    "title_part1": "Conhecimento desde o",
+    "title_accent": "laboratório.",
+    "lead": "Tutoriais, casos de uso, guias técnicos e novidades da rede Macrogen — escritos em espanhol pelas nossas equipas em Madrid e Santiago, e por colaboradores internacionais."
+  },
+  "hero_newsletter": {
+    "eyebrow": "Newsletter mensal",
+    "title_part1": "A genómica ibero-americana,",
+    "title_accent": "todos os meses",
+    "title_part2": "na sua caixa.",
+    "lead": "Uma edição curada pela nossa equipa: papers em destaque, tutoriais bioinformáticos, ofertas técnicas e novidades da rede global Macrogen."
+  },
+  "pillars": {
+    "section_eyebrow": "Porquê escolher a Macrogen",
+    "section_title": "Três pilares para uma genómica de classe mundial.",
+    "section_subtitle": "Tecnologia padronizada globalmente. Serviço entregue localmente.",
+    "speed_title": "Velocidade",
+    "speed_body": "Logística internacional com Chilexpress, DHL e FedEx. Tempos de entrega líderes na região graças à rede global de hubs Macrogen.",
+    "precision_title": "Precisão",
+    "precision_body": "Certificações ISO 9001, ISO 13485 e ISO 27001. Estatuto oficial de Certified Service Provider (CSP) para Illumina e 10x Genomics.",
+    "connectivity_title": "Conectividade",
+    "connectivity_body": "Os mesmos dados que um investigador recebe em Seul ou Nova Iorque chegam ao seu laboratório em Santiago, através do nosso portal local."
+  },
+  "stats": {
+    "clients_global": "Clientes globais",
+    "countries_served": "Países servidos",
+    "years_experience": "Anos de experiência",
+    "support_spanish": "Apoio em espanhol"
+  },
+  "workflow": {
+    "section_eyebrow": "Como trabalhamos",
+    "section_title": "Da amostra ao insight publicável.",
+    "section_subtitle": "Workflow padronizado, rastreável e auditável em cada etapa.",
+    "step1_label": "01 · Receção",
+    "step1_title": "Orçamento e envio",
+    "step1_body": "Pede orçamento online, prepara a amostra seguindo os nossos guias e enviamos ao hub mais próximo.",
+    "step2_label": "02 · Laboratório",
+    "step2_title": "QC + biblioteca",
+    "step2_body": "Controlo de qualidade dos ácidos nucleicos, preparação de bibliotecas com kits Illumina/PacBio/ONT validados.",
+    "step3_label": "03 · Sequenciação",
+    "step3_title": "NGS run",
+    "step3_body": "Plataformas NovaSeq X Plus, PacBio Revio ou equipamentos especializados consoante a aplicação.",
+    "step4_label": "04 · Análise",
+    "step4_title": "Bioinformática + entrega",
+    "step4_body": "Pipelines GATK Best Practices, Bioconductor e relatórios científicos em espanhol. Dados via portal seguro."
+  },
+  "cta_block": {
+    "eyebrow": "Prontos para colaborar",
+    "title": "Tem um projeto em mente?",
+    "lead": "Fale com as nossas equipas de bioinformática em Madrid ou Santiago. Consulta inicial sem custo."
+  },
+  "order_block": {
+    "eyebrow": "Já sabe o que precisa?",
+    "title": "Salte o orçamento e faça o pedido diretamente.",
+    "lead": "Se já sabe qual o serviço que precisa, aceda ao portal oficial de pedidos Macrogen e comece o seu pedido online agora mesmo.",
+    "trust": "Portal seguro · acesso 24/7 · rastreabilidade total da sua amostra"
+  },
+  "newsletter_form": {
+    "label": "O seu email",
+    "placeholder": "voce@laboratorio.pt",
+    "btn": "Subscrever",
+    "note": "Enviaremos um email de confirmação. Pode cancelar a qualquer momento."
+  },
+  "form": {
+    "section_title": "Pedir orçamento",
+    "section_lead": "Conte-nos os detalhes preliminares do seu projeto. Respondemos em menos de 24h úteis a partir do hub que serve o seu país.",
+    "field_country": "País",
+    "field_country_placeholder": "— Selecione o seu país —",
+    "field_name": "Nome",
+    "field_name_placeholder": "Nome completo",
+    "field_institution": "Instituição",
+    "field_institution_placeholder": "Universidade / empresa",
+    "field_email": "Email",
+    "field_email_placeholder": "voce@laboratorio.com",
+    "field_phone": "Telefone / WhatsApp",
+    "field_phone_placeholder": "Selecione primeiro o país",
+    "field_service": "Serviço de interesse",
+    "field_message": "Detalhes do projeto",
+    "field_message_placeholder": "Tipo de amostra, quantidade, orçamento estimado, prazo desejado, qualquer questão...",
+    "btn_submit": "Enviar pedido",
+    "country_note": "Selecione o seu país para que o pedido chegue ao hub correto."
+  },
+  "service_card": {
+    "view": "Ver →",
+    "wgs_title": "Whole Genome Sequencing",
+    "wgs_body": "Cobertura completa do genoma para detetar SNPs, InDels, CNVs e variantes estruturais com a máxima resolução possível.",
+    "wes_title": "Whole Exome Sequencing",
+    "wes_body": "Captura dirigida da fração codificante do genoma com Agilent SureSelect V8. Cobertura >100x para diagnóstico clínico.",
+    "rnaseq_title": "Transcritoma (RNA-Seq)",
+    "rnaseq_body": "Análise completa de expressão diferencial, incluindo volcano-plots e enriquecimento funcional GO/KEGG.",
+    "singlecell_title": "Single Cell Sequencing",
+    "singlecell_body": "Resolução ao nível da célula individual com a plataforma 10x Genomics Chromium. Perfilamento transcritómico e multiómico.",
+    "metagenoma_title": "Metagenómica",
+    "metagenoma_body": "Perfilamento 16S/18S/ITS por ASV (DADA2) ou shotgun metagenomics para comunidades microbianas complexas.",
+    "sanger_title": "Sequenciação Sanger",
+    "sanger_body": "O gold standard para validação. Serviços padrão, identificação, fragment analysis e sequenciação personalizada.",
+    "btn_full_catalog": "Ver catálogo completo"
+  }
+}

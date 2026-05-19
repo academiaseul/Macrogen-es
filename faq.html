@@ -89,17 +89,18 @@
       <img src="assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
       <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
     </a>
-    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
     <ul class="nav-menu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="nosotros.html">Nosotros</a></li>
-      <li><a href="servicios.html">Servicios</a></li>
-      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener">Pedidos ↗</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="newsletter.html">Newsletter</a></li>
-      <li><a href="faq.html" class="active">FAQ</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm">Cotizar</a></li>
+      <li><a href="index.html" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="nosotros.html" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="servicios.html" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
+      <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>
+      <li><a href="faq.html" class="active" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
     </ul>
   </div>
 </header>
@@ -111,9 +112,9 @@
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-vignette" aria-hidden="true"></div>
   <div class="container">
-    <span class="eyebrow">Centro de ayuda</span>
-    <h1>Preguntas <span class="accent">frecuentes</span></h1>
-    <p class="lead">Respuestas rápidas a las preguntas más comunes sobre logística, preparación de muestras, conceptos técnicos y servicios de Macrogen Iberoamérica.</p>
+    <span class="eyebrow" data-i18n="hero_faq.eyebrow">Centro de ayuda</span>
+    <h1><span data-i18n="hero_faq.title_part1">Preguntas</span> <span class="accent" data-i18n="hero_faq.title_accent">frecuentes</span></h1>
+    <p class="lead" data-i18n="hero_faq.lead">Respuestas rápidas a las preguntas más comunes sobre logística, preparación de muestras, conceptos técnicos y servicios de Macrogen Iberoamérica.</p>
   </div>
 </section>
 
@@ -705,30 +706,31 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/img/logo.png" alt="Macrogen" class="logo-img">
-        <h4 style="margin-bottom:6px;">Macrogen Iberoamérica</h4>
-        <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;">España · Portugal · Chile · Perú</p>
-        <p>Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.<br><br><strong style="color:#fff;">One Team. One Macrogen.</strong></p>
+        <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
+        <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
+        <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>
+        <p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p>
       </div>
       <div>
-        <h4>Servicios</h4>
+        <h4 data-i18n="footer.services_heading">Servicios</h4>
         <a href="servicios/wgs.html">WGS</a>
         <a href="servicios/wes.html">WES</a>
         <a href="servicios/rna-seq.html">RNA-Seq</a>
         <a href="servicios/single-cell.html">Single Cell</a>
         <a href="servicios/metagenoma.html">Metagenómica</a>
         <a href="servicios/sanger.html">Sanger / CES</a>
-        <a href="servicios.html">Ver todos →</a>
+        <a href="servicios.html" data-i18n="footer.service_view_all">Ver todos →</a>
       </div>
       <div>
-        <h4>Compañía</h4>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="blog.html">Blog</a>
-        <a href="newsletter.html">Newsletter</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contacto.html">Contacto</a>
+        <h4 data-i18n="footer.company_heading">Compañía</h4>
+        <a href="nosotros.html" data-i18n="nav.about">Nosotros</a>
+        <a href="blog.html" data-i18n="nav.blog">Blog</a>
+        <a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a>
+        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        <a href="contacto.html" data-i18n="nav.contact">Contacto</a>
       </div>
       <div>
-        <h4>Hubs</h4>
+        <h4 data-i18n="footer.hubs_heading">Hubs</h4>
         <p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
           <strong style="color:#fff;">🇪🇸 Madrid</strong><br>C. de Martínez Villergas, 52<br>28027 Madrid · España<br>+34 911 138 378
         </p>
@@ -750,5 +752,6 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/i18n.js"></script>
 </body>
 </html>

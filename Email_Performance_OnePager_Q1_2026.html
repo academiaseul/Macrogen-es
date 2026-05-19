@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Email Performance Report Q1 2026 · Macrogen Iberoamérica</title>
+<meta name="ProgId" content="Word.Document">
+<style>
+  @page { size: Letter; margin: 0.5in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    font-size: 9.5pt;
+    line-height: 1.4;
+    padding: 24px 32px;
+    max-width: 8.5in;
+    margin: 0 auto;
+  }
+
+  .navy { color: #0A2240; }
+  .teal { color: #00A1A7; }
+  .green { color: #84BD00; }
+  .red { color: #E0004D; }
+  .orange { color: #F39200; }
+  .mute { color: #6B7280; }
+
+  /* ============== HEADER ============== */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid #00A1A7;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+  }
+  .brand .eyebrow {
+    color: #00A1A7;
+    font-size: 8pt;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 4px;
+  }
+  .brand h1 {
+    color: #0A2240;
+    font-size: 22pt;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .brand .sub {
+    color: #6B7280;
+    font-size: 9.5pt;
+    margin-top: 4px;
+  }
+  .meta {
+    text-align: right;
+    font-size: 9pt;
+    color: #6B7280;
+    line-height: 1.5;
+  }
+  .meta strong { color: #0A2240; }
+
+  /* ============== KPI TILES ============== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .kpi {
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+  }
+  .kpi.navy { background: #0A2240; }
+  .kpi.teal { background: #00A1A7; }
+  .kpi.green { background: #84BD00; }
+  .kpi.red { background: #E0004D; }
+  .kpi.orange { background: #F39200; }
+  .kpi.gray { background: #5F5E5A; }
+  .kpi .num {
+    font-size: 18pt;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi .lbl {
+    font-size: 7pt;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  /* ============== SECTIONS ============== */
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .section {
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    padding: 10px 14px;
+  }
+  .section.alert {
+    border-left: 4px solid #E0004D;
+    background: #FEF2F4;
+  }
+  .section.good {
+    border-left: 4px solid #84BD00;
+    background: #F4F9E5;
+  }
+  .section h2 {
+    font-size: 11pt;
+    font-weight: 900;
+    color: #0A2240;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section h2 .tag {
+    background: #E0004D;
+    color: #fff;
+    font-size: 7pt;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .section.good h2 .tag { background: #84BD00; }
+
+  /* Bullet list */
+  .findings {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .findings li {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 8px;
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+  .findings li:last-child { border-bottom: none; }
+  .findings .icon {
+    color: #E0004D;
+    font-weight: 900;
+    font-size: 11pt;
+  }
+  .findings.good .icon { color: #84BD00; }
+  .findings strong { color: #0A2240; }
+  .findings .num {
+    color: #E0004D;
+    font-weight: 800;
+    font-family: 'Courier New', monospace;
+  }
+  .findings.good .num { color: #84BD00; }
+
+  /* Comparison table */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin-top: 6px;
+  }
+  .compare-table th {
+    background: #0A2240;
+    color: #fff;
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 8pt;
+    font-weight: 700;
+  }
+  .compare-table th.center { text-align: center; }
+  .compare-table td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .compare-table td.center { text-align: center; }
+  .compare-table td.bold { font-weight: 700; color: #0A2240; }
+  .compare-table .winner { background: #F4F9E5; color: #5a8200; font-weight: 700; }
+  .compare-table .loser { background: #FEF2F4; color: #a30030; font-weight: 700; }
+
+  /* Action items */
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .action {
+    padding: 10px 11px;
+    border-radius: 6px;
+    background: #F5F7FA;
+    border-top: 3px solid #00A1A7;
+    font-size: 8.5pt;
+    line-height: 1.4;
+  }
+  .action:nth-child(1) { border-top-color: #E0004D; }
+  .action:nth-child(2) { border-top-color: #E0004D; }
+  .action:nth-child(3) { border-top-color: #F39200; }
+  .action:nth-child(4) { border-top-color: #F39200; }
+  .action:nth-child(5) { border-top-color: #00A1A7; }
+  .action .num {
+    font-size: 8pt;
+    font-weight: 900;
+    color: #6B7280;
+    margin-bottom: 4px;
+  }
+  .action .title {
+    font-weight: 800;
+    color: #0A2240;
+    font-size: 9pt;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .action .desc {
+    color: #444;
+    font-size: 8pt;
+    line-height: 1.35;
+  }
+  .action .owner {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+    font-size: 7.5pt;
+    color: #6B7280;
+  }
+
+  /* Bot warning callout */
+  .bot-warning {
+    background: linear-gradient(135deg, #FEF7E8 0%, #FEF2F4 100%);
+    border: 1.5px solid #F39200;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 9pt;
+  }
+  .bot-warning strong { color: #B85A00; }
+  .bot-warning .head {
+    font-weight: 900;
+    color: #B85A00;
+    font-size: 10pt;
+    margin-bottom: 4px;
+  }
+
+  /* Top winners table */
+  .winners {
+    margin-top: 6px;
+    font-size: 8.5pt;
+  }
+  .winners .winner-row {
+    display: grid;
+    grid-template-columns: 1.2fr 0.6fr 0.6fr;
+    gap: 8px;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .winners .winner-row:last-child { border-bottom: none; }
+  .winners .winner-row.head {
+    font-weight: 800;
+    color: #0A2240;
+    border-bottom: 1.5px solid #0A2240;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .winners .pct {
+    color: #84BD00;
+    font-weight: 800;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #E5E7EB;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    color: #6B7280;
+  }
+  footer strong { color: #0A2240; }
+
+  @media print {
+    body { padding: 0; }
+    .section, .action, .bot-warning { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="brand">
+    <span class="eyebrow">MACROGEN IBEROAMÉRICA · MARKETING REPORT</span>
+    <h1>Email Performance · Q1 2026</h1>
+    <div class="sub">Análisis ejecutivo · 19 campaigns · Brevo · Chile + Spain</div>
+  </div>
+  <div class="meta">
+    <strong>Para:</strong> 소리 · CEO Macrogen Chile<br>
+    <strong>De:</strong> VP Marketing analysis<br>
+    <strong>Período:</strong> Feb 04 — May 12, 2026<br>
+    <strong>Fecha:</strong> 18 May 2026 · v1.0
+  </div>
+</header>
+
+<!-- ============ KPI TILES (aggregate) ============ -->
+<div class="kpi-grid">
+  <div class="kpi navy">
+    <div class="num">19</div>
+    <div class="lbl">Campaigns enviados</div>
+  </div>
+  <div class="kpi teal">
+    <div class="num">259K</div>
+    <div class="lbl">Emails delivered</div>
+  </div>
+  <div class="kpi green">
+    <div class="num">87K</div>
+    <div class="lbl">Total opens</div>
+  </div>
+  <div class="kpi orange">
+    <div class="num">33.4%</div>
+    <div class="lbl">Open rate promedio</div>
+  </div>
+  <div class="kpi red">
+    <div class="num">0.45%</div>
+    <div class="lbl">Unsubscribe rate</div>
+  </div>
+  <div class="kpi gray">
+    <div class="num">95.4%</div>
+    <div class="lbl">Delivery rate avg</div>
+  </div>
+</div>
+
+<!-- ============ BOT CLICK WARNING ============ -->
+<div class="bot-warning">
+  <div class="head">⚠ Alerta de medición · clicks inflados por bots de seguridad</div>
+  <strong>6 campaigns de Chile reportan CTR 100% con 14-19K clicks sobre 3-5K opens</strong> — matemáticamente cada persona habría hecho click 4-6 veces. Los filtros corporativos (Microsoft Defender, Proofpoint, Mimecast) escanean automáticamente cada link entrante para detectar phishing, inflando los clicks. <strong>CTR real estimado Chile: 10-15%, no 60-100%.</strong> Spain muestra CTR limpio (4-30%) — audiencia con menos scanning agresivo. Acción: activar "Exclude automated clicks" en Brevo Settings → recalcular métricas reales.
+</div>
+
+<!-- ============ CRITICAL FINDINGS (LEFT) + WINNERS (RIGHT) ============ -->
+<div class="section-grid">
+
+  <!-- ALERT: Critical bugs found -->
+  <div class="section alert">
+    <h2>Hallazgos críticos <span class="tag">ACTION REQUIRED</span></h2>
+    <ul class="findings">
+      <li>
+        <span class="icon">⛔</span>
+        <span>
+          <strong>3 campaigns España con 0 clicks reales</strong> pese a tener 564–8.093 opens. Probable: links rotos o tracking de clicks deshabilitado.
+          Campaigns afectados: <span class="num">#58, #61, #66</span>. <strong>Pérdida estimada: 8K+ leads no capturados.</strong> Auditoría manual de HTML requerida esta semana.
+        </span>
+      </li>
+      <li>
+        <span class="icon">⛔</span>
+        <span>
+          <strong>Bioinformática: 35K clicks → 0 conversiones trackeadas</strong> (#78 Chile + #79 Spain). El pixel de conversión está activo pero ningún visitante completa el goal. Diagnóstico: landing page débil O misconfig en Brevo conversion definition.
+        </span>
+      </li>
+      <li>
+        <span class="icon">⚠</span>
+        <span>
+          <strong>Campaign #58 enviado desde <code style="font-family:monospace;color:#a30030;">macrogenmad@gmail.com</code></strong> (Gmail personal) — solo 1.132 delivered vs 14-21K habitual. <span class="num">-92% alcance</span> por penalty de deliverability. Ya corregido en #61 (+1.220% delivery). Bloquear envíos desde dominios gratuitos en Brevo.
+        </span>
+      </li>
+      <li>
+        <span class="icon">⚠</span>
+        <span>
+          <strong>Anomalía #59 (Feb 05):</strong> Delivery rate cayó a <span class="num">84.69%</span> vs 96% habitual. Probable bounce spike. Investigar: ¿lista importada nueva? ¿spam complaints? Limpiar antes de próximo envío Chile.
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- GOOD: What's working -->
+  <div class="section good">
+    <h2>Lo que funciona <span class="tag">REPLICAR</span></h2>
+    <ul class="findings good">
+      <li>
+        <span class="icon">✓</span>
+        <span><strong>Sender personalizado &gt; brand sender.</strong> Francisco González pulled <span class="num">42.85%</span> opens vs 30% promedio. Jay Kim pulled 34.6%. <strong>Rotar a nombres reales en emails high-value.</strong></span>
+      </li>
+      <li>
+        <span class="icon">✓</span>
+        <span><strong>Subjects "Oferta + Descuento" + "[AVISO]" ganan opens.</strong></span>
+      </li>
+    </ul>
+    <div class="winners">
+      <div class="winner-row head">
+        <span>Top opens — subject</span>
+        <span style="text-align:right;">Open</span>
+        <span style="text-align:right;">Unsub</span>
+      </div>
+      <div class="winner-row">
+        <span>"Oferta Macrogen: Descuentos Marzo" 🇪🇸</span>
+        <span class="pct" style="text-align:right;">54.05%</span>
+        <span style="text-align:right; color:#6B7280;">0.79%</span>
+      </div>
+      <div class="winner-row">
+        <span>"[AVISO] Actualización políticas" 🇨🇱</span>
+        <span class="pct" style="text-align:right;">50.39%</span>
+        <span style="text-align:right; color:#6B7280;">0.31%</span>
+      </div>
+      <div class="winner-row">
+        <span>"Algo que creemos que te gustará" 🇪🇸</span>
+        <span class="pct" style="text-align:right;">49.82%</span>
+        <span style="text-align:right; color:#6B7280;">0.53%</span>
+      </div>
+      <div class="winner-row">
+        <span>"Nuevo Consultor de Proyectos" 🇨🇱</span>
+        <span class="pct" style="text-align:right;">42.85%</span>
+        <span style="text-align:right; color:#6B7280;">0.44%</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ REGIONAL COMPARISON ============ -->
+<div class="section">
+  <h2>🇨🇱 Chile vs 🇪🇸 Spain · comparativa estratégica</h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Métrica</th>
+        <th class="center">Chile</th>
+        <th class="center">Spain</th>
+        <th>Lectura</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="bold">Tamaño de lista</td>
+        <td class="center">~13.500</td>
+        <td class="center winner">~20.500 (+52%)</td>
+        <td>Spain lleva 1.5x audiencia. Oportunidad de growth Chile.</td>
+      </tr>
+      <tr>
+        <td class="bold">Delivery rate</td>
+        <td class="center winner">96.6%</td>
+        <td class="center">94.0%</td>
+        <td>Chile tiene lista más limpia. Spain necesita list hygiene Q2.</td>
+      </tr>
+      <tr>
+        <td class="bold">Open rate</td>
+        <td class="center">32.1%</td>
+        <td class="center winner">35.7%</td>
+        <td>Spain abre más. Subject lines españolas resuenan mejor.</td>
+      </tr>
+      <tr>
+        <td class="bold">CTR real estimado*</td>
+        <td class="center">10-15%</td>
+        <td class="center winner">4-30% (limpio)</td>
+        <td>Métricas Chile inflables por bots. Spain confiable para decisiones.</td>
+      </tr>
+      <tr>
+        <td class="bold">Unsubscribe rate</td>
+        <td class="center winner">0.41%</td>
+        <td class="center">0.50%</td>
+        <td>Ambas excelentes (&lt;1% benchmark NGS). Sin acción urgente.</td>
+      </tr>
+      <tr>
+        <td class="bold">Bugs activos</td>
+        <td class="center winner">0</td>
+        <td class="center loser">3 campaigns con 0 clicks</td>
+        <td><strong>Spain pierde leads por links rotos. Auditar.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============ ACTION ITEMS ============ -->
+<h2 style="font-size:11pt; color:#0A2240; margin: 14px 0 4px; font-weight:900;">
+  Plan de acción · próximos 30 días
+</h2>
+<div class="actions-grid">
+  <div class="action">
+    <div class="num">01 · ESTA SEMANA</div>
+    <div class="title">Auditar 3 campaigns Spain con 0 clicks</div>
+    <div class="desc">Revisar HTML, testear links manual. Reenviar versión fix a sublista no abierta. Recuperar 8K leads.</div>
+    <div class="owner">Owner: VP Sales Spain<br>ETA: 3 días</div>
+  </div>
+  <div class="action">
+    <div class="num">02 · ESTA SEMANA</div>
+    <div class="title">Excluir bot clicks en Brevo</div>
+    <div class="desc">Settings → Campaign analytics → Activate exclude automated clicks. Recalcular Q1 con métrica limpia.</div>
+    <div class="owner">Owner: VP Marketing<br>ETA: 30 min</div>
+  </div>
+  <div class="action">
+    <div class="num">03 · QUINCENA</div>
+    <div class="title">Fix funnel bioinformática</div>
+    <div class="desc">35K clicks → 0 conv. Auditar landing page + Brevo conversion definition. Test conversion manualmente.</div>
+    <div class="owner">Owner: VP IT + Sales<br>ETA: 1 sem</div>
+  </div>
+  <div class="action">
+    <div class="num">04 · MES</div>
+    <div class="title">Rotar a senders personalizados</div>
+    <div class="desc">Jay Kim, Francisco, Cha-sh como remitentes en high-value campaigns. Mantener brand para newsletter.</div>
+    <div class="owner">Owner: VP Marketing<br>ETA: Política Q2</div>
+  </div>
+  <div class="action">
+    <div class="num">05 · MES</div>
+    <div class="title">A/B test sistemático</div>
+    <div class="desc">10% audience cada subject line, ganador al 80% restante. Target: +3-5 puntos open rate/mes.</div>
+    <div class="owner">Owner: VP Marketing<br>ETA: Empezar Jun</div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <span><strong>Macrogen Iberoamérica</strong> · Email Performance Report Q1 2026 · Confidencial</span>
+  <span>* CTR real estimado tras descuento bot clicks · Brevo data export · 18 May 2026</span>
+</footer>
+
+</body>
+</html>
