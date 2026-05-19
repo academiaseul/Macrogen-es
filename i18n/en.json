@@ -176,15 +176,19 @@
   "promo_jun": {
     "eyebrow": "June Promotion",
     "discount": "10%",
-    "title": "Exclusive order discount",
-    "subtitle": "On all services ordered during June 2026",
+    "title": "Exclusive 10% discount",
+    "subtitle": "On all quotes received during June 2026",
     "code_label": "Use code:",
     "code": "JUNIO10",
     "copy": "Copy",
     "copied": "Copied!",
-    "valid_until": "Valid June 1–30, 2026 · Orders via dna.macrogen.com",
-    "btn_order": "Order Now ↗",
+    "valid_until": "Valid June 1–30, 2026 · Request your quote at macrogen-es.com",
+    "btn_order": "Request a quote with discount →",
     "btn_dismiss": "Maybe later",
     "btn_close": "Close"
+  },
+  "promo_banner": {
+    "title": "We'll apply your discount",
+    "subtitle": "Code <code>{code}</code> · 10% on your first June 2026 quote"
   }
 }

@@ -3,7 +3,46 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ========== PROMO POPUP · June 2026 · 10% discount on dna.macrogen.com ==========
+  // ========== CONTACT FORM · detect ?promo= URL param and pre-fill ==========
+  // When user arrives at contacto.html?promo=JUNIO10 from the popup,
+  // show a confirmation banner + inject hidden field so Sales sees the code in Brevo.
+  (function initPromoBanner() {
+    const promo = new URLSearchParams(window.location.search).get('promo');
+    if (!promo) return;
+    const form = document.querySelector('form[data-country-form]');
+    if (!form) return;
+
+    // Inject hidden field so Sales sees "Código promo: JUNIO10" in the email
+    let hidden = form.querySelector('input[name="codigo_promo"]');
+    if (!hidden) {
+      hidden = document.createElement('input');
+      hidden.type = 'hidden';
+      hidden.name = 'codigo_promo';
+      form.appendChild(hidden);
+    }
+    hidden.value = promo;
+
+    // Inject confirmation banner above the form
+    const formSection = form.closest('section, div');
+    if (!formSection) return;
+    const banner = document.createElement('div');
+    banner.className = 'promo-banner-inline';
+    banner.innerHTML = `
+      <span class="promo-banner-icon">🎉</span>
+      <div class="promo-banner-text">
+        <strong data-i18n="promo_banner.title">Aplicaremos tu descuento</strong>
+        <span data-i18n="promo_banner.subtitle">Código <code>${promo}</code> · 10% en tu primera cotización de junio 2026</span>
+      </div>
+    `;
+    form.parentNode.insertBefore(banner, form);
+
+    // Re-run i18n for the freshly injected banner
+    if (window.MacrogenI18n) {
+      window.MacrogenI18n.setLanguage(window.MacrogenI18n.getLanguage());
+    }
+  })();
+
+  // ========== PROMO POPUP · June 2026 · 10% discount ==========
   // Triggers only on home page (index.html or /).
   // Snoozes for 7 days when user dismisses or clicks "Order Now".
   // Expires automatically after 2026-06-30.
@@ -50,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="promo-copy-btn" data-promo-copy data-i18n="promo_jun.copy">Copiar</button>
           </div>
           <div class="promo-actions">
-            <a href="https://dna.macrogen.com" target="_blank" rel="noopener" class="promo-btn-order" data-promo-order data-i18n="promo_jun.btn_order">Hacer pedido ahora ↗</a>
+            <a href="contacto.html?promo=JUNIO10" class="promo-btn-order" data-promo-order data-i18n="promo_jun.btn_order">Solicitar cotización con descuento →</a>
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss data-i18n="promo_jun.btn_dismiss">Tal vez después</button>
           </div>
           <p class="promo-validity" data-i18n="promo_jun.valid_until">Válido del 1 al 30 de junio 2026 · Pedidos vía dna.macrogen.com</p>

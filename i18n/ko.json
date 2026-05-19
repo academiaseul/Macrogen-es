@@ -176,15 +176,19 @@
   "promo_jun": {
     "eyebrow": "6월 프로모션",
     "discount": "10%",
-    "title": "독점 주문 할인",
-    "subtitle": "2026년 6월에 주문하는 모든 서비스",
+    "title": "독점 10% 할인",
+    "subtitle": "2026년 6월에 접수된 모든 견적 대상",
     "code_label": "코드 사용:",
     "code": "JUNIO10",
     "copy": "복사",
     "copied": "복사됨!",
-    "valid_until": "2026년 6월 1일–30일 유효 · dna.macrogen.com을 통한 주문",
-    "btn_order": "지금 주문 ↗",
+    "valid_until": "2026년 6월 1일–30일 유효 · macrogen-es.com에서 견적 요청",
+    "btn_order": "할인 견적 요청 →",
     "btn_dismiss": "나중에",
     "btn_close": "닫기"
+  },
+  "promo_banner": {
+    "title": "할인이 적용됩니다",
+    "subtitle": "코드 <code>{code}</code> · 2026년 6월 첫 견적 10% 할인"
   }
 }

@@ -176,15 +176,19 @@
   "promo_jun": {
     "eyebrow": "Promoção de Junho",
     "discount": "10%",
-    "title": "Desconto exclusivo em pedidos",
-    "subtitle": "Em todos os serviços contratados durante junho 2026",
+    "title": "Desconto exclusivo de 10%",
+    "subtitle": "Em todos os orçamentos recebidos durante junho 2026",
     "code_label": "Use o código:",
     "code": "JUNIO10",
     "copy": "Copiar",
     "copied": "Copiado!",
-    "valid_until": "Válido de 1 a 30 de junho 2026 · Pedidos via dna.macrogen.com",
-    "btn_order": "Fazer pedido agora ↗",
+    "valid_until": "Válido de 1 a 30 de junho 2026 · Peça o seu orçamento em macrogen-es.com",
+    "btn_order": "Pedir orçamento com desconto →",
     "btn_dismiss": "Talvez mais tarde",
     "btn_close": "Fechar"
+  },
+  "promo_banner": {
+    "title": "Aplicaremos o seu desconto",
+    "subtitle": "Código <code>{code}</code> · 10% no seu primeiro orçamento de junho 2026"
   }
 }
