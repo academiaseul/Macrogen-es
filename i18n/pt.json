@@ -172,5 +172,19 @@
     "sanger_title": "Sequenciação Sanger",
     "sanger_body": "O gold standard para validação. Serviços padrão, identificação, fragment analysis e sequenciação personalizada.",
     "btn_full_catalog": "Ver catálogo completo"
+  },
+  "promo_jun": {
+    "eyebrow": "Promoção de Junho",
+    "discount": "10%",
+    "title": "Desconto exclusivo em pedidos",
+    "subtitle": "Em todos os serviços contratados durante junho 2026",
+    "code_label": "Use o código:",
+    "code": "JUNIO10",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "valid_until": "Válido de 1 a 30 de junho 2026 · Pedidos via dna.macrogen.com",
+    "btn_order": "Fazer pedido agora ↗",
+    "btn_dismiss": "Talvez mais tarde",
+    "btn_close": "Fechar"
   }
 }

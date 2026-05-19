@@ -3,6 +3,132 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ========== PROMO POPUP · June 2026 · 10% discount on dna.macrogen.com ==========
+  // Triggers only on home page (index.html or /).
+  // Snoozes for 7 days when user dismisses or clicks "Order Now".
+  // Expires automatically after 2026-06-30.
+  (function initPromoPopup() {
+    const STORAGE_KEY = 'mc_promo_jun26_dismissed_until';
+    const EXPIRES_AT = new Date('2026-07-01T00:00:00Z').getTime();
+    const SHOW_AFTER_MS = 4000;
+    const SNOOZE_DAYS = 7;
+
+    // Bail if past expiry
+    if (Date.now() >= EXPIRES_AT) return;
+
+    // Only show on home page
+    const path = window.location.pathname.replace(/\/$/, '');
+    const isHome = path === '' || path === '/index.html' || path.endsWith('/index.html') && !path.includes('/blog/') && !path.includes('/servicios/');
+    if (!isHome) return;
+
+    // Bail if recently dismissed
+    const dismissedUntil = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+    if (dismissedUntil > Date.now()) return;
+
+    // Build popup HTML
+    const overlay = document.createElement('div');
+    overlay.className = 'promo-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'promo-title');
+    overlay.innerHTML = `
+      <div class="promo-modal">
+        <button class="promo-close" data-promo-close aria-label="Close" data-i18n-attr="aria-label:promo_jun.btn_close">×</button>
+        <div class="promo-banner">
+          <span class="promo-decoration">🎉</span>
+          <span class="promo-eyebrow" data-i18n="promo_jun.eyebrow">Promoción Junio</span>
+          <div class="promo-discount" data-i18n="promo_jun.discount">10%</div>
+        </div>
+        <div class="promo-body">
+          <h3 class="promo-title" id="promo-title" data-i18n="promo_jun.title">Descuento exclusivo en pedidos</h3>
+          <p class="promo-subtitle" data-i18n="promo_jun.subtitle">Para todos los servicios contratados durante junio 2026</p>
+          <div class="promo-code-box">
+            <div class="promo-code-info">
+              <div class="promo-code-label" data-i18n="promo_jun.code_label">Usa el código:</div>
+              <div class="promo-code-value" data-promo-code>JUNIO10</div>
+            </div>
+            <button class="promo-copy-btn" data-promo-copy data-i18n="promo_jun.copy">Copiar</button>
+          </div>
+          <div class="promo-actions">
+            <a href="https://dna.macrogen.com" target="_blank" rel="noopener" class="promo-btn-order" data-promo-order data-i18n="promo_jun.btn_order">Hacer pedido ahora ↗</a>
+            <button type="button" class="promo-btn-dismiss" data-promo-dismiss data-i18n="promo_jun.btn_dismiss">Tal vez después</button>
+          </div>
+          <p class="promo-validity" data-i18n="promo_jun.valid_until">Válido del 1 al 30 de junio 2026 · Pedidos vía dna.macrogen.com</p>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    // Re-run i18n on the freshly injected popup
+    if (window.MacrogenI18n) {
+      window.MacrogenI18n.setLanguage(window.MacrogenI18n.getLanguage());
+    }
+
+    // Dismiss logic
+    function snooze(days) {
+      const until = Date.now() + days * 24 * 60 * 60 * 1000;
+      localStorage.setItem(STORAGE_KEY, String(until));
+    }
+    function closePopup(snoozeDays) {
+      overlay.classList.remove('is-open');
+      setTimeout(() => overlay.remove(), 400);
+      if (snoozeDays != null) snooze(snoozeDays);
+      document.removeEventListener('keydown', onEsc);
+    }
+    function onEsc(e) {
+      if (e.key === 'Escape') closePopup(SNOOZE_DAYS);
+    }
+
+    // Bindings
+    overlay.querySelector('[data-promo-close]').addEventListener('click', () => closePopup(SNOOZE_DAYS));
+    overlay.querySelector('[data-promo-dismiss]').addEventListener('click', () => closePopup(SNOOZE_DAYS));
+    overlay.querySelector('[data-promo-order]').addEventListener('click', () => closePopup(SNOOZE_DAYS * 4)); // longer snooze if they clicked through
+
+    // Click outside the modal closes
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closePopup(SNOOZE_DAYS);
+    });
+
+    // Copy code to clipboard
+    const copyBtn = overlay.querySelector('[data-promo-copy]');
+    const codeEl = overlay.querySelector('[data-promo-code]');
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(codeEl.textContent.trim());
+      } catch (err) {
+        // Fallback for browsers without clipboard API
+        const range = document.createRange();
+        range.selectNode(codeEl);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        try { document.execCommand('copy'); } catch (e2) {}
+        window.getSelection().removeAllRanges();
+      }
+      copyBtn.classList.add('is-copied');
+      const originalKey = copyBtn.dataset.i18n;
+      copyBtn.dataset.i18n = 'promo_jun.copied';
+      if (window.MacrogenI18n) {
+        window.MacrogenI18n.setLanguage(window.MacrogenI18n.getLanguage());
+      } else {
+        copyBtn.textContent = '¡Copiado!';
+      }
+      setTimeout(() => {
+        copyBtn.classList.remove('is-copied');
+        copyBtn.dataset.i18n = originalKey;
+        if (window.MacrogenI18n) {
+          window.MacrogenI18n.setLanguage(window.MacrogenI18n.getLanguage());
+        }
+      }, 2200);
+    });
+
+    document.addEventListener('keydown', onEsc);
+
+    // Show with delay
+    setTimeout(() => {
+      overlay.classList.add('is-open');
+    }, SHOW_AFTER_MS);
+  })();
+
   // ========== Hero video: force autoplay on iOS Safari ==========
   // iOS Safari (and some Android browsers) block autoplay even with all the correct
   // attributes until JS explicitly calls .play(). This also handles Low Power Mode

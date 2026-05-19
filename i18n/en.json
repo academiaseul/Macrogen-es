@@ -172,5 +172,19 @@
     "sanger_title": "Sanger Sequencing",
     "sanger_body": "The gold standard for validation. Standard, identification, fragment analysis and customized sequencing services.",
     "btn_full_catalog": "View full catalog"
+  },
+  "promo_jun": {
+    "eyebrow": "June Promotion",
+    "discount": "10%",
+    "title": "Exclusive order discount",
+    "subtitle": "On all services ordered during June 2026",
+    "code_label": "Use code:",
+    "code": "JUNIO10",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "valid_until": "Valid June 1–30, 2026 · Orders via dna.macrogen.com",
+    "btn_order": "Order Now ↗",
+    "btn_dismiss": "Maybe later",
+    "btn_close": "Close"
   }
 }

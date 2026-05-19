@@ -1739,3 +1739,249 @@ textarea:focus-visible,
   }
   .lang-btn { width: 100%; justify-content: center; }
 }
+
+
+/* ============================================
+   PROMO POPUP · June 2026 · 10% Discount
+   ============================================ */
+.promo-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(6, 24, 46, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.promo-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.promo-overlay.is-open .promo-modal {
+  transform: scale(1) translateY(0);
+}
+
+.promo-modal {
+  background: var(--mc-white);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transform: scale(0.92) translateY(20px);
+  transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.promo-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--mc-white);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background .15s ease, transform .15s ease;
+  font-family: inherit;
+  line-height: 1;
+}
+.promo-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(90deg);
+}
+
+.promo-banner {
+  background: linear-gradient(135deg, #E0004D 0%, #FF3D77 50%, #F39200 100%);
+  color: var(--mc-white);
+  padding: 32px 28px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.promo-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -25%;
+  width: 150%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 50%);
+  pointer-events: none;
+}
+.promo-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.promo-discount {
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -3px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.promo-decoration {
+  position: absolute;
+  font-size: 110px;
+  opacity: 0.13;
+  bottom: -20px;
+  right: -15px;
+  z-index: 0;
+  transform: rotate(-15deg);
+}
+
+.promo-body {
+  padding: 28px 28px 32px;
+  text-align: center;
+}
+.promo-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--mc-navy);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+.promo-subtitle {
+  font-size: 14px;
+  color: var(--mc-mute);
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.promo-code-box {
+  background: linear-gradient(135deg, #F5F7FA 0%, #EEF3FB 100%);
+  border: 2px dashed var(--mc-teal);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.promo-code-info { flex: 1; text-align: left; }
+.promo-code-label {
+  font-size: 10px;
+  color: var(--mc-mute);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 3px;
+}
+.promo-code-value {
+  font-family: 'Courier New', monospace;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--mc-navy);
+  letter-spacing: 2px;
+}
+.promo-copy-btn {
+  background: var(--mc-teal);
+  color: var(--mc-white);
+  border: none;
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  transition: background .15s ease, transform .1s ease;
+  white-space: nowrap;
+}
+.promo-copy-btn:hover { background: #009990; }
+.promo-copy-btn.is-copied {
+  background: var(--mc-green);
+}
+.promo-copy-btn:active { transform: scale(0.95); }
+
+.promo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.promo-btn-order {
+  background: linear-gradient(135deg, #E0004D 0%, #B8003E 100%);
+  color: var(--mc-white);
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  box-shadow: 0 10px 24px rgba(224, 0, 77, 0.35);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.promo-btn-order:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(224, 0, 77, 0.5);
+}
+.promo-btn-dismiss {
+  background: transparent;
+  color: var(--mc-mute);
+  border: none;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: underline;
+  transition: color .15s ease;
+}
+.promo-btn-dismiss:hover { color: var(--mc-navy); }
+
+.promo-validity {
+  font-size: 11px;
+  color: var(--mc-mute);
+  font-style: italic;
+  border-top: 1px solid var(--mc-line);
+  padding-top: 14px;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .promo-modal { max-width: 100%; }
+  .promo-discount { font-size: 56px; }
+  .promo-banner { padding: 26px 20px 20px; }
+  .promo-body { padding: 22px 20px 26px; }
+  .promo-code-value { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-overlay,
+  .promo-modal { transition: none !important; }
+}

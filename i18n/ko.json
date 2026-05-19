@@ -172,5 +172,19 @@
     "sanger_title": "Sanger 시퀀싱",
     "sanger_body": "검증을 위한 골드 스탠다드. 표준, 식별, 단편 분석 및 맞춤형 시퀀싱 서비스.",
     "btn_full_catalog": "전체 카탈로그 보기"
+  },
+  "promo_jun": {
+    "eyebrow": "6월 프로모션",
+    "discount": "10%",
+    "title": "독점 주문 할인",
+    "subtitle": "2026년 6월에 주문하는 모든 서비스",
+    "code_label": "코드 사용:",
+    "code": "JUNIO10",
+    "copy": "복사",
+    "copied": "복사됨!",
+    "valid_until": "2026년 6월 1일–30일 유효 · dna.macrogen.com을 통한 주문",
+    "btn_order": "지금 주문 ↗",
+    "btn_dismiss": "나중에",
+    "btn_close": "닫기"
   }
 }
