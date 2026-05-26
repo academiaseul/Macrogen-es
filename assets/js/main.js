@@ -248,6 +248,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ========== Mega menu · tap-to-toggle on mobile, hover on desktop ==========
+  // Desktop uses CSS :hover. Mobile (touch) needs explicit tap to open the dropdown
+  // — but should still navigate to /servicios.html if the user taps a second time.
+  document.querySelectorAll('.nav-dropdown').forEach(drop => {
+    const trigger = drop.querySelector('a');
+    if (!trigger) return;
+    trigger.addEventListener('click', e => {
+      // Only intercept on touch / narrow viewport
+      if (window.matchMedia('(max-width: 980px)').matches || window.matchMedia('(hover: none)').matches) {
+        if (!drop.classList.contains('is-open')) {
+          e.preventDefault();
+          // Close other open dropdowns
+          document.querySelectorAll('.nav-dropdown.is-open').forEach(d => {
+            if (d !== drop) d.classList.remove('is-open');
+          });
+          drop.classList.add('is-open');
+        }
+        // Second tap navigates normally
+      }
+    });
+  });
+  // Close mega menu when clicking outside
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.nav-dropdown')) {
+      document.querySelectorAll('.nav-dropdown.is-open').forEach(d => d.classList.remove('is-open'));
+    }
+  });
+
   // ========== Animated stat counters ==========
   const counters = document.querySelectorAll('[data-counter]');
   if (counters.length) {

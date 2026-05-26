@@ -190,5 +190,31 @@
   "promo_banner": {
     "title": "할인이 적용됩니다",
     "subtitle": "코드 <code>{code}</code> · 2026년 6월 첫 견적 10% 할인"
+  },
+  "megamenu": {
+    "ngs_title": "NGS · 시퀀싱 <span class=\"count\">(6)</span>",
+    "wgs_sub": "전체 게놈 시퀀싱",
+    "wes_sub": "전체 엑솜 시퀀싱",
+    "rnaseq_sub": "전사체",
+    "singlecell_sub": "10x Chromium",
+    "metagenoma_sub": "16S · 18S · shotgun",
+    "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
+    "ces_title": "CES · Sanger <span class=\"count\">(1)</span>",
+    "sanger_sub": "ABI 3730xl · TAT 24–48시간",
+    "other_title": "분석 & 기타 <span class=\"count\">(2)</span>",
+    "microarray_sub": "Affymetrix · Illumina",
+    "bioinformatica_sub": "GATK 파이프라인",
+    "synth_title": "합성 · 올리고 & 유전자 <span class=\"count\">(4)</span>",
+    "dna_sub": "$0.20 / base부터 · MALDI-TOF",
+    "rna_sub": "$4 / base부터 · MerMade 12",
+    "peptide_sub": "$77부터 · 3 mg 보장",
+    "gene_sub": "$180부터 · Sanger 검증",
+    "featured_title": "이번 달 추천",
+    "featured_sanger_title": "🔥 Sanger Chile",
+    "featured_sanger_sub": "90+ 무료 프라이머 · 산티아고 픽업",
+    "featured_oligo_title": "✨ 4-in-1 합성",
+    "featured_oligo_sub": "DNA · RNA · 펩타이드 · 유전자",
+    "footer_text": "10개 게놈 서비스 · 단일 창구 · 마드리드 + 산티아고",
+    "footer_view_all": "전체 카탈로그 보기 →"
   }
 }

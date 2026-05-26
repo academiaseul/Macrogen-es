@@ -46,7 +46,48 @@
     <ul class="nav-menu">
       <li><a href="../index.html" data-i18n="nav.home">Inicio</a></li>
       <li><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a></li>
-      <li><a href="../servicios.html" data-i18n="nav.services">Servicios</a></li>
+      <li class="nav-dropdown"><a href="../servicios.html" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs.html"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes.html"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq.html"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell.html"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenoma.html"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">CES · Sanger <span class="count">(1)</span></h5>
+            <a href="../servicios/sanger.html"><strong>Sanger / CES</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis & Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarray.html"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica.html"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos & Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/oligo.html#servicios"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n="megamenu.featured_title">Destacado este mes</h5>
+            <a href="../servicios/sanger.html" style="background:linear-gradient(135deg,#FEF2F4,#FEF7E8); border-left:3px solid var(--mc-red);">
+              <strong style="color:var(--mc-red);" data-i18n="megamenu.featured_sanger_title">🔥 Sanger Chile</strong>
+              <small data-i18n="megamenu.featured_sanger_sub">90+ primers gratis · pickup Santiago</small>
+            </a>
+            <a href="../servicios/oligo.html" style="background:linear-gradient(135deg,#EAF6E5,#EAF6FB); border-left:3px solid var(--mc-green);">
+              <strong style="color:var(--mc-green);" data-i18n="megamenu.featured_oligo_title">✨ Síntesis 4-en-1</strong>
+              <small data-i18n="megamenu.featured_oligo_sub">DNA · RNA · Péptidos · Genes</small>
+            </a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../servicios.html" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
       <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
       <li><a href="../blog.html" class="active" data-i18n="nav.blog">Blog</a></li>
       <li><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>

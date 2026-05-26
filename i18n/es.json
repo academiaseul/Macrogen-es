@@ -190,5 +190,31 @@
   "promo_banner": {
     "title": "Aplicaremos tu descuento",
     "subtitle": "Código <code>{code}</code> · 10% en tu primera cotización de junio 2026"
+  },
+  "megamenu": {
+    "ngs_title": "NGS · Secuenciación <span class=\"count\">(6)</span>",
+    "wgs_sub": "Whole Genome Sequencing",
+    "wes_sub": "Whole Exome Sequencing",
+    "rnaseq_sub": "Transcriptoma",
+    "singlecell_sub": "10x Chromium",
+    "metagenoma_sub": "16S · 18S · shotgun",
+    "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
+    "ces_title": "CES · Sanger <span class=\"count\">(1)</span>",
+    "sanger_sub": "ABI 3730xl · TAT 24–48h",
+    "other_title": "Análisis & Otros <span class=\"count\">(2)</span>",
+    "microarray_sub": "Affymetrix · Illumina",
+    "bioinformatica_sub": "Pipelines GATK",
+    "synth_title": "Synthesis · Oligos & Genes <span class=\"count\">(4)</span>",
+    "dna_sub": "Desde $0,20 / base · MALDI-TOF",
+    "rna_sub": "Desde $4 / base · MerMade 12",
+    "peptide_sub": "Desde $77 · 3 mg garantizados",
+    "gene_sub": "Desde $180 · validación Sanger",
+    "featured_title": "Destacado este mes",
+    "featured_sanger_title": "🔥 Sanger Chile",
+    "featured_sanger_sub": "90+ primers gratis · pickup Santiago",
+    "featured_oligo_title": "✨ Síntesis 4-en-1",
+    "featured_oligo_sub": "DNA · RNA · Péptidos · Genes",
+    "footer_text": "10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago",
+    "footer_view_all": "Ver catálogo completo →"
   }
 }
