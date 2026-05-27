@@ -1742,7 +1742,16 @@ textarea:focus-visible,
 
 
 /* ============================================
-   PROMO POPUP · June 2026 · 10% Discount
+   LAUNCH BAR · top notice for SANGER10 promo
+   ============================================ */
+.launch-bar a:hover { color:#fff; text-decoration:none; }
+@media (max-width: 640px) {
+  .launch-bar { font-size: 11.5px; line-height: 1.45; padding: 8px 12px; }
+  .launch-bar code { padding: 1px 6px; font-size: 11px; }
+}
+
+/* ============================================
+   PROMO POPUP · SANGER10 (Jun 15 – Aug 31, 2026)
    ============================================ */
 .promo-overlay {
   position: fixed;
@@ -1986,7 +1995,7 @@ textarea:focus-visible,
   .promo-modal { transition: none !important; }
 }
 
-/* Inline confirmation banner on /contacto.html?promo=JUNIO10 */
+/* Inline confirmation banner on /contacto.html?promo=SANGER10 */
 .promo-banner-inline {
   display: flex;
   align-items: center;

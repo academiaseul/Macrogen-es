@@ -173,23 +173,23 @@
     "sanger_body": "O gold standard para validação. Serviços padrão, identificação, fragment analysis e sequenciação personalizada.",
     "btn_full_catalog": "Ver catálogo completo"
   },
-  "promo_jun": {
-    "eyebrow": "Promoção de Junho",
+  "promo_sanger": {
+    "eyebrow": "Lançamento · Promo Sanger",
     "discount": "10%",
-    "title": "Desconto exclusivo de 10%",
-    "subtitle": "Em todos os orçamentos recebidos durante junho 2026",
+    "title": "10% OFF Sequenciação Sanger (CES)",
+    "subtitle": "Aplicável a todos os orçamentos web de Sanger em Espanha, Portugal, Chile e Peru · ABI 3730xl",
     "code_label": "Use o código:",
-    "code": "JUNIO10",
+    "code": "SANGER10",
     "copy": "Copiar",
     "copied": "Copiado!",
-    "valid_until": "Válido de 1 a 30 de junho 2026 · Peça o seu orçamento em macrogen-es.com",
-    "btn_order": "Pedir orçamento com desconto →",
+    "valid_until": "Válido <strong>até 31 de agosto de 2026</strong> · Pedido web + receção de amostras antes do fim de agosto",
+    "btn_order": "Pedir orçamento Sanger com 10% OFF →",
     "btn_dismiss": "Talvez mais tarde",
     "btn_close": "Fechar"
   },
   "promo_banner": {
-    "title": "Aplicaremos o seu desconto",
-    "subtitle": "Código <code>{code}</code> · 10% no seu primeiro orçamento de junho 2026"
+    "title": "Aplicaremos o seu desconto Sanger",
+    "subtitle": "Código <code>{code}</code> · 10% em Sanger (CES) · válido até 31 ago 2026"
   },
   "megamenu": {
     "ngs_title": "NGS · Sequenciação <span class=\"count\">(6)</span>",
@@ -210,8 +210,8 @@
     "peptide_sub": "A partir de $77 · 3 mg garantidos",
     "gene_sub": "A partir de $180 · validação Sanger",
     "featured_title": "Destaque do mês",
-    "featured_sanger_title": "🔥 Sanger Chile & Spain",
-    "featured_sanger_sub": "90+ primers grátis · recolha Madrid + Santiago",
+    "featured_sanger_title": "🔥 SANGER10 · 10% OFF",
+    "featured_sanger_sub": "Sanger CES até 31 ago · ES · PT · CL · PE",
     "featured_oligo_title": "✨ Síntese 4-em-1",
     "featured_oligo_sub": "DNA · RNA · Péptidos · Genes",
     "footer_text": "10 serviços genómicos · 1 só balcão · Madrid + Santiago",

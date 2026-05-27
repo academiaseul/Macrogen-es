@@ -173,23 +173,23 @@
     "sanger_body": "The gold standard for validation. Standard, identification, fragment analysis and customized sequencing services.",
     "btn_full_catalog": "View full catalog"
   },
-  "promo_jun": {
-    "eyebrow": "June Promotion",
+  "promo_sanger": {
+    "eyebrow": "Launch · Sanger Promo",
     "discount": "10%",
-    "title": "Exclusive 10% discount",
-    "subtitle": "On all quotes received during June 2026",
+    "title": "10% OFF Sanger Sequencing (CES)",
+    "subtitle": "Applies to all Sanger web quotes across Spain, Portugal, Chile and Peru · ABI 3730xl",
     "code_label": "Use code:",
-    "code": "JUNIO10",
+    "code": "SANGER10",
     "copy": "Copy",
     "copied": "Copied!",
-    "valid_until": "Valid June 1–30, 2026 · Request your quote at macrogen-es.com",
-    "btn_order": "Request a quote with discount →",
+    "valid_until": "Valid <strong>through August 31, 2026</strong> · Web request + sample receipt must both occur before end of August",
+    "btn_order": "Quote Sanger with 10% OFF →",
     "btn_dismiss": "Maybe later",
     "btn_close": "Close"
   },
   "promo_banner": {
-    "title": "We'll apply your discount",
-    "subtitle": "Code <code>{code}</code> · 10% on your first June 2026 quote"
+    "title": "We'll apply your Sanger discount",
+    "subtitle": "Code <code>{code}</code> · 10% off Sanger (CES) · valid through Aug 31, 2026"
   },
   "megamenu": {
     "ngs_title": "NGS · Sequencing <span class=\"count\">(6)</span>",
@@ -210,8 +210,8 @@
     "peptide_sub": "From $77 · 3 mg guaranteed",
     "gene_sub": "From $180 · Sanger validation",
     "featured_title": "Featured this month",
-    "featured_sanger_title": "🔥 Sanger Chile & Spain",
-    "featured_sanger_sub": "90+ free primers · Madrid + Santiago pickup",
+    "featured_sanger_title": "🔥 SANGER10 · 10% OFF",
+    "featured_sanger_sub": "Sanger CES through Aug 31 · ES · PT · CL · PE",
     "featured_oligo_title": "✨ 4-in-1 Synthesis",
     "featured_oligo_sub": "DNA · RNA · Peptides · Genes",
     "footer_text": "10 genomic services · 1 single window · Madrid + Santiago",

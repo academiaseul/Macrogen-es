@@ -173,23 +173,23 @@
     "sanger_body": "검증을 위한 골드 스탠다드. 표준, 식별, 단편 분석 및 맞춤형 시퀀싱 서비스.",
     "btn_full_catalog": "전체 카탈로그 보기"
   },
-  "promo_jun": {
-    "eyebrow": "6월 프로모션",
+  "promo_sanger": {
+    "eyebrow": "런칭 · Sanger 프로모션",
     "discount": "10%",
-    "title": "독점 10% 할인",
-    "subtitle": "2026년 6월에 접수된 모든 견적 대상",
+    "title": "Sanger 시퀀싱 (CES) 10% 할인",
+    "subtitle": "스페인·포르투갈·칠레·페루 웹에서 신청한 모든 Sanger 견적에 적용 · ABI 3730xl",
     "code_label": "코드 사용:",
-    "code": "JUNIO10",
+    "code": "SANGER10",
     "copy": "복사",
     "copied": "복사됨!",
-    "valid_until": "2026년 6월 1일–30일 유효 · macrogen-es.com에서 견적 요청",
-    "btn_order": "할인 견적 요청 →",
+    "valid_until": "<strong>2026년 8월 31일까지</strong> 유효 · 웹 견적 요청 + 샘플 도착 모두 8월 말 전 완료 필요",
+    "btn_order": "Sanger 10% 할인 견적 요청 →",
     "btn_dismiss": "나중에",
     "btn_close": "닫기"
   },
   "promo_banner": {
-    "title": "할인이 적용됩니다",
-    "subtitle": "코드 <code>{code}</code> · 2026년 6월 첫 견적 10% 할인"
+    "title": "Sanger 할인이 적용됩니다",
+    "subtitle": "코드 <code>{code}</code> · Sanger (CES) 10% 할인 · 2026년 8월 31일까지 유효"
   },
   "megamenu": {
     "ngs_title": "NGS · 시퀀싱 <span class=\"count\">(6)</span>",
@@ -210,8 +210,8 @@
     "peptide_sub": "$77부터 · 3 mg 보장",
     "gene_sub": "$180부터 · Sanger 검증",
     "featured_title": "이번 달 추천",
-    "featured_sanger_title": "🔥 Sanger 칠레 & 스페인",
-    "featured_sanger_sub": "90+ 무료 프라이머 · 마드리드 + 산티아고 픽업",
+    "featured_sanger_title": "🔥 SANGER10 · 10% 할인",
+    "featured_sanger_sub": "Sanger CES 8월 31일까지 · ES · PT · CL · PE",
     "featured_oligo_title": "✨ 4-in-1 합성",
     "featured_oligo_sub": "DNA · RNA · 펩타이드 · 유전자",
     "footer_text": "10개 게놈 서비스 · 단일 창구 · 마드리드 + 산티아고",
