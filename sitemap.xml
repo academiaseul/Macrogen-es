@@ -103,8 +103,26 @@
   <!-- BLOG -->
   <url>
     <loc>https://macrogen-es.com/blog.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/spatial-biology-ffpe.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/proteomica-cancer-prostata.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/metagenomica-herramientas.html</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>

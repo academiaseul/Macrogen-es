@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biología espacial para FFPE y tejido fresco congelado: guía práctica | Blog Macrogen Iberoamérica</title>
+<meta name="description" content="Guía técnica para diseñar estudios de biología espacial con tejido FFPE o fresco congelado. Plataformas, QC, workflow end-to-end. Servicios de spatial biology Macrogen Iberoamérica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/img/logo.png">
+<link rel="stylesheet" href="../assets/css/main.css">
+
+<link rel="canonical" href="https://macrogen-es.com/blog/spatial-biology-ffpe.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Macrogen Iberoamérica">
+<meta property="og:url" content="https://macrogen-es.com/blog/spatial-biology-ffpe.html">
+<meta property="og:title" content="Biología espacial para FFPE y tejido fresco congelado | Macrogen Blog">
+<meta property="og:description" content="Guía técnica: cómo elegir entre tejido FFPE y fresco congelado para tu estudio de spatial biology. QC, workflow, plataformas.">
+<meta property="og:image" content="https://macrogen-es.com/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-05-26">
+<meta property="article:section" content="Spatial Biology">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Biología espacial: FFPE vs fresco congelado">
+<meta name="twitter:description" content="Guía práctica para diseñar estudios de spatial biology · workflow end-to-end.">
+<meta name="twitter:image" content="https://macrogen-es.com/assets/img/og-image.png">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wait_for_update':500});gtag('config','G-PLACEHOLDER',{'anonymize_ip':true});</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","CLARITY-PLACEHOLDER");</script>
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="../index.html" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li><a href="../index.html" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a></li>
+      <li class="nav-dropdown"><a href="../servicios.html" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs.html"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes.html"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq.html"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell.html"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenoma.html"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">CES · Sanger <span class="count">(1)</span></h5>
+            <a href="../servicios/sanger.html"><strong>Sanger / CES</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis & Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarray.html"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica.html"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos & Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/oligo.html#servicios"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n="megamenu.featured_title">Destacado este mes</h5>
+            <a href="../servicios/sanger.html" style="background:linear-gradient(135deg,#FEF2F4,#FEF7E8); border-left:3px solid var(--mc-red);">
+              <strong style="color:var(--mc-red);" data-i18n="megamenu.featured_sanger_title">🔥 Sanger Chile &amp; Spain</strong>
+              <small data-i18n="megamenu.featured_sanger_sub">90+ primers gratis · pickup Madrid + Santiago</small>
+            </a>
+            <a href="../servicios/oligo.html" style="background:linear-gradient(135deg,#EAF6E5,#EAF6FB); border-left:3px solid var(--mc-green);">
+              <strong style="color:var(--mc-green);" data-i18n="megamenu.featured_oligo_title">✨ Síntesis 4-en-1</strong>
+              <small data-i18n="megamenu.featured_oligo_sub">DNA · RNA · Péptidos · Genes</small>
+            </a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../servicios.html" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
+      <li><a href="../blog.html" class="active" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>
+      <li><a href="../faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+    </ul>
+  </div>
+</header>
+
+<article class="article">
+  <div class="container-narrow">
+    <div class="breadcrumb"><a href="../blog.html">Blog</a> <span class="sep">/</span> Spatial Biology</div>
+
+    <header class="article-header">
+      <div class="meta"><span class="cat">Spatial Biology</span> · 26 mayo 2026 · 9 min de lectura</div>
+      <h1>Biología espacial para FFPE y tejido fresco congelado: guía práctica</h1>
+      <p style="font-size:1.1rem; color:var(--mc-mute); margin-bottom:0;">Diseñar un estudio de spatial biology implica decisiones críticas desde el tipo de muestra. Esta guía cubre FFPE vs fresco congelado, workflow end-to-end y qué buscar en tu proveedor.</p>
+    </header>
+
+    <div class="article-body">
+      <p>Diseñar un estudio de <strong>biología espacial</strong> conlleva decenas de decisiones, empezando por el tipo de muestra y expandiéndose rápidamente a workflows, outputs de datos y necesidades de análisis. Tanto si trabajas con muestras clínicas archivadas como con tejido recién colectado, el setup correcto marca la diferencia entre datos utilizables e insights perdidos.</p>
+
+      <p>Esta guía cubre qué esperar de un servicio de biología espacial, cómo pensar la decisión entre <strong>FFPE</strong> y <strong>fresco congelado</strong>, y qué buscar en un partner que pueda apoyarte de extremo a extremo.</p>
+
+      <h2>¿Qué incluye un servicio de biología espacial?</h2>
+      <p>A alto nivel, la biología espacial combina <strong>perfilado molecular con contexto tisular</strong>. Ya no solo mides qué está presente — mides <em>dónde</em> está ocurriendo.</p>
+      <p>La mayoría de los proyectos hoy caen en estas categorías:</p>
+      <ul>
+        <li><strong>Transcriptómica espacial</strong> — mapeo de expresión génica a través de una sección de tejido</li>
+        <li><strong>Imaging espacial</strong> — vía hibridación in situ fluorescente (FISH)</li>
+        <li><strong>Proteómica espacial</strong> — visualización de distribución y abundancia de proteínas</li>
+        <li><strong>Workflows integrados</strong> — combinando datos de RNA y proteína para una vista más completa</li>
+      </ul>
+
+      <h2>¿Cómo impacta la colecta de muestra en biología espacial?</h2>
+      <p>Hay muchas variables que pueden impactar significativamente la calidad de la muestra downstream. Es esencial preparar con rigor para asegurar resultados óptimos.</p>
+
+      <h3>Consideraciones clave para la colecta:</h3>
+      <ul>
+        <li>Minimizar el tiempo entre <strong>excisión y congelación/fijación</strong> (tiempo isquémico)</li>
+        <li>Congelar tejido directo en nitrógeno líquido puede inutilizarlo para la mayoría de plataformas spatial</li>
+        <li>Asegurar que el tipo de fijativo sea aceptable para los protocolos downstream</li>
+        <li>Diferentes tipos de tejido tienen diferentes tiempos óptimos de fijación</li>
+        <li>Planificar la <strong>logística global de envío</strong> para FFPE vs muestras congeladas</li>
+      </ul>
+
+      <p>Para muestras de biobancos, mucha de esta información a menudo no está disponible — por eso es esencial conducir procesos rigurosos de QC antes de proceder con cualquier experimento downstream.</p>
+
+      <h2>Entendiendo tu tipo de muestra: FFPE vs fresco congelado</h2>
+      <p>Las primeras decisiones en planificar un proyecto de spatial biology dependen del material de partida. Ambos formatos son ampliamente utilizados pero cada uno trae pros y contras propios.</p>
+
+      <h3>Tejido FFPE (fijado en formalina, embebido en parafina)</h3>
+      <p>FFPE es el formato por defecto para estudios clínicos y de archivo. El tejido fijado en formalina y embebido en parafina permite almacenamiento estable a largo plazo, y facilita el manejo y seccionado en análisis posteriores.</p>
+
+      <h4>Por qué los investigadores lo usan:</h4>
+      <ul>
+        <li>Amplia disponibilidad en biobancos y repositorios clínicos</li>
+        <li>Estabilidad a largo plazo a temperatura ambiente</li>
+        <li>Logística global de envío simplificada vs muestras congeladas</li>
+      </ul>
+
+      <h4>Qué planificar:</h4>
+      <ul>
+        <li><strong>Fragmentación y degradación del RNA.</strong> El proceso de fijación es duro con el RNA, impactando largo e integridad en muestras FFPE. A menudo los investigadores necesitan protocolos de <strong>low-input RNA sequencing</strong> para aprovechar el contenido restante.</li>
+        <li><strong>Dependencia de QC y library prep optimizados.</strong> La calidad puede variar drásticamente, incluso dentro de la misma muestra FFPE. Métricas tradicionales como RIN no siempre son indicadores confiables. Un <strong>DV200 &lt; 30%</strong> es un buen indicador de que el tejido no debería usarse para análisis spatial.</li>
+      </ul>
+
+      <p>Con el enfoque correcto, FFPE puede entregar insights espaciales de alta calidad — solo requiere QC riguroso de RNA y morfológico antes de intentar cualquier experimento spatial.</p>
+
+      <h3>Tejido fresco congelado</h3>
+      <p>Las muestras frescas congeladas se prefieren típicamente para métodos que requieren alta integridad de RNA, como los que usan captura polyA. La preservación de mayor calidad de proteínas y ácidos nucleicos te da mayor señal para métodos de detección transcriptómicos y proteómicos.</p>
+
+      <h4>Por qué los investigadores lo usan:</h4>
+      <ul>
+        <li>Mayor integridad de RNA</li>
+        <li>Mejor performance en workflows de transcriptómica espacial</li>
+        <li>Compatible con amplia gama de aplicaciones intolerantes a fijación</li>
+      </ul>
+
+      <h4>Qué planificar:</h4>
+      <ul>
+        <li><strong>Mayor complejidad de almacenamiento y manejo.</strong> Las muestras deben ser snap-frozen en isopentano inmediatamente post-excisión. No usar isopentano puede llevar a formación de cristales de hielo y daño morfológico, inutilizando la muestra para spatial biology. Envío y almacenamiento también presentan desafíos: requieren congelación profunda y envío rápido en hielo seco.</li>
+        <li><strong>Menor disponibilidad para ciertas cohortes clínicas.</strong> Muchas disciplinas de investigación no pueden depender de colecta a gran escala de tejidos frescos congelados. Estudios retrospectivos suelen depender de biobancos que se apoyan fuertemente en FFPE.</li>
+      </ul>
+
+      <h2>¿Cómo se ve un workflow end-to-end de biología espacial?</h2>
+      <p>Una vez determinadas las muestras, el siguiente paso es la ejecución. Un workflow sólido típicamente incluye:</p>
+
+      <h3>1. QC de muestra</h3>
+      <ul>
+        <li><strong>Evaluación de calidad de RNA</strong> — robusto QC de RNA es esencial antes de proceder.</li>
+        <li><strong>Chequeo de integridad tisular</strong> — buscando núcleos intactos, regiones tisulares distintas, bordes celulares claros, y mínimo desgarro o doblez. Tejido con buena morfología es más probable que genere datos robustos.</li>
+      </ul>
+
+      <h3>2. Histología</h3>
+      <p>La mayoría de plataformas spatial tienen requerimientos muy específicos de preparación y posicionamiento del tejido. Esto incluye <strong>tipos de slides especiales</strong> (algunas plataformas requieren slides del fabricante), <strong>colocación del tejido</strong> (guías específicas), <strong>tinción</strong> (H&amp;E para evaluar morfología), <strong>scrolls/curls para RNA QC</strong> (requeridos para extracción de RNA y QC previo).</p>
+
+      <h3>3. Wetlab workflow y captura de datos</h3>
+      <p>Cada plataforma tiene distintos pasos basados en la química y el formato del output. Pero hay elementos comunes dado el objetivo fundamental de spatial biology — capturar información de transcritos específicos por célula mientras se retiene la ubicación de cada célula dentro del tejido:</p>
+      <ul>
+        <li>Captura de ubicación del RNA — cada transcrito debe hibridarse a un barcode que denota su ubicación</li>
+        <li>Segmentación celular — los límites de todas las células deben anotarse</li>
+        <li>Identificación de transcritos — transcritos individuales deben identificarse y cuantificarse</li>
+        <li>Overlay de datos — identidades y ubicaciones se superponen al mapa de células dentro del tejido</li>
+      </ul>
+
+      <h3>4. Preparación de librería &amp; selección de assay</h3>
+      <ul>
+        <li><strong>Protocolos optimizados para FFPE</strong> — pasos como tratamientos térmicos o químicos adicionales para revertir el crosslinking causado por formaldehído. Como el RNA está fragmentado, las librerías pueden diseñarse para inserciones cortas o paneles basados en probes.</li>
+        <li><strong>Preparaciones para fresco congelado</strong> — es crítico que el laboratorio haga preparaciones avanzadas. Hielo seco es necesario para mantener los slides congelados y prevenir degradación del RNA.</li>
+        <li><strong>Requerimientos de resolución</strong> — la elección del assay depende fuertemente de si el estudio requiere resolución single-cell/subcelular vs perfilado a nivel de región/spot. Para true single-cell, las tecnologías imaging-based son las plataformas de elección (aunque suelen ser menor plex). Si el descubrimiento es el objetivo, las plataformas sequencing-based suelen entregar datos de transcriptoma completo pero sin true single-cell.</li>
+      </ul>
+
+      <h3>5. Secuenciación</h3>
+      <p>Aplicable solo para plataformas con output basado en secuenciación. Los assays spatial vienen con recomendaciones distintivas: read length, paired-end vs single-end, profundidad por área de captura. Alinear parámetros con el assay asegura calidad óptima.</p>
+
+      <h3>6. Bioinformática &amp; reporting</h3>
+      <ul>
+        <li><strong>Mapeo espacial y visualización</strong> — datos de secuenciación se mapean de vuelta a su ubicación física en el tejido</li>
+        <li><strong>Clustering y anotación</strong> — métodos computacionales agrupan células similares basadas en perfiles de expresión, seguido de identificación usando marcadores conocidos</li>
+        <li><strong>Integración e interpretación</strong> — datos espaciales a menudo se combinan con bulk o single-cell RNA-seq para fortalecer conclusiones</li>
+        <li><strong>Outputs claros e interpretables</strong> — incluye datos crudos pero también análisis avanzados: expresión, visualizaciones, identificación celular y reportes ejecutivos</li>
+        <li><strong>QC y transparencia de reporting</strong> — métricas finales (depth de lectura, gene counts, eficiencia de mapeo) para evaluar confiabilidad</li>
+      </ul>
+
+      <h2>Qué buscar en un proveedor de servicios de biología espacial</h2>
+      <p>Pocos factores separan un proyecto fluido de uno frustrante. Cuando evalúes proveedores, pregunta si tienen:</p>
+      <ul>
+        <li>Experiencia trabajando con <strong>tanto FFPE como fresco congelado</strong></li>
+        <li>Deliverables de datos claros y utilizables</li>
+        <li>Flexibilidad para adaptarse a tu diseño de estudio</li>
+        <li>Acceso a soporte científico cuando surgen preguntas</li>
+      </ul>
+      <p>En la práctica, esto es lo que determina si solo recibes datos o realmente obtienes respuestas.</p>
+
+      <blockquote>"Un proyecto bien diseñado de spatial biology empieza con la muestra correcta y triunfa con el workflow correcto detrás."</blockquote>
+
+      <h2>Macrogen Iberoamérica · servicios de spatial biology</h2>
+      <p>Nuestros equipos en <strong>🇪🇸 Madrid</strong> y <strong>🇨🇱 Santiago</strong> trabajan con investigadores en proyectos de biología espacial conectados a la red global Macrogen Inc., incluyendo:</p>
+      <ul>
+        <li>QC riguroso de muestras FFPE (DV200, evaluación morfológica) antes de cualquier experimento spatial</li>
+        <li>Logística internacional optimizada para muestras frescas congeladas (hielo seco · cadena de frío trazada)</li>
+        <li>Acceso a plataformas top-tier vía red Macrogen (10x Visium HD, Xenium, otras)</li>
+        <li>Bioinformática completa — clustering, anotación, integración con datos NGS/single-cell</li>
+        <li>Reportes ejecutivos en español + soporte 24/7 zona horaria local</li>
+        <li>Facturación local: USD (Chile/Perú) o EUR (España/Portugal) — sin comisiones de cambio</li>
+      </ul>
+
+      <hr>
+      <p style="color:var(--mc-mute); font-size:.95rem;"><em>¿Planeando un estudio de spatial biology? Conversa con nuestros bioinformáticos en Madrid o Santiago — <a href="../contacto.html">consultoría inicial sin costo</a>. Podemos mapear contigo el approach correcto antes de mover muestras.</em></p>
+      <p style="color:var(--mc-mute); font-size:.85rem; margin-top:14px;">Adaptado de un artículo original de Psomagen, hermana corporativa de Macrogen en EE.UU. <a href="https://www.psomagen.com/blog/spatial-biology-for-ffpe-and-fresh-frozen-tissue" target="_blank" rel="noopener">Fuente original ↗</a></p>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="../assets/img/logo.png" alt="Macrogen" class="logo-img"><h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4><p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">ES · PT · CL · PE</p><p data-i18n-html="footer.brand_description">Operación conjunta Macrogen Spain + Chile.</p><p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p></div>
+      <div><h4 data-i18n="footer.services_heading">Servicios</h4><a href="../servicios/wgs.html">WGS</a><a href="../servicios/sanger.html">Sanger</a><a href="../servicios/oligo.html">Oligo</a><a href="../servicios.html" data-i18n="footer.service_view_all">Ver todos →</a></div>
+      <div><h4 data-i18n="footer.company_heading">Compañía</h4><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a><a href="../blog.html" data-i18n="nav.blog">Blog</a><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a><a href="../faq.html" data-i18n="nav.faq">FAQ</a><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></div>
+      <div><h4 data-i18n="footer.hubs_heading">Hubs</h4><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇪🇸 Madrid</strong><br>+34 911 138 378</p><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇨🇱 Santiago</strong><br>+56 9 5845 1395</p><a href="mailto:info-spain@macrogen.com" style="font-size:12px;">🇪🇸 info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12px;">🇨🇱 info-chile@macrogen.com</a></div>
+    </div>
+    <div class="footer-bottom"><span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span><span><a href="../privacidad.html" data-i18n="footer.privacy">Privacidad</a><a href="../terminos.html" data-i18n="footer.terms">Términos</a><a href="https://dna.macrogen.com" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a></span></div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herramientas y aplicaciones para investigación metagenómica | Blog Macrogen Iberoamérica</title>
+<meta name="description" content="Guía completa de herramientas para metagenómica: 16S rRNA, ITS, shotgun metagenomics, long-read PacBio. Aplicaciones en clínica, ambiente, microbioma y desarrollo de drogas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/img/logo.png">
+<link rel="stylesheet" href="../assets/css/main.css">
+
+<link rel="canonical" href="https://macrogen-es.com/blog/metagenomica-herramientas.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Macrogen Iberoamérica">
+<meta property="og:url" content="https://macrogen-es.com/blog/metagenomica-herramientas.html">
+<meta property="og:title" content="Herramientas y aplicaciones para investigación metagenómica | Macrogen Blog">
+<meta property="og:description" content="16S, ITS, shotgun, long-read: una guía completa de las herramientas de metagenómica y sus aplicaciones en clínica, ambiente y farma.">
+<meta property="og:image" content="https://macrogen-es.com/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-05-26">
+<meta property="article:section" content="Metagenómica">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Herramientas para metagenómica · guía completa">
+<meta name="twitter:description" content="16S · ITS · shotgun · long-read PacBio · aplicaciones reales.">
+<meta name="twitter:image" content="https://macrogen-es.com/assets/img/og-image.png">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wait_for_update':500});gtag('config','G-PLACEHOLDER',{'anonymize_ip':true});</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","CLARITY-PLACEHOLDER");</script>
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="../index.html" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li><a href="../index.html" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a></li>
+      <li class="nav-dropdown"><a href="../servicios.html" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs.html"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes.html"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq.html"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell.html"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenoma.html"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">CES · Sanger <span class="count">(1)</span></h5>
+            <a href="../servicios/sanger.html"><strong>Sanger / CES</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis & Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarray.html"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica.html"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos & Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/oligo.html#servicios"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n="megamenu.featured_title">Destacado este mes</h5>
+            <a href="../servicios/sanger.html" style="background:linear-gradient(135deg,#FEF2F4,#FEF7E8); border-left:3px solid var(--mc-red);">
+              <strong style="color:var(--mc-red);" data-i18n="megamenu.featured_sanger_title">🔥 Sanger Chile &amp; Spain</strong>
+              <small data-i18n="megamenu.featured_sanger_sub">90+ primers gratis · pickup Madrid + Santiago</small>
+            </a>
+            <a href="../servicios/oligo.html" style="background:linear-gradient(135deg,#EAF6E5,#EAF6FB); border-left:3px solid var(--mc-green);">
+              <strong style="color:var(--mc-green);" data-i18n="megamenu.featured_oligo_title">✨ Síntesis 4-en-1</strong>
+              <small data-i18n="megamenu.featured_oligo_sub">DNA · RNA · Péptidos · Genes</small>
+            </a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../servicios.html" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
+      <li><a href="../blog.html" class="active" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>
+      <li><a href="../faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+    </ul>
+  </div>
+</header>
+
+<article class="article">
+  <div class="container-narrow">
+    <div class="breadcrumb"><a href="../blog.html">Blog</a> <span class="sep">/</span> Metagenómica</div>
+
+    <header class="article-header">
+      <div class="meta"><span class="cat">Metagenómica</span> · 26 mayo 2026 · 11 min de lectura</div>
+      <h1>Herramientas y aplicaciones para investigación metagenómica</h1>
+      <p style="font-size:1.1rem; color:var(--mc-mute); margin-bottom:0;">Guía completa de las herramientas disponibles para metagenómica: 16S rRNA, ITS, shotgun metagenomics, long-read PacBio. Cuándo usar cada una.</p>
+    </header>
+
+    <div class="article-body">
+      <h2>¿Qué es la metagenómica?</h2>
+      <p>La <strong>metagenómica</strong> es una disciplina que estudia el contenido genético de microorganismos, incluyendo hongos, bacterias y virus. Muchos experimentos metagenómicos buscan <strong>identificar todos los microorganismos en una muestra heterogénea</strong>. Esto significa que los microbios pueden estudiarse en su ambiente natural — haciendo posible observar interacciones biológicas complejas.</p>
+
+      <p>Los proyectos metagenómicos a menudo involucran:</p>
+      <ul>
+        <li>Desarrollo terapéutico</li>
+        <li>Vigilancia de brotes de enfermedades</li>
+        <li>Mejoramiento de cultivos</li>
+        <li>Composición de microbioma</li>
+      </ul>
+
+      <h2>Herramientas para metagenómica</h2>
+
+      <h3>1. Secuenciación 16S</h3>
+      <p>El <strong>gen 16S rRNA</strong> está presente en casi todas las especies bacterianas. Es responsable de codificar el rRNA en organismos auto-replicantes. Los ribosomas luego juegan un rol clave en la síntesis de proteínas.</p>
+
+      <p>La información genética del 16S rRNA tiene aplicaciones en:</p>
+
+      <ul>
+        <li><strong>Microbiología clínica:</strong> la secuencia 16S puede usarse para identificar patógenos bacterianos humanos. Particularmente útil en casos infecciosos donde el cultivo tradicional puede fallar. Bases de datos como GenBank permiten a los clínicos identificar microbios a nivel de género o especie.</li>
+
+        <li><strong>Microbiología ambiental:</strong> estudio de microbios en interacción entre sí y con su ambiente (aire, suelo, agua). El lodo activado, por ejemplo, es parte del tratamiento de aguas residuales — la secuenciación 16S permite entender patrones de actividad y cambios estacionales en abundancia microbiana.</li>
+
+        <li><strong>Estudios de microbioma:</strong> perfilan la composición microbiana de comunidades en plantas, animales y humanos. Por ejemplo, estudios analizando datos 16S rRNA para entender los efectos en salud de fibras dietéticas, probióticos y fructanos en el microbioma intestinal humano.</li>
+
+        <li><strong>Desarrollo farmacéutico:</strong> la secuenciación 16S juega rol importante en explorar compuestos bacterianos potencialmente útiles en desarrollo de drogas. Particularmente relevante para especies bacterianas que no pueden cultivarse en laboratorio.</li>
+      </ul>
+
+      <h3>2. Secuenciación ITS</h3>
+      <p>La secuencia <strong>Internal Transcribed Spacer (ITS)</strong> está ampliamente presente en especies fúngicas. Por estar presente con frecuencia, se usa para análisis taxonómico y de diversidad fúngica:</p>
+
+      <ul>
+        <li><strong>Identificación de hongos:</strong> como la región ITS es altamente variable, se puede usar para distinguir incluso entre especies fúngicas muy cercanas. Particularmente útil en <strong>estudios evolutivos</strong>, ayudando a científicos a identificar posibles señales de divergencia y relaciones filogenéticas.</li>
+
+        <li><strong>Estudios de biodiversidad:</strong> analizan la tasa de biodiversidad en un ecosistema. Por ejemplo, identificación de 23 muestras fúngicas habitantes de madera vía ITS sequencing en la región del noreste de India.</li>
+
+        <li><strong>Investigación en seguridad alimentaria:</strong> la región ITS puede usarse para identificar contaminantes potencialmente dañinos. En granos, por ejemplo, el crecimiento fúngico lleva a pérdida significativa durante crecimiento y almacenamiento — un estudio en Uganda identificó 15 géneros de especies fúngicas en granos domésticos, muchos con potencial toxigénico.</li>
+      </ul>
+
+      <h3>3. Shotgun metagenomics</h3>
+      <p>Los dos métodos previos analizan pequeñas porciones de genomas microbianos. <strong>Shotgun metagenomics</strong>, en contraste, toma una vista mucho más amplia. Con esta tecnología, investigadores pueden estudiar el contenido genómico completo de microorganismos en una muestra heterogénea. A diferencia de 16S e ITS (que se enfocan en bacterias y hongos respectivamente), <strong>shotgun puede perfilar bacterias, virus, hongos, archaea e incluso organismos eucariotas</strong>.</p>
+
+      <p>Esta metodología es valiosa para caracterizar interacciones en ambientes de alta complejidad, con usos probados en:</p>
+
+      <ul>
+        <li><strong>Reconstrucción de pathways:</strong> datos de shotgun se usan para reconstruir pathways metabólicos en comunidades microbianas. Entender cómo los microorganismos interactúan asiste a investigadores en identificar la función de la comunidad — descomposición, ciclado de nutrientes, fijación de nitrógeno.</li>
+
+        <li><strong>Identificación de especies raras:</strong> shotgun puede detectar especies de baja abundancia en una muestra mayor. Combinado con software avanzado, investigadores han identificado exitosamente especies de bacterias con menos del 0.2% de cobertura del genoma.</li>
+
+        <li><strong>Microbiología clínica:</strong> shotgun se usa para identificar patógenos en sangre u otras muestras clínicas. Da una vista amplia de todos los patógenos posibles contribuyendo a una enfermedad — valioso en identificar y tratar enfermedades complejas.</li>
+
+        <li><strong>Ecología ambiental:</strong> particularmente investigación en comunidades de agua y suelo. Mejor entendimiento de estas comunidades ayuda a caracterizar el interplay de especies en un ecosistema, incluyendo ciclos de nutrientes y efectos de contaminación o cambio climático. En estudios sudafricanos sobre lagos eutróficos, ~50% de los genomas ensamblados no pudieron mapearse a especies existentes — indicando un grado inesperado de diversidad en lagos contaminados.</li>
+
+        <li><strong>Desarrollo de drogas:</strong> shotgun puede identificar enzimas con potencial terapéutico o potencial para nuevas reacciones químicas. Por ejemplo, shotgun metagenomics en microbiomas de suelo se ha usado exitosamente para buscar inhibidores naturales del target HsMetAP1 de cáncer.</li>
+
+        <li><strong>Investigación de resistencia antibiótica:</strong> shotgun puede perfilar el <strong>resistoma</strong> e identificar genes relacionados con resistencia. Crucial para entender cómo se propaga la resistencia y puede informar estrategias de manejo de infecciones y stewardship antibiótico.</li>
+      </ul>
+
+      <h3>4. Long-read sequencing / tercera generación</h3>
+      <p>Las tecnologías de high-throughput long-read como <strong>PacBio Revio</strong> hacen posible obtener secuencias full-length de muestras microbianas. Contigs más largos, genes más completos, y mejor binning de genoma producen resultados más accionables.</p>
+
+      <p>En años recientes, long-read ha abordado limitaciones mayores de otros métodos metagenómicos que usan short-read sequencing (&lt;150 bp). Tests han probado que long-read provee más certeza y exactitud en datos metagenómicos.</p>
+
+      <p>Por ejemplo, en un estudio de 2024 — long reads del gen 16S rRNA completo proveen <strong>resolución taxonómica máxima</strong>. DNA fue aislado de saliva, placa subgingival y muestras fecales de 9 voluntarios, luego secuenciado vía short y long-read. Ambas tecnologías categorizaron microbios similarmente a nivel de género. Sin embargo, <strong>PacBio long reads fueron más exitosamente categorizados a nivel de especie (74.14% vs 55.23% para short reads)</strong>.</p>
+
+      <p>Resultados similares para identificación fúngica vía long-read sequencing de la región ITS. Pass sequencing múltiple redujo el error rate de long-read a menos del 1%, y secuencias ITS full-length revelaron una comunidad <em>Castanopsis carlesii</em> mycobiome taxonómica y funcionalmente diversa.</p>
+
+      <h2>Tabla comparativa · ¿qué método elegir?</h2>
+      <table class="spec-table" style="width:100%; margin:14px 0;">
+        <thead>
+          <tr style="background:var(--mc-navy); color:#fff;">
+            <th style="text-align:left; padding:10px 12px;">Método</th>
+            <th style="text-align:left; padding:10px 12px;">Mejor para</th>
+            <th style="text-align:left; padding:10px 12px;">Limitación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>16S rRNA</th><td>Bacterias · identificación por género/especie</td><td>Solo bacterias · sin info funcional</td></tr>
+          <tr><th>ITS</th><td>Hongos · biodiversidad fúngica</td><td>Solo hongos</td></tr>
+          <tr><th>Shotgun</th><td>Comunidad completa · pathways · resistoma</td><td>Mayor costo · mayor profundidad</td></tr>
+          <tr><th>Long-read PacBio</th><td>Resolución especie · genomas completos</td><td>Costo por base más alto</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Macrogen Iberoamérica · servicios de metagenómica</h2>
+      <p>Operamos el portfolio completo de metagenómica desde nuestros hubs de <strong>🇪🇸 Madrid</strong> y <strong>🇨🇱 Santiago</strong> conectados a la red Macrogen Inc.:</p>
+      <ul>
+        <li><strong><a href="../servicios/metagenoma.html">16S/18S/ITS amplicon</a></strong> — perfilado por ASV (DADA2) con análisis de diversidad alfa/beta + asignación taxonómica vs SILVA/UNITE</li>
+        <li><strong>Shotgun metagenomics</strong> — comunidades complejas, análisis funcional KEGG/COG, detección de resistoma</li>
+        <li><strong>Long-read metagenomics</strong> en PacBio Revio para resolución a nivel de especie</li>
+        <li><strong>Metatranscriptomics</strong> para captura de función activa en comunidad</li>
+        <li>Bioinformática completa con pipelines validados + reportes ejecutivos en español</li>
+        <li>USD para Chile/Perú · EUR para España/Portugal · pick-up gratis Madrid + Santiago</li>
+      </ul>
+
+      <hr>
+      <p>Explorar comunidades microbianas nos permite entender mejor ecosistemas complejos, mejorar diagnóstico de enfermedades, monitorear salud ambiental y descubrir tratamientos médicos novedosos. A medida que la metagenómica continúa evolucionando con tecnología mejorada, sus aplicaciones solo se expandirán.</p>
+
+      <p style="color:var(--mc-mute); font-size:.95rem; margin-top:20px;"><em>¿Diseñando un proyecto de metagenómica? <a href="../contacto.html">Habla con nuestros bioinformáticos</a> — podemos asesorar elección de método (16S vs shotgun vs long-read), diseño experimental y análisis. Consultoría inicial sin costo.</em></p>
+      <p style="color:var(--mc-mute); font-size:.85rem; margin-top:14px;">Adaptado de un artículo original de Psomagen (hermana corporativa de Macrogen en EE.UU.). <a href="https://www.psomagen.com/blog/tools-for-metagenomic-research" target="_blank" rel="noopener">Fuente original ↗</a></p>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="../assets/img/logo.png" alt="Macrogen" class="logo-img"><h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4><p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">ES · PT · CL · PE</p><p data-i18n-html="footer.brand_description">Operación conjunta Macrogen Spain + Chile.</p><p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p></div>
+      <div><h4 data-i18n="footer.services_heading">Servicios</h4><a href="../servicios/wgs.html">WGS</a><a href="../servicios/sanger.html">Sanger</a><a href="../servicios/oligo.html">Oligo</a><a href="../servicios.html" data-i18n="footer.service_view_all">Ver todos →</a></div>
+      <div><h4 data-i18n="footer.company_heading">Compañía</h4><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a><a href="../blog.html" data-i18n="nav.blog">Blog</a><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a><a href="../faq.html" data-i18n="nav.faq">FAQ</a><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></div>
+      <div><h4 data-i18n="footer.hubs_heading">Hubs</h4><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇪🇸 Madrid</strong><br>+34 911 138 378</p><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇨🇱 Santiago</strong><br>+56 9 5845 1395</p><a href="mailto:info-spain@macrogen.com" style="font-size:12px;">🇪🇸 info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12px;">🇨🇱 info-chile@macrogen.com</a></div>
+    </div>
+    <div class="footer-bottom"><span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span><span><a href="../privacidad.html" data-i18n="footer.privacy">Privacidad</a><a href="../terminos.html" data-i18n="footer.terms">Términos</a><a href="https://dna.macrogen.com" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a></span></div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>
