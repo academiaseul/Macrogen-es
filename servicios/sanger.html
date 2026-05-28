@@ -96,6 +96,7 @@
       </li>
       <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
       <li><a href="../blog.html" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../recursos.html">Recursos</a></li>
       <li><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>
       <li><a href="../faq.html" data-i18n="nav.faq">FAQ</a></li>
       <li><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></li>
@@ -158,13 +159,14 @@
   <div class="container">
     <div class="text-center" style="max-width:680px; margin:0 auto 36px;">
       <span class="eyebrow on-light">Catálogo CES</span>
-      <h2>Cuatro productos, un mismo nivel de calidad.</h2>
+      <h2>Cinco productos, un mismo nivel de calidad.</h2>
     </div>
-    <div class="grid grid-2">
+    <div class="grid grid-3">
       <div class="pillar-card t-red">
         <div class="pillar-icon red">📋</div>
         <h3>Standard Sequencing</h3>
         <p>Secuenciación clásica de un primer sobre un template (plásmido o producto PCR purificado). Ideal para verificar clones.</p>
+        <a href="../assets/docs/order-guide-standard-sequencing.pdf" target="_blank" rel="noopener" style="font-size:12px; color:var(--mc-teal); font-weight:700;">📥 Guía de pedido</a>
       </div>
       <div class="pillar-card t-red">
         <div class="pillar-icon red">🧬</div>
@@ -175,11 +177,26 @@
         <div class="pillar-icon red">📊</div>
         <h3>Fragment Analysis</h3>
         <p>Genotipado de microsatélites (STR), AFLP, MLPA y análisis de longitud de fragmentos con marcadores fluorescentes.</p>
+        <a href="../assets/docs/order-guide-fragment-analysis.pdf" target="_blank" rel="noopener" style="font-size:12px; color:var(--mc-teal); font-weight:700;">📥 Guía de pedido</a>
       </div>
       <div class="pillar-card t-red">
         <div class="pillar-icon red">⚙️</div>
         <h3>Customized Sequencing</h3>
         <p>Tu workflow llave en mano: PCR + purificación + cloning + secuenciación + pyrosequencing si lo requieres.</p>
+        <a href="../assets/docs/order-guide-customized-sequencing.pdf" target="_blank" rel="noopener" style="font-size:12px; color:var(--mc-teal); font-weight:700;">📥 Guía de pedido</a>
+      </div>
+      <div class="pillar-card t-red" style="border:2px solid var(--mc-green); position:relative;">
+        <span style="position:absolute; top:-10px; right:14px; background:var(--mc-green); color:#fff; font-size:10px; font-weight:800; letter-spacing:1px; padding:3px 10px; border-radius:4px; text-transform:uppercase;">★ Nuevo</span>
+        <div class="pillar-icon" style="background:#EAF6E5; color:var(--mc-green);">👤</div>
+        <h3>Cell Line ID · STR</h3>
+        <p>Autenticación de líneas celulares humanas con <strong>PowerPlex Fusion 6c</strong>. Reportes ICLAC con matching score vs ATCC y Cellosaurus.</p>
+        <a href="#cell-line-id" style="font-size:12px; color:var(--mc-green); font-weight:700;">Ver detalle ↓</a>
+      </div>
+      <div class="pillar-card" style="background:#F0F4FB; border:2px dashed #DDE3EE; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <div style="font-size:32px; margin-bottom:8px;">🧷</div>
+        <h3 style="font-size:16px;">Necesitas un primer?</h3>
+        <p style="font-size:13px; margin-bottom:12px;">96 primers universales en stock — gratis con tu pedido Sanger.</p>
+        <a href="#primers" class="btn btn-ghost-light" style="font-size:12px; padding:8px 16px;">Ver tabla →</a>
       </div>
     </div>
   </div>
@@ -202,6 +219,278 @@
         <tr><th>Primer</th><td>10 µM · 5 µL mín. (o usa primers universales M13/T7/SP6 — 90+ gratis en stock)</td></tr>
         <tr><th>Etiquetado</th><td>Tubos individuales o placa 96 (ABI/Eppendorf)</td></tr>
       </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============== PRIMERS UNIVERSALES · TABLA BUSCABLE ============== -->
+<section id="primers" class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:760px; margin:0 auto 32px;">
+      <span class="eyebrow on-light">96 primers en stock · gratis con Sanger</span>
+      <h2>Primers Universales · busca el tuyo.</h2>
+      <p>Si tu primer está en esta lista <strong>no necesitas enviarlo</strong>. Lo aplicamos sin coste adicional a tu reacción Sanger CES. Cubrimos los vectores y barcodes más comunes: M13, T7, SP6, T3, BGH, CMV, EGFP, AOX1, ITS1–5, 16S (27F/1492R), COI (LCO/HCO), entre otros.</p>
+    </div>
+
+    <div style="max-width:920px; margin:0 auto;">
+      <div style="position:relative; margin-bottom:18px;">
+        <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:16px; color:var(--mc-mute);">🔎</span>
+        <input
+          type="text"
+          id="primer-search"
+          placeholder="Busca por nombre o secuencia… (ej. M13, T7, ITS, ATGCC, 16S, EGFP)"
+          autocomplete="off"
+          aria-label="Buscar primer"
+          style="width:100%; padding:14px 16px 14px 44px; border:1.5px solid var(--mc-border); border-radius:10px; font-size:14px; font-family:inherit;">
+      </div>
+
+      <div id="primer-result-count" style="font-size:12px; color:var(--mc-mute); margin-bottom:10px;">Mostrando <strong>96</strong> de 96 primers.</div>
+
+      <div style="overflow-x:auto; border:1px solid var(--mc-border); border-radius:10px;">
+        <table id="primer-table" style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead style="background:var(--mc-navy); color:#fff;">
+            <tr>
+              <th style="padding:11px 14px; text-align:left; font-weight:700; width:40px;">#</th>
+              <th style="padding:11px 14px; text-align:left; font-weight:700;">Primer Name</th>
+              <th style="padding:11px 14px; text-align:left; font-weight:700;">Sequence (5'→3')</th>
+              <th style="padding:11px 14px; text-align:left; font-weight:700; width:80px;">Length (bp)</th>
+            </tr>
+          </thead>
+          <tbody id="primer-tbody">
+        <tr><td>1</td><td><strong>Bluescript_SK</strong></td><td><code>CGCTCTAGAACTAGTGGATC</code></td><td>20</td></tr>
+        <tr><td>2</td><td><strong>Bluescript_KS</strong></td><td><code>TCGAGGTCGACGGTATC</code></td><td>17</td></tr>
+        <tr><td>3</td><td><strong>KAN2-FP</strong></td><td><code>ACCTACAACAAAGCTCTCATCAACC</code></td><td>25</td></tr>
+        <tr><td>4</td><td><strong>KAN2-RP</strong></td><td><code>GCAATGTAACATCAGAGATTTTGAG</code></td><td>25</td></tr>
+        <tr><td>5</td><td><strong>pBacPAC-RP</strong></td><td><code>GTCTGTAAATCAACAACGC</code></td><td>19</td></tr>
+        <tr><td>6</td><td><strong>pBAD-FP</strong></td><td><code>ATGCCATAGCATTTTATCC</code></td><td>20</td></tr>
+        <tr><td>7</td><td><strong>pDONOR-FP</strong></td><td><code>TAACGCTAGCATGGATCTC</code></td><td>19</td></tr>
+        <tr><td>8</td><td><strong>pEGFP_N</strong></td><td><code>CCGTCCAGCTCGACCAG</code></td><td>17</td></tr>
+        <tr><td>9</td><td><strong>pEGFP-FP</strong></td><td><code>TTTAGTGAACCGTCAGATC</code></td><td>19</td></tr>
+        <tr><td>10</td><td><strong>pEGFP-RP</strong></td><td><code>AACAGCTCCTCGCCTTG</code></td><td>18</td></tr>
+        <tr><td>11</td><td><strong>pESP-RP</strong></td><td><code>TCCAAAAGAAGTCGAGTGG</code></td><td>19</td></tr>
+        <tr><td>12</td><td><strong>pET-24a</strong></td><td><code>GGGTTATGCTAGTTATTGCTCAG</code></td><td>23</td></tr>
+        <tr><td>13</td><td><strong>pET-RP</strong></td><td><code>CTAGTTATTGCTCAGCGG</code></td><td>18</td></tr>
+        <tr><td>14</td><td><strong>pMalE</strong></td><td><code>TACGACTGTCGATGAAGC</code></td><td>18</td></tr>
+        <tr><td>15</td><td><strong>pREP-fwd</strong></td><td><code>GCTCGATACAATAAACGCC</code></td><td>19</td></tr>
+        <tr><td>16</td><td><strong>35S-A</strong></td><td><code>AAGGGTCTTGCGAAGGATAG</code></td><td>20</td></tr>
+        <tr><td>17</td><td><strong>35S-B</strong></td><td><code>AGTGGAAAAGGAAGGTGGCT</code></td><td>20</td></tr>
+        <tr><td>18</td><td><strong>AD_Reverse</strong></td><td><code>AGATGGTGCACGATGCACAG</code></td><td>20</td></tr>
+        <tr><td>19</td><td><strong>a-Factor</strong></td><td><code>TACTATTGCCAGCATTGCTGC</code></td><td>21</td></tr>
+        <tr><td>20</td><td><strong>CYC1_Reverse</strong></td><td><code>GCGTGAATGTAAGCGTGAC</code></td><td>19</td></tr>
+        <tr><td>21</td><td><strong>DsRed1-C</strong></td><td><code>AGCTGGACATCACCTCCCACAACG</code></td><td>24</td></tr>
+        <tr><td>22</td><td><strong>DsRed1-N</strong></td><td><code>GTACTGGAACTGGGGGGACAG</code></td><td>21</td></tr>
+        <tr><td>23</td><td><strong>EBV-RP</strong></td><td><code>GTGGTTTGTCCAAACTCATC</code></td><td>20</td></tr>
+        <tr><td>24</td><td><strong>EGFP-C</strong></td><td><code>CATGGTCCTGCTGGAGTTCGTG</code></td><td>22</td></tr>
+        <tr><td>25</td><td><strong>EGFP-N</strong></td><td><code>CGTCGCCGTCCAGCTCGACCAG</code></td><td>22</td></tr>
+        <tr><td>26</td><td><strong>U-19mer_Primer</strong></td><td><code>GTTTTCCCAGTCACGACGT</code></td><td>19</td></tr>
+        <tr><td>27</td><td><strong>T7 EEV</strong></td><td><code>ATGTCGTAATAACCCCGCCCCG</code></td><td>22</td></tr>
+        <tr><td>28</td><td><strong>pFastBac_Forward</strong></td><td><code>GGATTATTCATACCGTCCCA</code></td><td>20</td></tr>
+        <tr><td>29</td><td><strong>pFastBac_Reverse</strong></td><td><code>CAAATGTGGTATGGCTGATT</code></td><td>20</td></tr>
+        <tr><td>30</td><td><strong>AOX1_Forward</strong></td><td><code>GACTGGTTCCAATTGACAAGC</code></td><td>21</td></tr>
+        <tr><td>31</td><td><strong>AOX1_Reverse</strong></td><td><code>GCAAATGGCATTCTGACATCC</code></td><td>21</td></tr>
+        <tr><td>32</td><td><strong>STag_18mer_Primer</strong></td><td><code>GAACGCCAGCACATGGAC</code></td><td>18</td></tr>
+        <tr><td>33</td><td><strong>MT_Forward</strong></td><td><code>CATCTCAGTGCAACTAAA</code></td><td>18</td></tr>
+        <tr><td>34</td><td><strong>QE_Promoter</strong></td><td><code>CCGAAAAGTGCCACCTG</code></td><td>17</td></tr>
+        <tr><td>35</td><td><strong>pRH_Forward</strong></td><td><code>CTGTCTCTATACTCCCCTATAG</code></td><td>22</td></tr>
+        <tr><td>36</td><td><strong>pRH_Reverse</strong></td><td><code>CAAAATTCAATAGTTACTATCGC</code></td><td>23</td></tr>
+        <tr><td>37</td><td><strong>pTrcHis_Forward</strong></td><td><code>GAGGTATATATTAATGTATCG</code></td><td>21</td></tr>
+        <tr><td>38</td><td><strong>pJET1.2F</strong></td><td><code>CGACTCACTATAGGGAGAGCGGC</code></td><td>23</td></tr>
+        <tr><td>39</td><td><strong>pJET1.2R</strong></td><td><code>AAGAACATCGATTTTCCATGGCAG</code></td><td>24</td></tr>
+        <tr><td>40</td><td><strong>SV40-pArev</strong></td><td><code>CCTCTACAAATGTGGTATGG</code></td><td>20</td></tr>
+        <tr><td>41</td><td><strong>SV40-Promoter</strong></td><td><code>GCCCCTAACTCCGCCCATCC</code></td><td>20</td></tr>
+        <tr><td>42</td><td><strong>SP6</strong></td><td><code>ATTTAGGTGACACTATAG</code></td><td>18</td></tr>
+        <tr><td>43</td><td><strong>T3</strong></td><td><code>ATTAACCCTCACTAAAG</code></td><td>17</td></tr>
+        <tr><td>44</td><td><strong>T7</strong></td><td><code>AATACGACTCACTATAG</code></td><td>17</td></tr>
+        <tr><td>45</td><td><strong>T7terminator</strong></td><td><code>GCTAGTTATTGCTCAGCGG</code></td><td>19</td></tr>
+        <tr><td>46</td><td><strong>T7promoter</strong></td><td><code>TAATACGACTCACTATAGGG</code></td><td>20</td></tr>
+        <tr><td>47</td><td><strong>M13-FP</strong></td><td><code>TGTAAAACGACGGCCAGT</code></td><td>18</td></tr>
+        <tr><td>48</td><td><strong>M13F-pUC(-40)</strong></td><td><code>GTTTTCCCAGTCACGAC</code></td><td>17</td></tr>
+        <tr><td>49</td><td><strong>M13R-pUC(-40)</strong></td><td><code>CAGGAAACAGCTATGAC</code></td><td>17</td></tr>
+        <tr><td>50</td><td><strong>M13F</strong></td><td><code>GTAAAACGACGGCCAGT</code></td><td>17</td></tr>
+        <tr><td>51</td><td><strong>M13R</strong></td><td><code>GCGGATAACAATTTCACACAGG</code></td><td>22</td></tr>
+        <tr><td>52</td><td><strong>pGEX5</strong></td><td><code>GGCAAGCCACGTTTGGTG</code></td><td>18</td></tr>
+        <tr><td>53</td><td><strong>pGEX3</strong></td><td><code>GGAGCTGCATGTGTCAGAGG</code></td><td>20</td></tr>
+        <tr><td>54</td><td><strong>BGH-R</strong></td><td><code>TAGAAGGCACAGTCGAGG</code></td><td>18</td></tr>
+        <tr><td>55</td><td><strong>CMV-F</strong></td><td><code>CGCAAATGGGCGGTAGGCGTG</code></td><td>21</td></tr>
+        <tr><td>56</td><td><strong>RVprimer3</strong></td><td><code>CTAGCAAAATAGGCTGTCCC</code></td><td>20</td></tr>
+        <tr><td>57</td><td><strong>RVprimer4</strong></td><td><code>GACGATAGTCATGCCCCGCG</code></td><td>20</td></tr>
+        <tr><td>58</td><td><strong>GLprimer1</strong></td><td><code>TGTATCTTATGGTACTGTAACTG</code></td><td>23</td></tr>
+        <tr><td>59</td><td><strong>GLprimer2</strong></td><td><code>CTTTATGTTTTTGGCGTCTTCCA</code></td><td>23</td></tr>
+        <tr><td>60</td><td><strong>GAL1_Forward</strong></td><td><code>AATATACCTCTATACTTTAACGTC</code></td><td>24</td></tr>
+        <tr><td>61</td><td><strong>Gal4AD</strong></td><td><code>TACCACTACAATGGATG</code></td><td>17</td></tr>
+        <tr><td>62</td><td><strong>pQE-F</strong></td><td><code>CCCGAAAAGTGCCACCTG</code></td><td>18</td></tr>
+        <tr><td>63</td><td><strong>pQE-R</strong></td><td><code>GTTCTGAGGTCATTACTGG</code></td><td>19</td></tr>
+        <tr><td>64</td><td><strong>pBAD-F</strong></td><td><code>ATGCCATAGCATTTTTATCCA</code></td><td>21</td></tr>
+        <tr><td>65</td><td><strong>pBAD-R</strong></td><td><code>GATTTAATCTGTATCAGG</code></td><td>18</td></tr>
+        <tr><td>66</td><td><strong>EGFP-CF</strong></td><td><code>AGCACCCAGTCCGCCCTGAGC</code></td><td>21</td></tr>
+        <tr><td>67</td><td><strong>EGFP-CR</strong></td><td><code>CGTCCATGCCGAGAGTG</code></td><td>17</td></tr>
+        <tr><td>68</td><td><strong>EGFP-NR</strong></td><td><code>CGTCGCCGTCCAGCTC</code></td><td>16</td></tr>
+        <tr><td>69</td><td><strong>DuetDown1</strong></td><td><code>GATTATGCGGCCGTGTACAA</code></td><td>20</td></tr>
+        <tr><td>70</td><td><strong>DuetUP2</strong></td><td><code>TTGTACACGGCCGCATAATC</code></td><td>20</td></tr>
+        <tr><td>71</td><td><strong>pET-upstream</strong></td><td><code>ATGCGTCCGGCGTAGAGG</code></td><td>18</td></tr>
+        <tr><td>72</td><td><strong>LCO1490</strong></td><td><code>GGTCAACAAATCATAAAGATATTGG</code></td><td>25</td></tr>
+        <tr><td>73</td><td><strong>HCO2198</strong></td><td><code>TAAACTTCAGGGTGACCAAAAAATCA</code></td><td>26</td></tr>
+        <tr><td>74</td><td><strong>ITS1</strong></td><td><code>TCCGTAGGTGAACCTGCGG</code></td><td>19</td></tr>
+        <tr><td>75</td><td><strong>ITS2</strong></td><td><code>GCTGCGTTCTTCATCGATGC</code></td><td>20</td></tr>
+        <tr><td>76</td><td><strong>ITS3</strong></td><td><code>GCATCGATGAAGAACGCAGC</code></td><td>20</td></tr>
+        <tr><td>77</td><td><strong>ITS4</strong></td><td><code>TCCTCCGCTTATTGATATGC</code></td><td>20</td></tr>
+        <tr><td>78</td><td><strong>ITS5</strong></td><td><code>GGAAGTAAAAGTCGTAACAAGG</code></td><td>22</td></tr>
+        <tr><td>79</td><td><strong>27F</strong></td><td><code>AGAGTTTGATCMTGGCTCAG</code></td><td>20</td></tr>
+        <tr><td>80</td><td><strong>1492R</strong></td><td><code>TACGGYTACCTTGTTACGACTT</code></td><td>22</td></tr>
+        <tr><td>81</td><td><strong>518F</strong></td><td><code>CCAGCAGCCGCGGTAATACG</code></td><td>20</td></tr>
+        <tr><td>82</td><td><strong>800R</strong></td><td><code>TACCAGGGTATCTAATCC</code></td><td>18</td></tr>
+        <tr><td>83</td><td><strong>785F</strong></td><td><code>GGATTAGATACCCTGGTA</code></td><td>18</td></tr>
+        <tr><td>84</td><td><strong>907R</strong></td><td><code>CCGTCAATTCMTTTRAGTTT</code></td><td>20</td></tr>
+        <tr><td>85</td><td><strong>1100R</strong></td><td><code>GGGTTGCGCTCGTTG</code></td><td>15</td></tr>
+        <tr><td>86</td><td><strong>337F</strong></td><td><code>GACTCCTACGGGAGGCWGCAG</code></td><td>21</td></tr>
+        <tr><td>87</td><td><strong>NS1</strong></td><td><code>GTAGTCATATGCTTGTCTC</code></td><td>19</td></tr>
+        <tr><td>88</td><td><strong>NS8</strong></td><td><code>TCCGCAGGTTCACCTACGGA</code></td><td>20</td></tr>
+        <tr><td>89</td><td><strong>NS24</strong></td><td><code>AAACCTTGTTACGACTTTTA</code></td><td>20</td></tr>
+        <tr><td>90</td><td><strong>LR0R</strong></td><td><code>ACCCGCTGAACTTAAGC</code></td><td>17</td></tr>
+        <tr><td>91</td><td><strong>LR7</strong></td><td><code>TACTACCACCAAGATCT</code></td><td>17</td></tr>
+        <tr><td>92</td><td><strong>Alphafor</strong></td><td><code>CATTTTCCAACAGCACA</code></td><td>17</td></tr>
+        <tr><td>93</td><td><strong>SV40-pAR</strong></td><td><code>GAAATTTGTGATGCTATTGC</code></td><td>20</td></tr>
+        <tr><td>94</td><td><strong>pE-C-R</strong></td><td><code>CCTCACAAATGTGTATGG</code></td><td>18</td></tr>
+        <tr><td>95</td><td><strong>U6</strong></td><td><code>CAGTGCAGGGGAAAGAATAGTAGAC</code></td><td>25</td></tr>
+        <tr><td>96</td><td><strong>RAM14F</strong></td><td><code>GTTGGATTATTTTAACCAATGCAGAT</code></td><td>26</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-top:18px;">
+        <span style="font-size:12px; color:var(--mc-mute);">Fuente: <em>Stock Primers Universales v3</em> · Macrogen Chile</span>
+        <a href="../assets/docs/primers-universales.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light" style="font-size:13px; padding:9px 18px;">📥 Descargar PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+#primer-table tbody tr { border-bottom:1px solid var(--mc-border); transition:background .15s; }
+#primer-table tbody tr:hover { background:#F8FAFC; }
+#primer-table tbody td { padding:10px 14px; vertical-align:middle; }
+#primer-table tbody td code { background:#F0F4FB; color:var(--mc-navy); padding:2px 6px; border-radius:4px; font-family:'SF Mono','Monaco','Courier New',monospace; font-size:12px; }
+#primer-table tbody tr.is-hidden { display:none; }
+#primer-search:focus { outline:2px solid var(--mc-teal); outline-offset:2px; border-color:var(--mc-teal); }
+</style>
+
+<script>
+(function() {
+  const input = document.getElementById('primer-search');
+  const tbody = document.getElementById('primer-tbody');
+  const counter = document.getElementById('primer-result-count');
+  if (!input || !tbody) return;
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const total = rows.length;
+
+  function filter() {
+    const q = input.value.trim().toUpperCase();
+    let visible = 0;
+    rows.forEach(r => {
+      const text = r.textContent.toUpperCase();
+      const match = !q || text.includes(q);
+      r.classList.toggle('is-hidden', !match);
+      if (match) visible++;
+    });
+    if (counter) counter.innerHTML = q
+      ? 'Mostrando <strong>' + visible + '</strong> de ' + total + ' primers que coinciden con "<strong>' + input.value + '</strong>".'
+      : 'Mostrando <strong>' + total + '</strong> de ' + total + ' primers.';
+  }
+  input.addEventListener('input', filter);
+})();
+</script>
+
+<!-- ============== CELL LINE ID · STR ============== -->
+<section id="cell-line-id" class="section section-bg">
+  <div class="container">
+    <div class="grid grid-2" style="gap:48px; align-items:start;">
+      <div>
+        <span class="eyebrow on-light" style="color:var(--mc-green);">★ Nuevo en Iberoamérica</span>
+        <h2>Cell Line ID · Autenticación STR.</h2>
+        <p>Servicio de <strong>autenticación de líneas celulares humanas</strong> con kit <strong>PowerPlex Fusion 6c</strong> en ABI 3730xl. Genera STR profiles que se comparan contra las bases de referencia <strong>ATCC</strong> y <strong>Cellosaurus</strong> según el estándar internacional <strong>ICLAC</strong>.</p>
+        <p>Crítico para investigadores que publican en revistas que requieren autenticación de líneas celulares (Nature, Cell, Cancer Research, etc.), validación de bancos celulares institucionales y detección de contaminación cruzada.</p>
+        <p style="font-size:13px; color:var(--mc-mute);"><strong>99,99% de precisión</strong> · TAT <strong>3-4 días hábiles</strong> · Reportes válidos para publicación.</p>
+        <div class="hero-actions" style="margin-top:18px;">
+          <a href="../contacto.html?promo=SANGER10&amp;servicio=cell-line-id" class="btn btn-primary">Cotizar Cell Line ID</a>
+          <a href="../assets/docs/cell-line-id-str.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light">📥 Guía técnica</a>
+        </div>
+      </div>
+      <div>
+        <h3>Requerimientos &amp; reportes</h3>
+        <table class="spec-table">
+          <tr><th>DNA</th><td>≥ 10 ng/µL · ≥ 200 ng total</td></tr>
+          <tr><th>Pellet celular</th><td>&gt; 10.000 células · DNA extraction fee</td></tr>
+          <tr><th>Tejido</th><td>&gt; 20 mg · envío con hielo seco · extraction fee</td></tr>
+          <tr><th>Sangre</th><td>&gt; 2 mL · envío con hielo seco · extraction fee</td></tr>
+          <tr><th>FFPE</th><td style="color:var(--mc-red);">⚠️ No serviceable (use NGS targeted)</td></tr>
+          <tr><th>Instrumento</th><td>ABI 3730xl + PowerPlex Fusion 6c</td></tr>
+          <tr><th>TAT</th><td>3–4 días hábiles</td></tr>
+        </table>
+
+        <h3 style="margin-top:24px;">Tipos de reporte</h3>
+        <div style="background:#fff; border:1px solid var(--mc-border); border-radius:10px; padding:18px; font-size:13px; line-height:1.7;">
+          <strong>1. STR Profiles individual</strong> — perfiles STR de cada muestra sin comparación.<br>
+          <strong>2. Cliente vs Reference DB</strong> — matching score contra ATCC, Cellosaurus, o ambas.<br>
+          <strong>3. Cliente vs Cliente</strong> — comparativa entre muestras del mismo cliente.<br>
+          <strong>4. Cliente vs Muestra previa</strong> — versus muestras enviadas en pedidos anteriores.
+        </div>
+
+        <div style="background:#EAF6E5; border-left:3px solid var(--mc-green); border-radius:8px; padding:14px 16px; margin-top:18px; font-size:12.5px; line-height:1.6;">
+          <strong style="color:var(--mc-green); display:block; margin-bottom:4px;">📊 Interpretación ICLAC</strong>
+          <strong>0-55% match</strong> → líneas no relacionadas (donantes distintos)<br>
+          <strong>56-79% match</strong> → indeterminado, requiere más loci<br>
+          <strong>80-100% match</strong> → líneas relacionadas (mismo donante)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CÓMO ENVIAR MUESTRAS ============== -->
+<section id="envio" class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:760px; margin:0 auto 36px;">
+      <span class="eyebrow on-light">Logística de envío</span>
+      <h2>Cómo enviar tus muestras Sanger.</h2>
+      <p>Pick-up gratis en Madrid 🇪🇸 y Santiago 🇨🇱. Para envíos internacionales, descarga la etiqueta correspondiente al hub que te atiende.</p>
+    </div>
+
+    <div class="grid grid-2" style="gap:32px; max-width:920px; margin:0 auto;">
+
+      <div style="background:linear-gradient(135deg,#7FC97F 0%,#1A8754 100%); color:#fff; padding:28px; border-radius:14px; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-30px; right:-30px; font-size:160px; opacity:.08;">🇨🇱</div>
+        <span style="font-size:11px; letter-spacing:1.5px; font-weight:700; opacity:.9; text-transform:uppercase;">Hub Santiago</span>
+        <h3 style="color:#fff; font-size:22px; margin:6px 0 14px;">Macrogen Chile</h3>
+        <p style="font-size:14px; line-height:1.6; opacity:.96; margin-bottom:18px;">
+          <strong>Magdalena 140, Of. 401</strong><br>
+          Las Condes, Santiago. 7550104.<br>
+          🇨🇱 Chile<br>
+          <span style="opacity:.8;">+56 9 5845 1395</span>
+        </p>
+        <p style="font-size:12px; opacity:.9; margin-bottom:16px;">Sirve a Chile y Perú · USD invoicing · pick-up gratis en Santiago</p>
+        <a href="../assets/docs/shipping-label-santiago.html" target="_blank" rel="noopener" class="btn" style="background:#fff; color:#1A8754; font-weight:800;">🖨️ Imprimir etiqueta CES →</a>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#3FA9C9 0%,#1B2A57 100%); color:#fff; padding:28px; border-radius:14px; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-30px; right:-30px; font-size:160px; opacity:.08;">🇪🇸</div>
+        <span style="font-size:11px; letter-spacing:1.5px; font-weight:700; opacity:.9; text-transform:uppercase;">Hub Madrid</span>
+        <h3 style="color:#fff; font-size:22px; margin:6px 0 14px;">Macrogen Spain</h3>
+        <p style="font-size:14px; line-height:1.6; opacity:.96; margin-bottom:18px;">
+          <strong>C. de Martínez Villergas, 52</strong><br>
+          28027 Madrid<br>
+          🇪🇸 España<br>
+          <span style="opacity:.8;">+34 911 138 378</span>
+        </p>
+        <p style="font-size:12px; opacity:.9; margin-bottom:16px;">Sirve a España y Portugal · EUR invoicing · pick-up gratis en Madrid</p>
+        <a href="../contacto.html#madrid" class="btn" style="background:#fff; color:#1B2A57; font-weight:800;">Ver contactos hub Madrid →</a>
+      </div>
+
+    </div>
+
+    <div style="max-width:920px; margin:36px auto 0; padding:22px 24px; background:var(--mc-bg); border-radius:12px; font-size:13px; line-height:1.65;">
+      <strong style="color:var(--mc-navy); display:block; margin-bottom:10px;">📦 ¿Cómo coordinar el envío?</strong>
+      Para envíos por <strong>FedEx</strong> o <strong>DHL</strong> consulta nuestras guías en <a href="../recursos.html#envio" style="color:var(--mc-teal); font-weight:700;">la página de Recursos</a> — incluyen procedimientos con y sin hielo seco, tarifas y declared price recomendado (USD 10-100 para evitar inspección aduanal). Para volúmenes grandes (&gt;20 reacciones Sanger), el envío es gratuito.
     </div>
   </div>
 </section>

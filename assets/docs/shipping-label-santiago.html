@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<title>Etiqueta de envío · Macrogen Chile (Santiago)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; background:#F4F6FB; padding:32px 20px; margin:0; color:#1B2A57; }
+  .toolbar { max-width: 380px; margin:0 auto 24px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .btn-print, .btn-back { background:#1B2A57; color:#fff; border:none; padding:11px 22px; border-radius:8px; font-weight:700; font-size:14px; cursor:pointer; text-decoration:none; display:inline-block; }
+  .btn-back { background:#6B7B95; }
+  .btn-print:hover { background:#3FA9C9; }
+
+  .label-wrap { max-width:380px; margin:0 auto; background:#fff; border:2px solid #DDE3EE; border-radius:18px; overflow:hidden; box-shadow:0 8px 28px rgba(27,42,87,0.10); }
+  .label-header { background:#7FC97F; color:#fff; padding:24px 22px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+  .logo-block { display:flex; align-items:center; gap:8px; }
+  .logo-svg { width:42px; height:42px; }
+  .logo-text { line-height:1.1; }
+  .logo-text small { font-size:10px; font-weight:600; opacity:.95; }
+  .logo-text strong { font-size:22px; font-weight:800; letter-spacing:-0.5px; }
+  .ces-badge { border-left:2px solid rgba(255,255,255,0.4); padding-left:14px; font-size:10px; line-height:1.4; font-weight:700; letter-spacing:1px; }
+  .label-body { padding:26px 26px 22px; }
+  .field-label { font-size:14px; color:#6B7B95; margin:0; }
+  .field-value { font-size:18px; font-weight:800; color:#1B2A57; margin:2px 0 0; }
+  .address { margin-top:18px; font-size:15.5px; line-height:1.55; }
+  .order-box { margin-top:24px; background:#F4F6FB; border-radius:12px; padding:16px 18px; font-size:13.5px; line-height:1.65; }
+  .order-box strong { display:block; margin-bottom:6px; font-size:14px; }
+  .barcode { margin-top:24px; text-align:center; }
+  .barcode-bars { display:inline-block; height:65px; background-image: repeating-linear-gradient(90deg, #1B2A57 0px, #1B2A57 2px, transparent 2px, transparent 4px, #1B2A57 4px, #1B2A57 5px, transparent 5px, transparent 7px, #1B2A57 7px, #1B2A57 9px, transparent 9px, transparent 11px); width:240px; }
+  .barcode-text { font-family: 'Courier New', monospace; font-size:18px; font-weight:800; letter-spacing:3px; margin-top:6px; color:#1B2A57; }
+
+  .footer-note { text-align:center; margin-top:24px; font-size:11px; color:#6B7B95; max-width:380px; margin-left:auto; margin-right:auto; }
+
+  @media print {
+    body { background:#fff; padding:0; }
+    .toolbar { display:none; }
+    .label-wrap { box-shadow:none; border:1px solid #999; }
+    .footer-note { display:none; }
+    @page { margin: 12mm; size: A6; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir etiqueta</button>
+  <a class="btn-back" href="../../recursos.html">← Volver a Recursos</a>
+</div>
+
+<div class="label-wrap">
+  <div class="label-header">
+    <div class="logo-block">
+      <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+        <path d="M30 8 C 18 12, 14 28, 22 40 C 28 48, 38 50, 46 44 C 54 38, 54 28, 48 22 C 44 18, 38 18, 34 22" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="30" cy="14" r="3.5" fill="#FF6B9D"/>
+      </svg>
+      <div class="logo-text">
+        <small>Humanizing Genomics</small><br>
+        <strong>macrogen</strong>
+      </div>
+    </div>
+    <div class="ces-badge">CES<br><span style="font-weight:500; font-size:8.5px; opacity:.95;">CAPILLARY<br>ELECTROPHORESIS<br>SEQUENCING</span></div>
+  </div>
+
+  <div class="label-body">
+    <p class="field-label">To.</p>
+    <p class="field-value">Macrogen Chile</p>
+
+    <div class="address">
+      Magdalena 140, Oficina 401<br>
+      Las Condes, Santiago. 7550104.
+    </div>
+
+    <div class="order-box">
+      <strong>[Order Details]</strong>
+      Customer Information : <strong style="display:inline;">Nombre de cliente</strong><br>
+      Sequencing : <strong style="display:inline;">X</strong> Rxn(s) / <strong style="display:inline;">X</strong> Sample(s) / primer(s)
+    </div>
+
+    <div class="barcode">
+      <div class="barcode-bars"></div>
+      <div class="barcode-text">HC XXXXXXXX</div>
+    </div>
+  </div>
+</div>
+
+<p class="footer-note">
+  Etiqueta tamaño A6 (105 × 148 mm) — imprime y adhiere al exterior del paquete.<br>
+  Pega también una copia <strong>dentro</strong> del paquete junto con tus muestras.<br>
+  Coordinación de pick-up gratis en Santiago: <a href="mailto:info-chile@macrogen.com">info-chile@macrogen.com</a> · +56 9 5845 1395.
+</p>
+
+</body>
+</html>
