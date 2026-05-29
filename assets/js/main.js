@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========== Launch announcement bar · auto-hide after Aug 31, 2026 ==========
   // The SANGER10 launch campaign ends 2026-08-31. After that date, hide the
   // top gradient bar on ALL pages so we don't show an expired offer.
-  // Also hides BEFORE Jun 15 (campaign hasn't started yet).
+  // We INTENTIONALLY show the bar before the launch date too (May–Jun 2026)
+  // because the bar is also a pre-launch teaser — the message "vigente hasta
+  // 31 ago 2026" is valid all the way through.
   (function manageLaunchBar() {
     const bar = document.querySelector('.launch-bar');
     if (!bar) return;
-    const STARTS_AT  = new Date('2026-06-15T00:00:00Z').getTime();
     const EXPIRES_AT = new Date('2026-09-01T00:00:00Z').getTime();
-    const now = Date.now();
     const force = new URLSearchParams(location.search).get('showpromo') === '1';
-    if (!force && (now < STARTS_AT || now >= EXPIRES_AT)) {
+    if (!force && Date.now() >= EXPIRES_AT) {
       bar.remove();
     }
   })();
