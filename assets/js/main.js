@@ -107,11 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('[promo] force-show triggered, snooze cleared');
     }
 
-    // Bail if before launch (June 15) or past expiry (Aug 31)
-    if (!forceShow && Date.now() < STARTS_AT) {
-      console.log('[promo] not yet launched. Campaign starts 2026-06-15.');
-      return;
-    }
+    // Show the popup as a pre-launch teaser too — the message "vigente hasta
+    // 31 ago 2026" is valid before, during, and we only stop after expiry.
+    // STARTS_AT kept as a comment for documentation purposes only.
     if (Date.now() >= EXPIRES_AT) return;
 
     // Only show on home page (unless force-show)
