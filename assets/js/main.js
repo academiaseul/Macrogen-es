@@ -3,6 +3,22 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ========== Launch announcement bar · auto-hide after Aug 31, 2026 ==========
+  // The SANGER10 launch campaign ends 2026-08-31. After that date, hide the
+  // top gradient bar on ALL pages so we don't show an expired offer.
+  // Also hides BEFORE Jun 15 (campaign hasn't started yet).
+  (function manageLaunchBar() {
+    const bar = document.querySelector('.launch-bar');
+    if (!bar) return;
+    const STARTS_AT  = new Date('2026-06-15T00:00:00Z').getTime();
+    const EXPIRES_AT = new Date('2026-09-01T00:00:00Z').getTime();
+    const now = Date.now();
+    const force = new URLSearchParams(location.search).get('showpromo') === '1';
+    if (!force && (now < STARTS_AT || now >= EXPIRES_AT)) {
+      bar.remove();
+    }
+  })();
+
   // ========== Sticky header height → CSS variable ==========
   // Exposes the actual rendered height of the main site-header as --header-h
   // so .service-subnav (and any other below-header sticky element) can stack
