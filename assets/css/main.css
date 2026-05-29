@@ -1755,13 +1755,21 @@ textarea:focus-visible,
    ============================================ */
 .service-subnav {
   position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* sits below the main sticky header — JS sets --header-h dynamically */
+  top: var(--header-h, 78px);
+  z-index: 49; /* below site-header (100) so the main header always wins on overlap */
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   border-bottom: 1px solid var(--mc-border);
-  box-shadow: 0 2px 12px rgba(27,42,87,0.04);
+  box-shadow: 0 2px 12px rgba(27,42,87,0.06);
+  /* Scroll-anchor offset so #anchor jumps land below both bars */
+  scroll-margin-top: calc(var(--header-h, 78px) + 56px);
+}
+/* Apply scroll-margin to all anchored sections on pages that use the subnav */
+.service-subnav ~ section[id],
+body:has(.service-subnav) section[id] {
+  scroll-margin-top: calc(var(--header-h, 78px) + 56px);
 }
 .service-subnav-inner {
   display: flex;

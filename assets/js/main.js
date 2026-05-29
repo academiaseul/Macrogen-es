@@ -3,6 +3,33 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ========== Sticky header height → CSS variable ==========
+  // Exposes the actual rendered height of the main site-header as --header-h
+  // so .service-subnav (and any other below-header sticky element) can stack
+  // immediately below it across all viewport sizes + translation changes.
+  (function syncHeaderHeight() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    function update() {
+      const h = header.offsetHeight || 78;
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+    }
+    update();
+
+    // Re-measure on viewport changes (mobile nav open, font swap, translation, etc.)
+    if (window.ResizeObserver) {
+      new ResizeObserver(update).observe(header);
+    } else {
+      window.addEventListener('resize', update, { passive: true });
+    }
+    // Also re-measure when fonts finish loading (Inter changes header height slightly)
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(update);
+    }
+  })();
+
+
   // ========== CONTACT FORM · detect ?promo= URL param and pre-fill ==========
   // When user arrives at contacto.html?promo=SANGER10 from the popup,
   // show a confirmation banner + inject hidden field so Sales sees the code in Brevo.

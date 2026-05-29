@@ -175,31 +175,48 @@
     }
   }
 
+  // Dynamic top margin = main header + subnav heights, so active-state flips
+  // exactly when a section's top crosses the bottom of the visible nav stack.
+  function getRootMarginTop() {
+    const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(), 10) || 78;
+    const subnavH = subnav.offsetHeight || 56;
+    return -(headerH + subnavH + 4);
+  }
   const observer = new IntersectionObserver(entries => {
-    // Pick the section closest to top that is intersecting
     const visible = entries.filter(e => e.isIntersecting)
       .sort((a,b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
     if (visible[0]) setActive(visible[0].target.id);
   }, {
-    rootMargin: '-80px 0px -60% 0px',
+    rootMargin: getRootMarginTop() + 'px 0px -55% 0px',
     threshold: 0
   });
 
   sections.forEach(s => observer.observe(s));
 
-  // Smooth scroll with offset for sticky bars
+  // Smooth scroll with offset for both sticky bars (main header + subnav)
+  function getHeaderOffset() {
+    const cssVar = getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim();
+    const headerH = parseInt(cssVar, 10) || 78;
+    const subnavH = subnav.offsetHeight || 56;
+    return headerH + subnavH;
+  }
   links.forEach(link => {
     link.addEventListener('click', e => {
       const id = link.dataset.anchor;
       const target = document.getElementById(id);
       if (!target) return;
       e.preventDefault();
-      const headerOffset = 70; // approx subnav height
-      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      const offset = getHeaderOffset();
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset + 4;
       window.scrollTo({ top: y, behavior: 'smooth' });
       history.replaceState(null, '', '#' + id);
     });
   });
+
+  // Update IntersectionObserver rootMargin so the active highlight triggers
+  // when the section title crosses the bottom of the subnav (not the viewport top).
+  // This is handled by the observer's rootMargin already (-80px) but we make
+  // the value dynamic too for very small headers.
 })();
 </script>
 
