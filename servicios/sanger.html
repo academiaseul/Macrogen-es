@@ -132,6 +132,77 @@
   </div>
 </section>
 
+<!-- ============== STICKY SERVICE SUB-NAV (MPA style) ============== -->
+<nav class="service-subnav" aria-label="Navegación de la página Sanger">
+  <div class="service-subnav-inner" data-subnav>
+    <span class="service-subnav-brand">
+      <span class="flag">🇪🇸🇨🇱</span>
+      <span class="label-hide-sm">Sanger CES</span>
+    </span>
+    <a href="#productos" data-anchor="productos"><span class="icon">🧪</span>Productos</a>
+    <a href="#primers" data-anchor="primers"><span class="icon">🧷</span>Primers<span class="count">96</span></a>
+    <a href="#cell-line-id" data-anchor="cell-line-id"><span class="icon">👤</span>Cell Line ID</a>
+    <a href="#envio" data-anchor="envio"><span class="icon">📦</span>Envío</a>
+    <a href="#protocolo" data-anchor="protocolo"><span class="icon">🔬</span>Protocolo</a>
+    <a href="#identificacion" data-anchor="identificacion"><span class="icon">🔍</span>Identificación</a>
+    <a href="#tarifas" data-anchor="tarifas"><span class="icon">💶</span>Tarifas</a>
+    <a href="../recursos.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon">📁</span>Documentos →</a>
+  </div>
+</nav>
+
+<script>
+// Active-section highlighting via IntersectionObserver + smooth scroll offset
+(function() {
+  const subnav = document.querySelector('[data-subnav]');
+  if (!subnav) return;
+  const links = subnav.querySelectorAll('a[data-anchor]');
+  const sections = ['productos','primers','cell-line-id','envio','protocolo','identificacion','tarifas']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  if (!sections.length) return;
+
+  function setActive(id) {
+    links.forEach(l => l.classList.toggle('is-active', l.dataset.anchor === id));
+    // Auto-scroll subnav to keep active link visible
+    const active = subnav.querySelector('a.is-active');
+    if (active) {
+      const subnavRect = subnav.getBoundingClientRect();
+      const activeRect = active.getBoundingClientRect();
+      if (activeRect.left < subnavRect.left || activeRect.right > subnavRect.right) {
+        active.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+      }
+    }
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    // Pick the section closest to top that is intersecting
+    const visible = entries.filter(e => e.isIntersecting)
+      .sort((a,b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+    if (visible[0]) setActive(visible[0].target.id);
+  }, {
+    rootMargin: '-80px 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Smooth scroll with offset for sticky bars
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.dataset.anchor;
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const headerOffset = 70; // approx subnav height
+      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
+</script>
+
 <section class="section">
   <div class="container">
     <div class="grid grid-2" style="gap:48px; align-items:start;">

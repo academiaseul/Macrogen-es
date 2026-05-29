@@ -1751,6 +1751,99 @@ textarea:focus-visible,
 
 
 /* ============================================
+   SERVICE SUB-NAV · sticky mini-header (MPA style)
+   ============================================ */
+.service-subnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--mc-border);
+  box-shadow: 0 2px 12px rgba(27,42,87,0.04);
+}
+.service-subnav-inner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 8px 16px;
+  max-width: 1240px;
+  margin: 0 auto;
+  scroll-snap-type: x proximity;
+}
+.service-subnav-inner::-webkit-scrollbar { display: none; }
+
+.service-subnav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 0;
+  border-right: 1px solid var(--mc-border);
+  margin-right: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  color: var(--mc-navy);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.service-subnav-brand .flag { font-size: 13px; line-height: 1; }
+
+.service-subnav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 13px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--mc-mute);
+  white-space: nowrap;
+  transition: all .18s ease;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+.service-subnav a:hover {
+  background: var(--mc-bg);
+  color: var(--mc-navy);
+  border-color: var(--mc-border);
+}
+.service-subnav a.is-active {
+  background: var(--mc-navy);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(27,42,87,0.18);
+}
+.service-subnav a .icon {
+  font-size: 14px;
+  line-height: 1;
+}
+.service-subnav a .count {
+  font-size: 10px;
+  font-weight: 800;
+  background: var(--mc-red);
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 999px;
+  letter-spacing: 0;
+}
+.service-subnav a.is-active .count {
+  background: rgba(255,255,255,0.25);
+}
+
+@media (max-width: 720px) {
+  .service-subnav-brand { font-size: 11px; padding-right: 10px; margin-right: 6px; }
+  .service-subnav-brand .label-hide-sm { display: none; }
+  .service-subnav a { padding: 8px 11px; font-size: 11.5px; }
+  .service-subnav a .icon { font-size: 13px; }
+}
+
+/* ============================================
    LAUNCH BAR · top notice for SANGER10 promo
    ============================================ */
 .launch-bar a:hover { color:#fff; text-decoration:none; }
