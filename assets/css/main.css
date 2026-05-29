@@ -332,6 +332,14 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   text-transform: uppercase;
   box-shadow: 0 4px 12px rgba(224,0,77,.28);
   transition: all .2s ease;
+  /* Force inline rendering — fix for text wrapping under launch-bar layout */
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  line-height: 1;
+  height: auto;
+  min-height: 30px;
 }
 .nav-menu a.nav-order:hover {
   background: #B8003E;
@@ -340,6 +348,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   box-shadow: 0 6px 16px rgba(224,0,77,.4);
 }
 .nav-menu a.nav-order::after { display: none !important; }
+.nav-menu a.nav-order::before { display: none !important; }
 
 /* Order Now button (pink/magenta — distinct from green Quotation CTAs) */
 .btn-order {
