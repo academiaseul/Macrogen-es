@@ -219,6 +219,8 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   text-transform: uppercase;
   color: var(--mc-red);
   line-height: 1.25;
+  white-space: nowrap; /* Don't wrap "LATIN AMERICA" onto two lines */
+  flex-shrink: 0; /* Don't collapse if other items expand */
 }
 .nav-logo .region-tag small {
   display: block;
@@ -310,6 +312,27 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   padding: 0;
   gap: 28px;
   align-items: center;
+  min-width: 0;
+}
+
+/* === Compact-header rules for narrower desktops & long translations === */
+/* At 1280px and below, tighten spacing so EN/PT translations don't overflow */
+@media (max-width: 1280px) {
+  .nav { gap: 16px; }
+  .nav-menu { gap: 18px; }
+  .nav-menu a { font-size: 12.5px; }
+  .nav-logo .region-tag { font-size: 10px; padding-left: 10px; letter-spacing: 1.2px; }
+  .nav-logo .region-tag small { font-size: 8.5px; letter-spacing: .9px; }
+}
+/* At 1140px and below, drop the country subline (ES · PT · CL · PE) to save space */
+@media (max-width: 1140px) {
+  .nav-logo .region-tag small { display: none; }
+}
+/* At 1040px and below, hide the region-tag entirely (logo is still shown) */
+@media (max-width: 1040px) {
+  .nav-logo .region-tag { display: none; }
+  .nav-menu { gap: 14px; }
+  .nav-menu a { font-size: 12px; }
 }
 .nav-menu a {
   font-size: 13px;
@@ -318,6 +341,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   letter-spacing: .3px;
   position: relative;
   padding: 6px 0;
+  white-space: nowrap; /* Prevent text wrap on translated content like "About us" → 2 lines */
 }
 .nav-menu a:hover { color: var(--mc-teal); }
 .nav-menu a.active { color: var(--mc-navy); }
