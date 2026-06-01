@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/layout.css">
+
+    <!--tools-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+    <!--json data-->
+    <script src="../main.js"></script>
+
+    <script>
+        var ordernumber = array.project;
+        var customer = array.name;
+        var institute = array.institute;
+        var application = array.application;
+        var appCode = array.appCode;
+        var numberofsample = array.numberofsample;
+        document.title = ordernumber + " (" + customer + ") - " + appCode + " Analysis Report";
+    </script>
+</head>
+
+<body class="total_font">
+    <div></div>
+    <div id="wrap">
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font"><b id="banner_id"></b></div>
+                <script>
+                    document.getElementById('banner_id').innerHTML = application;
+                </script>
+                <p class="notice">Research Use Only</p>
+            </div>
+            <nav class="navbar">
+                <ul id="navbar_ui"></ul>
+                <script>
+                    function generateMenuHtml(menuArray) {
+                        let html = '';
+                        menuArray.forEach(item => {
+                            if (item.category) { // 변경
+                                html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                                html += '<ul class="dropdown-menu">';
+                                html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                                html += '</ul></li>';
+                            } else if (item.display) {
+                                if (item.path === "") {
+                                    html += "<li><p>" + item.name + "</p></li>";
+                                } else {
+                                    html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+                                }
+                            }
+                        });
+                        return html;
+                    }
+
+                    var html = "";
+                    var nav_ = document.getElementById('navbar_ui');
+                    if (array.page) {
+                        array.page.forEach(page => {
+                            if (page.category) {
+                                let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                                tmphtml += generateMenuHtml(page.path);
+                                tmphtml += '</ul></li>';
+                                html += tmphtml;
+                            } else if (page.path && page.path[0] && page.path[0].display) {
+                                html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
+                            }
+                        });
+                    }
+                    nav_.innerHTML = html;
+                </script>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Taxonomy analysis</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <br>
+                    <!--Krona-->
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Taxonomy (Krona)</b></a>
+                                    <div style="float: right;">
+                                        <b>Choose the Sample : </b><select id="sel_sample"></select>
+                                        <script>
+                                            var select_sample = document.getElementById('sel_sample');
+                                            var option_str = "";
+                                            var list_to_use = typeof new_name !== 'undefined' ? new_name : sample_list;
+                                        
+                                            for (var i = 0, key; key = list_to_use[i]; i++) {
+                                                option_str += "<option value='" + i + "'>" + key + "</option>";
+                                            }
+                                        
+                                            select_sample.innerHTML = option_str;
+                                        
+                                            $("#sel_sample").change(function () {
+                                                var sample = list_to_use[$("#sel_sample option:selected").val()];
+                                                var sellist = [sample];
+                                                var params = new URLSearchParams({
+                                                    titlename: "Krona",
+                                                    values: encodeURIComponent(JSON.stringify(sellist))
+                                                });
+                                        
+                                                $("#chart_krona").remove();
+                                                document.getElementById("div_krona").innerHTML = "<iframe src=\"\" id=\"chart_krona\" frameborder=0 width=\"1100\" height=\"650\" cellpadding=\"0\" cellspacing=\"0\"></iframe>";
+                                                document.getElementById("chart_krona").src = `./Taxonomy_krona/Bayesian_NCBI_16S/krona_template.html?${params.toString()}`;
+                                        
+                                                $("#home").find('a').trigger('click');
+                                            });
+                                        
+                                            // 초기 로드 시 첫 번째 샘플 선택
+                                            $(document).ready(function () {
+                                                $("#sel_sample").val(0).change();
+                                            });
+                                        </script>
+                                    </div>
+                                </h4>
+                            </div>
+                            <!--Chart-->
+                            <div id="collapse_1" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <div id="div_krona" style='display: inline-block;float:middle;clear:both;'>
+                                        <iframe src="" id="chart_krona" frameborder=0 width="1100" height="630"
+                                            cellpadding="0" cellspacing="0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+
+</html>

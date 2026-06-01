@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/group-modal.css">
+
+    <!--tools-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../js/plotly/plotly-2.20.0.min.js"></script>
+    <script src="../js/excel/xlsx.full.min.js"></script>
+
+    <!--json data-->
+    <script src="../main.js"></script>
+    <script src="./Diversity_beta/UPGMA_tree/netwick.js"> </script>
+    <script src="../js/group-modal.js"></script>
+    <script>
+        var array;
+        var ordernumber = array.project;
+        var customer = array.name;
+        var institute = array.organization;
+        var application = array.application;
+        var appCode = array.appCode;
+        var numberofsample = array.numberofsample;
+        document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
+        if (typeof new_name !== 'undefined' && Array.isArray(new_name) && new_name.some(name => name)) {
+            sample_list = new_name;
+        }
+    </script>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font"><b id="banner_id"></b></div>
+                <script>
+                    document.getElementById('banner_id').innerHTML = application;
+                </script>
+                <p class="notice">Research Use Only</p>
+            </div>
+            <nav class="navbar">
+                <ul id="navbar_ui"></ul>
+                <script>
+                    function generateMenuHtml(menuArray) {
+                        let html = '';
+                        menuArray.forEach(item => {
+                            if (item.category) { // 변경
+                                html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                                html += '<ul class="dropdown-menu">';
+                                html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                                html += '</ul></li>';
+                            } else if (item.display) {
+                                if (item.path === "") {
+                                    html += "<li><p>" + item.name + "</p></li>";
+                                } else {
+                                    html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+                                }
+                            }
+                        });
+                        return html;
+                    }
+
+                    var html = "";
+                    var nav_ = document.getElementById('navbar_ui');
+                    if (array.page) {
+                        array.page.forEach(page => {
+                            if (page.category) {
+                                let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                                tmphtml += generateMenuHtml(page.path);
+                                tmphtml += '</ul></li>';
+                                html += tmphtml;
+                            } else if (page.path && page.path[0] && page.path[0].display) {
+                                html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
+                            }
+                        });
+                    }
+                    nav_.innerHTML = html;
+                </script>
+            </nav>
+        </header>
+
+        <!--top 버튼-->
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Diversity analysis<h3>(Beta diversity > UPGMA tree)</h3>
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <br>
+                    <!--ASV chart-->
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>UPGMA Tree - Bray Curtis</b></a>
+                                    <div style="display: flex; align-items: center; margin-left: auto;">
+                                        <b style="margin-right: 5px;">Select a Group Type:</b>
+                                        <select id="groupSelector_bray" class="custom-group-selector"
+                                            style="margin-left: 5px;">
+                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
+                                        </select>
+                                    </div>
+                                </h4>
+                            </div>
+
+                            <!--Chart-->
+                            <div id="collapse_1" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" style="text-align: center;">
+
+                                    <iframe id="bray"   style="width:100%;border: none; "></iframe>
+                                    <!--iframe id="bray"  width="100%"  hei7t="100%" style="border: none; transform: scale(0.9);transform-origin: top left;"></iframe-->
+                                    <!--script>
+                                        var bray_string;
+                                        var show_gcolor;
+                                      //  console.log(show_gcolor);
+                                        var gcolors;
+                                       // console.log(Object.keys(gcolors).length);
+                                        var params = new URLSearchParams({
+                                            show_gcolor:show_gcolor.toString(),
+                                            gcolors: encodeURIComponent(JSON.stringify(gcolors)),
+                                            values: encodeURIComponent(JSON.stringify(bray_string))
+                                        });
+                                                                                    
+                                         var iframe = document.getElementById('bray');
+                                        iframe.src = `./UPGMA_tree/index.html?${params.toString()}`;
+                                       //  const iframe = document.getElementById('myIframe');
+                                      //   iframe.onload = function() {
+                                       //      const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                                        //     iframe.style.height = innerDoc.body.scrollHeight + 'px';
+                                         //    iframe.style.width = innerDoc.body.scrollWidth + 'px';
+                                          //   console.log(iframe.style.height);
+                                          //   console.log(iframe.style.width);
+                                        // };
+                                        iframe.style.height =  Object.keys(gcolors).length *90 + 'px'
+                                    </script-->
+                                    <div style="text-align: left;">
+                                        <br>
+                                        <p>* Unweighted Pair Group Method with Arithmetic mean (UPGMA) is type of hierarchical clustering method using average linkage and can be used to interpret the distance matrix (bray_curtis_upgma_cluster.tre).
+The output is a file that can be opened with tree viewing software, such as FigTree.
+For your own purposes, the distance matrix file can be used to draw your own phylogenetic tree using a suitable tool<br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chao1 chart -->
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                    <a data-toggle="collapse" href="#collapse_5"><b>UPGMA Tree - Weighted Unifrac</b></a>
+                                    <div style="display: flex; align-items: center; margin-left: auto;">
+                                        <b style="margin-right: 5px;">Select a Group Type:</b>
+                                        <select id="groupSelector_weight" class="custom-group-selector"
+                                            style="margin-left: 5px;">
+                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
+                                        </select>
+                                    </div>
+                                </h4>
+                            </div>  
+                            <div id="collapse_5" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" style="text-align: center;">
+                                     <iframe id="weighted"    style="width:100%;border: none; "></iframe>
+                                    <!--iframe id="weighted"  width="800"  height="600" style="border: none; transform: scale(0.7);transform-origin: top left;"></iframe-->
+                                    <!--script>
+                                        var wei_string;
+                                        var show_gcolor;
+                                        var gcolors;
+                                        
+                                        var params = new URLSearchParams({
+                                            show_gcolor:show_gcolor.toString(),
+                                            gcolors: encodeURIComponent(JSON.stringify(gcolors)),
+                                            values: encodeURIComponent(JSON.stringify(wei_string))
+                                        });
+                                                                                    
+                                        var wiframe = document.getElementById('weighted');
+                                        wiframe.src = `./UPGMA_tree/index.html?${params.toString()}`;
+                                        wiframe.style.height =  Object.keys(gcolors).length *90 + 'px'
+                                    </script-->
+                                    <div style="text-align: left;">
+                                        <br>
+                                        <p>* Unweighted Pair Group Method with Arithmetic mean (UPGMA) is type of hierarchical clustering method using average linkage and can be used to interpret the distance matrix (weighted_unifrac_upgma_cluster.tre).
+The output is a file that can be opened with tree viewing software, such as FigTree.
+For your own purposes, the distance matrix file can be used to draw your own phylogenetic tree using a suitable tool<br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Shannon chart -->
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                    <a data-toggle="collapse" href="#collapse_2"><b>UPGMA Tree - Unweighted Unifrac</b></a>
+                                    <div style="display: flex; align-items: center; margin-left: auto;">
+                                        <b style="margin-right: 5px;">Select a Group Type:</b>
+                                        <select id="groupSelector_unweighted" class="custom-group-selector"
+                                            style="margin-left: 5px;">
+                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
+                                        </select>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div id="collapse_2" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" style="text-align: center;">
+                                    <!--iframe id="Unweighted"  width="100%"  height="100%" style="border: none; transform: scale(0.9);transform-origin: top left;"></iframe-->
+                                     <iframe id="Unweighted"   style="width:100%;border: none; "></iframe>
+                                    <!--script>
+                                        var unwei_string;
+                                        var show_gcolor;
+                                        var gcolors;
+                                        
+                                        var params = new URLSearchParams({
+                                            show_gcolor:show_gcolor.toString(),
+                                            gcolors: encodeURIComponent(JSON.stringify(gcolors)),
+                                            values: encodeURIComponent(JSON.stringify(unwei_string))
+                                        });
+                                                                                    
+                                        var uiframe = document.getElementById('Unweighted');
+                                        uiframe.src = `./UPGMA_tree/index.html?${params.toString()}`;
+                                        uiframe.style.height =  Object.keys(gcolors).length *90 + 'px'
+                                    </script-->
+                                    <div style="text-align: left;">
+                                        <br>
+                                        <p>* Unweighted Pair Group Method with Arithmetic mean (UPGMA) is type of hierarchical clustering method using average linkage and can be used to interpret the distance matrix (unweighted_unifrac_upgma_cluster.tre).
+The output is a file that can be opened with tree viewing software, such as FigTree.
+For your own purposes, the distance matrix file can be used to draw your own phylogenetic tree using a suitable tool<br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Faiths_PD chart -->
+                
+
+                
+
+                    <!-- Gini-Simpson chart -->
+                 
+                </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+
+        <button class="floating-btn">
+            <i class="fa fa-edit"></i>
+            <span id="tooltipText" class="tooltip-text">
+                <strong>Group Customization</strong><br>
+                Upload <code>metadata.xlsx</code> for custom group analysis.
+            </span>
+        </button>
+        <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Group Management</h4>
+            </div>
+            <div class="modal-body">
+                <div id="usage">
+                    <h4>How to Customize Groups:</h4>
+                    <ol>
+                        <li id="usageText">Click <strong>Download Template</strong> to get the
+                            <code>metadata.xlsx</code> file.
+                        </li>
+                        <li>Open the file and specify your custom groups for each sample in the 'Group' sheet.</li>
+                        <li>Save the changes and click <strong>Upload File</strong> to apply your custom grouping.</li>
+                    </ol>
+                    <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you
+                        will
+                        need to re-upload the file.</p>
+                </div>
+                <div class="button-container">
+                    <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button"
+                        download>
+                        <i class="fa fa-download"></i>Download Template
+                    </a>
+                    <label class="btn-modal-action upload_label_button">
+                        <i class="fa fa-upload"></i> Upload File
+                        <input type="file" id="fileInput" accept=".xlsx" style="display: none;" />
+                    </label>
+                </div>
+                <div id="fileNameDisplay"></div>
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // 'ordernumber' 변수는 페이지 상단에서 'array.project' 값으로 이미 정의되어 있습니다.
+                    if (typeof ordernumber !== 'undefined') {
+                        const newFileName = `metadata_${ordernumber}.xlsx`;
+                        const newFileNameHtml = `<code>${newFileName}</code>`;
+
+                        // 1. 다운로드 링크의 href와 download 속성을 변경합니다.
+                        const downloadLink = document.getElementById('downloadTemplateLink');
+                        if (downloadLink) {
+                            downloadLink.href = `../${newFileName}`;
+                            downloadLink.download = newFileName;
+                        }
+
+                        // 2. 플로팅 버튼의 툴팁 텍스트를 변경합니다.
+                        const tooltipText = document.getElementById('tooltipText');
+                        if (tooltipText) {
+                            tooltipText.innerHTML = `<strong>Group Customization</strong><br>Upload ${newFileNameHtml} for custom group analysis.`;
+                        }
+
+                        // 3. 사용법 안내 문구의 텍스트를 변경합니다.
+                        const usageText = document.getElementById('usageText');
+                        if (usageText) {
+                            usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
+                        }
+                    }
+                });
+            </script>
+        </div>
+
+        <script>
+            function plotTree(plotData, plotDivId, plotName,sample_list){
+                var _string = plotData;
+          
+                var gcolors=Object.fromEntries(
+                        sample_list.map(sname => [sname, "black"])
+                    );;
+                                        
+                var params = new URLSearchParams({
+                     gcolors: encodeURIComponent(JSON.stringify(gcolors)),
+                     values: encodeURIComponent(JSON.stringify(_string))
+               });
+                                                                                    
+                var uiframe = document.getElementById(plotDivId);
+                uiframe.src = `./Diversity_beta/UPGMA_tree/index.html?${params.toString()}`;
+                console.log(sample_list.length)
+                uiframe.style.height =  sample_list.length *50 + 100 + 'px'
+            };
+
+            function plotGroupTree(plotData, plotDivId, plotName, sample_list,groupList, legendTitle){
+
+                var gcolor_list= [
+                    "#84BD00", "#F5543F", "#2980b9", "#fed439", "#9e9e9e", "#f781bf",
+                    "#001e62", "#4daf4a", "#ff9432", "#00bfb2", "#a765c2", "#d2af81",
+                    "#e0ff99", "#f99386", "#99b8ff", "#fee99a", "#cccccc", "#fccfe7",
+                    "#c0def2", "#95d293", "#ffca99", "#99fff8", "#d6b6e2", "#e3cfb5"
+                ];
+                 var _string = plotData;
+               
+                const uniqGroup = [...new Set(groupList)];
+             
+                var gcolors={};
+                for (let i=0;i<sample_list.length;i++){
+                    var color= gcolor_list[uniqGroup.indexOf(groupList[i])];
+                    gcolors[sample_list[i]]=color;
+                }
+                                        
+                var params = new URLSearchParams({
+                     gcolors: encodeURIComponent(JSON.stringify(gcolors)),
+                     values: encodeURIComponent(JSON.stringify(_string))
+               });
+                                                                                    
+                var uiframe = document.getElementById(plotDivId);
+                uiframe.src = `./Diversity_beta/UPGMA_tree/index.html?${params.toString()}`;
+                uiframe.style.height =  sample_list.length *50 + 100 + 'px'
+            };
+
+            // 커스텀 그룹 데이터를 저장할 전역 변수
+            var uploadedData = null;
+
+            /**
+             * 각 그룹 선택 드롭다운을 설정하고 이벤트 리스너를 바인딩하는 통합 함수.
+             * @param {string} selectorId - select 요소의 ID
+             * @param {object} plotData - 해당 그래프의 데이터 (e.g., ASV, shannon)
+             * @param {string} plotDivId - 그래프가 그려질 div 요소의 ID
+             * @param {string} plotName - 그래프의 이름 (e.g., 'ASVs')
+             */
+            function setupGroupSelector(selectorId, plotData, plotDivId, plotName) {
+                const selector = document.getElementById(selectorId);
+                if (!selector || !plotData) return;
+
+                // 1. 드롭다운 메뉴를 초기화하고 옵션을 순서대로 채웁니다.
+                selector.innerHTML = ''; // 기존 옵션 모두 제거
+
+                // 'SampleID' 옵션 추가
+                selector.innerHTML += '<option value="sample">SampleID</option>';
+
+                // main.js에 정의된 사전 그룹 옵션들 추가 (e.g., Group1, Group2)
+                if (typeof group_name !== 'undefined' && Array.isArray(group_name)) {
+                    group_name.forEach((name, index) => {
+                        selector.innerHTML += `<option value="${index}">${name}</option>`;
+                    });
+                }
+
+                // 'Group Customization' 옵션 추가
+                selector.innerHTML += '<option value="Custom">Group Customization</option>';
+
+                // 2. 드롭다운 변경 시 그래프를 업데이트하는 이벤트 리스너 설정
+                selector.addEventListener('change', function () {
+                    const selectedValue = this.value;
+
+                    if (selectedValue === 'sample') {
+                        // 'SampleID' 선택 시: 개별 샘플 그래프를 그립니다.
+                        plotTree(plotData, plotDivId, plotName,sample_list);
+                        return;
+                    }
+
+                    let groupList, legendTitle;
+                    if (selectedValue === 'Custom') {
+                        // 'Custom' 선택 시
+                        if (window.uploadedData) {
+                            // 업로드된 데이터가 있으면, 전체 샘플 리스트(sample_list) 순서에 맞춰 그룹 리스트를 생성합니다.
+                            groupList = sample_list.map(id => window.uploadedData[id] || 'Undefined');
+                            legendTitle = 'Group'; // 범례 제목을 'Group'으로 고정합니다.
+                        } else {
+                            // 업로드된 데이터가 없으면 안내 메시지를 표시하고 종료합니다.
+                            document.getElementById(plotDivId).innerHTML = "<p style='text-align:center; padding:20px;'>Please upload a metadata file for custom grouping.</p>";
+                            // 플로팅 버튼 강조
+                            if (typeof highlightFloatingButton === 'function') {
+                                highlightFloatingButton(4000);
+                            }
+                            return;
+                        }
+                    } else {
+                        // 사전 정의된 그룹 선택 시 (e.g., 'Group1' -> value '0')
+                        const index = parseInt(selectedValue, 10);
+                        groupList = window['group_list' + (index + 1)];
+                        legendTitle = group_name[index]; // 범례 제목을 해당 그룹명으로 지정합니다.
+                    }
+
+                    // 생성된 그룹 정보로 그룹 그래프를 그립니다.
+                    if (groupList) {
+                        plotGroupTree(plotData, plotDivId, plotName, sample_list,groupList, legendTitle);
+                    }
+                });
+
+                // 3. 페이지 로드 시 초기 그래프를 'SampleID' 기준으로 먼저 그립니다.
+                plotTree(plotData, plotDivId, plotName,sample_list);
+            }
+
+            /**
+             * group-modal.js에서 파일 업로드 성공 시 호출될 전역 함수.
+             * @param {object} data - 파일에서 파싱된 { 샘플ID: 그룹명 } 형태의 데이터.
+             */
+
+            function updateGraphWithNewData(data) {
+                // 1. 전역 변수에 업로드된 데이터를 저장합니다.
+                window.uploadedData = data;
+
+                const groupSelectors = [
+                    document.getElementById('groupSelector_bray'),
+                    document.getElementById('groupSelector_weight'),
+                    document.getElementById('groupSelector_unweighted'),
+                 
+                ];
+
+                // 2. 모든 드롭다운의 값을 'Custom'으로 설정하고,
+                //    프로그래밍적으로 'change' 이벤트를 발생시켜 그래프 업데이트를 강제합니다.
+                groupSelectors.forEach(selector => {
+                    if (selector) {
+                        selector.value = 'Custom';
+
+                        // [핵심 수정] 'change' 이벤트를 강제로 발생시켜 연결된 이벤트 리스너가 동작하게 합니다.
+                        selector.dispatchEvent(new Event('change'));
+                    }
+                });
+            }
+
+            // DOM 컨텐츠가 모두 로드된 후, 4개의 그래프에 대한 설정을 각각 실행합니다.
+            document.addEventListener('DOMContentLoaded', function () {
+                // 전역 변수들이 존재하는지 확인 후 실행 id="bray"   id="weighted" Unweighted 
+              
+                setupGroupSelector('groupSelector_bray', bray_string, 'bray', 'bray');
+                setupGroupSelector('groupSelector_weight', wei_string, 'weighted', 'weighted');
+                setupGroupSelector('groupSelector_unweighted', unwei_string, 'Unweighted', 'Unweighted');
+             
+            });
+        </script>
+
+        <!--end: div container-->
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+ .excel-report-btn {
+  background-color: #1d3a73; 
+  color: #e0e6f2; 
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(26, 36, 56, 0.1);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.excel-report-btn:hover {
+  background-color: #31579b; 
+  transform: translateY(-2px);
+}
+
+.excel-report-btn:active {
+  background-color: #122b56; 
+  transform: translateY(0);
+}
+
+.excel-report-btn2 {
+  background-color: #7b1e1e;
+  color: #f5eaea; 
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(60, 16, 16, 0.15);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.excel-report-btn2:hover {
+  background-color: #932020; 
+  transform: translateY(-2px);
+}
+
+.excel-report-btn2:active {
+  background-color: #5c1414;
+  transform: translateY(0);
+}
+
+.box-report-btn {
+  background-color: #121212; 
+  color: #f0f0f0;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.box-report-btn:hover {
+  background-color: #4a4a4a; 
+  transform: translateY(-2px);
+}
+
+.box-report-btn:active {
+  background-color: #0d0d0d; 
+  transform: translateY(0);
+}
+
+
+.myButton_1 {
+                                    
+}
+.round{
+    padding:9px 30px;
+    border-radius:10px 10px 10px 10px;
+    font-size:12px;
+}
+                                    
+                                     
+
+      

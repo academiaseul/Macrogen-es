@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--tools-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../js/plotly/plotly-2.20.0.min.js"></script>
+    <!-- Load main.js first to access sample_list -->
+    <script src="../main.js"></script>
+    <script src="./Diversity_beta/beta_diversity_dm.js"></script>
+    <script src="./Diversity_beta/plot.js"></script>
+
+    <script>
+        var array;
+        var ordernumber = array.project;
+        var customer = array.name;
+        var institute = array.organization;
+        var application = array.application;
+        var appCode = array.appCode;
+        var numberofsample = array.numberofsample;
+        document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
+    </script>
+    <style>
+            .btn {
+                background-color: #333;
+                border: none;
+                color: white;
+                padding: 4px 20px;
+                cursor: pointer;
+                font-size: 18px;
+            }
+            
+            /* Darker background on mouse-over */
+            .btn:hover {
+                background-color: #f2f2f2;
+            }
+        </style>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font"><b id="banner_id"></b></div>
+                <script>
+                    document.getElementById('banner_id').innerHTML = application;
+                </script>
+                <p class="notice">Research Use Only</p>
+            </div>
+            <nav class="navbar">
+                <ul id="navbar_ui"></ul>
+                <script>
+                    function generateMenuHtml(menuArray) {
+                        let html = '';
+                        menuArray.forEach(item => {
+                            if (item.category) { // 변경
+                                html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                                html += '<ul class="dropdown-menu">';
+                                html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                                html += '</ul></li>';
+                            } else if (item.display) {
+                                if (item.path === "") {
+                                    html += "<li><p>" + item.name + "</p></li>";
+                                } else {
+                                    html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+                                }
+                            }
+                        });
+                        return html;
+                    }
+
+                    var html = "";
+                    var nav_ = document.getElementById('navbar_ui');
+                    if (array.page) {
+                        array.page.forEach(page => {
+                            if (page.category) {
+                                let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                                tmphtml += generateMenuHtml(page.path);
+                                tmphtml += '</ul></li>';
+                                html += tmphtml;
+                            } else if (page.path && page.path[0] && page.path[0].display) {
+                                html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
+                            }
+                        });
+                    }
+                    nav_.innerHTML = html;
+                </script>
+            </nav>
+        </header>
+
+        <!--top 버튼-->
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <a href="../../data/Diversity_analysis/Beta_diversity/DistanceMatrix/DistanceMatrix.xlsx"
+                        target="_blank"><button class="btn" style="float:right; margin-top: 30px;" download><img
+                                width="20px" style="margin-bottom: 3px;" src="../img/Icon_img/Link.png" alt="Link Icon">
+                            Excel Download</button></a>
+
+                    <div class="div_h1">
+                        <h1>Diversity analysis<h3>(Beta diversity > Distance Matrix)</h3>
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <br>
+                    <!--Distance Matrix chart-->
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Distance Matrix - Bray
+                                            Curtis</b></a>
+                                </h4>
+                            </div>
+                            <!--Chart-->
+                            <div id="collapse_1" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" style="text-align: center;">
+                                    <div style="display: flex; padding-top:15px; justify-content: flex-start;">
+                                        <div style="text-align: left; width: 100%;">
+                                            <label style="font-size:17px; padding-left:10px;">Plot Controls</label><br>
+                                            <div style="display: flex; padding-top:15px; padding-left:20px;">
+                                                <button class="myButton_1 left" onclick="toggleColorPicker()"
+                                                    id="toggleButton">Change Color</button>
+                                                <button class="myButton_1 center"
+                                                    onclick="downloadimg2('png','Distance Matrix(bray-curtis)')">Save
+                                                    PNG</button>
+                                                <button class="myButton_1 right"
+                                                    onclick="downloadimg2('svg','Distance Matrix(2D-PCoA)')">Save
+                                                    SVG</button>
+                                            </div>
+
+                                            <div id="colorPickerModal" class="modal" style="height:270px !important">
+                                                <div class="color-picker" style="width:100%;height:100%">
+                                                    <b> Color list </b>
+                                                    <p>click color want change</p>
+                                                    <div>
+                                                        <br><b> Start - END</b><br>
+                                                        <button class="color-picker-button" onclick="openColorPicker(0)"
+                                                            id="button1">#1</button>
+                                                        <button class="color-picker-button" onclick="openColorPicker(1)"
+                                                            id="button2">#2</button>
+                                                    </div>
+
+                                                    <div id="color-picker-input"
+                                                        style="padding-top:10px;text-align: center;align-items: center;">
+                                                        <input type="color" id="colorPickerInput">
+                                                        <button class="myButton small"
+                                                            onclick="changeColor()">Select</button>
+                                                        <button class="myButton small"
+                                                            onclick="closeColor()">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="distance_chart_container_bray"
+                                        style='display: inline-block;float:middle;clear:both;'>
+                                        <div id="div_tooltip"></div>
+                                        <script>
+                                            // Plot the Bray Curtis distance matrix
+                                            Distance_plot('distance_chart_container_bray', sample_list, bray_curtis_matrix);
+                                        </script>
+                                    </div>
+                                    <div style="text-align: left;">
+                                        <p>Heatmap based on the matrix of Bray-Curtis distances between samples.<br><br>
+                                            Gower, J. C. (1966). Some distance properties of latent root and vector
+                                            methods used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
+                                            Bray, J. R., and J. T. Curtis. (1957). An ordination of the upland forest
+                                            communities of southern Wisconsin. Ecological Monographs 27:325–349.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!--Distance Matrix chart-->
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_2"><b>Distance Matrix - Weighted
+                                            UniFrac</b></a>
+                                </h4>
+                            </div>
+                            <!--Chart-->
+                            <div id="collapse_2" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" style="text-align: center;">
+                                    <div style="display: flex; padding-top:15px; justify-content: flex-start;">
+                                        <div style="text-align: left; width: 100%;">
+                                            <label style="font-size:17px; padding-left:10px;">Plot Controls</label><br>
+                                            <div style="display: flex; padding-top:15px; padding-left:20px;">
+                                                <button class="myButton_1 left" onclick="toggleColorPicker()"
+                                                    id="toggleButton">Change Color</button>
+                                                <button class="myButton_1 center"
+                                                    onclick="downloadimg2('png','Distance Matrix(weighted-unifrac)')">Save
+                                                    PNG</button>
+                                                <button class="myButton_1 right"
+                                                    onclick="downloadimg2('svg','Distance Matrix(2D-PCoA)')">Save
+                                                    SVG</button>
+                                            </div>
+
+                                            <div id="colorPickerModal" class="modal" style="height:270px !important">
+                                                <div class="color-picker" style="width:100%;height:100%">
+                                                    <b> Color list </b>
+                                                    <p>click color want change</p>
+                                                    <div>
+                                                        <br><b> Start - END</b><br>
+                                                        <button class="color-picker-button" onclick="openColorPicker(0)"
+                                                            id="button1">#1</button>
+                                                        <button class="color-picker-button" onclick="openColorPicker(1)"
+                                                            id="button2">#2</button>
+                                                    </div>
+
+                                                    <div id="color-picker-input"
+                                                        style="padding-top:10px;text-align: center;align-items: center;">
+                                                        <input type="color" id="colorPickerInput">
+                                                        <button class="myButton small"
+                                                            onclick="changeColor()">Select</button>
+                                                        <button class="myButton small"
+                                                            onclick="closeColor()">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="distance_chart_container_weighted"
+                                        style='display: inline-block;float:middle;clear:both;'>
+                                        <div id="div_tooltip"></div>
+                                        <script>
+                                            // Plot the Weighted UniFrac distance matrix
+                                            Distance_plot('distance_chart_container_weighted', sample_list, weighted_unifrac_matrix);
+                                        </script>
+                                    </div>
+                                    <div style="text-align: left;">
+                                        <p>Heatmap based on the matrix of Weighted UniFrac distances between
+                                            samples.<br><br>
+                                            Gower, J. C. (1966). Some distance properties of latent root and vector
+                                            methods used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
+                                            Lozupone, C., Lladser, M. E., Knights, D., Stombaugh, J., & Knight, R.
+                                            (2011). UniFrac: an effective distance metric for microbial community
+                                            comparison. The ISME journal, 5(2), 169-172.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!--Distance Matrix chart-->
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_3"><b>Distance Matrix - Unweighted
+                                            UniFrac</b></a>
+                                </h4>
+                            </div>
+                            <!--Chart-->
+                            <div id="collapse_3" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" style="text-align: center;">
+                                    <div style="display: flex; padding-top:15px; justify-content: flex-start;">
+                                        <div style="text-align: left; width: 100%;">
+                                            <label style="font-size:17px; padding-left:10px;">Plot Controls</label><br>
+                                            <div style="display: flex; padding-top:15px; padding-left:20px;">
+                                                <button class="myButton_1 left" onclick="toggleColorPicker()"
+                                                    id="toggleButton">Change Color</button>
+                                                <button class="myButton_1 center"
+                                                    onclick="downloadimg2('png','Distance Matrix(unweighted-unifrac)')">Save
+                                                    PNG</button>
+                                                <button class="myButton_1 right"
+                                                    onclick="downloadimg2('svg','Distance Matrix(2D-PCoA)')">Save
+                                                    SVG</button>
+                                            </div>
+
+                                            <div id="colorPickerModal" class="modal" style="height:270px !important">
+                                                <div class="color-picker" style="width:100%;height:100%">
+                                                    <b> Color list </b>
+                                                    <p>click color want change</p>
+                                                    <div>
+                                                        <br><b> Start - END</b><br>
+                                                        <button class="color-picker-button" onclick="openColorPicker(0)"
+                                                            id="button1">#1</button>
+                                                        <button class="color-picker-button" onclick="openColorPicker(1)"
+                                                            id="button2">#2</button>
+                                                    </div>
+
+                                                    <div id="color-picker-input"
+                                                        style="padding-top:10px;text-align: center;align-items: center;">
+                                                        <input type="color" id="colorPickerInput">
+                                                        <button class="myButton small"
+                                                            onclick="changeColor()">Select</button>
+                                                        <button class="myButton small"
+                                                            onclick="closeColor()">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="distance_chart_container_unweighted"
+                                        style='display: inline-block;float:middle;clear:both;'>
+                                        <div id="div_tooltip"></div>
+                                        <script>
+                                            // Plot the Unweighted UniFrac distance matrix
+                                            Distance_plot('distance_chart_container_unweighted', sample_list, unweighted_unifrac_matrix);
+                                        </script>
+                                    </div>
+                                    <div style="text-align: left;">
+                                        <p>Heatmap based on the matrix of Unweighted UniFrac distances between
+                                            samples.<br><br>
+                                            Gower, J. C. (1966). Some distance properties of latent root and vector
+                                            methods used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
+                                            Lozupone, C., Lladser, M. E., Knights, D., Stombaugh, J., & Knight, R.
+                                            (2011). UniFrac: an effective distance metric for microbial community
+                                            comparison. The ISME journal, 5(2), 169-172.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+
+</html>

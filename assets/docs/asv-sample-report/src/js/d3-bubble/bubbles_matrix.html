@@ -1,0 +1,71 @@
+
+
+<!----------------------------------------------------------------->
+<!-- AUTOMATICALLY GENERATED CODE - PLEASE EDIT TEMPLATE INSTEAD -->
+<!----------------------------------------------------------------->
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<div id="chartContainer">
+  <script src="./lib/d3.v4.3.0.js"></script>
+  <script src="./dist/dimple.v2.3.0.js"></script>
+   <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 1000, 1000);
+
+    var data2=[{"MODEL":"denovo",
+"EFFECT":"frame",
+"Count":"1"},
+{"MODEL":"denovo",
+"EFFECT":"nonsym",
+"Count":"2"},
+{"MODEL":"denovo",
+"EFFECT":"5utr",
+"Count":"10"},
+{"MODEL":"simple",
+"EFFECT":"3utr",
+"Count":"20"},
+{"MODEL":"simple",
+"EFFECT":"nonsym",
+"Count":"5"},
+{"MODEL":"simple",
+"EFFECT":"5utr",
+"Count":"7"},
+{"MODEL":"simple",
+"EFFECT":"sym",
+"Count":"8"},
+{"MODEL":"compound",
+"EFFECT":"nonsym",
+"Count":"15"},
+{"MODEL":"compound",
+"EFFECT":"frame",
+"Count":"2"},
+{"MODEL":"compound",
+"EFFECT":"test2",
+"Count":"20"},
+{"MODEL":"compound",
+"EFFECT":"nonsym",
+"Count":"30"}];
+
+var myChart = new dimple.chart(svg, data2);
+myChart.setBounds(300, 40, 600, 400)
+var x =myChart.addCategoryAxis("x", "MODEL");                         
+var y= myChart.addCategoryAxis("y", "EFFECT");
+var z = myChart.addMeasureAxis("z", "Count");
+var s = myChart.addSeries("EFFECT", dimple.plot.bubble);
+s.aggregate = dimple.aggregateMethod.max;
+x.addOrderRule(['denovo','simple','compound']);
+myChart.addLegend(240, 10, 330, 20, "right");
+   
+ 
+y.fontSize='0px';                
+myChart.draw();
+x.titleShape.remove();
+
+
+y.titleShape.remove();
+ 
+
+   
+  </script>
+</div>
+</html>

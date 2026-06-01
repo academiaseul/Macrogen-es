@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/layout.css">
+
+    <!--tools-->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+    <!--json data-->
+    <script src="../main.js"></script>
+    <!-- <script src="./Method/Method.js"></script> -->
+
+    <script>
+        var array;
+        var config;
+        var ordernumber = array.project;
+        var customer = array.name;
+        var institute = array.organization;
+        var application = array.application;
+        document.title = ordernumber + " (" + customer + ") - MAS Analysis Report";
+    </script>
+
+    <style>
+        .btn {
+        background-color: #333;
+        border: none;
+        color: white;
+        padding: 4px 20px;
+        cursor: pointer;
+        font-size: 18px;
+        }
+        /* Darker background on mouse-over */
+        .btn:hover {
+        background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font"><b id="banner_id"></b></div>
+                <script>
+                    document.getElementById('banner_id').innerHTML = application;
+                </script>
+                <p class="notice">Research Use Only</p>
+            </div>
+            <nav class="navbar">
+                <ul id="navbar_ui"></ul>
+                <script>
+                    function generateMenuHtml(menuArray) {
+                        let html = '';
+                        menuArray.forEach(item => {
+                            if (item.category) { // 변경
+                                html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                                html += '<ul class="dropdown-menu">';
+                                html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                                html += '</ul></li>';
+                            } else if (item.display) {
+                                if (item.path === "") {
+                                    html += "<li><p>" + item.name + "</p></li>";
+                                } else {
+                                    html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+                                }
+                            }
+                        });
+                        return html;
+                    }
+
+                    var html = "";
+                    var nav_ = document.getElementById('navbar_ui');
+                    if (array.page) {
+                        array.page.forEach(page => {
+                            if (page.category) {
+                                let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                                tmphtml += generateMenuHtml(page.path);
+                                tmphtml += '</ul></li>';
+                                html += tmphtml;
+                            } else if (page.path && page.path[0] && page.path[0].display) {
+                                html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
+                            }
+                        });
+                    }
+                    nav_.innerHTML = html;
+                </script>
+            </nav>
+        </header>
+        <nav class="floating-menu">
+            <ul class="main-menu">
+                <li>
+                    <a href="#WorkFlow" class="ripple">
+                        <span class=" tooltiptext animate"> Analysis Workflow </span>
+                        <span class="glyphicon glyphicon-film"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#Toolversion" class="ripple">
+                        <span class=" tooltiptext animate"> Analysis Tools </span>
+                        <span class="glyphicon glyphicon-wrench"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#Analysismethod_eng" class="ripple">
+                        <span class=" tooltiptext animate"> Analysis Methods </span>
+                        <span class="glyphicon glyphicon-th-list"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="ripple">
+                        <span class=" tooltiptext animate"> Go To Top </span>
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </a>
+                </li>
+            </ul>
+            <div class="menu-bg"></div>
+        </nav>
+        <br>
+        <!--icon-->
+        <div class="container">
+            <div class="row">
+                <div class="div_icon">
+                    <img src="../img/Icon_img/Work_Flow.png">
+                </div>
+                <div class="div_h1" id="WorkFlow">
+                    <h1>Folder Structure</h1>
+                </div>
+                <a href="../../data/" target="_blank"><button class="btn" style="float:right; margin-top: 30px;" download><img width="20px" style="margin-bottom: 3px;" src="../img/Icon_img/Link.png" alt="Link Icon"> Folder Link</button></a>
+                <div class="col-sm-12" id="methods">
+                    <!--Assembly stats table-->
+                    <br>
+                    <div class="panel-group" id="SequencingWorkflow">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Amplicon Metagenomic Data</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_1" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <img id="chart_upgma2" src="../img/file_tree.jpg" width="1100px"
+                                        alt="File tree"></a>
+                                </div>
+                                <h4 style="margin-left: 40px;"><b>Data file information</b></h4>
+                                <!-- <br> -->
+                                <div class="panel-collapse collapse in" id="downloadinfo">
+                                    <table class="table" style="margin-left: 30px;">
+                                        <thead>
+                                            <tr>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tb_download">
+                                            <tr>
+                                                <td class='td_left'>
+                                                    <div class="panel-collapse collapse in" id="analysisRead">
+                                                        <img width="30px" style="margin-top: 2px;"
+                                                            src="../img/Icon_img/1.png" alt="Number Icon"><b
+                                                            style="font-size: 17px;">&nbsp;Summary - ASVs (data)</b>
+                                                        <ul class="outside">
+                                                            <div class="panel-collapse collapse in" id="analysisRC">
+                                                                <ul>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/excel_icon.jpg"
+                                                                            alt="Excel Icon"><b>&nbsp;&nbsp;QC_statistics.xlsx:</b>
+                                                                        This file is a representation of the results
+                                                                        obtained from the analysis, including
+                                                                        information such as the raw data, quality
+                                                                        filter, and chimeric read removal.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/fasta_icon.jpg"
+                                                                            alt="Fasta Icon"><b>&nbsp;&nbsp;ASVs_rep.fasta:</b>
+                                                                        This is a fasta file containing nucleotide
+                                                                        sequences represented by unique identifiers
+                                                                        ASVs.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/txt_icon.jpg"
+                                                                            alt="Txt Icon"><b>&nbsp;&nbsp;ASVs_phylo.tre:</b>
+                                                                        A phylogenetic tree file (e.g., Newick format)
+                                                                        representing the phylogenetic relationships among
+                                                                        ASVs.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/txt_icon.jpg"
+                                                                            alt="Txt Icon"><b>&nbsp;&nbsp;ASV_table.biom:</b>
+                                                                        An ASV table in BIOM format, containing
+                                                                        abundance data used for diversity analyses.
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </ul>
+
+                                                        <br>
+
+                                                        <img width="30px" style="margin-top: 2px;"
+                                                            src="../img/Icon_img/2.png" alt="Number Icon"><b
+                                                            style="font-size: 17px;">&nbsp;Taxonomy_analysis (*_DB)</b>
+                                                        <ul class="outside">
+                                                            <div class="panel-collapse collapse in" id="analysisRC">
+                                                                <ul>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/excel_icon.jpg"
+                                                                            alt="Excel Icon"><b>&nbsp;&nbsp;TAXONOMY_Assignment.xlsx:</b>
+                                                                        Taxonomys Profile Excel file. Check out the
+                                                                        glossary sheet for a detailed explanation of
+                                                                        each item.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/excel_icon.jpg"
+                                                                            alt="Excel Icon"><b>&nbsp;&nbsp;Taxonomy_Top20_Input.xlsx:</b>
+                                                                        This input file presents the abundance ratio of
+                                                                        the top 20 taxonomies utilized in the graph,
+                                                                        with each taxonomy level displayed on individual
+                                                                        sheets.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/txt_icon.jpg"
+                                                                            alt="Txt Icon"><b>&nbsp;&nbsp;ASVs_{Alignment tool}_{Database}.biom:</b>
+                                                                        A BIOM table that includes taxonomic assignments for each ASV, 
+                                                                        based on the alignment tool and database used.
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </ul>
+
+                                                        <br>
+
+                                                        <img width="30px" style="margin-top: 2px;"
+                                                            src="../img/Icon_img/3.png" alt="Number Icon"><b
+                                                            style="font-size: 17px;">&nbsp;Taxonomy_analysis (Count,
+                                                            Ratio)</b>
+                                                        <ul class="outside">
+                                                            <div class="panel-collapse collapse in" id="analysisRC">
+                                                                <ul>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/txt_icon.jpg"
+                                                                            alt="Txt Icon"><b>&nbsp;&nbsp;ASVs_table.*_L*.txt:</b>
+                                                                        These files offer the count and ratio of ASVs
+                                                                        separately for each database and taxonomy level,
+                                                                        providing a comprehensive view of microbial
+                                                                        composition.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/excel_icon.jpg"
+                                                                            alt="Excel Icon"><b>&nbsp;&nbsp;Taxonomy_abundance_count.xlsx:</b>
+                                                                        The result is displayed in separate sheets for
+                                                                        each taxonomy level, showing the read count
+                                                                        corresponding to each sample.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/excel_icon.jpg"
+                                                                            alt="Excel Icon"><b>&nbsp;&nbsp;Taxonomy_abundance_ratio.xlsx:</b>
+                                                                        The result is displayed in separate sheets for
+                                                                        each taxonomy level, showing the relative
+                                                                        abundance corresponding to each sample.
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </ul>
+
+                                                        <br>
+
+                                                        <img width="30px" style="margin-top: 2px;"
+                                                            src="../img/Icon_img/4.png" alt="Number Icon"><b
+                                                            style="font-size: 17px;">&nbsp;Alpha_Diversity
+                                                            (Community_diversity)</b>
+                                                        <ul class="outside">
+                                                            <div class="panel-collapse collapse in" id="analysisRC">
+                                                                <ul>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/excel_icon.jpg"
+                                                                            alt="Excel Icon"><b>&nbsp;&nbsp;Diversity_Index.xlsx:</b>
+                                                                        This file offers a single table for shannon,
+                                                                        simpson, PD_whole_tree, and ASV values per
+                                                                        sample.
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </ul>
+
+                                                        <br>
+
+                                                        <img width="30px" style="margin-top: 2px;"
+                                                            src="../img/Icon_img/5.png" alt="Number Icon"><b
+                                                            style="font-size: 17px;">&nbsp;Beta_Diversity
+                                                            (DistanceMatrix, PCoA, UPGMA_tree)</b>
+                                                        <!--num_sample-->
+                                                        <ul class="outside">
+                                                            <div class="panel-collapse collapse in" id="analysisRC">
+                                                                <ul>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/excel_icon.jpg"
+                                                                            alt="Excel Icon"><b>&nbsp;&nbsp;*_PC.xlsx:</b>
+                                                                        This file contains the results of PCoA analysis.
+                                                                        It includes the explained variance for each
+                                                                        principal component (PC) and the corresponding
+                                                                        PC values.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/excel_icon.jpg"
+                                                                            alt="Excel Icon"><b>&nbsp;&nbsp;*_DistanceMatrix.xlsx:</b>
+                                                                        This file includes the Distance Matrix results
+                                                                        from the PCoA analysis. It stores the distance
+                                                                        information between data points obtained through
+                                                                        PCoA.
+                                                                    </li>
+                                                                    <li><img width="20px" style="margin-bottom: 3px;"
+                                                                            src="../img/Icon_img/tre_icon.jpg"
+                                                                            alt="Tre Icon"><b>&nbsp;&nbsp;UPGMA_*_*.tre:</b>
+                                                                        The results of the UPGMA tree(Bray Curtis,
+                                                                        Weighted UniFrac, Unweighted UniFrac) are
+                                                                        presented in the .tre format.
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!--icon-->
+                <div class="div_icon">
+                    <img src="../img/Icon_img/Work_Flow.png">
+                </div>
+                <div class="div_h1" id="WorkFlow">
+                    <h1>Analysis Workflow</h1>
+                </div>
+                <div class="col-sm-12" id="methods">
+                    <!--Assembly stats table-->
+                    <br>
+                    <div class="panel-group" id="SequencingWorkflow">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Workflow</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_1" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <img src="../img/workflow.jpg" alt="MACROGEN LOGO"></a>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+                    <br>
+
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/Analysis_Tools.png">
+                    </div>
+
+                    <div class="div_h1" id="Toolversion">
+                        <h1>Analysis Tools</h1>
+                    </div>
+
+                    <!--Tools description-->
+                    <div class="panel-group">
+                        <br>
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <!-- <a data-toggle="collapse" href="#collapse_2"><b>Cutadapt (v3.2)</b></a> -->
+                                    <a data-toggle="collapse" href="#collapse_2"><b id="ver_cutadapt"></b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_2" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <p>&nbsp;&nbsp;Cutadapt is a software tool that removes unwanted sequences like
+                                        adapters, primers, and poly-A tails from high-throughput sequencing reads. These
+                                        sequences can interfere with downstream analysis and are commonly found in
+                                        small-RNA sequencing and amplicon reads. Cutadapt helps in trimming tasks by
+                                        identifying and removing these sequences in an error-tolerant way. It can also
+                                        modify and filter single-end and paired-end reads and demultiplex reads.
+                                        Cutadapt is available under the MIT license.</p>
+                                    <br>
+                                    <br>
+                                    <p>&nbsp;&nbsp;More information can be found here:</p>
+                                    <a href="https://cutadapt.readthedocs.io/en/v3.2/"
+                                        target="_blank">https://cutadapt.readthedocs.io/en/v3.2/</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <!-- <a data-toggle="collapse" href="#collapse_3"><b>DADA2 (v1.18.0)</b></a> -->
+                                    <a data-toggle="collapse" href="#collapse_3"><b id="ver_dada2"></b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_3" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <p>&nbsp;&nbsp;DADA2 is an R package for the processing of amplicon sequencing data.
+                                        It implements a complete pipeline for removing errors from amplicon sequencing
+                                        data, including denoising and chimera removal. The package has features for
+                                        quality filtering, sequence trimming, merging paired-end reads, and taxonomic
+                                        assignment of amplicon sequence variants. DADA2 is designed to provide
+                                        high-resolution taxonomic information with minimum error rates. It is a powerful
+                                        tool for accurately profiling microbial communities and is widely used in
+                                        various fields of microbial ecology and microbiome research.</p>
+                                    <br>
+                                    <br>
+                                    <p>&nbsp;&nbsp;More information can be found here:</p>
+                                    <a href="https://benjjneb.github.io/dada2/index.html"
+                                        target="_blank">https://benjjneb.github.io/dada2/index.html</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <!-- <a data-toggle="collapse" href="#collapse_4"><b>QIIME (v1.9.0)</b></a> -->
+                                    <a data-toggle="collapse" href="#collapse_4"><b id="ver_qiime"></b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_4" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <p>&nbsp;&nbsp;QIIME is an open-source bioinformatics pipeline for performing
+                                        microbiome analysis from raw DNA sequencing data. QIIME is designed to take
+                                        users from raw sequencing data generated on the Illumina or other platforms
+                                        through publication quality graphics and statistics. This includes
+                                        demultiplexing and quality filtering, OTU picking, taxonomic assignment, and
+                                        phylogenetic reconstruction, and diversity analyses and visualizations. QIIME
+                                        has been applied to studies based on billions of sequences from tens of
+                                        thousands of samples.</p>
+                                    <br>
+                                    <br>
+                                    <p>&nbsp;&nbsp;More information can be found here:</p>
+                                    <a href="http://qiime.org/index-qiime1.html"
+                                        target="_blank">http://qiime.org/index-qiime1.html</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <!-- <a data-toggle="collapse" href="#collapse_5"><b>Mafft (v7.475)</b></a> -->
+                                    <a data-toggle="collapse" href="#collapse_5"><b id="ver_mafft"></b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_5" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <p>&nbsp;&nbsp;MAFFT is a multiple sequence alignment program for unix-like
+                                        operating systems. It offers a range of multiple alignment methods, L-INS-i
+                                        (accurate; for alignment of <∼200 sequences), FFT-NS-2 (fast; for alignment of
+                                            <∼30,000 sequences), etc.</p>
+                                            <br>
+                                            <br>
+                                            <p>&nbsp;&nbsp;More information can be found here:</p>
+                                            <a href="https://mafft.cbrc.jp/alignment/software/"
+                                                target="_blank">https://mafft.cbrc.jp/alignment/software/</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <!-- <a data-toggle="collapse" href="#collapse_6"><b>FastTreeMP (v2.1.10)</b></a> -->
+                                    <a data-toggle="collapse" href="#collapse_6"><b id="ver_fasttree"></b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_6" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <p>&nbsp;&nbsp;FastTree and FastTreeMP are programs used for constructing
+                                        phylogenetic trees from nucleotide or amino acid sequence data. FastTree is a
+                                        single-threaded version, while FastTreeMP uses OpenMP to parallelize computation
+                                        and run on multiple CPUs. FastTreeMP can provide a speedup of 1.5-1.7x with
+                                        three CPUs, but using more CPUs will not speed up the maximum-likelihood phase.
+                                        While FastTreeMP may not give exactly the same results as FastTree, the results
+                                        are of similar quality.</p>
+                                    <br>
+                                    <br>
+                                    <p>&nbsp;&nbsp;More information can be found here:</p>
+                                    <a href="http://www.microbesonline.org/fasttree/"
+                                        target="_blank">http://www.microbesonline.org/fasttree/</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="database_tool_descriptions_container"></div>
+
+                    <br>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/Result_Description.png">
+                    </div>
+
+                    <div class="div_h1" id="Analysismethod_eng">
+                        <h1>Analysis Methods</h1>
+                    </div>
+
+                    <!--NContig chart-->
+                    <div class="panel-group" id="Preprocessing">
+                        <br>
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_02"><b>Analysis Methods</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_02" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" id="preproc_body">
+                                    <div class="panel-heading">
+                                        <br>
+                                        <h4><b>Data Preprocessing and ASV generation</b></h4>
+                                        <p id="data_preprocessing_paragraph"></p><br>
+
+                                        <h4><b>Taxonomy analysis and Community diversity</b></h4>
+                                        <p id="taxonomy_diversity_paragraph"></p><br><br>
+
+                                        <h4><b>Publication</b></h4>
+                                        <div id="publication_paragraph"></div>
+                                        <br>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end: div container-->
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // main.js에서 로드된 전역 변수들이 모두 존재하는지 확인
+            if (typeof analysisInfo === 'undefined' || typeof toolVersions === 'undefined' || typeof array === 'undefined') {
+                console.error("필수 데이터 객체(analysisInfo, toolVersions, array)가 정의되지 않았습니다. main.js 파일이 올바르게 로드되었는지 확인하세요.");
+                return;
+            }
+
+            // --- Analysis Tools 섹션의 기본 버전 정보 동적 업데이트 ---
+            const toolTitleElements = {
+                cutadapt: { id: 'ver_cutadapt', name: 'Cutadapt' },
+                dada2: { id: 'ver_dada2', name: 'DADA2' },
+                qiime: { id: 'ver_qiime', name: 'QIIME' },
+                mafft: { id: 'ver_mafft', name: 'Mafft' },
+                fasttree: { id: 'ver_fasttree', name: 'FastTreeMP' }
+            };
+
+            for (const key in toolTitleElements) {
+                const element = document.getElementById(toolTitleElements[key].id);
+                if (element) {
+                    element.innerHTML = `${toolTitleElements[key].name} (v${toolVersions[key]})`;
+                }
+            }
+
+            // --- DB 분석 도구 설명 전체를 동적으로 생성 ---
+            // 각 도구별 정보(이름, 버전, 설명, 링크)를 객체로 관리하여 유지보수 용이성 확보
+            const dbToolInfo = {
+                'Bayesian': {
+                    name: 'Bayesian',
+                    version: `DADA2_v${toolVersions.dada2}`, // DADA2 버전을 따름
+                    description: `The Ribosomal Database Project (RDP) Classifier, a naive Bayesian classifier, can rapidly and accurately classify bacterial 16S rRNA sequences into the new higher-order taxonomy.`,
+                    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1950982'
+                },
+                'BLAST': {
+                    name: 'BLAST',
+                    version: `v${toolVersions.blast}+`,
+                    description: `BLAST+ (Basic Local Alignment Search Tool) is a suite of programs used for sequence similarity searching in large databases. It uses algorithms to identify regions of similarity between biological sequences and generate alignments that can be used to infer functional and evolutionary relationships between sequences. The "+" version of BLAST includes many enhancements over the original BLAST program, such as improved speed and sensitivity, the ability to handle larger datasets, and more advanced statistics. It can be used for a variety of applications, including identifying homologous sequences, annotating gene function, and detecting potential pathogens in genomic sequences.`,
+                    link: 'https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html'
+                },
+                'VSEARCH': {
+                    name: 'VSEARCH',
+                    version: `v${toolVersions.vsearch}`,
+                    description: `vsearch — a versatile open-source tool for microbiome analysis, including chimera detection, clustering, dereplication and rereplication, extraction, FASTA/FASTQ/SFF file processing, masking, orienting, pairwise alignment, restriction site cutting, searching, shuffling, sorting, subsampling, and taxonomic classification of amplicon sequences for metagenomics, genomics, and population genetics.`,
+                    link: 'https://peerj.com/articles/2584'
+                }
+            };
+
+            const dbToolContainer = document.getElementById('database_tool_descriptions_container');
+            if (dbToolContainer) {
+                dbToolContainer.innerHTML = ''; // 컨테이너 초기화
+                const usedDbTools = new Set(); // 중복된 툴 설명을 방지하기 위해 Set 사용
+
+                analysisInfo.databaseTool.forEach(item => {
+                    const match = item.match(/\((.+)\)/); // 괄호 안의 툴 이름 추출
+                    if (match && match[1]) {
+                        usedDbTools.add(match[1].trim());
+                    }
+                });
+
+                // 사용된 각 DB 툴에 대한 설명 패널 HTML을 생성하여 컨테이너에 추가
+                usedDbTools.forEach(toolName => {
+                    const info = dbToolInfo[toolName];
+                    if (info) {
+                        const panelHTML = `
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse_${toolName}"><b>${info.name} (${info.version})</b></a>
+                                    </h4>
+                                </div>
+                                <div id="collapse_${toolName}" class="panel-collapse collapse in">
+                                    <div class="panel-body xy_scroll">
+                                        <p>&nbsp;&nbsp;${info.description}</p>
+                                        <br><br>
+                                        <p>&nbsp;&nbsp;More information can be found here:</p>
+                                        <a href="${info.link}" target="_blank">${info.link}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                        dbToolContainer.innerHTML += panelHTML;
+                    }
+                });
+            }
+
+
+            // --- Publication 정보 객체 및 사용된 Publication 목록 Set ---
+            const publications = {
+                cutadapt: '<a href="https://journal.embnet.org/index.php/embnetjournal/article/view/200" target="_blank" style="font-size: 15px;">Martin, M. (2011). Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet. journal, 17(1), 10-12.</a>',
+                dada2: '<a href="https://www.nature.com/articles/nmeth.3869" target="_blank" style="font-size: 15px;">Callahan, B. J., McMurdie, P. J., Rosen, M. J., Han, A. W., Johnson, A. J. A., & Holmes, S. P. (2016). DADA2: high-resolution sample inference from Illumina amplicon data. Nature methods, 13(7), 581-583.</a>',
+                qiime: '<a href="https://www.nature.com/articles/nmeth.f.303." target="_blank" style="font-size: 15px;">Caporaso, J. G., Kuczynski, J., Stombaugh, J., Bittinger, K., Bushman, F. D., Costello, E. K., ... & Knight, R. (2010). QIIME allows analysis of high-throughput community sequencing data. Nature methods, 7(5), 335-336.</a>',
+                mafft: '<a href="https://academic.oup.com/mbe/article/30/4/772/1073398?login=false" target="_blank" style="font-size: 15px;">Katoh, K., & Standley, D. M. (2013). MAFFT multiple sequence alignment software version 7: improvements in performance and usability. Molecular biology and evolution, 30(4), 772-780.</a>',
+                fasttree: '<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0009490" target="_blank" style="font-size: 15px;">Price, M. N., Dehal, P. S., & Arkin, A. P. (2010). FastTree 2–approximately maximum-likelihood trees for large alignments. PloS one, 5(3), e9490.</a>',
+                bayesian: '<a href="https://www.ncbi.nlm.nih.gov/pubmed/17379786" target="_blank" style="font-size: 15px;">Wang, Q., Garrity, G. M., Tiedje, J. M., & Cole, J. R. (2007). Naive Bayesian classifier for rapid assignment of rRNA sequences into the new bacterial taxonomy. Applied and environmental microbiology, 73(16), 5261-5267.</a>',
+                blast: '<a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi/" target="_blank" style="font-size: 15px;">Camacho, C., Coulouris, G., Avagyan, V., Ma, N., Papadopoulos, J., Bealer, K., & Madden, T. L. (2009). BLAST+: architecture and applications. BMC bioinformatics, 10, 1-9.</a>',
+                vsearch: '<a href="https://github.com/torognes/vsearch" target="_blank" style="font-size: 15px;">Rognes, T., Flouri, T., Nichols, B., Quince, C., & Mahé, F. (2016). VSEARCH: a versatile open source tool for metagenomics. PeerJ, 4, e2584.</a>'
+            };
+            const requiredPublications = new Set(['cutadapt', 'dada2']);
+
+            // --- Data Preprocessing and ASV generation 문단 생성 ---
+            const preprocessingContainer = document.getElementById('data_preprocessing_paragraph');
+            if (preprocessingContainer) {
+                let sentences = [];
+                let firstSentence = '&nbsp;&nbsp;After sequencing, ';
+
+                if (analysisInfo.rawdata_length_trim.enabled && (analysisInfo.rawdata_length_trim.forward > 0 || analysisInfo.rawdata_length_trim.reverse > 0)) {
+                    firstSentence += `forward and reverse reads were trimmed to ${analysisInfo.rawdata_length_trim.forward}bp and ${analysisInfo.rawdata_length_trim.reverse}bp using Cutadapt(v${toolVersions.cutadapt})*. Additionally, Cutadapt(v${toolVersions.cutadapt})*`;
+                } else {
+                    firstSentence += `Cutadapt(v${toolVersions.cutadapt})*`;
+                }
+
+                const cutadaptVerb = analysisInfo.ccs ? 'primer' : 'adapter and primer';
+                firstSentence += ` was utilized to remove ${cutadaptVerb} sequences from the raw data.`;
+                sentences.push(firstSentence);
+
+                if (analysisInfo.preprocess_length_trim.enabled && (analysisInfo.preprocess_length_trim.forward > 0 || analysisInfo.preprocess_length_trim.reverse > 0)) {
+                    sentences.push(`Additionally, forward and reverse reads were trimmed to ${analysisInfo.preprocess_length_trim.forward}bp and ${analysisInfo.preprocess_length_trim.reverse}bp using Cutadapt(v${toolVersions.cutadapt})*.`);
+                }
+
+                const mergingClause = analysisInfo.single_end ? '' : ', merging,';
+                sentences.push(`To generate Amplicon Sequence Variants(ASV) sequences, the reads were performed error-correction${mergingClause} and denoising processes with DADA2(v${toolVersions.dada2})*.`);
+                sentences.push('Sequences with an expected errors of 2 or more were excluded.');
+                sentences.push('Erroneous reads were denoised based on an established error model.');
+
+                if (!analysisInfo.single_end) {
+                    sentences.push('Following error correction, paired-end reads were merged by overlapping.');
+                }
+
+                let chimeraSentence = 'Chimeric sequences were eliminated using the consensus method with the removeBimeraDenovo function in DADA2.';
+                if (analysisInfo.asvs_length_filter.enabled) {
+                    const { shortest, longest } = analysisInfo.asvs_length_filter;
+                    let filterParts = [];
+                    if (shortest !== null) { filterParts.push(`shorter than ${shortest}bp`); }
+                    if (longest !== null) { filterParts.push(`longer than ${longest}bp`); }
+                    if (filterParts.length > 0) {
+                        chimeraSentence += ` ASVs with lengths ${filterParts.join(' or ')} were filtered out using R(v${toolVersions.r}).`;
+                    }
+                }
+                sentences.push(chimeraSentence);
+
+                if (analysisInfo.subsampling) {
+                    requiredPublications.add('qiime');
+                    sentences.push(`Moreover, for microbial community comparison analysis, normalization was performed using QIIME(v${toolVersions.qiime}). During this process, subsampling was conducted based on the sample with the lowest read count among all samples to ensure comparability between them.`);
+                }
+
+                sentences.push('The resulting ASVs were utilized for downstream analysis.');
+                preprocessingContainer.innerHTML = sentences.join(' ');
+            }
+
+            // --- Taxonomy analysis and Community diversity 문단 생성 ---
+            const taxonomyContainer = document.getElementById('taxonomy_diversity_paragraph');
+            if (taxonomyContainer) {
+                let sentences = [];
+                const dbTools = analysisInfo.databaseTool;
+                const databases = new Set();
+                const tools = new Set();
+                dbTools.forEach(item => { const match = item.match(/(.+) \((.+)\)/); if (match) { databases.add(match[1].trim()); tools.add(match[2].trim()); } });
+
+                const toolDescriptions = {
+                    'BLAST': `BLAST+(v${toolVersions.blast}, Query coverage > 85% and identity > 85%)*`,
+                    'VSEARCH': `VSEARCH(v${toolVersions.vsearch})*`,
+                    'Bayesian': `Bayesian classifier(DADA2_v${toolVersions.dada2}, confidence value: 50)*`
+                };
+
+                tools.forEach(tool => {
+                    const lowerTool = tool.toLowerCase();
+                    if (publications[lowerTool]) {
+                        requiredPublications.add(lowerTool);
+                    }
+                });
+
+                const usedToolStrings = [...tools].map(tool => toolDescriptions[tool]).filter(Boolean).join(' and ');
+                const dbString = `(${[...databases].join(', ')})`;
+
+                sentences.push(`&nbsp;&nbsp;Each ASV was aligned to the organism with the highest similarity in the corresponding Reference Database${dbString}, using algorithms such as ${usedToolStrings}.`);
+                sentences.push(`QIIME(v${toolVersions.qiime}) was utilized for downstream ASV analysis. Alpha diversity metrics, such as the Shannon index, Gini-Simpson index, and PD whole tree, were calculated to represent species complexity within individual samples. The observed species(ASVs), which refers to the number of different species, was also provided.`);
+
+                if (array.numberofsample >= 3) {
+                    requiredPublications.add('mafft').add('fasttree');
+                    sentences.push(`The mafft(v${toolVersions.mafft})* and FastTreeMP(v${toolVersions.fasttree})* were used to perform multiple alignment and construct phylogenetic tree of ASVs. Beta diversity(diversity among samples within a group) was calculated based on Bray-Curtis, Weighted UniFrac, and Unweighted UniFrac distances. Genetic relationship among samples was visualized based on PCoA and UPGMA tree.`);
+                }
+                taxonomyContainer.innerHTML = sentences.join(' ');
+            }
+
+            // --- Publication 섹션 동적 생성 ---
+            const publicationContainer = document.getElementById('publication_paragraph');
+            if (publicationContainer) {
+                const publicationHTML = [...requiredPublications].map(key => publications[key]).filter(Boolean).join('<br>');
+                publicationContainer.innerHTML = publicationHTML;
+            }
+        });
+    </script>
+</body>
+
+</html>

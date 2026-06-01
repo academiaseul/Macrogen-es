@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html ng-app="ReportApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/group-modal.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../js/excel/xlsx.full.min.js"></script>
+    <script src="../main.js"></script>
+
+    <script>
+        var ordernumber = array.project;
+        var customer = array.name;
+        var institute = array.organization;
+        var application = array.application;
+        var appCode = array.appCode;
+        var numberofsample = array.numberofsample;
+        document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
+    </script>
+</head>
+
+<body class="total_font">
+    <header id="header">
+        <div class="header-wrap clearfix">
+            <div class="logo">
+                <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+            </div>
+            <div class="center-txt sans_font"><b id="banner_id"></b></div>
+            <script>
+                document.getElementById('banner_id').innerHTML = application;
+            </script>
+            <p class="notice">Research Use Only</p>
+        </div>
+        <nav class="navbar">
+            <ul id="navbar_ui"></ul>
+            <script>
+                function generateMenuHtml(menuArray) {
+                    let html = '';
+                    menuArray.forEach(item => {
+                        if (item.category) { // 변경
+                            html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                            html += '<ul class="dropdown-menu">';
+                            html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                            html += '</ul></li>';
+                        } else if (item.display) {
+                            if (item.path === "") {
+                                html += "<li><p>" + item.name + "</p></li>";
+                            } else {
+                                html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+                            }
+                        }
+                    });
+                    return html;
+                }
+
+                var html = "";
+                var nav_ = document.getElementById('navbar_ui');
+                if (array.page) {
+                    array.page.forEach(page => {
+                        if (page.category) {
+                            let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                            tmphtml += generateMenuHtml(page.path);
+                            tmphtml += '</ul></li>';
+                            html += tmphtml;
+                        } else if (page.path && page.path[0] && page.path[0].display) {
+                            html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
+                        }
+                    });
+                }
+                nav_.innerHTML = html;
+            </script>
+        </nav>
+    </header>
+
+    <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
+    <script>
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() != 0) { $('#backtotop').fadeIn(); }
+                else { $('#backtotop').fadeOut(); }
+            });
+            $('#backtotop').click(function () {
+                $('body,html').animate({ scrollTop: 0 }, 800);
+            });
+        });
+    </script>
+
+    <div class="container">
+        <div class="div_icon"><img src="../img/Icon_img/VARIANT_stats.png"></div>
+        <div class="div_h1" id="WorkFlow">
+            <h1>Taxonomy analysis</h1>
+        </div><br><br>
+
+        <div style="width:100%; display: flex; padding-bottom:30px; ">
+            <button id="default_button" class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_heatmap/Bayesian_NCBI_16S/Heatmapplot_L2.js','Phylum');highlight(this);">Phylum</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_heatmap/Bayesian_NCBI_16S/Heatmapplot_L3.js','Class');highlight(this);">Class</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_heatmap/Bayesian_NCBI_16S/Heatmapplot_L4.js','Order');highlight(this);">Order</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_heatmap/Bayesian_NCBI_16S/Heatmapplot_L5.js','Family');highlight(this);">Family</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_heatmap/Bayesian_NCBI_16S/Heatmapplot_L6.js','Genus');highlight(this);">Genus</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_heatmap/Bayesian_NCBI_16S/Heatmapplot_L7.js','Species');highlight(this);">Species</button>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"
+                            style="display: flex; justify-content: space-between; align-items: center;">
+                            <a data-toggle="collapse" href="#collapse_1"><output id="current_page"
+                                    style="color: rgb(0, 0, 0);font-size:22px;font-weight:1000;"></output></a>
+                            <div style="display: flex; align-items: center; margin-left: auto;">
+                                <b style="margin-right: 5px;">Select a Group Type:</b>
+                                <select id="groupSelector" style="margin-left: 5px;"></select>
+                            </div>
+                        </h4>
+                    </div>
+                    <div id="collapse_1" class="panel-collapse collapse in ">
+                        <div class="panel-body xy_scroll">
+                            <div style="display: flex;padding-top:15px;padding-bottom:20px">
+                                <div>
+                                    <label>Heatmap Plot Controls</label><br><br>
+                                    <div style="display: flex">
+                                        <button class="myButton_1 left" onclick="click_color()">Heatmap Color</button>
+                                        <button class="myButton_1 center" onclick="click_filter()">Filter</button>
+                                        <button class="myButton_1 right" onclick="downloadimg('png')">Save PNG</button>
+                                    </div>
+                                </div>
+                                <div style="width: 2%;"></div>
+                                <div style="width: 20%;"><br><br>
+                                    <label>Cell Width</label>
+                                    <input id="bandwitdh" type="range" min=1 max=150 value=20 />
+                                </div>
+                            </div>
+
+                            <div id="inchlib" style="padding-top:15px;padding-bottom:30px"></div>
+                            <hr>
+                            <p style="font-size:17px;text-indent:50px; white-space: nowrap; ">&#9679; Taxonomic profiles
+                                for the mean relative abundance of top abundant (up to 20) Taxon were visualized. The
+                                full results can be found in the downloaded result file.</p>
+                        </div>
+
+                        <script src="../js/heatmap/Inchlib.js"></script>
+                        <script src="../js/heatmap/kinetic-v5.1.0.min.js"></script>
+                        <script src="./Taxonomy_heatmap/plot_group.js"></script>
+
+                        <script>
+                            var dict = {};
+                            var uploadedData = null;
+
+                            document.addEventListener("DOMContentLoaded", function (event) {
+                                const groupSelector = document.getElementById('groupSelector');
+                                const fileNameDisplayDiv = document.getElementById('fileNameDisplay');
+
+                                // Populate predefined groups
+                                if (typeof group_count !== 'undefined' && group_count > 0 && typeof group_name !== 'undefined' && Array.isArray(group_name)) {
+                                    for (let i = 0; i < group_count; i++) {
+                                        const option = document.createElement('option');
+                                        option.value = i;
+                                        option.textContent = group_name[i];
+                                        groupSelector.appendChild(option);
+                                    }
+                                }
+
+                                // Add 'Custom' option
+                                const customOption = document.createElement('option');
+                                customOption.value = 'Custom';
+                                customOption.textContent = "Group Customization";
+                                groupSelector.appendChild(customOption);
+
+                                if (groupSelector.options.length > 1) {
+                                    groupSelector.selectedIndex = 0;
+                                } else {
+                                    groupSelector.value = 'Custom';
+                                }
+
+                                // Event listener for group changes
+                                groupSelector.addEventListener('change', function () {
+                                    const currentLevelButton = document.querySelector('.myButton.big.highlighted') || document.getElementById("default_button");
+                                    if (this.value === "Custom") {
+                                        if (uploadedData) {
+                                            if (fileNameDisplayDiv) fileNameDisplayDiv.style.display = 'flex';
+                                            updateGraphWithNewData(uploadedData);
+                                        } else {
+                                            document.getElementById('inchlib').innerHTML = "<p style='text-align:center; padding:20px;'>Please upload a metadata file for custom grouping.</p>";
+                                            // [추가] 플로팅 버튼 강조 함수 호출
+                                            if (typeof highlightFloatingButton === 'function') {
+                                                highlightFloatingButton(4000); // 4초 동안 강조
+                                            }
+                                        }
+                                    } else {
+                                        if (fileNameDisplayDiv) fileNameDisplayDiv.style.display = 'none';
+                                        if (currentLevelButton && typeof load_json === 'function') {
+                                            currentLevelButton.click();
+                                        }
+                                    }
+                                });
+
+                                // Initial load
+                                document.getElementById("default_button").click();
+                            });
+
+                            // Function to be called by group-modal.js
+                            function updateGraphWithNewData(data) {
+                                window.dict = data;
+                                window.uploadedData = data;
+                                if (data && Object.keys(data).length > 0) {
+                                    const currentLevelButton = document.querySelector('.myButton.big.highlighted') || document.getElementById("default_button");
+                                    if (currentLevelButton && typeof load_json === 'function') {
+                                        currentLevelButton.click();
+                                    }
+                                } else {
+                                    document.getElementById('inchlib').innerHTML = "<p style='text-align:center; padding:20px;'>No valid custom data to display.</p>";
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="floating-btn">
+        <i class="fa fa-edit"></i>
+        <span id="tooltipText" class="tooltip-text">
+            <strong>Group Customization</strong><br>
+            Upload <code>metadata.xlsx</code> for custom group analysis.
+        </span>
+    </button>
+    <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Group Management</h4>
+        </div>
+        <div class="modal-body">
+            <div id="usage">
+                <h4>How to Customize Groups:</h4>
+                <ol>
+                    <li id="usageText">Click <strong>Download Template</strong> to get the <code>metadata.xlsx</code> file.</li>
+                    <li>Open the file and specify your custom groups for each sample in the 'Group' sheet.</li>
+                    <li>Save the changes and click <strong>Upload File</strong> to apply your custom grouping.</li>
+                </ol>
+                <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you will
+                    need to re-upload the file.</p>
+            </div>
+            <div class="button-container">
+                <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button" download>
+                    <i class="fa fa-download"></i>Download Template
+                </a>
+                <label class="btn-modal-action upload_label_button">
+                    <i class="fa fa-upload"></i> Upload File
+                    <input type="file" id="fileInput" accept=".xlsx" style="display: none;" />
+                </label>
+            </div>
+            <div id="fileNameDisplay"></div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // 'ordernumber' 변수는 페이지 상단에서 'array.project' 값으로 이미 정의되어 있습니다.
+                if (typeof ordernumber !== 'undefined') {
+                    const newFileName = `metadata_${ordernumber}.xlsx`;
+                    const newFileNameHtml = `<code>${newFileName}</code>`;
+
+                    // 1. 다운로드 링크의 href와 download 속성을 변경합니다.
+                    const downloadLink = document.getElementById('downloadTemplateLink');
+                    if (downloadLink) {
+                        downloadLink.href = `../${newFileName}`;
+                        downloadLink.download = newFileName;
+                    }
+
+                    // 2. 플로팅 버튼의 툴팁 텍스트를 변경합니다.
+                    const tooltipText = document.getElementById('tooltipText');
+                    if (tooltipText) {
+                        tooltipText.innerHTML = `<strong>Group Customization</strong><br>Upload ${newFileNameHtml} for custom group analysis.`;
+                    }
+
+                    // 3. 사용법 안내 문구의 텍스트를 변경합니다.
+                    const usageText = document.getElementById('usageText');
+                    if (usageText) {
+                        usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
+                    }
+                }
+            });
+        </script>
+    </div>
+    <script src="../js/group-modal.js"></script>
+
+</body>
+
+</html>

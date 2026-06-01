@@ -195,6 +195,104 @@
   </div>
 </section>
 
+<!-- ============== ASV BIOINFORMATICS PIPELINE + INTERACTIVE SAMPLE REPORT ============== -->
+<section id="bioinformatica-asv" class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:780px; margin:0 auto 40px;">
+      <span class="eyebrow on-light" style="color:var(--mc-teal);">📊 Análisis bioinformático incluido</span>
+      <h2>Pipeline ASV · de FASTQ a comunidad microbiana.</h2>
+      <p>Cada proyecto de amplicon sequencing 16S/18S/ITS incluye un reporte bioinformático interactivo con preprocessing, taxonomía Bayesiana NCBI, diversidad alpha y beta — listo para publicación o análisis downstream propio.</p>
+    </div>
+
+    <!-- 3-step pipeline -->
+    <div class="grid grid-3" style="gap:20px; max-width:1080px; margin:0 auto 48px;">
+      <div style="background:#fff; border:1px solid var(--mc-border); border-radius:12px; padding:22px; position:relative;">
+        <div style="position:absolute; top:-12px; left:18px; background:var(--mc-navy); color:#fff; padding:4px 12px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:1px;">1 · QC + TRIMMING</div>
+        <h3 style="margin:10px 0 8px; font-size:16px;">🧹 Cutadapt v3.2</h3>
+        <p style="font-size:13px; color:var(--mc-mute); line-height:1.6; margin:0 0 10px;">Recorte de adaptadores y primers en modo error-tolerant. Filtrado por longitud y calidad Q-score. Stats por muestra exportadas a Excel.</p>
+        <small style="font-size:11px; color:var(--mc-teal); font-weight:700;">Output: trimmed reads + QC_statistics.xlsx</small>
+      </div>
+
+      <div style="background:#fff; border:1px solid var(--mc-border); border-radius:12px; padding:22px; position:relative;">
+        <div style="position:absolute; top:-12px; left:18px; background:var(--mc-teal); color:#fff; padding:4px 12px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:1px;">2 · ASV INFERENCE</div>
+        <h3 style="margin:10px 0 8px; font-size:16px;">🧬 DADA2 v1.18.0</h3>
+        <p style="font-size:13px; color:var(--mc-mute); line-height:1.6; margin:0 0 10px;">Denoising, merge de paired-ends, eliminación de quimeras y construcción de <strong>Amplicon Sequence Variants (ASV)</strong> con resolución de single-nucleotide.</p>
+        <small style="font-size:11px; color:var(--mc-teal); font-weight:700;">Output: ASVs_rep.fasta + ASV_table.biom + ASVs_phylo.tre</small>
+      </div>
+
+      <div style="background:#fff; border:1px solid var(--mc-border); border-radius:12px; padding:22px; position:relative;">
+        <div style="position:absolute; top:-12px; left:18px; background:var(--mc-green); color:#fff; padding:4px 12px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:1px;">3 · DIVERSIDAD</div>
+        <h3 style="margin:10px 0 8px; font-size:16px;">📈 QIIME v1.9.0 + Bayesian NCBI</h3>
+        <p style="font-size:13px; color:var(--mc-mute); line-height:1.6; margin:0 0 10px;">Asignación taxonómica vs NCBI 16S DB, métricas <strong>alpha</strong> (Shannon, Simpson, Chao1, Faith's PD) y <strong>beta</strong> (PCoA Bray-Curtis · Weighted/Unweighted UniFrac).</p>
+        <small style="font-size:11px; color:var(--mc-teal); font-weight:700;">Output: heatmaps · barplots · krona · PCoA · UPGMA trees</small>
+      </div>
+    </div>
+
+    <!-- Live interactive report preview -->
+    <div style="max-width:1080px; margin:0 auto;">
+      <div class="grid grid-2" style="gap:32px; align-items:center;">
+
+        <div>
+          <span style="display:inline-block; background:linear-gradient(135deg,#FEF2F4,#FEF7E8); color:var(--mc-red); font-size:10px; font-weight:800; letter-spacing:1.5px; padding:4px 10px; border-radius:4px; text-transform:uppercase; margin-bottom:14px;">★ Reporte interactivo · sample real</span>
+          <h3 style="font-size:24px; margin:0 0 14px; color:var(--mc-navy);">Explore un reporte completo en vivo.</h3>
+          <p style="font-size:14px; color:var(--mc-mute); line-height:1.7; margin-bottom:18px;">Hemos publicado un <strong>reporte ASV real</strong> generado con nuestro pipeline. Datos ficticios pero estructura idéntica a la que recibirá su proyecto: tablas interactivas, gráficos navegables, descarga de cada output en Excel/BIOM/FASTA.</p>
+
+          <ul style="list-style:none; padding:0; margin:0 0 22px;">
+            <li style="display:flex; gap:10px; padding:8px 0; font-size:13px;"><span style="color:var(--mc-green); font-weight:800;">✓</span> <span><strong>Stat Summary</strong> — pre-processing por muestra</span></li>
+            <li style="display:flex; gap:10px; padding:8px 0; font-size:13px;"><span style="color:var(--mc-green); font-weight:800;">✓</span> <span><strong>Rawdata report</strong> — calidad de cada FASTQ</span></li>
+            <li style="display:flex; gap:10px; padding:8px 0; font-size:13px;"><span style="color:var(--mc-green); font-weight:800;">✓</span> <span><strong>Taxonomy</strong> — barplots, heatmaps y Krona</span></li>
+            <li style="display:flex; gap:10px; padding:8px 0; font-size:13px;"><span style="color:var(--mc-green); font-weight:800;">✓</span> <span><strong>Alpha diversity</strong> — índices + rarefaction curves</span></li>
+            <li style="display:flex; gap:10px; padding:8px 0; font-size:13px;"><span style="color:var(--mc-green); font-weight:800;">✓</span> <span><strong>Beta diversity</strong> — PCoA (3 distancias) + UPGMA trees</span></li>
+            <li style="display:flex; gap:10px; padding:8px 0; font-size:13px;"><span style="color:var(--mc-green); font-weight:800;">✓</span> <span><strong>Methods</strong> — versiones exactas de cada tool</span></li>
+          </ul>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="../assets/docs/asv-sample-report/Report.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-weight:800;">🚀 Abrir reporte interactivo</a>
+            <a href="../assets/docs/asv-sample-report.zip" class="btn btn-ghost-light">📦 Descargar ZIP (38 MB)</a>
+          </div>
+
+          <p style="font-size:11.5px; color:var(--mc-mute); margin-top:14px; font-style:italic;">Reporte 100% offline · funciona sin internet · ejecuta en cualquier navegador moderno.</p>
+        </div>
+
+        <div>
+          <!-- Mock browser frame showing the report -->
+          <div style="background:#fff; border:1px solid #DDE3EE; border-radius:12px; box-shadow:0 16px 40px rgba(27,42,87,0.14); overflow:hidden;">
+            <!-- Browser chrome -->
+            <div style="background:#F4F6FB; padding:10px 14px; display:flex; gap:10px; align-items:center; border-bottom:1px solid #E0E5EE;">
+              <div style="display:flex; gap:5px;">
+                <span style="width:10px; height:10px; border-radius:50%; background:#FF6058;"></span>
+                <span style="width:10px; height:10px; border-radius:50%; background:#FFBD2E;"></span>
+                <span style="width:10px; height:10px; border-radius:50%; background:#27CA40;"></span>
+              </div>
+              <div style="flex:1; background:#fff; border:1px solid #E0E5EE; border-radius:4px; padding:4px 10px; font-size:11px; color:var(--mc-mute); font-family:monospace;">📊 ASV_Analysis/Report.html</div>
+            </div>
+            <!-- Report content mockup -->
+            <div style="background:linear-gradient(180deg,#22365C,#1B2A57); color:#fff; padding:24px 22px;">
+              <h4 style="margin:0; font-size:16px; color:#fff;">Amplicon Metagenomic Sequencing Report</h4>
+              <p style="font-size:11px; color:#A8B8D8; margin:4px 0 16px;">Powered by Macrogen · Cutadapt · DADA2 · QIIME</p>
+
+              <!-- Modules grid -->
+              <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; font-size:11px;">
+                <div style="background:rgba(63,169,201,0.18); border:1px solid #3FA9C9; padding:10px; border-radius:6px;"><strong style="display:block; color:#7FD4E8;">📋 Order Info</strong><span style="color:#C8D8F0;">samples + groups</span></div>
+                <div style="background:rgba(127,201,127,0.18); border:1px solid #7FC97F; padding:10px; border-radius:6px;"><strong style="display:block; color:#A8DDA8;">🧹 Rawdata QC</strong><span style="color:#C8D8F0;">FASTQ stats</span></div>
+                <div style="background:rgba(127,201,127,0.18); border:1px solid #7FC97F; padding:10px; border-radius:6px;"><strong style="display:block; color:#A8DDA8;">📊 Stat Summary</strong><span style="color:#C8D8F0;">ASV remain</span></div>
+                <div style="background:rgba(247,180,38,0.18); border:1px solid #F7B426; padding:10px; border-radius:6px;"><strong style="display:block; color:#F5D082;">🦠 Taxonomy</strong><span style="color:#C8D8F0;">heatmap · krona</span></div>
+                <div style="background:rgba(231,74,107,0.18); border:1px solid #E74A6B; padding:10px; border-radius:6px;"><strong style="display:block; color:#F0A0B5;">📈 Alpha Div.</strong><span style="color:#C8D8F0;">Shannon · Chao1</span></div>
+                <div style="background:rgba(167,139,250,0.18); border:1px solid #A78BFA; padding:10px; border-radius:6px;"><strong style="display:block; color:#C8B8FA;">🗺️ Beta Div.</strong><span style="color:#C8D8F0;">PCoA · UPGMA</span></div>
+              </div>
+
+              <div style="margin-top:14px; padding:10px; background:rgba(255,255,255,0.08); border-radius:6px; font-size:10px; color:#C8D8F0; text-align:center;">
+                Datos en servidor durante <strong style="color:#fff;">3 meses</strong> · descarga offline siempre disponible
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <h2 style="text-align:center; margin-bottom:36px;">Requerimientos de muestra</h2>

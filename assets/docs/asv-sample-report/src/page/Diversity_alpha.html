@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/group-modal.css">
+    <link rel="stylesheet" href="../js/tablesorter-master/css/theme.bootstrap.css">
+    <link rel="stylesheet" href="../js/tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../js/plotly/plotly-2.20.0.min.js"></script>
+    <script src="../js/excel/xlsx.full.min.js"></script>
+
+    <script src="../main.js"></script>
+    <script src="./Diversity_alpha/alpha_diversity.js"></script>
+    <script src="./Diversity_alpha/plot.js"></script>
+    <script src="../js/tablesorter-master/js/jquery.tablesorter.js"></script>
+    <script src="../js/tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+    <script src="../js/tablesorter-master/addons/pager/jquery.tablesorter.pager.js"></script>
+
+    <script>
+        var ordernumber = array.project;
+        var customer = array.name;
+        var institute = array.organization;
+        var application = array.application;
+        var appCode = array.appCode;
+        var numberofsample = array.numberofsample;
+        document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
+    </script>
+    <style>
+        .boxplot-div {
+            width: 48%;
+            height: 350px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        #boxplot-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+    </style>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font"><b id="banner_id"></b></div>
+                <script>
+                    document.getElementById('banner_id').innerHTML = application;
+                </script>
+                <p class="notice">Research Use Only</p>
+            </div>
+            <nav class="navbar">
+                <ul id="navbar_ui"></ul>
+                <script>
+                    function generateMenuHtml(menuArray) {
+                        let html = '';
+                        menuArray.forEach(item => {
+                            if (item.category) { // 변경
+                                html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                                html += '<ul class="dropdown-menu">';
+                                html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                                html += '</ul></li>';
+                            } else if (item.display) {
+                                if (item.path === "") {
+                                    html += "<li><p>" + item.name + "</p></li>";
+                                } else {
+                                    html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+                                }
+                            }
+                        });
+                        return html;
+                    }
+
+                    var html = "";
+                    var nav_ = document.getElementById('navbar_ui');
+                    if (array.page) {
+                        array.page.forEach(page => {
+                            if (page.category) {
+                                let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                                tmphtml += generateMenuHtml(page.path);
+                                tmphtml += '</ul></li>';
+                                html += tmphtml;
+                            } else if (page.path && page.path[0] && page.path[0].display) {
+                                html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
+                            }
+                        });
+                    }
+                    nav_.innerHTML = html;
+                </script>
+            </nav>
+        </header>
+
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
+        <script>
+            $(function () {
+                $(window).scroll(function () { if ($(this).scrollTop() != 0) { $('#backtotop').fadeIn(); } else { $('#backtotop').fadeOut(); } });
+                $('#backtotop').click(function () { $('body,html').animate({ scrollTop: 0 }, 800); });
+            });
+        </script>
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <div class="div_icon"><img src="../img/Icon_img/VARIANT_stats.png"></div>
+                    <div class="div_h1">
+                        <h1>Diversity analysis<h3>(Alpha diversity)</h3>
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <br>
+                    <div class="panel-group" id="alpha-section1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a data-toggle="collapse" href="#collapse_1"><b>Community
+                                            Diversity by Sample</b></a></h4>
+                            </div>
+                            <div id="collapse_1" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" style="text-align: center;">
+                                    <div id="shannon_gini-simpson" style='width: 100%;'></div>
+                                    <div style="text-align: left;">
+                                        <p><b>* Shannon index:</b> The Shannon index measures the diversity of species
+                                            in a community.</p>
+                                        <p><b>* Gini-Simpson index:</b> The Gini-Simpson index measures the evenness of
+                                            species in a community (how similar abundances are across species).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            D2_dual_plot(alpha_diversity, sample_list, "shannon", "gini-simpson");
+                        });
+                    </script>
+                    <br>
+                    <div class="panel-group" id="alpha-section2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                    <a data-toggle="collapse" href="#collapse_2"><b>Community Diversity by
+                                            Boxplot</b></a>
+                                    <div style="display: flex; align-items: center; margin-left: auto;">
+                                        <b style="margin-right: 5px;">Select a Group Type:</b>
+                                        <select id="groupSelector" class="custom-group-selector"
+                                            style="margin-left: 5px;"></select>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div id="collapse_2" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" style="text-align: center;">
+                                    <div id="boxplot-container"></div>
+                                    <div style="text-align: left;">
+                                        <p>* Box plots showing the distribution of alpha diversity as measured by PD
+                                            whole tree, ASVs, Shannon, and Gini-Simpson, among the groups</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                var uploadedData = null; // 커스텀 그룹 데이터 저장용 전역 변수
+
+                                // Boxplot을 업데이트하는 중앙 함수
+                                function updatePlots() {
+                                    const selectedValue = document.getElementById('groupSelector').value;
+                                    const boxplotContainer = document.getElementById('boxplot-container');
+                                    let xAxisData, legendTitle;
+
+                                    if (selectedValue === 'SampleID') {
+                                        xAxisData = sample_list;
+                                        legendTitle = 'Sample';
+                                    } else if (selectedValue === 'Custom') {
+                                        if (uploadedData) {
+                                            xAxisData = sample_list.map(sampleId => uploadedData[sampleId] || 'Undefined');
+                                            legendTitle = 'Group';
+                                        } else {
+                                            boxplotContainer.innerHTML = "<p style='text-align:center; padding:20px;'>Please upload a metadata file for custom grouping.</p>";
+                                            if (typeof highlightFloatingButton === 'function') {
+                                                highlightFloatingButton(4000);
+                                            }
+                                            return;
+                                        }
+                                    } else {
+                                        const selectedIndex = parseInt(selectedValue, 10);
+                                        xAxisData = window['group_list' + (selectedIndex + 1)];
+                                        legendTitle = group_name[selectedIndex] || 'Group';
+                                    }
+
+                                    if (!xAxisData) return;
+
+                                    // boxplot-container 초기화 및 div 생성
+                                    boxplotContainer.innerHTML = '';
+                                    Object.keys(alpha_diversity).forEach(function (key) {
+                                        var div = document.createElement('div');
+                                        div.id = 'boxplot_' + key.replace(/[^a-zA-Z0-9]/g, '');
+                                        div.className = 'boxplot-div';
+                                        boxplotContainer.appendChild(div);
+                                    });
+
+                                    Object.keys(alpha_diversity).forEach(function (key) {
+                                        Box_plot(alpha_diversity, xAxisData, key, legendTitle);
+                                    });
+                                }
+
+                                // group-modal.js에서 파일 업로드 성공 시 호출될 전역 함수
+                                function updateGraphWithNewData(data) {
+                                    uploadedData = data;
+                                    document.getElementById('groupSelector').value = 'Custom';
+                                    updatePlots(); // 커스텀 데이터로 플롯 업데이트
+                                }
+
+                                // 페이지 로드 시 실행될 기본 설정
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    const groupSelector = document.getElementById('groupSelector');
+                                    const boxplotContainer = document.getElementById('boxplot-container');
+
+                                    // Boxplot을 그릴 div 동적 생성
+                                    Object.keys(alpha_diversity).forEach(function (key) {
+                                        var div = document.createElement('div');
+                                        div.id = 'boxplot_' + key.replace(/[^a-zA-Z0-9]/g, '');
+                                        div.className = 'boxplot-div';
+                                        boxplotContainer.appendChild(div);
+                                    });
+
+                                    // groupSelector 옵션 채우기
+                                    if (groupSelector) {
+                                        groupSelector.innerHTML = ''; // 드롭다운 초기화
+
+                                        // 1. "SampleID"를 기본 옵션으로 추가
+                                        groupSelector.innerHTML += '<option value="SampleID">SampleID</option>';
+
+                                        // 2. main.js에 정의된 사전 그룹 옵션 추가
+                                        if (typeof group_name !== 'undefined' && Array.isArray(group_name)) {
+                                            group_name.forEach(function (name, index) {
+                                                groupSelector.innerHTML += `<option value="${index}">${name}</option>`;
+                                            });
+                                        }
+
+                                        // 3. "Group Customization" 옵션 추가
+                                        groupSelector.innerHTML += '<option value="Custom">Group Customization</option>';
+
+                                        // 드롭다운 변경 시 Boxplot 업데이트 이벤트 리스너 연결
+                                        groupSelector.addEventListener('change', updatePlots);
+
+                                        // 페이지 로드 시 초기 Boxplot을 기본값("SampleID")으로 설정하여 그림
+                                        updatePlots();
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="panel-group" id="Fastqstats_raw">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a data-toggle="collapse" href="#collapse_3"><b>Diversity
+                                            Index</b></a></h4>
+                            </div>
+                            <div id="collapse_3" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <table class="table tablesorter">
+                                        <thead>
+                                            <tr id="table-header">
+                                                <th class="th_center">Sample name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tb_fastq_raw"></tbody>
+                                    </table>
+                                    <script>
+                                        // 테이블 헤더 동적 생성
+                                        var tableHeader = document.getElementById('table-header');
+                                        var keys = Object.keys(alpha_diversity);
+                                        keys.forEach(function (key) {
+                                            var th = document.createElement('th');
+                                            th.className = 'th_center';
+                                            th.textContent = key;
+                                            tableHeader.appendChild(th);
+                                        });
+                                        // 테이블 바디 채우기
+                                        var tableBody = document.getElementById('tb_fastq_raw');
+                                        sample_list.forEach(function (sampleName, index) {
+                                            var tr = document.createElement('tr');
+                                            var html_str = "<td class='td_char'>" + sampleName + "</td>";
+                                            keys.forEach(function (key) {
+                                                var value = alpha_diversity[key][index];
+                                                html_str += "<td class='td_num' style='text-align:center;'>" + value.toFixed(2) + "</td>";
+                                            });
+                                            tr.innerHTML = html_str;
+                                            tableBody.appendChild(tr);
+                                        });
+                                    </script>
+
+                                    <div id="pager">
+                                        <div id="pager_raw" class="pager">
+                                            <form>
+                                                <img src="../js/tablesorter-master/addons/pager/icons/first.png"
+                                                    class="first" />
+                                                <img src="../js/tablesorter-master/addons/pager/icons/prev.png"
+                                                    class="prev" />
+                                                <span class="pagedisplay"></span>
+                                                <img src="../js/tablesorter-master/addons/pager/icons/next.png"
+                                                    class="next" />
+                                                <img src="../js/tablesorter-master/addons/pager/icons/last.png"
+                                                    class="last" />
+                                                <select class="pagesize">
+                                                    <option value="all">All Samples</option>
+                                                    <option value="10" selected>10 samples per page</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <script>
+                                        $(document).ready(function () {
+                                            $(".tablesorter").tablesorter({
+                                                theme: 'bootstrap',
+                                                widthFixed: true,
+                                                widgets: ['zebra']
+                                            }).tablesorterPager({
+                                                container: $(".pager"),
+                                                size: 10,
+                                                cssGoto: '.gotoPage'
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div style="height:50px"></div>
+    </div>
+
+    <button class="floating-btn">
+        <i class="fa fa-edit"></i>
+        <span id="tooltipText" class="tooltip-text">
+            <strong>Group Customization</strong><br>
+            Upload <code>metadata.xlsx</code> for custom group analysis.
+        </span>
+    </button>
+    <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Group Management</h4>
+        </div>
+        <div class="modal-body">
+            <div id="usage">
+                <h4>How to Customize Groups:</h4>
+                <ol>
+                    <li id="usageText">Click <strong>Download Template</strong> to get the <code>metadata.xlsx</code>
+                        file.</li>
+                    <li>Open the file and specify your custom groups for each sample in the 'Group' sheet.</li>
+                    <li>Save the changes and click <strong>Upload File</strong> to apply your custom grouping.</li>
+                </ol>
+                <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you will
+                    need to re-upload the file.</p>
+            </div>
+            <div class="button-container">
+                <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button"
+                    download>
+                    <i class="fa fa-download"></i>Download Template
+                </a>
+                <label class="btn-modal-action upload_label_button">
+                    <i class="fa fa-upload"></i> Upload File
+                    <input type="file" id="fileInput" accept=".xlsx" style="display: none;" />
+                </label>
+            </div>
+            <div id="fileNameDisplay"></div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                if (typeof ordernumber !== 'undefined') {
+                    const newFileName = `metadata_${ordernumber}.xlsx`;
+                    const newFileNameHtml = `<code>${newFileName}</code>`;
+
+                    const downloadLink = document.getElementById('downloadTemplateLink');
+                    if (downloadLink) {
+                        downloadLink.href = `../${newFileName}`;
+                        downloadLink.download = newFileName;
+                    }
+
+                    const tooltipText = document.getElementById('tooltipText');
+                    if (tooltipText) {
+                        tooltipText.innerHTML = `<strong>Group Customization</strong><br>Upload ${newFileNameHtml} for custom group analysis.`;
+                    }
+
+                    const usageText = document.getElementById('usageText');
+                    if (usageText) {
+                        usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
+                    }
+                }
+            });
+        </script>
+    </div>
+    <script src="../js/group-modal.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // main.js의 stat_summary 배열에서 첫 번째 객체의 NumberOfSample 값을 가져옵니다.
+            const numberOfSamples = numberofsample;
+
+            // 샘플 수가 2 미만인지 확인합니다.
+            if (numberOfSamples < 2) {
+                const boxplotSection1 = document.getElementById('alpha-section1');
+                // 해당 요소가 존재하면 화면에 보이지 않도록 'display' 속성을 'none'으로 변경합니다.
+                if (boxplotSection1) {
+                    boxplotSection1.style.display = 'none';
+                }
+
+                const boxplotSection2 = document.getElementById('alpha-section2');
+                // 해당 요소가 존재하면 화면에 보이지 않도록 'display' 속성을 'none'으로 변경합니다.
+                if (boxplotSection2) {
+                    boxplotSection2.style.display = 'none';
+                }
+            }
+        });
+    </script>
+
+
+
+</body>
+
+</html>

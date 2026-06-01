@@ -1,0 +1,12 @@
+MODEL	EFFECT	Count
+denovo	frame	1
+denovo	nonsym	2
+denovo	5utr	10
+simple	3utr	20
+simple	nonsym	5
+simple	5utr	7
+simple	sym	8
+compound	nonsym	15
+compound	frame	2
+compound	test2	20
+compound	nonsym	30

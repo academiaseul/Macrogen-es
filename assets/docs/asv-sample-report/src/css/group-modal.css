@@ -1,0 +1,244 @@
+/* ==================== MODAL MODULE STYLES ==================== */
+
+/* --- Floating Button --- */
+code {
+            color: #1e7e34;
+            background-color: #e9f5e9;
+            padding: 3px 5px;
+            border-radius: 4px;
+            font-size: 90%;
+}
+
+.floating-btn {
+    position: fixed;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    background-color: #275c31;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 58px;
+    height: 58px;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    z-index: 1045;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-btn:hover {
+    background-color: #1e4425;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.floating-btn .tooltip-text {
+    visibility: hidden;
+    width: auto;
+    min-width: 220px;
+    background-color: #ffffff;
+    color: #333333;
+    text-align: left;
+    border-radius: 6px;
+    padding: 12px 16px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 118%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    white-space: normal;
+    font-size: 13.5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    border: 1px solid #e0e0e0;
+}
+
+.floating-btn .tooltip-text code {
+    font-size: 95%;
+    padding: 2px 4px;
+    color: #1e7e34;
+    background-color: #e9f5e9;
+    border-radius: 4px;
+}
+
+.floating-btn:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- Metadata Modal --- */
+#metadataModal {
+    /* 1. 화면 정중앙 배치 (가로/세로) */ 
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    
+    /* 2. Bootstrap 기본값 일부 오버라이드 */
+    right: auto;
+    bottom: auto;
+    width: 90%;
+    
+    /* 3. 모달 크기 및 높이 제어 (잘림 현상 방지) */
+    max-width: 680px; 
+    min-height: 45vh; 
+    
+    /* 4. 디자인 스타일 */
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden; /* 내부 Radius 적용을 위함 */
+}
+
+#metadataModal .modal-header {
+    background-color: #f8f9fa;
+    color: #343a40;
+    border-bottom: 1px solid #e9ecef;
+    padding: 20px 25px;
+}
+
+/* 5. 닫기 'X' 버튼 스타일 수정 */
+#metadataModal .modal-header .close {
+    color: #3f3f3e;
+    opacity: 0.7;
+    font-size: 28px;
+    font-weight: lighter;
+}
+#metadataModal .modal-header .close:hover {
+    opacity: 1;
+}
+
+#metadataModal .modal-header .modal-title {
+    font-weight: bold;
+    font-size: 1.9rem;
+}
+
+#metadataModal .modal-body {
+    padding: 25px 30px;
+    overflow-y: auto; /* 내용이 모달 높이를 초과하면 여기서 스크롤됨 */
+}
+
+#metadataModal #usage {
+    margin-bottom: 25px;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    font-size: 1.5rem;
+}
+#metadataModal #usage h4 {
+    font-size: 1.7rem; color: #333; margin-top: 0; margin-bottom: 15px; font-weight: 600;
+}
+#metadataModal #usage ol { padding-left: 25px; margin-bottom: 0; }
+#metadataModal #usage li { margin-bottom: 10px; line-height: 1.6; }
+#metadataModal #usage p { margin-top: 15px; font-size: 1.3rem; line-height: 1.5; color: #c0392b; font-weight: bold; }
+#metadataModal #usage strong { color: #275c31; }
+
+#metadataModal .button-container {
+    display: flex; gap: 15px; margin-bottom: 25px;
+}
+
+#metadataModal .btn-modal-action {
+    padding: 15px 20px; font-size: 1.6rem; border-radius: 8px; text-decoration: none;
+    display: flex; align-items: center; justify-content: center; transition: all 0.25s ease-in-out;
+    border: 1px solid transparent; cursor: pointer; font-weight: 500; flex-grow: 1; text-align: center;
+}
+
+#metadataModal .button-container a,
+#metadataModal .button-container label {
+    flex-grow: 1; display: flex; margin: 0; text-decoration: none;
+}
+
+#metadataModal .metadata_down_button {
+    background-color: #f8f9fa; color: #495057; border: 1px solid #dee2e6;
+}
+#metadataModal .metadata_down_button:hover {
+    background-color: #e9ecef; border-color: #ced4da;
+}
+#metadataModal .metadata_down_button .fa { margin-right: 10px; }
+
+#metadataModal .upload_label_button {
+    background-color: #218838; color: white; border-color: #1e7e34;
+}
+#metadataModal .upload_label_button:hover {
+    background-color: #1e7e34; border-color: #1c7430;
+}
+ #metadataModal .upload_label_button .fa { margin-right: 10px; }
+
+#metadataModal #fileNameDisplay {
+    margin-bottom: 20px; padding: 12px 15px; font-size: 1.5rem;
+    background-color: #f8f9fa; border: 1px dashed #dee2e6; border-radius: 8px;
+    min-height: 48px; display: flex; align-items: center; word-break: break-all;
+    display: none; /* JS로 제어 */
+}
+#metadataModal #fileNameDisplay .file-icon {
+    margin-right: 12px; color: #275c31; font-size: 1.8rem;
+}
+#metadataModal #fileNameDisplay .file-name-text {
+    color: #555555; font-weight: 500;
+}
+
+
+.myButton.big.highlighted {
+    background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%) !important;
+    color: #333333 !important;
+    border: 1px solid #c9c9c9 !important;
+}
+
+/* ▼▼▼ [수정] 플로팅 버튼 강조 애니메이션 (화살표 및 색상 변경 추가) ▼▼▼ */
+.floating-btn::before {
+    content: '➤';
+    position: absolute;
+    right: 115%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: #e74c3c;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* 화살표가 클릭 이벤트를 막지 않도록 설정 */
+}
+
+.floating-btn.highlight-animation::before {
+    opacity: 1;
+    animation: point-arrow 1.5s infinite ease-in-out;
+}
+
+.floating-btn.highlight-animation {
+    animation: pulse-glow-enhanced 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-glow-enhanced {
+    0% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(231, 76, 60, 0.7);
+        background-color: #275c31; /* 원래 색상 */
+    }
+    50% {
+        background-color: #e74c3c; /* 강조 색상 (빨간색) */
+    }
+    70% {
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3), 0 0 0 25px rgba(231, 76, 60, 0);
+    }
+    100% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(231, 76, 60, 0);
+        background-color: #275c31; /* 원래 색상으로 복귀 */
+    }
+}
+
+@keyframes point-arrow {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0);
+    }
+    50% {
+        transform: translateY(-50%) translateX(-10px);
+    }
+}
+/* ▲▲▲ [수정] 플로팅 버튼 강조 애니메이션 (화살표 및 색상 변경 추가) ▲▲▲ */

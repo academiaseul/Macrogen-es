@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html ng-app="ReportApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./src/js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="./src/js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./src/css/common.css">
+    <link rel="stylesheet" href="./src/css/layout.css">
+    <link rel="stylesheet" href="./src/css/custom.css">
+
+    <style>
+        #openSampleModalBtn,
+        #openModalBtn {
+            cursor: pointer;
+        }
+
+        .mymodal_contents {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #22365c;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 100%;
+            max-width: 600px;
+            max-height: 80%; /* 최대 높이 설정 */
+            overflow-y: auto; /* 스크롤 추가 */
+            text-align: left;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .analysis-modal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .analysis-modal-table th,
+        .analysis-modal-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #sample_group_modal_thead th,
+        #sample_group_modal_tbody td {
+            text-align: center;
+        }
+
+        /*  */
+    </style>
+
+    <!-- JavaScript -->
+    <script src="./src/js/jquery-3.3.1.min.js"></script>
+    <script src="./src/js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script defer src="./src/main.js"></script>
+    <script>
+        window.onload = function () {
+            // Check if array and other variables are defined
+            if (typeof array === 'undefined' || typeof sample_list === 'undefined' || typeof analysisInfo === 'undefined') {
+                console.error("Data not loaded properly. Check main.js and ensure it is loaded before this script.");
+                return;
+            }
+
+            // Set document title
+            document.title = `${array.project} (${array.name}) - ${array.appCode} Analysis Report`;
+
+            // Set order information
+            document.getElementById('index_info_order').innerHTML = array.project;
+            document.getElementById('index_info_institute').innerHTML = array.organization;
+            document.getElementById('index_info_name').innerHTML = array.name;
+            document.getElementById('index_info_num_of_sample').innerHTML = array.numberofsample;
+            document.getElementById('index_title_d').innerHTML = array.curtime;
+
+            // Set analysis information
+            document.getElementById('index_info_contaminant').innerHTML = analysisInfo.targetRegion;
+            document.getElementById('Analysis_tool').innerHTML = analysisInfo.analysisTool;
+
+            // Set Database_tool content without version, with line breaks
+            const databaseToolContent = analysisInfo.databaseTool.join('<br>');
+            document.getElementById('Database_tool').innerHTML = databaseToolContent;
+
+            // Generate navigation menu
+            const nav_ = document.getElementById('navbar_ui');
+            let html = "";
+
+            function generateMenuHtml(menuArray) {
+                let html = '';
+                menuArray.forEach(item => {
+                    if (item.category) { // category가 있는 경우
+                        html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                        html += '<ul class="dropdown-menu">';
+                        html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                        html += '</ul></li>';
+                    } else if (item.display) {
+                        if (item.path === "") {
+                            html += "<li><p>" + item.name + "</p></li>";
+                        } else {
+                            html += "<li><a href=\"" + item.path.replace("./src", "src") + "\">" + item.name + "</a></li>"; // 경로 수정
+                        }
+                    }
+                });
+                return html;
+            }
+
+            array.page.forEach(page => {
+                if (page.category) {
+                    let tmphtml = '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                    tmphtml += generateMenuHtml(page.path); // 최상위 메뉴에 대해 재귀 호출
+                    tmphtml += '</ul></li>';
+                    html += tmphtml;
+                } else if (page.path[0].display) {
+                    html += '<li><a href="' + page.path[0].path.replace("./src", "src") + '">' + page.path[0].name + '</a></li>'; // 경로 수정
+                }
+            });
+            nav_.innerHTML = html;
+
+            // Sample and group modal setup
+            const sampleGroupTableHead = document.getElementById('sample_group_modal_thead');
+            const sampleGroupTableBody = document.getElementById('sample_group_modal_tbody');
+
+            // Create table header
+            let headerContent = "<tr><th>SampleID</th>";
+            if (typeof new_name !== 'undefined') {
+                headerContent += "<th>New.Name</th>";
+            }
+            if (typeof group_name !== 'undefined' && group_name.length > 0) {
+                group_name.forEach(name => {
+                    headerContent += `<th>${name}</th>`;
+                });
+            }
+            headerContent += "</tr>";
+            sampleGroupTableHead.innerHTML = headerContent;
+
+            // Create table body
+            let sampleGroupTableContent = "";
+            sample_list.forEach((sample, i) => {
+                sampleGroupTableContent += `<tr><td>${sample}</td>`;
+                if (typeof new_name !== 'undefined') {
+                    sampleGroupTableContent += `<td>${new_name[i]}</td>`;
+                }
+                if (typeof group_name !== 'undefined' && group_name.length > 0) {
+                    for (let j = 1; j <= group_count; j++) {
+                        const groupListName = `group_list${j}`;
+                        if (Array.isArray(window[groupListName])) {
+                            sampleGroupTableContent += `<td>${window[groupListName][i]}</td>`;
+                        } else {
+                            console.error(`Group list ${groupListName} is undefined or not an array.`);
+                        }
+                    }
+                }
+                sampleGroupTableContent += "</tr>";
+            });
+            sampleGroupTableBody.innerHTML = sampleGroupTableContent;
+
+            // 모달 초기 상태 설정
+            const sampleModal = document.getElementById("sampleModal");
+            const analysisModal = document.getElementById("analysisModal");
+            sampleModal.style.display = "none";
+            analysisModal.style.display = "none";
+
+            // Modal functionality for sample information
+            const openSampleModalBtn = document.getElementById("openSampleModalBtn");
+            const closeSampleModalBtn = document.getElementById("closeSampleModalBtn");
+
+            openSampleModalBtn.onclick = function () {
+                sampleModal.style.display = "flex"; // 모달 열기
+            }
+
+            closeSampleModalBtn.onclick = function () {
+                sampleModal.style.display = "none"; // 모달 닫기
+            }
+
+            // Modal functionality for analysis information
+            const openModalBtn = document.getElementById("openModalBtn");
+            const closeAnalysisModalBtn = document.getElementById("closeAnalysisModalBtn");
+
+            openModalBtn.onclick = function () {
+                // Clear existing table rows
+                const tbody = document.querySelector('.analysis-modal-table tbody');
+                tbody.innerHTML = '';
+
+                // Iterate over each databaseTool and programVersion
+                analysisInfo.databaseTool.forEach((tool, index) => {
+                    const databaseToolParts = tool.match(/(.*)\s\((.*)\)/);
+                    const database = databaseToolParts ? databaseToolParts[1] : tool;
+                    const program = databaseToolParts ? databaseToolParts[2] : '';
+
+                    // Create a new row for each tool and version
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td>${program}</td>
+                    <td>${database}</td>
+                    <td>${analysisInfo.programVersion[index]}</td>
+                `;
+                    tbody.appendChild(row);
+                });
+
+                analysisModal.style.display = "flex"; // 모달 열기
+            }
+
+            closeAnalysisModalBtn.onclick = function () {
+                analysisModal.style.display = "none"; // 모달 닫기
+            }
+
+            window.onclick = function (event) {
+                if (event.target === sampleModal) {
+                    sampleModal.style.display = "none";
+                }
+                if (event.target === analysisModal) {
+                    analysisModal.style.display = "none";
+                }
+            }
+
+            // Generate office information
+            const officeContainer = document.getElementById('office_info');
+            let officeHtml = "";
+            offices.forEach(office => {
+                officeHtml += `
+        <div class="col-sm-3">
+            <h5>${office.name}</h5>
+            <ul>
+                <li>${office.address}</li>
+                <li>T. ${office.phone}</li>
+                ${office.emails.map(email => `<li>E${email.label ? ` (${email.label})` : ''}: ${email.email}</li>`).join('')}
+                ${office.links.map(link => `<li>${link.label}. <a href="${link.url}" target="_blank">${link.url}</a></li>`).join('')}
+            </ul>
+        </div>
+    `;
+            });
+            officeContainer.innerHTML = officeHtml;
+        }
+    </script>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!-- Header -->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="Report.html"><img src="./src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+            </div>
+            <!-- Menu -->
+            <nav class="navbar">
+                <ul id="navbar_ui"></ul>
+            </nav>
+        </header>
+
+        <!-- Main title -->
+        <div class="text-center total_font">
+            <div class="title_wrapper_backcover">
+                <div class="title_wrapper">
+                    <p class="index_title_small" id="index_title_name"></p>
+                    <p class="index_title" id="index_title_type">Amplicon Metagenomic Sequencing Report</p>
+                    <p class="index_title_date" id="index_title_d"></p>
+                </div>
+
+                <div class="orderinfo1">
+                    <dl class="index_info_total_new">
+                        <a href="./src/page/Methods.html">
+                            <dd class="index_info_Title"><span class="glyphicon glyphicon-info-sign"
+                                    style="vertical-align:middle;margin-right:15px"></span>Order Information</dd>
+                        </a>
+                    </dl>
+                    <dl class="index_info_total_new">
+                        <dt class="index_info_new">Order</dt>
+                        <dd class="index_info" id="index_info_order"></dd>
+                    </dl>
+                    <dl class="index_info_total_new">
+                        <dt class="index_info_new">Institute</dt>
+                        <dd class="index_info" id="index_info_institute"></dd>
+                    </dl>
+                    <dl class="index_info_total_new">
+                        <dt class="index_info_new">Client Name</dt>
+                        <dd class="index_info" id="index_info_name"></dd>
+                    </dl>
+                    <dl class="index_info_total_new">
+                        <dt class="index_info_new">Number of Samples&nbsp;<img src="./src/img/question_mark.png"
+                                width="20vw" height=auto; id="openSampleModalBtn"></dt>
+                        <dd class="index_info" id="index_info_num_of_sample"></dd>
+                    </dl>
+                    <br><br>
+
+                    <!-- Sample and Group Information Modal -->
+                    <div id="sampleModal" class="mymodal_contents">
+                        <div class="modal-content">
+                            <span class="close" id="closeSampleModalBtn">&times;</span>
+                            <b style="font-size:20px">* Sample & Group Information</b>
+                            <br><br>
+                            <table class="table" id="sample_group_tb">
+                                <thead id="sample_group_modal_thead">
+                                    <!-- 헤더는 JavaScript로 동적으로 생성됩니다. -->
+                                </thead>
+                                <tbody id="sample_group_modal_tbody">
+                                    <!-- 내용은 JavaScript로 동적으로 생성됩니다. -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="orderinfo" id="orderinfo">
+                    <dl class="index_info_total_new">
+                        <a href="./src/page/Methods.html">
+                            <dd class="index_info_Title"><span class="glyphicon glyphicon-tasks"
+                                    style="vertical-align: middle;margin-right:15px"></span>Analysis Information</dd>
+                        </a>
+                    </dl>
+                    <dl class="index_info_total_new">
+                        <dt class="index_info_new">Target Region</dt>
+                        <dd class="index_info" id="index_info_contaminant"></dd>
+                    </dl>
+                    <dl class="index_info_total_new">
+                        <dt class="index_info_new">Analysis (Tool)</dt>
+                        <dd class="index_info" id="Analysis_tool"></dd>
+                    </dl>
+                    <dl class="index_info_total_new">
+                        <dt class="index_info_new">Database (Tool)&nbsp;<img src="./src/img/question_mark.png"
+                                width="20vw" height=auto; id="openModalBtn"></dt>
+                        <dd class="index_info" id="Database_tool">&nbsp;</dd> <!-- ID를 Database_tool로 변경 -->
+                    </dl>
+                    <br><br>
+
+                    <!-- Analysis Information Modal -->
+                    <div id="analysisModal" class="mymodal_contents">
+                        <div class="modal-content">
+                            <span class="close" id="closeAnalysisModalBtn">&times;</span>
+                            <b style="font-size:20px">* Taxonomy Analysis Tool & Database Version</b>
+                            <br><br>
+                            <table class="analysis-modal-table">
+                                <thead>
+                                    <tr>
+                                        <th>Program</th>
+                                        <th>Database</th>
+                                        <th>Version</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span id="modal_program"></span></td>
+                                        <td><span id="modal_database"></span></td>
+                                        <td><span id="modal_version"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-policy alignC" id="data-policy" style="visibility: hidden;">
+                    <p style="font-size: 2rem;">Your data will be retained in our server for <b style="color:red">three
+                            months</b>. Should you wish to extend the retention period, please email or contact our
+                        sales team.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer" class="footer_style">
+            <div class="container">
+                <div class="right" id="office_info">
+                    <!-- Office information will be dynamically inserted here -->
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

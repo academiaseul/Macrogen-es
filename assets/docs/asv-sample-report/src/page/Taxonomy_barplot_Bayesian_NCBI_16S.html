@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html ng-app="ReportApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+    <script src="../main.js"></script>
+    <script src="../js/plotly/plotly-2.20.0.min.js"></script>
+    <script src="./Taxonomy_barplot/plot.js"></script>
+
+    <script>
+        var ordernumber = array.project;
+        var customer = array.name;
+        var institute = array.organization;
+        var application = array.application;
+        var appCode = array.appCode;
+        var numberofsample = array.numberofsample;
+        document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
+    </script>
+</head>
+
+<body class="total_font">
+    <header id="header">
+        <div class="header-wrap clearfix">
+            <div class="logo">
+                <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+            </div>
+            <div class="center-txt sans_font"><b id="banner_id"></b></div>
+            <script>
+                document.getElementById('banner_id').innerHTML = application;
+            </script>
+            <p class="notice">Research Use Only</p>
+        </div>
+        <nav class="navbar">
+            <ul id="navbar_ui"></ul>
+            <script>
+                function generateMenuHtml(menuArray) {
+                    let html = '';
+                    menuArray.forEach(item => {
+                        if (item.category) { // 변경
+                            html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                            html += '<ul class="dropdown-menu">';
+                            html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                            html += '</ul></li>';
+                        } else if (item.display) {
+                            if (item.path === "") {
+                                html += "<li><p>" + item.name + "</p></li>";
+                            } else {
+                                html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+                            }
+                        }
+                    });
+                    return html;
+                }
+
+                var html = "";
+                var nav_ = document.getElementById('navbar_ui');
+                if (array.page) {
+                    array.page.forEach(page => {
+                        if (page.category) {
+                            let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                            tmphtml += generateMenuHtml(page.path);
+                            tmphtml += '</ul></li>';
+                            html += tmphtml;
+                        } else if (page.path && page.path[0] && page.path[0].display) {
+                            html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
+                        }
+                    });
+                }
+                nav_.innerHTML = html;
+            </script>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="div_icon">
+            <img src="../img/Icon_img/VARIANT_stats.png">
+        </div>
+
+        <div class="div_h1" id="WorkFlow">
+            <h1>Taxonomy analysis</h1>
+        </div><br><br>
+        <div style="width:100%; display: flex; padding-bottom:30px;  ">
+            <button id="default_button" class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_barplot/Bayesian_NCBI_16S/Barplot_L2.js','Phylum');highlight(this);">Phylum</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_barplot/Bayesian_NCBI_16S/Barplot_L3.js','Class');highlight(this);">Class</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_barplot/Bayesian_NCBI_16S/Barplot_L4.js','Order');highlight(this);">Order</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_barplot/Bayesian_NCBI_16S/Barplot_L5.js','Family');highlight(this);">Family</button>
+            <button class="myButton big " style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_barplot/Bayesian_NCBI_16S/Barplot_L6.js','Genus');highlight(this);">Genus</button>
+            <button class="myButton big" style="flex-grow: 1;"
+                onclick="load_json('./Taxonomy_barplot/Bayesian_NCBI_16S/Barplot_L7.js','Species');highlight(this);">Species</button>
+        </div>
+        <div class="col-sm-12">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"
+                            style="display: flex; justify-content: space-between; align-items: center;">
+                            <a data-toggle="collapse" href="#collapse_1"><output id="current_page"
+                                    style="color: rgb(0, 0, 0);font-size:22px;font-weight:1000;"></output></a>
+                        </h4>
+                    </div>
+                    <div id="collapse_1" class="panel-collapse collapse in ">
+                        <div class="panel-body xy_scroll">
+
+                            <div style="display: flex;padding-top:10px">
+                                <label>Bar Plot Controls</label><br>
+                            </div>
+                            <div style="display: flex;">
+                                <div style="display: flex;padding-top:15px;padding-left:10px">
+
+                                    <div style="display:flex">
+                                        <button class="myButton_1 left" onclick="toggleColorPicker()"
+                                            style="height:35px" id="toggleButton">Change Color</button>
+                                        <button class="myButton_1 center" style="height:35px"
+                                            onclick="downloadimg('png')">Save PNG</button>
+                                        <button class="myButton_1 right" style="height:35px"
+                                            onclick="downloadimg('svg')">Save SVG</button>
+                                    </div>
+                                </div>
+                                <div style="display: flex;padding-top:0px;padding-left:150px">
+
+                                    <div style="width:100%;">
+                                        <b>Sample Sorting By </b><br>
+                                        <select name="sortkey" id="sortkey" style="width:100%;"> </select>
+                                    </div>
+
+                                    <div style="width:2%;"></div>
+
+                                    <div style="padding-right:15px;">
+                                        <br>
+                                        <select name="sortopt" id="sortopt">
+                                            <option value="Ascending">Ascending</option>
+                                            <option value="Descending">Descending</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex;padding-top:10px;padding-left:10px">
+                                <div style="width: 450px;">
+                                    <b>Bar Width</b>
+                                    <input id="bandwidth" type="range" min="100" max="5000" value="1100" />
+                                </div>
+                                <div style="width:12%;"></div>
+                                <div id="div_top20_check">
+                                    <br>
+                                    <b style="vertical-align: top;">Show Top 20 ? </b>
+                                    <input type="checkbox" id="top20_check"
+                                        style="width: 20px;height: 20px;vertical-align: top;" checked>
+                                </div>
+                            </div>
+                            <div id="colorPickerModal" class="modal">
+
+                                <div class="color-picker" style="width:100%;height:100%">
+                                    <b> Color list </b>
+                                    <p>click color want change</p>
+                                    <div>
+                                        <button class="color-picker-button" onclick="openColorPicker(0)"
+                                            id="button1">#1</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(1)"
+                                            id="button2">#2</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(2)"
+                                            id="button3">#3</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(3)"
+                                            id="button4">#4</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(4)"
+                                            id="button5">#5</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(5)"
+                                            id="button6">#6</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(6)"
+                                            id="button7">#7</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(7)"
+                                            id="button8">#8</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(8)"
+                                            id="button9">#9</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(9)"
+                                            id="button10">#10</button>
+                                    </div>
+                                    <div style="padding-bottom:15px">
+                                        <button class="color-picker-button" onclick="openColorPicker(10)"
+                                            id="button11">#11</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(11)"
+                                            id="button12">#12</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(12)"
+                                            id="button13">#13</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(13)"
+                                            id="button14">#14</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(14)"
+                                            id="button15">#15</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(15)"
+                                            id="button16">#16</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(16)"
+                                            id="button17">#17</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(17)"
+                                            id="button18">#18</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(18)"
+                                            id="button19">#19</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(19)"
+                                            id="button20">#20</button>
+                                    </div>
+                                    <b>Others Color</b><br>
+                                    <div style="padding-top:5px">
+                                        <button class="color-picker-button" onclick="openColorPicker(20)"
+                                            id="button21">#0</button>
+                                    </div>
+
+                                    <div id="color-picker-input"
+                                        style="padding-top:10px;text-align: center;align-items: center;">
+                                        <input type="color" id="colorPickerInput">
+                                        <button class="myButton small" onclick="changeColor()">Select</button>
+                                        <button class="myButton small" onclick="closeColor()">Close</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="loading-message" id="loading-message">Creating Image</div>
+                            <div id="taxonomy_bar"></div>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function (event) {
+                                    document.getElementById("default_button").click();
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
