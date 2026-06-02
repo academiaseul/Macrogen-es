@@ -128,8 +128,78 @@
     </div>
   </div>
 </section>
+<!-- ============== STICKY SERVICE SUB-NAV ============== -->
+<nav class="service-subnav" aria-label="Navegación interna">
+  <div class="service-subnav-inner" data-subnav>
+    <span class="service-subnav-brand">
+      <span class="label-hide-sm">🦠 Metagenómica</span>
+    </span>
+    <a href="#overview" data-anchor="overview"><span class="icon">📋</span>Overview</a>
+    <a href="#opciones" data-anchor="opciones"><span class="icon">🧬</span>Opciones</a>
+    <a href="#bioinformatica-asv" data-anchor="bioinformatica-asv"><span class="icon">📊</span>Pipeline ASV</a>
+    <a href="#muestra" data-anchor="muestra"><span class="icon">🧪</span>Muestra</a>
+    <a href="#sample-reports" data-anchor="sample-reports"><span class="icon">📈</span>Sample Reports</a>
+    <a href="#cotizar" data-anchor="cotizar"><span class="icon">💬</span>Cotizar</a>
+    <a href="../recursos.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon">📁</span>Documentos →</a>
+  </div>
+</nav>
 
-<section class="section">
+<script>
+(function() {
+  const subnav = document.querySelector('[data-subnav]');
+  if (!subnav) return;
+  const links = subnav.querySelectorAll('a[data-anchor]');
+  const sections = Array.from(links)
+    .map(l => document.getElementById(l.dataset.anchor))
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  function setActive(id) {
+    links.forEach(l => l.classList.toggle('is-active', l.dataset.anchor === id));
+    const active = subnav.querySelector('a.is-active');
+    if (active) {
+      const r = subnav.getBoundingClientRect();
+      const a = active.getBoundingClientRect();
+      if (a.left < r.left || a.right > r.right) {
+        active.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+      }
+    }
+  }
+
+  function getRootMarginTop() {
+    const hH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(), 10) || 78;
+    const sH = subnav.offsetHeight || 56;
+    return -(hH + sH + 4);
+  }
+  const observer = new IntersectionObserver(entries => {
+    const vis = entries.filter(e => e.isIntersecting)
+      .sort((a,b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+    if (vis[0]) setActive(vis[0].target.id);
+  }, { rootMargin: getRootMarginTop()+'px 0px -55% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+
+  function getHeaderOffset() {
+    const hH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(), 10) || 78;
+    const sH = subnav.offsetHeight || 56;
+    return hH + sH;
+  }
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.dataset.anchor;
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const offset = getHeaderOffset();
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset + 4;
+      window.scrollTo({ top:y, behavior:'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
+</script>
+
+
+<section id="overview" class="section">
   <div class="container">
     <div class="grid grid-2" style="gap:48px; align-items:start;">
       <div>
@@ -293,7 +363,7 @@
   </div>
 </section>
 
-<section class="section">
+<section id="muestra" class="section">
   <div class="container">
     <h2 style="text-align:center; margin-bottom:36px;">Requerimientos de muestra</h2>
     <div style="max-width:760px; margin:0 auto;">
@@ -308,7 +378,7 @@
   </div>
 </section>
 
-<section class="section section-bg">
+<section id="cotizar" class="section section-bg">
   <div class="container">
     <div class="cta-banner">
       <h2>Cotiza tu proyecto microbiómico.</h2>
