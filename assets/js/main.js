@@ -19,6 +19,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+  // ========== Service switcher dropdown · tap-to-toggle for mobile ==========
+  // Desktop uses :hover CSS; mobile needs explicit toggle on tap.
+  // Also closes on outside click and Escape key.
+  document.querySelectorAll('[data-service-switcher]').forEach(switcher => {
+    const trigger = switcher.querySelector('[data-switcher-trigger]');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', e => {
+      e.preventDefault();
+      const isOpen = switcher.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', e => {
+      if (switcher.classList.contains('is-open') && !switcher.contains(e.target)) {
+        switcher.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Escape closes all open switchers
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('[data-service-switcher].is-open').forEach(s => {
+        s.classList.remove('is-open');
+        const t = s.querySelector('[data-switcher-trigger]');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
   // ========== Sticky header height → CSS variable ==========
   // Exposes the actual rendered height of the main site-header as --header-h
   // so .service-subnav (and any other below-header sticky element) can stack

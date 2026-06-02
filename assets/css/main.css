@@ -1875,6 +1875,154 @@ body:has(.service-subnav) section[id] {
   .service-subnav a .icon { font-size: 13px; }
 }
 
+/* === Services switcher dropdown inside sub-nav === */
+.service-switcher {
+  position: relative;
+  flex-shrink: 0;
+  margin-left: 6px;
+  padding-left: 12px;
+  border-left: 1px solid var(--mc-border);
+}
+.service-switcher-trigger {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 13px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #EAF6FB, #F4F6FB);
+  color: var(--mc-navy) !important;
+  border: 1px solid var(--mc-border) !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .18s ease;
+}
+.service-switcher-trigger:hover,
+.service-switcher.is-open .service-switcher-trigger {
+  background: var(--mc-navy);
+  color: #fff !important;
+  border-color: var(--mc-navy) !important;
+}
+.service-switcher-trigger .caret {
+  font-size: 9px;
+  transition: transform .2s ease;
+}
+.service-switcher.is-open .service-switcher-trigger .caret {
+  transform: rotate(180deg);
+}
+
+.service-switcher-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 280px;
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(27,42,87,0.14), 0 4px 12px rgba(27,42,87,0.06);
+  padding: 8px;
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.service-switcher:hover .service-switcher-menu,
+.service-switcher.is-open .service-switcher-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.service-switcher-menu .switcher-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px 10px;
+  border-bottom: 1px solid var(--mc-border);
+  margin-bottom: 6px;
+}
+.service-switcher-menu .switcher-header strong {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mc-navy);
+}
+.service-switcher-menu .switcher-header small {
+  font-size: 10px;
+  color: var(--mc-mute);
+  font-weight: 600;
+}
+
+.service-switcher-menu a {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  background: transparent !important;
+  border: none !important;
+  color: var(--mc-navy) !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: normal;
+  transition: background .15s;
+}
+.service-switcher-menu a:hover {
+  background: var(--mc-bg) !important;
+}
+.service-switcher-menu a.is-current {
+  background: linear-gradient(135deg, #EAF6FB, #FEF7E8) !important;
+  cursor: default;
+  pointer-events: none;
+}
+.service-switcher-menu a.is-current::after {
+  content: "Estás aquí";
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: var(--mc-red);
+  background: #fff;
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.service-switcher-menu .switcher-icon {
+  font-size: 16px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.service-switcher-menu .switcher-text strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--mc-navy);
+}
+.service-switcher-menu .switcher-text small {
+  display: block;
+  font-size: 11px;
+  color: var(--mc-mute);
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+@media (max-width: 720px) {
+  .service-switcher { padding-left: 8px; margin-left: 4px; }
+  .service-switcher-trigger { padding: 8px 10px; font-size: 11.5px; }
+  .service-switcher-menu {
+    right: -10px;
+    min-width: 250px;
+    max-width: calc(100vw - 32px);
+  }
+  .service-switcher-menu a { font-size: 12px; padding: 8px 10px; }
+  .service-switcher-menu .switcher-text small { display: none; }
+}
+
 /* ============================================
    LAUNCH BAR · top notice for SANGER10 promo
    ============================================ */
