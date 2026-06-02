@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../src/css/common.css">
+    <link rel="stylesheet" href="../../src/css/custom.css">
+    <link rel="stylesheet" href="../../src/css/layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+    <!--json data-->
+    <script src="../../data/json/Total.js"></script>
+	<script src="../../data/json/Config.js"></script>
+
+    <script>
+        var array;
+		var config;
+
+        var customer = array[0].customer;
+        var institute = array[0].institute;
+        var ordernumber = array[0].project;
+        var info_list = [{
+                "head": "Client Name",
+                "data": customer
+            },
+            {
+                "head": "Company/Institute",
+                "data": institute
+            },
+            {
+                "head": "Order Number",
+                "data": ordernumber
+            }, {
+                "head": "Number of Samples",
+                "data": array.length
+            }
+        ];
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+     </script>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../../src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font">Metagenome Shotgun Sequencing Report</div>
+                <p class="notice">Research Use Only</p>
+            </div>
+
+        <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="orderinfo"><a href="orderinfo.html">Order Info.</a></li>
+					<li id="deliverables"><a href="download.html">Deliverables</a></li>
+					<li id="preprocessing"><a href="rawdatastats.html">Raw data</a></li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="readpathwaypage"><a href="readpathway.html">Pathway Analysis</a></li>
+							<li id="readtaxonpage"><a href="readtaxon.html">Taxonomy Analysis</a></li>
+							<li id="readtaxoncomparepage"><a href="readtaxoncompare.html">Taxonomy Comparison</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="assemblypage"><a href="assemblystats.html">Assembly Statistics</a></li>
+							<li id="annotationpage"><a href="annotation.html">Annotation Statistics</a></li>
+							<li id="contigtaxonpage"><a href="contigtaxon.html">Taxonomy Analysis</a></li>
+							<li id="contigtaxoncomparepage"><a href="contigtaxoncompare.html">Taxonomy Comparison</a></li>
+							<li id="pangenomepage"><a href="pangenome.html">Pangenome Analysis</a></li>
+							<li id="binningpage"><a href="binning.html">Binning Analysis</a></li>
+						</ul>
+					</li>
+					<li id="methodpage"><a href="methods.html">Methods</a></li>
+					<script>
+						if (config["read_pathway"] == "F") {
+							$("#readpathwaypage").remove();
+						}
+						if (config["read_taxon"] == "F") {
+							$("#readtaxonpage").remove();
+							$("#readtaxoncomparepage").remove();
+						}
+						if (config["assembly"] == "F") {
+						 	$("#contiganal").remove();
+						}
+						if (config["contig_ann"] == "F") {
+							$("#annotationpage").remove();
+						}
+						if (config["contig_taxon"] == "F") {
+							$("#contigtaxonpage").remove();
+							$("#contigtaxoncomparepage").remove();
+							$("#binningpage").remove();
+						}
+						if (config["pangenome"] == "F") {
+							$("#pangenomepage").remove();
+						}
+					</script>
+                </ul>
+	        </nav>
+		</header>
+
+        <!--Orderinfo table-->
+        <div class="container main">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/Order_Information.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Order Information</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+
+                    <br>
+                    <br>
+
+                    <table class="table" style="margin-bottom: 0px;">
+                        <tbody id="tb_info" style="border-bottom:1px solid #dddddd;"></tbody>
+                    </table>
+                    <script>
+                        var table = document.getElementById('tb_info');
+                        info_list.forEach(function(object) {
+                            var tr = document.createElement('tr');
+                            tr.innerHTML = '<th class="col-md-3">' + object.head + '</th>' +
+                                '<td>' + object.data + '</td>';
+                            table.appendChild(tr);
+                        });
+                    </script>
+                </div>
+                <!--end: div table-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+
+</html>

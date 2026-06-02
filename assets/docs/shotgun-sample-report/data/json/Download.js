@@ -1,0 +1,2 @@
+array=
+{"customer": "Macrogen", "stats": [{"md5": "8e77b1566f8fe6de512bbcf9a4aaf90a", "file": "Analysis_results.zip", "size": "233M"}, {"md5": "fb02a4540da5476001fa5ce24fcaea01", "file": "Rawdata.zip", "size": "22G"}], "institute": "Macrogen", "project": "Test", "link": {"Analysis_results.zip": "http://data.macrogen.com/~macro3/HiSeq02/20201210/Test/Analysis_results.zip", "Rawdata.zip": "http://data.macrogen.com/~macro3/HiSeq02/20201210/Test/Rawdata.zip"}, "samples": ["1", "2", "3"], "species": "Other"};

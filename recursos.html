@@ -326,31 +326,141 @@
       </div>
     </div>
 
-    <!-- ============== CATEGORY 5 · BIOINFORMATICS SAMPLES ============== -->
-    <div class="res-category">
+    <!-- ============== CATEGORY 5 · NGS SAMPLE REPORTS ============== -->
+    <div id="sample-reports" class="res-category">
       <div class="res-cat-header">
-        <h2>📊 Reportes bioinformáticos · sample</h2>
-        <span class="count">2 reportes interactivos · NGS + Amplicon</span>
+        <h2>📊 Sample reports · NGS &amp; análisis</h2>
+        <span class="count">12 reportes · 2 interactivos HTML + 10 PDFs</span>
       </div>
       <div class="res-grid">
 
+        <!-- Interactive HTML reports first (highlighted) -->
         <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB;">
           <div class="res-card-icon" style="background:#fff; color:var(--mc-teal);">📊</div>
-          <div class="res-card-eyebrow">Amplicon · ASV pipeline</div>
-          <h3>Reporte ASV interactivo · 16S Bayesian NCBI</h3>
-          <p>Reporte completo de ejemplo generado por nuestro pipeline (Cutadapt + DADA2 + QIIME): pre-processing, taxonomía Bayesiana, diversidad alpha (Shannon, Chao1, Faith's PD) y beta (PCoA Bray-Curtis · UniFrac · UPGMA). Datos ficticios.</p>
-          <div class="res-card-meta"><span>HTML interactivo</span><span>~38 MB</span><span>Offline</span></div>
+          <div class="res-card-eyebrow">★ Amplicon · Interactivo</div>
+          <h3>Reporte ASV · 16S Bayesian NCBI</h3>
+          <p>Reporte HTML completo de pipeline ASV (Cutadapt + DADA2 + QIIME): pre-processing, taxonomía Bayesiana, alpha diversity (Shannon, Chao1, Faith's PD) y beta (PCoA Bray-Curtis · UniFrac · UPGMA).</p>
+          <div class="res-card-meta"><span>HTML</span><span>~38 MB</span><span>Offline</span></div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <a class="res-card-cta" href="assets/docs/asv-sample-report/Report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir reporte →</a>
+            <a class="res-card-cta" href="assets/docs/asv-sample-report/Report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
             <a class="res-card-cta" href="assets/docs/asv-sample-report.zip" style="color:var(--mc-teal);">📦 ZIP →</a>
           </div>
         </article>
 
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6E5); border-color:#B5DEA8;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-green);">🦠</div>
+          <div class="res-card-eyebrow">★ Shotgun · Interactivo</div>
+          <h3>Shotgun Metagenomics report</h3>
+          <p>Reporte HTML Shotgun metagenomics: clasificación taxonómica Kraken2/Bracken, functional annotation (KEGG/COG), pathway reconstruction y MAGs. 100% offline navegable.</p>
+          <div class="res-card-meta"><span>HTML</span><span>~18 MB</span><span>Offline</span></div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <a class="res-card-cta" href="assets/docs/shotgun-sample-report/Report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
+            <a class="res-card-cta" href="assets/docs/shotgun-sample-report.zip" style="color:var(--mc-green);">📦 ZIP →</a>
+          </div>
+        </article>
+
+        <!-- WGS · 2 reports -->
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">🧬</div>
+          <div class="res-card-eyebrow">WGS · Illumina</div>
+          <h3>Genome Survey · sample report</h3>
+          <p>Estimación de tamaño de genoma, GC%, heterocigosidad y repeats por k-mer analysis. Para diseñar coverage previo al WGS.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~2,9 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wgs-genome-survey.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🦠</div>
+          <div class="res-card-eyebrow">WGS · PacBio Long-read</div>
+          <h3>De Novo Prokaryote · PacBio Revio</h3>
+          <p>Ensamblaje de novo procariota con HiFi reads: contigs circulares, anotación CDS/rRNA/tRNA, N50/L50, comparación NCBI.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~1,6 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wgs-pacbio-denovo-prokaryote.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <!-- WES -->
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">🎯</div>
+          <div class="res-card-eyebrow">WES</div>
+          <h3>Whole Exome Sequencing</h3>
+          <p>Coverage por exón, variant calling (SNV + Indel), anotación ClinVar/COSMIC, filtros gnomAD y patogenicidad ACMG.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~4,2 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wes-exome.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <!-- RNA-Seq · 4 reports -->
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">🧬</div>
+          <div class="res-card-eyebrow">RNA-Seq</div>
+          <h3>mRNA-Seq Basic</h3>
+          <p>mRNA-Seq con poly-A selection: QC, alineamiento HISAT2/STAR, cuantificación TPM/FPKM. Punto de partida transcriptómico.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~2,1 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-mrna-basic.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🔬</div>
+          <div class="res-card-eyebrow">RNA-Seq</div>
+          <h3>Total RNA-Seq · rRNA-depleted</h3>
+          <p>Captura mRNA + lncRNA + snoRNA. Ideal para descubrimiento de transcritos no codificantes y full-length isoform.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~3,0 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-total.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🌿</div>
+          <div class="res-card-eyebrow">RNA-Seq · DEG</div>
+          <h3>DEG · Non-Human</h3>
+          <p>Análisis DEG (DESeq2/edgeR) para plantas, animales modelo, levaduras: volcano plots, heatmaps, MA plots.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~3,6 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-deg-nonhuman.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">🧠</div>
+          <div class="res-card-eyebrow">RNA-Seq · DEG Human</div>
+          <h3>DEG Human · GO/KEGG/VC/Fusion</h3>
+          <p>Reporte DEG humano completo con enriquecimiento GO + pathway KEGG + variant calling RNA-Seq (VC) + gene fusions.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~5,2 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-deg-human-go-kegg.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <!-- Small RNA -->
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🧪</div>
+          <div class="res-card-eyebrow">Small RNA</div>
+          <h3>Small RNA · miRNA/snRNA/piRNA</h3>
+          <p>Alineamiento miRBase, identificación de miRNAs novel, predicción de targets (miRanda/TargetScan), diferencial.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~6,9 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/smrna-small-rna.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <!-- Epigenoma -->
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🧬</div>
+          <div class="res-card-eyebrow">Epigenoma</div>
+          <h3>ChIP-Seq</h3>
+          <p>Peak calling MACS2, anotación vs TSS, motif discovery (MEME/HOMER), comparación entre condiciones, browser tracks.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~1,5 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/epigenoma-chipseq.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <!-- Illumina Rawdata QC (universal) -->
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#FEF7E8); border-color:#F5D98C;">
+          <div class="res-card-icon" style="background:#fff; color:#D97706;">📋</div>
+          <div class="res-card-eyebrow">★ Universal · Raw QC</div>
+          <h3>Illumina Rawdata Sample Report</h3>
+          <p>Reporte estándar de QC entregado con TODA secuenciación Illumina: per-base quality, GC distribution, adapter content, duplication, K-mer overrepresentation.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~1,7 MB</span><span>Aplica a WGS · WES · RNA-Seq</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/illumina-rawdata-qc.pdf" target="_blank" rel="noopener" style="color:#D97706; font-weight:800;">Descargar PDF →</a>
+        </article>
+
+        <!-- ASV Methods reference -->
         <article class="res-card">
           <div class="res-card-icon" style="background:#FEF7E8; color:#D97706;">📋</div>
           <div class="res-card-eyebrow">Pipeline reference</div>
           <h3>Workflow ASV · Cutadapt · DADA2 · QIIME</h3>
-          <p>Documentación técnica de las versiones exactas, parámetros y outputs del pipeline ASV. <strong>Cutadapt v3.2</strong> (trimming) → <strong>DADA2 v1.18.0</strong> (denoising/ASV) → <strong>QIIME v1.9.0</strong> (taxonomía + diversidad). Consulte la sección "Methods" en el reporte ASV.</p>
+          <p>Documentación técnica de las versiones exactas, parámetros y outputs del pipeline ASV utilizado en Macrogen Iberoamérica.</p>
           <div class="res-card-meta"><span>HTML</span><span>3 tools</span></div>
           <a class="res-card-cta" href="assets/docs/asv-sample-report/src/page/Methods.html" target="_blank" rel="noopener">Ver Methods →</a>
         </article>

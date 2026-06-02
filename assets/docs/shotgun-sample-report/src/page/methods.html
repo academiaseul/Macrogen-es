@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/photoswipe.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="../tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../d3/d3.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe-ui-default.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/main.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+    <script src="../tablesorter-master/addons/pager/jquery.tablesorter.pager.js"></script>
+    <script src="../tablesorter-master/tablesorter.js"></script>
+   
+
+    <!--json data-->
+    <script src="../../data/json/Config.js"></script>
+    <script src="flowchart.js"></script>
+
+    <script>
+        var config;
+
+		var ordernumber = config.project;
+		var customer = config.customer;
+		var readlength = Number(config.ReadLength);
+		var numofsample = config.samples.length;
+        var HF = config.host_filtering;
+        var RT = config.read_taxon;
+		var RP = config.read_pathway;
+		var CT = config.contig_taxon;
+		var CA = config.contig_ann;
+		var PA = config.pangenome;
+
+       
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }
+
+        //top 버튼 숨기기/보여주기
+        $(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() != 0) {
+                    $('#backtotop').fadeIn();
+                } else {
+                    $('#backtotop').fadeOut();
+                }
+            });
+
+            //top 버튼 누르면 맨 위로 이동
+            $('#backtotop').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+        });
+
+		//description 접었다 펴기
+        $(function() {
+            $('.show').click(function() {
+                var submenu = $(this).next($('.desc'));
+                if (submenu.is(":visible")) {
+                    submenu.slideUp();
+                    $(this).text('Show Description')
+                } else {
+                    submenu.slideDown();
+                    $(this).text('Hide Description')
+                }
+            });
+        });
+
+    </script>
+
+    <style>
+    a:hover		{color:#920783; text-decoration:underline;}
+    </style>
+	<style>
+		ul.outside {
+			padding-left:20px;
+			list-style-position: outside;
+			list-style: disc;
+		}
+	</style>
+    <script type="text/javascript">
+        mxBasePath = "../mxGraph/src"
+    </script>
+    <script type="text/javascript" src="../mxGraph/src/js/mxClient.js"></script>
+    
+    <!--Draw Workflow-->
+    <script type="text/javascript">
+        var xml;
+        function draw_Workflow(mxContainer){
+            //alert("DRAW");
+            if (!mxClient.isBrowserSupported())
+			{
+				// Displays an error message if the browser is not supported.
+				mxUtils.error('Browser is not supported!', 200, false);
+			}
+            else
+			{
+				
+				mxEvent.disableContextMenu(mxContainer);
+				var graph = new mxGraph(mxContainer);
+    			new mxRubberband(graph);
+    			var parent = graph.getDefaultParent();
+
+
+                var style = [];
+                style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
+				style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
+				style[mxConstants.STYLE_STROKECOLOR] = 'gray';
+				style[mxConstants.STYLE_ROUNDED] = true;
+				style[mxConstants.STYLE_FILLCOLOR] = '#EEEEEE';
+				style[mxConstants.STYLE_GRADIENTCOLOR] = 'white';
+				style[mxConstants.STYLE_FONTCOLOR] = '#000000';
+				style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
+				style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_MIDDLE;
+				style[mxConstants.STYLE_FONTSIZE] = '12';
+				style[mxConstants.STYLE_FONTSTYLE] = 0;
+				graph.getStylesheet().putDefaultVertexStyle(style);
+
+            
+                style = [];
+				style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_CONNECTOR;
+				style[mxConstants.STYLE_STROKECOLOR] = '#6482B9';
+				style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
+				style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_MIDDLE;
+				style[mxConstants.STYLE_EDGE] = mxEdgeStyle.ElbowConnector;
+				style[mxConstants.STYLE_ENDARROW] = mxConstants.ARROW_CLASSIC;
+				style[mxConstants.STYLE_FONTSIZE] = '10';
+                style[mxConstants.STYLE_ROUNDED] = 1;
+				graph.getStylesheet().putDefaultEdgeStyle(style);
+
+                graph.getModel().beginUpdate();
+            }
+            
+            try{
+					if (config["host_filtering"] == "F"){
+						
+						xml = xml.replace('<mxCell id="3" value="Host filtering" vertex="1" parent="1"><mxGeometry x="200" y="160" width="120" height="50" as="geometry"/></mxCell>', '');
+                        xml = xml.replace('<mxCell id="2" value="Short reads&#xa;raw data" vertex="1" parent="1"><mxGeometry x="200" y="80" width="120" height="50" as="geometry"/></mxCell>', '<mxCell id="2" value="Short reads&#xa;raw data" vertex="1" parent="1"><mxGeometry x="200" y="160" width="120" height="50" as="geometry"/></mxCell>')
+						xml = xml.replace('<mxCell id="2_3" value="" edge="1" parent="1" source="2" target="3"><mxGeometry relative="1" as="geometry"/></mxCell>', '<mxCell id="2_3" value="" edge="1" parent="1" source="2" target="4"><mxGeometry relative="1" as="geometry"/></mxCell>');
+                    }
+
+					if (config["assembly"] == "F"){
+                        xml = xml.replace('<mxCell id="8" value="De novo assembly" vertex="1" parent="1"><mxGeometry x="200" y="400" width="120" height="50" as="geometry"/></mxCell><mxCell id="9" value="Taxonomy analysis" vertex="1" parent="1"><mxGeometry x="380" y="400" width="120" height="50" as="geometry"/></mxCell><mxCell id="10" value="Binning for&#xa;unclassified&#xa;contigs" vertex="1" parent="1"><mxGeometry x="380" y="480" width="120" height="50" as="geometry"/></mxCell><mxCell id="11" value="Gene prediction" vertex="1" parent="1"><mxGeometry x="200" y="560" width="120" height="50" as="geometry"/></mxCell><mxCell id="12" value="Functional&#xa;annotation" vertex="1" parent="1"><mxGeometry x="380" y="560" width="120" height="50" as="geometry"/></mxCell><mxCell id="13" value="Pan-genome&#xa;analysis" vertex="1" parent="1"><mxGeometry x="200" y="640" width="120" height="50" as="geometry"/></mxCell>', '');
+                        graph.doResizeContainer(380, 400);
+					}   
+					if (config["pangenome"] == "F"){
+						xml = xml.replace('<mxCell id="13" value="Pan-genome&#xa;analysis" vertex="1" parent="1"><mxGeometry x="200" y="640" width="120" height="50" as="geometry"/></mxCell>', '');
+					}
+					
+					var doc = mxUtils.parseXml(xml);
+					var codec = new mxCodec(doc);
+					codec.decode(doc.documentElement, graph.getModel());
+			}
+            finally{
+					// Updates the display
+                    
+                    graph.getModel().endUpdate();
+                    graph.center(true, true, 0.35, 0.5);
+                    graph.resizeContainer(true);
+                    
+                   
+			}
+		};
+    </script>
+</head>
+
+<body class="total_font" onload="draw_Workflow(document.getElementById('graphContainer'));">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../../src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font">Metagenome Shotgun Sequencing Report</div>
+                <p class="notice">Research Use Only</p>
+            </div>
+
+        <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="orderinfo"><a href="orderinfo.html">Order Info.</a></li>
+					<li id="deliverables"><a href="download.html">Deliverables</a></li>
+					<li id="preprocessing"><a href="rawdatastats.html">Raw data</a></li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="readpathwaypage"><a href="readpathway.html">Pathway Analysis</a></li>
+							<li id="readtaxonpage"><a href="readtaxon.html">Taxonomy Analysis</a></li>
+							<li id="readtaxoncomparepage"><a href="readtaxoncompare.html">Taxonomy Comparison</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="assemblypage"><a href="assemblystats.html">Assembly Statistics</a></li>
+							<li id="annotationpage"><a href="annotation.html">Annotation Statistics</a></li>
+							<li id="contigtaxonpage"><a href="contigtaxon.html">Taxonomy Analysis</a></li>
+							<li id="contigtaxoncomparepage"><a href="contigtaxoncompare.html">Taxonomy Comparison</a></li>
+							<li id="pangenomepage"><a href="pangenome.html">Pangenome Analysis</a></li>
+							<li id="binningpage"><a href="binning.html">Binning Analysis</a></li>
+						</ul>
+					</li>
+					<li id="methodpage"><a href="methods.html">Methods</a></li>
+					<script>
+						if (config["read_pathway"] == "F") {
+							$("#readpathwaypage").remove();
+						}
+						if (config["read_taxon"] == "F") {
+							$("#readtaxonpage").remove();
+							$("#readtaxoncomparepage").remove();
+						}
+						if (config["assembly"] == "F") {
+						 	$("#contiganal").remove();
+						}
+						if (config["contig_ann"] == "F") {
+							$("#annotationpage").remove();
+						}
+						if (config["contig_taxon"] == "F") {
+							$("#contigtaxonpage").remove();
+							$("#contigtaxoncomparepage").remove();
+							$("#binningpage").remove();
+						}
+						if (config["pangenome"] == "F") {
+							$("#pangenomepage").remove();
+						}
+					</script>
+                </ul>
+	        </nav>
+		</header>
+
+        <!--top 버튼-->
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Methods</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" id="methods">
+
+                    <!--Assembly stats table-->
+                    <div class="panel-group" id="SequencingWorkflow">
+						<br>
+						<br>
+		                <div class="panel panel-default">
+
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Sequencing workflow</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_1" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+									<br>
+                                        <p><b>Sample Preparation</b><br>
+											&nbsp;&nbsp;&nbsp;&nbsp;For library construction, DNA/RNA is extracted from a sample. After performing quality control (QC), passed sample is proceeded with the library construction.
+										</p>
+										<br>
+										<br>
+										<p><b>Library construction</b><br>
+											&nbsp;&nbsp;&nbsp;&nbsp;The sequencing library is prepared by random fragmentation of the DNA or cDNA sample, followed by 5' and 3' adapter ligation. Alternatively, "tagmentation" combines the fragmentation and ligation reactions into a single step that greatly increases the efficiency of the library preparation process. Adapter-ligated fragments are then PCR amplified and gen purified.
+										</p>
+										<br>
+										<br>
+										<p><b>Sequencing</b><br>
+											&nbsp;&nbsp;&nbsp;&nbsp;For cluster generation, the library is loaded onto a flow cell where fragments are captured on a lawn of surface-bound oligos complementary to the library adapters. Each fragment is then amplified into distinct, clonal clusters through amplification. When cluster generation is complete, the templates are ready for sequencing. Illumina SBS technology utilizes a proprietary reversible terminator-based method that detects single bases as they are incorporated into DNA template strands. As all 4 reversible, terminator-bound dNTPs are present during each sequencing cycle, natural competition minimizes incorporation bias and greatly reduces raw error rates compared to other technologies. The result is highly accurate base-by-base sequencing that virtually eliminates sequence-context-specific errors, even within repetitive sequence regions and homo-polymers.
+										</p>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+
+                    <!--mxGraph for workflow visualization-->
+                    <div class="panel-group" id="SequencingWorkflow">
+						<br>
+						<br>
+		                <div class="panel panel-default">
+
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_workflow"><b>Analysis workflow</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_workflow" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <div id="graphContainer"
+		                                style="position:relative;overflow:hidden;width:380px;height:650px;cursor:default;">
+                                        
+	                                </div>
+                                    
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+
+                    <!--NContig chart-->
+                    <div class="panel-group" id="Preprocessing">
+						<br>
+						<br>
+
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_2"><b>Preprocessing</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_2" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" id="preproc_body">
+									<br>
+                                    <script>
+                                        var preproc = document.getElementById('preproc_body');
+										var p = document.createElement('p');
+										if (HF == "T") {
+											p.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;Host DNA was filtered out from raw data. The host DNA was filtered out by mapping against host reference genome using KneadData v0.74. Trimmomatic v0.38 was used to remove Illumina sequencing adapter and trim low quality end bases with following options; ILLUMINACLIP:Adapter.fasta:2:30:10:8:true LEADING:15 TRAILING:15 SLIDINGWINDOW:4:15 MINLEN:36. To assess quality of raw data and trimmed data, FASTQC v0.11.6 was performed.";
+
+										}else {
+											p.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;Trimmomatic v0.38 was used to remove Illumina sequencing adapter and trim low quality end bases with following options; ILLUMINACLIP:Adapter.fasta:2:30:10:8:true LEADING:15 TRAILING:15 SLIDINGWINDOW:4:15 MINLEN:36. To assess quality of raw data and trimmed data, FASTQC v0.11.6 was performed.";
+										}
+										preproc.appendChild(p);
+                                    </script>
+									<br>
+									<p><b>Citation</b></p>
+									<script>
+										var cite = document.getElementById('preproc_body');
+										var ul = document.createElement('ul');
+										ul.innerHTML = "";
+										ul.setAttribute('class','outside');
+										if (HF == "T") {
+											ul.innerHTML = "<li>KneadData, The Huttenhower Lab, Available from: http://huttenhower.sph.harvard.edu/kneaddata</li>";
+										}
+										ul.innerHTML += "<li>Bolger, A. M., Lohse, M., & Usadel, B. (2014). Trimmomatic: A flexible trimmer for Illumina Sequence Data. Bioinformatics, btu170.</li>";
+										ul.innerHTML += "<li>Andrews, S. (2010), FastQC: a quality control tool for high throughput sequence data.</li>";
+										cite.appendChild(ul);
+									</script>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+                    <!--Mapping stat table-->
+                    <div class="panel-group" id="Readtaxon">
+						<br>
+						<br>
+						<div class="panel panel-default">
+						<!--Panel head-->
+							<div id="collapse_3_title" class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" href="#collapse_3"><b>Taxonomy assignment for reads</b></a>
+								</h4>
+							</div>
+							<div id="collapse_3" class="panel-collapse collapse in ">
+								<div class="panel-body xy_scroll">
+								<br>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;Centrifuge v1.0.4 was performed for taxonomy assignment of trimmed data with primary assignments set as 1. The count and portion of the reads assigned to each taxon number were calculated at each taxon ranks (Kingdom, Phylum, Class, Order, Family, Genus, Species and Subspecies) using in-house scripts and normalized abundance of taxon at level of subspecies, species and genus was calculated using following equation. After calculating abundance, relative abundance which is ratio of abundance compared with total abundance sum was calculated.<p>
+								<br>
+								<img src="http://latex.codecogs.com/svg.latex?Abundance = \frac{Ra}{Rt*G}" style="display:block;margin-left:auto;margin-right:auto"/>
+								<br>
+								<ul>
+									<li>&nbsp;&nbsp;&nbsp;&nbsp;· Ra : Read count assigned to the taxon
+									<li>&nbsp;&nbsp;&nbsp;&nbsp;· Rt : Total read count
+									<li>&nbsp;&nbsp;&nbsp;&nbsp;· G : Average genome size of the taxon
+								</ul>
+								<br>
+								<p><b>Citation</b><p>
+								<ul class="outside">
+									<li>Kim, D., Song, L., Breitwieser, F. P., & Salzberg, S. L. (2016). Centrifuge: rapid and sensitive classification of metagenomic sequences. Genome research, 26(12), 1721-1729.</li>
+								</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script>
+					if (RT == "F") {
+						$("#Readtaxon").remove();
+					}
+					</script>
+
+					<div class="panel-group" id="Readpathway">
+						<br>
+						<br>
+                        <div class="panel panel-default">
+                        <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_4"><b>Pathway analysis</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_4" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                <br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;Fun4Me was used for pathway analysis of the trimmed reads. Enzyme commission numbers (E.C. number) retrieved by Fun4Me were collected and enrichment of E.C. number was visualized using in-house script.<p>
+                                <br>
+                                <p><b>Citation</b><p>
+                                <ul class="outside">
+                                    <li>Sharifi, F., & Ye, Y. (2017). From gene annotation to function prediction for metagenomics. In Protein Function Prediction (pp. 27-34). Humana Press, New York, NY.</li>
+                                </ul>
+								</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                    if (RP == "F") {
+                        $("#Readpathway").remove();
+					}
+                    </script>
+
+
+                    <div class="panel-group" id="contigassembly">
+						<br>
+						<br>
+                        <div class="panel panel-default">
+                        <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_5"><b>De novo assembly</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_5" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll" id="ca_body">
+                                <br>
+								<script>
+								if ( numofsample == 1 ){
+                        			var cont_ass = document.getElementById('ca_body');
+			                        var p = document.createElement('p');
+            			            var cite = document.createElement('p');
+                        			var ul = document.createElement('ul');
+			                        if ( readlength <= 150 ) {
+            			                p.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;The trimmed reads were assembled using MEGAHIT v1.2.9. Minimum K-mer length was set as 53 and maxmium K-mer length was set as 93 with --k-step 10 option. To assessment quality of the assemblies, the trimmed reads were mapped against the assemblies using bowtie2  v2.2.3. After mapping, mapping depth was calculated using Genome Analysis Toolkit (GATK)   v3.4.0 DepthOfCoverage module and insert size was calculated using Picard tools CollectInsertSizeMetrics module.";
+                        			} else{
+			                            p.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;The trimmed reads were assembled using MEGAHIT v1.2.9. Minimum K-mer length was set as 83 and maxmium K-mer length was set as 123 with --k-step 10 option. To assessment quality of the assemblies, the trimmed reads were mapped against the assemblies using bowtie2  v2.2.3. After mapping, mapping depth was calculated using Genome Analysis Toolkit (GATK)   v3.4.0 DepthOfCoverage module and insert size was calculated using Picard tools CollectInsertSizeMetrics module.";
+            			            }
+                        			p.innerHTML += "<br>";
+			                        p.innerHTML += "<br>";
+            			            cont_ass.appendChild(p);
+                        			cite.innerHTML = "<b>Citation</b>";
+			                        cont_ass.appendChild(cite);
+									ul.setAttribute('class','outside');
+            			            ul.innerHTML = "<li>Li, D., Liu, C. M., Luo, R., Sadakane, K., & Lam, T. W. (2015). MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics, 31(10), 1674-1676.</li>";
+                        			ul.innerHTML += "<li>Langmead, B., & Salzberg, S. L. (2012). Fast gapped-read alignment with Bowtie 2. Nature methods, 9(4), 357.</li>";
+			                        ul.innerHTML += "<li>McKenna, A., Hanna, M., Banks, E., Sivachenko, A., Cibulskis, K., Kernytsky, A., ... & DePristo, M. A. (2010). The Genome Analysis Toolkit: a MapReduce framework for analyzing next-generation DNA sequencing data. Genome research, 20(9), 1297-1303.</li>";
+            			            ul.innerHTML += "<li>Picard Toolkit. (2019), Broad Institute, Available from: http://broadinstitute.github.io/picard</li>";
+                        			cont_ass.appendChild(ul);
+								} else if ( readlength <= 150 ) {
+                        			var cont_ass = document.getElementById('ca_body');
+			                        var p = document.createElement('p');
+									var cite = document.createElement('p');
+                        			var ul = document.createElement('ul');
+									p.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;To rescue microbe occupying very minor portion of the sample, all the trimmed reads from the samples used in this analysis were merged. The merged data were assembled using MEGAHIT v1.2.9. Minimum K-mer length was set as 53 and maximum K-mer length was set as 93 with --k-step 10 option. To determine where the contigs come from and assess quality of the assemblies, the trimmed reads of each sample were mapped against the assemblies using bowtie2 v2.2.3. After mapping, mapping depth was calculated using Genome Analysis Toolkit (GATK) v3.4.0 DepthOfCoverage module and insert size was calculated using Picard CollectInsertSizeMetrics module. If average mapping depth of a contig for a sample is larger than 5 or equal, we regarded that the sample may have the contig. The contigs for each sample were stored as separate fasta file.";
+									p.innerHTML += "<br>";
+									p.innerHTML += "<br>";
+									cont_ass.appendChild(p);
+									cite.innerHTML = "<b>Citation</b>";
+                        			cont_ass.appendChild(cite);
+									ul.setAttribute('class','outside');
+			                        ul.innerHTML = "<li>Li, D., Liu, C. M., Luo, R., Sadakane, K., & Lam, T. W. (2015). MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics, 31(10), 1674-1676.</li>";
+            			            ul.innerHTML += "<li>Langmead, B., & Salzberg, S. L. (2012). Fast gapped-read alignment with Bowtie 2. Nature methods, 9(4), 357.</li>";
+                        			ul.innerHTML += "<li>McKenna, A., Hanna, M., Banks, E., Sivachenko, A., Cibulskis, K., Kernytsky, A., ... & DePristo, M. A. (2010). The Genome Analysis Toolkit: a MapReduce framework for analyzing next-generation DNA sequencing data. Genome research, 20(9), 1297-1303.</li>";
+									ul.innerHTML += "<li>Picard Toolkit. (2019), Broad Institute, Available from: http://broadinstitute.github.io/picard</li>";
+            			            cont_ass.appendChild(ul);
+								} else {
+                                    var cont_ass = document.getElementById('ca_body');
+                                    var p = document.createElement('p');
+                                    var cite = document.createElement('p');
+                                    var ul = document.createElement('ul');
+									p.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;To rescue microbe occupying very minor portion of the sample, all the trimmed reads from the samples used in this analysis were merged. The merged data were assembled using MEGAHIT v1.2.9. Minimum K-mer length was set as 83 and maximum K-mer length was set as 123 with --k-step 10 option. To determine where the contigs come from and assess quality of the assemblies, the trimmed reads of each sample were mapped against the assemblies using bowtie2 v2.2.3. After mapping, mapping depth was calculated using Genome Analysis Toolkit (GATK) v3.4.0 DepthOfCoverage module and insert size was calculated using Picard CollectInsertSizeMetrics module. If average mapping depth of a contig for a sample is larger than 5 or equal, we regarded that the sample may have the contig. The contigs for each sample were stored as separate fasta file.";
+                                    p.innerHTML += "<br>";
+									p.innerHTML += "<br>";
+                                    cont_ass.appendChild(p);
+                                    cite.innerHTML = "<b>Citation</b>";
+                                    cont_ass.appendChild(cite);
+									ul.setAttribute('class','outside');
+                                    ul.innerHTML = "<li>Li, D., Liu, C. M., Luo, R., Sadakane, K., & Lam, T. W. (2015). MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics, 31(10), 1674-1676.</li>";
+                                    ul.innerHTML += "<li>Langmead, B., & Salzberg, S. L. (2012). Fast gapped-read alignment with Bowtie 2. Nature methods, 9(4), 357.</li>";
+                                    ul.innerHTML += "<li>McKenna, A., Hanna, M., Banks, E., Sivachenko, A., Cibulskis, K., Kernytsky, A., ... & DePristo, M. A. (2010). The Genome Analysis Toolkit: a MapReduce framework for analyzing next-generation DNA sequencing data. Genome research, 20(9), 1297-1303.</li>";
+                                    ul.innerHTML += "<li>Picard Toolkit. (2019), Broad Institute, Available from: http://broadinstitute.github.io/picard</li>";
+                                    cont_ass.appendChild(ul);
+								}
+								</script>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                    if (CT == "F" && CA == "F") {
+                        $("#contigassembly").remove();
+					}
+                    </script>
+
+                    <div class="panel-group" id="contigtaxon">
+                        <br>
+                        <br>
+                        <div class="panel panel-default">
+                        <!--Panel head-->
+                            <div id="collapse_6_title" class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_6"><b>Taxonomy assignment for contigs</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_6" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                <br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;Assembly results were subject to taxonomy assignment using Centrifuge v1.0.4 with primary assignments set as 1. The count and portion of the contigs assigned to each taxon number were calculated at each taxon ranks (Kingdom, Phylum, Class, Order, Family, Genus, Species and Subspecies) using in-house scripts and normalized abundance of taxon at level of subspecies, species and genus was calculated using following equation.</p>
+								<br>
+                                <img src="http://latex.codecogs.com/svg.latex?Abundance = \frac{Lc*D}{Rt*Rl*G}" style="display:block;margin-left:auto;margin-right:auto"/>
+                                <br>
+                                <ul>
+									<li>&nbsp;&nbsp;&nbsp;&nbsp;· Lc : Length of the contig
+									<li>&nbsp;&nbsp;&nbsp;&nbsp;· D : Average mapping depth of the contig
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;· Rt : Total read count
+									<li>&nbsp;&nbsp;&nbsp;&nbsp;· Rl : Average read length
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;· G : Average genome size of the taxon
+                                </ul>
+                                <br>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;In detail, length of the contig * average mapping depth of contig / average reads length was regarded as reads count assigned to the taxon. They were normalized using average genome size of the taxon and total reads count. After calculating abundance, relative abundance which is ratio of abundance compared with total abundance sum was calculated.<p>
+                                <br>
+                                <p><b>Citation</b><p>
+                                <ul class="outside">
+                                    <li>Kim, D., Song, L., Breitwieser, F. P., & Salzberg, S. L. (2016). Centrifuge: rapid and sensitive classification of metagenomic sequences. Genome research, 26(12), 1721-1729.</li>
+                                </ul>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                    if (CT == "F") {
+                        $("#contigtaxon").remove();
+                    }
+                    </script>
+
+
+                    <div class="panel-group" id="contiguncl">
+                        <br>
+                        <br>
+                        <div class="panel panel-default">
+                        <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_7"><b>Binning for unclassified contigs</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_7" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                <br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;Unclassified contigs, which did not be assigned taxon by centrifuge, were binned to classify using characteristics of the sequences. CONCOCT v1.1.0 was used to bin the unclassified contigs without length threshold.</p>
+                                <br>
+                                <p><b>Citation</b><p>
+                                <ul class="outside">
+                                    <li>Alneberg, J., Bjarnason, B. S., De Bruijn, I., Schirmer, M., Quick, J., Ijaz, U. Z., ... & Quince, C. (2014). Binning metagenomic contigs by coverage and composition. Nature methods, 11(11), 1144-1146.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                    if (CT == "F") {
+                        $("#contiguncl").remove();
+                    }
+                    </script>
+
+
+					<div class="panel-group" id="contigann">
+                        <br>
+                        <br>
+                        <div class="panel panel-default">
+                        <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_8"><b>Gene prediction and annotation</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_8" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                <br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;Prokka v1.13 was used to predict genes on the contigs with following options; --compliant --force --rnammer --addgenes --gcode 11 --metagenome. The predicted genes were annotated using EggNOG-mapper v2.0.1 based on EggNOG database v5.0.</p>
+                                <br>
+                                <p><b>Citation</b><p>
+                                <ul class="outside">
+                                    <li>Seemann, Torsten. "Prokka: rapid prokaryotic genome annotation." Bioinformatics 30, no. 14 (2014): 2068-2069.</li>
+                                    <li>Huerta-Cepas, J., Forslund, K., Coelho, L. P., Szklarczyk, D., Jensen, L. J., Von Mering, C., & Bork, P. (2017). Fast genome-wide functional annotation through orthology assignment by eggNOG-mapper. Molecular biology and evolution, 34(8), 2115-2122.</li>
+                                    <li>Huerta-Cepas, J., Szklarczyk, D., Heller, D., Hernández-Plaza, A., Forslund, S. K., Cook, H., ... & von Mering, C. (2019). eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses. Nucleic acids research, 47(D1), D309-D314.</li>
+                                </ul>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                    if (CA == "F") {
+                        $("#contigann").remove();
+                    }
+                    </script>
+
+
+	                <div class="panel-group" id="pangenome">
+	                    <br>
+                        <br>
+                        <div class="panel panel-default">
+                        <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_9"><b>Pan-genome analysis</b></a>
+                                </h4>
+                            </div>
+                            <div id="collapse_9" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                <br>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;Roary v1.007001 was used for pan-genome analysis with MAFFT v7.427 aligner. The result of pan-genome analysis was visualized by UpSet plot to show how many genes are common or not among the samples.</p>
+                                <br>
+                                <p><b>Citation</b><p>
+                                <ul class="outside">
+                                    <li>Page, A. J., Cummins, C. A., Hunt, M., Wong, V. K., Reuter, S., Holden, M. T., ... & Parkhill, J. (2015). Roary: rapid large-scale prokaryote pan genome analysis. Bioinformatics, 31(22), 3691-3693.</li>
+                                    <li>Katoh, K., & Standley, D. M. (2013). MAFFT multiple sequence alignment software version 7: improvements in performance and usability. Molecular biology and evolution, 30(4), 772-780.</li>
+                                    <li>Lex, A., Gehlenborg, N., Strobelt, H., Vuillemot, R., & Pfister, H. (2014). UpSet: visualization of intersecting sets. IEEE transactions on visualization and computer graphics, 20(12), 1983-1992.</li>
+                                </ul>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                    if (PA == "F") {
+                        $("#pangenome").remove();
+                    }
+                    </script>
+
+
+                </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,457 @@
+/* *** HEADER *** */
+#header {
+    background: #fff;
+}
+
+.header-wrap {
+    position: relative;
+    padding: 20px 35px 10px 35px;
+    box-shadow: 0 0 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+.logo img {
+    height: 30px;
+}
+
+#header .center-txt {
+    font-size: 20px;
+    width: 500px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -23px 0 0 -250px;
+    padding-top: 5px;
+    color: #333
+}
+
+#header .notice {
+    position: absolute;
+    font-size: 14px;
+    top: 50%;
+    right: 40px;
+    color: #e21d1d;
+}
+
+#header .navbar {
+    border-radius: 0;
+    margin: 0;
+}
+
+.navbar {
+    height: 50px;
+	z-index: 1;
+}
+
+.navbar ul {
+    font-size: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.navbar>ul>li {
+    display: inline-block;
+    padding: 0 45px;
+}
+
+.navbar>ul>li>a {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #5f79a9;
+    text-transform: uppercase;
+}
+
+.navbar .dropdown-menu {
+    left: 45px;
+}
+
+.navbar .dropdown-menu a {
+    font-size: 16px;
+}
+
+.navbar .dropdown-menu a:hover {
+    color: white;
+    opacity: 0.8;
+}
+
+#header .dropdown .caret {
+    margin-top: -5px;
+}
+
+.more-images:focus {
+    outline: none;
+    border: 2px solid;
+    border-color: #70B9C8;
+}
+
+.main_icon_div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center
+}
+
+.main_icon_img {
+    width: 130px;
+}
+
+.total_font {
+    font-family: Calibri;
+}
+
+/* *** FOOTER *** */
+.footer_style {
+    background-color: #ffffff;
+    color: #747474;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer_style .container {
+    display: table;
+    width: 100%;
+    max-width: 1400px;
+    padding: 30px 0 15px;
+}
+
+.footer_style .container>div {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.footer_style .container .left {
+    width: 18%;
+}
+
+.footer_style .container .right {
+    width: 82%;
+    font-size: 0;
+}
+
+.footer_style .right>div {
+    padding: 0;
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 20px;
+}
+
+.footer_style .right .col-sm-3 {
+    width: 20%;
+}
+
+.footer_style h5 {
+    font-size: 14px;
+    font-weight: 900;
+    color: #747474;
+    margin: 0;
+}
+
+.footer_style ul {
+    margin: 8px 0 0;
+}
+
+.footer_style li {
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+.footer_style a {
+    color: #747474;
+}
+
+.table_center td {
+    text-align: center;
+}
+
+.collapse_height_300 {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.collapse_width_height_300 {
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.collapse_width_height_500 {
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.pager {
+    margin: 0px 0px 0px 0px;
+    text-align: center;
+}
+
+/* pager wrapper, div */
+.tablesorter-pager {
+    padding: 5px;
+}
+
+/* pager wrapper, in thead/tfoot */
+td.tablesorter-pager {
+    background-color: #e6eeee;
+    margin: 0;
+    /* needed for bootstrap .pager gets a 18px bottom margin */
+}
+
+/* pager navigation arrows */
+.tablesorter-pager img {
+    vertical-align: middle;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+/* pager output text */
+.tablesorter-pager .pagedisplay {
+    padding: 0 5px 0 5px;
+    width: 50px;
+}
+
+/* pager element reset (needed for bootstrap) */
+.tablesorter-pager select {
+    margin: 0;
+    padding: 0;
+}
+
+/*** css used when "updateArrows" option is true ***/
+/* the pager itself gets a disabled class when the number of rows is less than the size */
+.tablesorter-pager.disabled {
+    display: none;
+}
+
+/* hide or fade out pager arrows when the first or last row is visible */
+.tablesorter-pager .disabled {
+    /* visibility: hidden */
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    cursor: default;
+}
+/* tablesorter filter disabled row */
+.tablesorter .filtered {
+    display: none;
+}
+.tablesorter .tablesorter-filter {
+    width: 100%;
+}
+
+#backtotop {
+    cursor: pointer;
+    display: none;
+    margin: 0% 0% 3% 77%;
+    /*ì´ë¯¸ì§€ ìœ„ì¹˜*/
+    position: fixed;
+    bottom: 10px;
+    font-size: 90%;
+    padding: 0px;
+    width: 90px;
+    height: 90px;
+    text-align: center;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    filter: alpha(opacity=30);
+    -khtml-opacity: 0.8;
+    -moz-opacity: 0.8;
+    opacity: 0.8;
+    color: #FFF;
+    font-size: 14px;
+    z-index: 1000;
+}
+
+#backtotop:hover {
+    filter: alpha(opacity=90);
+    -khtml-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+}
+
+.table .th_center {
+    text-align: center;
+}
+
+.table .td_char {
+    text-align: center;
+    font-size: 14px;
+}
+
+.table .td_num {
+    text-align: right;
+    font-size: 14px;
+}
+.table .td_left {
+	text-align: left;
+	font-size: 14px;
+}
+.xy_scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.div_icon {
+    display: inline-block;
+    float: left;
+    clear: both;
+    width: 70px;
+    position: relative;
+    top: 10px;
+}
+
+.div_h1 {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.panel-heading a {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+}
+
+.index_note {
+    margin-top: 0px;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    letter-spacing: -.02em;
+    display: inline-block;
+    opacity: 0.8;
+}
+
+@media (min-width: 566px) {
+    .index_note {
+        margin-top: 0px;
+        padding: 10px;
+        font-size: 16px;
+        color: white;
+        letter-spacing: -.02em;
+        display: inline-block;
+        opacity: 0.8;
+    }
+}
+
+@media (min-width: 770px) {
+    #backtotop {
+        cursor: pointer;
+        display: none;
+        margin: 0% 0% 3% 86%;
+        position: fixed;
+        bottom: 10px;
+        font-size: 90%;
+        padding: 0px;
+        width: 90px;
+        height: 90px;
+        text-align: center;
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        filter: alpha(opacity=30);
+        -khtml-opacity: 0.8;
+        -moz-opacity: 0.8;
+        opacity: 0.8;
+        color: #FFF;
+        font-size: 14px;
+        z-index: 1000;
+    }
+}
+
+@media (min-width: 808px) {
+    #backtotop {
+        cursor: pointer;
+        display: none;
+        margin: 0% 0% 3% 88%;
+        position: fixed;
+        bottom: 10px;
+        font-size: 90%;
+        padding: 0px;
+        width: 90px;
+        height: 90px;
+        text-align: center;
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        filter: alpha(opacity=30);
+        -khtml-opacity: 0.8;
+        -moz-opacity: 0.8;
+        opacity: 0.8;
+        color: #FFF;
+        font-size: 14px;
+        z-index: 1000;
+    }
+}
+
+@media (min-width: 991px) {
+    .index_note {
+        margin-top: 0px;
+        padding: 10px;
+        font-size: 16px;
+        color: white;
+        letter-spacing: -.02em;
+        display: inline-block;
+        opacity: 0.8;
+    }
+}
+
+@media (min-width: 1132px) {
+    #backtotop {
+        cursor: pointer;
+        display: none;
+        margin: 0% 0% 3% 90%;
+        /*ì´ë¯¸ì§€ ìœ„ì¹˜*/
+        position: fixed;
+        bottom: 10px;
+        font-size: 90%;
+        padding: 0px;
+        width: 90px;
+        height: 90px;
+        text-align: center;
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        filter: alpha(opacity=30);
+        -khtml-opacity: 0.8;
+        -moz-opacity: 0.8;
+        opacity: 0.8;
+        color: #FFF;
+        font-size: 14px;
+        z-index: 1000;
+    }
+}
+
+.show {
+    CURSOR: pointer;
+    font-size: 15px;
+}
+
+.desc {
+    display: none;
+}
+
+.bottom_blank {
+    height: 150px;
+}
+
+.reset {
+    position: relative;
+}
+
+.reset button {
+    position: relative;
+    top: 100px;
+    left: 20px;
+}
+
+.reset p {
+    margin-right: 50px;
+    text-align: right;
+}

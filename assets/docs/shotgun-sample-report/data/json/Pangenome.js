@@ -1,0 +1,2 @@
+array=
+{"customer": "Macrogen", "stats": [{"num": 142194, "name": "3", "sets": ["3"]}, {"num": 44496, "name": "1", "sets": ["1"]}, {"num": 32681, "name": "1 & 3", "sets": ["1", "3"]}, {"num": 24538, "name": "1 & 2", "sets": ["1", "2"]}, {"num": 14422, "name": "1 & 2 & 3", "sets": ["1", "2", "3"]}, {"num": 5321, "name": "2", "sets": ["2"]}, {"num": 2421, "name": "2 & 3", "sets": ["2", "3"]}], "institute": "Macrogen", "project": "Test", "samples": ["1", "2", "3"], "species": "Other"};

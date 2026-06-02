@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/photoswipe.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="../tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
+	<link rel="stylesheet" href="../../src/css/common.css">
+	<link rel="stylesheet" href="../../src/css/custom.css">
+	<link rel="stylesheet" href="../../src/css/layout.css">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../d3/d3.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe-ui-default.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/main.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+    <script src="../tablesorter-master/addons/pager/jquery.tablesorter.pager.js"></script>
+    <script src="../tablesorter-master/tablesorter.js"></script>
+
+    <!--json data-->
+    <script src="../../data/json/Total.js"></script>
+
+    <script>
+        var array;
+        var ordernumber = array[0].project;
+        var customer = array[0].customer;
+        var stat_list = ["samplename", "Total_yield_base_filtered", "Total_num_of_read_filtered", "GCratio_filtered", "Q20ratio_filtered", "Q30ratio_filtered", "Quality by Cycle Image"];
+        var comma_list = ["Total_yield_base_filtered", "Total_num_of_read_filtered", "Total_yield_base", "Total_num_of_read"];
+		var raw_stat_list = ["samplename", "Total_yield_base", "Total_num_of_read", "GCratio", "Q20ratio", "Q30ratio"];
+        var q_list = ['Q20', 'Q30'];
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+        //stat_list를 format_list로 parsing
+        function arr_format(array) {
+            var format_list = [];
+            for (var i = 0, key; key = array[i]; i++) {
+                var temp = {};
+                switch (key) {
+                    case "samplename":
+                        temp["head"] = key;
+                        temp["format"] = "td_char";
+                        break;
+                    case "Quality by Cycle Image":
+                        temp["head"] = key;
+                        temp["format"] = "link";
+                        break;
+                    default:
+                        temp["head"] = key;
+                        if (comma_list.indexOf(key) != -1) {
+                            temp["format"] = "comma";
+                        } else {
+                            temp["format"] = "td_num";
+                        }
+                }
+                format_list.push(temp);
+            }
+            return format_list
+        }
+
+        var format_list = arr_format(stat_list);
+		var raw_format_list = arr_format(raw_stat_list);
+
+        //Total.js에서 array 가져와서 parsing
+		function arr_yield(array) {
+            var array_yield = [];
+            for (var i = 0; i < array.length; i++) {
+                var temp = {};
+                temp['Sample'] = array[i]['samplename'];
+                temp['Categories'] = [];
+				temp['Categories'].push({
+					'Name': 'Raw',
+					'Value': Number(array[i]["Total_yield_base"])
+				});
+				temp['Categories'].push({
+					'Name': 'Filtered',
+					'Value': Number(array[i]["Total_yield_base_filtered"])
+				});
+                array_yield.push(temp);
+            }
+            return array_yield
+        }
+
+        var array_yield = arr_yield(array);
+
+        function arr_q(array) {
+            var array_q = [];
+            for (var i = 0; i < array.length; i++) {
+                var temp = {};
+                temp['Sample'] = array[i]['samplename'];
+                temp['Categories'] = [];
+                for (var j = 0, q; q = q_list[j]; j++) {
+                    temp['Categories'].push({
+                        'Name': q,
+                        'Value': Number(array[i][q + "ratio_filtered"])
+                    });
+                }
+                array_q.push(temp);
+            }
+            return array_q
+        }
+
+        var array_q = arr_q(array);
+
+        function arr_gc(array) {
+            var array_gc = [];
+            for (var i = 0; i < array.length; i++) {
+                var temp = {};
+                temp['Sample'] = array[i]['samplename'];
+                temp['Categories_gc'] = [];
+                temp['Categories_gc'].push({
+                    'Name': 'GC',
+                    'Value': Number(array[i]['GCratio_filtered'])
+                });
+                temp['Categories_gc'].push({
+                    'Name': 'AT',
+                    'Value': Number(100 - array[i]['GCratio_filtered'])
+                });
+                array_gc.push(temp);
+            }
+            return array_gc
+        }
+
+        var array_gc = arr_gc(array);
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }
+
+        //Fastq stats의 quality by cycle 칼럼에서 read1/2를 클릭하면 Quality by Cycle의 해당 샘플 위치로 이동
+        $(function() {
+            $(".scrollmv").click(function(event) {
+                event.preventDefault();
+                $("#collapse_4").addClass('in');
+                $('html,body').animate({
+                    scrollTop: $("#collapse_4").offset().top
+                }, 1);
+                $(this.hash).attr("tabindex", -1).focus();
+            });
+        });
+
+        //top 버튼 숨기기/보여주기
+        $(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() != 0) {
+                    $('#backtotop').fadeIn();
+                } else {
+                    $('#backtotop').fadeOut();
+                }
+            });
+
+            //top 버튼 누르면 맨 위로 이동
+            $('#backtotop').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+        });
+
+		//description 접었다 펴기
+        $(function() {
+            $('.show').click(function() {
+                var submenu = $(this).next($('.desc'));
+                if (submenu.is(":visible")) {
+                    submenu.slideUp();
+                    $(this).text('Show Description')
+                } else {
+                    submenu.slideDown();
+                    $(this).text('Hide Description')
+                }
+            });
+        });
+
+    </script>
+    <style>
+    a:hover		{color:#920783; text-decoration:underline;}
+    </style>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../../src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font">Metagenome Shotgun Sequencing Report</div>
+                <p class="notice">Research Use Only</p>
+            </div>
+
+        <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="main"><a href="../../Report.html">Home</a></li>
+                    <li id="orderinfo"><a href="orderinfo.html">Order Information</a></li>
+					<li class="dropdown" id="deliverables"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Deliverables <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="download.html">Download Data</a></li>
+						</ul>
+					</li>
+					<li class="dropdown" id="preprocessing" class="active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Preprocessing <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="rawdatastats.html">Raw Data Statistics</a></li>
+							<li><a href="filteredstats.html">Filtered Data Statistics</a></li>
+						</ul>
+					</li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="readpathway.html">Pathway Analysis</a></li>
+							<li><a href="readtaxon.html">Taxonomy Analysis</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="assemblystats.html">Assembly Statistics</a></li>
+							<li><a href="annotation.html">Annotation Statistics</a></li>
+							<li><a href="contigtaxon.html">Taxonomy Analysis</a></li>
+						</ul>
+					</li>
+					<li class="dropdown" id="pangenomeanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Pangenome Analysis <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="pangenome.html">Pangenome Analysis</a></li>
+						</ul>
+					</li>
+                </ul>
+	        </nav>
+		</header>
+
+        <!--top 버튼-->
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Raw Data Statistics</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <br>
+                    <br>
+
+                    <!--Fastq stats table-->
+                    <div class="panel-group" id="Fastqstats_raw">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Raw Data Statistics</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_1" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <table class="table tablesorter" id="table_raw">
+                                        <thead>
+                                            <tr>
+                                                <th class="th_center">Sample</th>
+                                                <th class="th_center" title="Total number of bases sequenced.">Total Yield</th>
+                                                <th class="th_center" title="Total Number of Reads.">Total reads</th>
+                                                <th class="th_center" title="GC content.">GC</th>
+                                                <th class="th_center" title="Ratio of bases that have phred quality score of over 20.">Q20</th>
+                                                <th class="th_center" title="Ratio of bases that have phred quality score of over 30.">Q30</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tb_fastq_raw"></tbody>
+                                    </table>
+
+                                    <script>
+                                        var table_fastq = document.getElementById('tb_fastq_raw');
+                                        for (var i = 0; i < array.length; i++) {
+                                            var tr = document.createElement('tr');
+                                            html_str = "";
+                                            raw_format_list.forEach(function(object) {
+                                                switch (object.format) {
+                                                    case "td_char":
+                                                        html_str += "<td class='td_char'>" + array[i][object.head] + "</td>";
+                                                        break;
+                                                    case "comma":
+                                                        html_str += "<td class='td_num' style='text-align:center;'>" + AddComma(array[i][object.head]) + "</td>";
+                                                        break;
+                                                    case "td_num":
+                                                        html_str += "<td class='td_num' style='text-align:center;'>" + array[i][object.head] + "</td>";
+                                                        break;
+                                                    case "link":
+                                                        html_str += "<td class='td_char'><div style='display:inline-block;'>";
+                                                        for (var j = 1; j < 3; j++) {
+                                                            html_str += "<div style='float:left; margin-left:20px;' ><a href=#" + array[i].samplename + " class='scrollmv' data-size='1600x1068'>read" + j + "</a></div>";
+                                                        }
+                                                        html_str += "</div></td>"
+                                                        break;
+                                                }
+                                            })
+                                            tr.innerHTML = html_str;
+                                            table_fastq.appendChild(tr);
+                                        }
+                                    </script>
+
+                                    <!--Pager-->
+                                    <div id="pager_raw" class="pager_raw" style="margin: 0px 0px 0px 0px;text-align:center;">
+                                        <div id="pager_raw" class="pager_raw" style="margin: 0px 0px 0px 0px;">
+                                            <form>
+                                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                                                <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+                                                <span class="pagedisplay" ></span>
+                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+                                                <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+                                                <select class="pagesize">
+                                                    <option value="10">10 samples per page</option>
+                                                    <option value="all">All Samples</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+									<script>
+										var table = $('#table_raw');
+										table.trigger('refreshWidgets');
+										table.tablesorter().tablesorterPager({container:$('#pager_raw')});
+										table.trigger('pagerUpdate');
+									</script>
+
+                           			<!--Description-->
+                                    <span id="show" class="show">Show Description</span>
+                                    <div id="desc" class="desc">
+										<br>
+										<p>&nbsp;&nbsp;Quality of the raw data was assessed to check fidelity of the rawdata.
+											Q20 or Q30 represent portion of the reads having quality equal or higher than 20 or 30 phread score, respectively.
+											Phred score of 20 means the base has 99% accuracy. The reads of which Q20 bases occupy 90% are generally accepted as good quality reads for analysis and 
+											it is sure that more higher Q20 or/and Q30 enable to get more accurate analysis results.
+											GC contents represent portion of nucleotide GC and AT.
+											In most cases, GC contents of metagenome samples shows half and half because metagenome samples contain various species.
+											If GC or AT contents are much higher than others, it means that GC or AT rich species occupy majority of the metagenome samples.
+										</p>
+
+                                        <ul>
+											<br>
+											
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Total Yield (bp) : Total number of bases sequenced.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Total reads : Total Number of Reads.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· GC (%) : GC content.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Q20 (%) : Ratio of bases that have phred quality score of over 20.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Q30 (%) : Ratio of bases that have phred quality score of over 30.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Base Quality Plot : This plot shows the average, interquartile range and median quality of each base. </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+                    <br>
+                    <br>
+
+                    <!--Fastq stats table-->
+                    <div class="panel-group" id="Fastqstats">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_2"><b>Filtered Data Statistics</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_2" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <table class="table tablesorter" id="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="th_center">Sample</th>
+                                                <th class="th_center" title="Total number of bases sequenced.">Total Yield</th>
+                                                <th class="th_center" title="Total Number of Reads.">Total reads</th>
+                                                <th class="th_center" title="GC content.">GC</th>
+                                                <th class="th_center" title="Ratio of bases that have phred quality score of over 20.">Q20</th>
+                                                <th class="th_center" title="Ratio of bases that have phred quality score of over 30.">Q30</th>
+                                                <th class="th_center" title="This plot shows the average quality at each cycle.">Base Quality Plot</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tb_fastq"></tbody>
+                                    </table>
+
+                                    <script>
+                                        var table_fastq = document.getElementById('tb_fastq');
+                                        for (var i = 0; i < array.length; i++) {
+                                            var tr = document.createElement('tr');
+                                            html_str = "";
+                                            format_list.forEach(function(object) {
+                                                switch (object.format) {
+                                                    case "td_char":
+                                                        html_str += "<td class='td_char'>" + array[i][object.head] + "</td>";
+                                                        break;
+                                                    case "comma":
+                                                        html_str += "<td class='td_num' style='text-align:center;'>" + AddComma(array[i][object.head]) + "</td>";
+                                                        break;
+                                                    case "td_num":
+                                                        html_str += "<td class='td_num' style='text-align:center;'>" + array[i][object.head] + "</td>";
+                                                        break;
+                                                    case "link":
+                                                        html_str += "<td class='td_char'><div style='display:inline-block;'>";
+                                                        for (var j = 1; j < 3; j++) {
+                                                            html_str += "<div style='float:left; margin-left:20px;' ><a href=#" + array[i].samplename + " class='scrollmv' data-size='1600x1068'>read" + j + "</a></div>";
+                                                        }
+                                                        html_str += "</div></td>"
+                                                        break;
+                                                }
+                                            })
+                                            tr.innerHTML = html_str;
+                                            table_fastq.appendChild(tr);
+                                        }
+                                    </script>
+
+                                    <!--Pager-->
+                                    <div id="pager" class="pager" style="margin: 0px 0px 0px 0px;text-align:center;">
+                                        <div id="pager" class="pager" style="margin: 0px 0px 0px 0px;">
+                                            <form>
+                                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                                                <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+                                                <span class="pagedisplay" ></span>
+                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+                                                <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+                                                <select class="pagesize">
+                                                    <option value="10">10 samples per page</option>
+                                                    <option value="all">All Samples</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+									<script>
+										var table = $('#table');
+										table.trigger('refreshWidgets');
+										table.tablesorter().tablesorterPager({container:$('#pager')});
+										table.trigger('pagerUpdate');
+									</script>
+
+                                    <!--Description-->
+                                    <span id="show" class="show">Show Description</span>
+                                    <div id="desc" class="desc">
+										<br>
+										<p>&nbsp;&nbsp;The raw data were pre-processed using Trimmomatic which can be used to trim adapter sequences and end-base low quality sequences. 
+											Quality of the filtered data was assessed to check fidelity of the filtered data.
+											Q20 or Q30 represent portion of the reads having quality equal or higher than 20 or 30 phread score.
+											Phred score of 20 means the base has 99% accuracy. The reads of which Q20 bases occupy 90% are generally accepted as good quality reads for analysis and
+                                            it is sure that more higher Q20 or/and Q30 enable to get more accurate analysis results.
+											GC contents represent portion of nucleotide GC and AT.
+											In most cases, GC contents of metagenome samples shows half and half because metagenome samples contain various species.
+											If GC or AT contents are much higher than others, it means that GC or AT rich species occupy majority of the metagenome samples.
+										</p>
+                                        <ul>
+											<br>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Total Yield (bp) : Total number of bases sequenced.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Total reads : Total Number of Reads.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· GC (%) : GC content.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Q20 (%) : Ratio of bases that have phred quality score of over 20.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Q30 (%) : Ratio of bases that have phred quality score of over 30.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Base Quality Plot : This plot shows the average quality of each base. </li>
+                                        </ul>
+                                    </div>
+	
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+                    <br>
+                    <br>
+
+                    <!--Yield chart-->
+                    <div class="panel-group" id="Yield">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_3"><b>Total Yield</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_3" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <div style="position: relative;">
+                                        <button id="reset_yield" style="position: relative; top: 30px; left: 20px;">Reset</button>
+
+                                        <svg id="chart_yield" width="1100" height="300" aria-labelledby="graph-title" aria-describedby="graph-desc">
+                                        </svg>
+
+                                        <p style="margin-right:50px;text-align: right; ">Scroll to zoom in/out & Drag to move focus</p>
+
+                                        <script src="chart_yield.js"></script>
+
+                                    </div>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+                    <br>
+                    <br>
+
+                    <!--Qscore chart-->
+                    <div class="panel-group" id="Qscore">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_4"><b>Q20/Q30 scores of Filtered data</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_4" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <div style="position: relative;">
+                                        <button id="reset_q" style="position: relative; top: 100px; left: 20px;">Reset</button>
+
+                                        <svg id="chart_q" width="1100" height="300" aria-labelledby="graph-title" aria-describedby="graph-desc">
+                                        </svg>
+
+                                        <p style="margin-right:50px;text-align: right; ">Scroll to zoom in/out & Drag to move focus</p>
+
+                                        <script src="chart_q.js"></script>
+
+                                    </div>
+									
+									<!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;Q20 or Q30 represent portion of the reads having quality equal or higher than 20 or 30 phread score.
+											High Q20 or/and Q30 mean that the raw data have high quality and good enough for further analysis.
+										</p>
+                                    </div>
+
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+                    <br>
+                    <br>
+
+                    <!--GC chart-->
+                    <div class="panel-group" id="GC">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_5"><b>GC content of Filtered data</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_5" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <div style="position: relative;">
+                                        <button id="reset_gc" style="position: relative; top: 100px; left: 20px;">Reset</button>
+
+                                        <svg id="chart_gc" width="1100" height="300" aria-labelledby="graph-title" aria-describedby="graph-desc">
+                                        </svg>
+
+                                        <p style="margin-right:50px;text-align: right; ">Scroll to zoom in/out & Drag to move focus</p>
+
+                                        <script src="chart_gc.js"></script>
+
+                                    </div>
+
+                                    <!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;GC contents represent portion of nucleotide GC and AT.
+											In most cases, GC contents of metagenome samples shows half and half because metagenome samples contain various species.
+											If GC or AT contents are much higher than others, it means that GC or AT rich species occupy majority of the metagenome samples.
+										</p>
+                                    </div>
+
+                                </div>
+
+
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+                    <br>
+                    <br>
+
+                    <!--Fastqc gallery-->
+                    <div class="panel-group" id="Fastqc">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_6"><b>Base Quality Plot</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_6" class="panel-collapse collapse in">
+                                <div class="panel-body collapse_width_height_500">
+                                    <div id="quality_pic_gallery" class="images-container">
+                                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="pswp__bg"></div>
+                                            <div class="pswp__scroll-wrap">
+                                                <div class="pswp__container">
+                                                    <div class="pswp__item"></div>
+                                                    <div class="pswp__item"></div>
+                                                    <div class="pswp__item"></div>
+                                                </div>
+                                                <div class="pswp__ui pswp__ui--hidden">
+                                                    <div class="pswp__top-bar">
+                                                        <div class="pswp__counter"></div>
+                                                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                                        <button class="pswp__button pswp__button--share" title="Share"></button>
+                                                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                                        <div class="pswp__preloader">
+                                                            <div class="pswp__preloader__icn">
+                                                                <div class="pswp__preloader__cut">
+                                                                    <div class="pswp__preloader__donut"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                                        <div class="pswp__share-tooltip"></div>
+                                                    </div>
+                                                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                                                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                                                    <div class="pswp__caption">
+                                                        <div class="pswp__caption__center"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end: pswp-->
+                                    </div>
+
+                                    <script>
+                                        var gallery = document.getElementById('quality_pic_gallery');
+                                        for (var i = 0; i < array.length; i++) {
+                                            var div = document.createElement('div');
+                                            div.className = "more-images";
+                                            div.style.margin = "30px";
+                                            div.id = array[i].samplename;
+                                            html_str2 = "<ul class='list-inline'>";
+                                            for (var j = 1; j < 3; j++) {
+
+                                                img_address = "../../data/images/";
+                                                img_address += array[i].samplename;
+                                                img_address += ("/" + array[i].samplename + "_filtered_" + j + ".png");
+                                                html_str2 += "<li style='display:lnline-block;'><figure><a href=" + img_address + " data-size='2265x600' style='padding:0' ><img src=" + img_address +
+                                                    " width='500px'/></a><figcaption itemprop='caption description'>read" + j + " of " + array[i].samplename + "</figcaption></figure></li>";
+                                            }
+                                            html_str2 += "</ul></div>";
+                                            div.innerHTML = html_str2;
+                                            gallery.appendChild(div);
+                                        }
+                                    </script>
+
+                                    <script type="text/javascript">
+                                        initPhotoSwipeFromDOM('.images-container figure');
+                                    </script>
+                                    <!--end: quality_pic_gallery-->
+
+	                                <!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;The base quality plot generated by FastQC was used to check the overall quality of the produced
+											data. This plot shows the range of quailty values at each cycle.
+											The x-axis and y-axis are respectively the number of cycles, and phred quality score. Phred
+											quality score of 20 means 99 % accuracy and reads with quality score over 20 are generally
+											accepted as good quality reads. 
+										</p>
+
+                                        <ul>
+											<br>
+											
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Yellow box : Interquartile range (25-75 %) of phred score at each cycle.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Red line : Median of phred score at each cycle.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Blue line : Average of phred score at each cycle.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Green background : Good quality.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Orange background : Acceptable quality.</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Red background : Bad quality.</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+                </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+
+    </div>
+</body>
+
+</html>

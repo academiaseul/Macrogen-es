@@ -1,0 +1,146 @@
+/* *** MAIN *** */
+.title_wrapper {
+    background-image: url(../../src/img/front.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0 175px;
+    background-size: cover;
+}
+
+.info_wrapper {
+    display: inline-block;
+}
+
+.index_info {
+    display: block;
+}
+
+.index_info_total {
+    background-color: rgba(203, 207, 213, .20);
+    border-radius: 50px;
+    padding: 20px 30px;
+    width: 400px;
+    margin: 32px 0;
+}
+
+
+
+.index_title_small {
+    padding-top: 115px;
+    font-weight: 300;
+    font-size: 42px;
+    color: #fff;
+}
+
+.index_title_date {
+    font-weight: 300;
+    font-size: 32px;
+    color: #fff;
+}
+
+
+.index_title {
+    font-weight: 600;
+    font-size: 60px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: .01em;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 35px;
+}
+
+dt.index_info {
+    color: rgba(255, 255, 255, .5);
+    font-size: 16px;
+    letter-spacing: -.02em;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.info_wrapper dd.index_info {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.div_chart {
+    float: middle;
+    clear: both;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: auto;
+}
+
+.div_chart p {
+    margin-right: 50px;
+    text-align: right;
+}
+
+.sel_sample {
+    float: left;
+    text-align: left;
+}
+
+.table_ins {
+    float: middle;
+    display: inline-block;
+    width: 500px;
+    clear: both;
+}
+
+img.analysis_workflow {
+    width: 80%;
+    position: center;
+    display: block;
+    margin: 0px auto;
+}
+
+p.analysis_workflow {
+    float: middle;
+    text-align: center;
+    padding: 17px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+p.hdd {
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+img.hdd {
+    width: 80%;
+    position: center;
+    display: block;
+    margin: 0px auto;
+}
+
+figure.experiment_workflow {
+    padding: 0;
+    width: 80%;
+    position: center;
+    display: block;
+    margin: 0px auto;
+}
+
+.table #h_width {
+    width: 100px;
+}
+
+.data-policy {
+    padding: 50px 0 40px;
+    color:#fff;
+    opacity:0.8;
+}
+
+#graphContainer {
+    margin:0 auto
+}
+
+#tb_sort {
+    color:#001E62;
+    font-weight: bold;
+}

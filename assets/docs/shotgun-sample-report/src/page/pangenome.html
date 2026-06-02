@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/photoswipe.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="../tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../d3/d3.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe-ui-default.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/main.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+    <script src="../tablesorter-master/addons/pager/jquery.tablesorter.pager.js"></script>
+    <script src="../tablesorter-master/tablesorter.js"></script>
+
+    <!--json data-->
+    <script src="../../data/json/Pangenome.js"></script>
+	<script src="../../data/json/Config.js"></script>
+
+    <script>
+        var array;
+		var config;
+
+        var ordernumber = array.project;
+        var customer = array.customer;
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }
+
+        //top 버튼 숨기기/보여주기
+        $(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() != 0) {
+                    $('#backtotop').fadeIn();
+                } else {
+                    $('#backtotop').fadeOut();
+                }
+            });
+
+            //top 버튼 누르면 맨 위로 이동
+            $('#backtotop').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+        });
+
+		//description 접었다 펴기
+        $(function() {
+            $('.show').click(function() {
+                var submenu = $(this).next($('.desc'));
+                if (submenu.is(":visible")) {
+                    submenu.slideUp();
+                    $(this).text('Show Description')
+                } else {
+                    submenu.slideDown();
+                    $(this).text('Hide Description')
+                }
+            });
+        });
+
+    </script>
+    <style>
+    a:hover		{color:#920783; text-decoration:underline;}
+    </style>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../../src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font">Metagenome Shotgun Sequencing Report</div>
+                <p class="notice">Research Use Only</p>
+            </div>
+
+        <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="orderinfo"><a href="orderinfo.html">Order Info.</a></li>
+					<li id="deliverables"><a href="download.html">Deliverables</a></li>
+					<li id="preprocessing"><a href="rawdatastats.html">Raw data</a></li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="readpathwaypage"><a href="readpathway.html">Pathway Analysis</a></li>
+							<li id="readtaxonpage"><a href="readtaxon.html">Taxonomy Analysis</a></li>
+							<li id="readtaxoncomparepage"><a href="readtaxoncompare.html">Taxonomy Comparison</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="assemblypage"><a href="assemblystats.html">Assembly Statistics</a></li>
+							<li id="annotationpage"><a href="annotation.html">Annotation Statistics</a></li>
+							<li id="contigtaxonpage"><a href="contigtaxon.html">Taxonomy Analysis</a></li>
+							<li id="contigtaxoncomparepage"><a href="contigtaxoncompare.html">Taxonomy Comparison</a></li>
+							<li id="pangenomepage"><a href="pangenome.html">Pangenome Analysis</a></li>
+							<li id="binningpage"><a href="binning.html">Binning Analysis</a></li>
+						</ul>
+					</li>
+					<li id="methodpage"><a href="methods.html">Methods</a></li>
+					<script>
+						if (config["read_pathway"] == "F") {
+							$("#readpathwaypage").remove();
+						}
+						if (config["read_taxon"] == "F") {
+							$("#readtaxonpage").remove();
+							$("#readtaxoncomparepage").remove();
+						}
+						if (config["assembly"] == "F") {
+						 	$("#contiganal").remove();
+						}
+						if (config["contig_ann"] == "F") {
+							$("#annotationpage").remove();
+						}
+						if (config["contig_taxon"] == "F") {
+							$("#contigtaxonpage").remove();
+							$("#contigtaxoncomparepage").remove();
+							$("#binningpage").remove();
+						}
+						if (config["pangenome"] == "F") {
+							$("#pangenomepage").remove();
+						}
+					</script>
+                </ul>
+	        </nav>
+		</header>
+
+        <!--top 버튼-->
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Pangenome analysis</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+
+                    <br>
+                    <br>
+
+                    <!--Eggnog stats table-->
+                    <div class="panel-group" id="EggnogStats">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Pangenome analysis</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_1" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+									<br><br>
+									<div id="div_chart_pg">
+										<div id="div_tooltip"></div>
+									    <svg id="chart_pg" aria-labelledby="graph-title" aria-describedby="graph-desc" overflow="auto">
+										</svg>
+  	        	                       	<script src="chart_pg.js"></script>
+									</div>
+
+	                                <!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;Pan genome analysis was conducted using Roary. Followed graph depicted how many genes are common or not among the samples.
+											Dot or linked dot in X-axis means sample or sample combination and Y-axis means how many genes are shared in specific sample combination or
+											how many genes are specific for each samples.
+										</p>
+                                    </div>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+
+                        </div>
+                        <!--end: panel-->
+
+                    </div>
+                    <!--end: panel-group-->
+
+                    <br>
+                    <br>
+
+                </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+
+    </div>
+</body>
+
+</html>

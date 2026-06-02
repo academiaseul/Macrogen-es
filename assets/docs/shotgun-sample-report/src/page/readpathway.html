@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/photoswipe.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="../tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../d3/d3.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe-ui-default.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/main.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+    <script src="../tablesorter-master/addons/pager/jquery.tablesorter.pager.js"></script>
+
+    <!--json data-->
+    <script src="../../data/json/Total.js"></script>
+	<script src="../../data/json/Config.js"></script>
+
+    <!--graph-->
+    <script src="chart_ec.js"></script>
+
+    <script>
+        var array;
+		var config;
+        var ordernumber = array[0].project;
+        var customer = array[0].customer;
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+		//ec_table
+		function get_ec_table(array) {
+			var ec_table = [];
+			for (var i = 0; i < array.length; i++) {
+				ec_table.push(array[i].ec_table);
+			}
+			return ec_table;
+		}
+		var ec_table = get_ec_table(array);
+		var arr_ec = ec_table[0];
+
+		//ec_count
+		function get_ec_count(array, i) {
+			var ec_count = [];
+			for (var j = 0; j < array[i].ec_count.length; j++) {
+				var temp = {};
+				var group = array[i].ec_count[j][0];
+
+				temp["class1"] = array[i].ec_count[j][0];
+				temp["class2"] = array[i].ec_count[j][1];
+				temp["count"] = Number(array[i].ec_count[j][2]);
+				temp["ec"] = array[i].ec_count[j][3];
+				ec_count.push(temp);
+			}
+
+			var temp = [];
+			for (const {class1, class2, count, ec} of ec_count) {
+				if (!temp[class1]) temp[class1] = [];
+				temp[class1].push({class2, count, ec});
+			}
+
+			ec_count = [];
+			for (var key in temp) {
+				var temp2 = {};
+				temp2["class1"] = key;
+				temp2["values"] = temp[key];
+				ec_count.push(temp2)
+			}
+
+			return ec_count;
+		}
+		var arr_ec_chart = get_ec_count(array, 0);
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }
+
+        //top 버튼 숨기기/보여주기
+        $(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() != 0) {
+                    $('#backtotop').fadeIn();
+                } else {
+                    $('#backtotop').fadeOut();
+                }
+            });
+
+            //top 버튼 누르면 맨 위로 이동
+            $('#backtotop').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+        });
+
+		//description 접었다 펴기
+        $(function() {
+            $('.show').click(function() {
+                var submenu = $(this).next($('.desc'));
+                if (submenu.is(":visible")) {
+                    submenu.slideUp();
+                    $(this).text('Show Description')
+                } else {
+                    submenu.slideDown();
+                    $(this).text('Hide Description')
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../../src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font">Metagenome Shotgun Sequencing Report</div>
+                <p class="notice">Research Use Only</p>
+            </div>
+
+        <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="orderinfo"><a href="orderinfo.html">Order Info.</a></li>
+					<li id="deliverables"><a href="download.html">Deliverables</a></li>
+					<li id="preprocessing"><a href="rawdatastats.html">Raw data</a></li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="readpathwaypage"><a href="readpathway.html">Pathway Analysis</a></li>
+							<li id="readtaxonpage"><a href="readtaxon.html">Taxonomy Analysis</a></li>
+							<li id="readtaxoncomparepage"><a href="readtaxoncompare.html">Taxonomy Comparison</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="assemblypage"><a href="assemblystats.html">Assembly Statistics</a></li>
+							<li id="annotationpage"><a href="annotation.html">Annotation Statistics</a></li>
+							<li id="contigtaxonpage"><a href="contigtaxon.html">Taxonomy Analysis</a></li>
+							<li id="contigtaxoncomparepage"><a href="contigtaxoncompare.html">Taxonomy Comparison</a></li>
+							<li id="pangenomepage"><a href="pangenome.html">Pangenome Analysis</a></li>
+							<li id="binningpage"><a href="binning.html">Binning Analysis</a></li>
+						</ul>
+					</li>
+					<li id="methodpage"><a href="methods.html">Methods</a></li>
+					<script>
+						if (config["read_pathway"] == "F") {
+							$("#readpathwaypage").remove();
+						}
+						if (config["read_taxon"] == "F") {
+							$("#readtaxonpage").remove();
+							$("#readtaxoncomparepage").remove();
+						}
+						if (config["assembly"] == "F") {
+						 	$("#contiganal").remove();
+						}
+						if (config["contig_ann"] == "F") {
+							$("#annotationpage").remove();
+						}
+						if (config["contig_taxon"] == "F") {
+							$("#contigtaxonpage").remove();
+							$("#contigtaxoncomparepage").remove();
+							$("#binningpage").remove();
+						}
+						if (config["pangenome"] == "F") {
+							$("#pangenomepage").remove();
+						}
+					</script>
+                </ul>
+	        </nav>
+		</header>
+
+        <!--top 버튼-->
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Pathway Analysis (Read based)</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+
+                    <br>
+                    <br>
+					<!--Sample select-->
+					<b>Choose the Sample :  </b><select id="sel_sample"></select>
+					<div style="text-align : center;">
+						<script>
+							var select_sample = document.getElementById('sel_sample');
+							var option_str = "";
+
+							for (var i = 0; i < array.length; i++) {
+								option_str += "<option value='" + i + "'>" + array[i]['samplename'] + "</option>";
+							}
+
+							select_sample.innerHTML = option_str;
+
+							$("#sel_sample").change(function() {
+								$("#div_chart_ec > svg").html("");
+								arr_ec_chart = get_ec_count(array, $("#sel_sample option:selected").val());
+								plot_ec(arr_ec_chart);
+
+								var table_ec = document.getElementById('tb_ec');
+								arr_ec = ec_table[$("#sel_sample option:selected").val()];
+								$("#table1 > tbody").html("");
+								//$("#tb_ec").empty();
+								for (var i = 0; i < arr_ec.length; i++) {
+									var tr = document.createElement('tr');
+									html_str = "";
+									html_str += "<td class='td_left'><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://metacyc.org/META/NEW-IMAGE?type=NIL&object=" + arr_ec[i][0] + "&redirect=T\">" + arr_ec[i][0] + "</a></td>";
+									html_str += "<td class='td_left'>" + arr_ec[i][1] + "</td>";
+									html_str += "<td class='td_left'>" + AddComma(Number(arr_ec[i][2])) + "</td>";
+									html_str += "<td class='td_left'>" + AddComma(Number(arr_ec[i][3])) + "</td>";
+									html_str += "<td class='td_left'>";
+									for (var j = 0; j < arr_ec[i][4].length; j++) {
+										var ecno = arr_ec[i][4][j].replace('EC.', '')
+										html_str += "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://www.brenda-enzymes.org/enzyme.php?ecno=" + ecno + "\">" + arr_ec[i][4][j] + " </a>";
+									}
+									html_str += "</td>";
+									tr.innerHTML = html_str;
+									table_ec.appendChild(tr);
+								}
+								$(function() {
+									var $table = $('table');
+
+									$table.trigger('pageAndSize', [1, 50]);
+									$table.trigger('update');
+									$table.trigger('filterReset');
+								});
+
+							});
+
+						</script>
+					</div>
+
+					<br>
+					<!--EC chart-->
+                 	<div class="panel-group">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Chart</b></a>
+                                </h4>
+                            </div>
+
+							<!--Chart-->
+							<div id="collapse_1" class="panel-collapse collapse in">
+								<div class="panel-body xy_scroll">
+									<div id="div_chart_ec" style='display: inline-block;float:middle;clear:both;'>
+										<div id="div_tooltip"></div>
+										<svg id="chart_ec" aria-labelledby="graph-title" aria-describedby="graph-desc">
+										</svg>
+										<script>
+											plot_ec(arr_ec_chart);
+										</script>
+										<p style="margin-right:50px;text-align: right; ">Click to filter pathway table by their function</p>
+									</div>
+
+	                                <!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;Fun4me, which is wrapper tools including FragGeneScan, RAPsearch2, MinPath, facilitate prediction of protein-coding gene from short reads.
+											The gene prediction from the reads enable to predict that what microbiome in the sample do.
+											The predicted genes were compared with MetaCyc database for pathway analysis and EC (Enzyme Commission) number of genes are retrieved.
+											The information of the pathway are listed as table and visualized as chart.
+										</p>
+                                    </div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<br><br>
+
+                    <!--EC table-->
+                    <div class="panel-group" id="tablediv">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_2"><b>Metabolic Pathway</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_2" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+									<table class="table tablesorter" id="table1">
+           			                	<thead>
+                       			        	<tr>
+                                   				<th class="th_center" width="20%" title="The matched pathway ID (MetaCyc ID)" data-placeholder="Search available">Pathway</th>
+                                               	<th class="th_center" width="20%" title="The description of the matched pathway">Description</th>
+		                                        <th class="th_center" width="8%" title="The total count of enzyme in the matched pathway">#Functions</th>
+    		                                    <th class="th_center" width="8%" title="The total count of annotated enzyme">#Annotated</th>
+              			                        <th class="th_center" width="44%" title="The EC number of annotated enzyme">Functions</th>
+											</tr>
+	                                    </thead>
+   			                            <tbody id="tb_ec"></tbody>
+               			            </table>
+									<br>
+
+									<script>
+										var table_ec = document.getElementById('tb_ec');
+
+										for (var i = 0; i < arr_ec.length; i++) {
+											var tr = document.createElement('tr');
+											html_str = "";
+											html_str += "<td class='td_left'><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://metacyc.org/META/NEW-IMAGE?type=NIL&object=" + arr_ec[i][0] + "&redirect=T\">" + arr_ec[i][0] + "</a></td>";
+											html_str += "<td class='td_left'>" + arr_ec[i][1] + "</td>";
+											html_str += "<td class='td_left'>" + AddComma(Number(arr_ec[i][2])) + "</td>";
+											html_str += "<td class='td_left'>" + AddComma(Number(arr_ec[i][3])) + "</td>";
+											html_str += "<td class='td_left'>";
+											for (var j = 0; j < arr_ec[i][4].length; j++) {
+												var ecno = arr_ec[i][4][j].replace('EC.', '')
+												html_str += "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://www.brenda-enzymes.org/enzyme.php?ecno=" + ecno + "\">" + arr_ec[i][4][j] + " </a>";
+											}
+											html_str += "</td>";
+											tr.innerHTML = html_str;
+											table_ec.appendChild(tr);
+										}
+									</script>
+
+                                    <!--Pager-->
+                                    <div id="pager" class="pager" style="margin: 0px 0px 0px 0px;text-align:center;">
+                                        <div id="pager" class="pager" style="margin: 0px 0px 0px 0px;">
+                                            <form>
+                                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                                                <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+                                                <span class="pagedisplay"></span>
+                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+                                                <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+                                                <select class="pagesize">
+                                                    <option selected="selected" value="50">50 rows per page</option>
+                                                    <option value="all">All rows</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+									<script>
+										$(function() {
+																						
+											var table = $('table');
+											table
+												.tablesorter({
+													widgets: ['filter']
+												})
+												.tablesorterPager({
+													container:$('.pager'),
+													output: '{page} / {filteredPages}'
+												})
+												.trigger('pageSize', 50);
+											
+										});
+									</script>
+                                    <!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;Pathway analysis was conducted based on MetaCyc database and the result is listed as table.
+											You can get informations from the table such as pathway ID, description of pathway and how many EC number are involved in the pathway.
+											Please click MetaCyc ID of the pathways to get more information of the pathways, then, it will be redirected to MetaCyc webpage
+										</p>
+                                        <ul>
+											<br>
+											<li>&nbsp;&nbsp;&nbsp;&nbsp;· Pathway : The matched pathway id (MetaCyc ID).</li>
+											<li>&nbsp;&nbsp;&nbsp;&nbsp;· Description : The description of the matched pathway.</li>
+											<li>&nbsp;&nbsp;&nbsp;&nbsp;· #Functions : The total count of enzyme in the matched pathway.</li>
+											<li>&nbsp;&nbsp;&nbsp;&nbsp;· #Annotated : The total count of annotated enzyme.</li>
+											<li>&nbsp;&nbsp;&nbsp;&nbsp;· Functions : The EC number of annotated enzyme.</li>
+                                       </ul>
+                                    </div>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+               </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+config=
+{"customer": "Macrogen", "host_filtering": "T", "assembly": "T", "pangenome": "T", "institute": "Macrogen", "read_pathway": "T", "contig_ann": "T", "read_taxon": "T", "project": "Test", "ReadLength": "151", "samples": ["1", "2", "3"], "contig_taxon": "T", "species": "Other", "curtime":"January 2021"};

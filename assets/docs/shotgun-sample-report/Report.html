@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html ng-app="ReportApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="./src/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="./src/bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./src/css/common.css">
+    <link rel="stylesheet" href="./src/css/layout.css">
+    <link rel="stylesheet" href="./src/css/custom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="./src/jquery-3.3.1.min.js"></script>
+    <script src="./src/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+    <!--json data-->
+    <script src="./data/json/Total.js"></script>
+	<script src="./data/json/Config.js"></script>
+
+    <script>
+        var array;
+		var config;
+
+        var ordernumber = array[0].project;
+		var customer = array[0].customer;
+		var institute = array[0].institute;
+		var species = array[0].species;
+		var curtime = config.curtime;
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+    </script>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="Report.html"><img src="./src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+            </div>
+            <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="orderinfo"><a href="./src/page/orderinfo.html">Order Info.</a></li>
+					<li id="deliverables"><a href="./src/page/download.html">Deliverables</a></li>
+					<li id="preprocessing"><a href="./src/page/rawdatastats.html">Raw data</a></li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="readpathwaypage"><a href="./src/page/readpathway.html">Pathway Analysis</a></li>
+							<li id="readtaxonpage"><a href="./src/page/readtaxon.html">Taxonomy Analysis</a></li>
+							<li id="readtaxoncomparepage"><a href="./src/page/readtaxoncompare.html">Taxonomy Comparison</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="assemblypage"><a href="./src/page/assemblystats.html">Assembly Statistics</a></li>
+							<li id="annotationpage"><a href="./src/page/annotation.html">Annotation Statistics</a></li>
+							<li id="contigtaxonpage"><a href="./src/page/contigtaxon.html">Taxonomy Analysis</a></li>
+							<li id="contigtaxoncomparepage"><a href="./src/page/contigtaxoncompare.html">Taxonomy Comparison</a></li>
+							<li id="pangenomepage"><a href="./src/page/pangenome.html">Pangenome Analysis</a></li>
+							<li id="binningpage"><a href="./src/page/binning.html">Binning Analysis</a></li>
+						</ul>
+					</li>
+					<li id="methodpage"><a href="./src/page/methods.html">Methods</a></li>
+					<script>
+						if (config["read_pathway"] == "F") {
+							$("#readpathwaypage").remove();
+						}
+						if (config["read_taxon"] == "F") {
+							$("#readtaxonpage").remove();
+							$("#readtaxoncomparepage").remove();
+						}
+						if (config["assembly"] == "F") {
+						 	$("#contiganal").remove();
+						}
+						if (config["contig_ann"] == "F") {
+							$("#annotationpage").remove();
+						}
+						if (config["contig_taxon"] == "F") {
+							$("#contigtaxonpage").remove();
+							$("#contigtaxoncomparepage").remove();
+							$("#binningpage").remove();
+						}
+						if (config["pangenome"] == "F") {
+							$("#pangenomepage").remove();
+						}
+					</script>
+                </ul>
+            </nav>
+        </header>
+
+
+        <!--Main title-->
+        <div class="text-center total_font">
+            <div class="title_wrapper">
+                <p class="index_title_small" id="index_title_name"></p>
+                <p class="index_title" id="index_title_type">Metagenome Shotgun Sequencing Report</p>
+	    <p class="index_title_date" id="index_title_d"></p>
+		<script>
+			document.getElementById('index_title_d').innerHTML = curtime;
+		</script>
+				<!--<script>
+					document.getElementById('index_title_name').innerHTML = species;
+				</script>-->
+                <div class="info_wrapper">
+                    <dl class="index_info_total">
+                        <dt class="index_info">Order</dt>
+                        <dd class="index_info" id="index_info_order"></dd>
+                        <script>
+                            document.getElementById('index_info_order').innerHTML = ordernumber;
+                        </script>
+                    </dl>
+                    <dl class="index_info_total">
+                        <dt class="index_info">Client Name</dt>
+                        <dd class="index_info" id="index_info_name"></dd>
+                        <script>
+                            document.getElementById('index_info_name').innerHTML = customer;
+                        </script>
+                    </dl>
+                </div>
+                <div class="data-policy alignC">
+                    <p>Your data will be retained in our server for 3 months. Should you wish to extend the retention period, please email or contact our sales team.</p>
+                </div>
+            </div>
+        </div>
+        <!--end: div container-->
+
+        <!--footer-->
+        <footer id="footer" class="footer_style">
+            <div class="container">
+                <div class="left">
+                    <div class="footer-box">
+                        <h5>MACROGEN Inc.</h5>
+                        <ul>
+                            <li>[08511] 1001, 10F, 254 Beotkkot-ro,</li>
+                            <li>Geumcheon-gu, Seoul, Republic of Korea</li>
+                            <li>(Gasan-dong, World Meridian 1)</li>
+                            <li>T. +82-2-2180-7000</li>
+                            <li>E1. ngs@macrogen.com(Overseas)</li>
+                            <li>E2. ngskr@macrogen.com(Republic of Korea)</li>
+                            <li>Web. <a href="http://www.macrogen.com"  target="_blank">http://www.macrogen.com</a></li>
+                            <li>LIMS. <a href="http://dna.macrogen.com" target="_blank">http://dna.macrogen.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="col-sm-3">
+                        <h5>PSOMAGEN</h5>
+                        <ul>
+                            <li>1330 Piccard Drive, Suite 103, Rockville,</li>
+                            <li>MD 20850, United States</li>
+                            <li>T. +1-301-251-1007</li>
+                            <li>E. inquiry@psomagen.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>MACROGEN EUROPE</h5>
+                        <ul>
+                            <li>Meibergdreef 31, 1105 AZ, Amsterdam,</li>
+                            <li>the Netherlands</li>
+                            <li>T. +31-20-333-7563</li>
+                            <li>E. ngs@macrogen.eu</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>MACROGEN JAPAN</h5>
+                        <ul>
+							<li>16F Time24 Building, 2-4-32 Aomi,</li>
+							<li>Koto-ku, Tokyo 135-0064 JAPAN</li>
+							<li>T: +81-3-5962-1124</li>
+							<li>E: ngs@macrogen-japan.co.jp</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>MACROGEN SINGAPORE</h5>
+                        <ul>
+                            <li>3 Biopolis Drive #05-18, Synapse,</li>
+                            <li>Singapore 138623</li>
+                            <li>T. +65-6339-0927</li>
+                            <li>E. info-sg@macrogen.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>MACROGEN SPAIN</h5>
+                        <ul>
+                            <li>Av. Sur del Aeropuerto de Barajas,</li>
+                            <li>28, Office B-2, 28042 Madrid, Spain</li>
+                            <li>T. +34-911-138-378</li>
+                            <li>E. info-spain@macrogen.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/photoswipe.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="../tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../d3/d3.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe-ui-default.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/main.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+    <script src="../tablesorter-master/addons/pager/jquery.tablesorter.pager.js"></script>
+    <script src="../tablesorter-master/tablesorter.js"></script>
+
+    <!--json data-->
+    <script src="../../data/json/Eggnog.js"></script>
+
+    <script>
+        var array;
+        var ordernumber = array.project;
+        var customer = array.customer;
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+		//get EggNOG summary stats
+		function get_eggnog_stat(array) {
+			var data = [];
+			for (var i = 0, sample; sample = array.samples[i]; i++) {
+				var temp = [sample];
+				for (var j = 0, value; value = array.stats[sample].Summary[j]; j++) {
+					temp.push(Number(value));
+				}
+				data.push(temp)
+			}
+			return data
+		}
+
+		//EggNOG category header
+		var category_header = [];
+		var categories = [];
+		for (var i = 0, key; key = array.stats[array.samples[0]].Categories[i]; i++) {
+			category_header.push(key);
+			if (key != "Total") {
+				categories.push(key);
+			}
+		}
+
+		//get EggNog category data
+		function get_eggnog_category(array) {
+			var data = [];
+			for (var i = 0, sample; sample = array.samples[i]; i++) {
+				var temp = [sample];
+				for (var j = 0, key; key = category_header[j]; j++) {
+					temp.push(Number(array.stats[sample][key].Count));
+				}
+				data.push(temp)
+			}
+
+			return data
+		}
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }
+
+        //top 버튼 숨기기/보여주기
+        $(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() != 0) {
+                    $('#backtotop').fadeIn();
+                } else {
+                    $('#backtotop').fadeOut();
+                }
+            });
+
+            //top 버튼 누르면 맨 위로 이동
+            $('#backtotop').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+        });
+
+		//description 접었다 펴기
+        $(function() {
+            $('.show').click(function() {
+                var submenu = $(this).next($('.desc'));
+                if (submenu.is(":visible")) {
+                    submenu.slideUp();
+                    $(this).text('Show Description')
+                } else {
+                    submenu.slideDown();
+                    $(this).text('Hide Description')
+                }
+            });
+        });
+
+    </script>
+    <style>
+    a:hover		{color:#920783; text-decoration:underline;}
+    </style>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../../src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font">Metagenome Shotgun Sequencing Report</div>
+                <p class="notice">Research Use Only</p>
+            </div>
+
+        <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="main"><a href="../../report.html">Home</a></li>
+                    <li id="orderinfo"><a href="orderinfo.html">Order Information</a></li>
+					<li class="dropdown" id="deliverables"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Deliverables <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="download.html">Download Data</a></li>
+						</ul>
+					</li>
+					<li class="dropdown" id="preprocessing"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Preprocessing <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="rawdatastats.html">Raw Data Statistics</a></li>
+						</ul>
+					</li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="readpathwaypage"><a href="readpathway.html">Pathway Analysis</a></li>
+							<li id="readtaxonpage"><a href="readtaxon.html">Taxonomy Analysis</a></li>
+							<li id="readtaxoncomparepage"><a href="readtaxoncompare.html">Taxonomy Comparison</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="assemblypage"><a href="assemblystats.html">Assembly Statistics</a></li>
+							<li id="annotationpage"><a href="annotation.html">Annotation Statistics</a></li>
+							<li id="contigtaxonpage"><a href="contigtaxon.html">Taxonomy Analysis</a></li>
+							<li id="contigtaxoncomparepage"><a href="contigtaxoncompare.html">Taxonomy Comparison</a></li>
+						</ul>
+					</li>
+					<li class="dropdown" id="pangenomeanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Pangenome Analysis <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="pangenomepage"><a href="pangenome.html">Pangenome Analysis</a></li>
+						</ul>
+					</li>
+					<li class="dropdown" id="methoddesc"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Methods <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="methodpage"><a href="methods.html">Methods</a></li>
+						</ul>
+					</li>
+					<script>
+						if (config["read_pathway"] == "F") {
+							$("#readpathwaypage").remove();
+						}
+						if (config["read_taxon"] == "F") {
+							$("#readtaxonpage").remove();
+							$("#readtaxoncomparepage").remove();
+						}
+						if (config["assembly"] == "F") {
+						 	$("#contiganal").remove();
+						}
+						if (config["contig_ann"] == "F") {
+							$("#annotationpage").remove();
+						}
+						if (config["contig_taxon"] == "F") {
+							$("#contigtaxonpage").remove();
+							$("#contigtaxoncomparepage").remove();
+						}
+						if (config["pangenome"] == "F") {
+							$("#pangenomeanal").remove();
+						}
+					</script>
+                </ul>
+	        </nav>
+		</header>
+
+        <!--top 버튼-->
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Annotation Statistics</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+
+                    <br>
+                    <br>
+
+                    <!--Eggnog stats table-->
+                    <div class="panel-group" id="EggnogStats">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>EggNOG Statistics</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_1" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <table class="table tablesorter" id="table_eggstats">
+                                        <thead>
+                                            <tr>
+                                                <th class="th_center">Sample</th>
+                                                <th class="th_center">Total Predicted Proteins</th>
+                                                <th class="th_center">EggNOG Matched Proteins</th>
+                                                <th class="th_center">Single EggNOG category</th>
+                                                <th class="th_center">Multiple EggNOG category	</th>
+                                                <th class="th_center">Unmatched Proteins</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tb_eggstats"></tbody>
+                                    </table>
+
+                                    <script>
+                                        var table = document.getElementById('tb_eggstats');
+										var data = get_eggnog_stat(array);
+
+										for (var i = 0; i < data.length; i++) {
+											var tr = document.createElement('tr');
+											var html_str = "<td class='td_char'>" + data[i][0] + "</td>";
+											for (var j = 1; j < data[i].length; j++) {
+												html_str += "<td class='td_char'>" + AddComma(data[i][j]) + "</td>";
+											}
+											tr.innerHTML = html_str;
+											table.appendChild(tr);
+										}
+                                    </script>
+
+                                    <!--Pager-->
+                                    <div id="pager_estats" class="pager_estats" style="margin: 0px 0px 0px 0px;text-align:center;">
+                                        <div id="pager_estats_inner" class="pager_estats_inner" style="margin: 0px 0px 0px 0px;">
+                                            <form>
+                                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                                                <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+                                                <span class="pagedisplay" ></span>
+                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+                                                <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+                                                <select class="pagesize">
+                                                    <option selected="selected" value="10">10 samples per page</option>
+                                                    <option value="all">All Samples</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+									<script>
+										var table = $('#table_eggstats');
+										//table.trigger('refreshWidgets');
+										table.tablesorter().tablesorterPager({container:$('#pager_estats_inner')});
+										table.trigger('pageAndSize', [1,10]);
+										table.trigger('update');
+									</script>
+
+                                    <!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;To understand what members of the meta-genome do, genes of the meta-genome were predicted and annotated.
+											Prokka were used for gene prediction.
+											Predicted genes were annotated using eggNOG-mapper 2.0.1, which is diamond based annotation tools, with EggNOG database v5.
+											EggNOG database is a hierarchical, functionally and phylogenetically annotated orthologoy resource.
+											Similar with COG database, genes in the database are categorized as 25 categories.
+										</p>
+                                        <ul>
+											<br>
+
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Total Predicted Protein : The number of predicted proteins</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· EggNOG Matched Proteins : The number of proteins matched with EggNOG database</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Single EggNOG category : The number of proteins having single EggNOG category</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Multiple EggNOG category : The number of proteins having multiple EggNOG category</li>
+                                            <li>&nbsp;&nbsp;&nbsp;&nbsp;· Unmatched Proteins : The number of proteins not matched with EggNOG database</li>
+
+										</ul>
+                                    </div>
+
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+                    <br>
+                    <br>
+
+                    <!--EggNOG Category-->
+                    <div class="panel-group" id="EggnogCategory">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_2"><b>EggNOG Category</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_2" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+									<button id="reset_eggnog" style="position: relative; top: 30px; left: 20px;">Reset</button>
+
+									<form style="position: relative; top: 50px; left: 20px;" id="checkform">
+										<label><input type="radio" name="mode" value="bypercent" checked> Percent</label>
+										<label><input type="radio" name="mode" value="bycount"> Count</label>
+									</form>
+
+									<div id="div_chart">
+										<div id="div_tooltip"></div>
+									    <svg id="chart_eggnog" width="1100" height="500" aria-labelledby="graph-title" aria-describedby="graph-desc">
+										</svg>
+										<p style="margin-right:50px;text-align: right; ">Scroll to zoom in/out & Drag to move focus</p>
+  	        	                       	<script src="chart_eggnog.js"></script>
+									</div>
+									<br><br>
+
+                                    <table class="table tablesorter" id="table_category" style='font-size:10px;'>
+                                        <thead>
+                                            <tr id="tb_category_header"></tr>
+                                        </thead>
+                                        <tbody id="tb_category"></tbody>
+                                    </table>
+
+                                    <script>
+										var header = document.getElementById('tb_category_header');
+                                        var table = document.getElementById('tb_category');
+										//style='font-size:10px;'
+
+										var html_str = "<th class='th_center' style='font-size:10px;'>Sample</th>";
+										for (var i = 0; i < category_header.length; i++) {
+											html_str += "<th class='th_center' style='font-size:10px;'>" + category_header[i] + "</th>";
+										}
+
+										header.innerHTML= html_str;
+
+										var tdata = get_eggnog_category(array);
+
+										for (var i = 0; i < tdata.length; i++) {
+											var tr = document.createElement('tr');
+											var html_str = "<td class='td_char' style='font-size:10px;'>" + tdata[i][0] + "</td>";
+
+											for (var j = 1; j < tdata[i].length; j++) {
+												html_str += "<td class='td_char' style='font-size:10px;'>" + AddComma(tdata[i][j]) + "</td>";
+											}
+											tr.innerHTML = html_str;
+											table.appendChild(tr);
+										}
+                                    </script>
+
+                                    <!--Pager-->
+                                    <div id="pager_category" class="pager_category" style="margin: 0px 0px 0px 0px;text-align:center;">
+                                        <div id="pager_category_inner" class="pager_category_inner" style="margin: 0px 0px 0px 0px;">
+                                            <form>
+                                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                                                <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+                                                <span class="pagedisplay" ></span>
+                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+                                                <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+                                                <select class="pagesize">
+                                                    <option selected="selected" value="10">10 samples per page</option>
+                                                    <option value="all">All Samples</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+									<script>
+										var table = $('#table_category');
+										//table.trigger('refreshWidgets');
+										table.tablesorter().tablesorterPager({container:$('#pager_category_inner')});
+										table.trigger('pageAndSize', [1,10]);
+										table.trigger('update');
+									</script>
+
+									<br><br>
+
+                                    <table class="table" id="table_description">
+                                        <thead>
+                                            <tr>
+												 <th class="th_center" colspan="4" data-sorter="false">EggNOG Category</th>
+											</tr>
+											<tr>
+												<th class="th_center" width="10%" data-sorter="false">Category</th>
+												<th class="th_center" width="40%" data-sorter="false">Description</th>
+												<th class="th_center" width="10%" data-sorter="false">Category</th>
+												<th class="th_center" width="40%" data-sorter="false">Description</th>
+											</tr>
+                                        </thead>
+                                        <tbody id="tb_description"></tbody>
+                                    </table>
+
+									<script>
+										var table = document.getElementById('tb_description');
+										var s = array.samples[0];
+
+										for (var i = 0; i < categories.length; i+=2) {
+											var tr = document.createElement('tr');
+											var category = categories[i];
+											var html_str = "<td class='td_char'>" + category + "</th>";
+											html_str += "<td class='td_char'>" + array.stats[s][category].Description + "</th>";
+
+											if (i + 1 < categories.length) {
+												var category = categories[i + 1];
+												html_str += "<td class='td_char'>" + category + "</th>";
+												html_str += "<td class='td_char'>" + array.stats[s][category].Description + "</th>";
+											}
+											tr.innerHTML = html_str;
+											table.appendChild(tr);
+										}
+										var table = $('#table_description');
+										table.tablesorter().tablesorterPager({size:"all"});
+										table.trigger('update');
+									</script>
+
+									<br>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+
+                        </div>
+                        <!--end: panel-->
+
+                    </div>
+                    <!--end: panel-group-->
+
+                    <br>
+                    <br>
+
+                </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+
+    </div>
+</body>
+
+</html>

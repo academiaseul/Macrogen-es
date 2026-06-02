@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/photoswipe.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="../tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/custom.css">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../d3/d3.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/photoswipe-ui-default.min.js"></script>
+    <script src="../PhotoSwipe-master/dist/main.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.js"></script>
+    <script src="../tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+    <script src="../tablesorter-master/addons/pager/jquery.tablesorter.pager.js"></script>
+ 
+    <!--json data-->
+   	<script src="../../data/json/Contig_taxon.js"></script>
+	<script src="../../data/json/Config.js"></script>
+    <!--graph-->
+
+    <script>
+        var array;
+		var config;
+        var ordernumber = array.project;
+        var customer = array.customer;
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+		var array_taxon = array.stats[array.samples[0]];
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }
+
+        //top 버튼 숨기기/보여주기
+        $(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() != 0) {
+                    $('#backtotop').fadeIn();
+                } else {
+                    $('#backtotop').fadeOut();
+                }
+            });
+
+            //top 버튼 누르면 맨 위로 이동
+            $('#backtotop').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+        });
+
+		//pager 초기화
+		function PagerReset() {
+			//var $table = $(tableid);
+			var $table = $('table');
+			$table.trigger('pageAndSize', [1, 50]);
+			$table.trigger('update');
+		}
+
+		//taxon table
+		function MakeTable(tableid, array_taxon) {
+			var table = document.getElementById(tableid);
+			for (var i = 0; i < array_taxon.length; i++) {
+				var tr = document.createElement('tr');
+				html_str = "";
+				html_str += "<td class='td_left'>" + array_taxon[i][0] + "</td>";
+				html_str += "<td class='td_char'>" + array_taxon[i][1] + " %</td>";
+				html_str += "<td class='td_char'>" + array_taxon[i][2] + " %</td>";
+				html_str += "<td class='td_char'>" + array_taxon[i][3] + "</td>";
+				tr.innerHTML = html_str;
+				table.appendChild(tr);
+			}
+		}
+
+		//description 접었다 펴기
+        $(function() {
+            $('.show').click(function() {
+                var submenu = $(this).next($('.desc'));
+                if (submenu.is(":visible")) {
+                    submenu.slideUp();
+                    $(this).text('Show Description')
+                } else {
+                    submenu.slideDown();
+                    $(this).text('Hide Description')
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../../src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font">Metagenome Shotgun Sequencing Report</div>
+                <p class="notice">Research Use Only</p>
+            </div>
+
+        <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="orderinfo"><a href="orderinfo.html">Order Info.</a></li>
+					<li id="deliverables"><a href="download.html">Deliverables</a></li>
+					<li id="preprocessing"><a href="rawdatastats.html">Raw data</a></li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="readpathwaypage"><a href="readpathway.html">Pathway Analysis</a></li>
+							<li id="readtaxonpage"><a href="readtaxon.html">Taxonomy Analysis</a></li>
+							<li id="readtaxoncomparepage"><a href="readtaxoncompare.html">Taxonomy Comparison</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="assemblypage"><a href="assemblystats.html">Assembly Statistics</a></li>
+							<li id="annotationpage"><a href="annotation.html">Annotation Statistics</a></li>
+							<li id="contigtaxonpage"><a href="contigtaxon.html">Taxonomy Analysis</a></li>
+							<li id="contigtaxoncomparepage"><a href="contigtaxoncompare.html">Taxonomy Comparison</a></li>
+							<li id="pangenomepage"><a href="pangenome.html">Pangenome Analysis</a></li>
+							<li id="binningpage"><a href="binning.html">Binning Analysis</a></li>
+						</ul>
+					</li>
+					<li id="methodpage"><a href="methods.html">Methods</a></li>
+					<script>
+						if (config["read_pathway"] == "F") {
+							$("#readpathwaypage").remove();
+						}
+						if (config["read_taxon"] == "F") {
+							$("#readtaxonpage").remove();
+							$("#readtaxoncomparepage").remove();
+						}
+						if (config["assembly"] == "F") {
+						 	$("#contiganal").remove();
+						}
+						if (config["contig_ann"] == "F") {
+							$("#annotationpage").remove();
+						}
+						if (config["contig_taxon"] == "F") {
+							$("#contigtaxonpage").remove();
+							$("#contigtaxoncomparepage").remove();
+							$("#binningpage").remove();
+						}
+						if (config["pangenome"] == "F") {
+							$("#pangenomepage").remove();
+						}
+					</script>
+                </ul>
+	        </nav>
+		</header>
+
+        <!--top 버튼-->
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/VARIANT_stats.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Taxonomy Analysis (Contig based)</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+
+                    <br>
+                    <br>
+					<!--Sample select-->
+					<b>Choose the Sample :  </b><select id="sel_sample"></select>
+					<div style="text-align : center;">
+						<script>
+							var select_sample = document.getElementById('sel_sample');
+							var option_str = "";
+
+							for (var i = 0, key; key = array.samples[i]; i++) {
+								option_str += "<option value='" + i + "'>" + key + "</option>";
+							}
+
+							select_sample.innerHTML = option_str;
+
+							$("#sel_sample").change(function() {
+								var sample = array.samples[$("#sel_sample option:selected").val()];
+								$("#chart_krona").remove();
+								document.getElementById("div_krona").innerHTML = "<iframe src=\"\" id=\"chart_krona\" frameborder=0 width=\"1100\" height=\"1300\" cellpadding=\"0\" cellspacing=\"0\"></iframe>";
+								document.getElementById("chart_krona").src = "./Krona/" + sample + "_contig.html";
+
+								$("#home").find('a').trigger('click');
+
+								var array_taxon = array.stats[sample];
+								for (var i = 2; i < 8; i++) {
+									var level = "L" + String(i);
+									$("#" + level + "-table > tbody").html("");
+									MakeTable(level + "-tb", array_taxon[level]);
+									var table = $("#" + level + "-table");
+									table.trigger('updatePager');
+									table.trigger('update');
+									table.trigger('filterReset');
+								}
+
+							});
+
+						</script>
+					</div>
+
+					<br>
+					<!--Krona-->
+                 	<div class="panel-group">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_1"><b>Krona</b></a>
+                                </h4>
+                            </div>
+
+							<!--Chart-->
+							<div id="collapse_1" class="panel-collapse collapse in">
+								<div class="panel-body xy_scroll">
+									<div id="div_krona" style='display: inline-block;float:middle;clear:both;'>
+										<iframe src="" id="chart_krona" frameborder=0 width="1100" height="1300" cellpadding="0" cellspacing="0"></iframe>
+										<script>
+											var sample = array.samples[0]
+											document.getElementById("chart_krona").src = "./Krona/" + sample + "_contig.html"
+										</script>
+									</div>
+
+                                    <!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;Centrifuge was used for taxonomy classification of the contigs. (Identifies Bacteria, Archaea, and Virus)
+											The contigs having multiple matches with different taxons are classified as their lowest common ancestor.
+											Krona plot showed taxonomic composition for each samples.
+											You can see more detail information of specific taxon by clicking chart area of the taxon and easily search for species of interest by typing scientific name on search bar located on upper side.
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<br><br>
+
+                    <!--Taxon table-->
+                    <div class="panel-group" id="tablediv">
+                        <div class="panel panel-default">
+                            <!--Panel head-->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse_2"><b>Table</b></a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse_2" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll" id="tabs">
+									<ul class="nav nav-tabs nav-justified">
+										<li class="active" id="home"><a href="#L2" data-toggle="tab">Phylum</a></li>
+										<li><a href="#L3" data-toggle="tab">Class</a></li>
+										<li><a href="#L4" data-toggle="tab">Order</a></li>
+										<li><a href="#L5" data-toggle="tab">Family</a></li>
+										<li><a href="#L6" data-toggle="tab">Genus</a></li>
+										<li><a href="#L7" data-toggle="tab">Species</a></li>
+										<li><a href="#L8" data-toggle="tab">Subspecies</a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane fade in active" id="L2">
+											<table class="table tablesorter" id="L2-table" data-sortlist="[[1,1]]">
+        		   			                	<thead>
+                		       			        	<tr>
+                        		           				<th class="th_center" title="Taxonomy" width="61%" data-placeholder="Search available">Taxonomy</th>
+                                		               	<th class="th_center" title="Ratio (Contigs)" width="13%">Ratio<br>(Contigs)</th>
+                                		               	<th class="th_center" title="Ratio (Reads)" width="13%">Ratio<br>(Reads)</th>
+                                		               	<th class="th_center" title="Abundance" width="13%">Abundance</th>
+													</tr>
+			                                    </thead>
+   					                            <tbody id="L2-tb"></tbody>
+               					            </table>
+
+											<div id="pager-L2" class="pager-L2" style="margin: 0px 0px 0px 0px;text-align:center;">
+		                                        <div id="pager-L2-inner" class="pager-L2" style="margin: 0px 0px 0px 0px;">
+        		                                    <form>
+                		                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                        		                        <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+		                                                <span class="pagedisplay"></span>
+		                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+        		                                        <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+		                                                <select class="pagesize">
+		                                                    <option selected="selected" value="50">50 rows per page</option>
+        		                                            <option value="all">All rows</option>
+		                                                </select>
+        		                                    </form>
+		                                        </div>
+        		                            </div>
+											<script>
+												MakeTable("L2-tb", array_taxon["L2"]);
+
+												var table = $('#L2-table');
+												table
+													.tablesorter({
+														widgets: ['filter']
+													})
+													
+													.tablesorterPager({
+														container:$('.pager-L2'),
+														output: '{page} / {filteredPages}'
+													})
+													.trigger('pageSize', 50);
+											</script>
+										</div>
+										<div class="tab-pane fade" id="L3">
+											<table class="table tablesorter" id="L3-table" data-sortlist="[[1,1]]">
+        		   			                	<thead>
+                		       			        	<tr>
+                        		           				<th class="th_center" title="Taxonomy" width="61%">Taxonomy</th>
+                                		               	<th class="th_center" title="Ratio (Contigs)" width="13%">Ratio<br>(Contigs)</th>
+                                		               	<th class="th_center" title="Ratio (Reads)" width="13%">Ratio<br>(Reads)</th>
+                                		               	<th class="th_center" title="Abundance" width="13%">Abundance</th>
+													</tr>
+			                                    </thead>
+   					                            <tbody id="L3-tb"></tbody>
+               					            </table>
+
+											<div id="pager-L3" class="pager-L3" style="margin: 0px 0px 0px 0px;text-align:center;">
+		                                        <div id="pager-L3-inner" class="pager-L3" style="margin: 0px 0px 0px 0px;">
+        		                                    <form>
+                		                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                        		                        <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+		                                                <span class="pagedisplay"></span>
+		                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+        		                                        <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+		                                                <select class="pagesize">
+		                                                    <option selected="selected" value="50">50 rows per page</option>
+        		                                            <option value="all">All rows</option>
+		                                                </select>
+        		                                    </form>
+		                                        </div>
+        		                            </div>
+											<script>
+												MakeTable("L3-tb", array_taxon["L3"]);
+
+												var table = $('#L3-table');
+												table
+													.tablesorter({
+														widgets: ['filter']
+													})
+													
+													.tablesorterPager({
+														container:$('.pager-L3'),
+														output: '{page} / {filteredPages}'
+													})
+													.trigger('pageSize', 50);
+											</script>
+										</div>
+										<div class="tab-pane fade" id="L4">
+											<table class="table tablesorter" id="L4-table" data-sortlist="[[1,1]]">
+        		   			                	<thead>
+                		       			        	<tr>
+                        		           				<th class="th_center" title="Taxonomy" width="61%">Taxonomy</th>
+                                		               	<th class="th_center" title="Ratio (Contigs)" width="13%">Ratio<br>(Contigs)</th>
+                                		               	<th class="th_center" title="Ratio (Reads)" width="13%">Ratio<br>(Reads)</th>
+                                		               	<th class="th_center" title="Abundance" width="13%">Abundance</th>
+													</tr>
+			                                    </thead>
+   					                            <tbody id="L4-tb"></tbody>
+               					            </table>
+
+											<div id="pager-L4" class="pager-L4" style="margin: 0px 0px 0px 0px;text-align:center;">
+		                                        <div id="pager-L4-inner" class="pager-L4" style="margin: 0px 0px 0px 0px;">
+        		                                    <form>
+                		                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                        		                        <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+		                                                <span class="pagedisplay"></span>
+		                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+        		                                        <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+		                                                <select class="pagesize">
+		                                                    <option selected="selected" value="50">50 rows per page</option>
+        		                                            <option value="all">All rows</option>
+		                                                </select>
+        		                                    </form>
+		                                        </div>
+        		                            </div>
+											<script>
+												MakeTable("L4-tb", array_taxon["L4"]);
+
+												var table = $('#L4-table');
+												table
+													.tablesorter({
+														widgets: ['filter']
+													})
+													
+													.tablesorterPager({
+														container:$('.pager-L4'),
+														output: '{page} / {filteredPages}'
+													})
+													.trigger('pageSize', 50);
+											</script>
+										</div>
+										<div class="tab-pane fade" id="L5">
+											<table class="table tablesorter" id="L5-table" data-sortlist="[[1,1]]">
+        		   			                	<thead>
+                		       			        	<tr>
+                        		           				<th class="th_center" title="Taxonomy" width="61%">Taxonomy</th>
+                                		               	<th class="th_center" title="Ratio (Contigs)" width="13%">Ratio<br>(Contigs)</th>
+                                		               	<th class="th_center" title="Ratio (Reads)" width="13%">Ratio<br>(Reads)</th>
+                                		               	<th class="th_center" title="Abundance" width="13%">Abundance</th>
+													</tr>
+			                                    </thead>
+   					                            <tbody id="L5-tb"></tbody>
+               					            </table>
+
+											<div id="pager-L5" class="pager-L5" style="margin: 0px 0px 0px 0px;text-align:center;">
+		                                        <div id="pager-L5-inner" class="pager-L5" style="margin: 0px 0px 0px 0px;">
+        		                                    <form>
+                		                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                        		                        <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+		                                                <span class="pagedisplay"></span>
+		                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+        		                                        <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+		                                                <select class="pagesize">
+		                                                    <option selected="selected" value="50">50 rows per page</option>
+        		                                            <option value="all">All rows</option>
+		                                                </select>
+        		                                    </form>
+		                                        </div>
+        		                            </div>
+											<script>
+												MakeTable("L5-tb", array_taxon["L5"]);
+
+												var table = $('#L5-table');
+												table
+													.tablesorter({
+														widgets: ['filter']
+													})
+													
+													.tablesorterPager({
+														container:$('.pager-L5'),
+														output: '{page} / {filteredPages}'
+													})
+													.trigger('pageSize', 50);
+											</script>
+										</div>
+										<div class="tab-pane fade" id="L6">
+											<table class="table tablesorter" id="L6-table" data-sortlist="[[1,1]]">
+        		   			                	<thead>
+                		       			        	<tr>
+                        		           				<th class="th_center" title="Taxonomy" width="61%">Taxonomy</th>
+                                		               	<th class="th_center" title="Ratio (Contigs)" width="13%">Ratio<br>(Contigs)</th>
+                                		               	<th class="th_center" title="Ratio (Reads)" width="13%">Ratio<br>(Reads)</th>
+                                		               	<th class="th_center" title="Abundance" width="13%">Abundance</th>
+													</tr>
+			                                    </thead>
+   					                            <tbody id="L6-tb"></tbody>
+               					            </table>
+
+											<div id="pager-L6" class="pager-L6" style="margin: 0px 0px 0px 0px;text-align:center;">
+		                                        <div id="pager-L6-inner" class="pager-L6" style="margin: 0px 0px 0px 0px;">
+        		                                    <form>
+                		                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                        		                        <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+		                                                <span class="pagedisplay"></span>
+		                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+        		                                        <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+		                                                <select class="pagesize">
+		                                                    <option selected="selected" value="50">50 rows per page</option>
+        		                                            <option value="all">All rows</option>
+		                                                </select>
+        		                                    </form>
+		                                        </div>
+        		                            </div>
+											<script>
+												MakeTable("L6-tb", array_taxon["L6"]);
+
+												var table = $('#L6-table');
+												table
+													.tablesorter({
+														widgets: ['filter']
+													})
+													
+													.tablesorterPager({
+														container:$('.pager-L6'),
+														output: '{page} / {filteredPages}'
+													})
+													.trigger('pageSize', 50);
+											</script>
+										</div>
+										<div class="tab-pane fade" id="L7">
+											<table class="table tablesorter" id="L7-table" data-sortlist="[[1,1]]">
+        		   			                	<thead>
+                		       			        	<tr>
+                        		           				<th class="th_center" title="Taxonomy" width="61%">Taxonomy</th>
+                                		               	<th class="th_center" title="Ratio (Contigs)" width="13%">Ratio<br>(Contigs)</th>
+                                		               	<th class="th_center" title="Ratio (Reads)" width="13%">Ratio<br>(Reads)</th>
+                                		               	<th class="th_center" title="Abundance" width="13%">Abundance</th>
+													</tr>
+			                                    </thead>
+   					                            <tbody id="L7-tb"></tbody>
+               					            </table>
+
+											<div id="pager-L7" class="pager-L7" style="margin: 0px 0px 0px 0px;text-align:center;">
+		                                        <div id="pager-L7-inner" class="pager-L7" style="margin: 0px 0px 0px 0px;">
+        		                                    <form>
+                		                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                        		                        <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+		                                                <span class="pagedisplay"></span>
+		                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+        		                                        <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+		                                                <select class="pagesize">
+		                                                    <option selected="selected" value="50">50 rows per page</option>
+        		                                            <option value="all">All rows</option>
+		                                                </select>
+        		                                    </form>
+		                                        </div>
+        		                            </div>
+											<script>
+												MakeTable("L7-tb", array_taxon["L7"]);
+
+												var table = $('#L7-table');
+												table
+													.tablesorter({
+														widgets: ['filter']
+													})
+													
+													.tablesorterPager({
+														container:$('.pager-L7'),
+														output: '{page} / {filteredPages}'
+													})
+													.trigger('pageSize', 50);
+											</script>
+										</div>
+										<div class="tab-pane fade" id="L8">
+											<table class="table tablesorter" id="L8-table" data-sortlist="[[1,1]]">
+        		   			                	<thead>
+                		       			        	<tr>
+                        		           				<th class="th_center" title="Taxonomy" width="61%">Taxonomy</th>
+                                		               	<th class="th_center" title="Ratio (Contigs)" width="13%">Ratio<br>(Contigs)</th>
+                                		               	<th class="th_center" title="Ratio (Reads)" width="13%">Ratio<br>(Reads)</th>
+                                		               	<th class="th_center" title="Abundance" width="13%">Abundance</th>
+													</tr>
+			                                    </thead>
+   					                            <tbody id="L8-tb"></tbody>
+               					            </table>
+
+											<div id="pager-L8" class="pager-L8" style="margin: 0px 0px 0px 0px;text-align:center;">
+		                                        <div id="pager-L8-inner" class="pager-L8" style="margin: 0px 0px 0px 0px;">
+        		                                    <form>
+                		                                <img src="../tablesorter-master/addons/pager/icons/first.png" class="first" />
+                        		                        <img src="../tablesorter-master/addons/pager/icons/prev.png" class="prev" />
+		                                                <span class="pagedisplay"></span>
+		                                                <img src="../tablesorter-master/addons/pager/icons/next.png" class="next" />
+        		                                        <img src="../tablesorter-master/addons/pager/icons/last.png" class="last" />
+		                                                <select class="pagesize">
+		                                                    <option selected="selected" value="50">50 rows per page</option>
+        		                                            <option value="all">All rows</option>
+		                                                </select>
+        		                                    </form>
+		                                        </div>
+        		                            </div>
+											<script>
+												MakeTable("L8-tb", array_taxon["L8"]);
+
+												var table = $('#L8-table');
+												table
+													.tablesorter({
+														widgets: ['filter']
+													})
+													
+													.tablesorterPager({
+														container:$('.pager-L8'),
+														output: '{page} / {filteredPages}'
+													})
+													.trigger('pageSize', 50);
+											</script>
+										</div>
+
+									</div>
+
+                                    <!--Description-->
+                                    <span class="show">Show Description</span>
+                                    <div class="desc">
+										<br>
+										<p>&nbsp;&nbsp;The number and percentage of taxon classified from contigs were calculated to display contents of species in the sample.
+											You can see the results from phylum to subspecies level by clicking taxon level you want to see.
+                                            Taxonomy name "k__;c__;o__;f__;g__;s__;n__" means "Root" which is highest level of the taxon.
+                                            Root can be detected when contigs have multiple matchs with different superkingdom species.
+                                            The contigs which is not classified are described as "Unclassified".
+                                            Abundance were normilized value based on normalization formula. For the detail, please refer to the <a href="methods.html#collapse_6_title">Taxonomy assignment for contigs</a> section of Methods page. 
+                                            Abundance can be calculated in genus, species and subspecies level, therefore, abundance of the others is described as NA.
+										</p>
+                                    </div>
+
+
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+
+
+                    <br>
+                    <br>
+
+               </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+
+    </div>
+</body>
+
+</html>

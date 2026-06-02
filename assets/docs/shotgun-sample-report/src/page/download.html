@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../src/css/common.css">
+    <link rel="stylesheet" href="../../src/css/custom.css">
+    <link rel="stylesheet" href="../../src/css/layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--tools-->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+
+    <!--json data-->
+    <script src="../../data/json/Download.js"></script>
+	<script src="../../data/json/Config.js"></script>
+
+    <script>
+        var array;
+		var config;
+
+        var customer = array.customer;
+        var institute = array.institute;
+        var ordernumber = array.project;
+		var assembly = config.assembly;
+		var read_pathway = config.read_pathway;
+		var contig_taxon = config.contig_taxon;
+		var contig_ann = config.contig_ann;
+		var read_taxon = config.read_taxon;
+		var pangenome = config.pangenome;
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+     </script>
+</head>
+
+	<style>
+        ul.outside {
+            padding-left:20px;
+            list-style-position: outside;
+            list-style: disc;
+        }
+    </style>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../../src/img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font">Metagenome Shotgun Sequencing Report</div>
+                <p class="notice">Research Use Only</p>
+            </div>
+
+        <!--menu-->
+	        <nav class="navbar">
+    	        <ul>
+                    <li id="orderinfo"><a href="orderinfo.html">Order Info.</a></li>
+					<li id="deliverables"><a href="download.html">Deliverables</a></li>
+					<li id="preprocessing"><a href="rawdatastats.html">Raw data</a></li>
+					<li class="dropdown" id="readanal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Read Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="readpathwaypage"><a href="readpathway.html">Pathway Analysis</a></li>
+							<li id="readtaxonpage"><a href="readtaxon.html">Taxonomy Analysis</a></li>
+							<li id="readtaxoncomparepage"><a href="readtaxoncompare.html">Taxonomy Comparison</a></li>
+					</ul>
+					</li>
+					<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contig Analysis<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="assemblypage"><a href="assemblystats.html">Assembly Statistics</a></li>
+							<li id="annotationpage"><a href="annotation.html">Annotation Statistics</a></li>
+							<li id="contigtaxonpage"><a href="contigtaxon.html">Taxonomy Analysis</a></li>
+							<li id="contigtaxoncomparepage"><a href="contigtaxoncompare.html">Taxonomy Comparison</a></li>
+							<li id="pangenomepage"><a href="pangenome.html">Pangenome Analysis</a></li>
+							<li id="binningpage"><a href="binning.html">Binning Analysis</a></li>
+						</ul>
+					</li>
+					<li id="methodpage"><a href="methods.html">Methods</a></li>
+					<script>
+						if (config["read_pathway"] == "F") {
+							$("#readpathwaypage").remove();
+						}
+						if (config["read_taxon"] == "F") {
+							$("#readtaxonpage").remove();
+							$("#readtaxoncomparepage").remove();
+						}
+						if (config["assembly"] == "F") {
+						 	$("#contiganal").remove();
+						}
+						if (config["contig_ann"] == "F") {
+							$("#annotationpage").remove();
+						}
+						if (config["contig_taxon"] == "F") {
+							$("#contigtaxonpage").remove();
+							$("#contigtaxoncomparepage").remove();
+							$("#binningpage").remove();
+						}
+						if (config["pangenome"] == "F") {
+							$("#pangenomepage").remove();
+						}
+					</script>
+                </ul>
+	        </nav>
+		</header>
+
+        <!--Orderinfo table-->
+        <div class="container main">
+            <div class="row">
+                <div>
+                    <!--icon-->
+                    <div class="div_icon">
+                        <img src="../img/Icon_img/Order_Information.png">
+                    </div>
+                    <!--title-->
+                    <div class="div_h1">
+                        <h1>Download Data</h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+
+                    <br>
+                    <br>
+
+					<table class="table" style="margin-bottom: 0px;">
+						<thead>
+							<tr>
+								<th class="th_center">File name</th>
+								<th class="th_center">File size</th>
+								<th class="th_center">md5sum</th>
+							</tr>
+						</thead>
+						<tbody id="tb_download" style="border-bottom:1px solid #dddddd;"></tbody>
+					</table>
+
+					<script>
+						var table = document.getElementById('tb_download');
+						
+						for (var i = 0, data; data = array.stats[i]; i++) {
+							var tr = document.createElement('tr');
+							if ("link" in array) {
+								var html_str = "<td class='td_char'><a href='" + array.link[data.file] + "'>" + data.file + "</a></td>";
+							} else {
+								var html_str = "<td class='td_char'>" + data.file + "</td>";
+							}
+							html_str += "<td class='td_char'>" + data.size + "</td>";
+							html_str += "<td class='td_char'>" + data.md5 + "</td>";
+							tr.innerHTML = html_str;
+							table.appendChild(tr);
+						}
+
+					</script>
+					<div class="alignC">
+						<br>
+		                <p><b>Your data will be retained in our server for 3 months. Should you wish to extend the retention period, please email or contact our sales team.</b></p>
+					</div>
+					<br>
+					<br>
+
+					<!--Description-->
+					<b>Download file information</b>
+					<div class="panel-collapse collapse in" id="downloadinfo">
+						<table class="table" style="margin-bottom: 0px;">
+                        <thead>
+                            <tr>
+                                <th class="th_center">File name</th>
+                                <th class="th_center">Description</th>
+							</tr>
+						</thead>
+                        <tbody id="tb_download" style="border-bottom:1px solid #dddddd;">
+							<tr>
+								<td class='td_char'>Rawdata.zip</td>
+								<td class='td_left'>
+									<ul class="outside">
+										<li>*.fastq.gz : Gzip compressed raw sequencing data in FASTQ file format.</li>
+										<li>*_filtered*.fastq.gz : Gzip compressed and pre-processed sequencing data in FASTQ file format.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td class='td_char'>Analysis_Result.zip</td>
+								<td class='td_left'>
+									<div class="panel-collapse collapse in" id="analysisRead">
+										<ul class="outside">
+											<li>ReadBasedAnalysis</li>
+											<div class="panel-collapse collapse in" id="analysisRC">
+												<ul class="outside">
+													<li>TaxonomyClassification : Directory containing read classification results in Excel format.</li>
+												</ul>
+											</div>
+											<div class="panel-collapse collapse in" id="analysisPW">
+												<ul class="outside">
+													<li>PathwayAnalysis : Directory containing pathway analysis based on the reads in Excel format.</li>
+												</ul>
+											</div>
+										</ul>
+									</div>
+									<div class="panel-collapse collapse in" id="analysisAS">
+										<ul class="outside">
+											<li>ContigBasedAnalysis</li>
+											<ul class="outside">
+												<li>Assembly : Directory containing fasta files of co-assembly results and contigs of each sample which are co-assembly contigs have mapping depth more than 5 or equal for each sample.</li>
+											</ul>
+										<div class="panel-collapse collapse in" id="analysisCC">
+											<ul class="outside">
+												<li>TaxonomyClassification : Directory containing contig classification results in Excel format. In the results, 0 means very small amount of contigs were assigned to the taxon, '-' means there are no contigs assigned to the taxon and 'NA' from the abundance means that abundance cannot be calculated from the taxonomic rank. (Abundance can be calculated from genus, species, subspecies levels.)</li>
+												<ul class="outside">
+													<li>Unclassified : Directory containing binning results and gene prediction results from unclassfied contigs for each sample.</li>
+													<li>Unclassified/Co-assembly : Directory containing binning results of the unclassified co-assembly contigs.</li>
+													<ul class="outside">
+														<li>Unclassified.bin.txt : Bin name for each contig</li>
+														<li>Unclassified.bin.txt.jpg : Bar graph depicting the number of contigs for each bin.</li>
+													</ul>
+												</ul>
+											</ul>
+										</div>
+										<div class="panel-collapse collapse in" id="analysisAN">
+											<ul class="outside">
+												<li>Annotation : Directory containing gene prediction and functional annotation results from the contigs for each sample.</li>
+												<ul class="outside">
+													<li>File format</li>
+													<ul class="outside">
+														<li>*.fasta : Nucleotide sequences in FASTA format</li>
+														<li>*.faa : Amino acid sequences predicted from the contigs in FASTA format.</li>
+														<li>*.ffn : Nucleotide sequences of transcripts predicted from the contigs in FASTA format.</li>
+														<li>*.gff : Gene feature format files containing gene information predicted from the contigs.</li>
+														<li>*.tbl : Tab separation formality of NCBI.</li>
+														<li>*.gbk : GenBank format.</li>
+													</ul>
+												</ul>
+											</ul>
+										</div>
+										<div class="panel-collapse collapse in" id="analysisPA">
+											<ul class="outside">
+												<li>PanGenomeAnalysis : Directory containing the results of pangenome analysis.</li>
+												<ul class="outside">
+													<li>gene_presence_absence.xlsx : Excel files containing presence/absence information of the predicted genes among the samples.</li>
+													<li>gene_presence_absence.csv.upset.jpg : UpSet Plot image which is same with that in the Pangenome analysis page of this report.</li>
+												</ul>
+											</ul>
+										</div>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+	                    </table>
+					</div>
+					<br>
+					<script>
+					if (assembly == "F") {
+						$("#analysisAS").remove();
+					}
+					if (pangenome == "F") {
+						$("#analysisPA").remove();
+					}
+					if (read_pathway == "F") {
+						$("#analysisPW").remove();
+					}
+					if (contig_ann == "F") {
+						$("#analysisAN").remove();
+					}
+					if (read_taxon == "F") {
+						$("#analysisRC").remove();
+					}
+					if (contig_taxon == "F") {
+						$("#analysisCC").remove();
+					}
+					if (read_taxon == "F" && read_pathway=="F") {
+						$("#analysisRead").remove();
+					}
+					</script>
+			
+
+					<!--
+                    <table class="table" style="margin-bottom: 0px;">
+                        <tbody id="tb_info" style="border-bottom:1px solid #dddddd;"></tbody>
+                    </table>
+                    <script>
+                        var table = document.getElementById('tb_info');
+                        info_list.forEach(function(object) {
+                            var tr = document.createElement('tr');
+                            tr.innerHTML = '<th class="col-md-3">' + object.head + '</th>' +
+                                '<td>' + object.data + '</td>';
+                            table.appendChild(tr);
+                        });
+					-->
+                    </script>
+                </div>
+                <!--end: div table-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+
+</html>
