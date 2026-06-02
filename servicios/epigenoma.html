@@ -205,34 +205,128 @@
 </section>
 
 
-<!-- ============== SAMPLE REPORTS · Epigenoma · ChIP-Seq ============== -->
+
+<!-- ============== FEATURED SAMPLE REPORTS · VISUAL BLOCKS ============== -->
 <section id="sample-reports" class="section section-bg">
   <div class="container">
-    <div class="text-center" style="max-width:760px; margin:0 auto 36px;">
-      <span class="eyebrow on-light" style="color:var(--mc-red);">★ Reportes de ejemplo</span>
-      <h2>Vea cómo se ve nuestro reporte de Epigenoma · ChIP-Seq.</h2>
-      <p>Reporte reales generados con nuestro pipeline · datos ficticios · diseño idéntico al que recibirá su proyecto.</p>
+    <div style="text-align:center; margin-bottom:18px;">
+      <span class="eyebrow on-light" style="color:var(--mc-red);">★ Reportes de ejemplo · sample</span>
+      <h2 style="font-size:30px; margin-top:6px;">Vea cómo se ven nuestros reportes.</h2>
+      <p style="font-size:14px; color:var(--mc-mute);">Diseño oficial idéntico al que recibirá su proyecto · datos ficticios · disponibles en Madrid y Santiago.</p>
     </div>
-    <div class="grid" style="gap:24px; max-width:1080px; margin:0 auto;">
-      
-        <article style="background:linear-gradient(135deg,#F0F4FB,#fff); border:1px solid #3FA9C9; border-radius:14px; padding:24px; display:flex; flex-direction:column;">
-          <div style="display:flex; align-items:flex-start; gap:14px; margin-bottom:12px;">
-            <div style="flex-shrink:0; width:54px; height:54px; background:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:28px; box-shadow:0 4px 12px rgba(27,42,87,0.08);">🧬</div>
-            <div style="flex:1;">
-              <strong style="font-size:10px; letter-spacing:1.5px; font-weight:800; color:var(--mc-navy); text-transform:uppercase;">★ Sample report</strong>
-              <h3 style="font-size:17px; margin:4px 0 2px; color:var(--mc-navy);">ChIP-Seq</h3>
-              <small style="font-size:12px; color:var(--mc-mute); font-weight:600;">Chromatin immunoprecipitation</small>
+
+    <!-- ============== FEATURED SAMPLE REPORT · ChIP-Seq ============== -->
+    <div style="margin-top:48px; max-width:1100px; margin-left:auto; margin-right:auto;">
+      <div style="text-align:center; margin-bottom:30px;">
+        <span class="eyebrow on-light" style="color:var(--mc-navy);">📊 Epigenoma · ChIP-Seq</span>
+        <h3 style="font-size:24px; margin-top:6px;">Vea cómo se ve nuestro reporte ChIP-Seq.</h3>
+        <p style="font-size:13.5px; color:var(--mc-mute); max-width:620px; margin:6px auto 0;">Peak calling MACS2 · motif discovery · annotation vs TSS · diferencial.</p>
+      </div>
+
+      <div class="grid grid-2" style="gap:36px; align-items:center;">
+
+        <!-- Left: PDF Mockup -->
+        <a href="../assets/docs/sample-reports/epigenoma-chipseq.pdf" target="_blank" rel="noopener" aria-label="Descargar sample report ChIP-Seq en PDF"
+           style="text-decoration:none; color:inherit; display:block; position:relative; transition:transform .25s ease;"
+           onmouseover="this.style.transform='translateY(-4px) rotate(-0.5deg)';"
+           onmouseout="this.style.transform='translateY(0) rotate(0)';">
+          <div style="background:#fff; border:1px solid #DDE3EE; border-radius:8px; box-shadow:0 16px 40px rgba(27,42,87,0.16), 0 4px 12px rgba(27,42,87,0.08); padding:22px 24px 28px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; aspect-ratio: 1/1.41; max-width:420px; margin:0 auto; overflow:hidden; position:relative;">
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:12px; border-bottom:1px solid #E8EBF1; margin-bottom:14px;">
+              <div>
+                <h4 style="margin:0; font-size:18px; font-weight:900; color:var(--mc-navy); letter-spacing:-0.5px;">ChIP-Seq</h4>
+                <p style="margin:2px 0 0; font-size:10px; color:var(--mc-mute); font-weight:600;">TF binding profile</p>
+              </div>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <div style="background:linear-gradient(135deg,#1B2A57,#1B2A57); color:#fff; padding:6px 8px; border-radius:6px; font-size:8px; font-weight:800; line-height:1.1; text-align:center; min-width:38px;">TF-Bind</div>
+                <div style="font-size:9px; font-weight:800; color:var(--mc-navy);">macrogen</div>
+              </div>
             </div>
+            <div style="background:#F0F4FB; padding:6px 10px; border-radius:5px; font-size:9px; line-height:1.7; margin-bottom:10px;">
+              <strong style="color:var(--mc-navy);">Antibody:</strong> α-H3K4me3 · <strong style="color:var(--mc-navy);">Sample:</strong> ChIP-001
+            </div>
+            <!-- Peak stats -->
+            <table style="width:100%; border-collapse:collapse; font-size:8px; margin-bottom:10px;">
+              <tr style="background:var(--mc-navy); color:#fff;"><th style="padding:3px;">Metric</th><th style="padding:3px;">Value</th></tr>
+              <tr style="background:#F8FAFC;"><td style="padding:3px; border:1px solid #E0E5EE;">Total peaks (narrow)</td><td style="padding:3px; border:1px solid #E0E5EE; text-align:right; font-weight:800;">22.541</td></tr>
+              <tr><td style="padding:3px; border:1px solid #E0E5EE;">FRiP (Fraction Reads in Peaks)</td><td style="padding:3px; border:1px solid #E0E5EE; text-align:right; font-weight:800; color:var(--mc-green);">38,4 %</td></tr>
+              <tr style="background:#F8FAFC;"><td style="padding:3px; border:1px solid #E0E5EE;">Promoter peaks (&lt;2kb TSS)</td><td style="padding:3px; border:1px solid #E0E5EE; text-align:right; font-weight:800; color:var(--mc-teal);">71 %</td></tr>
+            </table>
+            <!-- Peak distribution around TSS -->
+            <div style="font-size:8px; font-weight:700; color:var(--mc-navy); margin-bottom:4px;">Peak density around TSS</div>
+            <div style="background:#fff; border:1px solid #E0E5EE; border-radius:4px; padding:6px; height:70px; position:relative; margin-bottom:10px;">
+              <svg viewBox="0 0 200 70" preserveAspectRatio="none" style="width:100%; height:100%;">
+                <path d="M 0,65 Q 25,60 50,50 Q 75,32 100,8 Q 125,32 150,50 Q 175,60 200,65" fill="none" stroke="#1B2A57" stroke-width="2"></path>
+                <path d="M 0,65 Q 25,60 50,50 Q 75,32 100,8 Q 125,32 150,50 Q 175,60 200,65 L 200,70 L 0,70 Z" fill="#1B2A57" opacity="0.18"></path>
+                <line x1="100" y1="0" x2="100" y2="70" stroke="#E74A6B" stroke-width="1" stroke-dasharray="3,2"></line>
+              </svg>
+              <div style="position:absolute; left:50%; bottom:-2px; transform:translateX(-50%); font-size:6px; color:var(--mc-red); font-weight:800;">TSS</div>
+              <div style="position:absolute; left:6px; bottom:-2px; font-size:6px; color:var(--mc-mute);">-3kb</div>
+              <div style="position:absolute; right:6px; bottom:-2px; font-size:6px; color:var(--mc-mute);">+3kb</div>
+            </div>
+            <!-- Top motif -->
+            <div style="background:#FEF7E8; border:1px solid #F5D98C; border-radius:4px; padding:6px 8px;">
+              <div style="font-size:7.5px; font-weight:700; color:#D97706; margin-bottom:2px;">Top motif (MEME-ChIP)</div>
+              <div style="font-family:monospace; font-size:11px; font-weight:800; color:var(--mc-navy); letter-spacing:1px; text-align:center;">CGCGCG·CCGGAAG·T</div>
+              <div style="font-size:6.5px; color:var(--mc-mute); text-align:center;">E-value: 1,2e-92 · matches: GABPA</div>
+            </div>
+            <div style="font-size:7.5px; color:var(--mc-mute); font-style:italic; margin-top:6px;">MACS2 · MEME-ChIP · HOMER · ChIPseeker</div>
+            <div style="position:absolute; top:14px; right:14px; background:var(--mc-navy); color:#fff; font-size:9px; font-weight:800; padding:4px 8px; border-radius:4px; letter-spacing:.5px; box-shadow:0 4px 12px rgba(0,0,0,0.18); transform:rotate(8deg);">★ SAMPLE</div>
           </div>
-          <p style="font-size:13px; color:var(--mc-navy); line-height:1.6; margin:0 0 16px; flex-grow:1;">ChIP-Seq report: peak calling (MACS2), anotación de peaks vs TSS, motif discovery (MEME/HOMER), comparación entre condiciones y visualización en genome browser tracks.</p>
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-            <span style="font-size:11px; color:var(--mc-mute); background:#fff; padding:3px 8px; border-radius:4px;">PDF · ~1,5 MB</span>
-            <a href="../assets/docs/sample-reports/epigenoma-chipseq.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:13px; font-weight:800;">📥 Descargar reporte</a>
+          <div style="text-align:center; margin-top:14px; font-size:11px; color:var(--mc-mute); font-style:italic;">Vista previa · clic para descargar PDF completo (1,5 MB)</div>
+        </a>
+
+        <!-- Right: Whats Inside + CTAs -->
+        <div>
+          <span style="display:inline-block; background:linear-gradient(135deg,#F0F4FB,#fff); color:var(--mc-navy); font-size:10px; font-weight:800; letter-spacing:1.5px; padding:4px 10px; border-radius:4px; text-transform:uppercase; margin-bottom:14px;">★ Epigenoma · ChIP-Seq</span>
+          <h3 style="font-size:24px; margin:0 0 14px; color:var(--mc-navy);">Qué incluye su reporte.</h3>
+          <p style="font-size:14px; color:var(--mc-mute); line-height:1.65; margin-bottom:20px;">ChIP-Seq report completo: peak calling MACS2, distribución de peaks respecto a TSS, motif discovery con MEME/HOMER, comparación entre condiciones y tracks de genome browser listos para usar.</p>
+
+          <ul style="list-style:none; padding:0; margin:0 0 24px;">
+            
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Peak calling</strong><br><span style="font-size:12px; color:var(--mc-mute);">MACS2 · narrow/broad peaks · FDR control</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Peak distribution</strong><br><span style="font-size:12px; color:var(--mc-mute);">Distancia a TSS · promoter/enhancer/body</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Motif discovery</strong><br><span style="font-size:12px; color:var(--mc-mute);">MEME-ChIP · HOMER de novo + known motifs</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Differential</strong><br><span style="font-size:12px; color:var(--mc-mute);">DiffBind entre condiciones</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Genome tracks</strong><br><span style="font-size:12px; color:var(--mc-mute);">BigWig + BED listos para IGV/UCSC</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">GO enrichment</strong><br><span style="font-size:12px; color:var(--mc-mute);">de los genes asociados a peaks</span></div>
+            </li>
+          </ul>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="../assets/docs/sample-reports/epigenoma-chipseq.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="font-weight:800;">
+              📥 Descargar Sample Report (PDF · 1,5 MB)
+            </a>
+            <a href="../recursos.html#sample-reports" class="btn btn-ghost-light">
+              📁 Ver todos los reports →
+            </a>
           </div>
-        </article>
+
+          <p style="font-size:11.5px; color:var(--mc-mute); margin-top:14px;">Documento ejemplo · datos ficticios · diseño oficial usado en Madrid y Santiago.</p>
+        </div>
+
+      </div>
     </div>
-    <div style="text-align:center; margin-top:32px;">
-      <a href="../recursos.html#sample-reports" class="btn btn-ghost-light">Ver todos los sample reports en Recursos →</a>
+
+    <div style="text-align:center; margin-top:40px; padding-top:32px; border-top:1px solid var(--mc-border);">
+      <a href="../recursos.html#sample-reports" class="btn btn-ghost-light">📁 Ver los 12 sample reports en Recursos →</a>
     </div>
   </div>
 </section>

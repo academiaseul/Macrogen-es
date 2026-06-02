@@ -223,34 +223,130 @@
 </section>
 
 
-<!-- ============== SAMPLE REPORTS · WES ============== -->
+
+<!-- ============== FEATURED SAMPLE REPORTS · VISUAL BLOCKS ============== -->
 <section id="sample-reports" class="section section-bg">
   <div class="container">
-    <div class="text-center" style="max-width:760px; margin:0 auto 36px;">
-      <span class="eyebrow on-light" style="color:var(--mc-red);">★ Reportes de ejemplo</span>
-      <h2>Vea cómo se ve nuestro reporte de WES.</h2>
-      <p>Reporte reales generados con nuestro pipeline · datos ficticios · diseño idéntico al que recibirá su proyecto.</p>
+    <div style="text-align:center; margin-bottom:18px;">
+      <span class="eyebrow on-light" style="color:var(--mc-red);">★ Reportes de ejemplo · sample</span>
+      <h2 style="font-size:30px; margin-top:6px;">Vea cómo se ven nuestros reportes.</h2>
+      <p style="font-size:14px; color:var(--mc-mute);">Diseño oficial idéntico al que recibirá su proyecto · datos ficticios · disponibles en Madrid y Santiago.</p>
     </div>
-    <div class="grid" style="gap:24px; max-width:1080px; margin:0 auto;">
-      
-        <article style="background:linear-gradient(135deg,#FEF2F4,#fff); border:1px solid #E74A6B; border-radius:14px; padding:24px; display:flex; flex-direction:column;">
-          <div style="display:flex; align-items:flex-start; gap:14px; margin-bottom:12px;">
-            <div style="flex-shrink:0; width:54px; height:54px; background:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:28px; box-shadow:0 4px 12px rgba(27,42,87,0.08);">🎯</div>
-            <div style="flex:1;">
-              <strong style="font-size:10px; letter-spacing:1.5px; font-weight:800; color:var(--mc-red); text-transform:uppercase;">★ Sample report</strong>
-              <h3 style="font-size:17px; margin:4px 0 2px; color:var(--mc-navy);">Whole Exome Sequencing</h3>
-              <small style="font-size:12px; color:var(--mc-mute); font-weight:600;">WES · germline + tumor</small>
+
+    <!-- ============== FEATURED SAMPLE REPORT · WES · Exome ============== -->
+    <div style="margin-top:48px; max-width:1100px; margin-left:auto; margin-right:auto;">
+      <div style="text-align:center; margin-bottom:30px;">
+        <span class="eyebrow on-light" style="color:var(--mc-red);">📊 WES · Germline analysis</span>
+        <h3 style="font-size:24px; margin-top:6px;">Vea cómo se ve nuestro reporte WES · Exome.</h3>
+        <p style="font-size:13.5px; color:var(--mc-mute); max-width:620px; margin:6px auto 0;">Whole Exome Sequencing germline · coverage por exón · variant calling · anotación ACMG.</p>
+      </div>
+
+      <div class="grid grid-2" style="gap:36px; align-items:center;">
+
+        <!-- Left: PDF Mockup -->
+        <a href="../assets/docs/sample-reports/wes-exome.pdf" target="_blank" rel="noopener" aria-label="Descargar sample report WES · Exome en PDF"
+           style="text-decoration:none; color:inherit; display:block; position:relative; transition:transform .25s ease;"
+           onmouseover="this.style.transform='translateY(-4px) rotate(-0.5deg)';"
+           onmouseout="this.style.transform='translateY(0) rotate(0)';">
+          <div style="background:#fff; border:1px solid #DDE3EE; border-radius:8px; box-shadow:0 16px 40px rgba(27,42,87,0.16), 0 4px 12px rgba(27,42,87,0.08); padding:22px 24px 28px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; aspect-ratio: 1/1.41; max-width:420px; margin:0 auto; overflow:hidden; position:relative;">
+            
+            <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:12px; border-bottom:1px solid #E8EBF1; margin-bottom:14px;">
+              <div>
+                <h4 style="margin:0; font-size:18px; font-weight:900; color:var(--mc-navy); letter-spacing:-0.5px;">Whole Exome</h4>
+                <p style="margin:2px 0 0; font-size:10px; color:var(--mc-mute); font-weight:600;">WES Variant Report</p>
+              </div>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <div style="background:linear-gradient(135deg,#E74A6B,#1B2A57); color:#fff; padding:6px 8px; border-radius:6px; font-size:8px; font-weight:800; line-height:1.1; text-align:center; min-width:38px;">GATK4</div>
+                <div style="font-size:9px; font-weight:800; color:var(--mc-navy);">macrogen</div>
+              </div>
             </div>
+            <div style="background:#FEF2F4; padding:6px 10px; border-radius:5px; font-size:9px; line-height:1.7; margin-bottom:10px;">
+              <strong style="color:var(--mc-navy);">Sample:</strong> WES-PT-001 · <strong style="color:var(--mc-navy);">Reference:</strong> GRCh38
+            </div>
+            <!-- Coverage stats -->
+            <div style="font-size:8px; font-weight:700; color:var(--mc-navy); margin-bottom:4px;">Coverage Statistics</div>
+            <table style="width:100%; border-collapse:collapse; font-size:8px; margin-bottom:10px;">
+              <tr style="background:var(--mc-red); color:#fff;"><th style="padding:3px;">Metric</th><th style="padding:3px;">Value</th></tr>
+              <tr style="background:#F8FAFC;"><td style="padding:3px; border:1px solid #E0E5EE;">Target size</td><td style="padding:3px; border:1px solid #E0E5EE; text-align:right; font-weight:800;">39 Mb</td></tr>
+              <tr><td style="padding:3px; border:1px solid #E0E5EE;">Mean depth</td><td style="padding:3px; border:1px solid #E0E5EE; text-align:right; font-weight:800; color:var(--mc-red);">120×</td></tr>
+              <tr style="background:#F8FAFC;"><td style="padding:3px; border:1px solid #E0E5EE;">% bases ≥ 20×</td><td style="padding:3px; border:1px solid #E0E5EE; text-align:right; font-weight:800; color:var(--mc-green);">98,7 %</td></tr>
+            </table>
+            <!-- Variant pie chart mock -->
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:10px;">
+              <svg viewBox="0 0 32 32" style="width:60px; height:60px; flex-shrink:0;">
+                <circle r="16" cx="16" cy="16" fill="#7FC97F"></circle>
+                <circle r="16" cx="16" cy="16" fill="transparent" stroke="#E74A6B" stroke-width="32" stroke-dasharray="42 100" transform="rotate(-90) translate(-32)"></circle>
+                <circle r="16" cx="16" cy="16" fill="transparent" stroke="#F7B426" stroke-width="32" stroke-dasharray="14 100" transform="rotate(-90) translate(-32)" stroke-dashoffset="-42"></circle>
+              </svg>
+              <div style="font-size:8px; line-height:1.6;">
+                <div><span style="display:inline-block; width:8px; height:8px; background:#7FC97F; margin-right:4px;"></span>Benign · 17.842</div>
+                <div><span style="display:inline-block; width:8px; height:8px; background:#F7B426; margin-right:4px;"></span>VUS · 312</div>
+                <div><span style="display:inline-block; width:8px; height:8px; background:#E74A6B; margin-right:4px;"></span><strong>Pathogenic · 8</strong></div>
+              </div>
+            </div>
+            <!-- Variant table mock -->
+            <table style="width:100%; border-collapse:collapse; font-size:7.5px;">
+              <tr style="background:#1B2A57; color:#fff;"><th style="padding:3px;">Variant</th><th style="padding:3px;">Gene</th><th style="padding:3px;">ACMG</th></tr>
+              <tr style="background:#FEF2F4;"><td style="padding:3px; border:1px solid #E0E5EE; font-family:monospace;">c.5946delT</td><td style="padding:3px; border:1px solid #E0E5EE;">BRCA2</td><td style="padding:3px; border:1px solid #E0E5EE; text-align:center; font-weight:800; color:var(--mc-red);">P</td></tr>
+              <tr><td style="padding:3px; border:1px solid #E0E5EE; font-family:monospace;">c.1135G&gt;A</td><td style="padding:3px; border:1px solid #E0E5EE;">MLH1</td><td style="padding:3px; border:1px solid #E0E5EE; text-align:center; font-weight:800; color:#D97706;">LP</td></tr>
+            </table>
+            <div style="font-size:7.5px; color:var(--mc-mute); font-style:italic; margin-top:6px;">Annotation: ClinVar · COSMIC · gnomAD v3 · ACMG/AMP 2015</div>
+            <div style="position:absolute; top:14px; right:14px; background:var(--mc-red); color:#fff; font-size:9px; font-weight:800; padding:4px 8px; border-radius:4px; letter-spacing:.5px; box-shadow:0 4px 12px rgba(0,0,0,0.18); transform:rotate(8deg);">★ SAMPLE</div>
           </div>
-          <p style="font-size:13px; color:var(--mc-navy); line-height:1.6; margin:0 0 16px; flex-grow:1;">Reporte WES completo: coverage por exón, variant calling (SNV + Indel), anotación ClinVar/COSMIC, filtros por frecuencia poblacional (gnomAD) y patogenicidad ACMG.</p>
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-            <span style="font-size:11px; color:var(--mc-mute); background:#fff; padding:3px 8px; border-radius:4px;">PDF · ~4,2 MB</span>
-            <a href="../assets/docs/sample-reports/wes-exome.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:13px; font-weight:800;">📥 Descargar reporte</a>
+          <div style="text-align:center; margin-top:14px; font-size:11px; color:var(--mc-mute); font-style:italic;">Vista previa · clic para descargar PDF completo (4,2 MB)</div>
+        </a>
+
+        <!-- Right: Whats Inside + CTAs -->
+        <div>
+          <span style="display:inline-block; background:linear-gradient(135deg,#FEF2F4,#fff); color:var(--mc-red); font-size:10px; font-weight:800; letter-spacing:1.5px; padding:4px 10px; border-radius:4px; text-transform:uppercase; margin-bottom:14px;">★ WES · Germline analysis</span>
+          <h3 style="font-size:24px; margin:0 0 14px; color:var(--mc-navy);">Qué incluye su reporte.</h3>
+          <p style="font-size:14px; color:var(--mc-mute); line-height:1.65; margin-bottom:20px;">Reporte WES germline completo con variant calling (GATK4), anotación ACMG y filtros por frecuencia poblacional vs gnomAD. Listo para interpretación clínica de variantes.</p>
+
+          <ul style="list-style:none; padding:0; margin:0 0 24px;">
+            
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Coverage statistics</strong><br><span style="font-size:12px; color:var(--mc-mute);">Cobertura media · % bases >20× · uniformidad</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Variant calling</strong><br><span style="font-size:12px; color:var(--mc-mute);">GATK4 HaplotypeCaller · BQSR · VQSR</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">SNV + Indel</strong><br><span style="font-size:12px; color:var(--mc-mute);">Conteo total, transición/transversión, het/hom</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Annotation</strong><br><span style="font-size:12px; color:var(--mc-mute);">ANNOVAR · ClinVar · COSMIC · OMIM · gnomAD</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">ACMG classification</strong><br><span style="font-size:12px; color:var(--mc-mute);">Pathogenic · VUS · Benign per ACMG/AMP</span></div>
+            </li>
+            <li style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--mc-border);">
+              <span style="color:var(--mc-green); font-size:18px; line-height:1;">✓</span>
+              <div><strong style="color:var(--mc-navy); font-size:13px;">Tier reporting</strong><br><span style="font-size:12px; color:var(--mc-mute);">Tier 1/2/3 según evidencia clínica</span></div>
+            </li>
+          </ul>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="../assets/docs/sample-reports/wes-exome.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="font-weight:800;">
+              📥 Descargar Sample Report (PDF · 4,2 MB)
+            </a>
+            <a href="../recursos.html#sample-reports" class="btn btn-ghost-light">
+              📁 Ver todos los reports →
+            </a>
           </div>
-        </article>
+
+          <p style="font-size:11.5px; color:var(--mc-mute); margin-top:14px;">Documento ejemplo · datos ficticios · diseño oficial usado en Madrid y Santiago.</p>
+        </div>
+
+      </div>
     </div>
-    <div style="text-align:center; margin-top:32px;">
-      <a href="../recursos.html#sample-reports" class="btn btn-ghost-light">Ver todos los sample reports en Recursos →</a>
+
+    <div style="text-align:center; margin-top:40px; padding-top:32px; border-top:1px solid var(--mc-border);">
+      <a href="../recursos.html#sample-reports" class="btn btn-ghost-light">📁 Ver los 12 sample reports en Recursos →</a>
     </div>
   </div>
 </section>
