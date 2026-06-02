@@ -1918,12 +1918,14 @@ body:has(.service-subnav) section[id] {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  min-width: 280px;
+  /* Mega-menu width — same scale as the main header mega menu */
+  width: 720px;
+  max-width: calc(100vw - 32px);
   background: #fff;
   border: 1px solid var(--mc-border);
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(27,42,87,0.14), 0 4px 12px rgba(27,42,87,0.06);
-  padding: 8px;
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba(27,42,87,0.16), 0 6px 16px rgba(27,42,87,0.08);
+  padding: 18px;
   z-index: 200;
   opacity: 0;
   transform: translateY(-6px);
@@ -1941,29 +1943,51 @@ body:has(.service-subnav) section[id] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px 10px;
+  padding: 4px 8px 14px;
   border-bottom: 1px solid var(--mc-border);
-  margin-bottom: 6px;
+  margin-bottom: 14px;
 }
 .service-switcher-menu .switcher-header strong {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
   color: var(--mc-navy);
 }
 .service-switcher-menu .switcher-header small {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--mc-mute);
   font-weight: 600;
+}
+
+/* Grid layout — mega-menu style with 2 columns */
+.service-switcher-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 18px;
+}
+
+.service-switcher-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.service-switcher-col h5 {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mc-teal);
+  margin: 0 0 8px;
+  padding: 0 12px;
 }
 
 .service-switcher-menu a {
   display: flex !important;
   align-items: flex-start;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 7px;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 9px;
   background: transparent !important;
   border: none !important;
   color: var(--mc-navy) !important;
@@ -1984,32 +2008,74 @@ body:has(.service-subnav) section[id] {
 .service-switcher-menu a.is-current::after {
   content: "Estás aquí";
   margin-left: auto;
+  align-self: center;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: .5px;
   color: var(--mc-red);
   background: #fff;
-  padding: 2px 7px;
+  padding: 3px 8px;
   border-radius: 4px;
   flex-shrink: 0;
 }
 .service-switcher-menu .switcher-icon {
-  font-size: 16px;
-  line-height: 1.4;
+  font-size: 20px;
+  line-height: 1.2;
   flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--mc-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.service-switcher-menu a:hover .switcher-icon {
+  background: #fff;
+}
+.service-switcher-menu .switcher-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 .service-switcher-menu .switcher-text strong {
   display: block;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--mc-navy);
+  line-height: 1.3;
 }
 .service-switcher-menu .switcher-text small {
   display: block;
   font-size: 11px;
   color: var(--mc-mute);
   font-weight: 500;
-  margin-top: 1px;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* Footer with link to full catalog */
+.service-switcher-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--mc-border);
+  font-size: 11.5px;
+}
+.service-switcher-footer span {
+  color: var(--mc-mute);
+}
+.service-switcher-footer a {
+  padding: 0 !important;
+  color: var(--mc-teal) !important;
+  font-weight: 800 !important;
+  background: transparent !important;
+}
+.service-switcher-footer a:hover {
+  color: var(--mc-navy) !important;
 }
 
 @media (max-width: 720px) {
@@ -2017,11 +2083,15 @@ body:has(.service-subnav) section[id] {
   .service-switcher-trigger { padding: 8px 10px; font-size: 11.5px; }
   .service-switcher-menu {
     left: -4px;
-    min-width: 250px;
-    max-width: calc(100vw - 32px);
+    width: calc(100vw - 32px);
+    max-width: 420px;
+    padding: 14px;
   }
-  .service-switcher-menu a { font-size: 12px; padding: 8px 10px; }
-  .service-switcher-menu .switcher-text small { display: none; }
+  .service-switcher-grid { grid-template-columns: 1fr; gap: 4px; }
+  .service-switcher-col h5 { font-size: 9px; }
+  .service-switcher-menu a { font-size: 12.5px; padding: 9px 10px; gap: 10px; }
+  .service-switcher-menu .switcher-icon { width: 28px; height: 28px; font-size: 16px; }
+  .service-switcher-menu .switcher-text small { font-size: 10.5px; }
 }
 
 /* ============================================
