@@ -1787,6 +1787,8 @@ textarea:focus-visible,
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   border-bottom: 1px solid var(--mc-border);
   box-shadow: 0 2px 12px rgba(27,42,87,0.06);
+  /* CRITICAL: allow the dropdown menu to escape vertically */
+  overflow: visible;
   /* Scroll-anchor offset so #anchor jumps land below both bars */
   scroll-margin-top: calc(var(--header-h, 78px) + 56px);
 }
@@ -1799,15 +1801,15 @@ body:has(.service-subnav) section[id] {
   display: flex;
   align-items: center;
   gap: 4px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  /* CRITICAL: overflow MUST be visible so the absolute-positioned dropdown menu
+     can escape the bounds of the sub-nav. Browsers force overflow-y:hidden
+     when overflow-x is auto/scroll/hidden, which would clip our mega menu. */
+  overflow: visible;
   padding: 8px 16px;
   max-width: 1240px;
   margin: 0 auto;
-  scroll-snap-type: x proximity;
+  flex-wrap: nowrap;
 }
-.service-subnav-inner::-webkit-scrollbar { display: none; }
 
 .service-subnav-brand {
   display: inline-flex;
@@ -1926,11 +1928,21 @@ body:has(.service-subnav) section[id] {
   border-radius: 14px;
   box-shadow: 0 18px 44px rgba(27,42,87,0.16), 0 6px 16px rgba(27,42,87,0.08);
   padding: 18px;
-  z-index: 200;
+  z-index: 9999; /* sit above everything including the launch bar and main header */
   opacity: 0;
   transform: translateY(-6px);
   pointer-events: none;
   transition: opacity .18s ease, transform .18s ease;
+}
+/* Invisible bridge so the dropdown stays open when moving cursor from
+   trigger to menu (no gap-trigger hover loss) */
+.service-switcher-menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 14px;
 }
 .service-switcher:hover .service-switcher-menu,
 .service-switcher.is-open .service-switcher-menu {
