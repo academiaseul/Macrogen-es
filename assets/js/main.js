@@ -19,6 +19,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+  // ========== Main header Servicios mega menu · click-to-pin ==========
+  // The mega menu opens on hover (CSS), but ALSO supports clicking the
+  // "Servicios" link to PIN it open. Useful for keyboard users, mobile, and
+  // users who want to browse the menu without keeping cursor on it.
+  document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+    const trigger = dropdown.querySelector(':scope > a');
+    if (!trigger) return;
+
+    // Click on the trigger toggles the .is-open class (keeps menu pinned)
+    trigger.addEventListener('click', e => {
+      // Only intercept on desktop where the megamenu is shown
+      if (window.innerWidth < 769) return;
+      // Allow default behavior (navigation) on second click
+      if (dropdown.classList.contains('is-open')) {
+        // Second click = let navigation happen
+        return;
+      }
+      e.preventDefault();
+      dropdown.classList.add('is-open');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', e => {
+      if (dropdown.classList.contains('is-open') && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('is-open');
+      }
+    });
+
+    // Close on mouseleave with a small delay (mirror CSS transition)
+    let leaveTimer;
+    dropdown.addEventListener('mouseleave', () => {
+      clearTimeout(leaveTimer);
+      leaveTimer = setTimeout(() => {
+        // Only close if not pinned by click
+        if (!dropdown.classList.contains('is-open')) return;
+        // Auto-unpin only if cursor really left (debounce)
+        if (!dropdown.matches(':hover')) {
+          dropdown.classList.remove('is-open');
+        }
+      }, 500);
+    });
+    dropdown.addEventListener('mouseenter', () => {
+      clearTimeout(leaveTimer);
+    });
+  });
+
+  // Close mega menus on Escape (added once globally)
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.nav-dropdown.is-open').forEach(d => d.classList.remove('is-open'));
+    }
+  });
+
   // ========== Service switcher dropdown · tap-to-toggle for mobile ==========
   // Desktop uses :hover CSS; mobile needs explicit toggle on tap.
   // Also closes on outside click and Escape key.

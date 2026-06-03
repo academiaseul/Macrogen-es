@@ -2415,24 +2415,46 @@ body:has(.service-subnav) section[id] {
   z-index: 150;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .2s ease, transform .2s ease;
+  /* Faster fade-in (250ms), slow fade-out (450ms with 100ms delay) so users
+     have time to move cursor toward the menu without it disappearing */
+  transition: opacity .45s ease .1s, transform .45s ease .1s;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
 .nav-dropdown:hover .nav-megamenu,
-.nav-dropdown:focus-within .nav-megamenu {
+.nav-dropdown:focus-within .nav-megamenu,
+.nav-dropdown.is-open .nav-megamenu {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
+  /* When opening, snappy 0ms delay */
+  transition: opacity .25s ease 0s, transform .25s ease 0s;
 }
+/* Hover bridge — wider invisible zone between trigger and menu so the
+   menu doesn't close while moving the cursor down to it */
 .nav-megamenu::before {
   content: '';
   position: absolute;
-  top: -8px;
+  top: -22px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  /* Catches the mouse in the gap between trigger and menu */
+}
+/* Also extend hover detection on the trigger side */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
   height: 24px;
+  pointer-events: none;
+}
+.nav-dropdown:hover::after,
+.nav-dropdown.is-open::after {
+  pointer-events: auto;
 }
 .megamenu-col h5 {
   font-size: 11px;
