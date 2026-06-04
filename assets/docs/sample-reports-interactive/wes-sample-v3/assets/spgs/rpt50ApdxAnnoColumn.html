@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MACROGEN NGS Report</title>
+<link type="text/css" rel="stylesheet" href="../css/swiper.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/mydatatables.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<script type="text/javascript" language="javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/chart.min.js"></script>
+<script type="text/javascript" src="../js/chartjs-plugin-style.js"></script>
+<script type="text/javascript" src="../js/chart.fnc.js"></script>
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_annotation_column.js"></script>
+<script type="text/javascript" src="../js/func/cmn_data_binding.js"></script>
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/func/cmn_menu.js"></script>
+<script type="text/javascript" language="javascript" src="../js/ui.js"></script>
+
+</head>
+<body>
+<!-- wrapper -->
+<div class="wrapper main main_test expand">
+  <div class="gnb-dim"></div>
+  <!-- gnb-menu -->
+  <div class="gnb-menu-wrap contract scroll-y">
+    <h1 class="logo">
+    	<a href="../../report.html">
+    	<script>
+			logoImagePage(rptjs_main.report_info.countryCode);
+    	</script>
+    	</a>
+    
+    </h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+     
+      <script>userMenu();</script>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+			<script>
+        	leftMenu(rptjs_menu.children,"other");
+
+        	</script>
+		</div>
+        <div class="download">
+          <script>
+            btnPDF(rptjs_main.order_info,"other");
+            </script>
+        </div>
+    </div>
+  </div>
+  <!-- // gnb-menu -->
+  <script>
+	        $('.wrapper, .gnb-menu-wrap').addClass('expand');
+	        $('.wrapper, .gnb-menu-wrap').removeClass('contract');
+  </script>
+	<!-- container -->
+	<div class="container">
+        <div class="header">
+            <strong class="title">Research Use Only</strong>
+            <div class="right">
+               <span class="path">
+                    <script>
+                      topMenu();
+                 	</script>
+                </span>
+            </div>
+        </div>
+        <div class="top-btn">
+            <a href="#">TOP</a>
+        </div>
+		<div class="content">
+
+            <h1 class="title-type1"><script>document.write(rptjs_annotation_column.title);</script><!-- Annotation Column --></h1>
+            <script>
+           for(var desCnt in rptjs_annotation_column.desc){
+            
+            	if(rptjs_annotation_column.desc[desCnt].type=="desc"){
+            		//c-skyblue
+            		for(var ch in rptjs_annotation_column.desc[desCnt].children){
+            			document.write(underTitleDescObjectStyle(rptjs_annotation_column.desc[desCnt],rptjs_annotation_column.desc[desCnt].children[ch]));
+            		}
+            	}
+            } 
+            
+
+                    
+            
+            </script>
+            
+            
+            <div class="top-fixed"> 
+                <div class="fix-wrap">
+                    <div class="tab-btns onlyclick" data-evt="tab-btns">
+                    	<script>
+                    		for(var contentCnt in rptjs_annotation_column.contents){
+                    			switch(rptjs_annotation_column.contents[contentCnt].type){
+                    				case "table-anchor":
+                    					for(var anchorCnt in rptjs_annotation_column.contents[contentCnt].anchor){
+                    						if(anchorCnt==0){
+                    							document.write('<a href="#'+rptjs_annotation_column.contents[contentCnt].anchor[anchorCnt].anchor+'" class="on">'+rptjs_annotation_column.contents[contentCnt].anchor[anchorCnt].text+'</a>');
+                    						}else{
+                    							document.write('<a href="#'+rptjs_annotation_column.contents[contentCnt].anchor[anchorCnt].anchor+'">'+rptjs_annotation_column.contents[contentCnt].anchor[anchorCnt].text+'</a>');
+
+                    						}
+                    					}
+                    					break;
+                    					
+                    			
+                    			}
+                    		}
+                    	</script>
+                        
+                        <div class="tooltip-wrap">
+                            <button class="tooltip"><i class="ico i-tooltip-more"></i></button>
+                            <div class="tooltip-layer" style="width:540px;">
+                                <ul class="list-type1">
+                                <script>
+                                	for(var contentCnt in rptjs_annotation_column.contents){
+		                    			switch(rptjs_annotation_column.contents[contentCnt].type){
+		                    				case "table-anchor":
+		                    					for(var tootipCnt in rptjs_annotation_column.contents[contentCnt].tooltip){
+		                    						for(var ch in rptjs_annotation_column.contents[contentCnt].tooltip[tootipCnt].children){
+		                    							document.write('<li class="'+rptjs_annotation_column.contents[contentCnt].tooltip[tootipCnt].style+'"><b class="c-blue">'+rptjs_annotation_column.contents[contentCnt].tooltip[tootipCnt].children[ch].key+'</b> : '+rptjs_annotation_column.contents[contentCnt].tooltip[tootipCnt].children[ch].value+'</li>');	
+		                    						}
+		                    						
+		                    					}
+		                    			}
+                                }
+                                
+                                </script>
+                                    
+                                </ul>
+                            </div>
+                        </div>                        
+                    </div>
+                    <script>
+                        tabBtns();
+                    </script>
+                </div>
+            </div>
+            
+            <div class="data-list-type2">
+                <div class="list-header">
+                <div class="row">
+
+                    <script>
+                    for(var contentCnt in rptjs_annotation_column.contents){
+              			switch(rptjs_annotation_column.contents[contentCnt].type){
+              			case "table-anchor":
+              				for(var headLen in rptjs_annotation_column.contents[contentCnt].header){
+              					if(headLen>0){
+              						if(headLen ==1){
+              							document.write('<div class="cell" style="width:20%;">'+rptjs_annotation_column.contents[contentCnt].header[headLen]+'</div>');
+              						}else{
+                  						document.write('<div class="cell">'+rptjs_annotation_column.contents[contentCnt].header[headLen]+'</div>');
+
+              						}
+              					}
+              				}
+              				break;
+              				
+            			}
+            		}
+                    </script>
+                    
+                </div>
+                </div>
+                <div class="list-body">
+
+                    
+                   
+                        <script>
+	                       	for(var contentCnt in rptjs_annotation_column.contents){
+	                  			switch(rptjs_annotation_column.contents[contentCnt].type){
+	                  				case "table-anchor":
+	                  					for(var dataCnt in rptjs_annotation_column.contents[contentCnt].data){
+		                  					document.write('<div class="row" id="'+rptjs_annotation_column.contents[contentCnt].data[dataCnt][0]+'">');
+		                  					document.write('<div class="cell tit c-blue" style="width:20%;">'+rptjs_annotation_column.contents[contentCnt].data[dataCnt][1]+'</div>');
+	               							document.write('<div class="cell" style="width:80%;">'+rptjs_annotation_column.contents[contentCnt].data[dataCnt][2]+'</div>');
+	               							document.write('</div>');
+	                  					}
+	                  				break;
+	                  					
+	                  			}
+	                         }
+                                            	
+                        </script>
+                    
+                    
+                </div>
+            </div>
+            
+            </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+	<!-- // container -->
+	<div class="footer">
+		<script type="text/javascript">
+			var yearStr = rptjs_main.order_info.dateReported.split(".");
+			footerCountryCodeTxt(rptjs_main.report_info.countryCode, yearStr[0]);
+		</script>
+	</div>
+</div>
+<!-- // wrapper -->
+
+<!-- layout popup -->
+	<div class="layerpopup" id="popup-map">
+		<div class="dim"></div>
+		<div class="popup" style="width: 1070px;">
+			<a href="javascript:void(0);" class="close" onclick="popClose('#popup-map');"><i class="ico ico-close"></i></a>
+			<div class="pop-header">
+				<p class="pop-tit">Company location</p>
+			</div>
+			<div class="pop-body">
+				<div class="data-img-box">
+					<script>companyLayoutImage("page");</script>
+
+				</div>
+
+				<div style="padding: 0px;">
+					<script>companyLayoutInfo("page");</script>	
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- // layout popup -->
+	<!-- orderinfo_popup -->
+
+	<div class="layerpopup" id="orderinfo_popup">
+		<div class="dim"></div>
+		<div class="popup pop-orderinfo">
+			<a href="javascript:void(0);" class="close" onclick="popClose('#orderinfo_popup');"><i class="ico ico-close"></i></a>
+			<div class="pop-header">
+				<p class="pop-tit pop-custom1-title">Order Information</p>
+			</div>
+			<div class="pop-body">
+				<div style="margin-top: 50px;">
+					<div>
+						<table class="tb-orderinfo" style="width: 779px; table-layout:fixed;">
+							<tr>
+								<td rowspan="3" style="width: 215.9px;"><img style="vertical-align: middle;" src="../images/default_user_logo.png"></td>
+								<td style="width:563px;"><div class="user_info_modal_div_clientNm"><script>document.write(rptjs_main.order_info.clientName);</script></div></td>
+							</tr>
+							<tr><td><div class="user_info_modal_div_clientOrg"><script>document.write(rptjs_main.order_info.clientOrganization);</script></div></td></tr>
+							<tr><td>
+									<span class="user_info_modal_div_txt4">Order Number</span>
+									<span class="user_info_modal_div_txt5"><script>document.write(rptjs_main.order_info.orderNumber);</script></span>
+							</td></tr>
+						</table>
+					</div>
+				</div>
+				<div style="margin-top: 70px; margin-bottom: 10px;">
+					<div>
+						<table class="tb-orderinfo-data" style="width: 779px; table-layout:fixed; border-left: 2px solid #ffffff;">
+							<script>
+								for(var strCnt in rptjs_main.order_info.extra_info.header){
+									document.write("<tr><td style='width:215.9px;'><span class='user_info_modal_div_txt6'>"+rptjs_main.order_info.extra_info.header[strCnt+1]+"</span><td><td class='user_info_modal_div_txt7' style='width:563px; white-space:pre-line;'>"+rptjs_main.order_info.extra_info.data[strCnt]+"<td><tr>");
+								}
+							</script>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- //orderinfo_popup -->
+
+</body>
+
+</html>

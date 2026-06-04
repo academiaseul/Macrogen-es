@@ -1,0 +1,148 @@
+@charset "utf-8";
+
+/* Reset */
+* {
+    box-sizing: border-box;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+}
+
+.reset {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* fontStyle */
+tt, i, b, u, s, strike, big, small,
+/* phrase */
+em, strong, dfn, code, samp, kbd, var, cite, abbr, acronym,
+/* special */
+a {
+    text-decoration: none;
+}
+
+a:link, a:hover, a:active {
+    text-decoration: none;
+}
+
+img, applet, object, font, basefont, br, script, map, q, sub, sup, span, bdo, iframe,
+/* formctrl */
+input, select, textarea, label, button,
+/* document */
+address, div,
+p, h1, h2, h3, h4, h5, h6, pre, blockquote, ins, del, dl, dt, dd, ul, ol, li, dir, menu, form, option, fieldset, legend, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    border: 0;
+    clear: both;
+    display: block;
+    width: 96%;
+    background-color: #ddd;
+    height: 1px;
+}
+
+img {
+    font-size: 1%;
+    line-height: 1;
+    border: 0;
+    vertical-align: middle;
+}
+
+ul, ol, dl {
+    list-style: none;
+}
+
+/* Opera 9 & Below Fix */
+option {
+    padding-right: 6px
+}
+
+/* Base */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+    font-family: Calibri;
+    min-height: 100%;
+}
+
+
+.top {
+    vertical-align: top;
+}
+
+.bottom {
+    vertical-align: bottom;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.floatR {
+    float: right;
+}
+
+.floatL {
+    float: left;
+}
+
+.alignR {
+    text-align: right;
+}
+
+.alignL {
+    text-align: left;
+}
+
+.alignC {
+    text-align: center;
+}
+
+/* Layout */
+
+.clear {
+    clear: both;
+}
+
+/* Link */
+a:link {
+    color: #70B9C8;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #5F79A9;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #70B9C8;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #5F79A9;
+    text-decoration: none;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+}
+
+.container {
+    height: 100%;
+    min-height: 100%;
+    position: relative;
+}

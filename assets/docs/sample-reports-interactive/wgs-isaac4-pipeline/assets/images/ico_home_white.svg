@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22.954" height="22.829" viewBox="0 0 22.954 22.829">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+        stroke: #fff;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        stroke-width: 3px;
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-4 {
+        fill: #4e64c0;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="패스_25719" data-name="패스 25719" class="cls-1" d="M290.592,397.292v7.443h6.836V391.781l-9.978-6.875h0l-9.978,6.875v12.953h6.836v-7.443Z" transform="translate(-277.474 -384.906)"/>
+    </clipPath>
+  </defs>
+  <g id="그룹_5893" data-name="그룹 5893" transform="translate(-30.524 -110.586)">
+    <g id="Icon_Perm_Identity_Rounded" data-name="Icon / Perm Identity / Rounded" transform="translate(20 100)">
+      <g id="그룹_5074" data-name="그룹 5074" transform="translate(1.024 2.086)">
+        <path id="패스_25719-2" data-name="패스 25719" class="cls-2" d="M290.592,397.292v7.443h6.836V391.781l-9.978-6.875h0l-9.978,6.875v12.953h6.836v-7.443Z" transform="translate(-266.475 -374.906)"/>
+        <g id="마스크_그룹_55" data-name="마스크 그룹 55" class="cls-3" transform="translate(10.999 10)">
+          <path id="패스_25720" data-name="패스 25720" class="cls-4" d="M8.268,0C14.813,0,21.853,4.089,22.84,5.681s-.063,12.288-6.608,12.288-12.4-.533-14.748-8.114S1.724,0,8.268,0Z" transform="matrix(0.766, -0.643, 0.643, 0.766, -2.253, 17.554)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

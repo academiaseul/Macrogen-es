@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="18">
+    <defs>
+        <style>
+            .cls-4{stroke:none}.cls-5{fill:none}
+        </style>
+    </defs>
+    <g id="그룹_6295" data-name="그룹 6295" transform="translate(-1080 -1034)">
+        <g id="사각형_1023" data-name="사각형 1023" transform="translate(1080 1034)" style="stroke:#4e64c0;fill:#fff">
+            <rect class="cls-4" width="24" height="18" rx="3"/>
+            <rect class="cls-5" x=".5" y=".5" width="23" height="17" rx="2.5"/>
+        </g>
+        <path id="패스_26072" data-name="패스 26072" d="m-8550-15119.992 3.584-3.051 5.634 3.051 7.917-6.18 5.322 6.18v2.728a3.326 3.326 0 0 1-3.16 1.631c-2.387-.028-17.627 0-17.627 0a3.44 3.44 0 0 1-2.068-1.631c.054.205.02.105 0 0a10.519 10.519 0 0 1 0-2.728z" transform="translate(9631 16167)" style="stroke-linecap:round;stroke-linejoin:round;stroke-width:.8px;fill:#4e64c0;stroke:#4e64c0"/>
+        <g id="타원_489" data-name="타원 489" transform="translate(1084 1037)" style="stroke-width:.5px;fill:#4e64c0;stroke:#4e64c0">
+            <circle class="cls-4" cx="2.5" cy="2.5" r="2.5"/>
+            <circle class="cls-5" cx="2.5" cy="2.5" r="2.25"/>
+        </g>
+    </g>
+</svg>

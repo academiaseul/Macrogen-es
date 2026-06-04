@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+<link type="text/css" rel="stylesheet" href="../css/swiper.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/mydatatables.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<script type="text/javascript" language="javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/chart.min.js"></script>
+<script type="text/javascript" src="../js/chartjs-plugin-style.js"></script>
+<script type="text/javascript" src="../js/chart.fnc.js"></script>
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_result_per_sample.js"></script>
+<script type="text/javascript" src="../js/func/cmn_data_binding.js"></script>
+<script type="text/javascript" src="../js/func/cmn_data_bindings_2.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/func/cmn_menu.js"></script>
+<script type="text/javascript" language="javascript" src="../js/ui.js"></script>
+
+
+<style type="text/css">
+/* .pad-wrap2{padding:0 40px;} */
+.statistics-box .box.auto {
+    flex: 1;
+    width: 50%;
+}
+.border-type {
+    border-bottom: none !important;
+}
+
+.slider-header {
+    display: flex;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.slider-tit{
+	font-size: 36px;
+    font-weight: bold;
+    color: #223a9d;
+    margin-right: 20px;
+    margin-top: -6px;
+}
+
+</style>
+
+<script type="text/javascript">
+	let chartId;
+</script>
+
+</head>
+<body>
+<!-- wrapper -->
+<div class="wrapper main main_test expand">
+  <div class="gnb-dim"></div>
+  <!-- gnb-menu -->
+  <div class="gnb-menu-wrap contract scroll-y">
+    <h1 class="logo">
+    	<a href="../../report.html">
+    		<script>logoImagePage(rptjs_main.report_info.countryCode);</script>
+    	</a>
+    </h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+      <script>userMenu();</script>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+			<script>
+        		leftMenu(rptjs_menu.children,"other");
+        	</script>	
+		</div>
+        <div class="download">
+            <script>
+            	btnPDF(rptjs_main.order_info,"other");
+            </script>
+        </div>
+    </div>
+  </div>
+  <!-- // gnb-menu -->
+
+<script>
+    $('.wrapper, .gnb-menu-wrap').addClass('expand');
+    $('.wrapper, .gnb-menu-wrap').removeClass('contract');
+</script>
+
+
+
+
+<!-- container -->
+<div class="container">
+	<div class="header">
+        <strong class="title">Research Use Only</strong>
+        <div class="right">
+           <span class="path">
+				<script>topMenu();</script>
+            </span>
+        </div>
+	</div>
+
+	<div class="top-btn"><a href="#">TOP</a></div>
+    	
+	<div class="content">
+    		<div class="slider-header">
+	            <h1 class="title-type1">Result per Sample</h1>
+	            <div style="margin-left:30px; margin-top:10px;">
+		            <select style="width:180px;" id="topSelectBox">
+		            	<script>
+		            		for(var tabLen in rptjs_result_per_sample.tabs){
+		            			if(tabLen == 0){
+		            				document.write('<option value="mainTab_'+tabLen+'" selected>'+rptjs_result_per_sample.tabs[tabLen]+'</option>');
+		            			}else {
+		            				document.write('<option value="mainTab_'+tabLen+'">'+rptjs_result_per_sample.tabs[tabLen]+'</option>');
+		            			}
+		            		}
+		            	</script>
+		                
+		            </select>
+	            </div>
+	        </div>
+    		<div class="info-top-wrap">
+	            <div class="slider">
+	                    <div class="swiper-container text-slider">
+	                        <div class="swiper-wrapper">
+		                        <script>
+		                        	var tabSlider="";
+	                        		for(var tabLen in rptjs_result_per_sample.tabs){
+	                        			if(tabLen == 0){
+	                        				document.write('<div class="swiper-slide on">');
+	                        			}else {
+	                        				document.write('<div class="swiper-slide">');
+	                        			}
+	                        			document.write('<a href="javascript:void(0);" id="mainTab_'+tabLen+'" data-id="'+tabLen+'" data-tab-id="tab_'+tabLen+'">'+rptjs_result_per_sample[rptjs_result_per_sample.tabs[tabLen]].tabName+'</a>');	
+	                        			document.write('</div>');
+	                        		}
+	                        	</script>
+	                        </div>
+	                        <div class="swiper-button-next"></div>
+	                        <div class="swiper-button-prev"></div>
+	                    </div>
+	                </div>
+            </div>
+   </div>
+          
+            
+            
+	<div class="pop-body">
+            <script>
+           
+           		let html="";
+            	
+            	for(var tabsLen in rptjs_result_per_sample.tabs){
+
+            		var tabNameId=rptjs_result_per_sample.tabs[tabsLen];
+            		let tabObj = rptjs_result_per_sample[tabNameId];
+
+            		
+            		if(tabsLen == 0){
+            			html+='<div class="tab-wrap" id="tab_'+tabsLen+'">';
+            		}else{
+            			html+='<div class="tab-wrap" id="tab_'+tabsLen+'" style="display:none">';
+            		}
+            		
+
+            			tabObj.sections.forEach(function(sectionID, secIdx){
+							let sectionObj = tabObj[sectionID];
+							let sectionTitle =  sectionObj.title;
+
+							switch(sectionID){
+                        		case "fastqStatistics":{
+                        			html+='<div class="pad-wrap"><div class="statistics-box">';
+					                    html+='<div class="box">';
+						                    if( sectionTitle.includes("Trimmed") ){
+						                    	html+='<div class="title-box tag"><span class="title-tag">Trimmed</span>';
+						                    }else{
+						                    	html+='<div class="title-box">';
+						                    }	                        
+					                    	var titleArr= (sectionObj.title).split(" ");
+				    					 	for(var len in titleArr){
+					    					 	if(len == 0){ html+='<b>'+titleArr[len]+'</b>'; }else{ html+= (titleArr[len]+"&nbsp;"); }
+				    						}
+			                            html+='</div></div>';
+	                        			sectionObj.contents.forEach(function(sectionCttObj, cttIdx){
+	                        				switch(sectionCttObj.type){
+				                        		case "table":{
+				                        			html+='<div class="box statistics-munber">';
+				                        				sectionCttObj.header.forEach(function(colName, colIdx){
+				                        					html+='<div class="num-row">';
+					                        					html+='<div class="label">'+colName+'</div>';
+					                        					if(colIdx == 0){
+					                        						html+='<div class="num-type1 c-blue">'+sectionCttObj.data[0][colIdx]+'</div>';
+					                        					}else{
+					                        						html+='<div class="num-type1 c-green">'+sectionCttObj.data[0][colIdx]+'</div>';
+					                        					}
+				                        					html+='</div>';
+				                        				});
+			                            			html+='</div>';
+				                        		}; break;
+				                        		case "plot-bar":{
+				                        			chartId = "bar-chart_"+tabNameId+"_"+secIdx+"_"+cttIdx;
+				                        			html+='<div class="box chart mgt">';
+							                        html+='<canvas id="'+chartId+'" class="bar-chart" style="height:250px;width:100%;"></canvas>';
+							                        html+='</div>';
+				                        		}; break;
+				                        		case "button":{}; break;
+				                        		case "plot-circle":{}; break;
+				                        		case "plot-line":{}; break;
+				                        	}
+	                        			});
+                        			html+='</div></div>';
+                        		}; break;
+                        		case "trimmedFastqStatistics":{
+                        			html+='<div class="pad-wrap"><div class="statistics-box">';
+					                    html+='<div class="box">';
+						                    if( sectionTitle.includes("Trimmed") ){
+						                    	html+='<div class="title-box tag"><span class="title-tag">Trimmed</span>';
+						                    }else{
+						                    	html+='<div class="title-box">';
+						                    }	                        
+					                    	var titleArr= (sectionObj.title).split(" ");
+				    					 	for(var len in titleArr){
+					    					 	if(len == 0){ html+='<b>'+titleArr[len]+'</b>'; }else{ html+= (titleArr[len]+"&nbsp;"); }
+				    						}
+			                            html+='</div></div>';
+	                        			sectionObj.contents.forEach(function(sectionCttObj, cttIdx){
+	                        				switch(sectionCttObj.type){
+				                        		case "table":{
+				                        			html+='<div class="box statistics-munber">';
+				                        				sectionCttObj.header.forEach(function(colName, colIdx){
+				                        					html+='<div class="num-row">';
+					                        					html+='<div class="label">'+colName+'</div>';
+					                        					if(colIdx == 0){
+					                        						html+='<div class="num-type1 c-blue">'+sectionCttObj.data[0][colIdx]+'</div>';
+					                        					}else{
+					                        						html+='<div class="num-type1 c-green">'+sectionCttObj.data[0][colIdx]+'</div>';
+					                        					}
+				                        					html+='</div>';
+				                        				});
+			                            			html+='</div>';
+				                        		}; break;
+				                        		case "plot-bar":{
+				                        			chartId = "bar-chart_"+tabNameId+"_"+secIdx+"_"+cttIdx;
+				                        			html+='<div class="box chart mgt">';
+							                        html+='<canvas id="'+chartId+'" class="bar-chart" style="height:250px;width:100%;"></canvas>';
+							                        html+='</div>';
+				                        		}; break;
+				                        		case "button":{}; break;
+				                        		case "plot-circle":{}; break;
+				                        		case "plot-line":{}; break;
+				                        	}
+	                        			});
+                        			html+='</div></div>';
+                        		}; break;
+                        		case "referenceInformation":{
+                        			html+='<div class="pad-wrap"><div class="statistics-box">';
+					                    html+='<div class="box">';
+						                    html+='<div class="title-box">';                    
+					                    	var titleArr= (sectionObj.title).split(" ");
+				    					 	for(var len in titleArr){
+					    					 	if(len == 0){ html+='<b>'+titleArr[len]+'</b>'; }else{ html+= (titleArr[len]+"&nbsp;"); }
+				    						}
+			                            html+='</div></div>';
+	                        			sectionObj.contents.forEach(function(sectionCttObj, cttIdx){
+	                        				switch(sectionCttObj.type){
+				                        		case "table":{
+				                        				sectionCttObj.header.forEach(function(colName, colIdx){
+				                        					html+='<div class="box statistics-munber"><div class="num-row">';
+					                        					html+='<div class="label">'+colName+'</div>';
+					                        					if(colIdx == 0){
+					                        						html+='<div class="num-type1 c-blue">'+sectionCttObj.data[0][colIdx]+'</div>';
+					                        					}else{
+					                        						html+='<div class="num-type1">'+sectionCttObj.data[0][colIdx]+'</div>';
+					                        					}
+				                        					html+='</div></div>';
+				                        				});
+				                        		}; break;
+				                        		case "plot-bar":{}; break;
+				                        		case "button":{}; break;
+				                        		case "plot-circle":{}; break;
+				                        		case "plot-line":{}; break;
+				                        	}
+	                        			});
+                        			html+='</div></div>';
+                        		}; break;
+
+                        		case "alignmentStatistics":{
+                        			let chkAnotherChart = false;
+                        			html+='<div class="pad-wrap"><div class="statistics-box">';
+					                    html+='<div class="box">';
+						                    if( sectionTitle.includes("Trimmed") ){
+						                    	html+='<div class="title-box tag"><span class="title-tag">Trimmed</span>';
+						                    }else{
+						                    	html+='<div class="title-box">';
+						                    }	                        
+					                    	var titleArr= (sectionObj.title).split(" ");
+				    					 	for(var len in titleArr){
+					    					 	if(len == 0){ html+='<b>'+titleArr[len]+'</b>'; }else{ html+= (titleArr[len]+"&nbsp;"); }
+				    						}
+			                            html+='</div></div>';
+	                        			sectionObj.contents.forEach(function(sectionCttObj, cttIdx){
+	                        				switch(sectionCttObj.type){
+				                        		case "table":{
+				                        			html+='<div class="box statistics-munber">';
+				                        				sectionCttObj.header.forEach(function(colName, colIdx){
+				                        					html+='<div class="num-row">';
+					                        					html+='<div class="label">'+colName+'</div>';
+					                        					if(colIdx == 0){
+					                        						html+='<div class="num-type1 c-blue">'+sectionCttObj.data[0][colIdx]+'</div>';
+					                        					}else{
+					                        						html+='<div class="num-type1 c-green">'+sectionCttObj.data[0][colIdx]+'</div>';
+					                        					}
+				                        					html+='</div>';
+				                        				});
+			                            			html+='</div>';
+				                        		}; break;
+				                        		case "plot-bar":{}; break;
+				                        		case "button":{}; break;
+				                        		case "plot-circle":{
+				                        			chartId = "circle-chart_1_"+tabNameId+"_"+secIdx+"_"+cttIdx;
+			                        				html+='<div class="box chart">';
+						                        	 	html+='<div class="circle-chart-list">';
+							                        	 	html+='<div class="chart-wrap">';
+								                        	 	if(secIdx%2==1){
+									                        	 	html+='<div class="circle-chart blue" style="width:100px;height:100px;">';
+								                        	 	}else{
+										                        	html+='<div class="circle-chart green" style="width:100px;height:100px;">';
+								                        	 	}
+								                        	 	html+='<b class="per-text type3">'+sectionCttObj.data.datasets[0].data+'</b>';
+								                        	 	html+='<canvas id="'+chartId+'"></canvas>';
+
+							                                   	html+='</div>';
+							                                   	html+='<p class="txt2">'+(sectionCttObj.data.datasets[0].label).replace(" reads","<br/>reads")+'</p>';
+						                                   	html+='</div>';
+					                                   	html+='</div>';
+				                                   	html+='</div>';
+				                        		}; break;
+				                        		case "plot-line":{
+				                        			chkAnotherChart = true;
+				                        		}; break;
+				                        	}
+	                        			});
+                        			html+='</div></div>';
+
+
+                        			if(chkAnotherChart){
+                        				html+='<div class="pad-wrap"><div class="statistics-box">';
+		                        			sectionObj.contents.forEach(function(sectionCttObj, cttIdx){
+		                        				switch(sectionCttObj.type){
+					                        		case "table":{}; break;
+					                        		case "plot-bar":{}; break;
+					                        		case "button":{}; break;
+					                        		case "plot-circle":{}; break;
+					                        		case "plot-line":{
+					                        			chartId = "lineChartCanvas_"+tabNameId+"_"+secIdx+"_"+cttIdx;
+					                        			html+='<div class="box auto pad-wrap2">';
+					    								html+='<div class="label-wrap">';
+					    								html+='<div class="tit-box">';
+					    								html+=sectionCttObj.title;
+					    								html+='</div>';
+					    								html+='<div class="labels">';
+					    								html+='<div class="cellbox">';
+						    	                        	for(var ddlen in sectionCttObj.data.datasets){
+						   										html+='<div class="row">';
+							   										switch(ddlen){
+								   										case "0": {
+								   											if(sectionCttObj.title!="Insert Statistics"){
+								   												html+='<div class="cell"><span class="label"><i style=" width: 20px; height: 4px; background-color: #008e8c;"></i><b class="txt">'+sectionCttObj.data.datasets[ddlen].label+'</b></span></div>';
+								   											}else{
+								   												html+='<div class="cell"><span class="label"><i style=" width: 20px; height: 4px; background-color: #4e64c0;"></i><b class="txt">'+sectionCttObj.data.datasets[ddlen].label+'</b></span></div>';	
+								   											}
+							   											}; break;
+								   										case "1":{
+								   											html+='<div class="cell"><span class="label"><i style=" width: 20px; height: 4px; background-color: #e5005a;"></i><b class="txt">'+sectionCttObj.data.datasets[ddlen].label+'</b></span></div>';
+							   											}; break;
+							   											
+							   										}
+						   										html+='</div>'; 
+						    								}
+					    								html+='</div>';
+					    								html+='</div>';
+					    								html+='</div>';
+					    								html+='<div class="chart" style="width: 90%; height: 380px;">';
+					    								html+='<canvas id="'+chartId+'"></canvas>';
+					    								html+='</div>';
+					    			                    html+='</div>';
+					                        		}; break;
+					                        	}
+		                        			});
+	                        			html+='</div></div>';
+                        			}
+
+
+                        		}; break;
+                        		case "variantStatistics":{
+                        			html+='<div class="pad-wrap"><div class="statistics-box">';
+					                    html+='<div class="box">';
+						                    if( sectionTitle.includes("Trimmed") ){
+						                    	html+='<div class="title-box tag"><span class="title-tag">Trimmed</span>';
+						                    }else{
+						                    	html+='<div class="title-box">';
+						                    }	                        
+					                    	var titleArr= (sectionObj.title).split(" ");
+				    					 	for(var len in titleArr){
+					    					 	if(len == 0){ html+='<b>'+titleArr[len]+'</b>'; }else{ html+= (titleArr[len]+"&nbsp;"); }
+				    						}
+			                            html+='</div></div>';
+	                        			sectionObj.contents.forEach(function(sectionCttObj, cttIdx){
+	                        				switch(sectionCttObj.type){
+				                        		case "table":{}; break;
+				                        		case "plot-bar":{}; break;
+				                        		case "button":{}; break;
+				                        		case "plot-circle":{}; break;
+				                        		case "plot-line":{}; break;
+				                        		case "plot-html":{
+				                        			html+='<div class="box chart">';
+					                        		html+='<iframe class="iframHtml iframStyle"  src="../files/'+sectionCttObj.htmlPath[0]+'" frameborder="0" style="width:100%; height:830px;"></iframe>';
+					                        		html+='</div>';
+				                        		}; break;
+				                        	}
+	                        			});
+                        			html+='</div></div>';
+                        		}; break;
+                        		case "circos":{
+                        			html+='<div class="pad-wrap"><div class="statistics-box">';
+					                    html+='<div class="box">';
+						                    if( sectionTitle.includes("Trimmed") ){
+						                    	html+='<div class="title-box tag"><span class="title-tag">Trimmed</span>';
+						                    }else{
+						                    	html+='<div class="title-box">';
+						                    }	                        
+					                    	var titleArr= (sectionObj.title).split(" ");
+				    					 	for(var len in titleArr){
+					    					 	if(len == 0){ html+='<b>'+titleArr[len]+'</b>'; }else{ html+= (titleArr[len]+"&nbsp;"); }
+				    						}
+			                            html+='</div></div>';
+	                        			sectionObj.contents.forEach(function(sectionCttObj, cttIdx){
+	                        				switch(sectionCttObj.type){
+				                        		case "table":{}; break;
+				                        		case "plot-bar":{}; break;
+				                        		case "button":{}; break;
+				                        		case "plot-circle":{}; break;
+				                        		case "plot-line":{}; break;
+				                        		case "plot-html":{}; break;
+				                        		case "img":{
+				                        			html+='<div class="box chart">';
+					                        			html+='<img src="../files/'+sectionCttObj.path+'" style="width:75%;" alt="">';
+						                        		if(sectionCttObj.desc.length>0){
+
+							                        		html+='<div class="description">Show Description';
+
+								                        		html+='<div class="tooltip-wrap">';
+								                        			html+='<button class="tooltip" onmouseover="$(this).parents(\'.swiper-wrapper\').addClass(\'tooltip-on\');" onmouseout="$(this).parents(\'.swiper-wrapper\').removeClass(\'tooltip-on\');">';
+								                        			html+='<i class="ico i-tooltip-more"></i></button>';
+
+									                        		html+='<div class="tooltip-layer" style="width:600px;">';
+										                        		html+='<div class="circos-detail-ext">';
+											                        		for(var descLen in sectionCttObj.desc){
+											                        		 	html+='<img src="../files/'+sectionCttObj.desc[descLen].path+'" alt="">';
+											                        		}
+										                        		html+='</div>';
+									                        		html+='</div>';
+
+								                        		html+='</div>';
+
+							                        		html+='</div>';
+
+						                        		}
+					                        		html+='</div>';
+				                        		}; break;
+				                        	}
+	                        			});
+                        			html+='</div></div>';
+                        		}; break;
+
+                        		case "cnvProfiling":{
+                        			html+='<div class="pad-wrap"><div class="statistics-box">';
+					                    html+='<div class="box">';
+						                    if( sectionTitle.includes("Trimmed") ){
+						                    	html+='<div class="title-box tag"><span class="title-tag">Trimmed</span>';
+						                    }else{
+						                    	html+='<div class="title-box">';
+						                    }	                        
+					                    	var titleArr= (sectionObj.title).split(" ");
+				    					 	for(var len in titleArr){
+					    					 	if(len == 0){ html+='<b>'+titleArr[len]+'</b>'; }else{ html+= (titleArr[len]+"&nbsp;"); }
+				    						}
+			                            html+='</div></div>';
+	                        			sectionObj.contents.forEach(function(sectionCttObj, cttIdx){
+	                        				switch(sectionCttObj.type){
+				                        		case "table":{}; break;
+				                        		case "plot-bar":{}; break;
+				                        		case "button":{}; break;
+				                        		case "plot-circle":{}; break;
+				                        		case "plot-line":{}; break;
+				                        		case "img":{
+				                        			html+='<div class="box chart">';
+					                        			html+='<img src="../files/'+sectionCttObj.path+'" alt="">';
+					                        		html+='</div>';
+				                        		}; break;
+				                        	}
+	                        			});
+                        			html+='</div></div>';
+                        		}; break;
+
+
+                        	}
+
+							html+='<div class="hor-line"></div>';
+						});
+
+            		html+='</div>'; //tab-wrap close
+            	}
+
+            	document.write(html);
+            	
+            </script>
+
+    </div>
+
+
+        
+
+</div><!-- // container -->
+	
+
+<div class="footer" id="footer">
+	<script type="text/javascript">
+			var yearStr = rptjs_main.order_info.dateReported.split(".");
+			footerCountryCodeTxt(rptjs_main.report_info.countryCode, yearStr[0]);
+		</script>
+</div>
+
+
+</div><!-- // wrapper -->
+
+
+
+
+
+<script>
+    /* popOpen('#popup') */
+    var tab = rptjs_result_per_sample.tabs.length;
+    tabSwiper(0, tab);
+    tabEvt();
+    
+    var footerTop=0;
+    $(".tooltip").mouseover(function(){
+        if(footerTop<=0){
+        var tooltip = document.querySelector('.tooltip-layer');
+        var div_footer = document.querySelector('.footer').getBoundingClientRect().top;
+        var positionTop = tooltip.getBoundingClientRect().top + tooltip.getBoundingClientRect().height;
+        //alert("positionTop::"+positionTop+"????"+div_footer);
+        var value = positionTop-div_footer+100;
+        if(positionTop > div_footer){
+          //alert("value::"+value);
+          $("#footer").css("margin-top",value);
+          footerTop = value;
+        }
+      }
+       
+  	});
+    
+    
+   
+
+var barChartColor = ["#223a9d","#21b3b3"];
+
+for(var tabsLen in rptjs_result_per_sample.tabs){
+	var tabNameId=rptjs_result_per_sample.tabs[tabsLen];
+
+	for(var sectionLen in rptjs_result_per_sample[rptjs_result_per_sample.tabs[tabsLen]].sections){
+
+		var obj = rptjs_result_per_sample[rptjs_result_per_sample.tabs[tabsLen]][rptjs_result_per_sample[rptjs_result_per_sample.tabs[tabsLen]].sections[sectionLen]];
+
+			for(var contentsLen in obj.contents){
+				let mycircleChart; 
+				var mybarChart ;
+				var myreadLengthChart ;
+				var mysubreadLengthChart;
+	
+				switch(obj.contents[contentsLen].type){
+					case "plot-circle":
+						var bgcolor="";
+						var data="";
+						var percentage="";
+						if(contentsLen%2==1){ bgcolor=['#4e64c0', 'rgba(0,0,0,0)'];
+						}else{ bgcolor=['#06b2b0', 'rgba(0,0,0,0)'] }
+						data= [obj.contents[contentsLen].data.datasets[0].data, 100-obj.contents[contentsLen].data.datasets[0].data];
+						if(mycircleChart instanceof Chart){ mycircleChart.destroy(); }
+						mycircleChart = circleChart({
+						id:'circle-chart_1_'+tabNameId+"_"+sectionLen+"_"+contentsLen,
+						    data:data, bgColor:bgcolor, count:'43'
+						 });
+	            	break;
+					case "plot-bar":
+						var bgcolor="";
+						var barChartData = new Array();
+						for(var dataLen in obj.contents[contentsLen].data.datasets){
+							if(dataLen%2==0){
+								bgcolor=barChartColor[0];
+							}else{
+								bgcolor=barChartColor[1];
+							}
+							var data = {
+									type: "bar",
+									data: obj.contents[contentsLen].data.datasets[dataLen].data,
+									bgColor: bgcolor
+							};
+							barChartData.push(data);
+						}
+						if(mybarChart instanceof Chart){ mybarChart.destroy(); }
+						 mybarChart= barChart({
+						        id:'bar-chart_'+tabNameId+"_"+sectionLen+"_"+contentsLen,
+						        label: obj.contents[contentsLen].data.labels,
+						        data: barChartData,
+						        options:{
+						            maxBarThickness: 18,
+						            barThickness: 18,
+						            scales:{
+						                x:{
+						                    ticks:{ color : '#212121', font:{size:18}},
+						                }
+						            }
+						        },topvalue : true,
+						    });					
+						break;
+						
+					case "plot-line":
+						var labelArr = new Array();
+						var len = (obj.contents[contentsLen].data.datasets).length;
+						var labelArr1 = ["Proportion of target bases","Cumulative fraction of target"];
+						
+						switch(len){
+							case 1:
+								var label= {
+	                            	label:'Read Count'
+	                        	};
+								labelArr.push(label);
+								if(readLengthChart instanceof Chart){ readLengthChart.destroy(); }
+								myreadLengthChart = readLengthChart({
+									id:"lineChartCanvas_"+tabNameId+"_"+sectionLen+"_"+contentsLen,
+			                        labelArr: obj.contents[contentsLen].data.labels,
+			                        data1Arr: obj.contents[contentsLen].data.datasets[0].data,
+			                        colorType: 'type1',
+			                        options:{
+			                            scales:{
+			                                y:{
+			                                    title:{text: 'Read Count'},
+			                                    grid: {
+			                                        tickLength:5,
+			                                        tickColor:'#dde0e3',
+			                                        color: function(context) {
+			                                        if (context.tick.value > 0) {
+			                                            return 'rgba(0,0,0,0)';
+			                                        }
+			                                        return '#dde0e3';
+			                                        },
+			                                    },
+			                                },
+			                                x:{
+			                                    title:{text: obj.contents[contentsLen].data.datasets[0].label},
+			                                    grid: {
+			                                        display:true,
+			                                        color: function(context) {
+			                                        if (context.tick.value > 0) {
+			                                            return 'rgba(0,0,0,0)';
+			                                        }
+			                                        return '#dde0e3';
+			                                        },
+			                                    },
+			                                }
+			                            }
+			                        }
+			                    });
+								break;
+								
+							case 2:
+								for(var i=0; i<len ; i++){
+									var label= {
+				                            label: labelArr1[i]
+				                        };
+									labelArr.push(label);
+								}
+		                        if(mysubreadLengthChart instanceof Chart)
+			                    {
+		                        	mysubreadLengthChart.destroy();
+			                    }
+		                        mysubreadLengthChart = subreadLengthChart({
+		                            id:"lineChartCanvas_"+tabNameId+"_"+sectionLen+"_"+contentsLen,
+		                            dataset: labelArr,
+		                            xLabel:'Coverage Depth'
+		                        });
+							break;
+							
+						}
+					break;	
+	            }
+        	}
+    }
+}
+    
+    
+    
+    
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<div class="layerpopup full" id="popup">
+	<div class="dim"></div>
+    <div class="popup">
+        <a href="javascript:void(0);" class="close" onclick="popClose('#popup');"><i class="ico ico-close"></i></a>
+        <div class="pop-header">
+            <p class="pop-tit">document.write(rptjs_result_per_sample.title);<!-- Result per Sample --></p>
+            <select style="width:180px;" placeholder="Select">
+                <option value="">Select Dataset</option>
+                <option value="">Select Dataset</option>
+            </select>
+        </div>
+        
+        <!-- // pop-body -->
+    </div>
+</div>
+
+
+
+
+<!-- layout popup -->
+<div class="layerpopup" id="popup-map">
+	<div class="dim"></div>
+	<div class="popup" style="width: 1070px;">
+		<a href="javascript:void(0);" class="close" onclick="popClose('#popup-map');"><i class="ico ico-close"></i></a>
+		<div class="pop-header">
+			<p class="pop-tit">Company location</p>
+		</div>
+		<div class="pop-body">
+			<div class="data-img-box">
+				<script>companyLayoutImage("page");</script>
+
+			</div>
+
+			<div style="padding: 0px;">
+				<script>companyLayoutInfo("page");</script>	
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- // layout popup -->
+
+<!-- orderinfo_popup -->
+<div class="layerpopup" id="orderinfo_popup">
+	<div class="dim"></div>
+	<div class="popup pop-orderinfo">
+		<a href="javascript:void(0);" class="close" onclick="popClose('#orderinfo_popup');"><i class="ico ico-close"></i></a>
+		<div class="pop-header">
+			<p class="pop-tit pop-custom1-title">Order Information</p>
+		</div>
+		<div class="pop-body">
+			<div style="margin-top: 50px;">
+				<div>
+					<table class="tb-orderinfo" style="width: 779px; table-layout:fixed;">
+						<tr>
+							<td rowspan="3" style="width: 215.9px;"><img style="vertical-align: middle;" src="../images/default_user_logo.png"></td>
+							<td style="width:563px;"><div class="user_info_modal_div_clientNm"><script>document.write(rptjs_main.order_info.clientName);</script></div></td>
+						</tr>
+						<tr><td><div class="user_info_modal_div_clientOrg"><script>document.write(rptjs_main.order_info.clientOrganization);</script></div></td></tr>
+						<tr><td>
+								<span class="user_info_modal_div_txt4">Order Number</span>
+								<span class="user_info_modal_div_txt5"><script>document.write(rptjs_main.order_info.orderNumber);</script></span>
+						</td></tr>
+					</table>
+				</div>
+			</div>
+			<div style="margin-top: 70px; margin-bottom: 10px;">
+				<div>
+					<table class="tb-orderinfo-data" style="width: 779px; table-layout:fixed; border-left: 2px solid #ffffff;">
+						<script>
+							for(var strCnt in rptjs_main.order_info.extra_info.header){
+								document.write("<tr><td style='width:215.9px;'><span class='user_info_modal_div_txt6'>"+rptjs_main.order_info.extra_info.header[strCnt]+"</span><td><td class='user_info_modal_div_txt7' style='width:563px; white-space:pre-line;'>"+rptjs_main.order_info.extra_info.data[strCnt]+"<td><tr>");
+							}
+						</script>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //orderinfo_popup -->
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

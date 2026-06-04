@@ -1,0 +1,31 @@
+html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
+
+.faq_default_question {
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    color: #4e64c0;
+}
+
+.faq_default_answer {
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.63;
+    letter-spacing: normal;
+    color: #616161;
+}
+
+#the_base_line {
+    background-image: url("../images/common/faq_test_bg_line.png");
+    width: 35px; 
+    z-index: 1;
+    position: absolute;
+}
+
+

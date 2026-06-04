@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Macrogen">
+  <title>MACROGEN NGS Report</title>
+  <link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+
+
+  <link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+  <link type="text/css" rel="stylesheet" href="../css/style.css" />
+  <link type="text/css" rel="stylesheet" href="../css/main.css" />
+  <link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+  <link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+
+  <script type="text/javascript">const RPTPAGEMODE = false;</script>
+  <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+  <script type="text/javascript" src="../js/ui.js"></script>
+
+  <script type="text/javascript" src="../js/common/txtvars.js"></script>
+  <script type="text/javascript" src="../js/spgs/dft.js"></script>
+
+  <script type="text/javascript" src="../js/data/rptjs_reference.js"></script>
+  <script type="text/javascript" src="../js/data/rptjs_analysis_wf.js"></script>
+  <script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+  <script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+  <script type="text/javascript" src="../js/common/rptmenu.js"></script>
+  <script type="text/javascript" src="../js/spgs/rpt104.js"></script>
+
+
+
+</head>
+
+<body>
+  <!-- wrapper -->
+  <div class="wrapper">
+    <div class="gnb-dim"></div>
+    <!-- gnb-menu -->
+    <div class="gnb-menu-wrap expand">
+      <h1 class="logo"></h1>
+      <div class="contract">
+        <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+        <ul class="user-menu"></ul>
+      </div>
+      <div class="expand">
+        <div class="gnb-menu">
+          <script>insertMainMenu(RPTPAGEMODE);</script>
+        </div>
+        <div class="download"></div>
+      </div>
+    </div>
+    <!-- // gnb-menu -->
+
+    <!-- container -->
+    <div class="container" style="margin-left: 188px;">
+      <div class="header">
+        <strong class="title"></strong>
+        <div class="right">
+          <span class="path">
+            <script>insertTopMenu(getCurrentPageName(null));</script>
+          </span>
+        </div>
+      </div>
+      <div class="top-btn"><a href="#">TOP</a></div>
+      <div class="content">
+        <h1 class="title-type1 pageMainTitle"></h1>
+        <div id="spgsMainDesc"></div>
+        <script>istContents();</script>
+      </div>
+    </div>
+    <!-- // container -->
+    <div class="footer"></div>
+  </div>
+  <!-- // wrapper -->
+
+  <!-- company location -->
+  <div class="layerpopup" id="comLocPopup"></div><!-- company location -->
+  <!-- order info -->
+  <div class="layerpopup" id="ordInfoPopup"></div><!-- order info -->
+
+</body>
+
+</html>

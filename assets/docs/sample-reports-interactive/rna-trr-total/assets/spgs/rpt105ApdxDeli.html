@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="Macrogen">
+	<title>MACROGEN NGS Report</title>
+	<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+
+
+
+	<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+	<link type="text/css" rel="stylesheet" href="../css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../css/main.css" />
+	<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+	<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+	
+	<script type="text/javascript">const RPTPAGEMODE=false;</script>
+	<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="../js/datatables.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+	<script type="text/javascript" src="../js/ui.js"></script>
+	
+	<script type="text/javascript" src="../js/common/txtvars.js"></script>
+	<script type="text/javascript" src="../js/spgs/dft.js"></script>
+	
+	<script type="text/javascript" src="../js/data/rptjs_analysis_parameters.js"></script>
+	<script type="text/javascript" src="../js/data/rptjs_analysis_wf.js"></script>
+	<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+	<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+	<script type="text/javascript" src="../js/common/rptmenu.js"></script>
+	<script type="text/javascript" src="../js/spgs/BaseStyleTable.js"></script>
+	<script type="text/javascript" src="../js/spgs/rpt105.js"></script>
+
+
+</head>
+
+<body>
+
+
+	<!-- wrapper -->
+	<div class="wrapper">
+		<div class="gnb-dim"></div>
+		<!-- gnb-menu -->
+		<div class="gnb-menu-wrap expand">
+			<h1 class="logo"></h1>
+			<div class="contract">
+				<a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+				<ul class="user-menu"></ul>
+			</div>
+			<div class="expand">
+				<div class="gnb-menu">
+					<script>insertMainMenu(RPTPAGEMODE);</script>
+				</div>
+				<div class="download"></div>
+			</div>
+		</div>
+		<!-- // gnb-menu -->
+
+		<!-- container -->
+		<div class="container" style="margin-left: 188px;">
+			<div class="header">
+				<strong class="title"></strong>
+				<div class="right">
+					<span class="path">
+						<script>insertTopMenu(getCurrentPageName(null));</script>
+					</span>
+				</div>
+			</div>
+			<div class="top-btn"><a href="#">TOP</a></div>
+			<div class="content">
+				<h1 class="title-type1">Deliverables List</h1>
+
+				<div class="data-list-type2">
+					<div class="list-header">
+						<div class="row">
+							<div class="cell" style="width:10%;">File Type</div>
+							<div class="cell" style="width:36%;">File Name</div>
+							<div class="cell" style="width:54%;">Description</div>
+						</div>
+					</div>
+					<div class="list-body">
+						<div class="row bg-sky">
+							<div class="cell tit2" style="width:10%;">FASTQ</div>
+							<div class="cell type2" style="width:90%;">
+								<ul class="data-list">
+									<li class="row">
+										<div class="cell" style="width:40%">
+											<div class="link">
+												<i class="ico i-gz"></i>
+												<span>[Samplename]_[read1].fastq.gz</span>
+											</div>
+										</div>
+										<div class="cell" style="width:60%;font-size:14px;">Raw read1 sequence data</div>
+									</li>
+									<li class="row">
+										<div class="cell" style="width:40%">
+											<div class="link">
+												<i class="ico i-gz"></i>
+												<span>[Samplename]_[read2].fastq.gz</span>
+											</div>
+										</div>
+										<div class="cell" style="width:60%;font-size:14px;">Raw read2 sequence data</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row bg-skyblue vm">
+							<div class="cell tit2" style="width:10%;">md5sum</div>
+							<div class="cell" style="width:36%;">
+								<div class="link">
+									<i class="ico i-excel"></i>
+									<span>[Order#]_[#samples]_md5sum[_DownloadLink].txt</span>
+								</div>
+							</div>
+							<div class="cell" style="width:54%;">
+								<p class="txt" style="font-size:14px;word-break:break-word;">
+									You can download this file by clicking on the “md5 sum List” button found on
+									the “Deliverables” page. The file is slightly different in terms content,
+									depending on how you’re receiving your data. If you’re receiving via download
+									link, the file contains the following information : File name, File size, md5sum,
+									FTP link. Otherwise, if your receiving your data via HDD the file only contains :
+									File name, File size, and md5sum.
+								</p>
+								<p class="txt" style="font-size:14px;word-break:break-word;">
+									MD5 is a string of 32 hexadecimal values, which represents a ‘fingerprint’ of a
+									file. By comparing the supplied MD5 value to the actual value computed by
+									the MD5sums utility, you can make sure that the file that you downloaded
+									off of the internet has not been tampered with or modified from the original
+									file stored in our server.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="data-img-box" style="width:60%;margin:auto;margin-top:15px;">
+					<img src="../images/fastq_file_format.png" alt="">
+				</div>
+			</div>
+		</div>
+		<!-- // container -->
+		<div class="footer"></div>
+
+	</div>
+	<!-- // wrapper -->
+
+	<!-- company location --><div class="layerpopup" id="comLocPopup"></div><!-- company location -->
+	<!-- order info --><div class="layerpopup" id="ordInfoPopup"></div><!-- order info -->
+
+</body>
+
+</html>

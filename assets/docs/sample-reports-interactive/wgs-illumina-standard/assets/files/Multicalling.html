@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+<!--    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/photoswipe.css">
+    <link rel="stylesheet" href="../PhotoSwipe-master/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="../tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/layout.css">
+	<link rel="stylesheet" href="../css/custom.css">-->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+
+    <!--tools-->
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/d3.v4.min.js"></script>
+
+
+    <script>
+	var array={"customer": "Macrogen", "stats": [{"num": 7285672, "name": "ALB & CON & PCSFP", "sets": ["ALB", "CON", "PCSFP"]}, {"num": 24919, "name": "CON & PCSFP", "sets": ["CON", "PCSFP"]}, {"num": 21937, "name": "ALB & CON", "sets": ["ALB", "CON"]}, {"num": 21652, "name": "ALB & PCSFP", "sets": ["ALB", "PCSFP"]}, {"num": 10865, "name": "PCSFP", "sets": ["PCSFP"]}, {"num": 10844, "name": "CON", "sets": ["CON"]}, {"num": 10666, "name": "ALB", "sets": ["ALB"]}] ,"institute": "Macrogen", "project": "Test", "samples": ["ALB", "CON", "PCSFP"], "species": "Other"};
+		<!--var config;-->
+
+        var ordernumber = array.project;
+        var customer = array.customer;
+
+        //title
+		document.title = ordernumber + " (" + customer + ") - MSS Analysis Report";
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }
+
+        //top 버튼 숨기기/보여주기
+        $(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() != 0) {
+                    $('#backtotop').fadeIn();
+                } else {
+                    $('#backtotop').fadeOut();
+                }
+            });
+
+            //top 버튼 누르면 맨 위로 이동
+            $('#backtotop').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+        });
+
+		//description 접었다 펴기
+        $(function() {
+            $('.show').click(function() {
+                var submenu = $(this).next($('.desc'));
+                if (submenu.is(":visible")) {
+                    submenu.slideUp();
+                    $(this).text('Show Description')
+                } else {
+                    submenu.slideDown();
+                    $(this).text('Hide Description')
+                }
+            });
+        });
+		function getTextWidth(text, fontSize, fontName) {
+			c = document.createElement("canvas");
+			ctx = c.getContext("2d");
+			ctx.font = fontSize + ' ' + fontName;
+			return ctx.measureText(text).width;
+		}
+		var globalSvg;
+
+		//data 불러오기
+		function drawUpsetPlot(array){
+			var array;
+
+			var data = array.stats;
+			var nums = data.map((x) => x.num);
+			var names = data.map((x) => x.name);
+			
+			const barwidth = 15; <!--default:30-->
+			const rad = 5;  <!--default:8-->
+			var padding = 6;
+			var vpadding = 4;
+
+			// width 1100, height 500
+			var margin = {
+					top: 5,
+					right: 0,
+					bottom: (rad * 2 + 15) * array.samples.length,
+					left: 100
+				};
+
+			var minwidth = 1100;
+			var minheight = 400 + margin.bottom;
+			if (data.length * (barwidth * 2) > 1100) {
+				minwidth = data.length * (barwidth * 2.5);
+			}
+
+			var width = minwidth - margin.left - margin.right;
+			var height = minheight - margin.top - margin.bottom;
+
+
+			var svg = d3.select("#chart_pg")
+				.attr("width", minwidth)
+				.attr("height", minheight);
+
+			var g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")"),
+				textWidthHolder = 0;
+
+			//그래프 영역 지정
+			svg.append("defs").append("clipPath")
+				.attr("id", "clip")
+				.append("rect")
+				.attr("width", width)
+				.attr("height", +svg.attr("height"))
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+			var upsetCircles = svg.append('g')
+				.attr('id', 'upsetCircles')
+				.attr('transform', "translate(" + (margin.left + 17) + "," + (height + 20) + ')'); <!--default:margin.left + 24-->
+
+			array.samples.forEach((x, i) => {
+				upsetCircles.append("text")
+					.attr("dx", -30)
+					.attr("dy", 5 + i * (rad * vpadding))
+					.attr("text-anchor", "end")
+					.text(x);
+			});
+
+			var upsetBars = svg.append("g")
+				.attr("id", "upsetBars");
+
+			//x축 그룹(샘플명)값 간격 설정
+			var x = d3.scaleLinear()
+				.domain([0, data.length])
+				.range([0, width]);
+
+			//y축 값 간격 설정
+			var y = d3.scaleLinear()
+				.domain([0, d3.max(nums)])
+				.range([ height, 0 ]);
+
+			//축 설정
+			var xAxis = d3.axisBottom(x)
+				.tickPadding(2)
+				.tickFormat((d, i) => data[i].name)
+				.tickValues(d3.range(data.length));
+
+			var yAxis = d3.axisLeft(y).ticks(7);
+
+			// console.log("xAxis : " + xAxis);
+
+			x.domain(names);
+
+			upsetBars.append("g")
+				.style('clip-path', 'url(#clip)')
+				.append("g")
+				.attr("class", "x_axis")
+				.attr("transform", "translate(" + margin.left + "," + (height + margin.top) + ")")
+			//	.attr("fill", "none")
+				.call(xAxis)
+				.selectAll(".tick")
+				.remove();
+				
+			upsetBars.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+				.attr("class", "y_axis")
+				.call(yAxis);
+
+			//축 텍스트 폰트 크기 설정
+			upsetBars.select(".x_axis")
+				.selectAll("text")
+				.style("font-size", "12px");
+			upsetBars.select(".y_axis")
+				.selectAll("text")
+				.style("font-size", "12px");
+
+			// tooltip
+			var tooltip = d3.select("#div_tooltip")
+				.style("opacity", 0)
+				.attr("class", "tooltip_chart")
+				.style("position", "absolute")
+				.style("background-color", "white")
+				.style("border", "solid")
+				.style("border-width", "2px")
+				.style("border-radius", "5px")
+				.style("padding", "5px");
+
+			var root = d3.select("#chart_pg");
+			var scr = { x: window.scrollX, y : window.scrollY, w: window.innerWidth, h:window.innerHeight };
+			var body_sel = d3.select("#div_chart_pg");
+			var body = {w:body_sel.node().offsetWidth, h:body_sel.node().offsetHeight};
+			var doc = {w:document.width, h: document.height};
+			var svgpos = getNodePos(root.node());
+			var dist = {x : 30, y : 80};
+
+			//bar 그래프
+			var chart = upsetBars.append("g")
+				.style('clip-path', 'url(#clip)')
+				.attr("transform", "translate(1,0)")
+				.attr("id", "bars");
+
+			var bars = chart.selectAll('.bar')
+				.data(data)
+				.enter()
+				.append("rect")
+				.attr("class", "bar")
+				.attr("width", barwidth)
+				.attr("x", (d, i) => 9 + i * (rad * padding) + margin.left)
+				.attr("y", (d) => y(d.num) + 5 )
+				.style("fill", "#223a9d")
+				.attr("height", (d) => height - y(d.num))
+				.on("mousemove", function(d) {
+					d3.select(this).style("fill", d3.rgb("#365eff").darker(2));
+					var m = d3.mouse(root.node());
+					scr.x = window.scrollX;
+					scr.y = window.scrollY;
+					m[0] += svgpos.x;
+					m[1] += svgpos.y;
+					tooltip.style("right", "");
+					tooltip.style("left", "");
+					tooltip.style("bottom", "");
+					tooltip.style("top", "");
+
+					if (m[0] > scr.x + scr.w / 2) {
+						tooltip.style("right", (body.w - m[0] + dist.x) + "px");
+					}
+					else {
+						tooltip.style("left", (m[0] + dist.x) + "px");
+					}
+					if (m[1] > scr.y + scr.h / 2) {
+						tooltip.style("bottom", (body.h - m[1] + dist.y) + "px");
+					}
+					else {
+						tooltip.style("top", (m[1] + dist.y) + "px");
+					}
+					tooltip
+						.style("opacity", 1)
+						.html("<strong>" + d.name + ": " + "</strong/>" + d.num);
+					
+					
+				})
+				.on("mouseout", function(d) {
+					d3.select(this).style("fill", "#223a9d");
+					tooltip.style("opacity", 0);
+				});
+
+			// circle 그래프
+
+			data.forEach((x, i) => {
+				array.samples.forEach((y, j) => {
+					upsetCircles.append('circle')
+						.attr('cx', i * (rad * padding))
+						.attr('cy', j * (rad * vpadding))
+						.attr('r', rad)
+						.attr('class', `set-${i}`)
+						.style('opacity', 1)
+						.attr('fill', () => {
+							if (x.sets.indexOf(y) !== -1) {
+								return '#223a9d';  <!--5F79A9-->
+							}
+							return 'silver';
+						});
+				});
+
+				upsetCircles.append('line')
+					.attr('id', `setline${i}`)
+					.attr('x1', i * (rad * padding))
+					.attr('y1', array.samples.indexOf(x.sets[0]) * (rad * vpadding))
+					.attr('x2', i * (rad * padding))
+					.attr('y2', array.samples.indexOf(x.sets[x.sets.length - 1]) * (rad * vpadding))
+					.style('stroke', '#223a9d')
+					.attr('stroke-width', 4);
+			});
+			globalSvg = svg;
+		}
+
+		function getNodePos(el) {
+			var div = d3.select("#div_chart_pg").node();
+			for (var lx = 0, ly = 0; el != null && el != div; lx += (el.offsetLeft || el.clientLeft), ly += (el.offsetTop || el.clientTop), el = (el.offsetParent || el.parentNode));
+
+			return {x: lx, y: ly};
+		}
+
+		//텍스트 줄바꿈
+		function wrap(text, width) {
+			text.each(function() {
+				var text = d3.select(this),
+					words = text.text().split(/\s+/).reverse(),
+					word,
+					line = [],
+					lineNumber = 0,
+					lineHeight = 1.1, //ems
+					y = text.attr("y"),
+					dy = parseFloat(text.attr("dy")),
+					tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+				while (word = words.pop()) {
+					line.push(word);
+					tspan.text(line.join(" "));
+					if (tspan.node().getComputedTextLength() > width) {
+						line.pop();
+						tspan.text(line.join(" "));
+						line = [word];
+						tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", (++lineNumber * lineHeight + dy) + "em").text(word);
+					}
+				}
+			});
+		}
+
+		function AddComma(data_value) {
+			return Number(data_value).toLocaleString('en');
+		}
+    </script>
+    <style>
+    a:hover		{color:#050505; text-decoration:underline;}
+	#crtlDiv button{
+		border: 1px solid black;
+		background-color: rgba(0,0,0,0);
+		color: black;
+		padding: 10px;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		margin-right:-5px;
+		margin-left:5px;
+		margin-top:10px;
+	}
+	#crtlDiv button:hover{
+		color:white;
+		background-color:rgb(34, 58, 157);
+	}
+	.col-sm-12{
+		border-radius: 50%;
+		background: none;
+		position: relative;
+		margin-bottom: 12px;
+		display: block;
+		font-size: 15px;
+	}
+	legend {
+		padding: 5px;
+		color: black;
+	}
+	input[type="checkbox"] {
+		background: #fff;
+		border-radius: 10px;
+		cursor: pointer;
+		height: 13px;
+		margin-left:20px;
+		outline: 0;
+		width: 13px;
+	}
+    </style>
+</head>
+
+<body class="total_font">
+    <div id="wrap">
+        <!--header-->
+        <header id="header">
+		</header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!--Eggnog stats table-->
+                    <div class="panel-group" id="EggnogStats">
+                        <div class="panel panel-default">
+                            <div id="collapse_1" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+									<br><br>
+                                    <div id="crtlDiv">
+										<fieldset>
+										<legend>Choose the samples</legend>
+										<div style="font-size: 15px;">
+                                        <div id="samplesDiv"></div>
+										</div>
+										</fieldset>
+                                        <button id="submitBtn">view</button>
+                                        <button id="selAll">all</button>
+                                        <button id="selReset">reset</button>
+                                        <button id="exportPngBtn">export</button>
+                                    </div>
+									<br>
+                                    <script>
+                                        array.samples.forEach(function(smpl){
+                                            // checkbox 생성
+                                            var chkbox = document.createElement("input");
+                                            chkbox.setAttribute("type", "checkbox");
+                                            chkbox.setAttribute("value", smpl);
+                                            chkbox.setAttribute("name", "samples");
+                                            chkbox.setAttribute("checked", "checked");
+                                            chkbox.setAttribute("id", smpl);
+                                            console.log(chkbox)
+                                            // label 생성
+                                            var label = document.createElement("label");
+                                            label.setAttribute("for", smpl);
+                                            label.innerText = smpl;
+
+                                            // checkbox 삽입
+                                            $("#samplesDiv").append(chkbox);
+                                            // label 삽입
+                                            $("#samplesDiv").append(label);
+                                        });
+                                    </script>
+									<div id="div_chart_pg">
+										<div id="div_tooltip"></div>
+                                        <div id="chartDiv">
+                                            <svg id="chart_pg" xmlns="http://www.w3.org/2000/svg" aria-labelledby="graph-title" aria-describedby="graph-desc" overflow="auto">
+                                            </svg>
+                                        </div>
+  	        	                      <!-- 	<script src="chart_pg_mod.js"></script> -->
+                                        <script>
+                                            drawUpsetPlot(array);
+                                        </script>
+									</div>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+                    <br>
+
+                </div>
+                <!--div class="col-sm-12"-->
+            </div>
+            <!--end: div row-->
+        </div>
+        <!--end: div container-->
+
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
+
+    </div>
+    <script>
+        $(document).ready(function(){
+            // plot2png
+            $("#exportPngBtn").click(function(){
+                var tmpSvg = globalSvg;
+
+                const data = new XMLSerializer().serializeToString(tmpSvg.node());
+                const blob = new Blob([data], {type: "image/svg+xml;charset=utf-8"});
+                const $canvas = document.createElement("canvas");
+                const {width, height} = document.getElementById("chart_pg").getBoundingClientRect();
+                $canvas.width = width;
+                $canvas.height = height;
+
+                const tmpCtx = $canvas.getContext('2d');
+                const tmpImg = new Image();
+				tmpCtx.fillStyle = "white";
+				tmpCtx.fillRect(0, 0, width, height);
+                tmpImg.onload = (e) =>{
+                    tmpCtx.drawImage(e.target, 0, 0);
+                    const $link = document.createElement("a");
+
+                    $link.download = "Multicalling.png";
+                    $link.href = $canvas.toDataURL("image/png");
+                    $link.click();
+                }
+                tmpImg.src=URL.createObjectURL(blob);
+            });
+
+            // 일괄 선택
+            $("#selAll").click(function(){
+                $("input:checkbox[name='samples']").prop("checked", true);
+            });
+
+            // 일괄 선택 해제
+            $("#selReset").click(function(){
+                $("input:checkbox[name='samples']").prop("checked", false);
+            });
+
+            // 샘플 필터링 적용
+            $("#submitBtn").click(function(){
+                var chked = $("input:checkbox[name=samples]:checked");
+
+                var selectedSampls = [];
+                for(var i=0; i < chked.length; i++){
+                    var val = chked[i].value;
+                    selectedSampls.push(val);
+                }
+
+                tmpArray = JSON.parse(JSON.stringify(array));
+                tmpStats = tmpArray.stats;
+                tmpSampls = tmpArray.samples;
+                
+                // 필터링 대상 취합
+                delSamples = array.samples.filter(x => !selectedSampls.includes(x));
+
+                delList = [];
+                tmpList = [];
+                
+                // stats 제거 대상 취합
+                delSamples.forEach(function(sample){
+                    tmpStats.forEach(function(elem){
+                        if (elem.sets.includes(sample)){
+                            if (!delList.includes(tmpStats.indexOf(elem))){
+                                delList.push(tmpStats.indexOf(elem));
+                            }
+                        }
+                    });
+                });
+
+                // 삭제 대상 stats 정렬 (숫자 정렬)
+                delList.sort(function(a, b){ return a-b;});
+
+                while(delList.length > 0){
+                    // 삭제 대상, 단일 element 추출
+                    delIdx = delList.pop();
+                    var tmpItem = tmpStats.splice(Number(delIdx), 1)[0];
+
+                    if (delSamples.length > 0){
+                        tmpItem.sets = tmpItem.sets.filter(e => !delSamples.includes(e));
+                        tmpList.push(tmpItem);
+                    }
+                }
+                // add
+                tmpList.forEach(function(e){
+                    tmpStats.forEach(function(s){
+                        e.sets.sort(function(a, b){ return a-b;});
+                        s.sets.sort(function(a, b){ return a-b;});
+                        if(arraysEqual(e.sets, s.sets)){
+                            s.num += e.num;
+                        }
+                    });
+                });
+                tmpArray.samples = selectedSampls;
+                tmpArray.stats = tmpStats;
+                $("#chart_pg").html("");
+				var sortingField = "num";
+				array1 = tmpStats.sort(function(a, b) {
+					return b[sortingField] - a[sortingField];
+				});
+				console.log(array1);
+                drawUpsetPlot(tmpArray);
+            });
+        });
+        function arraysEqual(a, b) {
+            if (a === b) return true;
+            if (a == null || b == null) return false;
+            if (a.length !== b.length) return false;
+
+            for (var i = 0; i < a.length; ++i) {
+                if (a[i] !== b[i]) return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

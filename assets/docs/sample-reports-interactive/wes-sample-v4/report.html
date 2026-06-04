@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="./assets/images/ic/macrogen_favicon.ico">
+
+<link type="text/css" rel="stylesheet" href="./assets/css/swiper.min.css" />
+<link type="text/css" rel="stylesheet" href="./assets/css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="./assets/css/style.css" />
+<script type="text/javascript" language="javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="./assets/js/swiper.min.js"></script>
+<script type="text/javascript" src="./assets/js/jquery.nice-select.js"></script>
+<link type="text/css" rel="stylesheet" href="./assets/css/main.css" />
+<script type="text/javascript" src="./assets/js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="./assets/js/data/rptjs_report_summary.js"></script>
+<script type="text/javascript" src="./assets/js/main.js"></script>
+<script type="text/javascript" src="./assets/js/func/cmn_menu.js"></script>
+<script type="text/javascript" language="javascript" src="./assets/js/ui.js"></script>
+</head>
+<body>
+	<!-- wrapper -->
+	<div class="main wrapper">
+
+		<div class="gnb-dim"></div>
+		<!-- gnb-menu -->
+		<div class="gnb-menu-wrap contract scroll-y">
+			<h1 class="logo">
+				<a href="./report.html">
+					<script>logoImage(rptjs_main.report_info.countryCode);</script>
+				</a>				
+			</h1>
+			<div class="expand">
+				<div class="info-wrap">
+					<div class="info">
+						<script>
+           					let appNameArr = rptjs_main.order_info.appName.split(" ");
+           					let appNameHtml = "<p class='tit'>";
+           					for(var idx in appNameArr){
+           						appNameHtml += ("<b>"+appNameArr[idx]+'</b><br>');
+           					}
+           					appNameHtml += "</p>";
+           					document.write(appNameHtml);
+       					</script>
+						<p class="date"><script>document.write(rptjs_main.order_info.dateReported);</script></p>
+					</div>
+					<div class="user-info btn-user-info" onclick="javascript:popOpen('#orderinfo_popup');">
+						<b class="tit"><script>document.write(rptjs_main.order_info.clientName);</script></b>
+						<p class="form"><script>document.write(rptjs_main.order_info.clientOrganization);</script></p>
+						<div class="order">
+							<em>Order No.</em> <span class="num"><script>document.write(rptjs_main.order_info.orderNumber);</script></span>
+						</div>
+					</div>
+				</div>
+				<div class="gnb-menu">
+					<script>
+					 leftMenu(rptjs_menu.children,"main"); 
+					</script>
+				</div>
+				<div class="download">
+					<script>
+		            	 btnPDF(rptjs_main.order_info,"main");
+		            </script>
+				</div>
+			</div>
+		</div>
+		<!-- // gnb-menu -->
+
+		<script>
+			$('.wrapper, .gnb-menu-wrap').addClass('expand');
+			$('.wrapper, .gnb-menu-wrap').removeClass('contract');
+		</script>
+
+		<!-- container -->
+		<div class="container">
+			<div class="header">
+				<strong class="title">Research Use Only</strong>
+				<div class="right">
+					<div class="user-menu" style="display: none;"> 
+						<a href="javascript:popOpen('#popup');" class="menu"><i class="ico i-mapidx"></i></a> 
+						<a href="javascript:menu_alert('#menu-icornbell');" class="menu"><i class="ico i-bell"></i><i class="ico i-new"></i></a> 
+						<div class="tooltip-wrap popup-alert" id="menu-icornbell">
+							<!-- <button class="tooltip"><i class="ico i-bell"></i><i class="ico i-new"></i></button> -->
+							<div class="pop-menu-close"></div>
+							<div class="tooltip-layer popup-menu-alert">
+								<div class="pop-menu-alert-close">
+									<a href="javascript:void(0);" class="close" onclick="menu_alert_close();"><i class="ico ico-close"></i></a>
+								</div>
+								<div class="menu-alert-title">
+									<img src="./assets/images/ico_main_down_blue.png">
+									<div>
+										The data can be downloaded<br>from the link below.
+									</div>
+								</div>
+
+								<div class="menu-alert-contents">
+									The download link is active for 2 weeks only,<br /> so please download your data within this period.<br /> Once you download the data, please make sure to check the integrity<br /> of the files. The sequencing files will be deleted from our server <br /> 3 months after the analysis report is released<br /> please contact us within 3 months if you encounter a problem with the data.<br />
+								</div>
+
+								<div class="btn-menu-alert-download">
+									<a href="./assets/spgs/rpt40DeliverAnalysisRst.html" class="btn-type2 st1"><i class="ico i-down-blue"></i>Download Data</a>
+								</div>
+
+							</div>
+
+						</div>
+						
+						<a href="javascript:popOpen('#orderinfo_popup');" class="menu"><i class="ico i-user"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="top-btn">
+				<a href="#">TOP</a>
+			</div>
+			<div class="content">
+				<div class="main-banner-wrap">
+					<div class="swiper-container main-banner">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="banner">
+									<strong class="tit"><b>Exome Sequencing </b> <!-- Sequencing --></strong>
+									<p>
+										Exome Sequencing is a method that selectively analyzes only the Exon regions that are known to exist. This is a method that allows you to study more efficiently and economically</br> than Whole Genome Resequencing by selectively analyzing only genes obtained through existing research.</br>
+									</p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="banner2">
+									<strong class="tit"><b><span class="c-aqua">Wait a second!</span> Have you downloaded your data?</b></strong>
+									<p>
+										Your data will be deleted from our server after 3 months. <br/>
+										Make sure to download your data within this period and check the file integrity using md5sum, 
+										before using the data. 
+										<br/>(please refer to FAQ for ways to check the md5sum value)
+									</p>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<script>
+					var swiper = new Swiper(".main-banner", {
+						draggable : false,
+						//allowTouchMove : false,
+						allowTouchMove : true,
+						loop : true,
+						autoplay : {  
+							  delay : 3000,
+							  disableOnInteraction : true,
+						},
+						pagination : {
+							el : ".swiper-pagination",
+							clickable : true,
+							
+						},
+					});
+				</script>
+				<!-- result-summary -->
+				<section class="result-summary">
+					<h1>Report Information</h1>
+					<div class="summary-info">
+						<div class="samples">
+							<div class="cont">
+							<!-- 6 -->
+							<script>
+								document.write(rptjs_report_summary.numberOfSample);
+							</script>
+							</div>
+							<div class="stxt">Samples</div>
+						</div>
+						<ul class="infos">
+							<li>
+								<div class="cont">
+									<p class="txt1">
+									<script>document.write(rptjs_report_summary.readLength);</script>
+									<!-- 101PE -->
+									</p>
+								</div>
+								<div class="stxt">Read Length</div>
+							</li>
+							<li>
+								<div class="cont">
+									<p class="txt2">
+									<!-- Home Sapiens -->
+									<script>
+									document.write(rptjs_report_summary.species);
+									</script>
+									</p>
+								</div>
+								<div class="stxt">Species</div>
+							</li>
+							<li>
+								<div class="cont">
+									<p class="txt1"><!-- hg38 -->
+									
+									<script>document.write(rptjs_report_summary.reference);</script>
+									
+									</p>
+								</div>
+								<div class="stxt">Reference</div>
+							</li>
+						</ul>
+					</div>
+					<script>
+					if((rptjs_report_summary.comment).length>0){
+					
+						mainSummery(rptjs_report_summary);
+					
+					}
+				</script>
+				
+					
+				</section>
+				<!-- // result-summary -->
+
+				<!-- <ul class="exp-list" style="margin: 20px";> -->
+				<ul class="exp-list" style="margin: 40px";>
+					<li>
+						<a href="./assets/spgs/rpt10RstPerOrd.html">
+							<div class="text">
+								<strong class="tit">Result per Order</strong> <span class="txt">View all of the results in <br>one Page
+								</span>
+							</div>
+							<div class="img">
+								<!-- <img src="./assets/tmpimg/main2_1.png" alt=""> -->
+								<img src="./assets/images/common/all/main2_1.png" alt="">
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="./assets/spgs/rpt12RstPerSmp.html">
+							<div class="text">
+								<strong class="tit">Result per Sample</strong> <span class="txt">View the analysis results<br>per sample
+								</span>
+							</div>
+							<div class="img">
+								<img src="./assets/images/common/all/main2_2.png" alt="">
+						</div>
+						</a>
+					</li>
+					<li>
+						<a href="./assets/spgs/rpt2AnalysisWf.html">
+							<div class="text">
+								<strong class="tit">Workflow</strong> <span class="txt">Find out more about <br>the analysis methods
+								</span>
+							</div>
+							<div class="img">
+								<img src="./assets/images/common/all/main2_3.png" alt="">
+							</div>
+						</a>
+					</li>
+				</ul>
+
+				<div class="both-box">
+					<div class="download-data">
+						<p class="txt">Please download your data here.</p>
+						<!-- <a href="javascript:void(0)" class="btn-type2 st1"><i class="ico i-down-blue"></i>Download Data</a> -->
+						<a href="./assets/spgs/rpt40DeliverAnalysisRst.html" class="btn-type2 st2"><i class="ico i-down"></i>Download Data</a>
+					</div>
+					<div class="appendix">
+						<a href="./assets/spgs/rpt50ApdxAnnoColumn.html">
+							<strong>Appendix</strong>
+							<p>Find out more about the annotation fields and analysis tools used.</p>
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- // container -->
+		<div class="footer">
+			<script type="text/javascript">
+				var yearStr = rptjs_main.order_info.dateReported.split(".");
+				footerCountryCodeTxt(rptjs_main.report_info.countryCode, yearStr[0]);
+			</script>
+		</div>
+	</div>
+	<!-- // wrapper -->
+	
+	
+	<!-- layout popup -->
+	
+	<div class="layerpopup" id="popup">
+		<div class="dim"></div>
+		<div class="popup" style="width: 1070px;">
+			<a href="javascript:void(0);" class="close" onclick="popClose('#popup');"><i class="ico ico-close"></i></a>
+			<div class="pop-header">
+				<p class="pop-tit">Company location</p>
+			</div>
+			<div class="pop-body">
+				<div class="data-img-box">
+					<!-- <img src="./assets/images/mg_map.png" alt=""> -->
+					<script>companyLayoutImage("main");</script>
+
+				</div>
+
+				<div style="padding: 0px;">
+					<script>companyLayoutInfo("main");</script>					
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- // layout popup -->
+
+	<!-- orderinfo_popup -->
+
+	<div class="layerpopup" id="orderinfo_popup">
+		<div class="dim"></div>
+		<div class="popup pop-orderinfo">
+			<a href="javascript:void(0);" class="close" onclick="popClose('#orderinfo_popup');"><i class="ico ico-close"></i></a>
+			<div class="pop-header">
+				<p class="pop-tit pop-custom1-title">Order Information</p>
+			</div>
+			<div class="pop-body">
+				<div style="margin-top: 50px;">
+					<div>
+						<table class="tb-orderinfo" style="width: 779px; table-layout: fixed;">
+							<tr>
+								<td rowspan="3" style="width: 215.9px;"><img style="vertical-align: middle;" src="./assets/images/default_user_logo.png"></td>
+								<td style="width: 563px;"><div class="user_info_modal_div_clientNm">
+										<script>document.write(rptjs_main.order_info.clientName);</script>
+									</div></td>
+							</tr>
+							<tr>
+								<td><div class="user_info_modal_div_clientOrg">
+										<script>document.write(rptjs_main.order_info.clientOrganization);</script>
+									</div></td>
+							</tr>
+							<tr>
+								<td><span class="user_info_modal_div_txt4">Order Number</span> <span class="user_info_modal_div_txt5"><script>document.write(rptjs_main.order_info.orderNumber);</script></span></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div style="margin-top: 70px; margin-bottom: 10px;">
+					<div>
+						<table class="tb-orderinfo-data" style="width: 779px; table-layout: fixed; border-left: 2px solid #ffffff;">
+							<script>
+								for(var strCnt in rptjs_main.order_info.extra_info.header){
+									document.write("<tr><td style='width:215.9px;'><span class='user_info_modal_div_txt6'>"+rptjs_main.order_info.extra_info.header[strCnt]+"</span><td><td class='user_info_modal_div_txt7' style='width:563px; white-space:pre-line;'>"+rptjs_main.order_info.extra_info.data[strCnt]+"<td><tr>");
+								}
+							</script>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- //orderinfo_popup -->
+
+
+
+
+
+</body>
+
+</html>

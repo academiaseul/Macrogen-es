@@ -1,0 +1,178 @@
+@CHARSET "UTF-8";
+
+.magnify-header .magnify-toolbar {
+background-color: rgba(0, 0, 0, .5);
+}
+.magnify-footer .magnify-toolbar {
+background-color: rgba(0, 0, 0, .5);
+border-radius: 5px;
+}
+
+#rpt_right_content_inner_div{
+    margin: 50px 0px;
+}
+
+.sub-titile-style {
+    display: inline-block;
+    width: calc(100% - 100px);
+    
+}
+
+.btn-sub-title {
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+}
+
+/* 
+.r1ImgBox div, .r2ImgBox div {
+    display: inline-block;
+}
+
+.r1ImgBox div span:first-child, .r2ImgBox div span:first-child, .littleImgBox div span:first-child{
+    font-size: 14px;
+    color: #424242;
+}
+
+
+
+.r1ImgBox div span:last-child{
+    font-size: 26px;
+    color: #4e64c0;
+}
+
+.r2ImgBox div span:last-child {
+    font-size: 26px;
+    color: #008e8c;
+}
+
+
+
+
+.r1ImgBox.imgbox-list, .r2ImgBox.imgbox-list {
+
+    height: 290px;
+    margin-bottom: 10px;
+    background: #fff;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+    border-radius: 8px;
+    box-sizing: inherit;
+    padding: 25px 25px;
+
+}
+
+.r1ImgBox div:first-child, .r2ImgBox div:first-child  {
+    text-align: left;
+    vertical-align: top;
+    margin-top: 1px;
+    width: 150px;
+} */
+
+
+[class^="qulity-img-box"] div{
+    display: inline-block;
+}
+
+/* .r1ImgBox div span:first-child, 
+.r2ImgBox div span:first-child, */
+[class^="qulity-img-box"] div span:first-child,
+.littleImgBox .small-label
+/* .littleImgBox div span:first-child */{
+    font-size: 14px;
+    color: #424242;
+}
+
+
+/* .r1ImgBox div span:last-child */
+[class^="qulity-img-box"]:nth-child(odd) div span:last-child{
+    font-size: 26px;
+    color: #008e8c;
+    /* color: #4e64c0; */
+}
+
+/* .r2ImgBox div span:last-child  */
+[class^="qulity-img-box"]:nth-child(even) div span:last-child{
+    font-size: 26px;
+    /* color: #008e8c; */
+    color: #4e64c0;
+}
+
+
+
+
+/* .r1ImgBox.imgbox-list, 
+.r2ImgBox.imgbox-list */ 
+[class^="qulity-img-box"].imgbox-list 
+{
+
+    height: 290px;
+    margin-bottom: 10px;
+    background: #fff;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+    border-radius: 8px;
+    box-sizing: inherit;
+    padding: 25px 25px;
+
+}
+
+/* .r1ImgBox div:first-child, 
+.r2ImgBox div:first-child  */ 
+[class^="qulity-img-box"] div:first-child{
+    text-align: left;
+    vertical-align: top;
+    margin-top: 1px;
+    width: 150px;
+}
+
+
+
+
+
+
+
+
+
+.imgbox-small-list {
+    float: left;
+    width: 30%;
+    /*add bottom blank*/
+    margin-bottom: 20px;
+}
+
+.imgbox-small-list div {
+
+    background: #ffff;
+    width: 240px;
+    height: 124px;
+    padding: 20px 5px 10px 20px;
+    font-size: 14px;
+    margin-top: 16px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 8px;
+}
+
+
+.imgbox-small-list {
+    float: left;
+    width: 25%;
+}
+
+.imgbox-small-list div {
+
+    background: #ffff;
+    width: 240px;
+    height: 124px;
+    padding: 20px 5px 10px 20px;
+    font-size: 14px;
+    margin-top: 16px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 8px;
+}
+
+.littleImgBox .odd-read-name{
+	color: #4e64c0;
+}
+.littleImgBox .even-read-name{
+	color: #008e8c;
+}
+/* [class^="qulity-img-box"]:nth-child(odd) div span:last-child{ */

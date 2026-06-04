@@ -1,0 +1,1 @@
+var rptjs_faq={"title":"FAQ","subtitle":"","desc":[],"contents":[]};

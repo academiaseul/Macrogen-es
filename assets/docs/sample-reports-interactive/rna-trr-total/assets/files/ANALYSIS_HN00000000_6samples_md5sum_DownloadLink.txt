@@ -1,0 +1,3 @@
+File	Size	md5sum	Download_link
+HN00000000_BAM_files.tar	76.16G	b006c9c5035ce504e20356af2eeee784	https://data.macrogen.com/~macro5/RNA_Seq/202405/HN00000000/HN00000000_BAM_files.tar
+HN00000000_result_RNAseq.zip	1.22G	a30572f60fd079a294b1e579e0770c86	https://data.macrogen.com/~macro5/RNA_Seq/202405/HN00000000/HN00000000_result_RNAseq.zip

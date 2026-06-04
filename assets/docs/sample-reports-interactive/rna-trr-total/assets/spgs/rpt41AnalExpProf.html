@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+<script type="text/javascript">const RPTPAGEMODE=false;</script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+<script type="text/javascript" src="../js/common/txtvars.js"></script>
+<script type="text/javascript" src="../js/spgs/dft.js"></script>
+<script type="text/javascript" src="../js/spgs/dfttab.js"></script>
+
+<script type="text/javascript">
+
+var RPT_PAGE_DATA = {"title":"Known genes/transcripts","subtitle":"","desc":[],"tabs":["genes","transcripts"],"genes":{"tabName":"Known genes","title":"","subtitle":"","desc":[{"type":"desc","title":"","subTitle":"","style":"none","columnCount":1,"children":[{"key":"","value":"Known genes and transcripts are assembled by StringTie with reference annotation file. After assembly, the expression abundances in gene/transcript level are extracted from read alignments based on assembled transcripts."}]}],"contents":[{"type":"link","title":"Refer to Path","subTitle":"","path":"result_RNAseq/Expression_profile/StringTie/Expression_Profile.GRCh38.gene.xlsx","friendlyName":"Expression_Profile.GRCh38.gene.xlsx","icon":"excel","fileCopyFlag":false,"linkActivation":false},{"type":"img","title":"","subTitle":"","width":7E+1,"desc":[{"type":"desc","title":"","subTitle":"","style":"circle","columnCount":1,"children":[{"key":"","value":"Table below represents the expression profile matrix for known genes/transcripts on the reference annotation file for each sample. This result is obtained by -G and -e options of StringTie which does not consider novel transcript assembly. Expression abundances are calculated as read count, FPKM and TPM value."}]}],"path":"known_genes_exp_example_stringtie.png"},{"type":"desc","title":"","subTitle":"","style":"disc","columnCount":1,"children":[{"key":"Gene_ID","value":"Gene ID"},{"key":"Transcript_ID","value":"Splicing variant (isoform/transcript)"},{"key":"Gene_Symbol","value":"Symbol of gene"},{"key":"Description","value":"Description of gene"},{"key":"[Sample Name]_Read_Count","value":"Read count of a sample"},{"key":"[Sample Name]_FPKM","value":"FPKM normalized value of a sample"},{"key":"[Sample Name]_TPM","value":"TPM normalized value of a sample"}]}]},"transcripts":{"tabName":"Known transcripts","title":"","subTitle":"","desc":[{"type":"desc","title":"","subTitle":"","style":"none","columnCount":1,"children":[{"key":"","value":"Known genes and transcripts are assembled by StringTie with reference annotation file. After assembly, the expression abundances in gene/transcript level are extracted from read alignments based on assembled transcripts."}]}],"contents":[{"type":"link","title":"Refer to Path","subTitle":"","path":"result_RNAseq/Expression_profile/StringTie/Expression_Profile.GRCh38.transcript.xlsx","friendlyName":"Expression_Profile.GRCh38.transcript.xlsx","icon":"excel","fileCopyFlag":false,"linkActivation":false},{"type":"img","title":"","subTitle":"","width":7E+1,"desc":[{"type":"desc","title":"","subTitle":"","style":"circle","columnCount":1,"children":[{"key":"","value":"Table below represents the expression profile matrix for known genes/transcripts on the reference annotation file for each sample. This result is obtained by -G and -e options of StringTie which does not consider novel transcript assembly. Expression abundances are calculated as read count, FPKM and TPM value."}]}],"path":"known_transcripts_exp_example_stringtie.png"},{"type":"desc","title":"","subTitle":"","style":"disc","columnCount":1,"children":[{"key":"Transcript_ID","value":"Splicing variant (isoform/transcript)"},{"key":"Gene_ID","value":"Gene ID"},{"key":"Gene_Symbol","value":"Symbol of gene"},{"key":"Description","value":"Description of gene"},{"key":"Transcript_Locus","value":"Start and end position of transcript on genomic region"},{"key":"Transcript_Length","value":"Length of transcript"},{"key":"[Sample Name]_Read_Count","value":"Read count of a sample"},{"key":"[Sample Name]_FPKM","value":"FPKM normalized value of a sample"},{"key":"[Sample Name]_TPM","value":"TPM normalized value of a sample"}]}]}};
+
+</script>
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="../js/common/rptmenu.js"></script>
+<script type="text/javascript" src="../js/spgs/BaseStyleTable.js"></script>
+<script type="text/javascript" src="../js/spgs/rptPageType1.js"></script>
+
+
+</head>
+<body>
+<!-- wrapper -->
+<div class="wrapper">
+  <div class="gnb-dim"></div>
+  <div class="gnb-menu-wrap expand">
+    <h1 class="logo"></h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+      <ul class="user-menu"></ul>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+          <script>insertMainMenu(RPTPAGEMODE);</script>
+        </div>
+        <div class="download"></div>
+    </div>
+  </div>
+
+	<div class="container" style="margin-left: 188px;">
+        <div class="header">
+            <strong class="title"></strong>
+            <div class="right">
+                <span class="path">
+                    <script>insertTopMenu(getCurrentPageName(null));</script>
+                </span>
+            </div>
+        </div>
+        <div class="top-btn"><a href="#">TOP</a></div>
+		<div class="content"></div>
+	</div>
+	
+	<div class="footer"></div>
+</div>
+	<div class="layerpopup" id="comLocPopup"></div><div class="layerpopup" id="ordInfoPopup"></div>
+</body>
+
+</html>

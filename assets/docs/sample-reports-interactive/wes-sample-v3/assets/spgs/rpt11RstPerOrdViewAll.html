@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+<link type="text/css" rel="stylesheet" href="../css/swiper.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/mydatatables.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<script type="text/javascript" language="javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/chart.min.js"></script>
+<script type="text/javascript" src="../js/chartjs-plugin-style.js"></script>
+<script type="text/javascript" src="../js/chart.fnc.js"></script>
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" language="javascript" src="../js/ui.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_result_per_order.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+
+</head>
+<body>
+<!-- wrapper -->
+<div class="wrapper">
+  <div class="gnb-dim"></div>
+  <!-- 팝업창 변경 임시주석 -->
+  <!-- gnb-menu -->
+  
+  <!-- // gnb-menu -->
+
+	<!-- container -->
+	<div class="container">
+        <div class="header">
+            <strong class="title">Research Use Only</strong>
+            <!-- 팝업으로 인한 주석처리 -->
+            
+        </div>
+        <div class="top-btn">
+            <a href="#">TOP</a>
+        </div>
+		<div class="content">
+			<script>
+			var temp = location.href.split("?");
+			var data = temp[1].split("&");
+			var tabsLen;
+			var contentsLen;
+			for(var param=0; param<data.length; param++){
+				var paramData = data[param].split("=");
+				switch(param){
+				case 0:
+					tabsLen = paramData[1];
+					break;
+				case 1:
+					contentsLen = paramData[1];
+					break;
+					
+				case 2:
+					sampleCnt = paramData[1];
+					break;
+				}
+			}
+			
+			</script>
+
+            <h1 class="title-type1">Quality by Cycle</h1>
+
+            <div class="line-info-box">
+                <div class="left">
+                	<p class="tit">Total number of samples: <script>document.write(sampleCnt);</script></p>
+                <!-- <p class="tit">Total number of samples: 153</p> -->
+                </div>
+                <div class="right">
+                    <div class="btn-list-toggle">
+                        <button type="button" class="list on" onclick="$(this).addClass('on');$(this).next().removeClass('on');$('.list-card-case').attr('class', 'list-card-case list')"></button>
+                        <button type="button" class="card" onclick="$(this).addClass('on');$(this).prev().removeClass('on');$('.list-card-case').attr('class', 'list-card-case card')"></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-card-case list">
+                <script>
+                	document.write("<ul>");
+					for(var dataLen in rptjs_result_per_order[rptjs_result_per_order.tabs[tabsLen]].contents[contentsLen].data){
+						for(var ddLen in rptjs_result_per_order[rptjs_result_per_order.tabs[tabsLen]].contents[contentsLen].data[dataLen]){
+							if(ddLen == ((rptjs_result_per_order[rptjs_result_per_order.tabs[tabsLen]].contents[contentsLen].data[dataLen]).length-1)){
+								var imgPath = rptjs_result_per_order[rptjs_result_per_order.tabs[tabsLen]].contents[contentsLen].data[dataLen][ddLen];
+								var html="";
+								html+='<li>';
+								html+='<div class="group">'+rptjs_result_per_order[rptjs_result_per_order.tabs[tabsLen]].contents[contentsLen].data[dataLen][0]+'</div>';
+								html+='<div class="box-wrap">';
+								html+='<div class="box">';
+								html+='<div class="desc">';
+								html+='<span class="group">'+rptjs_result_per_order[rptjs_result_per_order.tabs[tabsLen]].contents[contentsLen].data[dataLen][0]+'</span>';
+								html+='<p class="tit c-blue">Read 1</p>';
+								html+='</div>';
+								html+='<div class="chart">';
+								html+='<img src="../files/'+imgPath[0]+'" alt="">';
+								html+='</div>';
+								html+='</div>';
+								html+='<div class="box">';
+								html+='<div class="desc">';
+								html+='<span class="group">'+rptjs_result_per_order[rptjs_result_per_order.tabs[tabsLen]].contents[contentsLen].data[dataLen][0]+'</span>';
+								html+='<p class="tit c-green">Read 2</p>';
+								html+='</div>';
+								html+='<div class="chart">';
+								html+='<img src="../files/'+imgPath[1]+'" alt="">';
+								html+='</div>';
+								html+='</div>';
+								html+='</div>';
+								html+='</li>';
+					        
+								document.write(html);
+								
+							}
+							
+						}
+					}
+					document.write("</ul>");
+	            </script>
+
+            </div>
+        </div>
+	</div>
+	<!-- // container -->
+	<div class="footer">
+		<script type="text/javascript">
+			var yearStr = rptjs_main.order_info.dateReported.split(".");
+			footerCountryCodeTxt(rptjs_main.report_info.countryCode, yearStr[0]);
+		</script>
+	</div>
+</div>
+<!-- // wrapper -->
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.gh-node-cwsn>rect, .gh-node-cwsn>polygon {
+	fill: #ffffff !important;
+	stroke:#4f98ee !important;
+}
+
+.gh-node-cbsn>rect, .gh-node-cbsn>polygon {
+	fill: #e4effd !important;
+	stroke:#4694ed !important;
+}
+
+.gh-node-cosn>rect, .gh-node-cosn>polygon{
+	fill: #ffede8 !important;
+	stroke:#ff8d5a !important;
+}
+ 
+.gh-node-cgsn>rect, .gh-node-cgsn>polygon{
+	fill: rgba(6, 178, 176, 0.15) !important;
+	stroke: #61cacb !important;
+}
+
+.gh-node-cgrsn>rect, .gh-node-cgrsn>polygon {
+	fill: #e7eaed !important;
+	stroke:#212121 !important;
+}
+
+.gh-node-cgrsd>rect, .gh-node-cgrsd>polygon {
+	fill: #e7eaed !important;
+	stroke:#212121 !important;
+	stroke-width:2px !important;
+	stroke-dasharray: 5 5 !important;
+}
+
+.gh-node-cpsn>rect, .gh-node-cpsn>polygon {
+	fill:#eeebff   !important;
+	stroke:#9977f5 !important;
+}
+
+.gh-node-cysn> rect, .gh-node-cysn>polygon {
+	fill: #fdfbe4  !important;
+	stroke:#f8c064 !important;
+}
+
+
+.gh-txt-cr {
+	color: red;
+}
+
+.gh-txt-cb {
+	color: #6c80cd;
+}
+
+.gh-txt-cg{
+	color: green;
+}

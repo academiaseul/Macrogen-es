@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+
+<link type="text/css" rel="stylesheet" href="../css/swiper.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/mydatatables.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+
+
+<script type="text/javascript" language="javascript" src="../js/jquery-3.6.0.min.js"></script>
+<!-- <script type="text/javascript" src="../js/chart.min.js"></script> -->
+<!-- <script type="text/javascript" src="../js/chartjs-plugin-style.js"></script> -->
+<!-- <script type="text/javascript" src="../js/chart.fnc.js"></script> -->
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript" src="../js/func/cmn_data_binding.js"></script>
+<script type="text/javascript" src="../js/func/cmn_data_bindings_2.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<!-- change js file name -->
+<script type="text/javascript" src="../js/data/rptjs_deliverables_analysis_result.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/lib/jsplumb/jsplumb-tree.css" />
+<script type="text/javascript" src="../js/func/cmn_menu.js"></script>
+<script type="text/javascript" language="javascript" src="../js/ui.js"></script>
+
+<script type="text/javascript" src="../js/lib/jsplumb/jsplumb-tree.js"></script>
+<script type="text/javascript" src="../js/lib/jsplumb/jsplumb-1.7.10.js"></script>
+<script type="text/javascript" src="../js/lib/jsplumb/jsplumb-tree-custom.js"></script>
+</head>
+<body>
+<!-- wrapper -->
+<div class="wrapper main main_test expand">
+  <div class="gnb-dim"></div>
+  <!-- gnb-menu -->
+  <div class="gnb-menu-wrap contract scroll-y">
+    <h1 class="logo">
+		<a href="../../report.html">
+		 <script>
+			logoImagePage(rptjs_main.report_info.countryCode);
+    	</script>
+    	</a>
+	</h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+      <script>userMenu();</script>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+			<script>
+        	leftMenu(rptjs_menu.children,"other");
+        	</script>	
+		</div>
+        <div class="download">
+            <script>
+            btnPDF(rptjs_main.order_info,"other");
+            </script>
+        </div>
+    </div>
+  </div>
+  <!-- // gnb-menu -->
+<script>
+	        $('.wrapper, .gnb-menu-wrap').addClass('expand');
+	        $('.wrapper, .gnb-menu-wrap').removeClass('contract');
+</script>
+	<!-- container -->
+	<div class="container">
+        <div class="header">
+            <strong class="title">Research Use Only</strong>
+            <div class="right">
+                <span class="path">
+                    <script>
+                      topMenu();
+                 	</script>
+                </span>
+            </div>
+        </div>
+        <div class="top-btn">
+            <a href="#">TOP</a>
+        </div>
+		<div class="content">
+            <h1 class="title-type1"><script>document.write(rptjs_deliverables_analysis_result.title)</script><!-- Analysis Result --></h1>
+            
+            	<script>
+            	for(var lenDesc =0 in rptjs_deliverables_analysis_result.desc){
+            		for(var ch=0 in rptjs_deliverables_analysis_result.desc[lenDesc].children){
+            			//console.log("value::"+rptjs_deliverables_analysis_result.desc[lenDesc].children[ch].value);
+        				document.write("<li class='text-type1 c-skyblue "+rptjs_deliverables_analysis_result.desc[lenDesc].style+"';>"+rptjs_deliverables_analysis_result.desc[lenDesc].children[ch].value+"</li>");
+
+            		}
+            	}
+            	
+            	
+            	</script>
+                
+                    <script>
+                    var html="";
+                    var treenode="";
+                    var contestn_len = rptjs_deliverables_analysis_result.contents.length;
+                    for(var i =0; i<contestn_len ;i++){
+                    	
+                    	if(rptjs_deliverables_analysis_result.contents[i].type=="table"){
+                    		var tooltipLen = rptjs_deliverables_analysis_result.contents[i].tooltip.length;
+                    		//console.log("tooltip:::"+tooltipLen);
+                    		switch(tooltipLen){
+                    		case 1:
+                    			tableObjNomalDatatables(rptjs_deliverables_analysis_result, i);
+                    			break;
+                    			
+                   			 default:
+                   				
+                   			 
+	                   			var html="";
+	                          	html+='<div class="dataset-table2 merge-tb">';
+	         		        	html+='<h2 class="title-type2">'+rptjs_deliverables_analysis_result.contents[i].title+'</h2>';
+	         		        	html+='<table id="tb_3">';  
+	         		        	html+='<thead>';
+	         		        	html+='<tr>';
+	         		        	for(var headerLen in rptjs_deliverables_analysis_result.contents[i].header){
+	         		        		html+='<th style="width: 50%;">'+rptjs_deliverables_analysis_result.contents[i].header[headerLen]+'</th>';
+	         		        	}
+	         		        	
+	         		        	html+='</tr>';
+	         		        	html+='</thead>';
+	         		        	html+='<tbody>';
+	         		        		
+	         		        		for(var dataLen in rptjs_deliverables_analysis_result.contents[i].data){
+	         		        			html+='<tr>';
+	         		        			for(var ddataLen in rptjs_deliverables_analysis_result.contents[i].data[dataLen]){
+			         		        		if(ddataLen%0 == 0){
+			         		        			html+='<td class="tit c-blue merge-row">'+rptjs_deliverables_analysis_result.contents[i].data[dataLen][ddataLen]+'</td>';
+			         		        		}else{
+			         		        			html+='<td class="merge-row" style="background:none;border-top: 1px  #d3eafd solid;">'+rptjs_deliverables_analysis_result.contents[i].data[dataLen][ddataLen]+'</td>';
+			         		        		}
+	         		        			}
+	         		        			html+='</tr>';
+	         		        		}
+	
+	         		        		
+	         		            html+='</tbody>';
+	         		            html+='</table>';
+	         		            html+='</div>';
+	         		            document.write(html);
+         		            
+                   				break;
+                   			
+                    			
+                    	
+                    		
+                    		}
+                    		
+                    	}else if(rptjs_deliverables_analysis_result.contents[i].type=="treeNode"){
+                    		
+                    		 document.write('<h2 class="title-type2">'+rptjs_deliverables_analysis_result.contents[i].title+'</h2>');
+                   		     document.write("<div class='top-icon-info'>");
+                             for(var lenicon in rptjs_deliverables_analysis_result.contents[i].icons){
+	                           	  document.write('<span>');
+	                           	  document.write('<i class="ico i-'+rptjs_deliverables_analysis_result.contents[i].icons[lenicon].icon+'"></i>');
+	                           	  document.write(" "+rptjs_deliverables_analysis_result.contents[i].icons[lenicon].text);
+	                           	  document.write('</span>');
+                             }
+                             document.write("</div>");
+                             
+                             for(var lencontents in rptjs_deliverables_analysis_result.contents[i].contents){
+                           	  treenode+='<div id="node_'+rptjs_deliverables_analysis_result.contents[i].contents[lencontents].id+'" class="window hidden _jsPlumb_endpoint_anchor _jsPlumb_connected" data-id="'+rptjs_deliverables_analysis_result.contents[i].contents[lencontents].id+'" data-parent="'+rptjs_deliverables_analysis_result.contents[i].contents[lencontents].parent+'" data-first-child="'+rptjs_deliverables_analysis_result.contents[i].contents[lencontents].firstChild+'" data-next-sibling="'+rptjs_deliverables_analysis_result.contents[i].contents[lencontents].nextSibling+'">';
+	                              treenode+='<div class="tree-title">';
+	                              treenode+='<div class="_txt"><i class="ico i-'+rptjs_deliverables_analysis_result.contents[i].contents[lencontents].icon+'"></i>&nbsp;&nbsp;' +rptjs_deliverables_analysis_result.contents[i].contents[lencontents].text+'</div>';
+	                              treenode+='</div>';
+	                              treenode+='</div>'; 
+	                          }
+                             
+                             document.write('<div class="treenode-container">');
+                             document.write('<div id="treemain">');
+                             document.write(treenode);
+                             document.write('</div>');
+                             document.write('</div>');
+                                  
+                            
+                    	}else if(rptjs_deliverables_analysis_result.contents[i].type=="button"){
+                    		
+                    		document.write('<div class="btn-wrap">');
+                    		document.write('<a href="../files/'+rptjs_deliverables_analysis_result.contents[i].path+'" class="btn-type1 st1" target="_blank"><i class="ico i-down-off"></i>'+rptjs_deliverables_analysis_result.contents[i].value+'</a>');
+                         	document.write('</div>');
+                           
+                    		
+                    	}
+                    }
+                    
+                    </script>
+	</div>
+	<!-- // container -->
+	<div class="footer">
+	
+	  <script type="text/javascript">
+			var yearStr = rptjs_main.order_info.dateReported.split(".");
+			footerCountryCodeTxt(rptjs_main.report_info.countryCode, yearStr[0]);
+		</script>	
+	</div>
+</div>
+</div>
+<!-- // wrapper -->
+
+<!-- layout popup -->
+<div class="layerpopup" id="popup">
+	<div class="dim"></div>
+    <div class="popup" style="width:1070px;">
+        <a href="javascript:void(0);" class="close" onclick="popClose('#popup');"><i class="ico ico-close"></i></a>
+        <div class="pop-header">
+            <p class="pop-tit">Deliverables List</p>
+        </div>
+        <div class="pop-body">
+            <div class="data-list-type2">
+                <div class="list-header">
+                  <div class="row">
+                    <div class="cell" style="width:20%;">File Type</div>
+                    <div class="cell" style="width:33%;">File Name</div>
+                    <div class="cell" style="width:47%;">Description</div>
+                  </div>
+                </div>
+                <div class="list-body">
+                  <div class="row bg-sky">
+                    <div class="cell tit2" style="width:20%;">FASTQ</div>
+                    <div class="cell type2" style="width:80%;">
+                        <ul class="data-list">
+                            <li class="row">
+                                <div class="cell" style="width:41%"><a href="javascript:void(0);" class="link"><i class="ico i-gz"></i><span>[Sample name]_[read1].fastq.gz</span></a></div>
+                                <div class="cell" style="width:59%">Raw read1 sequence data</div>
+                            </li>
+                            <li class="row">
+                                <div class="cell" style="width:41%"><a href="javascript:void(0);" class="link"><i class="ico i-gz"></i><span>[Sample name]_[read2].fastq.gz</span></a></div>
+                                <div class="cell" style="width:59%">Raw read1 sequence data</div>
+                            </li>
+                            <li class="row">
+                                <div class="cell" style="width:41%"><a href="javascript:void(0);" class="link"><i class="ico i-gz"></i><span>[sample name]_trim_[read1].fastq.gz</span></a></div>
+                                <div class="cell" style="width:59%">Adapter trimmed read1 sequence data</div>
+                            </li>
+                            <li class="row">
+                                <div class="cell" style="width:41%"><a href="javascript:void(0);" class="link"><i class="ico i-gz"></i><span>[sample name]_trim_[read2].fastq.gz</span></a></div>
+                                <div class="cell" style="width:59%">Adapter trimmed read2 sequence data</div>
+                            </li>
+                        </ul>
+                    </div>
+                  </div>
+                  <div class="row bg-skyblue vm">
+                    <div class="cell tit2" style="width:20%;">md5sum</div>
+                    <div class="cell" style="width:33%;"><a href="javascript:void(0);" class="link"><i class="ico i-excel"></i><span>[Order#]_[#samples]_md5sum
+[_DownloadLink].txt</span></a></div>
+                    <div class="cell" style="width:47%;">
+                        <p class="txt">
+                            You can download this file by clicking on the “md5 sum List” button found on
+                            the “Deliverables” page. The file is slightly different in terms content,
+                            depending on how you’re receiving your data. If you’re receiving via download
+                             link, the file contains the following information : File name, File size, md5sum,
+                            FTP link. Otherwise, if your receiving your data via HDD the file only contains :
+                            File name, File size, and md5sum.
+                        </p>
+                        <p class="txt">
+                            MD5 is a string of 32 hexadecimal values, which represents a ‘fingerprint’ of a
+                            file. By comparing the supplied MD5 value to the actual value computed by
+                            the MD5sums utility, you can make sure that the file that you downloaded
+                            off of the internet has not been tampered with or modified from the original
+                            file stored in our server.
+                        </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="data-img-box">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- layout popup -->
+	<div class="layerpopup" id="popup-map">
+		<div class="dim"></div>
+		<div class="popup" style="width: 1070px;">
+			<a href="javascript:void(0);" class="close" onclick="popClose('#popup-map');"><i class="ico ico-close"></i></a>
+			<div class="pop-header">
+				<p class="pop-tit">Company location</p>
+			</div>
+			<div class="pop-body">
+				<div class="data-img-box">
+					<script>companyLayoutImage("page");</script>
+
+				</div>
+
+				<div style="padding: 0px;">
+					<script>companyLayoutInfo("page");</script>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- // layout popup -->
+	<!-- orderinfo_popup -->
+
+	<div class="layerpopup" id="orderinfo_popup">
+		<div class="dim"></div>
+		<div class="popup pop-orderinfo">
+			<a href="javascript:void(0);" class="close" onclick="popClose('#orderinfo_popup');"><i class="ico ico-close"></i></a>
+			<div class="pop-header">
+				<p class="pop-tit pop-custom1-title">Order Information</p>
+			</div>
+			<div class="pop-body">
+				<div style="margin-top: 50px;">
+					<div>
+						<table class="tb-orderinfo" style="width: 779px; table-layout:fixed;">
+							<tr>
+								<td rowspan="3" style="width: 215.9px;"><img style="vertical-align: middle;" src="../images/default_user_logo.png"></td>
+								<td style="width:563px;"><div class="user_info_modal_div_clientNm"><script>document.write(rptjs_main.order_info.clientName);</script></div></td>
+							</tr>
+							<tr><td><div class="user_info_modal_div_clientOrg"><script>document.write(rptjs_main.order_info.clientOrganization);</script></div></td></tr>
+							<tr><td>
+									<span class="user_info_modal_div_txt4">Order Number</span>
+									<span class="user_info_modal_div_txt5"><script>document.write(rptjs_main.order_info.orderNumber);</script></span>
+							</td></tr>
+						</table>
+					</div>
+				</div>
+				<div style="margin-top: 70px; margin-bottom: 10px;">
+					<div>
+						<table class="tb-orderinfo-data" style="width: 779px; table-layout:fixed; border-left: 2px solid #ffffff;">
+							<script>
+								for(var strCnt in rptjs_main.order_info.extra_info.header){
+									document.write("<tr><td style='width:215.9px;'><span class='user_info_modal_div_txt6'>"+rptjs_main.order_info.extra_info.header[strCnt]+"</span><td><td class='user_info_modal_div_txt7' style='width:563px; white-space:pre-line;'>"+rptjs_main.order_info.extra_info.data[strCnt]+"<td><tr>");
+								}
+							</script>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- //orderinfo_popup -->
+	
+	<script type="text/javascript">
+		$(function(){
+			$('.dataTables_length .nice-select').addClass('selected');
+		});
+	</script>
+	
+</body>
+
+
+</html>

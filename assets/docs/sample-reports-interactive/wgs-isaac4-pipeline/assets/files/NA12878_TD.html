@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../css/lib/wgs_common.css">
+    <link rel="stylesheet" href="../css/lib/wgs_custom.css">
+
+    <script src="../js/d3.v4.min.js"></script>
+
+
+    <!--graph-->
+    <script src="../js/chart_var.js"></script>
+    <script>
+        var array= [{'circos': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_isaac4_grch38_main_240712/IsaacAlignment/Projects/HN00192047/NA12878_TD/Circos/circos.png', 'cnv_gain': '332', 'cnv_loss': '184', 'cov_10x': '97.4', 'cov_15x': '97.0', 'cov_1x': '98.5', 'cov_20x': '96.2', 'cov_30x': '80.1', 'cov_5x': '97.8', 'customer': 'NGS_service', 'dbsnp138': '92.5', 'dbsnp156': '99.7', 'de-dup_ratio': '92.7', 'de-dup_reads': '737209014', 'deviation': '90.89', 'frameshift': '333', 'gc': '40.89', 'het_homo_ratio': '1.56', 'insertsize': '383', 'institute': '(주)마크로젠', 'librarytype': 'TruSeq DNA PCR Free (350)', 'm_total_read': '795033578', 'm_total_yield': '119255', 'mappable_depth': '35.73', 'mappable_reads': '715809022', 'mappable_reads_ratio': '97.1', 'mappable_yield': '104877644347', 'mappingreference': 'GRCh38.p14 from NCBI, Feb. 2022', 'nbase': '0.0038', 'nonsynonymous': '13245', 'platform': 'Illumina platform', 'png_r1qualCycle': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_isaac4_grch38_main_240712/Fastq/Fastqc/*_R1_fastqc/Images/per_base_quality.png', 'png_r2qualCycle': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_isaac4_grch38_main_240712/Fastq/Fastqc/*_R2_fastqc/Images/per_base_quality.png', 'project': 'HN00192047', 'q20': '97.21', 'q30': '94.92', 'read_length': '150.0', 'refSize': '2934', 'samplename': 'NA12878_TD', 'smalldelete': '465482', 'smallinsert': '463703', 'snp': '3846466', 'splicing': '543', 'stopgained': '156', 'stoplost': '44', 'sv_bnd': '860', 'sv_del': '5877', 'sv_dup': '472', 'sv_ins': '3529', 'sv_inv': '425', 'synonymous': '12889', 'throughput_mean_depth': '40.63', 'total_read': '795033578', 'total_yield': '120050070278', 'ts_tv_ratio': ' 2.017732', 'ver_1kg': '1000 Genome Phase3', 'ver_clinvar': '2021-07-31', 'ver_dbnsfp': '4.2c', 'ver_dbsnp': '138,156', 'ver_esp6500': 'ESP6500SI_V2', 'ver_freec': '11.5', 'ver_isaac': '04.18.11.09', 'ver_manta': '1.5.0', 'ver_penncnv': '1.0.5', 'ver_ref': 'GRCh38.p14', 'ver_snpeff': '5.0e', 'ver_strelka': '2.9.10'} ] ;
+        var ordernumber = array[0].project;
+        var customer = array[0].customer;
+        var stat_list = ['samplename', 'snp', 'smallinsert', 'smalldelete', 'synonymous', 'nonsynonymous', 'splicing', 'stopgained', 'stoplost', 'frameshift', 'dbsnp138', 'dbsnp154', 'het_homo_ratio', 'ts_tv_ratio'];
+        var comma_list = ['snp', 'smallinsert', 'smalldelete', 'synonymous', 'nonsynonymous', 'dbsnp138', 'dbsnp154', 'het_homo_ratio', 'ts_tv_ratio'];
+        var si_list = ['snp'];
+
+        //title
+        var type = " - WGS Analysis Report"
+
+        document.title = ordernumber + " (" + customer + ")" + type;
+
+        //stat_list를 format_list로 parsing
+        function arr_format(array) {
+            var format_list = [];
+            for (var i = 0, key; key = array[i]; i++) {
+                var temp = {};
+                switch (key) {
+                    case "samplename":
+                        temp["head"] = key;
+                        temp["format"] = "td_char";
+                        break;
+                    default:
+                        temp["head"] = key;
+                        if (comma_list.indexOf(key) != -1) {
+                            temp["format"] = "comma";
+                        } else {
+                            temp["format"] = "td_num";
+                        }
+                }
+                format_list.push(temp);
+            }
+            return format_list
+        }
+
+        var format_list = arr_format(stat_list);
+
+        //Total.js에서 array 가져와서 parsing
+        function arr_si(array) {
+            var array_si = [];
+            for (var i = 0; i < array.length; i++) {
+                var temp = {};
+                temp['Sample'] = array[i]['samplename'];
+                temp['Categories'] = [];
+                temp['Categories'].push({
+                    'Name': 'SNP',
+                    'Value': Number(array[i]['snp'])
+                })
+                temp['Categories'].push({
+                    'Name': 'INDEL',
+                    'Value': Number(array[i]['smallinsert']) + Number(array[i]['smalldelete'])
+                })
+
+                array_si.push(temp);
+            }
+            return array_si
+        }
+
+        var array_si = arr_si(array);
+
+        function jsn_var(array, i) {
+            var snp_indel = Number(Number(array[i].snp) + Number(array[i].smallinsert) + Number(array[i].smalldelete)).toLocaleString('en');
+            var cnv_tot = Number(Number(array[i].cnv_gain) + Number(array[i].cnv_loss)).toLocaleString('en');
+            var sv_tot = Number(Number(array[i].sv_ins) + Number(array[i].sv_del) + Number(array[i].sv_dup) + Number(array[i].sv_inv) + Number(array[i].sv_bnd)).toLocaleString('en');
+            var json_var = {
+                "name": array[i]['samplename'],
+                "children": [{
+                    "name": "CNV " + cnv_tot,
+                    "children": [{
+                        "name": "Gain",
+                        "value": array[i].cnv_gain,
+                        "parent": "CNV"
+                    }, {
+                        "name": "Loss",
+                        "value": array[i].cnv_loss,
+                        "parent": "CNV"
+                    }]
+                }, {
+                    "name": "SV " + sv_tot,
+                    "children": [{
+                        "name": "Insertion",
+                        "value": array[i].sv_ins,
+                        "parent": "SV"
+                    }, {
+                        "name": "Deletion",
+                        "value": array[i].sv_del,
+                        "parent": "SV"
+                    }, {
+                        "name": "Duplication",
+                        "value": array[i].sv_dup,
+                        "parent": "SV"
+                    }, {
+                        "name": "Inversion",
+                        "value": array[i].sv_inv,
+                        "parent": "SV"
+                    }, {
+                        "name": "Translocation",
+                        "value": array[i].sv_bnd,
+                        "parent": "SV"
+                    }]
+                }, {
+                    "name": "SNP/INDELS " + snp_indel,
+                    "children": [{
+                        "name": "Synonymous variant",
+                        "value": array[i].synonymous,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Nonsynonymous variant",
+                        "value": array[i].nonsynonymous,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Frameshift variant",
+                        "value": array[i].frameshift,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Splicing variant",
+                        "value": array[i].splicing,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Stop gain",
+                        "value": array[i].stopgained,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Stop lost",
+                        "value": array[i].stoplost,
+                        "parent": "SNP/INDELS"
+                    }]
+                }]
+            };
+            return json_var
+        }
+
+        var json_var = jsn_var(array, 0);
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }      
+    </script>
+</head>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div id="collapse_3" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <!-- select sample section
+                                    <select id="sel_sample" class="sel_sample"></select>
+                                    <script>
+                                        var select_sample = document.getElementById('sel_sample');
+                                        var option_str = "";
+
+                                        for (var i = 0; i < array.length; i++) {
+                                            option_str += "<option value='" + i + "'>" + array[i]['samplename'] + "</option>";
+                                        }
+
+                                        select_sample.innerHTML = option_str;
+
+                                        $("#sel_sample").change(function() {
+                                            json_var = jsn_var(array, $("#sel_sample option:selected").val());
+                                            $("#chart_var").remove();
+                                            document.getElementById("div_chart_var").innerHTML = "<svg id='chart_var' width='800' height='800' aria-labelledby='graph-title' aria-describedby='graph-desc'></svg>"
+                                            plot(json_var);
+                                        });
+                                    </script>
+				    -->
+                                    <div id="div_chart_var" class="div_chart">
+                                        <svg id="chart_var" width="800" height="800" aria-labelledby="graph-title" aria-describedby="graph-desc">
+                                        </svg>
+                                        <script>
+                                            plot(json_var);
+                                        </script>
+                                    </div>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+                </div>
+                <!--div class="col-sm-12"-->
+    </div>
+</body>
+</html>

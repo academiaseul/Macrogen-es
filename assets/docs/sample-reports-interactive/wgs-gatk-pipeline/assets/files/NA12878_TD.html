@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../css/lib/wgs_common.css">
+    <link rel="stylesheet" href="../css/lib/wgs_custom.css">
+
+    <script src="../js/d3.v4.min.js"></script>
+
+
+    <!--graph-->
+    <script src="../js/chart_var.js"></script>
+    <script>
+        var array= [{'10x_cov': '98.2', '15x_cov': '97.8', '1x_cov': '99.0', '20x_cov': '97.1', '30x_cov': '83.6', '5x_cov': '98.6', 'Ave_read_length': '151.0', 'CopyNGains': '344', 'CopyNLosses': '173', 'De-dup_read': '735705400', 'De-dup_read_ratio': '92.53', 'Deletions': '5060', 'Duplications': '689', 'FragmentlenMedian': '382', 'GCratio': '40.89', 'HomHetRatio': '1.8', 'Insertions': '2913', 'Inversions': '366', 'MappableMeanDepth': '37.35', 'MappableRead': '731758037', 'MappableReadRatio': '99.46', 'Mappable_yield': '109605', 'NumofDeletion': '518891', 'NumofInsertion': '499118', 'NumofSNP': '4148999', 'Q20ratio': '97.21', 'Q30ratio': '94.92', 'Ratio_dbsnp138': '87.4', 'Ratio_dbsnp156': '98.9', 'ReferenceSize': '2934', 'StandardDeviation': '91.553', 'Throughputdepth': '40.90', 'Total_num_of_read': '795033578', 'Total_yield': '120050', 'Total_yield_base': '120050070278', 'Translocations': '1240', 'customer': 'NGS_service', 'description': 'BWA-GATK4', 'frameshift_variant': '553', 'inframe_deletion': '279', 'inframe_insertion': '253', 'institute': '(주)마크로젠', 'knownSites1': '1000G_phase1.indels.GRCh38.p14.vcf', 'knownSites2': 'dbSNP156.vcf.gz', 'knownSites3': 'Mills_and_1000G_gold_standard.indels.GRCh38.p14.sites.vcf', 'librarytype': 'TruSeq DNA PCR Free (350)', 'mappingreference': 'GRCh38.p14 from NCBI, Feb. 2022', 'missense_variant': '15212', 'nbase': '0.0038', 'opt_bwa': '-M', 'platform': 'Illumina platform', 'png_AlignmentCoverage': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_gatk4_grch38_main_240712/bwa-gatk4/VARIANT/NA12878_TD.recal.depcov.sample_statistics.histogram.of.depth.png', 'png_CNV': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_gatk4_grch38_main_240712/bwa-gatk4/VARIANT/FREEC_analysis/NA12878_TD.recal.bam_ratio.txt.png', 'png_CumDepthDistribution': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_gatk4_grch38_main_240712/bwa-gatk4/VARIANT/NA12878_TD.recal.depcov.sample_statistics.cumulative.depth.ditribution.png', 'png_insertStatistics': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_gatk4_grch38_main_240712/bwa-gatk4/ALIGN/NA12878_TD.insert_histogram.png', 'png_read1QualitybyCycle': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_gatk4_grch38_main_240712/bwa-gatk4/../Fastq/Fastqc/NA12878_TD_R1_fastqc/Images/per_base_quality.png', 'png_read2QualitybyCycle': '/mnt/garnet2/Analysis/BI/WholeGenomeReSeq/HN00000000/NA12878_TD_NovaSeqX/analysis_upgrade_gatk4_grch38_main_240712/bwa-gatk4/../Fastq/Fastqc/NA12878_TD_R2_fastqc/Images/per_base_quality.png', 'project': 'HN00192047', 'samplename': 'NA12878_TD', 'splice_region_variant': '6453', 'stop_gained': '192', 'stop_lost': '53', 'synonymous_variant': '13625', 'ts_tvRatio': '1.9', 'ver_1kg': '1000 Genome Phase3', 'ver_bwa': '0.7.17', 'ver_clinvar': '2024-01-04', 'ver_cnv': '11.5', 'ver_dbnsfp': '4.5c', 'ver_dbsnp': '138,156', 'ver_esp6500': 'ESP6500SI_V2', 'ver_gatk': '4.5.0.0', 'ver_penncnv': '1.0.5', 'ver_picard': '3.1.1', 'ver_ref': 'GRCh38.p14', 'ver_snpeff': '5.2', 'ver_sv': '1.5.0'} ] ;
+        var ordernumber = array[0].project;
+        var customer = array[0].customer;
+        var stat_list = ['samplename', 'NumofSNP', 'NumofInsertion', 'NumofDeletion', 'synonymous_variant', 'missense_variant', 'splice_region_variant', 'stop_gained', 'stop_lost', 'frameshift_variant', 'Ratio_dbsnp138', 'Ratio_dbsnp154', 'HomHetRatio', 'ts_tvRatio'];
+        var comma_list = ['NumofSNP', 'NumofInsertion', 'NumofDeletion', 'synonymous_variant', 'missense_variant', 'Ratio_dbsnp138', 'Ratio_dbsnp154', 'HomHetRatio', 'ts_tvRatio'];
+        var si_list = ['NumofSNP'];
+
+        //title
+        var type = " - WGS Analysis Report"
+
+        document.title = ordernumber + " (" + customer + ")" + type;
+
+        //stat_list를 format_list로 parsing
+        function arr_format(array) {
+            var format_list = [];
+            for (var i = 0, key; key = array[i]; i++) {
+                var temp = {};
+                switch (key) {
+                    case "samplename":
+                        temp["head"] = key;
+                        temp["format"] = "td_char";
+                        break;
+                    default:
+                        temp["head"] = key;
+                        if (comma_list.indexOf(key) != -1) {
+                            temp["format"] = "comma";
+                        } else {
+                            temp["format"] = "td_num";
+                        }
+                }
+                format_list.push(temp);
+            }
+            return format_list
+        }
+
+        var format_list = arr_format(stat_list);
+
+        //Total.js에서 array 가져와서 parsing
+        function arr_si(array) {
+            var array_si = [];
+            for (var i = 0; i < array.length; i++) {
+                var temp = {};
+                temp['Sample'] = array[i]['samplename'];
+                temp['Categories'] = [];
+                temp['Categories'].push({
+                    'Name': 'SNP',
+                    'Value': Number(array[i]['NumofSNP'])
+                })
+                temp['Categories'].push({
+                    'Name': 'INDEL',
+                    'Value': Number(array[i]['NumofInsertion']) + Number(array[i]['NumofDeletion'])
+                })
+
+                array_si.push(temp);
+            }
+            return array_si
+        }
+
+        var array_si = arr_si(array);
+
+        function jsn_var(array, i) {
+            var snp_indel = Number(Number(array[i].NumofSNP) + Number(array[i].NumofInsertion) + Number(array[i].NumofDeletion)).toLocaleString('en');
+            var cnv_tot = Number(Number(array[i].CopyNGains) + Number(array[i].CopyNLosses)).toLocaleString('en');
+            var sv_tot = Number(Number(array[i].Insertions) + Number(array[i].Deletions) + Number(array[i].Duplications) + Number(array[i].Inversions) + Number(array[i].Translocations)).toLocaleString('en');
+            var json_var = {
+                "name": array[i]['samplename'],
+                "children": [{
+                    "name": "CNV " + cnv_tot,
+                    "children": [{
+                        "name": "Gain",
+                        "value": array[i].CopyNGains,
+                        "parent": "CNV"
+                    }, {
+                        "name": "Loss",
+                        "value": array[i].CopyNLosses,
+                        "parent": "CNV"
+                    }]
+                }, {
+                    "name": "SV " + sv_tot,
+                    "children": [{
+                        "name": "Insertion",
+                        "value": array[i].Insertions,
+                        "parent": "SV"
+                    }, {
+                        "name": "Deletion",
+                        "value": array[i].Deletions,
+                        "parent": "SV"
+                    }, {
+                        "name": "Duplication",
+                        "value": array[i].Duplications,
+                        "parent": "SV"
+                    }, {
+                        "name": "Inversion",
+                        "value": array[i].Inversions,
+                        "parent": "SV"
+                    }, {
+                        "name": "Translocation",
+                        "value": array[i].Translocations,
+                        "parent": "SV"
+                    }]
+                }, {
+                    "name": "SNP/INDELS " + snp_indel,
+                    "children": [{
+                        "name": "Synonymous variant",
+                        "value": array[i].synonymous_variant,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Nonsynonymous variant",
+                        "value": array[i].missense_variant,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Frameshift variant",
+                        "value": array[i].frameshift_variant,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Splicing variant",
+                        "value": array[i].splice_region_variant,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Stop gain",
+                        "value": array[i].stop_gained,
+                        "parent": "SNP/INDELS"
+                    }, {
+                        "name": "Stop lost",
+                        "value": array[i].stop_lost,
+                        "parent": "SNP/INDELS"
+                    }]
+                }]
+            };
+            return json_var
+        }
+
+        var json_var = jsn_var(array, 0);
+
+        //1000의 자리마다 , 추가
+        function AddComma(data_value) {
+            return Number(data_value).toLocaleString('en');
+        }      
+    </script>
+</head>
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div id="collapse_3" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <!-- select sample section
+                                    <select id="sel_sample" class="sel_sample"></select>
+                                    <script>
+                                        var select_sample = document.getElementById('sel_sample');
+                                        var option_str = "";
+
+                                        for (var i = 0; i < array.length; i++) {
+                                            option_str += "<option value='" + i + "'>" + array[i]['samplename'] + "</option>";
+                                        }
+
+                                        select_sample.innerHTML = option_str;
+
+                                        $("#sel_sample").change(function() {
+                                            json_var = jsn_var(array, $("#sel_sample option:selected").val());
+                                            $("#chart_var").remove();
+                                            document.getElementById("div_chart_var").innerHTML = "<svg id='chart_var' width='800' height='800' aria-labelledby='graph-title' aria-describedby='graph-desc'></svg>"
+                                            plot(json_var);
+                                        });
+                                    </script>
+                                    -->
+                                    <div id="div_chart_var" class="div_chart">
+                                        <svg id="chart_var" width="800" height="800" aria-labelledby="graph-title" aria-describedby="graph-desc">
+                                        </svg>
+                                        <script>
+                                            plot(json_var);
+                                        </script>
+                                    </div>
+                                </div>
+                                <!--end: panel-body-->
+                            </div>
+                            <!--end: panel-collapse-->
+                        </div>
+                        <!--end: panel-->
+                    </div>
+                    <!--end: panel-group-->
+                </div>
+                <!--div class="col-sm-12"-->
+    </div>
+</body>
+</html>

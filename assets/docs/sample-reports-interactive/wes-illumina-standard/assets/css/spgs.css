@@ -1,0 +1,62 @@
+#spgsMainDesc {
+	margin: 0px;
+	padding: 0px;
+}
+
+.spgsEmptyDivT1 {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+.spgs-main-desc{margin-top:15px;}
+.spgs-main-desc li{font-size:16px;line-height:1.5em; color:#223a9d; word-break: break-word;}
+.spgs-main-desc li ~ li{margin-top:18px;}
+.spgs-main-desc li.num2{padding-left:27px;text-indent: -27px;}
+
+.dept3-main-desc{margin-top:15px;}
+.dept3-main-desc li{font-size:16px;line-height:1.5em; color:#616161; word-break: break-word;}
+.dept3-main-desc li ~ li{margin-top:18px;}
+.dept3-main-desc li.num2{padding-left:27px;text-indent: -27px;}
+
+
+.spgs-left{float:left;}
+.spgs-right{float:right;}
+
+
+
+.magnify-modal {
+	box-shadow: 0 0 6px 2px rgba(0, 0, 0, .3);
+}
+.magnify-header .magnify-toolbar {
+	background-color: rgba(0, 0, 0, .5);
+}
+.magnify-stage {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-width: 0;
+}
+.magnify-footer {
+	bottom: 10px;
+}
+.magnify-footer .magnify-toolbar {
+	background-color: rgba(0, 0, 0, .5);
+	border-radius: 5px;
+}
+.magnify-loader {
+background-color: transparent;
+}
+.magnify-header,
+.magnify-footer {
+pointer-events: none;
+}
+.magnify-button {
+pointer-events: auto;
+}
+
+
+
+

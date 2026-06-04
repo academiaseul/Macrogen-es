@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+.data_all_popup_btn {
+    width: 200px;
+    height: 40px;
+    padding-top: 10px;
+    margin: 0px auto;
+    border-radius: 8px;
+    border: solid 1px #4e64c0;
+    background-color: #fefefe;
+    text-align: center;
+    cursor: pointer;
+}
+
+.data_all_popup_btn span {
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    color: #4e64c0;
+}
+
+.content_style{
+	width: 1131px;
+}
+/* ===============================rawData popup style=============*/
+.popup-raw-contents{
+	width: 1366px; margin: 0px; padding: 0px;
+	
+}
+.popup-raw-title{
+	margin-left: 50px; 
+	margin-top: 24px;
+}
+.popup-raw-title span:first-child{
+	font-size: 36px; 
+	font-weight: 500;
+	color: #223a9d;
+}
+.popup-raw-title span:nth-child(2){
+	margin-left: 20px; font-size: 16px; font-weight: bold; color: #223a9d;	
+}
+.popup-raw-title a {
+    float: right;
+}
+.popup-totalchart{
+	display: flex;
+}
+.popup-totalchart .chart{
+	width: 50%;
+}
+/* ===============================================================*/

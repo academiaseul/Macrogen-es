@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22">
+    <defs>
+        <style>
+            .cls-1{fill:#4e64c0}
+        </style>
+    </defs>
+    <g id="그룹_3709" transform="translate(-69 -14)">
+        <path id="패스_24131" d="M27 17L17 27 7 17h6V9h8v8z" class="cls-1" transform="translate(62 5)"/>
+        <path id="사각형_718" d="M0 0H20V2H0z" class="cls-1" transform="translate(69 34)"/>
+    </g>
+</svg>

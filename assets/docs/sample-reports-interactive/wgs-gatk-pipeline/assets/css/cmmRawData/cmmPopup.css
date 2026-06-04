@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+.d3LeftAxis text{
+	font-size: 13px;
+	fill: #616161;
+}
+
+body{
+	background-color: #ffffff;
+}
+body::-webkit-scrollbar {
+	width: 8px;
+}
+body::-webkit-scrollbar-thumb {
+	background-color: #7F90D6;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+body::-webkit-scrollbar-track {
+	background-color: #E6E6E6;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
