@@ -103,9 +103,33 @@
   <!-- RECURSOS -->
   <url>
     <loc>https://macrogen-es.com/recursos.html</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/assets/docs/guias-usuario/macrogen-ngs-ordersheet.xlsx</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/assets/docs/guias-usuario/sample-delivery-guide-v2.pdf</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/assets/docs/guias-usuario/website-registration-guide.pdf</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/assets/docs/guias-usuario/how-to-find-reference.pdf</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://macrogen-es.com/assets/docs/asv-sample-report/Report.html</loc>
