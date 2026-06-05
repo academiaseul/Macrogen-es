@@ -121,11 +121,61 @@
     </header>
 
     <figure style="margin:32px 0 40px; padding:0;">
-      <div style="aspect-ratio:21/9; background:linear-gradient(135deg,#3FA9C9 0%,#841939 50%,#1B2A57 100%); border-radius:14px; display:flex; align-items:center; justify-content:center; color:#fff; padding:40px; text-align:center;">
-        <div>
-          <span style="font-size:11px; letter-spacing:2px; font-weight:700; opacity:0.85;">FROM DESIGN TO BENCH</span>
-          <h2 style="color:#fff; font-size:36px; margin:12px 0; letter-spacing:-1px;">🧬 DNA Oligos · Synthesis</h2>
-          <p style="font-size:14px; opacity:0.92; max-width:520px; margin:0 auto;">MALDI-TOF MS QC · MOPC envío gratis · TAT 5-7 días · desde $0,20 / base</p>
+      <div style="background:#0F1922; border-radius:14px; padding:28px; box-shadow:0 8px 24px rgba(63,169,201,0.18);">
+        <div style="display:grid; grid-template-columns:1fr 1.5fr; gap:18px; margin-bottom:16px; align-items:center;">
+          <!-- LEFT: DNA double helix SVG -->
+          <div style="background:#F8FAFC; border-radius:10px; padding:14px; text-align:center;">
+            <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:var(--mc-mute); text-transform:uppercase; margin-bottom:8px;">25-mer · Custom DNA Oligo</div>
+            <svg viewBox="0 0 100 180" style="width:90px; height:auto; display:block; margin:0 auto;">
+              <path d="M30,10 Q70,30 30,50 Q70,70 30,90 Q70,110 30,130 Q70,150 30,170" fill="none" stroke="#3FA9C9" stroke-width="2"/>
+              <path d="M70,10 Q30,30 70,50 Q30,70 70,90 Q30,110 70,130 Q30,150 70,170" fill="none" stroke="#841939" stroke-width="2"/>
+              <line x1="32" y1="20" x2="68" y2="20" stroke="#E0004D" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="30" x2="68" y2="30" stroke="#84BD00" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="40" x2="68" y2="40" stroke="#E0004D" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="60" x2="68" y2="60" stroke="#84BD00" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="70" x2="68" y2="70" stroke="#E0004D" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="80" x2="68" y2="80" stroke="#84BD00" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="100" x2="68" y2="100" stroke="#E0004D" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="110" x2="68" y2="110" stroke="#84BD00" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="120" x2="68" y2="120" stroke="#E0004D" stroke-width="1.5" opacity="0.7"/>
+              <line x1="32" y1="140" x2="68" y2="140" stroke="#84BD00" stroke-width="1.5" opacity="0.7"/>
+              <circle cx="30" cy="10" r="4" fill="#00BFB2"/>
+              <text x="14" y="13" font-size="6" fill="#00BFB2" font-weight="800">5'</text>
+              <circle cx="30" cy="170" r="4" fill="#E0004D"/>
+              <text x="14" y="173" font-size="6" fill="#E0004D" font-weight="800">3'</text>
+            </svg>
+            <div style="font-size:9px; color:var(--mc-mute); margin-top:6px;">A-T · G-C pares</div>
+          </div>
+          <!-- RIGHT: Modifications + MALDI-TOF -->
+          <div>
+            <div style="background:#F8FAFC; border-radius:10px; padding:12px 14px; margin-bottom:10px;">
+              <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:var(--mc-mute); text-transform:uppercase; margin-bottom:8px;">Modificaciones disponibles</div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <span style="background:#E8F4F8; color:#1B2A57; padding:3px 7px; border-radius:4px; font-size:9px; font-weight:700;">5'-FAM</span>
+                <span style="background:#FEF7E8; color:#D97706; padding:3px 7px; border-radius:4px; font-size:9px; font-weight:700;">3'-BHQ1</span>
+                <span style="background:#FEF2F4; color:#841939; padding:3px 7px; border-radius:4px; font-size:9px; font-weight:700;">Biotin</span>
+                <span style="background:#EAF6E5; color:#1A8754; padding:3px 7px; border-radius:4px; font-size:9px; font-weight:700;">LNA</span>
+                <span style="background:#F0F4FB; color:#1B2A57; padding:3px 7px; border-radius:4px; font-size:9px; font-weight:700;">PS bond</span>
+                <span style="background:#E8F4F8; color:#1B2A57; padding:3px 7px; border-radius:4px; font-size:9px; font-weight:700;">Cy3 / Cy5</span>
+              </div>
+            </div>
+            <div style="background:#F8FAFC; border-radius:10px; padding:12px 14px;">
+              <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:var(--mc-mute); text-transform:uppercase; margin-bottom:6px;">QC obligatorio · MALDI-TOF MS</div>
+              <svg viewBox="0 0 200 50" style="width:100%; height:auto; display:block;">
+                <line x1="5" y1="42" x2="195" y2="42" stroke="#DDE3EE" stroke-width="0.5"/>
+                <path d="M5,42 L20,40 L35,41 L50,39 L65,40 L78,38 L88,40 L95,38" fill="none" stroke="#1B2A57" stroke-width="1"/>
+                <path d="M95,38 L100,8 L105,38" fill="none" stroke="#1B2A57" stroke-width="1.5"/>
+                <path d="M105,38 L120,40 L130,38 L142,39 L155,40 L168,38 L180,40 L195,41" fill="none" stroke="#1B2A57" stroke-width="1"/>
+                <text x="105" y="12" font-size="7" fill="#1B2A57" font-weight="800">7,742 m/z</text>
+                <text x="105" y="20" font-size="6" fill="#7da5c8">±0.1% theory</text>
+              </svg>
+              <div style="font-size:9px; color:var(--mc-mute); margin-top:4px; font-style:italic;">Certificado de identidad incluido en cada orden</div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; color:#fff; padding-top:10px; border-top:1px solid rgba(255,255,255,0.08);">
+          <span style="font-size:11px; letter-spacing:2.5px; font-weight:700; color:#3FA9C9; text-transform:uppercase;">🧪 Desde $0,20 / base · TAT 5-7 días</span>
+          <p style="font-size:13px; color:#A8C0E0; margin:8px 0 0;">Diseño molecular flexible · 6 categorías de modificaciones · QC MALDI-TOF MS en cada oligo entregado.</p>
         </div>
       </div>
     </figure>

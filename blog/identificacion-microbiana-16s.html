@@ -121,11 +121,53 @@
     </header>
 
     <figure style="margin:32px 0 40px; padding:0;">
-      <div style="aspect-ratio:21/9; background:linear-gradient(135deg,#1A8754 0%,#7FC97F 50%,#1B2A57 100%); border-radius:14px; display:flex; align-items:center; justify-content:center; color:#fff; padding:40px; text-align:center;">
-        <div>
-          <span style="font-size:11px; letter-spacing:2px; font-weight:700; opacity:0.85;">FROM ISOLATE TO SPECIES</span>
-          <h2 style="color:#fff; font-size:36px; margin:12px 0; letter-spacing:-1px;">🦠 16S rRNA · Standard ID</h2>
-          <p style="font-size:14px; opacity:0.92; max-width:520px; margin:0 auto;">Workflow de 6 pasos · primers 27F/1492R · 99,72% accuracy en cromatograma · reporte BLAST listo en 24-48h.</p>
+      <div style="background:#0F1F2D; border-radius:14px; padding:28px; box-shadow:0 8px 24px rgba(26,135,84,0.16);">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:16px;">
+          <!-- LEFT: 16S gene schematic with V regions -->
+          <div style="background:#F8FAFC; border-radius:10px; padding:14px;">
+            <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:var(--mc-mute); text-transform:uppercase; margin-bottom:6px;">16S rRNA · ~1.500 bp</div>
+            <div style="font-size:11px; font-weight:700; color:var(--mc-navy); margin-bottom:12px;">9 regiones hipervariables (V1–V9)</div>
+            <svg viewBox="0 0 280 80" style="width:100%; height:auto; display:block;">
+              <rect x="10" y="34" width="260" height="14" fill="#DDE3EE" rx="2"/>
+              <rect x="20" y="32" width="12" height="18" fill="#84BD00"/>
+              <rect x="50" y="32" width="14" height="18" fill="#1A8754"/>
+              <rect x="80" y="32" width="16" height="18" fill="#84BD00"/>
+              <rect x="115" y="32" width="14" height="18" fill="#1A8754"/>
+              <rect x="145" y="32" width="16" height="18" fill="#84BD00"/>
+              <rect x="178" y="32" width="14" height="18" fill="#1A8754"/>
+              <rect x="208" y="32" width="14" height="18" fill="#84BD00"/>
+              <rect x="236" y="32" width="14" height="18" fill="#1A8754"/>
+              <text x="26" y="29" font-size="6" fill="#1A8754" font-weight="700">V1</text><text x="56" y="29" font-size="6" fill="#1A8754" font-weight="700">V2</text><text x="87" y="29" font-size="6" fill="#1A8754" font-weight="700">V3</text><text x="121" y="29" font-size="6" fill="#1A8754" font-weight="700">V4</text><text x="152" y="29" font-size="6" fill="#1A8754" font-weight="700">V5</text><text x="184" y="29" font-size="6" fill="#1A8754" font-weight="700">V6</text><text x="214" y="29" font-size="6" fill="#1A8754" font-weight="700">V7</text><text x="242" y="29" font-size="6" fill="#1A8754" font-weight="700">V8-9</text>
+              <line x1="14" y1="55" x2="40" y2="55" stroke="#E0004D" stroke-width="2"/>
+              <text x="14" y="65" font-size="6" fill="#E0004D" font-weight="700">27F →</text>
+              <line x1="240" y1="55" x2="266" y2="55" stroke="#E0004D" stroke-width="2"/>
+              <text x="234" y="65" font-size="6" fill="#E0004D" font-weight="700">← 1492R</text>
+              <line x1="85" y1="68" x2="100" y2="68" stroke="#3FA9C9" stroke-width="2"/>
+              <text x="65" y="76" font-size="6" fill="#3FA9C9" font-weight="700">785F</text>
+              <line x1="190" y1="68" x2="205" y2="68" stroke="#3FA9C9" stroke-width="2"/>
+              <text x="180" y="76" font-size="6" fill="#3FA9C9" font-weight="700">907R</text>
+            </svg>
+            <div style="font-size:9px; color:var(--mc-mute); margin-top:8px; font-style:italic;">Amplicon completo: PCR 27F+1492R · seq interno 785F+907R</div>
+          </div>
+          <!-- RIGHT: BLAST hits table mini -->
+          <div style="background:#F8FAFC; border-radius:10px; padding:14px;">
+            <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:var(--mc-mute); text-transform:uppercase; margin-bottom:6px;">BLAST · GenBank 16S DB</div>
+            <div style="font-size:11px; font-weight:700; color:var(--mc-navy); margin-bottom:8px;">Sample report · Top hits</div>
+            <table style="width:100%; font-size:8px; border-collapse:collapse;">
+              <thead><tr style="background:#1A8754; color:#fff;"><th style="padding:3px 5px; text-align:left;">Species</th><th style="padding:3px 5px; text-align:right;">% ID</th><th style="padding:3px 5px; text-align:right;">E-val</th></tr></thead>
+              <tbody>
+                <tr style="background:#EAF6E5;"><td style="padding:3px 5px; border-bottom:1px solid #DDE3EE;"><em>Pantoea dispersa</em></td><td style="padding:3px 5px; text-align:right; font-weight:800; color:var(--mc-green); border-bottom:1px solid #DDE3EE;">99,72%</td><td style="padding:3px 5px; text-align:right; font-family:monospace; border-bottom:1px solid #DDE3EE;">0,0</td></tr>
+                <tr><td style="padding:3px 5px; border-bottom:1px solid #DDE3EE;"><em>P. agglomerans</em></td><td style="padding:3px 5px; text-align:right; border-bottom:1px solid #DDE3EE;">98,4%</td><td style="padding:3px 5px; text-align:right; font-family:monospace; border-bottom:1px solid #DDE3EE;">0,0</td></tr>
+                <tr><td style="padding:3px 5px; border-bottom:1px solid #DDE3EE;"><em>P. coffeiphila</em></td><td style="padding:3px 5px; text-align:right; border-bottom:1px solid #DDE3EE;">97,8%</td><td style="padding:3px 5px; text-align:right; font-family:monospace; border-bottom:1px solid #DDE3EE;">0,0</td></tr>
+                <tr><td style="padding:3px 5px;">Enterobacter sp.</td><td style="padding:3px 5px; text-align:right;">94,2%</td><td style="padding:3px 5px; text-align:right; font-family:monospace;">1e-180</td></tr>
+              </tbody>
+            </table>
+            <div style="font-size:9px; color:var(--mc-mute); margin-top:8px; font-style:italic;">→ Kingdom · Family · Genus · Species</div>
+          </div>
+        </div>
+        <div style="text-align:center; color:#fff; padding-top:10px; border-top:1px solid rgba(255,255,255,0.08);">
+          <span style="font-size:11px; letter-spacing:2.5px; font-weight:700; color:#84BD00; text-transform:uppercase;">🦠 From isolate to species · 24-48h</span>
+          <p style="font-size:13px; color:#A8C0E0; margin:8px 0 0;">Mapa del gen 16S con regiones V1-V9 + primers Macrogen · y un ejemplo real de tabla BLAST entregada al cliente.</p>
         </div>
       </div>
     </figure>
