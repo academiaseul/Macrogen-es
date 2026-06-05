@@ -1,0 +1,512 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+
+
+
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+
+<link type="text/css" rel="stylesheet" href="../css/rdrpt/w3.css" />
+<link type="text/css" rel="stylesheet" href="../css/xFAQ.css">
+
+<script type="text/javascript">const RPTPAGEMODE=false;</script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+
+<script type="text/javascript" src="../js/common/txtvars.js"></script>
+<script type="text/javascript" src="../js/spgs/dft.js"></script>
+
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="../js/common/rptmenu.js"></script>
+<script type="text/javascript" src="../js/spgs/rpt100.js"></script>
+
+
+</head>
+<body>
+
+
+<!-- wrapper -->
+<div class="wrapper">
+  <div class="gnb-dim"></div>
+  <!-- gnb-menu -->
+  <div class="gnb-menu-wrap expand">
+    <h1 class="logo"></h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+      <ul class="user-menu"></ul>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+			<script>insertMainMenu(RPTPAGEMODE);</script>
+      	</div>
+        <div class="download"></div>
+    </div>
+  </div>
+  <!-- // gnb-menu -->
+
+	<!-- container -->
+	<div class="container" style="margin-left: 188px;">
+        <div class="header">
+            <strong class="title"></strong>
+            <div class="right">
+                <span class="path">
+                	<script>insertTopMenu(getCurrentPageName(null));</script>
+                </span>
+            </div>
+        </div>
+        <div class="top-btn"><a href="#">TOP</a></div>
+		<div class="content">
+            <h1 class="title-type1">FAQ</h1>
+        </div>
+        
+        <div style="margin-left: 30px;">
+			<div id="the_base_line"></div>
+
+				<div class="w3-row">
+					<div class="w3-col l12">
+						<div class="w3-container w3-cell w3-cell-middle" style="position: relative; padding: 0px; height: 36px;">
+		  					<img id="the_first_ball" src="../images/common/icon_faq.png" style="position: relative; z-index: 2;">	
+		  					<span class="w3-cell-middle faq_default_question">Why do I need to check the md5sum values, and how can I check it? (Windows system)</span>	
+						</div>
+						<div class="w3-card-4 w3-round-xlarge" style="width:940px; margin-left: 51px; margin-top: 20px; background-color: rgba(255,255,255,0.8);">
+								<div class="w3-row w3-padding-32" >
+									<div class="w3-col l1 w3-center">
+										<img src="../images/common/icon_faq_reply.png">
+									</div>
+									<div class="w3-col l11" style="padding-right: 60px;">
+										<span class="faq_default_answer">
+											NGS data tend to have a large files size which makes them more likely to be corrupted during file transfer.<br>
+											So it's important that you check the md5sum of the files after receiving them to make sure what you<br>
+											received are what we gave.
+										</span>
+									</div>
+								</div>
+								
+								<div class="w3-row">
+									<div class="w3-col l1">&nbsp;</div>
+									<div class="w3-col l11">
+									
+										<div class="w3-row w3-cell">
+											<div class="w3-col l12">
+												<img class="w3-cell-middle" src="../images/faq/icon_window_logo.png" style="width: 30px; height: 30px;">
+												<span class="w3-cell-middle" style="margin-top: 5px; font-size: 24px; line-height: 1.08; letter-spacing: normal; color: #223a9d;">
+													&nbsp;Checking md5 hash in a Windows system
+												</span>
+												<p style="font-size: 12px; line-height: 1.83; color: #757575;">
+													Windows does not provide a program for checking md5sum by default.
+													An external program such as <a href="https://www.quickhash-gui.org/downloads" target="_blank" style="color: #008e8c;">QuickHash-Windows</a> can be used instead.
+												</p>
+											</div>
+										</div>
+										<div class="w3-row" style="margin-top: 30px;">
+											<div class="w3-col l1">
+												<div style="width: 60px; height: 22px; padding: 1px 8px; border-radius: 4px; border: solid 1px #4e64c0; background-color: #e4effd;">
+													<span style="font-size: 12px; line-height: 1.83; letter-spacing: normal; color: #223a9d;">STEP&nbsp;1</span>
+												</div>
+											</div>
+											<div class="w3-col l11">
+												<span style="font-size: 16px; line-height: 1.38; color: #212121;">Download QuickHash-Windows from the website, and unzip the file.</span>
+											</div>
+										</div>	
+										
+										<div class="w3-row" style="margin-top: 30px;">
+											<div class="w3-col l1">
+												<div style="width: 60px; height: 22px; padding: 1px 8px; border-radius: 4px; border: solid 1px #4e64c0; background-color: #e4effd;">
+													<span style="font-size: 12px; line-height: 1.83; letter-spacing: normal; color: #223a9d;">STEP&nbsp;2</span>
+												</div>
+											</div>
+											<div class="w3-col l11">
+												<span style="font-size: 16px; line-height: 1.38; color: #212121;">Take a look at the UserManual.pdf file inside the zip file, and execute the .exe file.</span>
+											</div>
+										</div>
+										<div class="w3-row">
+											<div class="w3-col l1">&nbsp;</div>
+											<div class="w3-col l11">
+												<img class="w3-margin-top" src="../images/faq/step2_edit2.png" style="box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);">
+											</div>
+										</div>
+										
+										<div class="w3-row" style="margin-top: 30px;">
+											<div class="w3-col l1">
+												<div style="width: 60px; height: 22px; padding: 1px 8px; border-radius: 4px; border: solid 1px #4e64c0; background-color: #e4effd;">
+													<span style="font-size: 12px; line-height: 1.83; letter-spacing: normal; color: #223a9d;">STEP&nbsp;3</span>
+												</div>
+											</div>
+											<div class="w3-col l11">
+												<span style="font-size: 16px; line-height: 1.38; color: #212121;">Click on the "FileS" tab, and select [MD5] as the Algorithm.</span>
+											</div>
+										</div>
+										<div class="w3-row">
+											<div class="w3-col l12">
+												<img class="w3-margin-top" src="../images/faq/window_system_step3.png" style="width: 793px; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);">
+											</div>
+										</div>
+										
+										<div class="w3-row" style="margin-top: 30px;">
+											<div class="w3-col l1">
+												<div style="width: 60px; height: 22px; padding: 1px 8px; border-radius: 4px; border: solid 1px #4e64c0; background-color: #e4effd;">
+													<span style="font-size: 12px; line-height: 1.83; letter-spacing: normal; color: #223a9d;">STEP&nbsp;4</span>
+												</div>
+											</div>
+											<div class="w3-col l11">
+												<span style="font-size: 16px; line-height: 1.38; color: #212121;">
+													Click "Select Directory" and choose the directory where the files to be checked are located in.<br>
+													The output can be saved as a csv or txt file.<br>
+													The process may take some time depending on the performance of the system being used.
+												</span>
+												
+											</div>
+										</div>
+										
+										<div class="w3-row" style="margin-top: 30px;">
+											<div class="w3-col l1">
+												<div style="width: 60px; height: 22px; padding: 1px 8px; border-radius: 4px; border: solid 1px #4e64c0; background-color: #e4effd;">
+													<span style="font-size: 12px; line-height: 1.83; letter-spacing: normal; color: #223a9d;">STEP&nbsp;5</span>
+												</div>
+											</div>
+											<div class="w3-col l11">
+												<span style="font-size: 16px; line-height: 1.38; color: #212121;">
+													Compare the newly calculated md5 value with the md5 value provided to you through <br>the Analysis Report.
+												</span>
+												
+											</div>
+										</div>
+										<br>
+										<br>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+		
+				<div class="w3-row" style="margin-top: 35px;">
+					<div class="w3-col l12">
+						<div class="w3-container w3-cell w3-cell-middle" style="position: relative; padding: 0px; height: 36px;">
+		  					<img src="../images/common/icon_faq.png" style="position: relative; z-index: 2;">	
+		  					<span class="w3-cell-middle faq_default_question">Why do I need to check the md5sum values, and how can I check it? (Linux system)</span>	
+						</div>
+						<div class="w3-card-4 w3-round-xlarge" style="width:940px; margin-left: 51px; margin-top: 20px; background-color: rgba(255,255,255,0.8);">
+								<div class="w3-row w3-padding-32" >
+									<div class="w3-col l1 w3-center">
+										<img src="../images/common/icon_faq_reply.png">
+									</div>
+									<div class="w3-col l11" style="padding-right: 60px;">
+										<span class="faq_default_answer">
+											NGS data tend to have a large files size which makes them more likely to be corrupted during file transfer.<br>So it's important that you check the md5sum of the files after receiving them to make sure what you<br>received are what we gave.
+										</span>
+									</div>
+								</div>
+								
+								
+								<div class="w3-row">
+									<div class="w3-col l1">&nbsp;</div>
+									<div class="w3-col l11">
+									
+										<div class="w3-row w3-cell">
+											<div class="w3-col l12">
+												<img class="w3-cell-middle" src="../images/faq/icon_linux_logo.png" style="width: 30px; height: 30px;">
+												<span class="w3-cell-middle" style="margin-top: 5px; font-size: 24px; line-height: 1.08; letter-spacing: normal; color: #223a9d;">
+													&nbsp;Checking md5 hash in a Linux system
+												</span>
+												<p style="font-size: 12px; line-height: 1.83; color: #757575;">
+													Linux systems have an internal md5sum program under /user/bin/md5sum.<br>
+													md5sum has a "-c" option, which reads the MD5 sums from the input file and checks them simultaneously.
+												</p>
+												<span style="font-size: 16px; font-weight: bold; line-height: 1.38; color: #223a9d;">
+													Usage: $ md5sum -c [input file name]
+												</span>
+											</div>
+										</div>
+										<div class="w3-row" style="width: 809px; margin-top: 20px; border-bottom: 1px solid #7899d8;">
+											<div class="w3-col l12">&nbsp;</div>
+										</div>
+										
+										<div class="w3-row" style="margin-top: 30px;">
+											<div class="w3-col l1">
+												<div style="width: 60px; height: 22px; padding: 1px 8px; border-radius: 4px; border: solid 1px #4e64c0; background-color: #e4effd;">
+													<span style="font-size: 12px; line-height: 1.83; letter-spacing: normal; color: #223a9d;">STEP&nbsp;1</span>
+												</div>
+											</div>
+											<div class="w3-col l11" style="padding-right: 50px;">
+												<span style="font-size: 16px; line-height: 1.38; color: #212121;">
+													Macrogen provides a text file containing the md5sum of deliverables you'll be receiving, which you can use to validate the integrity of the files. 
+													You can download this file by clicking on the "md5sum List" button in the "Download List" page. The text file will have the following name and format
+													depending on how you’re receiving your data:
+												</span>
+											</div>
+										</div>
+										
+										<div class="w3-row" style="margin-top: 20px;">
+											<div class="w3-col l1" >&nbsp;</div>
+											<div class="w3-col l11">
+												<div style="font-size: 16px; line-height: 1.88; color: #212121;">
+													&cir;&nbsp;&nbsp;Via download link : <span style="font-weight: bold;">&lt;OrderNumber&gt;_#samples_md5sum_DownloadLink.txt</span>
+												</div>
+												<img src="../images/faq/linux_system_step1_1.png" style="width: 727px; height: 71px; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);">
+												<div style="font-size: 16px; line-height: 1.88; color: #212121;">
+													&cir;&nbsp;&nbsp;Via HDD : <span style="font-weight: bold;">&lt;OrderNumber&gt;_#samples_md5sum.txt</span>
+												</div>
+												<img src="../images/faq/linux_system_step1_2.png" style="width: 727px; height: 71px; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);">
+												<div style="margin-top: 10px; font-size: 16px; line-height: 1.88; color: #212121;">
+													&cir;&nbsp;&nbsp;You can also find <span style="font-weight: bold;">"md5sum.txt"</span> located inside the HDD delivered to you.
+												</div>
+												<img src="../images/faq/linux_system_step1_3.png" style="width: 500px; height: 78px; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);">
+											</div>
+										</div>
+										
+										<div class="w3-row" style="margin-top: 30px;">
+											<div class="w3-col l1">
+												<div style="width: 60px; height: 22px; padding: 1px 8px; border-radius: 4px; border: solid 1px #4e64c0; background-color: #e4effd;">
+													<span style="font-size: 12px; line-height: 1.83; letter-spacing: normal; color: #223a9d;">STEP&nbsp;2</span>
+												</div>
+											</div>
+											<div class="w3-col l11" style="padding-right: 50px;">
+												<span style="font-size: 16px; line-height: 1.38; color: #212121;">
+													Use "md5sum -c" to validate the integrity of the file you've received. The input file for md5sum -c has to be delimited by two spaces with the md5sum column appearing before the file name, just like the sample image of "md5sum.txt" file shown above. As you can see, the two other files above are not formatted this way and need to altered to be used as input for md5sum -c. You can manually exclude the header and cut out "File" and "md5sum" column from the files, or simply run the following command:													
+												</span><br><br>
+												<span style="font-size: 16px; font-weight: bold; line-height: 1.38; color: #223a9d;">
+													$ awk '{print $3 "  " $1}' &lt;md5sum_file&gt; | grep -v File
+												</span>
+											</div>
+										</div>
+										
+										<div class="w3-row" style="margin-top: 30px;">
+											<div class="w3-col l1">
+												<div style="width: 60px; height: 22px; padding: 1px 8px; border-radius: 4px; border: solid 1px #4e64c0; background-color: #e4effd;">
+													<span style="font-size: 12px; line-height: 1.83; letter-spacing: normal; color: #223a9d;">STEP&nbsp;3</span>
+												</div>
+											</div>
+											<div class="w3-col l11" style="padding-right: 50px;">
+												<span style="font-size: 16px; line-height: 1.38; color: #212121;">
+													<span style="font-weight: bold;">"md5sum -c"</span> reads the input containing the md5 value of a file, and checks whether the md5 value of that file matches what’s written inside the input file. This action outputs <span style="font-weight: bold;">"OK"</span> if the md5 value
+													matches, and <span style="font-weight: bold;">"FAILED"</span> if otherwise. Check if the command outputs <span style="font-weight: bold;">"OK"</span> for all the files. (Refer to image below)
+												</span><br><br>
+												<img src="../images/faq/linux_system_step3_1.png" style="width: 727px; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);">
+											</div>
+										</div>
+										<br><br>
+									</div>
+								</div>
+								
+								
+								
+						</div>
+					</div>
+				</div>
+		
+		
+				
+				<div class="w3-row" style="margin-top: 35px;">
+					<div class="w3-col l12">
+						<div class="w3-container w3-cell w3-cell-middle" style="position: relative; padding: 0px; height: 36px;">
+		  					<img src="../images/common/icon_faq.png" style="position: relative; z-index: 2;">	
+		  					<span class="w3-cell-middle faq_default_question">Why different normalized expression units are used ?</span>	
+						</div>
+						<div class="w3-card-4 w3-round-xlarge" style="width:940px; margin-left: 51px; margin-top: 20px; background-color: rgba(255,255,255,0.8);">
+								<div class="w3-row w3-padding-32" >
+									<div class="w3-col l1 w3-center">
+										<img src="../images/common/icon_faq_reply.png">
+									</div>
+									<div class="w3-col l11" style="padding-right: 60px;">
+										<span class="faq_default_answer">
+											The expression units provide a digital measure of the abundance of transcripts.
+											Normalized expression units are necessary to remove technical biases in sequenced data such as depth of sequencing 
+											(more sequencing depth produces more read count for gene expressed at same level) and gene length (differences in gene length
+											generate unequal reads count for genes expressed at the same level; the longer the gene, the more the read
+											count).
+										</span>
+									</div>
+								</div>
+								
+								<div class="w3-row">
+									<div class="w3-col l1">&nbsp;</div>
+									<div class="w3-col l11">
+										
+										<span class="w3-cell-middle" style="margin-top: 5px; font-size: 24px; line-height: 1.08; letter-spacing: normal; color: #223a9d;">
+													Gene expression units and calculation:
+										</span>
+										
+									</div>
+								</div>
+								<div class="w3-row" style="margin-top: 20px;">
+									<div class="w3-col l1">&nbsp;</div>
+									<div class="w3-col l11">
+										<div class="w3-row">
+											<div class="w3-col l12" style="padding: 5px;">1. Read Count</div>		
+										</div>
+										<div class="w3-row">
+											<div class="w3-col l12" style="padding-left: 25px;">simple raw count of mapped reads to a certain gene or transcript.</div>		
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="w3-row" style="margin-top: 15px;">
+									<div class="w3-col l1">&nbsp;</div>
+									<div class="w3-col l11">
+										<div class="w3-row">
+											<div class="w3-col l12" style="padding: 5px;">2. RPM (Reads per million mapped reads)</div>		
+										</div>
+										<div class="w3-row">
+											<div class="w3-col l12" style="padding:5px 60px 5px 25px;">
+												<div class="w3-row"><div class="w3-col l12 w3-padding-16 w3-center">		
+													<img src="../images/faq/faq_formula1.png" style="width: 70%;">
+												</div></div>
+												<div class="w3-padding-16">
+													For example, You have sequenced one library with 5 million(M) reads. Among them, total 4 M matched to<br>
+													the genome sequence and 5000 reads matched to a given gene.
+												</div>
+												<div class="w3-row"><div class="w3-col l12 w3-padding-16 w3-center">
+													<img src="../images/faq/faq_formula2.png" style="width: 70%;">
+												</div></div>
+												<div class="w3-padding-16">
+													* Notes: RPM does not consider the transcript length normalization.<br>
+													&nbsp;&nbsp;&nbsp;RPM is suitable for sequencing protocols where reads are generated irrespective of gene length.
+												</div>
+											</div>		
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="w3-row" style="margin-top: 15px;">
+									<div class="w3-col l1">&nbsp;</div>
+									<div class="w3-col l11">
+										<div class="w3-row">
+											<div class="w3-col l12" style="padding: 5px;">3. RPKM (Reads per kilo base per million mapped reads)</div>		
+										</div>
+										<div class="w3-row">
+											<div class="w3-col l12" style="padding:5px 60px 5px 25px;">
+												<div class="w3-row"><div class="w3-col l12 w3-padding-16 w3-center">		
+													<img src="../images/faq/faq_formula3.png" style="width: 70%;">
+												</div></div>
+												<div class="w3-padding-16">
+													Here, 10^3 normalizes for gene length and 10^6 for sequencing depth factor.<br>
+													FPKM (Fragments per kilo base per million mapped reads) is analogous to RPKM and is used especially in<br>
+													paired-end RNA-seq experiments. In paired-end RNA-seq experiments, two (left and right) reads are<br>
+													sequenced from same DNA fragment. When we map paired-end data, both reads or only one read with<br>
+													high quality from a fragment can map to the reference sequence. To avoid confusion or multiple<br>
+													counting, the fragments to which both or single read mapped is counted and represented for FPKM<br>
+													calculation.<br>
+													For example, You have sequenced one library with 5 M reads. Among them, total 4 M matched to the<br>
+													genome sequence and 5000 reads matched to a given gene with a length of 2000 bp.
+												</div>
+												<div class="w3-row"><div class="w3-col l12 w3-padding-16 w3-center">		
+													<img src="../images/faq/faq_formula4.png" style="width: 70%;">
+												</div></div>
+												<div class="w3-padding-16">
+													* Notes: RPKM considers the gene length for normalization.<br>
+													&nbsp;&nbsp;&nbsp;RPKM is suitable for sequencing protocols where reads sequencing depends on gene length<br>
+													&nbsp;&nbsp;&nbsp;Used in single-end RNA-seq experiments (FPKM for paired-end RNA-seq data)
+												</div>
+											</div>		
+										</div>
+									</div>
+								</div>
+								
+								<div class="w3-row" style="margin-top: 15px;">
+									<div class="w3-col l1">&nbsp;</div>
+									<div class="w3-col l11">
+										<div class="w3-row">
+											<div class="w3-col l12" style="padding: 5px;">4. TPM (Transcript per million)</div>		
+										</div>
+										<div class="w3-row">
+											<div class="w3-col l12" style="padding:5px 60px 5px 25px;">
+												<div class="w3-padding-16">
+													TPM is similar to RPKM and FPKM. The only difference is the order of operations.
+												</div>
+												<div class="w3-row"><div class="w3-col l12 w3-padding-16 w3-center">		
+													<img src="../images/faq/faq_formula5.png" style="width: 70%;">
+												</div></div>
+												<div class="w3-padding-16">
+													* Notes: TPM considers the gene length for normalization.<br>
+													&nbsp;&nbsp;&nbsp;TPM is proposed as an alternative to RPKM due to inaccuracy in RPKM measurement (Wagner et al., 2012)<br>
+													&nbsp;&nbsp;&nbsp;TPM is suitable for sequencing protocols where reads sequencing depends on gene length.
+												</div>
+											</div>		
+										</div>
+									</div>
+								</div>
+								
+								<br>
+								<br>
+								
+								
+								
+						</div>
+					</div>
+				</div>
+				
+				
+				
+		
+		
+				<div class="w3-row" style="margin-top: 35px;">
+					<div class="w3-col l12">
+						<div class="w3-container w3-cell w3-cell-middle" style="position: relative; padding: 0px; height: 36px;">
+		  					<img src="../images/common/icon_faq.png" style="position: relative; z-index: 2;">	
+		  					<span class="w3-cell-middle faq_default_question">I want to see the data produced by Macrogen. How can I open the files?</span>	
+						</div>
+						<div class="w3-card-4 w3-round-xlarge" style="width:940px; height: 115px; margin-left: 51px; margin-top: 20px; background-color: rgba(255,255,255,0.8);">
+							<div class="w3-row w3-padding-32">
+								<div class="w3-col l1 w3-center">
+									<img src="../images/common/icon_faq_reply.png">	
+								</div>
+								<div class="w3-col l11">
+									NGS data tend to have large file sizes, and are not user-friendly to work with in a Windows environment.<br>We recommend that you use Linux system for smoother operation.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w3-row" style="margin-top: 35px;">
+					<div class="w3-col l12">
+						<div class="w3-container w3-cell w3-cell-middle" style="position: relative; padding: 0px; height: 36px;">
+		  					<img id="the_last_ball" src="../images/common/icon_faq.png" style="position: relative; z-index: 2;">	
+		  					<span class="w3-cell-middle faq_default_question">Where can I find information for Illumina adapter sequences?</span>	
+						</div>
+						<div class="w3-card-4 w3-round-xlarge" style="width:940px; height: 115px; margin-left: 51px; margin-top: 20px; background-color: rgba(255,255,255,0.8);">
+								<div class="w3-row w3-padding-32">
+									<div class="w3-col l1 w3-center">
+										<img src="../images/common/icon_faq_reply.png">	
+									</div>
+									<div class="w3-col l11">
+										Information on Illumina adapters can be found in this support document:<br>
+										<a href="https://support-docs.illumina.com/SHARE/AdapterSequences/Content/SHARE/FrontPages/AdapterSeq.htm" target="_blank">Adapter Sequences Intro</a>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+		</div>
+
+	</div>
+	<!-- // container -->
+	<div class="footer"></div>
+	
+</div>
+<!-- // wrapper -->
+
+	<!-- company location -->
+	<div class="layerpopup" id="comLocPopup"></div>
+	<!-- order info -->
+	<div class="layerpopup" id="ordInfoPopup"></div>
+	
+</body>
+</html>

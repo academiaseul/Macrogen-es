@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+
+
+
+<link type="text/css" rel="stylesheet" href="../js/lib/jstree/style.css" />
+
+<style type="text/css">
+
+ .ico.i-excel{width:44px;height:45px;background:url('../images/pdf/ic/icon/ico_excel.svg') no-repeat 0 0;}
+ .ico.i-folder{width:38px;height:47px;background:url('../images/pdf/ic/icon/ico_folder.png') no-repeat 0 0;}
+ .ico.i-txt{width:38px;height:47px;background:url('../images/pdf/ic/icon/ico_txt.svg') no-repeat 0 0;}
+ .ico.i-gz{width:44px;height:49px;background:url('../images/pdf/ic/icon/ico_gz.svg') no-repeat 0 0;}
+ .ico.i-index{width:40px;height:49px;background:url('../images/pdf/ic/icon/ico_index.svg') no-repeat 0 0;}
+ .ico.i-html{width:40px;height:49px;background:url('../images/pdf/ic/icon/ico_html.svg') no-repeat 0 0;}
+ .ico.i-zip{width:40px;height:49px;background:url('../images/pdf/ic/icon/ico_zip.svg') no-repeat 0 0;}
+ .ico.i-tar{width:40px;height:49px;background:url('../images/pdf/ic/icon/ico_tar.png') no-repeat 0 0;}
+ 
+
+ #treemain {
+     clear: right;
+     width: 2080px;
+     background: #fff;
+     border: hidden;
+     height: 2200px;
+ }
+#treemain li { min-height:54px; line-height:54px; }
+#treemain a { line-height:50px; height:50px; font-size:30px; }
+#treemain a ins { height:50px; width:50px; }
+
+ .top-icon-info {
+     width: 1600px;
+     height: 80px;
+     display: flex;
+     flex-wrap: nowrap;
+     justify-content: flex-end;
+     margin-bottom: 100px;
+ }
+
+ .top-icon-info span {
+     padding-left : 30px;
+     font-size: 30px;
+ }
+
+ 
+
+
+
+/* .jstree-anchor{ */
+/* 	font-weight: bold; */
+/* } */
+.jstree-children {
+	margin-left: 180px;
+	
+/* 	position: relative; */
+/* 	top: -40px; */
+}
+.jstree-icon {
+	width: 50px;
+	height: 50px;
+}
+
+.jstree-container-ul {
+	margin-left: 10px;
+}
+li.jstree-last > i.jstree-icon {
+background-position-y: -60px !important;
+}
+</style>
+
+
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_deliver_analysis_result_treenode.js"></script>
+
+
+<script type="text/javascript" src="../js/lib/jstree/jstree.min.js"></script>
+
+<script type="text/javascript">
+
+
+function getIconInfo(iconNm){
+	var imgInfo = "";
+	switch(iconNm){
+		case "hdd":{imgInfo = "../images/pdf/ic/icon/ico_folder.png";};break;
+		case "folder":{imgInfo = "../images/pdf/ic/icon/ico_folder.png";};break;
+		case "html":{imgInfo = "../images/pdf/ic/icon/ico_html.svg";};break;
+		case "index":{imgInfo = "../images/pdf/ic/icon/ico_index.svg";};break;
+		case "txt":{imgInfo = "../images/pdf/ic/icon/ico_txt.svg";};break;
+		case "excel":{imgInfo = "../images/pdf/ic/icon/ico_excel.svg";};break;
+		case "gz":{imgInfo = "../images/pdf/ic/icon/ico_gz.svg";};break;
+		case "zip":{imgInfo = "../images/pdf/ic/icon/ico_zip.svg";};break;
+		case "tar":{imgInfo = "../images/pdf/ic/icon/ico_tar.png";};break;
+	
+	}
+	return imgInfo;
+}
+
+</script>
+
+</head>
+
+
+
+
+<body style="width: 2080px; height: 1700px; margin: 0px; padding: 0px;" >
+
+
+  
+            <div class="data-list-type" style="width: 100%;">
+                     
+                    <script>
+                    
+                    var treenodeArr = new Array();
+                    var treeNodeData = new Array();
+                    var childrenArr = null;
+                    
+                    
+                    /*
+					let htmlStr = "<div class='top-icon-info'>";
+						
+						for(let tcnt = 0; tcnt < 4; tcnt++){
+	                  	  htmlStr += "<span style='width:140px;'>&nbsp;</span>";
+	                    }
+                    
+                      for(var lenicon in rptjs_deliver_analysis_result_treenode.icons){
+                    	  htmlStr += "<span>";
+                    	  htmlStr += ('<img src="'+getIconInfo(rptjs_deliver_analysis_result_treenode.icons[lenicon].icon)+'"></img>');
+                    	  htmlStr += (" "+rptjs_deliver_analysis_result_treenode.icons[lenicon].text);
+                          htmlStr += "</span>";
+                      }
+                      htmlStr += "</div>";
+                      
+                      htmlStr += '<div id="treemain">';
+                      htmlStr += "</div>";
+                      
+                      
+                      document.write(htmlStr);
+                      */
+                      
+                      document.write("<div class='top-icon-info'>");
+                      //for(let tcnt = 0; tcnt < 4; tcnt++){
+                    	  //document.write("<span style='width:140px;'>&nbsp;</span>");
+                      //}
+                      for(var lenicon in rptjs_deliver_analysis_result_treenode.icons){
+                          document.write('<span>');
+                          document.write('<img src="'+getIconInfo(rptjs_deliver_analysis_result_treenode.icons[lenicon].icon)+'"></img>');
+                          document.write(" "+rptjs_deliver_analysis_result_treenode.icons[lenicon].text);
+                          document.write('</span>');
+                      }
+                      document.write("</div>");
+                      
+                      
+                      document.write('<div id="treemain">');
+                      document.write('</div>');
+                      
+                      
+                      
+                      
+                      
+                      var treeNodeCtt = rptjs_deliver_analysis_result_treenode.contents;
+                      var treeNodeRowObj = null;
+                      var childNodeRowObj = null;
+                      var parentId = "";
+                      for(var lencontents in treeNodeCtt){
+
+                            treeNodeRowObj = treeNodeCtt[lencontents];
+
+                              parentId = treeNodeRowObj.parent; 
+                              if( parentId == ""){
+                                  parentId = "#";
+                              }
+                              
+                              treenodeArr.push({ 
+                                    "id" : treeNodeRowObj.id, 
+                                    "icon": getIconInfo(treeNodeRowObj.icon), 
+                                    "text" : treeNodeRowObj.text, 
+                                    "parent" : parentId,
+                                    "firstChild" : treeNodeRowObj.firstChild,
+                                    "nextSibling" : treeNodeRowObj.nextSibling,
+                                    "state" : { 'opened' : true },
+                                    "children" : childrenArr
+                                });
+                            
+                      }
+
+                      $('#treemain').jstree( { 'core' : { 'data' : treenodeArr  } } );
+
+                    </script>
+            
+        </div>  
+
+</body>
+
+</html>

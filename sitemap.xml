@@ -143,6 +143,24 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://macrogen-es.com/assets/docs/sample-reports-interactive/wgs-pacbio-mapping-cnv-sv/report.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/assets/docs/sample-reports-interactive/rna-transcriptome-basic-deg/report.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/assets/docs/sample-reports-interactive/rna-transcriptome-deg-vc-lncrna/report.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
   <!-- BLOG -->
   <url>

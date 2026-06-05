@@ -1,0 +1,135 @@
+/* .container {
+	margin: 150px auto;
+	max-width: 960px;
+} */
+
+/* #treemain {
+    overflow: auto;
+    width: 100%;
+    background: red;
+    height: 900px;
+    position: relative;
+} */
+/* .top-icon-info {
+    text-align: right;
+    width: 100%;
+} */
+
+
+.top-icon-info {
+    text-align: right;
+    width: auto;
+    /* width: 500px; */
+    /* position: absolute; */
+    /* margin-bottom: 25px; */
+    /* margin-top: 50px; */
+    /* z-index: 700; */
+    /* background: #4242420d; */
+     height: 40px;
+    line-height: 40px;
+    float: right;
+}
+
+.top-icon-info span {
+   /*  float: left; */
+    /* width: 100px; */
+    margin-left: 15px;
+}
+
+.treenode-container {
+    margin-top: 30px;
+}
+
+#treemain {
+    overflow: auto;
+    width: 100%;
+    background: #fff;
+    border: solid 2px #7899d8;
+    height: 700px;
+    position: relative;
+}
+.window {
+	font-weight: bold;
+	/* cursor: pointer; */
+	/* border: 1px solid #346789;
+	box-shadow: 2px 2px 10px #aaa; */
+	-o-box-shadow: 2px 2px 10px #aaa;
+	/* -webkit-box-shadow: 2px 2px 10px #aaa; */
+	-moz-box-shadow: 2px 2px 10px #aaa;
+	-moz-border-radius: 0.5em;
+	border-radius: 0.5em;
+	/*
+            opacity:0.8;
+            filter:alpha(opacity=80);
+            */
+	/* width: 10em; */
+	height: auto;
+	padding: 0.5em 0em;
+	text-align: center;
+	z-index: 20;
+	position: absolute;
+	/* background-color: #eeeeef; */
+	color: black;
+	font-family: helvetica;
+	font-size: 0.9em;
+	word-wrap: break-word;
+}
+
+._jsPlumb_endpoint {
+    display: none;
+}
+
+/* .window:hover {
+	box-shadow: 2px 2px 10px #444;
+	-o-box-shadow: 2px 2px 10px #444;
+	-webkit-box-shadow: 2px 2px 10px #444;
+	-moz-box-shadow: 2px 2px 10px #444;
+
+} */
+
+/*
+        .window > div {
+            margin-top: 19%;
+            margin-bottom: 19%;
+        }
+        */
+.hidden {
+	display: none;
+}
+
+.collapser {
+	cursor: pointer;
+	border: 1px dotted gray;
+	z-index: 21;
+}
+
+.errorWindow {
+	border: 2px solid red;
+}
+
+.tree-title {
+	display: flex;
+	/* justify-content: center; */
+	/*line-height: 20px;
+	height: 20px;*/
+	margin-left: 5px;
+}
+
+
+._txt {
+    width: 100%;
+    text-align: justify;
+    margin-left: 5px; 
+    margin-top: 4px;
+    font-weight: 100;
+    word-break: break-word;
+}
+
+/* [id^="node_"]{
+	width: 150px;
+	width: 100%;
+} */
+/* img {
+    width: 20px;
+    height: 20px;
+} */

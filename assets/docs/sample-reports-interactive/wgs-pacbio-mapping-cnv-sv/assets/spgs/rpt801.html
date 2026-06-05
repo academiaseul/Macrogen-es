@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="../css/lib/flowchart/v6/mermaid.forest.css" />
+<style type="text/css">
+div.mermaid {
+	font-family: 'Courier New', Courier, monospace !important;
+}
+
+.test {color: red;}
+.color_b {color: #6c80cd;}
+.align-test {padding: 10px;}
+.classWarn>rect {fill: rgba(6, 178, 176, 0.15) !important; stroke: #61cacb !important;}
+.classWarn>polygon {fill: rgba(6, 178, 176, 0.15) !important; stroke: #61cacb !important;}
+
+/* div#draw_flowchart {
+    width: 1100px;
+    height: 50px;
+} */
+
+svg#graph {width: 1200px; height: 1500px;}
+</style>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/lib/flowchart/mermaid_v6.js"></script>
+<script type="text/javascript" src="../js/data/rpt800data.js"></script>
+<script type="text/javascript">
+	var mermaidAPI;
+	(function () {
+	  'use strict'
+		mermaidAPI = mermaid.mermaidAPI;
+		mermaidAPI.initialize({
+		      startOnLoad:false,
+		      logLevel: 3,
+		      securityLevel: 'loose',
+		      flowchart: { curve: 'basis' },
+		      width: 1200,
+		      height: 1500
+		});
+	})();
+</script>
+</head>
+<body>
+
+<!-- wrapper -->
+<div style="margin: 0px; padding: 0px;">
+  
+<div class="mermaid" id="draw_flowchart" style="margin: 0px; padding: 0px; width: 1200px; height: 1500px; text-align: center;"></div>
+
+<script>
+	
+	var flowChartObj = rptjs_800_data.contents.filter((row) => (row.type==="flowchart"))[0];
+	if(flowChartObj && flowChartObj.graphTable){
+		var graphData = flowChartObj.graphTable;	
+		graphData = graphData.replace(/\(\[/g,"[");
+		graphData = graphData.replace(/\]\)/g,"]");
+	    
+		var element = document.getElementById("draw_flowchart");
+			
+		//change v6
+		var graph = mermaidAPI.render('graph', graphData, function(svgCode){ element.innerHTML = svgCode }, element );	
+	}
+	
+
+</script>  
+
+
+	
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+<link type="text/css" rel="stylesheet" href="../css/rdrpt/rpt31.css" />
+
+<script type="text/javascript">const RPTPAGEMODE=false;</script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/d3.v4.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+
+
+<script type="text/javascript" src="../js/common/txtvars.js"></script>
+<script type="text/javascript" src="../js/spgs/dft.js"></script>
+<script type="text/javascript" src="../js/spgs/dfttab.js"></script>
+<script type="text/javascript" src="../js/spgs/rdrpt/rawdatarpt.js"></script>
+
+<script type="text/javascript" src="../js/data/rptjs_rawdata_statistics_cvtd.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="../js/common/rptmenu.js"></script>
+
+<script type="text/javascript" src="../js/spgs/rdrpt/aRtotalReadBases.js"></script>
+<script type="text/javascript" src="../js/spgs/rpt31.js"></script>
+
+
+
+</head>
+<body>
+
+<!-- wrapper -->
+<div class="wrapper">
+  <div class="gnb-dim"></div>
+  <!-- gnb-menu -->
+  <div class="gnb-menu-wrap expand">
+    <h1 class="logo"></h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+      <ul class="user-menu"></ul>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+          <script>insertMainMenu(RPTPAGEMODE);</script>
+      	</div>
+        <div class="download"></div>
+    </div>
+  </div>
+  <!-- // gnb-menu -->
+
+	<!-- container -->
+	<div class="container" style="margin-left: 188px;">
+        <div class="header">
+            <strong class="title"></strong>
+            <div class="right">
+                <span class="path">
+                    <script>insertTopMenu(getCurrentPageName(null));</script>
+                </span>
+            </div>
+        </div>
+        <div class="top-btn"><a href="#">TOP</a></div>
+		<div class="content">
+		
+            <h1 class="title-type1"></h1>
+			
+			
+			
+			<div class="d3ChartToolTip" style="background: none; border: none; display: none;">
+				<svg viewBox="5 5 230 125" width="230" height="125" style="-webkit-filter: drop-shadow( 4px 4px 3px rgba(0, 0, 0, 0.7)); filter: drop-shadow( 4px 4px 3px rgba(0, 0, 0, 0.7));">
+				  <path d="M 10 5 C 7 5 5 7 5 10 L 5 100 C 5 103 7 105 10 105 L 190 105 L 180 130 L 210 105 L 230 105 C 233 105 235 103 235 100 L 235 10 C 235 7 233 5 230 5 L 10 5 Z" 
+				  stroke="#099896" stroke-width="0.2" fill="#ffffff" />
+					<text class="d3ChartToolTipHeader"></text>
+					<text class="d3ChartToolTipName"></text>
+					<text class="d3ChartToolTipUnit"></text>
+					<text class="d3ChartToolTipValue"></text>
+				</svg>
+			</div>
+			
+		</div>
+	</div>
+
+	<!-- // container -->
+	<div class="footer"></div>
+</div>
+<!-- // wrapper -->
+
+<!-- company location --><div class="layerpopup" id="comLocPopup"></div><!-- company location -->
+<!-- order info --><div class="layerpopup" id="ordInfoPopup"></div><!-- order info -->
+
+<!-- --------------------------------End-------------------------------- -->
+
+</body>
+</html>

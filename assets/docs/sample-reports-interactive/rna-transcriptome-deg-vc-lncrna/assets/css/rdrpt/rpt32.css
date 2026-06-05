@@ -1,0 +1,46 @@
+.atbar { fill: #40bfbd; }
+.gcbar { fill: #6c8cde; }
+.d3HighLightArea { fill: #F7E0E3; }
+.d3HighLightTxt {
+	font-size: 16px;
+	fill: #ffffff;
+}
+.atgcToolTip {
+	position: absolute;
+	width:234px;
+	border: 1px solid #4e64c0;
+	background-color: white;
+	text-align: center;
+	font-size: 18px;
+}
+.d3TopAxis text{
+	font-size: 12px;
+	fill: #9e9e9e;
+}
+.d3BottomAxis text{
+	font-size: 12px;
+	fill: #9e9e9e;
+}
+
+.d3TopAxis line{
+	stroke: #9e9e9e;
+}
+.d3BottomAxis line{
+	stroke: #9e9e9e;
+}
+
+.d3LeftAxis text{
+	font-size: 16px;
+}
+
+.atgcToolTipHeader {
+	font-weight: bold;
+}
+.atgcToolTipGC {
+	font-weight: bold;
+	fill: #223a9d;
+}
+.atgcToolTipAT {
+	font-weight: bold;
+	fill: #008e8c;
+}

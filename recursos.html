@@ -186,7 +186,7 @@
             </a>
             <a href="#sample-reports">
               <span class="switcher-icon">📊</span>
-              <span class="switcher-text"><strong>Sample reports</strong><small>11 HTML interactivos + 10 PDFs</small></span>
+              <span class="switcher-text"><strong>Sample reports</strong><small>Raw · Long · Short Reads (DNA·RNA·Meta) · 14 HTML + 15 PDFs</small></span>
             </a>
             <a href="#portal">
               <span class="switcher-icon">💼</span>
@@ -205,7 +205,7 @@
     <a href="#protocolos" data-anchor="protocolos"><span class="icon">🧬</span>Protocolos</a>
     <a href="#primers" data-anchor="primers"><span class="icon">🧷</span>Primers</a>
     <a href="#envio" data-anchor="envio"><span class="icon">📦</span>Envío</a>
-    <a href="#sample-reports" data-anchor="sample-reports"><span class="icon">📊</span>Sample Reports</a>
+    <a href="#sample-reports" data-anchor="sample-reports"><span class="icon">📊</span>Sample Reports (29)</a>
     <a href="#portal" data-anchor="portal"><span class="icon">💼</span>Portal</a>
     <a href="contacto.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon">💬</span>Contacto →</a>
   </div>
@@ -552,22 +552,310 @@
     <!-- ============== CATEGORY 5 · NGS SAMPLE REPORTS ============== -->
     <div id="sample-reports" class="res-category">
       <div class="res-cat-header">
-        <h2>📊 Sample reports · por servicio NGS</h2>
-        <span class="count">21 reportes · 11 interactivos HTML + 10 PDFs</span>
+        <h2>📊 Sample reports · Bioinformática NGS</h2>
+        <span class="count">29 reportes · 14 interactivos HTML + 15 PDFs</span>
       </div>
+      <p style="color:var(--mc-mute); font-size:14px; margin:-6px 0 18px; max-width:760px;">
+        Estructura oficial Macrogen <strong>Raw Data → Long Reads → Short Reads (DNA · RNA · Metabarcoding)</strong>. Cada servicio NGS incluye ejemplos descargables en PDF y reportes interactivos HTML 100% navegables offline.
+      </p>
 
       <!-- Sub-category nav (inline chips inside the section) -->
       <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; padding:14px 16px; background:var(--mc-bg); border-radius:10px; border:1px solid var(--mc-border);">
-        <a href="#sr-amplicon" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🦠 Amplicon · Shotgun (2)</a>
-        <a href="#sr-wgs" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 WGS (7)</a>
-        <a href="#sr-wes" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🎯 WES (4)</a>
-        <a href="#sr-rna" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 RNA-Seq (6)</a>
-        <a href="#sr-epi" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 Epigenoma (1)</a>
-        <a href="#sr-other" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">📋 Universal / QC (2)</a>
+        <a href="#sr-rawdata" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">📥 Raw Data (2)</a>
+        <a href="#sr-longreads" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 Long Reads (3)</a>
+        <a href="#sr-dna" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🔬 Short Reads · DNA (13)</a>
+        <a href="#sr-rna" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 Short Reads · RNA (8)</a>
+        <a href="#sr-meta" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🦠 Metabarcoding (2)</a>
+        <a href="#sr-other" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">📋 Universal · QC (1)</a>
       </div>
 
-      <!-- ========== 1 · AMPLICON & SHOTGUN ========== -->
-      <h3 id="sr-amplicon" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-green); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🦠 Amplicon · Metagenómica <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">2 interactivos HTML</span></h3>
+      <!-- ========== 1 · RAW DATA ========== -->
+      <h3 id="sr-rawdata" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid #D97706; padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">📥 Raw Data <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">2 reportes · PDF (QC pre-pipeline)</span></h3>
+      <div class="res-grid" style="margin-bottom:36px;">
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF7E8; color:#D97706;">📥</div>
+          <div class="res-card-eyebrow">Illumina · Raw Data</div>
+          <h3>Illumina Rawdata Sample Report</h3>
+          <p>Reporte estándar de raw data Illumina: yield, Q30, GC%, adaptadores, contaminación, base composition. Documento previo al envío de FASTQ al pipeline.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~1,7 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/illumina-rawdata-qc.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">🇪🇸</div>
+          <div class="res-card-eyebrow">★ Nuevo · WES QC · ES</div>
+          <h3>Métricas de calidad WES (Español)</h3>
+          <p>Reporte de métricas de calidad WES en español: target enrichment, on-target rate, coverage uniformidad, duplication rate, GC bias. Pensado para auditorías clínicas iberoamericanas.</p>
+          <div class="res-card-meta"><span>PDF · ES</span><span>~7,3 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wes-metricas-calidad-ES.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+      </div>
+
+      <!-- ========== 2 · LONG READS ========== -->
+      <h3 id="sr-longreads" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-green); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 Long Reads · PacBio &amp; Nanopore <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">3 reportes · 1 HTML + 2 PDF</span></h3>
+      <div class="res-grid" style="margin-bottom:36px;">
+
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6E5); border-color:#B5DEA8;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-green);">🦠</div>
+          <div class="res-card-eyebrow">★ Nuevo · PacBio WGS · Interactivo</div>
+          <h3>PacBio WGS · mapping + CpG + SNP + SV + CNV</h3>
+          <p>Reporte HTML completo PacBio HiFi · mapping a referencia + variant calling integral (SNP, structural variants, copy number), análisis de metilación CpG, Krona taxonomy y Circos plots. 100% offline navegable.</p>
+          <div class="res-card-meta"><span>HTML</span><span>~31 MB</span><span>Offline</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-pacbio-mapping-cnv-sv/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir reporte →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🦠</div>
+          <div class="res-card-eyebrow">PacBio · De Novo · PDF</div>
+          <h3>PacBio De Novo · Prokaryote</h3>
+          <p>Ensamblaje de novo procariota con HiFi reads: contigs circulares, anotación CDS/rRNA/tRNA, N50/L50, comparación NCBI.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~1,6 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wgs-pacbio-denovo-prokaryote.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">⚡</div>
+          <div class="res-card-eyebrow">★ Nuevo · Nanopore · PDF</div>
+          <h3>Nanopore Assembly · Sample Report</h3>
+          <p>Reporte oficial de ensamblaje Oxford Nanopore: basecalling, QC reads, assembly (Flye/Canu), polishing (Medaka/Pilon), QUAST/BUSCO assessment. Ideal para microbiomas y genomas no humanos.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~1,5 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/long-nanopore-assembly.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+      </div>
+
+      <!-- ========== 3 · SHORT READS · DNA ========== -->
+      <h3 id="sr-dna" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-teal); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🔬 Short Reads · DNA <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">13 reportes · WGS · WES · Epigenoma</span></h3>
+      <p style="color:var(--mc-mute); font-size:13px; margin:-6px 0 14px;">Sub-bloques: <strong>WGS humano</strong> (5 reportes) · <strong>WGS genoma + multicalling</strong> (3) · <strong>WES exoma</strong> (4) · <strong>Epigenoma WGBS + ChIP-Seq</strong> (2).</p>
+
+      <h4 style="font-size:14px; color:var(--mc-teal); text-transform:uppercase; letter-spacing:2px; margin:18px 0 10px; font-weight:800;">🧬 WGS · Humano (HumanWGS Basic)</h4>
+      <div class="res-grid" style="margin-bottom:28px;">
+
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-teal);">🧬</div>
+          <div class="res-card-eyebrow">★ HumanWGS · Interactivo</div>
+          <h3>HumanWGS Basic · ISAAC4</h3>
+          <p>Pipeline Illumina ISAAC4 aligner + variant caller integrado. Reporte HTML de QC + variants para WGS clínico humano.</p>
+          <div class="res-card-meta"><span>HTML</span><span>ISAAC4</span><span>Offline</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-isaac4-pipeline/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy);">🔧</div>
+          <div class="res-card-eyebrow">★ HumanWGS · Interactivo</div>
+          <h3>HumanWGS Basic · GATK 4.5</h3>
+          <p>GATK best practices · BWA + HaplotypeCaller · annotación ClinVar + VEP. Pipeline humano clínico estándar.</p>
+          <div class="res-card-meta"><span>HTML</span><span>GATK 4.5</span><span>Offline</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-gatk-pipeline/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">🧬</div>
+          <div class="res-card-eyebrow">WGS · Illumina · Interactivo</div>
+          <h3>WGS Illumina Standard</h3>
+          <p>Reporte HTML completo · GATK + ANNOVAR · variant calling germline y somatic.</p>
+          <div class="res-card-meta"><span>HTML</span><span>Standard</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-illumina-standard/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">🆕</div>
+          <div class="res-card-eyebrow">WGS Novel · Interactivo</div>
+          <h3>WGS Novel · Illumina</h3>
+          <p>De novo assembly short-read · contigs · stats N50/L50 · annotación.</p>
+          <div class="res-card-meta"><span>HTML</span><span>De Novo</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-novel-illumina/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF7E8; color:#D97706;">📄</div>
+          <div class="res-card-eyebrow">★ Nuevo · WGS Basic · PDF</div>
+          <h3>Whole Genome Report (PDF)</h3>
+          <p>Reporte estándar WGS humano descargable: SNV / Indel calling, anotación funcional ACMG/AMP, métricas de calidad, coverage histograms.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~5,4 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wgs-basic-report.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+      </div>
+
+      <h4 style="font-size:14px; color:var(--mc-teal); text-transform:uppercase; letter-spacing:2px; margin:18px 0 10px; font-weight:800;">🧬 WGS · CNV + SNP + Indels + SV (multicalling)</h4>
+      <div class="res-grid" style="margin-bottom:28px;">
+
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6E5); border-color:#B5DEA8;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-green);">🦠</div>
+          <div class="res-card-eyebrow">WGS PacBio · Interactivo</div>
+          <h3>WGS Novel · PacBio HiFi</h3>
+          <p>Long-read assembly · contigs circulares · structural variants · alta resolución.</p>
+          <div class="res-card-meta"><span>HTML</span><span>HiFi</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-novel-pacbio/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">📊</div>
+          <div class="res-card-eyebrow">QC · PDF</div>
+          <h3>Genome Survey · k-mer analysis</h3>
+          <p>Estimación de tamaño de genoma, GC%, heterocigosidad y repeats por k-mer analysis. Para diseñar coverage previo al WGS.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~2,9 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wgs-genome-survey.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+      </div>
+
+      <h4 style="font-size:14px; color:var(--mc-red); text-transform:uppercase; letter-spacing:2px; margin:18px 0 10px; font-weight:800;">🎯 WES · Whole Exome Sequencing</h4>
+      <div class="res-grid" style="margin-bottom:28px;">
+
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#FEF2F4); border-color:#F5BCC8;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-red);">🎯</div>
+          <div class="res-card-eyebrow">★ WES · Interactivo</div>
+          <h3>WES Basic · Mapping + SNP</h3>
+          <p>Reporte HTML · captura de exoma · variant annotation completa con ClinVar/COSMIC.</p>
+          <div class="res-card-meta"><span>HTML</span><span>Offline</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wes-illumina-standard/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">📋</div>
+          <div class="res-card-eyebrow">WES · Interactivo</div>
+          <h3>WES Sample Report v3</h3>
+          <p>Pipeline estándar exome · 1 muestra · QC + variant calling + filtering.</p>
+          <div class="res-card-meta"><span>HTML</span><span>v3</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wes-sample-v3/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">📋</div>
+          <div class="res-card-eyebrow">WES · Interactivo</div>
+          <h3>WES Sample Report v4</h3>
+          <p>Pipeline exome actualizado · GATK + ANNOVAR · annotación con ClinVar + COSMIC.</p>
+          <div class="res-card-meta"><span>HTML</span><span>v4</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wes-sample-v4/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">🎯</div>
+          <div class="res-card-eyebrow">WES Exome · PDF</div>
+          <h3>Whole Exome Sequencing (PDF)</h3>
+          <p>Coverage por exón, variant calling (SNV + Indel), anotación ClinVar/COSMIC, filtros gnomAD y patogenicidad ACMG.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~4,2 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wes-exome.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF7E8; color:#D97706;">📄</div>
+          <div class="res-card-eyebrow">★ Nuevo · WES Basic BI · PDF</div>
+          <h3>WES Basic · BI Example Report</h3>
+          <p>Reporte ejemplo de WES Basic Bioinformatics: pipeline de exoma humano con anotación variantes, filtros poblacionales y predicción de patogenicidad (SIFT/PolyPhen).</p>
+          <div class="res-card-meta"><span>PDF</span><span>~4,3 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/wes-basic-bi-example.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+      </div>
+
+      <h4 style="font-size:14px; color:var(--mc-navy); text-transform:uppercase; letter-spacing:2px; margin:18px 0 10px; font-weight:800;">🧬 Epigenoma · WGBS + ChIP-Seq</h4>
+      <div class="res-grid" style="margin-bottom:36px;">
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF7E8; color:#D97706;">📄</div>
+          <div class="res-card-eyebrow">★ Nuevo · WGBS · PDF</div>
+          <h3>WGBS · BSMAP human example</h3>
+          <p>Whole Genome Bisulfite Sequencing report: BSMAP alignment, metilación CpG/CHG/CHH genome-wide, DMR (Differentially Methylated Regions), comparación entre condiciones.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~14,6 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/epigenoma-wgbs-bsmap.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🧬</div>
+          <div class="res-card-eyebrow">ChIP-Seq · PDF</div>
+          <h3>ChIP-Seq</h3>
+          <p>Peak calling MACS2, anotación vs TSS, motif discovery (MEME/HOMER), comparación entre condiciones, browser tracks.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~1,5 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/epigenoma-chipseq.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+      </div>
+
+      <!-- ========== 4 · SHORT READS · RNA ========== -->
+      <h3 id="sr-rna" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-teal); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 Short Reads · RNA <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">8 reportes · 3 HTML + 5 PDF</span></h3>
+      <div class="res-grid" style="margin-bottom:36px;">
+
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#F0F4FB); border-color:#B8C7DB;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy);">🧬</div>
+          <div class="res-card-eyebrow">★ Nuevo · Transcriptome · Interactivo</div>
+          <h3>Transcriptome Basic · Align + Expression + DEG</h3>
+          <p>Reporte HTML completo de Transcriptómica Basic: alineamiento STAR/HISAT2, cuantificación featureCounts/RSEM, perfilamiento de expresión y análisis diferencial DESeq2/edgeR. Tablas dinámicas y heatmaps interactivos.</p>
+          <div class="res-card-meta"><span>HTML</span><span>~32 MB</span><span>Offline</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/rna-transcriptome-basic-deg/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir reporte →</a>
+        </article>
+
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6E5); border-color:#B5DEA8;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-green);">🧬</div>
+          <div class="res-card-eyebrow">★ Nuevo · Transcriptome+ · Interactivo</div>
+          <h3>Transcriptome · DEG + VC + lncRNA + SNP</h3>
+          <p>Reporte HTML extendido: análisis diferencial + variant calling sobre RNA-Seq + predicción de lncRNAs (CPC2/CPAT) + detección de SNPs en transcritos. Pipeline integral RNA.</p>
+          <div class="res-card-meta"><span>HTML</span><span>~45 MB</span><span>Offline</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/rna-transcriptome-deg-vc-lncrna/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir reporte →</a>
+        </article>
+
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#F0F4FB); border-color:#B8C7DB;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy);">🧬</div>
+          <div class="res-card-eyebrow">Total RNA · Interactivo</div>
+          <h3>Total RNA · TRR Report</h3>
+          <p>Total RNA-Seq rRNA-depleted · QC + alineamiento + cuantificación completa.</p>
+          <div class="res-card-meta"><span>HTML</span><span>TRR</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/rna-trr-total/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">🧬</div>
+          <div class="res-card-eyebrow">mRNA-Seq · PDF</div>
+          <h3>mRNA-Seq Basic</h3>
+          <p>mRNA-Seq con poly-A selection: QC, alineamiento HISAT2/STAR, cuantificación TPM/FPKM. Punto de partida transcriptómico.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~2,1 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-mrna-basic.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🔬</div>
+          <div class="res-card-eyebrow">Total RNA · PDF</div>
+          <h3>Total RNA-Seq · rRNA-depleted</h3>
+          <p>Captura mRNA + lncRNA + snoRNA. Ideal para descubrimiento de transcritos no codificantes y full-length isoform.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~3,0 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-total.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🌿</div>
+          <div class="res-card-eyebrow">DEG Non-Human · PDF</div>
+          <h3>DEG · Non-Human</h3>
+          <p>Análisis DEG (DESeq2/edgeR) para plantas, animales modelo, levaduras: volcano plots, heatmaps, MA plots.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~3,6 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-deg-nonhuman.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">🧠</div>
+          <div class="res-card-eyebrow">DEG Human · PDF</div>
+          <h3>DEG Human · GO/KEGG/VC/Fusion</h3>
+          <p>Reporte DEG humano completo con enriquecimiento GO + pathway KEGG + variant calling RNA-Seq (VC) + gene fusions.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~5,2 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-deg-human-go-kegg.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+        <article class="res-card">
+          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🧪</div>
+          <div class="res-card-eyebrow">Small RNA · PDF</div>
+          <h3>Small RNA · miRNA/snRNA/piRNA</h3>
+          <p>Alineamiento miRBase, identificación de miRNAs novel, predicción de targets (miRanda/TargetScan), diferencial.</p>
+          <div class="res-card-meta"><span>PDF</span><span>~6,9 MB</span></div>
+          <a class="res-card-cta" href="assets/docs/sample-reports/smrna-small-rna.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+        </article>
+
+      </div>
+
+      <!-- ========== 5 · METABARCODING ========== -->
+      <h3 id="sr-meta" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-green); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🦠 Metabarcoding · ASV + Shotgun <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">2 reportes · interactivos HTML</span></h3>
       <div class="res-grid" style="margin-bottom:36px;">
 
         <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB;">
@@ -596,194 +884,8 @@
 
       </div>
 
-      <!-- ========== 2 · WGS ========== -->
-      <h3 id="sr-wgs" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-teal); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 WGS · Whole Genome Sequencing <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">7 reportes · 5 HTML + 2 PDF</span></h3>
-      <div class="res-grid" style="margin-bottom:36px;">
-
-        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB;">
-          <div class="res-card-icon" style="background:#fff; color:var(--mc-teal);">🧬</div>
-          <div class="res-card-eyebrow">★ WGS · Interactivo</div>
-          <h3>WGS Illumina Standard</h3>
-          <p>Reporte HTML completo · GATK + ANNOVAR · variant calling germline y somatic.</p>
-          <div class="res-card-meta"><span>HTML</span><span>Offline</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-illumina-standard/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB;">
-          <div class="res-card-icon" style="background:#fff; color:var(--mc-teal);">🆕</div>
-          <div class="res-card-eyebrow">★ WGS Novel · Interactivo</div>
-          <h3>WGS Novel · Illumina</h3>
-          <p>De novo assembly short-read · contigs · stats N50/L50 · annotación.</p>
-          <div class="res-card-meta"><span>HTML</span><span>De Novo</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-novel-illumina/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6E5); border-color:#B5DEA8;">
-          <div class="res-card-icon" style="background:#fff; color:var(--mc-green);">🦠</div>
-          <div class="res-card-eyebrow">★ WGS PacBio · Interactivo</div>
-          <h3>WGS Novel · PacBio HiFi</h3>
-          <p>Long-read assembly · contigs circulares · structural variants · alta resolución.</p>
-          <div class="res-card-meta"><span>HTML</span><span>HiFi</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-novel-pacbio/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">⚙️</div>
-          <div class="res-card-eyebrow">★ ISAAC4 · Interactivo</div>
-          <h3>WGS · ISAAC4 pipeline</h3>
-          <p>Pipeline Illumina ISAAC4 aligner + variant caller integrado. Reporte de QC + variants.</p>
-          <div class="res-card-meta"><span>HTML</span><span>ISAAC4</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-isaac4-pipeline/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🔧</div>
-          <div class="res-card-eyebrow">★ GATK 4.5 · Interactivo</div>
-          <h3>WGS · GATK 4.5 pipeline</h3>
-          <p>GATK best practices · BWA + HaplotypeCaller · annotación ClinVar + VEP.</p>
-          <div class="res-card-meta"><span>HTML</span><span>GATK</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wgs-gatk-pipeline/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">🧬</div>
-          <div class="res-card-eyebrow">WGS · Illumina · PDF</div>
-          <h3>Genome Survey · sample report</h3>
-          <p>Estimación de tamaño de genoma, GC%, heterocigosidad y repeats por k-mer analysis. Para diseñar coverage previo al WGS.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~2,9 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/wgs-genome-survey.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🦠</div>
-          <div class="res-card-eyebrow">WGS · PacBio · PDF</div>
-          <h3>De Novo Prokaryote · PacBio Revio</h3>
-          <p>Ensamblaje de novo procariota con HiFi reads: contigs circulares, anotación CDS/rRNA/tRNA, N50/L50, comparación NCBI.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~1,6 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/wgs-pacbio-denovo-prokaryote.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-      </div>
-
-      <!-- ========== 3 · WES ========== -->
-      <h3 id="sr-wes" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-red); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🎯 WES · Whole Exome Sequencing <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">4 reportes · 3 HTML + 1 PDF</span></h3>
-      <div class="res-grid" style="margin-bottom:36px;">
-
-        <article class="res-card" style="background:linear-gradient(135deg,#fff,#FEF2F4); border-color:#F5BCC8;">
-          <div class="res-card-icon" style="background:#fff; color:var(--mc-red);">🎯</div>
-          <div class="res-card-eyebrow">★ WES · Interactivo</div>
-          <h3>WES Illumina Standard</h3>
-          <p>Reporte HTML · captura de exoma · variant annotation completa.</p>
-          <div class="res-card-meta"><span>HTML</span><span>Offline</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wes-illumina-standard/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">📋</div>
-          <div class="res-card-eyebrow">★ WES · Interactivo</div>
-          <h3>WES Sample Report v3</h3>
-          <p>Pipeline estándar exome · 1 muestra · QC + variant calling + filtering.</p>
-          <div class="res-card-meta"><span>HTML</span><span>v3</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wes-sample-v3/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">📋</div>
-          <div class="res-card-eyebrow">★ WES · Interactivo</div>
-          <h3>WES Sample Report v4</h3>
-          <p>Pipeline exome actualizado · GATK + ANNOVAR · annotación con ClinVar + COSMIC.</p>
-          <div class="res-card-meta"><span>HTML</span><span>v4</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/wes-sample-v4/report.html" target="_blank" rel="noopener">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">🎯</div>
-          <div class="res-card-eyebrow">WES · PDF</div>
-          <h3>Whole Exome Sequencing</h3>
-          <p>Coverage por exón, variant calling (SNV + Indel), anotación ClinVar/COSMIC, filtros gnomAD y patogenicidad ACMG.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~4,2 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/wes-exome.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-      </div>
-
-      <!-- ========== 4 · RNA-Seq ========== -->
-      <h3 id="sr-rna" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-teal); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 RNA-Seq · Transcriptómica <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">6 reportes · 1 HTML + 5 PDF</span></h3>
-      <div class="res-grid" style="margin-bottom:36px;">
-
-        <article class="res-card" style="background:linear-gradient(135deg,#fff,#F0F4FB); border-color:#B8C7DB;">
-          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy);">🧬</div>
-          <div class="res-card-eyebrow">★ Total RNA · Interactivo</div>
-          <h3>Total RNA · TRR Report</h3>
-          <p>Total RNA-Seq rRNA-depleted · QC + alineamiento + cuantificación completa.</p>
-          <div class="res-card-meta"><span>HTML</span><span>TRR</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports-interactive/rna-trr-total/report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">🚀 Abrir →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">🧬</div>
-          <div class="res-card-eyebrow">RNA-Seq · PDF</div>
-          <h3>mRNA-Seq Basic</h3>
-          <p>mRNA-Seq con poly-A selection: QC, alineamiento HISAT2/STAR, cuantificación TPM/FPKM. Punto de partida transcriptómico.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~2,1 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-mrna-basic.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🔬</div>
-          <div class="res-card-eyebrow">RNA-Seq · PDF</div>
-          <h3>Total RNA-Seq · rRNA-depleted</h3>
-          <p>Captura mRNA + lncRNA + snoRNA. Ideal para descubrimiento de transcritos no codificantes y full-length isoform.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~3,0 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-total.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🌿</div>
-          <div class="res-card-eyebrow">RNA-Seq · DEG · PDF</div>
-          <h3>DEG · Non-Human</h3>
-          <p>Análisis DEG (DESeq2/edgeR) para plantas, animales modelo, levaduras: volcano plots, heatmaps, MA plots.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~3,6 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-deg-nonhuman.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">🧠</div>
-          <div class="res-card-eyebrow">RNA-Seq · DEG Human · PDF</div>
-          <h3>DEG Human · GO/KEGG/VC/Fusion</h3>
-          <p>Reporte DEG humano completo con enriquecimiento GO + pathway KEGG + variant calling RNA-Seq (VC) + gene fusions.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~5,2 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/rnaseq-deg-human-go-kegg.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🧪</div>
-          <div class="res-card-eyebrow">Small RNA · PDF</div>
-          <h3>Small RNA · miRNA/snRNA/piRNA</h3>
-          <p>Alineamiento miRBase, identificación de miRNAs novel, predicción de targets (miRanda/TargetScan), diferencial.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~6,9 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/smrna-small-rna.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-      </div>
-
-      <!-- ========== 5 · EPIGENOMA ========== -->
-      <h3 id="sr-epi" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-navy); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 Epigenoma · ChIP-Seq <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">1 reporte · PDF</span></h3>
-      <div class="res-grid" style="margin-bottom:36px;">
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🧬</div>
-          <div class="res-card-eyebrow">Epigenoma · PDF</div>
-          <h3>ChIP-Seq</h3>
-          <p>Peak calling MACS2, anotación vs TSS, motif discovery (MEME/HOMER), comparación entre condiciones, browser tracks.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~1,5 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/epigenoma-chipseq.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-      </div>
-
       <!-- ========== 6 · UNIVERSAL / QC ========== -->
-      <h3 id="sr-other" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-mute); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">📋 Universal · QC &amp; Reportes generales <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">2 reportes · PDF</span></h3>
+      <h3 id="sr-other" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-mute); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">📋 Universal · QC &amp; Reportes generales <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">1 reporte · PDF</span></h3>
       <div class="res-grid" style="margin-bottom:36px;">
 
         <article class="res-card">
@@ -793,15 +895,6 @@
           <p>Reporte estándar de control de calidad pre-secuenciación: integridad RNA (RIN), pureza DNA (260/280, 260/230), gel/TapeStation, concentración Qubit y aprobación para library prep.</p>
           <div class="res-card-meta"><span>PDF</span><span>~0,8 MB</span></div>
           <a class="res-card-cta" href="assets/docs/sample-reports/sqc-universal.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-        </article>
-
-        <article class="res-card">
-          <div class="res-card-icon" style="background:#FEF7E8; color:#D97706;">🧬</div>
-          <div class="res-card-eyebrow">Genome Survey · PDF</div>
-          <h3>Genome Survey · k-mer analysis</h3>
-          <p>Estimación de tamaño genoma, heterocigosidad y contenido repetitivo mediante análisis k-mer (Jellyfish + GenomeScope) — paso previo a ensamblaje de novo WGS.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~3 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/genome-survey.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
         </article>
 
       </div>

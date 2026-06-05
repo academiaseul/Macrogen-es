@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+
+
+<link type="text/css" rel="stylesheet" href="../css/swiper.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/mydatatables.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+<link type="text/css" rel="stylesheet" href="../css/lib/flowchart/v6/mermaid.forest.css" />
+<link type="text/css" rel="stylesheet" href="../css/lib/flowchart/rpt.mermaid.style.css" />
+
+<style type="text/css">
+.wrapper{padding-left: 0px;}
+.gnb-menu-wrap{position: static;border: none;}
+.main_wrapper_tbl thead{vertical-align: top;}
+.main_wrapper_tbl tbody{vertical-align: top;}
+.main_wrapper_tbl tfoot{vertical-align: middle;}
+.main_wrapper_tbl td{vertical-align: inherit;}
+.main_wrapper_tbl th{vertical-align: inherit;}
+.main_wrapper_tbl tr{vertical-align: inherit;}
+</style>
+
+<script type="text/javascript">const RPTPAGEMODE=false;</script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+
+<script type="text/javascript" src="../js/common/txtvars.js"></script>
+<script type="text/javascript" src="../js/common/dftutils.js"></script>
+<script type="text/javascript" src="../js/spgs/dft.js"></script>
+<!-- <script type="text/javascript" src="../js/spgs/dfttab.js"></script> -->
+
+<script type="text/javascript" src="../js/data/rptjs_deg_result.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+
+<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="../js/common/rptmenu.js"></script>
+
+<script type="text/javascript" src="../js/lib/flowchart/mermaid.min.js"></script>
+
+
+<!-- <script type="text/javascript" src="../js/lib/flowchart/mermaid_init.js"></script> -->
+
+
+
+<script type="text/javascript" src="../js/spgs/BaseStyleTable.js"></script>
+
+<script type="text/javascript">
+    mermaidAPI = mermaid.mermaidAPI;
+
+    // default, neutral, dark, forest, base
+    // 9.4.0 or 10.2.2
+    mermaidAPI.initialize({
+        theme: 'forest',
+        themeVariables: {
+            fontFamily: 'Helvetica,Verdana,Roboto,"Malgun Gothic","Sans-serif"',
+            fontSize: '14px'
+        },
+        startOnLoad:false,
+        securityLevel: 'loose'
+    });
+</script>
+
+
+<script type="text/javascript" src="../js/spgs/rpt60.js"></script>
+
+
+
+</head>
+<body>
+<!-- wrapper -->
+<div class="wrapper">
+    <table class="main_wrapper_tbl">
+        <tr>
+            <td style="width: 260px; background-color: #ffffff; border-right: 1px solid #dde0e3;">
+                <div class="gnb-dim"></div>
+                <!-- gnb-menu -->
+                  <div class="gnb-menu-wrap expand">
+                    <h1 class="logo"></h1>
+                    <div class="contract">
+                      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+                      <ul class="user-menu"></ul>
+                    </div>
+                    <div class="expand">
+                        <div class="gnb-menu">
+                             <script>insertMainMenu(RPTPAGEMODE);</script>
+                        </div>
+                        <div class="download"></div>
+                    </div>
+                  </div>
+                  <!-- // gnb-menu -->              
+            </td>
+            <td style="max-width: 1654px;">
+                <!-- container -->
+                <div class="container">
+                    <div class="header">
+                        <strong class="title"></strong>
+                        <div class="right">
+                            <span class="path">
+                                <script>insertTopMenu(getCurrentPageNameWithParam(null));</script>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="top-btn"><a href="#">TOP</a></div>
+                    <div class="content">
+                        <div class="info-top-wrap"></div>
+                        <div id="degWhiteBoardDiv" class="spgsEmptyDivT1"></div>
+                    </div>
+                </div>
+                <!-- // container -->
+                <div class="footer"></div>            
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- // wrapper -->
+
+	<!-- company location --><div class="layerpopup" id="comLocPopup"></div><!-- company location -->
+	<!-- order info --><div class="layerpopup" id="ordInfoPopup"></div><!-- order info -->
+    
+</body>
+
+</html>

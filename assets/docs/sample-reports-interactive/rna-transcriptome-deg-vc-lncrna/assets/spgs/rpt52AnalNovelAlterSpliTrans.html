@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+<script type="text/javascript">const RPTPAGEMODE=false;</script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+<script type="text/javascript" src="../js/common/txtvars.js"></script>
+<script type="text/javascript" src="../js/spgs/dft.js"></script>
+<script type="text/javascript" src="../js/spgs/dfttab.js"></script>
+
+<script type="text/javascript">
+
+var RPT_PAGE_DATA = {"title":"Novel alternative splicing transcripts","subTitle":"","desc":[{"type":"desc","title":"","subTitle":"","style":"none","columnCount":1,"children":[{"key":"","value":"This result refers to the list of novel alternative splicing transcripts filtered by class code (\u0027j\u0027, \u0027c\u0027, \u0027k\u0027, \u0027e\u0027, \u0027i\u0027, \u0027o\u0027, \u0027p\u0027, \u0027s\u0027, \u0027x\u0027) from the results of known and novel transcripts."},{"key":"","value":"Novel alternative splicing transcript refers to the transcripts that are mapped to new exon or have different assembled structure from known transcript. Below table shows an example result of the known and novel transcripts obtained with novel network flow algorithm method of StringTie."},{"key":"","value":"The result represents the list of novel alternative splicing transcripts on the basis of the nearest known transcript and known gene. You can find the information such as the start and end position of novel alternative splicing transcript, exon count of that, start and end position of each exon, read count, FPKM, class code assigned from StringTie."}]}],"contents":[{"type":"link","title":"Refer to Path","subTitle":"","path":"result_RNAseq/Novel_transcript_analysis/StrintTie/Novel_splicing_variant_list.xlsx","friendlyName":"Novel_splicing_variant_list.xlsx","icon":"excel","fileCopyFlag":false,"linkActivation":false},{"type":"img","title":"","subTitle":"","width":7E+1,"desc":[],"path":"alternative_splicing_transcripts_example_stringtie.png"},{"type":"desc","title":"","subTitle":"","style":"disc","columnCount":1,"children":[{"key":"Gene_ID","value":"Gene ID"},{"key":"nearest_refGene_Name","value":"The nearest Entrez gene ID from predicted novel alternative splicing transcript region"},{"key":"nearest_refTranscript_Name","value":"The nearest transcript ID form predicted novel alternative splicing transcript region"},{"key":"stringtieGene_Name","value":"Gene ID such as \"stringtieGene\" assigned as temporary gene ID in StringTie program"},{"key":"stringtieTranscript_Name","value":"Trnascript ID such as \"stringtieTranscript\" assigned as temporary transcript ID in StringTie program."},{"key":"Gene_Symbol","value":"Symbol of the nearest gene"},{"key":"Description","value":"Description of the nearest gene"},{"key":"Transcript_Locus","value":"Start and end position of transcript on genomic region"},{"key":"Transcript_Length","value":"Length of transcript"},{"key":"Strand","value":"Strand of transcript on genomic region"},{"key":"Exon_Count","value":"The number of exon in the transcript"},{"key":"Exon_Start, End","value":"The start and end position for each exon in the transcript"},{"key":"Class_Code","value":"Class code corresponding to transcript ID"},{"key":"[Sample Name]_Read_Count","value":"Read count of a sample"},{"key":"[Sample Name]_FPKM","value":"FPKM normalized value of a sample"},{"key":"[Sample Name]_TPM","value":"TPM normalized value of a sample"}]}]};
+
+</script>
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="../js/common/rptmenu.js"></script>
+<script type="text/javascript" src="../js/spgs/BaseStyleTable.js"></script>
+<script type="text/javascript" src="../js/spgs/rptPageType1.js"></script>
+
+
+</head>
+<body>
+<!-- wrapper -->
+<div class="wrapper">
+  <div class="gnb-dim"></div>
+  <div class="gnb-menu-wrap expand">
+    <h1 class="logo"></h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+      <ul class="user-menu"></ul>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+          <script>insertMainMenu(RPTPAGEMODE);</script>
+        </div>
+        <div class="download"></div>
+    </div>
+  </div>
+
+	<div class="container" style="margin-left: 188px;">
+        <div class="header">
+            <strong class="title"></strong>
+            <div class="right">
+                <span class="path">
+                    <script>insertTopMenu(getCurrentPageName(null));</script>
+                </span>
+            </div>
+        </div>
+        <div class="top-btn"><a href="#">TOP</a></div>
+		<div class="content"></div>
+	</div>
+	
+	<div class="footer"></div>
+</div>
+	<div class="layerpopup" id="comLocPopup"></div><div class="layerpopup" id="ordInfoPopup"></div>
+</body>
+
+</html>

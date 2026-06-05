@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+<link type="text/css" rel="stylesheet" href="../css/li-style.css" />
+<script type="text/javascript">const RPTPAGEMODE=false;</script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/datatables.min.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+<script type="text/javascript" src="../js/common/txtvars.js"></script>
+<script type="text/javascript" src="../js/spgs/dft.js"></script>
+<script type="text/javascript" src="../js/spgs/dfttab.js"></script>
+
+<script type="text/javascript">
+
+var RPT_PAGE_DATA = {"title":"Transcript class code","subTitle":"","desc":[{"type":"desc","title":"","subTitle":"","style":"none","columnCount":1,"children":[{"key":"","value":"Transcripts are additionally assembled with the read alignments by StringTie without –e option to predict novel transcripts and novel alternative splicing transcripts."},{"key":"","value":"Assembled annotation (GTF file) of samples is merged into one merged transcripts file with StringTie -merge option. The gffcompare program of GFF utilities is used to classify the types of known transcript and novel transcript, this resulted in known transcripts and novel transcripts are assigned the class code according to their alternative splicing type as the following the table below."}]}],"contents":[{"type":"img","title":"Description of class code for various splicing alternative transcript type","subTitle":"","width":7E+1,"desc":[],"path":"class_code_desc.png"}]};
+
+</script>
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="../js/common/rptmenu.js"></script>
+<script type="text/javascript" src="../js/spgs/BaseStyleTable.js"></script>
+<script type="text/javascript" src="../js/spgs/rptPageType1.js"></script>
+
+
+</head>
+<body>
+<!-- wrapper -->
+<div class="wrapper">
+  <div class="gnb-dim"></div>
+  <div class="gnb-menu-wrap expand">
+    <h1 class="logo"></h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+      <ul class="user-menu"></ul>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+          <script>insertMainMenu(RPTPAGEMODE);</script>
+        </div>
+        <div class="download"></div>
+    </div>
+  </div>
+
+	<div class="container" style="margin-left: 188px;">
+        <div class="header">
+            <strong class="title"></strong>
+            <div class="right">
+                <span class="path">
+                    <script>insertTopMenu(getCurrentPageName(null));</script>
+                </span>
+            </div>
+        </div>
+        <div class="top-btn"><a href="#">TOP</a></div>
+		<div class="content"></div>
+	</div>
+	
+	<div class="footer"></div>
+</div>
+	<div class="layerpopup" id="comLocPopup"></div><div class="layerpopup" id="ordInfoPopup"></div>
+</body>
+
+</html>
