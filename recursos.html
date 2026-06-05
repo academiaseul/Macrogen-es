@@ -140,9 +140,129 @@
 </section>
 
 <!-- ============== CATEGORY 1 · ORDER GUIDES ============== -->
+
+<!-- ============== STICKY SUB-NAV · RECURSOS ============== -->
+<nav class="service-subnav" aria-label="Navegación de Recursos">
+  <div class="service-subnav-inner" data-subnav>
+    <span class="service-subnav-brand">
+      <span class="label-hide-sm">📁 Recursos</span>
+    </span>
+    <div class="service-switcher" data-service-switcher>
+      <a href="#" class="service-switcher-trigger" data-switcher-trigger aria-haspopup="menu" aria-expanded="false">
+        <span class="icon">🗂️</span>
+        <span>Categorías</span>
+        <span class="caret">▾</span>
+      </a>
+      <div class="service-switcher-menu" role="menu" aria-label="Categorías de recursos">
+        <div class="switcher-header">
+          <strong>Recursos por categoría</strong>
+          <small>6 grupos · 21+ documentos</small>
+        </div>
+        <div class="service-switcher-grid">
+          <div class="service-switcher-col">
+            <h5>Documentos</h5>
+            <a href="#guias">
+              <span class="switcher-icon">📘</span>
+              <span class="switcher-text"><strong>Guías de pedido</strong><small>6 PDFs · CES · STR · Identification</small></span>
+            </a>
+            <a href="#protocolos">
+              <span class="switcher-icon">🧬</span>
+              <span class="switcher-text"><strong>Protocolos técnicos</strong><small>PCR · SQC SRS · SQC LRS</small></span>
+            </a>
+            <a href="#primers">
+              <span class="switcher-icon">🧷</span>
+              <span class="switcher-text"><strong>Primers Universales</strong><small>96 primers gratis con Sanger</small></span>
+            </a>
+          </div>
+          <div class="service-switcher-col">
+            <h5>Operativo</h5>
+            <a href="#envio">
+              <span class="switcher-icon">📦</span>
+              <span class="switcher-text"><strong>Logística de envío</strong><small>Madrid · Santiago · DHL · FedEx</small></span>
+            </a>
+            <a href="#sample-reports">
+              <span class="switcher-icon">📊</span>
+              <span class="switcher-text"><strong>Sample reports</strong><small>11 HTML interactivos + 10 PDFs</small></span>
+            </a>
+            <a href="#portal">
+              <span class="switcher-icon">💼</span>
+              <span class="switcher-text"><strong>Portal & facturación</strong><small>Registro · pago · cuenta</small></span>
+            </a>
+          </div>
+        </div>
+        <div class="service-switcher-footer">
+          <span>21+ documentos · ES · PT · CL · PE</span>
+          <a href="contacto.html">¿No encuentras algo? →</a>
+        </div>
+      </div>
+    </div>
+    <a href="#guias" data-anchor="guias"><span class="icon">📘</span>Guías</a>
+    <a href="#protocolos" data-anchor="protocolos"><span class="icon">🧬</span>Protocolos</a>
+    <a href="#primers" data-anchor="primers"><span class="icon">🧷</span>Primers</a>
+    <a href="#envio" data-anchor="envio"><span class="icon">📦</span>Envío</a>
+    <a href="#sample-reports" data-anchor="sample-reports"><span class="icon">📊</span>Sample Reports</a>
+    <a href="#portal" data-anchor="portal"><span class="icon">💼</span>Portal</a>
+    <a href="contacto.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon">💬</span>Contacto →</a>
+  </div>
+</nav>
+
+<script>
+(function() {
+  const subnav = document.querySelector('[data-subnav]');
+  if (!subnav) return;
+  const links = subnav.querySelectorAll('a[data-anchor]');
+  const sections = Array.from(links)
+    .map(l => document.getElementById(l.dataset.anchor))
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  function setActive(id) {
+    links.forEach(l => l.classList.toggle('is-active', l.dataset.anchor === id));
+    const active = subnav.querySelector('a.is-active');
+    if (active) {
+      const r = subnav.getBoundingClientRect();
+      const a = active.getBoundingClientRect();
+      if (a.left < r.left || a.right > r.right) {
+        active.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+      }
+    }
+  }
+
+  function getRootMarginTop() {
+    const hH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(), 10) || 78;
+    const sH = subnav.offsetHeight || 56;
+    return -(hH + sH + 4);
+  }
+  const observer = new IntersectionObserver(entries => {
+    const vis = entries.filter(e => e.isIntersecting)
+      .sort((a,b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+    if (vis[0]) setActive(vis[0].target.id);
+  }, { rootMargin: getRootMarginTop()+'px 0px -55% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+
+  function getHeaderOffset() {
+    const hH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(), 10) || 78;
+    const sH = subnav.offsetHeight || 56;
+    return hH + sH;
+  }
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.dataset.anchor;
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const offset = getHeaderOffset();
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset + 4;
+      window.scrollTo({ top:y, behavior:'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
+</script>
+
 <section class="section">
   <div class="container">
-    <div class="res-category">
+    <div id="guias" class="res-category">
       <div class="res-cat-header">
         <h2>📘 Guías de pedido</h2>
         <span class="count">6 documentos · portal dna.macrogen.com</span>
@@ -207,7 +327,7 @@
     </div>
 
     <!-- ============== CATEGORY 2 · PROTOCOLOS ============== -->
-    <div class="res-category">
+    <div id="protocolos" class="res-category">
       <div class="res-cat-header">
         <h2>🧬 Protocolos técnicos</h2>
         <span class="count">2 documentos · prep de muestra</span>
@@ -245,7 +365,7 @@
     </div>
 
     <!-- ============== CATEGORY 3 · PRIMERS ============== -->
-    <div class="res-category">
+    <div id="primers" class="res-category">
       <div class="res-cat-header">
         <h2>🧷 Primers Universales</h2>
         <span class="count">96 primers en stock · gratis</span>
@@ -268,7 +388,7 @@
     </div>
 
     <!-- ============== CATEGORY 4 · ENVÍO ============== -->
-    <div class="res-category">
+    <div id="envio" class="res-category">
       <div class="res-cat-header">
         <h2>📦 Logística de envío</h2>
         <span class="count">5 procedimientos · Madrid + Santiago</span>
@@ -552,7 +672,7 @@
     </div>
 
     <!-- ============== CATEGORY 6 · PORTAL & FACTURACIÓN ============== -->
-    <div class="res-category">
+    <div id="portal" class="res-category">
       <div class="res-cat-header">
         <h2>💼 Portal &amp; facturación</h2>
         <span class="count">2 documentos · cuenta + pago</span>
