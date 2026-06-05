@@ -115,28 +115,159 @@
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-vignette" aria-hidden="true"></div>
   <div class="container">
-    <span class="eyebrow" data-i18n="hero_blog.eyebrow">Blog Macrogen Iberoamérica</span>
-    <h1><span data-i18n="hero_blog.title_part1">Conocimiento desde el</span> <span class="accent" data-i18n="hero_blog.title_accent">laboratorio.</span></h1>
-    <p class="lead" data-i18n="hero_blog.lead">Tutoriales, casos de uso, guías técnicas y novedades de la red Macrogen — escritas en español por nuestros equipos en Madrid y Santiago, y por colaboradores internacionales.</p>
+    <span class="eyebrow">Blog &amp; Newsletter · Macrogen Iberoamérica</span>
+    <h1>Conocimiento desde el <span class="accent">laboratorio.</span></h1>
+    <p class="lead">Guías técnicas, casos científicos, newsletters mensuales y novedades de la red Macrogen — escritos en español por nuestros equipos en Madrid y Santiago, y por colaboradores internacionales.</p>
   </div>
 </section>
 
+<!-- ============== STICKY SUB-NAV · BLOG CATEGORIES ============== -->
+<nav class="service-subnav" aria-label="Navegación del blog">
+  <div class="service-subnav-inner" data-subnav>
+    <span class="service-subnav-brand">
+      <span class="label-hide-sm">📝 Blog &amp; Newsletter</span>
+    </span>
+    <div class="service-switcher" data-service-switcher>
+      <a href="#" class="service-switcher-trigger" data-switcher-trigger aria-haspopup="menu" aria-expanded="false">
+        <span class="icon">🗂️</span>
+        <span>Categorías</span>
+        <span class="caret">▾</span>
+      </a>
+      <div class="service-switcher-menu" role="menu" aria-label="Categorías del blog">
+        <div class="switcher-header">
+          <strong>Blog por categoría</strong>
+          <small>5 grupos · 12 artículos</small>
+        </div>
+        <div class="service-switcher-grid">
+          <div class="service-switcher-col">
+            <h5>Actualidad</h5>
+            <a href="#newsletters">
+              <span class="switcher-icon">📰</span>
+              <span class="switcher-text"><strong>Newsletters mensuales</strong><small>Mayo · Junio 2026 · AI Hub</small></span>
+            </a>
+            <a href="#empresa">
+              <span class="switcher-icon">🏢</span>
+              <span class="switcher-text"><strong>Empresa</strong><small>Hitos y expansión Macrogen</small></span>
+            </a>
+          </div>
+          <div class="service-switcher-col">
+            <h5>Guías técnicas</h5>
+            <a href="#sanger-ces">
+              <span class="switcher-icon">🧬</span>
+              <span class="switcher-text"><strong>Sanger · CES</strong><small>Validación · Identificación 16S</small></span>
+            </a>
+            <a href="#ngs-guias">
+              <span class="switcher-icon">🔬</span>
+              <span class="switcher-text"><strong>NGS · Guías</strong><small>WGS · WES · Targeted · Oligos · Cobertura</small></span>
+            </a>
+            <a href="#casos">
+              <span class="switcher-icon">🩺</span>
+              <span class="switcher-text"><strong>Casos científicos</strong><small>Spatial Biology · Proteómica · Microbioma</small></span>
+            </a>
+          </div>
+        </div>
+        <div class="service-switcher-footer">
+          <span>12 artículos · actualizado semanalmente</span>
+          <a href="newsletter.html">Suscribirme al newsletter →</a>
+        </div>
+      </div>
+    </div>
+    <a href="#newsletters" data-anchor="newsletters"><span class="icon">📰</span>Newsletters</a>
+    <a href="#sanger-ces" data-anchor="sanger-ces"><span class="icon">🧬</span>Sanger · CES</a>
+    <a href="#ngs-guias" data-anchor="ngs-guias"><span class="icon">🔬</span>NGS · Guías</a>
+    <a href="#casos" data-anchor="casos"><span class="icon">🩺</span>Casos científicos</a>
+    <a href="#empresa" data-anchor="empresa"><span class="icon">🏢</span>Empresa</a>
+    <a href="newsletter.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon">📬</span>Suscribirme →</a>
+  </div>
+</nav>
+
+<script>
+(function() {
+  const subnav = document.querySelector('[data-subnav]');
+  if (!subnav) return;
+  const links = subnav.querySelectorAll('a[data-anchor]');
+  const sections = Array.from(links).map(l => document.getElementById(l.dataset.anchor)).filter(Boolean);
+  if (!sections.length) return;
+
+  function setActive(id) {
+    links.forEach(l => l.classList.toggle('is-active', l.dataset.anchor === id));
+    const active = subnav.querySelector('a.is-active');
+    if (active) {
+      const r = subnav.getBoundingClientRect(), a = active.getBoundingClientRect();
+      if (a.left < r.left || a.right > r.right) active.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    }
+  }
+  function getRootMarginTop() {
+    const hH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(),10) || 78;
+    const sH = subnav.offsetHeight || 56;
+    return -(hH + sH + 4);
+  }
+  const observer = new IntersectionObserver(entries => {
+    const vis = entries.filter(e => e.isIntersecting).sort((a,b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+    if (vis[0]) setActive(vis[0].target.id);
+  }, { rootMargin: getRootMarginTop()+'px 0px -55% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+
+  function getHeaderOffset() {
+    const hH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(),10) || 78;
+    const sH = subnav.offsetHeight || 56;
+    return hH + sH;
+  }
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.dataset.anchor, target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const y = target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset() + 4;
+      window.scrollTo({ top:y, behavior:'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
+</script>
+
 <section class="section">
   <div class="container">
-    <!-- Filter chips (visual only) -->
-    <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:48px;">
-      <span class="cert-chip" style="background:var(--mc-navy); color:#fff; border-color:var(--mc-navy);"><span class="dot"></span>Todos</span>
-      <span class="cert-chip">Tutorial</span>
-      <span class="cert-chip">Caso de uso</span>
-      <span class="cert-chip">Empresa</span>
-      <span class="cert-chip">Bioinformática</span>
-      <span class="cert-chip">Microbioma</span>
-      <span class="cert-chip">Spatial Biology</span>
-      <span class="cert-chip">Proteómica</span>
+
+    <!-- ========== 1 · NEWSLETTERS ========== -->
+    <h2 id="newsletters" style="font-size:24px; color:var(--mc-navy); margin:0 0 16px; padding-left:10px; border-left:5px solid #D97706; padding-top:6px; padding-bottom:6px; scroll-margin-top:150px;">📰 Newsletters mensuales <span style="font-size:13px; color:var(--mc-mute); font-weight:500; margin-left:8px;">2 ediciones · AI Hub Songdo</span></h2>
+    <p style="color:var(--mc-mute); margin:0 0 24px; font-size:14px;">Actualidad mensual de Macrogen Iberoamérica · novedades de la red global, nuevos servicios y eventos institucionales.</p>
+    <div class="grid grid-3" style="margin-bottom:60px;">
+
+      <a href="blog/newsletter-junio-2026-ai-hub-songdo-launch.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb" style="background:linear-gradient(135deg,#020c1b 0%,#011828 50%,#020c16 100%); position:relative;">
+          <div style="position:absolute; top:14px; left:14px; background:#FEF7E8; color:#D97706; font-size:10px; letter-spacing:1.5px; font-weight:800; padding:4px 10px; border-radius:3px; text-transform:uppercase; box-shadow:0 1px 4px rgba(0,0,0,0.15);">📰 Junio</div>
+          <div style="position:absolute; bottom:14px; right:14px; font-size:36px;">🎤</div>
+          <div style="position:absolute; bottom:14px; left:14px; background:rgba(0,191,178,0.18); color:#00BFB2; font-size:9px; letter-spacing:2px; font-weight:800; padding:3px 8px; border-radius:4px; border:1px solid rgba(0,191,178,0.35); text-transform:uppercase;">● 15 jun · live</div>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span class="cat" style="background:#FEF7E8; color:#D97706;">📰 Newsletter Junio</span> · 18 jun 2026 · 7 min lectura</div>
+          <h3>El Presidente Macrogen inauguró el AI Hub Songdo · visión 2030</h3>
+          <p>Crónica del lanzamiento oficial: discurso del Presidente, 4 demos en vivo, partnerships con KAIST · EMBL-EBI · NIH y roadmap de features AI para Iberoamérica.</p>
+          <span class="read-more">Leer newsletter →</span>
+        </div>
+      </a>
+
+      <a href="blog/newsletter-mayo-2026-ai-hub-songdo-sejong.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb" style="background:linear-gradient(135deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); position:relative;">
+          <div style="position:absolute; top:14px; left:14px; background:#FEF7E8; color:#D97706; font-size:10px; letter-spacing:1.5px; font-weight:800; padding:4px 10px; border-radius:3px; text-transform:uppercase; box-shadow:0 1px 4px rgba(0,0,0,0.15);">📰 Mayo</div>
+          <div style="position:absolute; bottom:14px; right:14px; font-size:36px;">🤖</div>
+          <div style="position:absolute; bottom:14px; left:14px; background:rgba(132,189,0,0.18); color:#84BD00; font-size:9px; letter-spacing:2px; font-weight:800; padding:3px 8px; border-radius:4px; border:1px solid rgba(132,189,0,0.35); text-transform:uppercase;">🇰🇷 Songdo + Sejong</div>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span class="cat" style="background:#FEF7E8; color:#D97706;">📰 Newsletter Mayo</span> · 28 may 2026 · 6 min lectura</div>
+          <h3>Macrogen anuncia AI Hub Songdo + expansión del centro Sejong</h3>
+          <p>Dos inversiones clave que redefinen el análisis genómico computacional · cluster de GPUs H100, biobanco coreano, pipelines AI. Impacto directo para tus muestras.</p>
+          <span class="read-more">Leer newsletter →</span>
+        </div>
+      </a>
+
     </div>
 
-    <div class="grid grid-3">
-      <!-- 4 NEW POSTS · CES + Oligo + 2 NGS · 4 jun 2026 -->
+    <!-- ========== 2 · SANGER · CES ========== -->
+    <h2 id="sanger-ces" style="font-size:24px; color:var(--mc-navy); margin:0 0 16px; padding-left:10px; border-left:5px solid var(--mc-red); padding-top:6px; padding-bottom:6px; scroll-margin-top:150px;">🧬 Sanger · CES <span style="font-size:13px; color:var(--mc-mute); font-weight:500; margin-left:8px;">2 guías técnicas</span></h2>
+    <p style="color:var(--mc-mute); margin:0 0 24px; font-size:14px;">Validación de variantes, identificación microbiana e interpretación de cromatogramas en ABI 3730xl.</p>
+    <div class="grid grid-3" style="margin-bottom:60px;">
 
       <a href="blog/sanger-vs-ngs-validacion.html" class="post-card" style="text-decoration:none; color:inherit;">
         <div class="post-thumb" style="background:#0A1929; position:relative; padding:16px; display:flex; flex-direction:column; justify-content:center; gap:8px;">
@@ -215,6 +346,13 @@
           <span class="read-more">Leer artículo →</span>
         </div>
       </a>
+
+    </div>
+
+    <!-- ========== 3 · NGS · GUÍAS TÉCNICAS ========== -->
+    <h2 id="ngs-guias" style="font-size:24px; color:var(--mc-navy); margin:0 0 16px; padding-left:10px; border-left:5px solid var(--mc-teal); padding-top:6px; padding-bottom:6px; scroll-margin-top:150px;">🔬 NGS · Guías técnicas <span style="font-size:13px; color:var(--mc-mute); font-weight:500; margin-left:8px;">4 guías · WGS · WES · Oligos · Cobertura</span></h2>
+    <p style="color:var(--mc-mute); margin:0 0 24px; font-size:14px;">Matrices de decisión, comparativas técnicas y guías de diseño para servicios NGS y síntesis.</p>
+    <div class="grid grid-3" style="margin-bottom:60px;">
 
       <a href="blog/dna-oligos-guia-tecnica.html" class="post-card" style="text-decoration:none; color:inherit;">
         <div class="post-thumb" style="background:#0F1922; position:relative; padding:16px; display:flex; align-items:center; gap:10px;">
@@ -308,37 +446,38 @@
         </div>
       </a>
 
-      <!-- NEWSLETTERS · May + June 2026 · AI Hub Songdo + Sejong -->
-
-      <a href="blog/newsletter-junio-2026-ai-hub-songdo-launch.html" class="post-card" style="text-decoration:none; color:inherit;">
-        <div class="post-thumb" style="background:linear-gradient(135deg,#020c1b 0%,#011828 50%,#020c16 100%); position:relative;">
-          <div style="position:absolute; top:14px; left:14px; background:#FEF7E8; color:#D97706; font-size:10px; letter-spacing:1.5px; font-weight:800; padding:4px 10px; border-radius:3px; text-transform:uppercase; box-shadow:0 1px 4px rgba(0,0,0,0.15);">📰 Newsletter · Junio</div>
-          <div style="position:absolute; bottom:14px; right:14px; font-size:36px;">🎤</div>
-          <div style="position:absolute; bottom:14px; left:14px; background:rgba(0,191,178,0.18); color:#00BFB2; font-size:9px; letter-spacing:2px; font-weight:800; padding:3px 8px; border-radius:4px; border:1px solid rgba(0,191,178,0.35); text-transform:uppercase;">● 15 jun 2026 · live</div>
+      <a href="blog/que-es-ngs.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb" style="background:linear-gradient(135deg,#3FA9C9 0%,#1B2A57 100%); position:relative;">
+          <div style="position:absolute; top:14px; left:14px; background:rgba(255,255,255,0.95); color:var(--mc-teal); font-size:10px; letter-spacing:1.5px; font-weight:700; padding:4px 10px; border-radius:3px; text-transform:uppercase;">Tutorial</div>
+          <div style="position:absolute; bottom:14px; right:14px; font-size:36px;">📖</div>
         </div>
         <div class="post-body">
-          <div class="post-meta"><span class="cat" style="background:#FEF7E8; color:#D97706;">📰 Newsletter Junio</span> · 18 jun 2026 · 7 min lectura</div>
-          <h3>El Presidente Macrogen inauguró el AI Hub Songdo · visión 2030</h3>
-          <p>Crónica del lanzamiento oficial: discurso del Presidente, 4 demos en vivo (AVP · SV-Caller · Single-Cell · Multi-omics), partnerships con KAIST · EMBL-EBI · NIH y roadmap completo de features AI para Iberoamérica.</p>
-          <span class="read-more">Leer newsletter →</span>
+          <div class="post-meta"><span class="cat">Tutorial</span> · 25 Abr 2026 · 8 min lectura</div>
+          <h3>¿Qué es NGS y cómo elegir el servicio adecuado?</h3>
+          <p>Una guía clara y sin jerga para investigadores que se acercan por primera vez a la secuenciación de nueva generación. Comparativa entre WGS, WES y RNA-Seq.</p>
+          <span class="read-more">Leer artículo →</span>
         </div>
       </a>
 
-      <a href="blog/newsletter-mayo-2026-ai-hub-songdo-sejong.html" class="post-card" style="text-decoration:none; color:inherit;">
-        <div class="post-thumb" style="background:linear-gradient(135deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); position:relative;">
-          <div style="position:absolute; top:14px; left:14px; background:#FEF7E8; color:#D97706; font-size:10px; letter-spacing:1.5px; font-weight:800; padding:4px 10px; border-radius:3px; text-transform:uppercase; box-shadow:0 1px 4px rgba(0,0,0,0.15);">📰 Newsletter · Mayo</div>
-          <div style="position:absolute; bottom:14px; right:14px; font-size:36px;">🤖</div>
-          <div style="position:absolute; bottom:14px; left:14px; background:rgba(132,189,0,0.18); color:#84BD00; font-size:9px; letter-spacing:2px; font-weight:800; padding:3px 8px; border-radius:4px; border:1px solid rgba(132,189,0,0.35); text-transform:uppercase;">🇰🇷 Songdo + Sejong</div>
+      <a href="blog/cobertura-secuenciacion.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb" style="background:linear-gradient(135deg,#1B2A57 0%,#3FA9C9 100%); position:relative;">
+          <div style="position:absolute; top:14px; left:14px; background:rgba(255,255,255,0.95); color:var(--mc-teal); font-size:10px; letter-spacing:1.5px; font-weight:700; padding:4px 10px; border-radius:3px; text-transform:uppercase;">Bioinformática</div>
+          <div style="position:absolute; bottom:14px; right:14px; font-size:36px;">📊</div>
         </div>
         <div class="post-body">
-          <div class="post-meta"><span class="cat" style="background:#FEF7E8; color:#D97706;">📰 Newsletter Mayo</span> · 28 may 2026 · 6 min lectura</div>
-          <h3>Macrogen anuncia AI Hub Songdo + expansión del centro Sejong</h3>
-          <p>Dos inversiones clave que redefinen el análisis genómico computacional · cluster de GPUs NVIDIA H100, biobanco coreano de 250k+ genomas, pipelines AI para variant calling y predicción de patogenicidad. Impacto directo para tus muestras en Madrid + Santiago.</p>
-          <span class="read-more">Leer newsletter →</span>
+          <div class="post-meta"><span class="cat">Bioinformática</span> · 10 Abr 2026 · 7 min lectura</div>
+          <h3>¿Cuánta cobertura necesito? Guía práctica para WGS y WES</h3>
+          <p>30x, 60x, 100x… ¿Qué profundidad pedir según tu pregunta científica? Discutimos los trade-offs entre costo, precisión y reproducibilidad.</p>
+          <span class="read-more">Leer artículo →</span>
         </div>
       </a>
 
-      <!-- EXISTING POSTS · adapted from Psomagen + Macrogen Chile launch -->
+    </div>
+
+    <!-- ========== 4 · CASOS CIENTÍFICOS ========== -->
+    <h2 id="casos" style="font-size:24px; color:var(--mc-navy); margin:0 0 16px; padding-left:10px; border-left:5px solid var(--mc-green); padding-top:6px; padding-bottom:6px; scroll-margin-top:150px;">🩺 Casos científicos &amp; aplicaciones <span style="font-size:13px; color:var(--mc-mute); font-weight:500; margin-left:8px;">4 casos · Spatial Biology · Proteómica · Metagenómica · Microbioma</span></h2>
+    <p style="color:var(--mc-mute); margin:0 0 24px; font-size:14px;">Adaptaciones de casos científicos publicados por la red Macrogen-Psomagen y proyectos colaborativos en Iberoamérica.</p>
+    <div class="grid grid-3" style="margin-bottom:60px;">
 
       <a href="blog/spatial-biology-ffpe.html" class="post-card" style="text-decoration:none; color:inherit;">
         <div class="post-thumb" style="background:#EAF2F8 url('https://www.psomagen.com/hubfs/BLog_FFPEFF.svg') center/contain no-repeat; position:relative;">
@@ -373,24 +512,6 @@
           <span class="read-more">Leer artículo →</span>
         </div>
       </a>
-      <a href="blog/lanzamiento-macrogen-chile.html" class="post-card" style="text-decoration:none; color:inherit;">
-        <div class="post-thumb"></div>
-        <div class="post-body">
-          <div class="post-meta"><span class="cat">Empresa</span> · 2 May 2026 · 4 min lectura</div>
-          <h3>Macrogen Chile abre oficina en Santiago</h3>
-          <p>Conoce nuestro modelo "Local-Global" y por qué llegamos a Chile a apoyar a la comunidad científica nacional con servicios de secuenciación de clase mundial.</p>
-          <span class="read-more">Leer artículo →</span>
-        </div>
-      </a>
-      <a href="blog/que-es-ngs.html" class="post-card" style="text-decoration:none; color:inherit;">
-        <div class="post-thumb t2"></div>
-        <div class="post-body">
-          <div class="post-meta"><span class="cat">Tutorial</span> · 25 Abr 2026 · 8 min lectura</div>
-          <h3>¿Qué es NGS y cómo elegir el servicio adecuado?</h3>
-          <p>Una guía clara y sin jerga para investigadores que se acercan por primera vez a la secuenciación de nueva generación. Comparativa entre WGS, WES y RNA-Seq.</p>
-          <span class="read-more">Leer artículo →</span>
-        </div>
-      </a>
       <a href="blog/microbioma-chile.html" class="post-card" style="text-decoration:none; color:inherit;">
         <div class="post-thumb t3"></div>
         <div class="post-body">
@@ -400,15 +521,26 @@
           <span class="read-more">Leer artículo →</span>
         </div>
       </a>
-      <a href="blog/cobertura-secuenciacion.html" class="post-card" style="text-decoration:none; color:inherit;">
-        <div class="post-thumb t4"></div>
+    </div>
+
+    <!-- ========== 5 · EMPRESA ========== -->
+    <h2 id="empresa" style="font-size:24px; color:var(--mc-navy); margin:0 0 16px; padding-left:10px; border-left:5px solid var(--mc-navy); padding-top:6px; padding-bottom:6px; scroll-margin-top:150px;">🏢 Empresa · hitos &amp; expansión <span style="font-size:13px; color:var(--mc-mute); font-weight:500; margin-left:8px;">1 hito histórico</span></h2>
+    <p style="color:var(--mc-mute); margin:0 0 24px; font-size:14px;">Anuncios institucionales, expansión de la red global y hitos de Macrogen Iberoamérica.</p>
+    <div class="grid grid-3" style="margin-bottom:60px;">
+
+      <a href="blog/lanzamiento-macrogen-chile.html" class="post-card" style="text-decoration:none; color:inherit;">
+        <div class="post-thumb" style="background:linear-gradient(135deg,#1B2A57 0%,#3FA9C9 100%); position:relative;">
+          <div style="position:absolute; top:14px; left:14px; background:rgba(255,255,255,0.95); color:var(--mc-navy); font-size:10px; letter-spacing:1.5px; font-weight:700; padding:4px 10px; border-radius:3px; text-transform:uppercase;">🏢 Empresa</div>
+          <div style="position:absolute; bottom:14px; right:14px; font-size:36px;">🇨🇱</div>
+        </div>
         <div class="post-body">
-          <div class="post-meta"><span class="cat">Bioinformática</span> · 10 Abr 2026 · 7 min lectura</div>
-          <h3>¿Cuánta cobertura necesito? Guía práctica para WGS y WES</h3>
-          <p>30x, 60x, 100x… ¿Qué profundidad pedir según tu pregunta científica? Discutimos los trade-offs entre costo, precisión y reproducibilidad.</p>
+          <div class="post-meta"><span class="cat" style="background:#F0F4FB; color:var(--mc-navy);">🏢 Empresa</span> · 2 May 2026 · 4 min lectura</div>
+          <h3>Macrogen Chile abre oficina en Santiago</h3>
+          <p>Conoce nuestro modelo "Local-Global" y por qué llegamos a Chile a apoyar a la comunidad científica nacional con servicios de secuenciación de clase mundial.</p>
           <span class="read-more">Leer artículo →</span>
         </div>
       </a>
+
     </div>
 
     <div class="text-center" style="margin-top:48px; color:var(--mc-mute); font-size:14px;">
