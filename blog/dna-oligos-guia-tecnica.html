@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNA Oligos: diseño, modificaciones y escalas · guía técnica | Blog Macrogen Iberoamérica</title>
+<meta name="description" content="Cómo especificar un oligonucleótido sintético: longitud, escala, purificación (desalt/HPLC/PAGE), modificaciones (FAM, BHQ, biotin, PS, LNA), QC MALDI-TOF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/img/logo.png">
+<link rel="stylesheet" href="../assets/css/main.css">
+
+<link rel="canonical" href="https://macrogen-es.com/blog/dna-oligos-guia-tecnica.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Macrogen Iberoamérica">
+<meta property="og:url" content="https://macrogen-es.com/blog/dna-oligos-guia-tecnica.html">
+<meta property="og:title" content="DNA Oligos: diseño, modificaciones y escalas · guía técnica | Macrogen Blog">
+<meta property="og:description" content="Cómo especificar un oligonucleótido sintético: longitud, escala, purificación (desalt/HPLC/PAGE), modificaciones (FAM, BHQ, biotin, PS, LNA), QC MALDI-TOF.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&h=630&q=80">
+<meta property="article:published_time" content="2026-06-04">
+<meta property="article:section" content="Síntesis · Oligos">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DNA Oligos: diseño, modificaciones y escalas · guía técnica">
+<meta name="twitter:description" content="Cómo especificar un oligonucleótido sintético: longitud, escala, purificación (desalt/HPLC/PAGE), modificaciones (FAM, B">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&h=630&q=80">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wait_for_update':500});gtag('config','G-PLACEHOLDER',{'anonymize_ip':true});</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","CLARITY-PLACEHOLDER");</script>
+
+</head>
+<body>
+
+
+<!-- ===== Launch announcement bar · SANGER10 promo (Jun 15 – Aug 31, 2026) ===== -->
+<div class="launch-bar" style="background:linear-gradient(90deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); color:#fff; text-align:center; padding:10px 16px; font-size:13px; font-weight:600; letter-spacing:.2px;">
+  🎉 <span style="background:rgba(255,255,255,0.18); padding:2px 8px; border-radius:4px; margin:0 4px;">LANZAMIENTO</span>
+  <strong>10% OFF</strong> en Secuenciación Sanger (CES) con código
+  <code style="background:#fff; color:#1B2A57; padding:2px 8px; border-radius:4px; font-weight:800;">SANGER10</code>
+  · vigente hasta 31 ago 2026
+  <a href="../contacto.html?promo=SANGER10&servicio=sanger" style="color:#FEF7E8; text-decoration:underline; margin-left:8px; font-weight:700;">Cotizar →</a>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="../index.html" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li><a href="../index.html" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a></li>
+      <li class="nav-dropdown"><a href="../servicios.html" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs.html"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes.html"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq.html"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell.html"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenoma.html"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">CES · Sanger <span class="count">(1)</span></h5>
+            <a href="../servicios/sanger.html"><strong>Sanger / CES</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis & Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarray.html"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica.html"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos & Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/oligo.html#servicios"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n="megamenu.featured_title">Destacado este mes</h5>
+            <a href="../servicios/sanger.html" style="background:linear-gradient(135deg,#FEF2F4,#FEF7E8); border-left:3px solid var(--mc-red);">
+              <strong style="color:var(--mc-red);" data-i18n="megamenu.featured_sanger_title">🔥 SANGER10 · 10% OFF</strong>
+              <small data-i18n="megamenu.featured_sanger_sub">Sanger CES hasta 31 ago · ES · PT · CL · PE</small>
+            </a>
+            <a href="../servicios/oligo.html" style="background:linear-gradient(135deg,#EAF6E5,#EAF6FB); border-left:3px solid var(--mc-green);">
+              <strong style="color:var(--mc-green);" data-i18n="megamenu.featured_oligo_title">✨ Síntesis 4-en-1</strong>
+              <small data-i18n="megamenu.featured_oligo_sub">DNA · RNA · Péptidos · Genes</small>
+            </a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../servicios.html" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders"><span style="display:inline-block;">Pedidos</span><span aria-hidden="true" style="display:inline-block; transform:translateY(-1px);">↗</span></a></li>
+      <li><a href="../blog.html" class="active" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../recursos.html">Recursos</a></li>
+      <li><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>
+      <li><a href="../faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+    </ul>
+  </div>
+</header>
+
+<article class="article">
+  <div class="container-narrow">
+    <div class="breadcrumb"><a href="../blog.html">Blog</a> <span class="sep">/</span> Síntesis · Oligos</div>
+
+    <header class="article-header">
+      <div class="meta"><span class="cat">Síntesis · Oligos</span> · 4 junio 2026 · 9 min de lectura</div>
+      <h1>DNA Oligos: diseño, modificaciones y escalas · guía técnica completa.</h1>
+      <p style="font-size:1.1rem; color:var(--mc-mute); margin-bottom:0;">Síntesis química de oligonucleótidos para PCR, secuenciación, mutagénesis, sondas qPCR y diagnóstico molecular. Esta guía cubre las decisiones críticas: longitud, escala, purificación, modificaciones.</p>
+    </header>
+
+    <figure style="margin:32px 0 40px; padding:0;">
+      <div style="aspect-ratio:21/9; background:linear-gradient(135deg,#3FA9C9 0%,#841939 50%,#1B2A57 100%); border-radius:14px; display:flex; align-items:center; justify-content:center; color:#fff; padding:40px; text-align:center;">
+        <div>
+          <span style="font-size:11px; letter-spacing:2px; font-weight:700; opacity:0.85;">FROM DESIGN TO BENCH</span>
+          <h2 style="color:#fff; font-size:36px; margin:12px 0; letter-spacing:-1px;">🧬 DNA Oligos · Synthesis</h2>
+          <p style="font-size:14px; opacity:0.92; max-width:520px; margin:0 auto;">MALDI-TOF MS QC · MOPC envío gratis · TAT 5-7 días · desde $0,20 / base</p>
+        </div>
+      </div>
+    </figure>
+
+    <div class="article-body">
+      <p>Los <strong>oligonucleótidos sintéticos</strong> son la materia prima invisible de toda biología molecular moderna. Cada PCR, qPCR, RT-PCR, secuenciación Sanger, mutagénesis dirigida o sonda fluorescente arranca con un oligo. Esta guía te ayuda a especificar el correcto.</p>
+
+      <h2>1. Anatomía de una orden de oligo</h2>
+      <p>Cuando solicitas un oligo, tienes que especificar 6 parámetros:</p>
+      <ol>
+        <li><strong>Secuencia</strong> (5' → 3')</li>
+        <li><strong>Longitud</strong> (típicamente 18-30 bases para primers, hasta 200+ para sondas/genes)</li>
+        <li><strong>Escala de síntesis</strong> (25 nmol, 50 nmol, 250 nmol, 1 µmol, 10 µmol…)</li>
+        <li><strong>Purificación</strong> (Standard desalt, HPLC, PAGE)</li>
+        <li><strong>Modificaciones</strong> (fluoróforos, quenchers, phosphorothioate, biotin, etc.)</li>
+        <li><strong>Formato de entrega</strong> (liofilizado vs disuelto, normalizado vs no)</li>
+      </ol>
+
+      <h2>2. Escala de síntesis · cuánto pedir</h2>
+      <p>La escala determina la cantidad final que recibes. Como regla general:</p>
+
+      <table class="spec-table">
+        <thead>
+          <tr><th>Escala</th><th>Rendimiento típico (25-mer)</th><th>Uso recomendado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>25 nmol</td><td>2–4 nmol (~80 µg)</td><td>PCR de rutina · screening · primer testing</td></tr>
+          <tr><td>50 nmol</td><td>4–8 nmol (~160 µg)</td><td>qPCR a mediana escala · librerías NGS pequeñas</td></tr>
+          <tr><td>250 nmol</td><td>20–40 nmol (~800 µg)</td><td>qPCR masivo · diagnóstico clínico de rutina</td></tr>
+          <tr><td>1 µmol</td><td>100–200 nmol (~4 mg)</td><td>Manufactura de kits · cohortes grandes</td></tr>
+          <tr><td>10 µmol</td><td>1–2 µmol (~40 mg)</td><td>GMP · producción comercial</td></tr>
+        </tbody>
+      </table>
+
+      <p>Para un lab académico estándar, <strong>25 nmol cubre &gt;1.000 reacciones PCR</strong> — empezar con la escala más pequeña casi siempre es suficiente.</p>
+
+      <h2>3. Purificación · cuándo pagar el upgrade</h2>
+      <p>Tres niveles de purificación, en orden creciente de costo:</p>
+      <ul>
+        <li><strong>Standard desalt</strong> (default): adecuado para PCR, qPCR estándar, secuenciación Sanger. Pureza ~85-90%.</li>
+        <li><strong>HPLC</strong>: elimina oligos truncados. <strong>Obligatorio para oligos largos &gt;40 bases</strong>, sondas FRET (TaqMan, Molecular Beacons), y NGS library prep adaptors.</li>
+        <li><strong>PAGE</strong>: la más estricta, separa por tamaño exacto. Reservada para <strong>mutagénesis dirigida</strong>, ASO terapéuticos y siRNAs.</li>
+      </ul>
+
+      <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:16px 20px; margin:24px 0;">
+        <strong style="color:var(--mc-navy); display:block; margin-bottom:6px;">📌 Regla práctica</strong>
+        <p style="font-size:13.5px; line-height:1.6; margin:0;">Si tu oligo &lt; 25 bases y es para PCR estándar → desalt es perfecto. Sobre 30 bases o con modificaciones fluorescentes → siempre HPLC. Para mutagénesis o IVT → PAGE.</p>
+      </div>
+
+      <h2>4. Modificaciones · el menú de Macrogen</h2>
+      <p>Los oligos modificados desbloquean aplicaciones avanzadas. Las modificaciones más usadas:</p>
+
+      <h3>Fluoróforos 5' / 3'</h3>
+      <ul>
+        <li><strong>FAM (495 nm)</strong> · TaqMan probes · más común</li>
+        <li><strong>HEX / VIC</strong> · multiplexing con FAM</li>
+        <li><strong>TET</strong> · alternativa a FAM</li>
+        <li><strong>Cy3 (550 nm) · Cy5 (650 nm)</strong> · FISH, microarrays</li>
+        <li><strong>ROX</strong> · reference dye en qPCR</li>
+        <li><strong>Texas Red</strong> · sondas Molecular Beacon</li>
+      </ul>
+
+      <h3>Quenchers</h3>
+      <ul>
+        <li><strong>TAMRA</strong> · clásico, emite a 580 nm</li>
+        <li><strong>BHQ-1 / BHQ-2 / BHQ-3</strong> · "Black Hole Quenchers" sin emisión, ideales para multiplex</li>
+        <li><strong>MGB</strong> · Minor Groove Binder, aumenta Tm en sondas TaqMan cortas</li>
+      </ul>
+
+      <h3>Modificaciones de backbone</h3>
+      <ul>
+        <li><strong>Phosphorothioate (PS)</strong> · resistencia a nucleasas · ASOs, antisense</li>
+        <li><strong>Methylated bases (5-Me-dC)</strong> · estabilidad y Tm</li>
+        <li><strong>2'-O-Methyl RNA</strong> · siRNA hybrids</li>
+        <li><strong>LNA (Locked Nucleic Acid)</strong> · alta especificidad para SNP genotyping</li>
+      </ul>
+
+      <h3>Conjugates de afinidad</h3>
+      <ul>
+        <li><strong>Biotin 5' o 3'</strong> · pull-down con streptavidin</li>
+        <li><strong>Amino linker (NH2)</strong> · conjugación covalente a peptidos/superficies</li>
+        <li><strong>Thiol (SH)</strong> · conjugación a gold nanoparticles</li>
+        <li><strong>Click chemistry handles</strong> (azide, alkyne) · bioconjugación selectiva</li>
+      </ul>
+
+      <h2>5. QC obligatorio en Macrogen · MALDI-TOF MS</h2>
+      <p>Todos los oligos de Macrogen pasan por <strong>MALDI-TOF mass spectrometry</strong> que verifica el peso molecular exacto. Recibes un certificado con el espectro MALDI-TOF, garantizando la identidad del oligo dentro de ±0,1% de masa teórica.</p>
+
+      <p>Para oligos modificados (fluoróforos, quenchers), el MALDI-TOF confirma que la conjugación se realizó correctamente — algo que un simple análisis por absorbancia OD no detecta.</p>
+
+      <h2>6. Diseño · tips para evitar oligos malos</h2>
+      <p>Antes de mandar a sintetizar, valida tu oligo en silico:</p>
+      <ul>
+        <li><strong>Tm</strong> entre 55-65°C para PCR estándar (calculadora Primer3 o IDT OligoAnalyzer)</li>
+        <li><strong>GC content</strong> 40-60% · evita pistas de G consecutivas (&gt;3 Gs)</li>
+        <li><strong>Sin self-complementarity</strong> &gt;4 bases (forma hairpins que reducen yield)</li>
+        <li><strong>Sin homodímeros</strong> de 3' (causan primer-dimer artifacts)</li>
+        <li><strong>3' end</strong> con C o G (clamps mejor pero menos crítico)</li>
+        <li><strong>Specificity</strong> via BLAST contra el genoma target — descarta primers que peguen en múltiples sitios</li>
+      </ul>
+
+      <h2>7. Tarifas Macrogen · transparentes y sin sorpresas</h2>
+      <p>Macrogen Iberoamérica ofrece síntesis DNA Oligo competitiva:</p>
+
+      <table class="spec-table">
+        <tr><th>Item</th><th>Precio USD</th><th>Precio EUR</th></tr>
+        <tr><td>Base estándar (sin modificación)</td><td>$0,20 / base</td><td>€0,19 / base</td></tr>
+        <tr><td>FAM 5' o 3'</td><td>+$30</td><td>+€28</td></tr>
+        <tr><td>HPLC purification</td><td>+$25</td><td>+€23</td></tr>
+        <tr><td>PAGE purification</td><td>+$45</td><td>+€42</td></tr>
+        <tr><td>Envío MOPC patentado</td><td><strong style="color:var(--mc-green);">GRATIS</strong></td><td><strong style="color:var(--mc-green);">GRATIS</strong></td></tr>
+      </table>
+
+      <p>TAT estándar: <strong>5-7 días hábiles</strong> desde recepción de la orden a entrega en Madrid o Santiago.</p>
+
+      <h2>8. RNA Oligos · cuando necesitas RNA sintético</h2>
+      <p>Para siRNAs, antisense, aptámeros y controles RT-PCR, ofrecemos también RNA synthesis en el sintetizador <strong>MerMade 12</strong>. Pricing: $4 / base. Modificaciones 2'-OMe, 2'-F, PS y phosphate.</p>
+
+      <h2>9. Gene Synthesis · cuando un oligo no alcanza</h2>
+      <p>Para construcciones de DNA &gt;200 bases, conviene la <strong>síntesis de genes completos</strong> (gene synthesis) que asambla los fragmentos sintéticos en un único constructo, clonado en el vector que elijas. Validación por Sanger incluida. Pricing desde $180/gen (hasta 500 bp).</p>
+
+      <div style="background:linear-gradient(135deg,#FEF7E8,#FFE9D6); border:1.5px solid #F5A623; border-radius:12px; padding:20px 24px; margin:32px 0;">
+        <strong style="color:#D97706; display:block; margin-bottom:6px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;">🧪 Catálogo oligo completo</strong>
+        <h3 style="margin:0 0 10px; font-size:18px;">DNA · RNA · Péptidos · Genes</h3>
+        <p style="font-size:13.5px; margin:0 0 14px;">Cotiza el servicio que necesitas — el equipo te responde con pricing exacto y deadline en menos de 24h.</p>
+        <a href="../servicios/oligo.html" class="btn btn-primary" style="font-size:14px;">Ver catálogo Synthesis →</a>
+      </div>
+
+      <p style="margin-top:32px; padding-top:24px; border-top:1px solid var(--mc-border); font-size:13px; color:var(--mc-mute);">
+        ¿Necesitas un oligo modificado raro (e.g. peptide-oligo conjugate, multi-fluor sonda) o un volumen muy grande? Contáctanos a <a href="mailto:info-spain@macrogen.com" style="color:var(--mc-teal); font-weight:700;">info-spain@macrogen.com</a> · evaluamos custom orders sin compromiso.
+      </p>
+    </div>
+  </div>
+</article>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="../assets/img/logo.png" alt="Macrogen" class="logo-img"><h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4><p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">ES · PT · CL · PE</p><p data-i18n-html="footer.brand_description">Operación conjunta Macrogen Spain + Chile.</p><p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p></div>
+      <div><h4 data-i18n="footer.services_heading">Servicios</h4><a href="../servicios/wgs.html">WGS</a><a href="../servicios/sanger.html">Sanger</a><a href="../servicios/oligo.html">Oligo</a><a href="../servicios.html" data-i18n="footer.service_view_all">Ver todos →</a></div>
+      <div><h4 data-i18n="footer.company_heading">Compañía</h4><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a><a href="../blog.html" data-i18n="nav.blog">Blog</a><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a><a href="../faq.html" data-i18n="nav.faq">FAQ</a><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></div>
+      <div><h4 data-i18n="footer.hubs_heading">Hubs</h4><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇪🇸 Madrid</strong><br>+34 911 138 378</p><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇨🇱 Santiago</strong><br>+56 9 5845 1395</p><a href="mailto:info-spain@macrogen.com" style="font-size:12px;">🇪🇸 info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12px;">🇨🇱 info-chile@macrogen.com</a></div>
+    </div>
+    <div class="footer-bottom"><span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span><span><a href="../privacidad.html" data-i18n="footer.privacy">Privacidad</a><a href="../terminos.html" data-i18n="footer.terms">Términos</a><a href="https://dna.macrogen.com" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a></span></div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

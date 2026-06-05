@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identificación bacteriana 16S rRNA: tu primera orden paso a paso | Blog Macrogen Iberoamérica</title>
+<meta name="description" content="Workflow completo de identificación bacteriana por 16S rRNA Sanger: tipo de muestra, primers 27F/1492R, análisis BLAST, interpretación del reporte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/img/logo.png">
+<link rel="stylesheet" href="../assets/css/main.css">
+
+<link rel="canonical" href="https://macrogen-es.com/blog/identificacion-microbiana-16s.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Macrogen Iberoamérica">
+<meta property="og:url" content="https://macrogen-es.com/blog/identificacion-microbiana-16s.html">
+<meta property="og:title" content="Identificación bacteriana 16S rRNA: tu primera orden paso a paso | Macrogen Blog">
+<meta property="og:description" content="Workflow completo de identificación bacteriana por 16S rRNA Sanger: tipo de muestra, primers 27F/1492R, análisis BLAST, interpretación del reporte.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1200&h=630&q=80">
+<meta property="article:published_time" content="2026-06-04">
+<meta property="article:section" content="Identificación">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Identificación bacteriana 16S rRNA: tu primera orden paso a paso">
+<meta name="twitter:description" content="Workflow completo de identificación bacteriana por 16S rRNA Sanger: tipo de muestra, primers 27F/1492R, análisis BLAST, ">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1200&h=630&q=80">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wait_for_update':500});gtag('config','G-PLACEHOLDER',{'anonymize_ip':true});</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","CLARITY-PLACEHOLDER");</script>
+
+</head>
+<body>
+
+
+<!-- ===== Launch announcement bar · SANGER10 promo (Jun 15 – Aug 31, 2026) ===== -->
+<div class="launch-bar" style="background:linear-gradient(90deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); color:#fff; text-align:center; padding:10px 16px; font-size:13px; font-weight:600; letter-spacing:.2px;">
+  🎉 <span style="background:rgba(255,255,255,0.18); padding:2px 8px; border-radius:4px; margin:0 4px;">LANZAMIENTO</span>
+  <strong>10% OFF</strong> en Secuenciación Sanger (CES) con código
+  <code style="background:#fff; color:#1B2A57; padding:2px 8px; border-radius:4px; font-weight:800;">SANGER10</code>
+  · vigente hasta 31 ago 2026
+  <a href="../contacto.html?promo=SANGER10&servicio=sanger" style="color:#FEF7E8; text-decoration:underline; margin-left:8px; font-weight:700;">Cotizar →</a>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="../index.html" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li><a href="../index.html" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a></li>
+      <li class="nav-dropdown"><a href="../servicios.html" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs.html"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes.html"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq.html"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell.html"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenoma.html"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">CES · Sanger <span class="count">(1)</span></h5>
+            <a href="../servicios/sanger.html"><strong>Sanger / CES</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis & Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarray.html"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica.html"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos & Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/oligo.html#servicios"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/oligo.html#servicios"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n="megamenu.featured_title">Destacado este mes</h5>
+            <a href="../servicios/sanger.html" style="background:linear-gradient(135deg,#FEF2F4,#FEF7E8); border-left:3px solid var(--mc-red);">
+              <strong style="color:var(--mc-red);" data-i18n="megamenu.featured_sanger_title">🔥 SANGER10 · 10% OFF</strong>
+              <small data-i18n="megamenu.featured_sanger_sub">Sanger CES hasta 31 ago · ES · PT · CL · PE</small>
+            </a>
+            <a href="../servicios/oligo.html" style="background:linear-gradient(135deg,#EAF6E5,#EAF6FB); border-left:3px solid var(--mc-green);">
+              <strong style="color:var(--mc-green);" data-i18n="megamenu.featured_oligo_title">✨ Síntesis 4-en-1</strong>
+              <small data-i18n="megamenu.featured_oligo_sub">DNA · RNA · Péptidos · Genes</small>
+            </a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../servicios.html" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders"><span style="display:inline-block;">Pedidos</span><span aria-hidden="true" style="display:inline-block; transform:translateY(-1px);">↗</span></a></li>
+      <li><a href="../blog.html" class="active" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../recursos.html">Recursos</a></li>
+      <li><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>
+      <li><a href="../faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+    </ul>
+  </div>
+</header>
+
+<article class="article">
+  <div class="container-narrow">
+    <div class="breadcrumb"><a href="../blog.html">Blog</a> <span class="sep">/</span> Sanger · Identification</div>
+
+    <header class="article-header">
+      <div class="meta"><span class="cat">Sanger · Identification</span> · 4 junio 2026 · 7 min de lectura</div>
+      <h1>Identificación bacteriana 16S rRNA: tu primera orden paso a paso.</h1>
+      <p style="font-size:1.1rem; color:var(--mc-mute); margin-bottom:0;">Si nunca has secuenciado 16S antes, esta guía te lleva desde el aislamiento hasta el reporte BLAST. Pensada para microbiólogos clínicos, ambientales y de alimentos.</p>
+    </header>
+
+    <figure style="margin:32px 0 40px; padding:0;">
+      <div style="aspect-ratio:21/9; background:linear-gradient(135deg,#1A8754 0%,#7FC97F 50%,#1B2A57 100%); border-radius:14px; display:flex; align-items:center; justify-content:center; color:#fff; padding:40px; text-align:center;">
+        <div>
+          <span style="font-size:11px; letter-spacing:2px; font-weight:700; opacity:0.85;">FROM ISOLATE TO SPECIES</span>
+          <h2 style="color:#fff; font-size:36px; margin:12px 0; letter-spacing:-1px;">🦠 16S rRNA · Standard ID</h2>
+          <p style="font-size:14px; opacity:0.92; max-width:520px; margin:0 auto;">Workflow de 6 pasos · primers 27F/1492R · 99,72% accuracy en cromatograma · reporte BLAST listo en 24-48h.</p>
+        </div>
+      </div>
+    </figure>
+
+    <div class="article-body">
+      <p>La <strong>secuenciación 16S rRNA</strong> es la técnica estándar para identificar bacterias a nivel de género y especie. Cuando los métodos bioquímicos clásicos (Gram, API, MALDI-TOF) no llegan a especie o dan resultados ambiguos, el 16S Sanger resuelve la duda en 24-48 horas.</p>
+
+      <h2>1. ¿Por qué 16S rRNA y no otros marcadores?</h2>
+      <p>El gen <strong>16S ribosomal RNA</strong> (~1.500 bp) está presente en todas las bacterias y arqueas. Tiene 9 regiones hipervariables (V1-V9) intercaladas con regiones conservadas, lo que permite:</p>
+      <ul>
+        <li><strong>Primers universales</strong> que amplifican casi cualquier bacteria (27F-1492R cubren los dominios completos).</li>
+        <li><strong>Bases de datos enormes</strong> — GenBank, SILVA, Greengenes contienen millones de secuencias 16S anotadas.</li>
+        <li><strong>Discriminación a género</strong> en la mayoría de casos. A especie en muchos taxones.</li>
+      </ul>
+
+      <h2>2. Material de partida · qué necesitas</h2>
+      <p>Para una orden de identificación bacteriana puedes enviar:</p>
+      <table class="spec-table">
+        <tr><th>Tipo de muestra</th><th>Cantidad mínima</th><th>Notas</th></tr>
+        <tr><td>Colonia aislada en placa</td><td>1 colonia visible</td><td>Macrogen extrae gDNA via PrepMan</td></tr>
+        <tr><td>Cultivo líquido</td><td>1,5 mL en eppendorf</td><td>Densidad &gt;10⁸ cfu/mL recomendado</td></tr>
+        <tr><td>gDNA extraído</td><td>≥10 ng/µL · ≥200 ng total</td><td>A260/280 &gt;1,8</td></tr>
+        <tr><td>Producto PCR ya amplificado</td><td>≥30 ng/µL · 5 µL</td><td>Purificado · sin primer dimers</td></tr>
+      </table>
+
+      <h2>3. El workflow oficial (5 pasos)</h2>
+      <p>Una vez que tus muestras llegan a Madrid o Santiago, el pipeline interno es:</p>
+
+      <ol>
+        <li><strong>gDNA Extraction</strong> — método PrepMan (Thermo Fisher) con resina + boiling. Rápido y compatible con colonias.</li>
+        <li><strong>PCR Amplification</strong> — primers <code>27F</code> (5'-AGAGTTTGATCMTGGCTCAG-3') y <code>1492R</code> (5'-TACGGYTACCTTGTTACGACTT-3'). Master mix Axen™ H Taq · 35 ciclos · annealing 57°C.</li>
+        <li><strong>Sequencing</strong> — primers internos <code>785F</code> y <code>907R</code> para máxima cobertura de la región hipervariable. BigDye® Terminator v3.1 en ABI 3730xl.</li>
+        <li><strong>Analysis</strong> — assembly de Forward + Reverse, trimming de bases de baja calidad, generación de secuencia consenso (~1.000-1.400 bp).</li>
+        <li><strong>BLAST + Report</strong> — alineamiento contra GenBank 16S rRNA DB. El reporte BI-REPORT incluye top hits, % identity, taxonomía completa y árbol filogenético.</li>
+      </ol>
+
+      <h2>4. Cómo interpretar el reporte</h2>
+      <p>Macrogen entrega un PDF con 5 elementos clave:</p>
+      <ul>
+        <li><strong>Primer Information</strong>: las secuencias exactas usadas en PCR y sequencing.</li>
+        <li><strong>BLAST table</strong>: Accession, Description (especie), Length, Coverage, Bit Score, E-value, % Match. Un match &gt;99% en la región hipervariable es generalmente concluyente a especie.</li>
+        <li><strong>Taxonomía</strong>: Kingdom → Family → Genus → Species.</li>
+        <li><strong>Árbol filogenético</strong>: posiciona tu isolado respecto a 8-10 cepas relacionadas en GenBank.</li>
+        <li><strong>Caracterización descriptiva</strong>: información del género/especie identificado (Gram-pos/neg, hábitat, relevancia clínica).</li>
+      </ul>
+
+      <div style="background:#EAF6E5; border-left:3px solid var(--mc-green); border-radius:8px; padding:16px 20px; margin:24px 0;">
+        <strong style="color:var(--mc-green); display:block; margin-bottom:6px;">💡 Tip de interpretación</strong>
+        <p style="font-size:13.5px; line-height:1.6; margin:0;">Si tu top BLAST hit tiene <strong>99%-100% identity</strong> y la siguiente especie está al &gt;1,5% de distancia → identificación segura a especie. Si las 3-5 primeras especies están al 99-99,5% entre sí (e.g., Pseudomonas spp.), reporta a género y considera marcadores adicionales (gyrB, rpoB).</p>
+      </div>
+
+      <h2>5. Limitaciones que debes conocer</h2>
+      <p>El 16S no es infalible:</p>
+      <ul>
+        <li><strong>Algunos taxones cercanos no se distinguen</strong> con 16S solo (p.ej. el complejo Mycobacterium tuberculosis, varias Enterobacteriaceae).</li>
+        <li><strong>Mezclas microbianas</strong> dan cromatogramas superpuestos ininterpretables. Para muestras con &gt;1 especie usa metagenómica (amplicon 16S NGS o shotgun).</li>
+        <li><strong>Hongos requieren ITS</strong> o 18S, no 16S (los hongos no tienen 16S). Para hongos: primers ITS1/ITS4 o NS1/NS8.</li>
+        <li><strong>Resistencias y serotipos</strong> no se determinan con 16S — necesitas marcadores específicos o WGS.</li>
+      </ul>
+
+      <h2>6. Hongos · variantes del workflow</h2>
+      <p>Si tu muestra es fúngica en vez de bacteriana, el mismo pipeline sirve cambiando los primers:</p>
+      <ul>
+        <li><strong>ITS region</strong> → primers <code>ITS1/ITS4</code> · alta resolución para género y especie.</li>
+        <li><strong>18S rRNA</strong> → primers <code>NS1/NS8</code> · útil cuando ITS no resuelve.</li>
+        <li><strong>26S rRNA (D1/D2/D3)</strong> → primers <code>LR0R/LR7</code> · para basidiomicetos y ascomicetos.</li>
+      </ul>
+
+      <h2>7. Tu primera orden · cómo cotizar</h2>
+      <p>Macrogen Iberoamérica facilita las primeras órdenes con dos vías:</p>
+      <ol>
+        <li><strong>Vía web</strong>: <a href="../contacto.html?promo=SANGER10&servicio=identificacion" style="color:var(--mc-teal); font-weight:700;">cotiza directamente</a> indicando "16S identification" — respuesta en menos de 24h hábiles.</li>
+        <li><strong>Portal dna.macrogen.com</strong>: regístrate y pide directamente bajo "CES → Identification".</li>
+      </ol>
+
+      <p>El precio típico por muestra (Premix tube) es de <strong>$4,5 USD / €4,2 EUR</strong>. Para placas completas de 96 muestras baja a <strong>~$2,7 USD por reacción</strong>.</p>
+
+      <div style="background:linear-gradient(135deg,#EAF6E5,#EAF6FB); border:1.5px solid var(--mc-green); border-radius:12px; padding:20px 24px; margin:32px 0;">
+        <strong style="color:var(--mc-green); display:block; margin-bottom:6px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;">📥 Recursos descargables</strong>
+        <p style="font-size:13.5px; margin:0 0 12px;">Descarga la guía técnica completa de identificación + el reporte de ejemplo que recibirás:</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="../assets/docs/order-guide-identification.pdf" target="_blank" class="btn btn-ghost-light" style="font-size:13px;">📘 Guía de pedido (PDF)</a>
+          <a href="../assets/docs/sample-report-16s-rRNA.pdf" target="_blank" class="btn btn-ghost-light" style="font-size:13px;">📊 Sample report (PDF)</a>
+        </div>
+      </div>
+
+      <p style="margin-top:32px; padding-top:24px; border-top:1px solid var(--mc-border); font-size:13px; color:var(--mc-mute);">
+        ¿Tu muestra es polimicrobiana o necesitas metagenomic profiling? Considera nuestro <a href="../servicios/metagenoma.html" style="color:var(--mc-teal); font-weight:700;">servicio de metagenómica 16S por NGS</a> que perfila comunidades enteras a partir de un solo sample.
+      </p>
+    </div>
+  </div>
+</article>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="../assets/img/logo.png" alt="Macrogen" class="logo-img"><h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4><p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">ES · PT · CL · PE</p><p data-i18n-html="footer.brand_description">Operación conjunta Macrogen Spain + Chile.</p><p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p></div>
+      <div><h4 data-i18n="footer.services_heading">Servicios</h4><a href="../servicios/wgs.html">WGS</a><a href="../servicios/sanger.html">Sanger</a><a href="../servicios/oligo.html">Oligo</a><a href="../servicios.html" data-i18n="footer.service_view_all">Ver todos →</a></div>
+      <div><h4 data-i18n="footer.company_heading">Compañía</h4><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a><a href="../blog.html" data-i18n="nav.blog">Blog</a><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a><a href="../faq.html" data-i18n="nav.faq">FAQ</a><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></div>
+      <div><h4 data-i18n="footer.hubs_heading">Hubs</h4><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇪🇸 Madrid</strong><br>+34 911 138 378</p><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇨🇱 Santiago</strong><br>+56 9 5845 1395</p><a href="mailto:info-spain@macrogen.com" style="font-size:12px;">🇪🇸 info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12px;">🇨🇱 info-chile@macrogen.com</a></div>
+    </div>
+    <div class="footer-bottom"><span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span><span><a href="../privacidad.html" data-i18n="footer.privacy">Privacidad</a><a href="../terminos.html" data-i18n="footer.terms">Términos</a><a href="https://dna.macrogen.com" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a></span></div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

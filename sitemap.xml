@@ -128,6 +128,30 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://macrogen-es.com/blog/sanger-vs-ngs-validacion.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/identificacion-microbiana-16s.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/dna-oligos-guia-tecnica.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/wgs-wes-targeted-matriz.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://macrogen-es.com/blog/spatial-biology-ffpe.html</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>yearly</changefreq>
