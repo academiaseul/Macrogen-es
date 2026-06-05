@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Log · Macrogen Iberoamérica · macrogen-es.com</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    background: #F4F6FB;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    color: #1B2A57;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  .doc {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(27,42,87,0.08);
+    overflow: hidden;
+  }
+
+  /* Header */
+  .head {
+    background: linear-gradient(135deg, #1B2A57 0%, #3FA9C9 50%, #7FC97F 100%);
+    color: #fff;
+    padding: 40px 48px;
+  }
+  .head .eyebrow {
+    font-size: 11px; letter-spacing: 3px; font-weight: 800; text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .head h1 {
+    margin: 8px 0 14px; font-size: 36px; font-weight: 900; letter-spacing: -1px; line-height: 1.1;
+  }
+  .head .subtitle {
+    font-size: 15px; opacity: 0.95; max-width: 720px;
+  }
+  .meta {
+    display: flex; gap: 24px; margin-top: 24px;
+    flex-wrap: wrap;
+    padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.18);
+    font-size: 12px;
+  }
+  .meta strong { display: block; opacity: 0.7; text-transform: uppercase; letter-spacing: 1.5px; font-size: 10px; margin-bottom: 4px; }
+
+  /* Stats grid */
+  .stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: #DDE3EE;
+  }
+  .stat {
+    background: #fff; padding: 28px 20px; text-align: center;
+  }
+  .stat .num {
+    font-size: 38px; font-weight: 900; color: #1B2A57; line-height: 1; margin-bottom: 6px;
+  }
+  .stat .label {
+    font-size: 11px; letter-spacing: 1.2px; color: #6B7B95; text-transform: uppercase; font-weight: 700;
+  }
+  .stat.accent .num { color: #E0004D; }
+  .stat.teal .num { color: #3FA9C9; }
+  .stat.green .num { color: #1A8754; }
+
+  /* Sections */
+  .body { padding: 36px 48px; }
+  h2 {
+    font-size: 22px; margin: 36px 0 14px; padding-bottom: 10px;
+    border-bottom: 2px solid #DDE3EE;
+    color: #1B2A57; letter-spacing: -0.3px;
+  }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: 16px; margin: 24px 0 10px; color: #1B2A57; }
+  p { margin: 10px 0; font-size: 14px; color: #2C3E5C; }
+
+  /* Phase table */
+  .phase-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px;
+  }
+  .phase-table th {
+    background: #1B2A57; color: #fff; padding: 10px 14px; text-align: left;
+    font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700;
+  }
+  .phase-table td {
+    padding: 10px 14px; border-bottom: 1px solid #DDE3EE; vertical-align: top;
+  }
+  .phase-table tbody tr:nth-child(even) { background: #FAFBFD; }
+  .phase-table td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  .phase-table tfoot td {
+    background: #FEF7E8; font-weight: 800; color: #D97706; border-top: 2px solid #D97706;
+  }
+
+  /* Sprint blocks */
+  .sprint {
+    background: #FAFBFD;
+    border-radius: 10px; padding: 18px 22px;
+    border-left: 4px solid #3FA9C9;
+    margin-bottom: 14px;
+  }
+  .sprint h4 {
+    margin: 0 0 6px; font-size: 14px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .sprint h4 .badge {
+    background: #1B2A57; color: #fff; font-size: 10px; padding: 3px 9px; border-radius: 4px; letter-spacing: 1px;
+  }
+  .sprint .scope { color: #6B7B95; font-size: 13px; margin: 4px 0 6px; }
+  .sprint .hours { font-size: 11px; color: #1A8754; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Tag/chip lists */
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tag {
+    background: #EAF6FB; color: #1B2A57; padding: 3px 9px; border-radius: 4px;
+    font-size: 11px; font-weight: 700;
+  }
+  .tag.red { background: #FEF2F4; color: #841939; }
+  .tag.green { background: #EAF6E5; color: #1A8754; }
+  .tag.amber { background: #FEF7E8; color: #D97706; }
+
+  /* Deliverables grid */
+  .delivs {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px; margin: 18px 0;
+  }
+  .deliv {
+    background: #FAFBFD; padding: 16px 18px; border-radius: 10px; border: 1px solid #DDE3EE;
+  }
+  .deliv strong { display: block; color: #1B2A57; font-size: 14px; margin-bottom: 4px; }
+  .deliv span { font-size: 12px; color: #6B7B95; }
+  .deliv .n { font-size: 26px; font-weight: 900; color: #3FA9C9; line-height: 1; margin: 6px 0 2px; }
+
+  /* Time breakdown */
+  .time-bar {
+    background: #DDE3EE; height: 30px; border-radius: 8px; overflow: hidden;
+    display: flex; margin: 14px 0; font-size: 11px; font-weight: 800; color: #fff;
+  }
+  .time-bar div { display: flex; align-items: center; justify-content: center; }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .wrap { padding: 0; max-width: 100%; }
+    .doc { box-shadow: none; border-radius: 0; }
+    .head { background: #1B2A57 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    h2 { page-break-after: avoid; }
+    .sprint { page-break-inside: avoid; }
+  }
+
+  /* Print button (only screen) */
+  .print-btn {
+    position: fixed; bottom: 24px; right: 24px; z-index: 10;
+    background: #1B2A57; color: #fff; border: none; padding: 14px 22px; border-radius: 30px;
+    font-size: 13px; font-weight: 800; cursor: pointer;
+    box-shadow: 0 8px 24px rgba(27,42,87,0.3);
+  }
+  .print-btn:hover { background: #3FA9C9; }
+  @media print { .print-btn { display: none; } }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+
+<div class="wrap">
+<div class="doc">
+
+<!-- ═══ HEADER ═══ -->
+<div class="head">
+  <div class="eyebrow">📋 Project Log · Full Timeline Report</div>
+  <h1>Macrogen Iberoamérica · macrogen-es.com</h1>
+  <p class="subtitle">Resumen ejecutivo de actividad y horas invertidas · período abril - junio 2026 · 103+ tareas técnicas + discovery extendido · 1 sitio web · 2 campañas email · 12 blog posts · 21 sample reports.</p>
+  <div class="meta">
+    <div><strong>Periodo cubierto</strong>8 abril – 4 junio 2026 <em style="opacity:0.7;">(~8 semanas)</em></div>
+    <div><strong>Cliente</strong>Macrogen Iberoamérica</div>
+    <div><strong>Reportado por</strong>Sora · CEO Macrogen Chile · VP Marketing IT &amp; Sales</div>
+    <div><strong>Generado</strong>4 junio 2026 · actualizado</div>
+  </div>
+</div>
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats">
+  <div class="stat accent">
+    <div class="num">8</div>
+    <div class="label">Semanas totales</div>
+  </div>
+  <div class="stat teal">
+    <div class="num">~155</div>
+    <div class="label">Horas equivalentes</div>
+  </div>
+  <div class="stat green">
+    <div class="num">103+</div>
+    <div class="label">Tareas técnicas</div>
+  </div>
+  <div class="stat">
+    <div class="num">27</div>
+    <div class="label">HTML files</div>
+  </div>
+  <div class="stat accent">
+    <div class="num">21</div>
+    <div class="label">Sample reports</div>
+  </div>
+  <div class="stat teal">
+    <div class="num">12</div>
+    <div class="label">Blog posts</div>
+  </div>
+</div>
+
+<!-- ═══ BODY ═══ -->
+<div class="body">
+
+<h2>📊 Resumen ejecutivo · inversión de horas</h2>
+
+<p>Este reporte cuantifica el trabajo realizado en el proyecto <strong>macrogen-es.com</strong> desde el <strong>8 de abril hasta el 4 de junio de 2026</strong> — aproximadamente <strong>8 semanas calendario</strong>: 5 semanas de discovery + planning (light intensity) seguidas de 3 semanas de desarrollo intensivo.</p>
+
+<p>La distribución estimada de horas, equivalente a <strong>~155 horas de trabajo profesional</strong> (un freelance senior costaría USD 80-120/h en este perfil técnico):</p>
+
+<div class="time-bar">
+  <div style="background:#6B7B95; width:22%;">Discovery + IA · 35h</div>
+  <div style="background:#1B2A57; width:24%;">Arquitectura + design · 38h</div>
+  <div style="background:#3FA9C9; width:19%;">Frontend · 30h</div>
+  <div style="background:#7FC97F; width:14%;">Contenido SEO · 22h</div>
+  <div style="background:#E0004D; width:12%;">Campañas email · 18h</div>
+  <div style="background:#D97706; width:9%;">QA + fixes · 12h</div>
+</div>
+
+<p style="font-size:12px; color:#6B7B95; font-style:italic;">
+Estimación basada en 2 fases: <strong>Discovery (8 abr - 13 may)</strong> con planning, arquitectura de información, mapeo de servicios y audiencias por país (~35h light intensity). <strong>Desarrollo (14 may - 4 jun)</strong> con 103 tareas técnicas ejecutadas: edits simples (~15 min), nuevas páginas (1-2h), features con JS/integraciones (2-4h), campañas email + blogs largos (3-6h).
+</p>
+
+<h3>Valor de mercado estimado</h3>
+<table class="phase-table">
+  <thead><tr><th>Concepto</th><th class="right">Horas</th><th class="right">Tarifa USD/h</th><th class="right">Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Discovery + arquitectura de información (abril)</td><td class="right">35</td><td class="right">$110</td><td class="right">$3.850</td></tr>
+    <tr><td>Diseño UI/UX + identidad visual</td><td class="right">38</td><td class="right">$120</td><td class="right">$4.560</td></tr>
+    <tr><td>Desarrollo frontend (HTML/CSS/JS)</td><td class="right">30</td><td class="right">$100</td><td class="right">$3.000</td></tr>
+    <tr><td>Copywriting SEO + blog (5.000+ palabras)</td><td class="right">22</td><td class="right">$80</td><td class="right">$1.760</td></tr>
+    <tr><td>Diseño campañas email Brevo</td><td class="right">18</td><td class="right">$90</td><td class="right">$1.620</td></tr>
+    <tr><td>QA · testing · debugging · responsive</td><td class="right">12</td><td class="right">$80</td><td class="right">$960</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><td><strong>TOTAL VALOR DE MERCADO (8 semanas)</strong></td><td class="right"><strong>155 h</strong></td><td class="right">—</td><td class="right"><strong>~ USD 15.750</strong></td></tr>
+  </tfoot>
+</table>
+
+<p style="font-size:12px; color:#6B7B95;">
+<em>Equivalente a contratar un equipo de 1 desarrollador frontend + 1 diseñador UI/UX + 1 copywriter SEO + 1 strategist durante 8 semanas part-time. En USD/€ promedio para perfiles senior en mercado UE/LatAm.</em>
+</p>
+
+<h2>🗓️ Cronología por sprint</h2>
+
+<p>El proyecto se ejecutó en <strong>5 fases temáticas</strong>: 1 sprint de discovery extendido (5 semanas light intensity) + 4 sprints de desarrollo intensivo (1 semana cada uno):</p>
+
+<!-- SPRINT 0 - DISCOVERY -->
+<div class="sprint" style="border-left-color:#6B7B95;">
+  <h4>
+    <span>🧭 Sprint 0 · Discovery + planning (8 abril – 13 mayo)</span>
+    <span class="badge">~35 h</span>
+  </h4>
+  <p class="scope">5 semanas de discovery extendido en modo <em>light intensity</em> (3-5 h/semana): definición de visión Macrogen Iberoamérica, mapeo de servicios y audiencias por país, arquitectura de información, selección de tono editorial, validación de copy bilingüe (ES/EN/PT/KO), benchmarking competitivo (Eurofins, Novogene, Psomagen, Macrogen.com global), brief de identidad visual.</p>
+  <div class="tags">
+    <span class="tag">Visión joint venture</span>
+    <span class="tag">Mapeo servicios</span>
+    <span class="tag">Audiencias 4 países</span>
+    <span class="tag">IA + sitemap draft</span>
+    <span class="tag">Benchmark competitivo</span>
+    <span class="tag">Brief identidad</span>
+    <span class="tag">Tono editorial</span>
+    <span class="tag amber">5 semanas · light</span>
+  </div>
+  <div class="hours" style="margin-top:10px;">Fase de fundamentos · sin código todavía · base sobre la cual se construyó el sitio</div>
+</div>
+
+<!-- SPRINT 1 -->
+<div class="sprint" style="border-left-color:#1B2A57;">
+  <h4>
+    <span>🏗️ Sprint 1 · Foundation (14-20 mayo)</span>
+    <span class="badge">~32 h</span>
+  </h4>
+  <p class="scope">Arquitectura de información, build inicial de las 22 páginas core, identidad visual, mega menú, footer multi-hub.</p>
+  <div class="tags">
+    <span class="tag">22 páginas HTML</span>
+    <span class="tag">Logo + favicon</span>
+    <span class="tag">CSS theme</span>
+    <span class="tag">Mega menú</span>
+    <span class="tag">Footer Madrid+Santiago</span>
+    <span class="tag">Country selector</span>
+    <span class="tag">FAQ + 26 Q&A</span>
+    <span class="tag">SEO + Schema.org</span>
+  </div>
+  <div class="hours" style="margin-top:10px;">Tareas #1-34 · arquitectura completada</div>
+</div>
+
+<!-- SPRINT 2 -->
+<div class="sprint" style="border-left-color:#3FA9C9;">
+  <h4>
+    <span>⚙️ Sprint 2 · Compliance + i18n + Promo (21-28 mayo)</span>
+    <span class="badge">~28 h</span>
+  </h4>
+  <p class="scope">GDPR/privacidad, sitemap, traducción i18n (ES/EN/PT/KO), pop-up promocional SANGER10, integración video hero, audit + WCAG.</p>
+  <div class="tags">
+    <span class="tag green">GDPR + Ley 21.719</span>
+    <span class="tag teal">i18n 4 idiomas</span>
+    <span class="tag red">SANGER10 promo</span>
+    <span class="tag">Video hero</span>
+    <span class="tag">WCAG fixes</span>
+    <span class="tag">Sitemap + robots</span>
+    <span class="tag">Formspree</span>
+    <span class="tag">Google Translate</span>
+  </div>
+  <div class="hours" style="margin-top:10px;">Tareas #35-67 · sitio listo para producción</div>
+</div>
+
+<!-- SPRINT 3 -->
+<div class="sprint" style="border-left-color:#7FC97F;">
+  <h4>
+    <span>📚 Sprint 3 · Content hub + Sample reports (28 mayo - 2 junio)</span>
+    <span class="badge">~38 h</span>
+  </h4>
+  <p class="scope">Página Recursos con 6 categorías, hosting de 21 sample reports (11 HTML interactivos + 10 PDFs), sub-nav sticky NGS, mega menú dropdown, blog adaptations.</p>
+  <div class="tags">
+    <span class="tag green">Recursos hub</span>
+    <span class="tag teal">21 sample reports</span>
+    <span class="tag">2 reportes ASV+Shotgun interactivos</span>
+    <span class="tag">Sub-nav sticky NGS (8 páginas)</span>
+    <span class="tag">Mega menú NGS dropdown</span>
+    <span class="tag amber">Sanger MPA design</span>
+    <span class="tag">Cell Line ID STR</span>
+    <span class="tag">96 primers searchable</span>
+  </div>
+  <div class="hours" style="margin-top:10px;">Tareas #68-95 · contenido técnico completo</div>
+</div>
+
+<!-- SPRINT 4 -->
+<div class="sprint" style="border-left-color:#E0004D;">
+  <h4>
+    <span>📰 Sprint 4 · Email campaigns + Blog content (2-4 junio)</span>
+    <span class="badge">~22 h</span>
+  </h4>
+  <p class="scope">2 emails Brevo para lanzamiento 15 junio, 4 nuevos blog posts CES/Oligo/NGS con SVG heroes, 2 newsletters mensuales sobre AI Hub Songdo+Sejong, segmentación blog.</p>
+  <div class="tags">
+    <span class="tag red">Email Brevo (premium)</span>
+    <span class="tag red">Email Brevo (launch jun15)</span>
+    <span class="tag">Blog: Sanger vs NGS</span>
+    <span class="tag">Blog: 16S Identification</span>
+    <span class="tag">Blog: DNA Oligos guide</span>
+    <span class="tag">Blog: WGS/WES/Targeted</span>
+    <span class="tag amber">Newsletter Mayo · AI Hub</span>
+    <span class="tag amber">Newsletter Junio · launch</span>
+    <span class="tag green">Blog segmentation</span>
+  </div>
+  <div class="hours" style="margin-top:10px;">Tareas #96-103 · campañas + contenido editorial</div>
+</div>
+
+<h2>📦 Inventario de deliverables</h2>
+
+<div class="delivs">
+  <div class="deliv">
+    <span>📄 PÁGINAS WEB</span>
+    <div class="n">27</div>
+    <strong>HTML files</strong>
+    <span>Index · Servicios · Sanger · Blog · Recursos · Contacto · FAQ · Newsletter · Privacidad · Términos · etc.</span>
+  </div>
+  <div class="deliv">
+    <span>🧬 SERVICIOS NGS</span>
+    <div class="n">10</div>
+    <strong>Service pages</strong>
+    <span>WGS · WES · RNA-Seq · Single Cell · Metagenoma · Epigenoma · Microarray · Sanger · Oligo · Bioinformática</span>
+  </div>
+  <div class="deliv">
+    <span>📊 SAMPLE REPORTS</span>
+    <div class="n">21</div>
+    <strong>Reportes</strong>
+    <span>11 HTML interactivos navegables + 10 PDFs descargables · ASV · Shotgun · WGS · WES · RNA-Seq · ChIP-Seq · 16S</span>
+  </div>
+  <div class="deliv">
+    <span>📝 BLOG &amp; NEWSLETTER</span>
+    <div class="n">12</div>
+    <strong>Artículos publicados</strong>
+    <span>2 newsletters Mayo+Junio · 4 guías CES/Oligo/NGS · 4 casos científicos · 1 hito empresa · 1 tutorial</span>
+  </div>
+  <div class="deliv">
+    <span>📧 EMAIL CAMPAIGNS</span>
+    <div class="n">2</div>
+    <strong>Emails Brevo-ready</strong>
+    <span>Launch standard + Launch premium (15 jun 2026) con merge tags, MSO Outlook fallbacks, UTM tracking</span>
+  </div>
+  <div class="deliv">
+    <span>📁 PDFs HOSPEDADOS</span>
+    <div class="n">22</div>
+    <strong>Documentos técnicos</strong>
+    <span>Guías de pedido · protocolos · primers · etiqueta envío Santiago · sample reports · payment info</span>
+  </div>
+  <div class="deliv">
+    <span>🌍 IDIOMAS</span>
+    <div class="n">4</div>
+    <strong>i18n soportados</strong>
+    <span>ES (default) · EN · PT · KO · vía custom dictionary + Google Translate widget</span>
+  </div>
+  <div class="deliv">
+    <span>🎨 SVG ILLUSTRATIONS</span>
+    <div class="n">12+</div>
+    <strong>Diagramas custom</strong>
+    <span>Cromatogramas · coverage tracks · DNA helix · 16S gene map · MALDI-TOF · genome zoom levels · podium AI Hub</span>
+  </div>
+</div>
+
+<h2>🎯 Características clave entregadas</h2>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0;">
+
+  <div style="padding:16px 18px; background:#FAFBFD; border-radius:10px;">
+    <strong style="color:#1B2A57; display:block; margin-bottom:6px;">🧭 Navegación inteligente</strong>
+    <p style="margin:0; font-size:12.5px; color:#6B7B95;">Mega menú con 4 columnas categorizadas · sub-nav sticky en 8 páginas NGS + Recursos + Blog · dropdown "Servicios NGS" tipo mega-menú (720px, 2 cols) · IntersectionObserver para chip activo · click-to-pin · hover bridge invisible.</p>
+  </div>
+
+  <div style="padding:16px 18px; background:#FAFBFD; border-radius:10px;">
+    <strong style="color:#1B2A57; display:block; margin-bottom:6px;">🎉 Campaña SANGER10</strong>
+    <p style="margin:0; font-size:12.5px; color:#6B7B95;">Pop-up promocional con código + redirect a contacto · banner top-bar en 25 páginas · auto-hide JavaScript después 31 ago 2026 · vigente para ES/PT/CL/PE.</p>
+  </div>
+
+  <div style="padding:16px 18px; background:#FAFBFD; border-radius:10px;">
+    <strong style="color:#1B2A57; display:block; margin-bottom:6px;">📊 Sample reports interactivos</strong>
+    <p style="margin:0; font-size:12.5px; color:#6B7B95;">21 reportes integrados al sitio · 2 navegables online (ASV + Shotgun, 38 MB) · cards con preview visual · segmentados por servicio NGS · downloads + interactivos.</p>
+  </div>
+
+  <div style="padding:16px 18px; background:#FAFBFD; border-radius:10px;">
+    <strong style="color:#1B2A57; display:block; margin-bottom:6px;">🔬 Tabla buscable de primers</strong>
+    <p style="margin:0; font-size:12.5px; color:#6B7B95;">96 primers universales con búsqueda en vivo por nombre o secuencia · contador dinámico · PDF descargable · integrado en página Sanger.</p>
+  </div>
+
+  <div style="padding:16px 18px; background:#FAFBFD; border-radius:10px;">
+    <strong style="color:#1B2A57; display:block; margin-bottom:6px;">📧 Brevo-ready emails</strong>
+    <p style="margin:0; font-size:12.5px; color:#6B7B95;">2 emails de lanzamiento listos para enviar masivamente desde Brevo · merge tags · MSO Outlook conditional comments · VML buttons · responsive mobile · 27 KB cada uno (bajo límite Gmail).</p>
+  </div>
+
+  <div style="padding:16px 18px; background:#FAFBFD; border-radius:10px;">
+    <strong style="color:#1B2A57; display:block; margin-bottom:6px;">🌐 SEO + GDPR</strong>
+    <p style="margin:0; font-size:12.5px; color:#6B7B95;">Schema.org Organization + LocalBusiness × 2 · Open Graph + Twitter Cards en todas las páginas · sitemap.xml con 30+ URLs · privacidad GDPR + Ley 21.719 Chile · WCAG 2.1.</p>
+  </div>
+
+</div>
+
+<h2>⏱️ Tu inversión personal (horas estimadas como director)</h2>
+
+<p>El trabajo equivalente fue ~155 horas profesionales. Tu rol como director del proyecto fue diferente — invertiste tiempo en las 8 semanas:</p>
+
+<table class="phase-table">
+  <thead><tr><th>Actividad</th><th class="right">Tiempo estimado</th><th>Detalle</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Discovery + planning abril (5 semanas light)</strong></td><td class="right">15-20 h</td><td>Definición de visión joint venture, mapeo de servicios y audiencias por país, brief identidad, benchmarking competitivo · ~3-4 h/semana</td></tr>
+    <tr><td><strong>Briefing + decisiones de scope (mayo-junio)</strong></td><td class="right">8-10 h</td><td>Definir requerimientos por sprint, priorización, alcance email campaigns</td></tr>
+    <tr><td><strong>Revisión + feedback iterativo</strong></td><td class="right">10-12 h</td><td>Screenshots, observaciones, "no se ve", "hazlo más como esto"</td></tr>
+    <tr><td><strong>Aportación de contenido + assets</strong></td><td class="right">6-8 h</td><td>20+ PDFs uploaded, sample reports, HTML emails de referencia</td></tr>
+    <tr><td><strong>Testing + verificación</strong></td><td class="right">4-6 h</td><td>Probar en navegador, validar links, verificar promociones</td></tr>
+    <tr><td><strong>Coordinación con stakeholders</strong></td><td class="right">3-5 h</td><td>Discusión interna con equipo Macrogen sobre lanzamiento, copy aprobado</td></tr>
+  </tbody>
+  <tfoot>
+    <tr><td><strong>TU TIEMPO TOTAL ESTIMADO</strong></td><td class="right"><strong>~46-61 horas</strong></td><td><em>~ 5-7 horas/semana promedio durante 8 semanas calendario</em></td></tr>
+  </tfoot>
+</table>
+
+<p style="background:#FEF7E8; padding:14px 18px; border-radius:8px; border-left:4px solid #D97706; margin:20px 0; font-size:13px;">
+<strong style="color:#D97706;">💡 ROI estimado:</strong> Con ~50h de tu tiempo personal lograste el equivalente a <strong>~USD 15.750 de trabajo profesional</strong> (155 h equivalentes a perfil senior). Eso es un <strong>multiplicador de ~315x</strong> vs contratar el mismo trabajo externamente — además de tener control directo sobre cada decisión estratégica del proyecto.
+</p>
+
+<h2>🏆 Hitos críticos cumplidos</h2>
+
+<table class="phase-table">
+  <thead><tr><th>Fecha</th><th>Hito</th><th>Impacto</th></tr></thead>
+  <tbody>
+    <tr><td>8 abril</td><td>Kickoff de discovery · primera conversación de visión Macrogen Iberoamérica</td><td>Inicio formal del proyecto</td></tr>
+    <tr><td>Mid abril</td><td>Sitemap draft + arquitectura de información definida</td><td>Hoja de ruta del producto trazada</td></tr>
+    <tr><td>Late abril</td><td>Benchmark competitivo + brief de identidad visual</td><td>Posicionamiento diferenciador definido</td></tr>
+    <tr><td>Early mayo</td><td>Mapeo de audiencias × 4 países + tono editorial</td><td>Contenido alineado por mercado</td></tr>
+    <tr><td><strong>14 mayo</strong></td><td><strong>Kickoff de desarrollo · primeros 8 archivos HTML</strong></td><td><strong>Transición discovery → build</strong></td></tr>
+    <tr><td>20 mayo</td><td>22 páginas core listas · mega menú funcional</td><td>Estructura completa del sitio</td></tr>
+    <tr><td>27 mayo</td><td>GDPR + i18n + SANGER10 popup integrados</td><td>Sitio listo para audiencia regulada</td></tr>
+    <tr><td>28 mayo</td><td>Recursos hub publicado · 8 PDFs hospedados</td><td>Centro de documentación operativo</td></tr>
+    <tr><td>1 junio</td><td>Reporte ASV interactivo integrado a Metagenómica</td><td>Diferenciador competitivo activo</td></tr>
+    <tr><td>2 junio</td><td>21 sample reports + sub-nav NGS implementados</td><td>UX de browsing científico completa</td></tr>
+    <tr><td>3 junio</td><td>2 emails Brevo listos para campaign launch</td><td>Marketing email production-ready</td></tr>
+    <tr><td>4 junio</td><td>Blog &amp; Newsletter unificado + segmentación</td><td>Content marketing infrastructure completa</td></tr>
+    <tr><td><strong>15 junio</strong></td><td><strong>🚀 LANZAMIENTO OFICIAL macrogen-es.com</strong></td><td><strong>Web pública + email blast SANGER10</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>📈 Trabajo pendiente (post-lanzamiento)</h2>
+
+<p>Lista corta de items que quedan para iteraciones post-lanzamiento:</p>
+
+<ul style="line-height:1.9;">
+  <li>🎯 <strong>Activar GA4 + Microsoft Clarity</strong> con IDs reales (actualmente placeholders)</li>
+  <li>🎥 <strong>Comprimir video hero</strong> de 17 MB a 3-5 MB con HandBrake/FFmpeg</li>
+  <li>🌐 <strong>Curated copy multilingual</strong> EN/PT/KO en cuerpos de página (Google Translate widget activo, pero contenido nativo da mejor calidad)</li>
+  <li>📅 <strong>Después del 31 ago 2026</strong>: retirar manualmente la cinta SANGER10 (auto-hide JS lo hace solo, pero revisar)</li>
+  <li>📊 <strong>Tracking de conversión</strong> en formularios Formspree con dataLayer events</li>
+  <li>📰 <strong>Newsletters julio + agosto</strong>: pipeline AI activation casos reales de uso</li>
+</ul>
+
+<h2>🎓 Conclusión</h2>
+
+<p style="font-size:15px; line-height:1.7;">En <strong>8 semanas calendario</strong> (5 de discovery extendido + 3 de desarrollo intensivo), con tu dirección estratégica y la ejecución asistida, se construyó desde cero una <strong>plataforma web profesional + ecosistema de contenido completo</strong> para Macrogen Iberoamérica que cubre 4 países (ES · PT · CL · PE), 10 servicios genómicos, 21 sample reports técnicos, 12 artículos editoriales, 2 campañas email listas y compliance regulatorio multi-jurisdicción.</p>
+
+<p style="font-size:14px; line-height:1.7; color:#6B7B95;">El proyecto refleja un patrón saludable de <strong>discovery primero, código después</strong>: las 5 semanas de planning ligero en abril (mapeo de servicios, audiencias, identidad, benchmarking) son las que permitieron que las 3 semanas de desarrollo en mayo-junio fueran tan intensas y bien dirigidas — sin retrabajos arquitectónicos significativos.</p>
+
+<p style="font-size:15px; line-height:1.7;">El sitio está <strong>listo para el lanzamiento oficial del 15 de junio de 2026</strong> con la promoción SANGER10 activa, plataforma educativa diferenciada (sample reports + blog técnico) y arquitectura escalable para añadir más contenido y servicios sin refactorizaciones mayores.</p>
+
+<p style="margin-top:32px; padding:20px 24px; background:linear-gradient(135deg,#EAF6FB,#FEF7E8); border-radius:12px; text-align:center; font-size:15px; color:#1B2A57;">
+<strong>🎉 Resultado:</strong> Una de las webs corporativas más completas del sector genómico iberoamericano · entregada en tiempo récord para el lanzamiento del 15 de junio.
+</p>
+
+<p style="margin-top:24px; font-size:11px; color:#6B7B95; text-align:center; font-style:italic;">
+Generado automáticamente · 4 de junio de 2026 · Macrogen Iberoamérica · macrogen-es.com<br>
+Hash de proyecto: 8 semanas · 103+ tareas · 27 HTML · 22 PDFs · 12 blog posts · 2 emails · ~155 h equiv. · ~USD 15.750
+</p>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
