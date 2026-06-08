@@ -78,13 +78,225 @@
 .cot-info-bar a { color: var(--cot-red); font-weight: 800; text-decoration: none; }
 .cot-info-bar a:hover { text-decoration: underline; }
 
-/* ===== TREE WIZARD ===== */
+/* ===== INTERACTIVE EXPLORER ===== */
+.cot-explorer {
+  max-width: 1280px;
+  margin: -40px auto 28px;
+  padding: 0 24px;
+  position: relative;
+  z-index: 10;
+}
+.cot-explorer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 980px) {
+  .cot-explorer-grid { grid-template-columns: 1fr; gap: 14px; }
+}
+
+.cot-col {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--cot-card-shadow);
+  padding: 22px;
+  display: flex; flex-direction: column;
+  max-height: 640px;
+}
+.cot-col-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--cot-border);
+}
+.cot-col-head h3 {
+  font-size: 13px; font-weight: 800; letter-spacing: 1.8px;
+  text-transform: uppercase; color: var(--cot-teal);
+  margin: 0;
+  display: flex; align-items: center; gap: 8px;
+}
+.cot-col-head h3 .step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--cot-navy); color: #fff;
+  font-size: 11px; font-weight: 900;
+}
+.cot-col-head .count {
+  font-size: 11px; color: var(--cot-gray); font-weight: 700;
+}
+.cot-col-list {
+  flex: 1; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 8px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cot-border) transparent;
+}
+.cot-col-list::-webkit-scrollbar { width: 6px; }
+.cot-col-list::-webkit-scrollbar-thumb { background: var(--cot-border); border-radius: 3px; }
+.cot-col-empty {
+  padding: 24px 14px;
+  text-align: center;
+  color: var(--cot-gray);
+  font-size: 13px;
+  font-style: italic;
+  background: var(--cot-bg);
+  border-radius: 10px;
+  border: 1px dashed var(--cot-border);
+}
+.cot-col-empty .ico-lg { display: block; font-size: 32px; margin-bottom: 6px; opacity: 0.5; }
+
+/* Each option card in a column */
+.cot-opt {
+  background: #fff;
+  border: 2px solid var(--cot-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: left;
+  font-family: inherit;
+  display: flex; gap: 12px; align-items: flex-start;
+  position: relative;
+}
+.cot-opt:hover {
+  border-color: var(--cot-teal);
+  background: var(--cot-light);
+  transform: translateX(2px);
+}
+.cot-opt.is-active {
+  border-color: var(--cot-navy);
+  background: linear-gradient(135deg, #EAF6FB 0%, #fff 100%);
+  box-shadow: 0 4px 14px rgba(27,42,87,0.08);
+}
+.cot-opt.is-active::after {
+  content: '✓';
+  position: absolute;
+  top: 10px; right: 12px;
+  width: 22px; height: 22px;
+  background: var(--cot-navy);
+  color: #fff;
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 12px; font-weight: 800;
+}
+.cot-opt-ico {
+  font-size: 22px; line-height: 1;
+  width: 34px; height: 34px;
+  background: var(--cot-bg);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cot-opt.is-active .cot-opt-ico { background: var(--cot-light); }
+.cot-opt-body { flex: 1; min-width: 0; padding-right: 22px; }
+.cot-opt-title {
+  font-size: 13.5px; font-weight: 800; color: var(--cot-navy);
+  margin-bottom: 3px; line-height: 1.3;
+}
+.cot-opt-desc {
+  font-size: 11.5px; color: var(--cot-gray);
+  line-height: 1.5;
+}
+
+/* Live preview bar */
+.cot-preview-bar {
+  max-width: 1280px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+  position: relative; z-index: 10;
+}
+.cot-preview-inner {
+  background: linear-gradient(135deg, var(--cot-navy) 0%, #2a3f73 50%, var(--cot-teal) 100%);
+  border-radius: 14px;
+  color: #fff;
+  padding: 26px 30px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  box-shadow: 0 12px 32px rgba(27,42,87,0.18);
+}
+@media (max-width: 720px) {
+  .cot-preview-inner { grid-template-columns: 1fr; }
+}
+.cot-preview-info { font-family: inherit; }
+.cot-preview-info .eyebrow {
+  font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
+  color: #7FC97F; opacity: 0.95; margin-bottom: 6px; display: block;
+}
+.cot-preview-info .summary {
+  font-size: 16px; font-weight: 700; line-height: 1.5;
+}
+.cot-preview-info .summary strong { color: #fff; }
+.cot-preview-info .summary .placeholder {
+  color: rgba(255,255,255,0.5); font-style: italic; font-weight: 500;
+}
+.cot-preview-info .specialist {
+  font-size: 11.5px; color: rgba(255,255,255,0.75);
+  margin-top: 6px; font-style: italic;
+}
+.cot-preview-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, var(--cot-red) 0%, #B8003E 100%);
+  color: #fff !important; border: none; border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px; font-weight: 800; cursor: pointer; text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 16px rgba(224,0,77,0.3);
+}
+.cot-preview-cta:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(224,0,77,0.45);
+  color: #fff !important;
+}
+.cot-preview-cta:disabled {
+  background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.5) !important;
+  cursor: not-allowed; box-shadow: none;
+}
+
+/* Detail card (appears below explorer when full selection is made) */
+.cot-detail {
+  max-width: 1280px;
+  margin: 0 auto 40px;
+  padding: 0 24px;
+}
+.cot-detail-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--cot-card-shadow);
+  padding: 26px 30px;
+}
+.cot-detail-card h3 {
+  font-size: 12px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--cot-teal);
+  margin: 0 0 10px;
+}
+.cot-detail-row {
+  display: grid; grid-template-columns: 140px 1fr; gap: 14px;
+  padding: 10px 0; border-bottom: 1px solid var(--cot-border);
+  font-size: 13.5px;
+  align-items: start;
+}
+.cot-detail-row:last-child { border-bottom: none; }
+.cot-detail-row .lbl {
+  font-size: 11px; font-weight: 800; letter-spacing: 1.3px;
+  text-transform: uppercase; color: var(--cot-gray);
+  padding-top: 2px;
+}
+.cot-detail-row .val { color: var(--cot-navy); }
+.cot-detail-row .val strong { font-weight: 800; }
+.cot-detail-row .val small { display: block; color: var(--cot-gray); font-size: 12px; margin-top: 3px; }
+
+/* TREE WIZARD legacy (kept for fallback, but hidden by default) */
 .cot-tree {
   max-width: 1100px;
   margin: -40px auto 60px;
   padding: 0 24px;
   position: relative;
   z-index: 10;
+  display: none;
 }
 .cot-tree-card {
   background: #fff;
@@ -382,6 +594,36 @@
 .cot-modal-banner h3 { color: #fff; margin: 0 0 4px; font-size: 20px; font-weight: 900; letter-spacing: -0.3px; }
 .cot-modal-banner p { margin: 0; font-size: 13px; color: rgba(255,255,255,0.85); }
 .cot-modal-body { padding: 24px 28px 28px; }
+
+/* Selected configuration card inside modal — shows app/library/platform/read/TAT */
+.cot-modal-config {
+  background: linear-gradient(135deg, #EAF6FB 0%, #fff 100%);
+  border: 1px solid #B8DCEB;
+  border-left: 4px solid var(--cot-teal);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  font-family: inherit;
+}
+.cot-modal-config-title {
+  font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--cot-teal);
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.cot-modal-config-row {
+  display: grid; grid-template-columns: 100px 1fr; gap: 10px;
+  padding: 5px 0;
+  font-size: 12.5px;
+  align-items: start;
+}
+.cot-modal-config-row .lbl {
+  font-size: 10.5px; font-weight: 800; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--cot-gray);
+  padding-top: 1px;
+}
+.cot-modal-config-row .val { color: var(--cot-navy); font-weight: 600; line-height: 1.4; }
+.cot-modal-config-row .val strong { font-weight: 800; }
 .cot-modal-form { display: flex; flex-direction: column; gap: 12px; }
 .cot-modal-form label {
   font-size: 11px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase;
@@ -518,9 +760,9 @@
 <!-- ===== HERO ===== -->
 <section class="cot-hero">
   <div class="container">
-    <span class="eyebrow">🧭 Asistente científico NGS</span>
-    <h1>3 preguntas. <span class="accent">1 servicio correcto.</span><br>1 especialista que te atiende.</h1>
-    <p>¿No estás seguro si necesitas WGS, WES, RNA-Seq, Single Cell o long reads PacBio? Respondes brevemente sobre tu objetivo científico y te conectamos directo con el especialista del servicio adecuado — sin pasar por sales genérico.</p>
+    <span class="eyebrow">🧭 Explorador NGS interactivo</span>
+    <h1>Aplicación · librería · plataforma.<br><span class="accent">Configura, compara y solicita cotización.</span></h1>
+    <p>Catálogo oficial 2026 con <strong style="color:#fff;">7 aplicaciones · 48 librerías · 9 plataformas</strong>. Click libre entre opciones, ve la combinación en tiempo real, y solicita cotización con tu configuración exacta al especialista correspondiente.</p>
   </div>
 </section>
 
@@ -533,35 +775,83 @@
   </span>
 </div>
 
-<!-- ===== DECISION TREE WIZARD ===== -->
-<div class="cot-tree">
+<!-- ===== INTERACTIVE EXPLORER · 3-column dashboard ===== -->
+<div class="cot-explorer">
+  <div class="cot-explorer-grid">
+
+    <!-- Column 1: Application -->
+    <div class="cot-col">
+      <div class="cot-col-head">
+        <h3><span class="step-num">1</span>Aplicación</h3>
+        <span class="count" id="appCount">7 aplicaciones</span>
+      </div>
+      <div class="cot-col-list" id="appList"><!-- Filled by JS --></div>
+    </div>
+
+    <!-- Column 2: Library -->
+    <div class="cot-col">
+      <div class="cot-col-head">
+        <h3><span class="step-num">2</span>Librería</h3>
+        <span class="count" id="libCount">— elige aplicación —</span>
+      </div>
+      <div class="cot-col-list" id="libList">
+        <div class="cot-col-empty">
+          <span class="ico-lg">🧪</span>
+          Elige una aplicación primero
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 3: Platform -->
+    <div class="cot-col">
+      <div class="cot-col-head">
+        <h3><span class="step-num">3</span>Plataforma</h3>
+        <span class="count" id="platCount">— elige librería —</span>
+      </div>
+      <div class="cot-col-list" id="platList">
+        <div class="cot-col-empty">
+          <span class="ico-lg">📡</span>
+          Elige una librería para ver plataformas compatibles
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== Live preview bar + CTA ===== -->
+<div class="cot-preview-bar">
+  <div class="cot-preview-inner">
+    <div class="cot-preview-info">
+      <span class="eyebrow">📋 Tu configuración</span>
+      <div class="summary" id="previewSummary">
+        <span class="placeholder">Elige aplicación + librería + plataforma para activar la cotización...</span>
+      </div>
+      <div class="specialist" id="previewSpecialist"></div>
+    </div>
+    <button class="cot-preview-cta" id="ctaContact" disabled>📧 Hablar con tu especialista →</button>
+  </div>
+</div>
+
+<!-- ===== Detail card (appears when full config) ===== -->
+<div class="cot-detail" id="detailCard" style="display:none;">
+  <div class="cot-detail-card">
+    <h3>🧪 Información técnica de tu configuración</h3>
+    <div id="detailRows"></div>
+  </div>
+</div>
+
+<!-- Legacy tree wrapper (kept hidden for backward compat) -->
+<div class="cot-tree" style="display:none;">
   <div class="cot-tree-card" id="treeCard">
-
-    <!-- Tree header (progress + back) -->
-    <div class="cot-tree-header">
-      <button class="cot-tree-back" id="treeBack" disabled>← Volver</button>
-      <div class="cot-tree-progress">
-        <span class="cot-step-indicator">📋 <span id="stepBadge">Pregunta 1</span></span>
-        <div class="cot-breadcrumb" id="breadcrumb"></div>
-      </div>
-    </div>
-
-    <!-- Question (shown when not at leaf) -->
     <div id="questionView">
-      <div class="cot-tree-question">
-        <h2 id="treeQuestion">¿Cuál es el objetivo de tu proyecto de investigación?</h2>
-        <p id="treeSub">Selecciona el área que mejor describe tu pregunta científica. Te guiaremos al servicio NGS correcto en 2-3 pasos.</p>
-      </div>
-      <div class="cot-tree-choices" id="treeChoices">
-        <!-- Filled by JS -->
-      </div>
+      <div class="cot-tree-question"><h2 id="treeQuestion"></h2><p id="treeSub"></p></div>
+      <div class="cot-tree-choices" id="treeChoices"></div>
     </div>
-
-    <!-- Result (shown at leaf) -->
-    <div id="resultView" style="display:none;">
-      <!-- Filled by JS -->
-    </div>
-
+    <div id="resultView" style="display:none;"></div>
+    <button id="treeBack" style="display:none;">Back</button>
+    <span id="stepBadge"></span>
+    <div id="breadcrumb"></div>
   </div>
 </div>
 
@@ -656,6 +946,16 @@
       <p id="modalSub">Tu consulta llega directo al equipo correcto · respuesta en &lt;24h hábiles</p>
     </div>
     <div class="cot-modal-body">
+      <!-- Selected configuration card · shown to user + included in email body -->
+      <div class="cot-modal-config" id="modalConfigCard" style="display:none;">
+        <div class="cot-modal-config-title">📋 Tu configuración seleccionada</div>
+        <div class="cot-modal-config-row"><div class="lbl">Aplicación</div><div class="val" id="cfgApp">—</div></div>
+        <div class="cot-modal-config-row"><div class="lbl">Librería</div><div class="val" id="cfgLib">—</div></div>
+        <div class="cot-modal-config-row"><div class="lbl">Plataforma</div><div class="val" id="cfgPlat">—</div></div>
+        <div class="cot-modal-config-row"><div class="lbl">Read length</div><div class="val" id="cfgRead">—</div></div>
+        <div class="cot-modal-config-row"><div class="lbl">TAT estimado</div><div class="val" id="cfgTat">—</div></div>
+      </div>
+
       <!-- FORM -->
       <form class="cot-modal-form" id="contactForm" action="https://formspree.io/f/xaqvkoaw" method="POST">
         <input type="hidden" name="_subject" id="formSubject" value="Consulta NGS Macrogen Iberoamérica">
@@ -1414,6 +1714,8 @@ const APPLICATIONS = {
     specialist: 'Equipo Clinical NGS · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/wgs.html',
+    defaultRead: '150PE (recomendado) o 100PE',
+    tat: '5-7 semanas desde recibo de muestras conformes',
     libraries: [
       { id:'lib-truseq-pcrfree', name:'TruSeq PCR-free Library Construction', desc:'Estándar industry · sin amplificación PCR · uniformidad máxima' },
       { id:'lib-truseq-nano', name:'TruSeq Nano Library Construction', desc:'Bajo input DNA · ideal cuando hay poca muestra' },
@@ -1441,6 +1743,8 @@ const APPLICATIONS = {
     specialist: 'Equipo Clinical NGS · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/wes.html',
+    defaultRead: '300PE (estándar para WES) o 150PE',
+    tat: '4-6 semanas desde recibo de muestras conformes',
     libraries: [
       { id:'lib-sureselect-v6', name:'SureSelect V6-post Library Construction', desc:'51 Mb · captura clásica · alta cobertura' },
       { id:'lib-sureselect-v7', name:'SureSelect V7-post Library Construction', desc:'35 Mb · captura mejorada · más eficiente $/exon' },
@@ -1464,6 +1768,8 @@ const APPLICATIONS = {
     specialist: 'Equipo Epigenómica · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/epigenoma.html',
+    defaultRead: '150PE (estándar) o 100PE',
+    tat: '5-7 semanas (WGBS) o 4-6 semanas (panel targeted)',
     libraries: [
       { id:'lib-accel-methyl', name:'Accel-NGS Methyl-Seq DNA Library Construction', desc:'WGBS bisulfite · genome-wide CpG methylation' },
       { id:'lib-sureselect-methyl-human', name:'SureSelect Human Methyl-seq Library Construction', desc:'Targeted humano · 100× cobertura objetivo' },
@@ -1486,6 +1792,8 @@ const APPLICATIONS = {
     specialist: 'Equipo Metagenómica · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/metagenoma.html',
+    defaultRead: 'Amplicón: 300PE 600cycle / Shotgun: 150PE',
+    tat: 'Amplicón 16S/ITS: 2-3 semanas · Shotgun: 4-6 semanas',
     libraries: [
       { id:'lib-meta-shotgun', name:'Meta shotgun', desc:'Funcional + strain level + pathways · MAGs' },
       { id:'lib-amplicon', name:'Amplicon library', desc:'16S V3-V4 · ITS · taxonomía clásica amplicon' },
@@ -1506,6 +1814,8 @@ const APPLICATIONS = {
     specialist: 'Equipo RNA-Seq · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/rna-seq.html',
+    defaultRead: 'mRNA / Total: 150PE · small RNA: 75cycle single-end',
+    tat: '3-5 semanas (estándar) · 4-6 semanas (small RNA)',
     libraries: [
       { id:'lib-mrna-polya', name:'TruSeq stranded mRNA (polyA)', desc:'Estándar para DEG · captura mRNA con poly-A' },
       { id:'lib-totalrna-gold', name:'TruSeq Stranded Total RNA Gold kit (with ribozero)', desc:'Total RNA · ribozero · captura mRNA+lncRNA+snoRNA' },
@@ -1535,6 +1845,8 @@ const APPLICATIONS = {
     specialist: 'Equipo Single Cell · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/single-cell.html',
+    defaultRead: '150PE (10x estándar) o 100PE',
+    tat: '4-6 semanas (scRNA) · 5-6 semanas (Multiome / Spatial)',
     libraries: [
       { id:'lib-10x-3p-v31', name:'Chromium Next GEM Single Cell 3p RNA Library v3.1', desc:'Estándar de la industria · 5K-10K células · 20K reads/cell' },
       { id:'lib-10x-5p-v2', name:'Chromium Next GEM Single Cell 5p RNA Library v2', desc:'5\' end · ideal para análisis de TCR/BCR' },
@@ -1563,6 +1875,8 @@ const APPLICATIONS = {
     specialist: 'Equipo Long Reads (PacBio + ONT) · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/wgs.html',
+    defaultRead: 'PacBio HiFi: 15-25 kb · ONT: hasta 100+ kb ultra-largo',
+    tat: '4-6 semanas (PacBio) · 4-6 semanas (ONT PromethION)',
     libraries: [
       { id:'lib-pacbio-hifi', name:'PacBio HiFi Library', desc:'Estándar long read HiFi · WGS humano/eucariotas · variantes estructurales' },
       { id:'lib-pacbio-microbial', name:'PacBio Microbial Library', desc:'De novo assembly bacteriano · contigs circulares' },
@@ -1661,54 +1975,182 @@ const APP_HEADINGS = {
 })();
 
 // ===================================================
-// TREE NAVIGATION STATE
+// INTERACTIVE EXPLORER STATE
+// User can freely toggle: appId / libraryId / platformId
 // ===================================================
 
 const state = {
-  currentId: 'root',
-  path: ['root'],  // breadcrumb of node ids
+  app: null,       // appId (key of APPLICATIONS)
+  library: null,   // library.id
+  platform: null,  // platform.id
 };
 
 // ===================================================
-// RENDER
+// RENDER (interactive explorer)
 // ===================================================
 
-function renderNode() {
-  const node = TREE[state.currentId];
-  const questionView = document.getElementById('questionView');
-  const resultView = document.getElementById('resultView');
+function renderAll() {
+  renderApps();
+  renderLibraries();
+  renderPlatforms();
+  renderPreview();
+  renderDetail();
+}
 
-  // Update back button + breadcrumb + step badge
-  const back = document.getElementById('treeBack');
-  back.disabled = state.path.length <= 1;
+function renderApps() {
+  const cont = document.getElementById('appList');
+  cont.innerHTML = '';
+  Object.keys(APPLICATIONS).forEach(appId => {
+    const app = APPLICATIONS[appId];
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cot-opt' + (state.app === appId ? ' is-active' : '');
+    btn.innerHTML = `
+      <div class="cot-opt-ico">${app.icon}</div>
+      <div class="cot-opt-body">
+        <div class="cot-opt-title">${app.label}</div>
+        <div class="cot-opt-desc">${app.fullName.split(' · ')[1] || app.fullName}</div>
+      </div>
+    `;
+    btn.addEventListener('click', () => selectApp(appId));
+    cont.appendChild(btn);
+  });
+}
 
-  const stepBadge = document.getElementById('stepBadge');
-  if (node.type === 'leaf') {
-    stepBadge.textContent = '🎯 Recomendación';
-  } else {
-    stepBadge.textContent = 'Pregunta ' + state.path.length;
+function renderLibraries() {
+  const cont = document.getElementById('libList');
+  const count = document.getElementById('libCount');
+  if (!state.app) {
+    cont.innerHTML = `<div class="cot-col-empty"><span class="ico-lg">🧪</span>Elige una aplicación primero</div>`;
+    count.textContent = '— elige aplicación —';
+    return;
   }
+  const app = APPLICATIONS[state.app];
+  count.textContent = app.libraries.length + ' librerías';
+  cont.innerHTML = '';
+  app.libraries.forEach(lib => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cot-opt' + (state.library === lib.id ? ' is-active' : '');
+    btn.innerHTML = `
+      <div class="cot-opt-ico">🧪</div>
+      <div class="cot-opt-body">
+        <div class="cot-opt-title">${lib.name}</div>
+        <div class="cot-opt-desc">${lib.desc}</div>
+      </div>
+    `;
+    btn.addEventListener('click', () => selectLibrary(lib.id));
+    cont.appendChild(btn);
+  });
+}
 
-  // Render breadcrumb
-  const crumb = document.getElementById('breadcrumb');
-  crumb.innerHTML = state.path
-    .map(id => `<span class="cot-breadcrumb-item">${TREE[id].label || 'Inicio'}</span>`)
-    .join(' <span class="cot-breadcrumb-sep">→</span> ');
+function renderPlatforms() {
+  const cont = document.getElementById('platList');
+  const count = document.getElementById('platCount');
+  if (!state.app) {
+    cont.innerHTML = `<div class="cot-col-empty"><span class="ico-lg">📡</span>Elige una aplicación primero</div>`;
+    count.textContent = '— elige aplicación —';
+    return;
+  }
+  if (!state.library) {
+    cont.innerHTML = `<div class="cot-col-empty"><span class="ico-lg">📡</span>Elige una librería para ver plataformas</div>`;
+    count.textContent = '— elige librería —';
+    return;
+  }
+  const app = APPLICATIONS[state.app];
+  count.textContent = app.platforms.length + ' plataformas';
+  cont.innerHTML = '';
+  app.platforms.forEach(plat => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cot-opt' + (state.platform === plat.id ? ' is-active' : '');
+    btn.innerHTML = `
+      <div class="cot-opt-ico">📡</div>
+      <div class="cot-opt-body">
+        <div class="cot-opt-title">${plat.name}</div>
+        <div class="cot-opt-desc">${plat.desc}</div>
+      </div>
+    `;
+    btn.addEventListener('click', () => selectPlatform(plat.id));
+    cont.appendChild(btn);
+  });
+}
 
-  if (node.type === 'leaf') {
-    questionView.style.display = 'none';
-    resultView.style.display = 'block';
-    renderResult(node);
+function renderPreview() {
+  const summary = document.getElementById('previewSummary');
+  const specialist = document.getElementById('previewSpecialist');
+  const cta = document.getElementById('ctaContact');
+
+  if (!state.app) {
+    summary.innerHTML = `<span class="placeholder">Elige aplicación + librería + plataforma para activar la cotización...</span>`;
+    specialist.textContent = '';
+    cta.disabled = true;
+    return;
+  }
+  const app = APPLICATIONS[state.app];
+  const lib = state.library ? app.libraries.find(l => l.id === state.library) : null;
+  const plat = state.platform ? app.platforms.find(p => p.id === state.platform) : null;
+
+  let parts = ['<strong>' + app.label + '</strong>'];
+  parts.push(lib ? '<strong>' + lib.name + '</strong>' : '<span class="placeholder">elige librería</span>');
+  parts.push(plat ? '<strong>' + plat.name + '</strong>' : '<span class="placeholder">elige plataforma</span>');
+  summary.innerHTML = parts.join(' &nbsp;·&nbsp; ');
+
+  if (lib && plat) {
+    specialist.textContent = '👤 ' + app.specialist;
+    cta.disabled = false;
   } else {
-    questionView.style.display = 'block';
-    resultView.style.display = 'none';
-    document.getElementById('treeQuestion').textContent = node.question;
-    document.getElementById('treeSub').textContent = node.sub;
-    renderChoices(node.choices);
-    // Scroll to top of card
-    document.getElementById('treeCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    specialist.textContent = '';
+    cta.disabled = true;
   }
 }
+
+function renderDetail() {
+  const card = document.getElementById('detailCard');
+  if (!state.app || !state.library || !state.platform) {
+    card.style.display = 'none';
+    return;
+  }
+  const app = APPLICATIONS[state.app];
+  const lib = app.libraries.find(l => l.id === state.library);
+  const plat = app.platforms.find(p => p.id === state.platform);
+  const rows = [
+    ['Aplicación', '<strong>' + app.fullName + '</strong><small>' + app.description + '</small>'],
+    ['Librería', '<strong>' + lib.name + '</strong><small>' + lib.desc + '</small>'],
+    ['Plataforma', '<strong>' + plat.name + '</strong><small>' + plat.desc + '</small>'],
+    ['Read / Cycle', '<strong>' + app.defaultRead + '</strong><small>Confirmar con el especialista según volumen y profundidad deseada</small>'],
+    ['TAT estimado', '<strong>' + app.tat + '</strong><small>Tiempo desde recepción de muestras conformes (QC aprobado)</small>'],
+    ['Hub asignado', '<strong>🇪🇸 Madrid + 🇨🇱 Santiago</strong><small>El hub se asigna según país del cliente</small>'],
+    ['Especialista', '<strong>' + app.specialist + '</strong><small>Te responde personalmente en &lt;24h hábiles</small>'],
+  ];
+  document.getElementById('detailRows').innerHTML = rows.map(([lbl, val]) =>
+    '<div class="cot-detail-row"><div class="lbl">' + lbl + '</div><div class="val">' + val + '</div></div>'
+  ).join('');
+  card.style.display = 'block';
+}
+
+// === Selection handlers ===
+function selectApp(appId) {
+  if (state.app === appId) return;  // already selected
+  state.app = appId;
+  // Reset downstream selections if not compatible
+  state.library = null;
+  state.platform = null;
+  renderAll();
+}
+function selectLibrary(libId) {
+  state.library = libId;
+  renderAll();
+}
+function selectPlatform(platId) {
+  state.platform = platId;
+  renderAll();
+}
+
+// Stub functions to keep compat with old code calls — no-op now
+function renderNode() { renderAll(); }
+function renderChoices() {}
+function renderResult() {}
 
 function renderChoices(choices) {
   const cont = document.getElementById('treeChoices');
@@ -1855,72 +2297,64 @@ document.getElementById('treeBack').addEventListener('click', goBack);
 
 let currentLeaf = null;
 
-function openContactModal(leafNode) {
-  currentLeaf = leafNode;
+function openContactModal() {
+  if (!state.app || !state.library || !state.platform) return;  // safety guard
+
+  const app = APPLICATIONS[state.app];
+  const lib = app.libraries.find(l => l.id === state.library);
+  const plat = app.platforms.find(p => p.id === state.platform);
+  currentLeaf = { app, lib, plat };  // store for success view
+
   // Reset to form view
   document.getElementById('contactForm').style.display = 'flex';
   document.getElementById('successView').style.display = 'none';
 
-  // === NEW: dynamic configuration based on appId/libId/platId ===
-  let subject, fullService, modalTitle, modalSub, modalEyebrow, specialist;
-  let notesPrefill = '';
+  // === Subject + hidden fields ===
+  const subject = 'Consulta ' + app.label + ' · ' + lib.name + ' · ' + plat.name + ' · Cotizador Macrogen';
+  const fullService = app.fullName + ' | ' + lib.name + ' | ' + plat.name + ' | Read: ' + app.defaultRead + ' | TAT: ' + app.tat;
 
-  if (leafNode.appId && leafNode.libId && leafNode.platId) {
-    const app = APPLICATIONS[leafNode.appId];
-    const lib = app.libraries.find(l => l.id === leafNode.libId);
-    const plat = app.platforms.find(p => p.id === leafNode.platId);
-
-    // Subject = "Consulta {App} · {Library} · {Platform} · Cotizador"
-    subject = 'Consulta ' + app.label + ' · ' + lib.name + ' · ' + plat.name + ' · Cotizador Macrogen';
-    fullService = app.fullName + ' | ' + lib.name + ' | ' + plat.name;
-    modalTitle = 'Cotización ' + app.label;
-    modalSub = 'Tu consulta llega directo a ' + app.specialist + ' con la configuración pre-cargada';
-    modalEyebrow = '🎯 ' + app.label + ' · ' + plat.name;
-    specialist = app.specialist;
-
-    // Pre-filled notes that the specialist will receive
-    notesPrefill =
-      '── CONFIGURACIÓN SELECCIONADA EN COTIZADOR ──\n' +
-      'Aplicación: ' + app.fullName + '\n' +
-      'Librería: ' + lib.name + '\n' +
-      'Plataforma: ' + plat.name + '\n' +
-      'Hub: Madrid + Santiago\n' +
-      'URL servicio: https://macrogen-es.com/' + app.serviceUrl + '\n' +
-      '\n── PERSONALIZA TU PROYECTO ──\n' +
-      'Tipo de muestra (DNA / RNA / FFPE / fresh): \n' +
-      'Organismo / referencia: \n' +
-      'Plazo deseado de entrega: \n' +
-      'Presupuesto aproximado (orientativo): \n' +
-      'Notas adicionales: ';
-
-    document.getElementById('contactForm').action = 'https://formspree.io/f/xaqvkoaw';
-  } else {
-    // Fallback for legacy nodes
-    subject = leafNode.contactSubject || ('Consulta NGS · ' + (leafNode.label || ''));
-    fullService = leafNode.title || (leafNode.label || '');
-    modalTitle = 'Hablar con ' + (leafNode.specialist ? leafNode.specialist.split(' · ')[0] : 'el especialista');
-    modalSub = (leafNode.specialist || '') + ' · respuesta en <24h hábiles';
-    modalEyebrow = '🎯 ' + (leafNode.label || 'NGS');
-    specialist = leafNode.specialist || 'Equipo NGS';
-  }
-
-  // Apply to DOM
-  document.getElementById('modalEyebrow').textContent = modalEyebrow;
-  document.getElementById('modalTitle').textContent = modalTitle;
-  document.getElementById('modalSub').textContent = modalSub;
+  document.getElementById('modalEyebrow').textContent = '🎯 ' + app.label + ' · ' + plat.name;
+  document.getElementById('modalTitle').textContent = 'Cotización ' + app.label;
+  document.getElementById('modalSub').textContent = app.specialist + ' · responde en <24h hábiles';
   document.getElementById('formSubject').value = subject;
   document.getElementById('formService').value = fullService;
-  document.getElementById('formPath').value = state.path.join(' → ');
-  // Pre-fill notes textarea so specialist sees the full config in email body
-  if (notesPrefill) {
-    document.getElementById('formNotes').value = notesPrefill;
-    document.getElementById('formNotes').rows = 11;
-  }
+  document.getElementById('formPath').value = state.app + ' → ' + state.library + ' → ' + state.platform;
+
+  // === SHOW the configuration card inside the modal ===
+  const cfg = document.getElementById('modalConfigCard');
+  cfg.style.display = 'block';
+  document.getElementById('cfgApp').innerHTML = '<strong>' + app.fullName + '</strong>';
+  document.getElementById('cfgLib').innerHTML = '<strong>' + lib.name + '</strong>';
+  document.getElementById('cfgPlat').innerHTML = '<strong>' + plat.name + '</strong>';
+  document.getElementById('cfgRead').innerHTML = app.defaultRead;
+  document.getElementById('cfgTat').innerHTML = app.tat;
+
+  // Pre-fill notes textarea so specialist receives the full structured config in email body
+  const notesPrefill =
+    '── CONFIGURACIÓN SELECCIONADA EN COTIZADOR ──\n' +
+    'Aplicación: ' + app.fullName + '\n' +
+    'Librería: ' + lib.name + '\n' +
+    'Plataforma: ' + plat.name + '\n' +
+    'Read length / Cycle: ' + app.defaultRead + '\n' +
+    'TAT estimado: ' + app.tat + '\n' +
+    'Hub: Madrid + Santiago\n' +
+    'URL servicio: https://macrogen-es.com/' + app.serviceUrl + '\n' +
+    '\n── PERSONALIZA TU PROYECTO ──\n' +
+    'Tipo de muestra (DNA / RNA / FFPE / fresh): \n' +
+    'Organismo / referencia: \n' +
+    'Plazo deseado de entrega: \n' +
+    'Presupuesto aproximado (orientativo): \n' +
+    'Notas adicionales: ';
+  document.getElementById('formNotes').value = notesPrefill;
+  document.getElementById('formNotes').rows = 12;
 
   // Open
   document.getElementById('modalOverlay').classList.add('is-open');
   setTimeout(() => { document.getElementById('formName').focus(); }, 200);
 }
+
+// Wire the CTA button (in preview bar) to opener
+document.getElementById('ctaContact').addEventListener('click', () => openContactModal());
 
 function closeContactModal() {
   document.getElementById('modalOverlay').classList.remove('is-open');
@@ -1958,7 +2392,8 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
 
   document.getElementById('contactForm').style.display = 'none';
   document.getElementById('successView').style.display = 'block';
-  document.getElementById('successService').textContent = currentLeaf.label;
+  document.getElementById('successService').textContent =
+    (currentLeaf.app ? currentLeaf.app.label : (currentLeaf.label || 'tu servicio'));
   document.getElementById('successContact').innerHTML = `
     <div style="font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--cot-gray); margin-bottom:6px;">Hub asignado</div>
     <div style="font-size:14px; font-weight:700; margin-bottom:8px;">${hub}</div>
@@ -1986,7 +2421,7 @@ function showToast(msg) {
 // ===================================================
 // INIT
 // ===================================================
-renderNode();
+renderAll();
 </script>
 
 <script src="assets/js/main.js"></script>
