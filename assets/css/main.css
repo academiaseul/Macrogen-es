@@ -2559,6 +2559,101 @@ body:has(.service-subnav) section[id] {
     width: 720px;
   }
 }
+
+/* ============================================
+   NAV · "Más" simple dropdown (Recursos · Newsletter · FAQ)
+   ============================================ */
+.nav-more > a {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-more > a::after {
+  content: '▾';
+  font-size: 9px;
+  margin-left: 2px;
+  opacity: 0.65;
+  transition: transform .2s ease;
+}
+.nav-more:hover > a::after,
+.nav-more.is-open > a::after {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+.nav-more-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid var(--mc-border);
+  border-radius: 12px;
+  box-shadow: 0 14px 38px rgba(27,42,87,0.14), 0 6px 14px rgba(27,42,87,0.06);
+  padding: 10px 0;
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity .25s ease .1s, transform .25s ease .1s;
+}
+.nav-more:hover .nav-more-menu,
+.nav-more:focus-within .nav-more-menu,
+.nav-more.is-open .nav-more-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity .2s ease 0s, transform .2s ease 0s;
+}
+/* Hover bridge between trigger and menu */
+.nav-more-menu::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 0; right: 0;
+  height: 18px;
+}
+.nav-more-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  color: var(--mc-navy);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease;
+}
+.nav-more-menu a:hover {
+  background: var(--mc-bg);
+  color: var(--mc-teal);
+}
+.nav-more-menu a .icon {
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Mobile: dropdown becomes inline list, hidden until tap */
+@media (max-width: 920px) {
+  .nav-more-menu {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding: 6px 0 0 16px;
+    min-width: 0;
+    display: none;
+  }
+  .nav-more.is-open .nav-more-menu { display: block; }
+  .nav-more > a::after {
+    margin-left: auto;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-megamenu {
     display: none !important;

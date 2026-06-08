@@ -99,9 +99,13 @@
       <li><a href="cotizador.html" data-i18n="nav.calculator" style="color:#E0004D; font-weight:800;">💰 Cotizador</a></li>
       <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders"><span style="display:inline-block;">Pedidos</span><span aria-hidden="true" style="display:inline-block; transform:translateY(-1px);">↗</span></a></li>
       <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
-      <li><a href="recursos.html">Recursos</a></li>
-      <li><a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a></li>
-      <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li class="nav-dropdown nav-more"><a href="#" aria-haspopup="true" aria-expanded="false" data-i18n="nav.more">Más</a>
+        <div class="nav-more-menu" aria-label="Más enlaces">
+          <a href="recursos.html"><span class="icon">📁</span>Recursos</a>
+          <a href="newsletter.html" data-i18n="nav.newsletter"><span class="icon">📬</span>Newsletter</a>
+          <a href="faq.html" data-i18n="nav.faq"><span class="icon">❓</span>FAQ</a>
+        </div>
+      </li>
       <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
       <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
     </ul>
