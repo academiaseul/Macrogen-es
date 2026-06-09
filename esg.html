@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESG · Sostenibilidad · UN Global Compact · Macrogen Iberoamérica</title>
+<meta name="description" content="ESG en Macrogen: AA en Sustinvest 2025 · miembro UN Global Compact desde mayo 2024 · 10 principios UNGC en Derechos Humanos, Trabajo, Medio Ambiente y Anticorrupción.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="stylesheet" href="assets/css/main.css">
+
+<link rel="canonical" href="https://macrogen-es.com/esg.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://macrogen-es.com/esg.html">
+<meta property="og:title" content="ESG · Sostenibilidad · Macrogen Iberoamérica">
+<meta property="og:description" content="Macrogen es miembro del UN Global Compact desde 2024 · AA en evaluación ESG Sustinvest 2025.">
+<meta property="og:image" content="https://macrogen-es.com/assets/img/og-image.png">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wait_for_update':500});gtag('config','G-PLACEHOLDER',{'anonymize_ip':true});</script>
+
+<style>
+  /* ESG goal cards */
+  .esg-goals { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; }
+  .esg-goal-card {
+    background:#fff; border:1px solid var(--mc-border); border-radius:14px;
+    padding:24px 22px; transition:all 0.25s ease;
+    border-top:4px solid var(--mc-teal);
+  }
+  .esg-goal-card.is-customer { border-top-color: #3FA9C9; }
+  .esg-goal-card.is-investor { border-top-color: #1A8754; }
+  .esg-goal-card.is-employee { border-top-color: #D97706; }
+  .esg-goal-card.is-society { border-top-color: #E0004D; }
+  .esg-goal-card:hover { box-shadow:0 8px 24px rgba(63,169,201,0.12); transform:translateY(-2px); }
+  .esg-goal-icon { font-size:36px; margin-bottom:12px; line-height:1; }
+  .esg-goal-card h3 { font-size:18px; color:var(--mc-navy); margin:0 0 4px; line-height:1.3; }
+  .esg-goal-card .esg-goal-subtitle { font-size:12px; color:var(--mc-mute); font-weight:700; letter-spacing:0.5px; margin-bottom:14px; text-transform:uppercase; }
+  .esg-goal-card ul { list-style:none; padding:0; margin:0; }
+  .esg-goal-card li {
+    font-size:13px; color:var(--mc-text); line-height:1.55;
+    padding:8px 0 8px 22px; position:relative;
+    border-bottom:1px solid var(--mc-border);
+  }
+  .esg-goal-card li:last-child { border-bottom:none; }
+  .esg-goal-card li::before { content:"●"; position:absolute; left:0; top:8px; font-size:10px; color:var(--mc-teal); }
+  .esg-goal-card.is-investor li::before { color:#1A8754; }
+  .esg-goal-card.is-employee li::before { color:#D97706; }
+  .esg-goal-card.is-society li::before { color:#E0004D; }
+
+  /* UNGC banner */
+  .ungc-banner {
+    background:linear-gradient(135deg, #1B2A57 0%, #2D3F76 100%);
+    color:#fff; border-radius:18px; padding:36px;
+    display:grid; grid-template-columns:200px 1fr; gap:28px; align-items:center;
+  }
+  .ungc-banner .ungc-emblem {
+    background:#fff; border-radius:14px; padding:18px;
+    text-align:center; font-weight:800; line-height:1.4;
+  }
+  .ungc-banner .ungc-emblem .ungc-eyebrow { color:#1B2A57; font-size:11px; letter-spacing:1.2px; }
+  .ungc-banner .ungc-emblem .ungc-big { color:#1B2A57; font-size:34px; margin:6px 0; letter-spacing:-1px; }
+  .ungc-banner .ungc-emblem .ungc-since { color:var(--mc-mute); font-size:11px; }
+  .ungc-banner h3 { font-size:24px; margin:0 0 10px; color:#fff; }
+  .ungc-banner p { color:#E6E9F5; line-height:1.65; font-size:14px; margin:0; }
+
+  /* UNGC principles grid */
+  .ungc-principles { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; }
+  .ungc-principle {
+    background:#fff; border:1px solid var(--mc-border); border-radius:14px; padding:24px;
+  }
+  .ungc-principle.is-hr { border-top:4px solid #E0004D; }
+  .ungc-principle.is-labor { border-top:4px solid #D97706; }
+  .ungc-principle.is-env { border-top:4px solid #1A8754; }
+  .ungc-principle.is-anti { border-top:4px solid #3FA9C9; }
+  .ungc-principle-header { display:flex; align-items:center; gap:12px; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid var(--mc-border); }
+  .ungc-principle-header .ico { font-size:30px; }
+  .ungc-principle-header h4 { margin:0; font-size:16px; color:var(--mc-navy); line-height:1.2; }
+  .ungc-principle-header h4 small { display:block; font-weight:500; color:var(--mc-mute); font-size:11px; letter-spacing:0.8px; text-transform:uppercase; margin-top:3px; }
+  .ungc-principle ol { padding-left:18px; margin:0; }
+  .ungc-principle li { font-size:13px; color:var(--mc-text); line-height:1.6; margin-bottom:8px; }
+  .ungc-principle li:last-child { margin-bottom:0; }
+  .ungc-principle li strong { color:var(--mc-navy); }
+
+  /* External ratings table */
+  .esg-ratings-table {
+    width:100%; border-collapse:separate; border-spacing:0;
+    background:#fff; border-radius:14px; overflow:hidden;
+    box-shadow:0 4px 16px rgba(27,42,87,0.06);
+    border:1px solid var(--mc-border);
+  }
+  .esg-ratings-table th, .esg-ratings-table td {
+    padding:14px 22px; text-align:center; border-bottom:1px solid var(--mc-border);
+  }
+  .esg-ratings-table th {
+    background:var(--mc-navy); color:#fff;
+    font-size:12px; letter-spacing:1px; text-transform:uppercase;
+  }
+  .esg-ratings-table tbody tr:hover { background:var(--mc-bg); }
+  .esg-ratings-table tbody tr:last-child td { border-bottom:none; }
+  .esg-ratings-table .grade {
+    display:inline-block; font-weight:800; font-size:14px;
+    padding:4px 14px; border-radius:6px; min-width:48px;
+  }
+  .esg-ratings-table .grade.aa { background:#1A8754; color:#fff; }
+  .esg-ratings-table .grade.a { background:#3FA9C9; color:#fff; }
+  .esg-ratings-table .grade.bb { background:#FEF7E8; color:#D97706; }
+
+  .esg-intro {
+    background:linear-gradient(135deg, #EAF6FB 0%, #fff 100%);
+    border-left:4px solid var(--mc-teal);
+    padding:18px 22px; border-radius:10px;
+    margin-bottom:22px; font-size:14px; color:var(--mc-navy); line-height:1.65;
+  }
+
+  @media (max-width: 640px) {
+    .ungc-banner { grid-template-columns:1fr; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- ===== Launch announcement bar · NUEVO10 promo ===== -->
+<div class="launch-bar" style="background:linear-gradient(90deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); color:#fff; text-align:center; padding:10px 16px; font-size:13px; font-weight:600; letter-spacing:.2px;">
+  🚀 <span style="background:rgba(255,255,255,0.18); padding:2px 8px; border-radius:4px; margin:0 4px;">LANZAMIENTO WEB</span>
+  <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código
+  <code style="background:#fff; color:#1B2A57; padding:2px 8px; border-radius:4px; font-weight:800;">NUEVO10</code>
+  · hasta 31 ago 2026
+  <a href="contacto.html?promo=NUEVO10" style="color:#FEF7E8; text-decoration:underline; margin-left:8px; font-weight:700;">Cotizar →</a>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li><a href="index.html" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="nosotros.html" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="servicios.html" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="cotizador.html" data-i18n="nav.calculator" style="color:#E0004D; font-weight:800;">🧭 NGS Explorador</a></li>
+      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders"><span style="display:inline-block;">Pedidos</span><span aria-hidden="true" style="display:inline-block; transform:translateY(-1px);">↗</span></a></li>
+      <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+      <li class="nav-dropdown nav-more"><a href="#" aria-haspopup="true" aria-expanded="false" data-i18n="nav.more">Más</a>
+        <div class="nav-more-menu" aria-label="Más enlaces">
+          <a href="recursos.html"><span class="icon">📁</span>Recursos</a>
+          <a href="certificaciones.html"><span class="icon">🏅</span>Certificaciones</a>
+          <a href="esg.html" class="active"><span class="icon">🌱</span>ESG</a>
+          <a href="newsletter.html" data-i18n="nav.newsletter"><span class="icon">📬</span>Newsletter</a>
+          <a href="faq.html" data-i18n="nav.faq"><span class="icon">❓</span>FAQ</a>
+        </div>
+      </li>
+      <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero hero-mini has-video">
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-hidden="true" poster="assets/img/hero-poster.jpg">
+    <source src="assets/video/dna-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
+  <div class="container">
+    <span class="eyebrow">🌱 ESG &amp; Sostenibilidad</span>
+    <h1>Construyendo un futuro <span class="accent">sostenible</span> · juntos.</h1>
+    <p class="lead">Macrogen es <strong>miembro del UN Global Compact desde mayo 2024</strong> y mantiene <strong>calificación AA en la evaluación ESG de Sustinvest 2025</strong>. ESG no es una declaración — es un sistema de gestión transversal que vincula clientes, inversores, empleados y responsabilidad social.</p>
+  </div>
+</section>
+
+<!-- ============== STICKY SUB-NAV ============== -->
+<nav class="service-subnav" aria-label="Navegación ESG">
+  <div class="service-subnav-inner" data-subnav>
+    <span class="service-subnav-brand">
+      <span class="label-hide-sm">🌱 ESG</span>
+    </span>
+    <a href="#goals" data-anchor="goals"><span class="icon">🎯</span>Objetivos</a>
+    <a href="#ungc" data-anchor="ungc"><span class="icon">🌐</span>UN Global Compact</a>
+    <a href="#principles" data-anchor="principles"><span class="icon">📜</span>10 Principios</a>
+    <a href="#ratings" data-anchor="ratings"><span class="icon">📊</span>Evaluaciones</a>
+  </div>
+</nav>
+
+<script>
+(function() {
+  const subnav = document.querySelector('[data-subnav]');
+  if (!subnav) return;
+  const links = subnav.querySelectorAll('a[data-anchor]');
+  const sections = Array.from(links).map(l => document.getElementById(l.dataset.anchor)).filter(Boolean);
+  if (!sections.length) return;
+  function setActive(id) {
+    links.forEach(l => l.classList.toggle('is-active', l.dataset.anchor === id));
+  }
+  function getRootMarginTop() {
+    const hH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(),10) || 78;
+    const sH = subnav.offsetHeight || 56;
+    return -(hH + sH + 4);
+  }
+  const observer = new IntersectionObserver(entries => {
+    const vis = entries.filter(e => e.isIntersecting).sort((a,b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+    if (vis[0]) setActive(vis[0].target.id);
+  }, { rootMargin: getRootMarginTop()+'px 0px -55% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+  function getHeaderOffset() {
+    const hH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h').trim(),10) || 78;
+    const sH = subnav.offsetHeight || 56;
+    return hH + sH;
+  }
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.dataset.anchor, target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const y = target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset() + 4;
+      window.scrollTo({ top:y, behavior:'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
+</script>
+
+<!-- ===== INTRO ===== -->
+<section class="section">
+  <div class="container">
+    <div class="esg-intro">
+      <strong>🏆 AA en Sustinvest 2025 · 5 años consecutivos en grado A o superior.</strong> Macrogen mantiene una respuesta sistemática a las evaluaciones ESG externas para revisar y mejorar continuamente su nivel ESG. En 2025 obtuvo nuevamente la calificación AA en Sustinvest, el principal evaluador ESG independiente coreano.
+    </div>
+  </div>
+</section>
+
+<!-- ============== CATEGORY 1 · OBJETIVOS ESG ============== -->
+<section id="goals" class="section">
+  <div class="container">
+    <div style="text-align:center; max-width:760px; margin:0 auto 40px;">
+      <span class="eyebrow">🎯 Objetivos de gestión ESG</span>
+      <h2 style="margin-bottom:14px;">Cuatro pilares del compromiso Macrogen.</h2>
+      <p style="color:var(--mc-mute); font-size:15px;">Clientes · inversores · empleados · responsabilidad social. Cada pilar tiene compromisos explícitos auditables.</p>
+    </div>
+
+    <div class="esg-goals">
+
+      <article class="esg-goal-card is-customer">
+        <div class="esg-goal-icon">👥</div>
+        <h3>Macrogen que satisface al cliente</h3>
+        <div class="esg-goal-subtitle">Clientes</div>
+        <ul>
+          <li>Información de análisis genómico mediante <strong>tecnología de nivel mundial</strong></li>
+          <li>Protección de derechos del cliente y <strong>protección de información personal como prioridad</strong></li>
+          <li><strong>Gestión win-win</strong> y relación sostenible con proveedores y socios</li>
+        </ul>
+      </article>
+
+      <article class="esg-goal-card is-investor">
+        <div class="esg-goal-icon">💼</div>
+        <h3>Macrogen confiable para inversores</h3>
+        <div class="esg-goal-subtitle">Inversores</div>
+        <ul>
+          <li>Cultura corporativa honesta con <strong>cumplimiento, transparencia y equidad</strong></li>
+          <li>Estructura financiera sólida mediante <strong>realización eficiente de gestión ética</strong></li>
+          <li>Mejor esfuerzo y comunicación <strong>en beneficio de los accionistas</strong></li>
+        </ul>
+      </article>
+
+      <article class="esg-goal-card is-employee">
+        <div class="esg-goal-icon">🌟</div>
+        <h3>Líder global en bio-salud</h3>
+        <div class="esg-goal-subtitle">Empleados</div>
+        <ul>
+          <li>Personas Macrogen que <strong>constantemente desafían y crecen</strong></li>
+          <li>Cultura ética madura basada en <strong>comprensión y confianza</strong></li>
+          <li>Respeto mutuo y <strong>crecimiento conjunto continuo</strong> entre empleados y empresa</li>
+        </ul>
+      </article>
+
+      <article class="esg-goal-card is-society">
+        <div class="esg-goal-icon">🌍</div>
+        <h3>Por la salud de la humanidad</h3>
+        <div class="esg-goal-subtitle">Responsabilidad social</div>
+        <ul>
+          <li>Contribución a una <strong>vida saludable de la humanidad</strong> mediante I+D continua</li>
+          <li>Ampliación de capacidad de <strong>investigación básica</strong> en la industria biotecnológica</li>
+          <li>Soporte a investigadores y comunidad científica iberoamericana</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== CATEGORY 2 · UN GLOBAL COMPACT ============== -->
+<section id="ungc" class="section section-bg">
+  <div class="container">
+    <div style="text-align:center; max-width:760px; margin:0 auto 36px;">
+      <span class="eyebrow">🌐 UN Global Compact</span>
+      <h2 style="margin-bottom:14px;">Miembro UNGC desde mayo 2024.</h2>
+      <p style="color:var(--mc-mute); font-size:15px;">La mayor iniciativa de sostenibilidad corporativa del sistema ONU. Macrogen ratifica los 10 principios universales y los implementa transversalmente en su gestión.</p>
+    </div>
+
+    <div class="ungc-banner">
+      <div class="ungc-emblem">
+        <div class="ungc-eyebrow">WE SUPPORT</div>
+        <div class="ungc-big">UN<br>Global<br>Compact</div>
+        <div class="ungc-since">Macrogen · desde mayo 2024</div>
+      </div>
+      <div>
+        <h3>Compromiso con los 10 principios universales</h3>
+        <p>El UN Global Compact (UNGC) es la <strong>mayor iniciativa de sostenibilidad corporativa del mundo</strong>, establecida bajo el sistema de Naciones Unidas para promover la gestión responsable y la cooperación global transparente. Como empresa global de salud, Macrogen implementa los 10 principios del UNGC en sus 4 áreas clave: <strong>Derechos Humanos, Estándares Laborales, Medio Ambiente y Anticorrupción</strong>, buscando ser una empresa sostenible que genera impacto positivo en personas, sociedad y medio ambiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CATEGORY 3 · 10 PRINCIPLES ============== -->
+<section id="principles" class="section">
+  <div class="container">
+    <div style="text-align:center; max-width:760px; margin:0 auto 40px;">
+      <span class="eyebrow">📜 Los 10 principios del UN Global Compact</span>
+      <h2 style="margin-bottom:14px;">Cuatro áreas · diez compromisos.</h2>
+      <p style="color:var(--mc-mute); font-size:15px;">Cada principio se traduce en políticas internas auditables: políticas de RR.HH., código de ética, política ambiental, política anticorrupción.</p>
+    </div>
+
+    <div class="ungc-principles">
+
+      <article class="ungc-principle is-hr">
+        <div class="ungc-principle-header">
+          <span class="ico">⚖️</span>
+          <h4>Derechos Humanos<small>Human Rights · 2 principios</small></h4>
+        </div>
+        <ol>
+          <li><strong>Principio 1.</strong> Las empresas deben apoyar y respetar la protección de los derechos humanos proclamados internacionalmente.</li>
+          <li><strong>Principio 2.</strong> Las empresas deben asegurarse de no ser cómplices en violaciones de derechos humanos.</li>
+        </ol>
+      </article>
+
+      <article class="ungc-principle is-labor">
+        <div class="ungc-principle-header">
+          <span class="ico">🤝</span>
+          <h4>Estándares Laborales<small>Labour Standards · 4 principios</small></h4>
+        </div>
+        <ol>
+          <li><strong>Principio 3.</strong> Apoyar la libertad de asociación y el reconocimiento efectivo del derecho a la negociación colectiva.</li>
+          <li><strong>Principio 4.</strong> Eliminar toda forma de <strong>trabajo forzoso</strong> u obligatorio.</li>
+          <li><strong>Principio 5.</strong> Abolir efectivamente el <strong>trabajo infantil</strong>.</li>
+          <li><strong>Principio 6.</strong> Eliminar la discriminación en el empleo y la ocupación.</li>
+        </ol>
+      </article>
+
+      <article class="ungc-principle is-env">
+        <div class="ungc-principle-header">
+          <span class="ico">🌳</span>
+          <h4>Medio Ambiente<small>Environment · 3 principios</small></h4>
+        </div>
+        <ol>
+          <li><strong>Principio 7.</strong> Apoyar un <strong>enfoque preventivo</strong> ante los problemas ambientales.</li>
+          <li><strong>Principio 8.</strong> Adoptar iniciativas para promover una mayor responsabilidad ambiental.</li>
+          <li><strong>Principio 9.</strong> Promover el desarrollo y la difusión de <strong>tecnologías ecológicamente respetuosas</strong>.</li>
+        </ol>
+      </article>
+
+      <article class="ungc-principle is-anti">
+        <div class="ungc-principle-header">
+          <span class="ico">🛡️</span>
+          <h4>Anticorrupción<small>Anti-Corruption · 1 principio</small></h4>
+        </div>
+        <ol>
+          <li><strong>Principio 10.</strong> Las empresas deben trabajar <strong>contra la corrupción</strong> en todas sus formas, incluidas la extorsión y el soborno.</li>
+        </ol>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== CATEGORY 4 · EVALUACIONES EXTERNAS ============== -->
+<section id="ratings" class="section section-bg">
+  <div class="container">
+    <div style="text-align:center; max-width:760px; margin:0 auto 36px;">
+      <span class="eyebrow">📊 Evaluación ESG externa</span>
+      <h2 style="margin-bottom:14px;">Calificación Sustinvest 2020–2025.</h2>
+      <p style="color:var(--mc-mute); font-size:15px;">Macrogen mantiene una <strong>respuesta sistemática a evaluaciones externas</strong> para revisar y mejorar continuamente su nivel ESG. Resultado: 5 de los últimos 6 años en grado A o superior.</p>
+    </div>
+
+    <div style="max-width:560px; margin:0 auto;">
+      <table class="esg-ratings-table">
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Sustinvest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>2025</strong></td><td><span class="grade aa">AA</span></td></tr>
+          <tr><td><strong>2024</strong></td><td><span class="grade a">A</span></td></tr>
+          <tr><td><strong>2023</strong></td><td><span class="grade aa">AA</span></td></tr>
+          <tr><td><strong>2022</strong></td><td><span class="grade aa">AA</span></td></tr>
+          <tr><td>2021</td><td><span class="grade bb">BB</span></td></tr>
+          <tr><td>2020</td><td><span class="grade bb">BB</span></td></tr>
+        </tbody>
+      </table>
+      <p style="text-align:center; font-size:12px; color:var(--mc-mute); margin-top:14px;">
+        Fuente: <a href="https://www.macrogen.com/ko/company/esg-management" target="_blank" rel="noopener" style="color:var(--mc-teal);">Macrogen Inc. ESG Management ↗</a> · evaluación realizada por <strong>Sustinvest</strong>, principal agencia ESG independiente coreana.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <span class="eyebrow">📁 Documentación complementaria</span>
+      <h2>Ver también nuestras certificaciones.</h2>
+      <p>La gestión ESG se sostiene sobre certificaciones independientes en calidad, clínica, seguridad de información y CSP de fabricantes NGS. Consulta los 13 certificados internacionales completos.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
+        <a href="certificaciones.html" class="btn btn-primary">🏅 Ver certificaciones →</a>
+        <a href="nosotros.html" class="btn btn-ghost">Conoce Macrogen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img">
+        <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
+        <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
+        <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>
+        <p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.services_heading">Servicios</h4>
+        <a href="servicios/wgs.html">WGS</a>
+        <a href="servicios/wes.html">WES</a>
+        <a href="servicios/rna-seq.html">RNA-Seq</a>
+        <a href="servicios/single-cell.html">Single Cell</a>
+        <a href="servicios/metagenoma.html">Metagenómica</a>
+        <a href="servicios/sanger.html">Sanger / CES</a>
+        <a href="servicios.html" data-i18n="footer.service_view_all">Ver todos →</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.company_heading">Compañía</h4>
+        <a href="nosotros.html" data-i18n="nav.about">Nosotros</a>
+        <a href="certificaciones.html">🏅 Certificaciones</a>
+        <a href="esg.html">🌱 ESG</a>
+        <a href="blog.html" data-i18n="nav.blog">Blog</a>
+        <a href="recursos.html">Recursos</a>
+        <a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a>
+        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        <a href="contacto.html" data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.hubs_heading">Hubs</h4>
+        <p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">🇪🇸 Madrid</strong><br>C. de Martínez Villergas, 52<br>28027 Madrid · España<br>+34 911 138 378
+        </p>
+        <p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">🇨🇱 Santiago</strong><br>Magdalena 140, Of. 401<br>Las Condes, Santiago · Chile<br>+56 9 5845 1395
+        </p>
+        <a href="mailto:info-spain@macrogen.com" style="font-size:12px;">🇪🇸 info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12px;">🇨🇱 info-chile@macrogen.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span>
+      <span>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="terminos.html">Términos</a>
+        <a href="https://dna.macrogen.com" target="_blank" rel="noopener">Portal global ↗</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/i18n.js"></script>
+</body>
+</html>
