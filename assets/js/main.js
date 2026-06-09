@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========== Launch announcement bar · auto-hide after Aug 31, 2026 ==========
-  // The SANGER10 launch campaign ends 2026-08-31. After that date, hide the
+  // The NUEVO10 launch campaign ends 2026-08-31. After that date, hide the
   // top gradient bar on ALL pages so we don't show an expired offer.
   // We INTENTIONALLY show the bar before the launch date too (May–Jun 2026)
   // because the bar is also a pre-launch teaser — the message "vigente hasta
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========== CONTACT FORM · detect ?promo= URL param and pre-fill ==========
-  // When user arrives at contacto.html?promo=SANGER10 from the popup,
+  // When user arrives at contacto.html?promo=NUEVO10 from the popup,
   // show a confirmation banner + inject hidden field so Sales sees the code in Brevo.
   (function initPromoBanner() {
     const promo = new URLSearchParams(window.location.search).get('promo');
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form[data-country-form]');
     if (!form) return;
 
-    // Inject hidden field so Sales sees "Código promo: SANGER10" in the email
+    // Inject hidden field so Sales sees "Código promo: NUEVO10" in the email
     let hidden = form.querySelector('input[name="codigo_promo"]');
     if (!hidden) {
       hidden = document.createElement('input');
@@ -159,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
     banner.innerHTML = `
       <span class="promo-banner-icon">🎉</span>
       <div class="promo-banner-text">
-        <strong data-i18n="promo_banner.title">Aplicaremos tu descuento Sanger</strong>
-        <span data-i18n-html="promo_banner.subtitle">Código <code>${promo}</code> · 10% en Sanger (CES) · vigente hasta 31 ago 2026</span>
+        <strong>Aplicaremos tu descuento de lanzamiento</strong>
+        <span>Código <code>${promo}</code> · 10% OFF en Sanger · NGS · Oligos &amp; Síntesis · vigente hasta 31 ago 2026</span>
       </div>
     `;
     form.parentNode.insertBefore(banner, form);
@@ -171,13 +171,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  // ========== PROMO POPUP · SANGER10 campaign · 10% off Sanger CES ==========
+  // ========== PROMO POPUP · NUEVO10 launch campaign · 10% off CES + NGS + Oligos ==========
   // Triggers only on home page (index.html or /).
-  // Activates June 15, 2026 (website launch) and runs through Aug 31, 2026.
+  // Activates with website launch and runs through Aug 31, 2026.
   // Snoozes for 7 days when user dismisses or clicks "Order Now".
   // Condition: web request + sample receipt must both occur before Aug 31.
   (function initPromoPopup() {
-    const STORAGE_KEY = 'mc_promo_sanger26_dismissed_until';
+    const STORAGE_KEY = 'mc_promo_nuevo10_dismissed_until';
     const STARTS_AT  = new Date('2026-06-15T00:00:00Z').getTime();
     const EXPIRES_AT = new Date('2026-09-01T00:00:00Z').getTime();
     const SHOW_AFTER_MS = 3000;
@@ -228,27 +228,27 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.setAttribute('aria-labelledby', 'promo-title');
     overlay.innerHTML = `
       <div class="promo-modal">
-        <button class="promo-close" data-promo-close aria-label="Close" data-i18n-attr="aria-label:promo_sanger.btn_close">×</button>
+        <button class="promo-close" data-promo-close aria-label="Close">×</button>
         <div class="promo-banner">
-          <span class="promo-decoration">🧬</span>
-          <span class="promo-eyebrow" data-i18n="promo_sanger.eyebrow">Lanzamiento · Promo Sanger</span>
-          <div class="promo-discount" data-i18n="promo_sanger.discount">10%</div>
+          <span class="promo-decoration">🚀</span>
+          <span class="promo-eyebrow">Lanzamiento web · oferta exclusiva</span>
+          <div class="promo-discount">10%</div>
         </div>
         <div class="promo-body">
-          <h3 class="promo-title" id="promo-title" data-i18n="promo_sanger.title">10% OFF Secuenciación Sanger (CES)</h3>
-          <p class="promo-subtitle" data-i18n="promo_sanger.subtitle">Aplicable a todas las cotizaciones web de Sanger en España, Portugal, Chile y Perú · ABI 3730xl</p>
+          <h3 class="promo-title" id="promo-title">10% OFF en TODOS los servicios</h3>
+          <p class="promo-subtitle">Aplicable a <strong>Sanger CES</strong> · <strong>NGS</strong> (WGS, WES, RNA-Seq, Single Cell, Metagenómica) · <strong>Oligos &amp; Síntesis</strong> (DNA, RNA, Péptidos, Genes) · España, Portugal, Chile y Perú</p>
           <div class="promo-code-box">
             <div class="promo-code-info">
-              <div class="promo-code-label" data-i18n="promo_sanger.code_label">Usa el código:</div>
-              <div class="promo-code-value" data-promo-code>SANGER10</div>
+              <div class="promo-code-label">Usa el código:</div>
+              <div class="promo-code-value" data-promo-code>NUEVO10</div>
             </div>
-            <button class="promo-copy-btn" data-promo-copy data-i18n="promo_sanger.copy">Copiar</button>
+            <button class="promo-copy-btn" data-promo-copy>Copiar</button>
           </div>
           <div class="promo-actions">
-            <a href="contacto.html?promo=SANGER10&servicio=sanger" class="promo-btn-order" data-promo-order data-i18n="promo_sanger.btn_order">Cotizar Sanger con 10% OFF →</a>
-            <button type="button" class="promo-btn-dismiss" data-promo-dismiss data-i18n="promo_sanger.btn_dismiss">Tal vez después</button>
+            <a href="contacto.html?promo=NUEVO10" class="promo-btn-order" data-promo-order>Solicitar cotización con 10% OFF →</a>
+            <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
-          <p class="promo-validity" data-i18n-html="promo_sanger.valid_until">Válido <strong>hasta el 31 de agosto de 2026</strong> · Solicitud web + recepción de muestras antes del cierre de agosto</p>
+          <p class="promo-validity"><strong>Válido hasta el 31 de agosto de 2026</strong> · Solicitud web + recepción de muestras antes del cierre de agosto</p>
         </div>
       </div>
     `;
