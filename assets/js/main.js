@@ -231,24 +231,41 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="promo-close" data-promo-close aria-label="Close">×</button>
         <div class="promo-banner">
           <span class="promo-decoration">🚀</span>
-          <span class="promo-eyebrow">Lanzamiento web · oferta exclusiva</span>
+          <span class="promo-eyebrow">◉ &nbsp;LANZAMIENTO · WEB NUEVA</span>
           <div class="promo-discount">10%</div>
         </div>
         <div class="promo-body">
-          <h3 class="promo-title" id="promo-title">10% OFF en TODOS los servicios</h3>
-          <p class="promo-subtitle">Aplicable a <strong>Sanger CES</strong> · <strong>NGS</strong> (WGS, WES, RNA-Seq, Single Cell, Metagenómica) · <strong>Oligos &amp; Síntesis</strong> (DNA, RNA, Péptidos, Genes) · España, Portugal, Chile y Perú</p>
+          <h3 class="promo-title" id="promo-title">de descuento en TODOS los servicios</h3>
+          <p class="promo-subtitle">Para celebrar nuestra <strong>nueva web</strong> · aplicable a tu próxima cotización en España, Portugal, Chile y Perú</p>
+          <div class="promo-services">
+            <div class="promo-service-pill is-sanger">
+              <span class="ico">🧬</span>
+              <div class="name">SANGER</div>
+              <div class="desc">CES · 24-48h</div>
+            </div>
+            <div class="promo-service-pill is-ngs">
+              <span class="ico">🔬</span>
+              <div class="name">NGS</div>
+              <div class="desc">WGS · WES · RNA</div>
+            </div>
+            <div class="promo-service-pill is-synth">
+              <span class="ico">⚗️</span>
+              <div class="name">SÍNTESIS</div>
+              <div class="desc">DNA · RNA · Pep</div>
+            </div>
+          </div>
           <div class="promo-code-box">
             <div class="promo-code-info">
-              <div class="promo-code-label">Usa el código:</div>
+              <div class="promo-code-label">Usa el código</div>
               <div class="promo-code-value" data-promo-code>NUEVO10</div>
             </div>
             <button class="promo-copy-btn" data-promo-copy>Copiar</button>
           </div>
           <div class="promo-actions">
-            <a href="contacto.html?promo=NUEVO10" class="promo-btn-order" data-promo-order>Solicitar cotización con 10% OFF →</a>
+            <a href="contacto.html?promo=NUEVO10" class="promo-btn-order" data-promo-order>Aplicar descuento →</a>
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
-          <p class="promo-validity"><strong>Válido hasta el 31 de agosto de 2026</strong> · Solicitud web + recepción de muestras antes del cierre de agosto</p>
+          <p class="promo-validity">⏱ Disponible <strong>hasta el 31 de agosto de 2026</strong> · Solicitud web + recepción de muestras antes del cierre</p>
         </div>
       </div>
     `;
