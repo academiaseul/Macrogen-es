@@ -2838,10 +2838,12 @@ font[style*="background-color"] { background-color: transparent !important; box-
 
 /* CTA button — invites visitor to write about their project */
 .brand-strip-cta {
-  display: inline-flex;
+  display: flex;             /* block-level flex so it sits on its own line */
+  width: max-content;        /* shrink to content */
+  max-width: 100%;
+  margin: 28px auto 0;       /* center horizontally, push down from motto */
   align-items: center;
   gap: 12px;
-  margin-top: 28px;
   padding: 15px 32px;
   background: #ffffff;
   color: #001E62;
