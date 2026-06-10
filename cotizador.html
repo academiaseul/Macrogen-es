@@ -956,6 +956,11 @@
     <div class="brand-strip-motto">
       <span>One Team. One Macrogen.</span>
     </div>
+    <a href="contacto.html" class="brand-strip-cta">
+      <span>Cuéntanos sobre tu proyecto</span>
+      <span class="brand-strip-cta-arrow">→</span>
+    </a>
+    <p class="brand-strip-cta-sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
     <p class="brand-strip-regions">España · Portugal · Chile · Perú · Iberoamérica</p>
   </div>
 </section>
@@ -2431,128 +2436,3 @@ function openContactModal() {
   const cfg = document.getElementById('modalConfigCard');
   cfg.style.display = 'block';
   var appDescPart = app.fullName.split(' · ')[1] || '';
-  document.getElementById('cfgApp').innerHTML = '<strong>' + app.label + '</strong>' + (appDescPart ? ' · ' + appDescPart : '');
-  document.getElementById('cfgLib').innerHTML = '<strong>' + lib.name + '</strong>';
-  document.getElementById('cfgPlat').innerHTML = '<strong>' + plat.name + '</strong>';
-  document.getElementById('cfgRead').innerHTML = '<strong>' + app.defaultRead + '</strong>';
-  document.getElementById('cfgTat').innerHTML = '<strong>' + app.tat + '</strong>';
-
-  // === Pre-fill notes textarea with selected configuration block ===
-  const notes = document.getElementById('formNotes');
-  if (notes && !notes.value) {
-    notes.value =
-      '── Configuración seleccionada ──\n' +
-      'Aplicación: ' + app.fullName + '\n' +
-      'Librería: ' + lib.name + '\n' +
-      'Plataforma: ' + plat.name + '\n' +
-      'Read length: ' + app.defaultRead + '\n' +
-      'TAT estimado: ' + app.tat + '\n\n' +
-      '── Mi proyecto ──\n' +
-      'Tipo de muestra: \n' +
-      'Organismo / referencia: \n' +
-      'Profundidad / cobertura deseada: \n' +
-      'Nº de muestras: \n' +
-      'Plazo deseado: \n' +
-      'Presupuesto orientativo: \n' +
-      'Notas adicionales: ';
-    notes.rows = 12;
-  }
-
-  // === Open modal ===
-  document.getElementById('modalOverlay').classList.add('open');
-  setTimeout(() => { document.getElementById('formName').focus(); }, 220);
-}
-
-function closeContactModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-}
-
-// Click "Hablar con tu especialista" CTA opens the modal
-const ctaBtn = document.getElementById('ctaContact');
-if (ctaBtn) {
-  ctaBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (this.disabled) return;
-    openContactModal();
-  });
-}
-// Generic data-attribute fallback
-document.addEventListener('click', function(e) {
-  const t = e.target.closest('[data-open-contact]');
-  if (t) {
-    e.preventDefault();
-    openContactModal();
-  }
-});
-
-// Close handlers
-document.getElementById('modalClose').addEventListener('click', closeContactModal);
-document.getElementById('modalOverlay').addEventListener('click', function(e) {
-  if (e.target.id === 'modalOverlay') closeContactModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeContactModal();
-});
-
-// ===== Form submit handler =====
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('formSubmit');
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
-  const data = new FormData(e.target);
-  try {
-    await fetch(e.target.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-  } catch (err) { /* swallow — Formspree CORS may complain but mail goes through */ }
-
-  // === Country-aware hub assignment ===
-  const country = data.get('pais');
-  const isES = country === 'ES' || country === 'PT';
-  const hub = isES ? '🇪🇸 Madrid' : '🇨🇱 Santiago';
-  const hubEmail = isES ? 'info-spain@macrogen.com' : 'info-chile@macrogen.com';
-  const hubPhone = isES ? '+34 911 138 378' : '+56 9 5845 1395';
-
-  // === Show success view ===
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('successView').style.display = 'block';
-  document.getElementById('successService').textContent = currentLeaf ? currentLeaf.app.label : 'tu servicio';
-  document.getElementById('successContact').innerHTML =
-    '<div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--cot-gray); margin-bottom:8px;">Hub asignado</div>' +
-    '<div style="font-size:15px; font-weight:800; color:var(--cot-navy); margin-bottom:6px;">' + hub + '</div>' +
-    '<div style="font-size:13px; margin-bottom:4px;">📧 <a href="mailto:' + hubEmail + '" style="color:var(--cot-teal); font-weight:700; text-decoration:none;">' + hubEmail + '</a></div>' +
-    '<div style="font-size:13px; margin-bottom:8px;">📞 ' + hubPhone + '</div>' +
-    '<div style="font-size:11.5px; color:var(--cot-gray); font-style:italic;">Si necesitas escribirnos directamente, este es el email del hub asignado.</div>';
-
-  // Reset button state for next time
-  btn.disabled = false;
-  btn.innerHTML = '📧 Enviar al especialista →';
-
-  showToast('✓ Consulta enviada al especialista');
-});
-
-// ===== Toast notification =====
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  if (!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3200);
-}
-
-// ===== Initial render =====
-document.addEventListener('DOMContentLoaded', renderAll);
-// Fire immediately too (in case DOMContentLoaded already fired before script load)
-if (document.readyState === 'interactive' || document.readyState === 'complete') {
-  renderAll();
-}
-
-</script>
-
-<script src="assets/js/main.js"></script>
-<script src="assets/js/i18n.js"></script>
-</body>
-</html>
