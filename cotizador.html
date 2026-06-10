@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NGS Explorador · Configura tu servicio NGS y conecta con el especialista | Macrogen Iberoamérica</title>
-<meta name="description" content="NGS Explorador interactivo: explora 7 aplicaciones, 48 librerías y 9 plataformas del catálogo oficial Macrogen 2026. Configura aplicación + librería + plataforma y conecta directo con el especialista correspondiente.">
+<meta name="description" content="NGS Explorador interactivo: explora 9 aplicaciones, 60 librerías y 13 plataformas del catálogo oficial Macrogen 2026. Configura aplicación + librería + plataforma y conecta directo con el especialista correspondiente.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://macrogen-es.com/cotizador.html">
 <meta property="og:title" content="NGS Explorador · Configura tu servicio y conecta con el especialista | Macrogen Iberoamérica">
-<meta property="og:description" content="Explora 48 librerías × 9 plataformas del catálogo oficial Macrogen 2026. Configura tu servicio NGS y solicita cotización al especialista en 60 segundos.">
+<meta property="og:description" content="Explora 60 librerías × 13 plataformas del catálogo oficial Macrogen 2026. Configura tu servicio NGS y solicita cotización al especialista en 60 segundos.">
 <meta property="og:image" content="https://macrogen-es.com/assets/img/og-image.png">
 
 <style>
@@ -39,7 +39,7 @@
 .cot-hero {
   background: linear-gradient(135deg, #0A2240 0%, #1B2A57 50%, #3FA9C9 100%);
   color: #fff;
-  padding: 70px 0 80px;
+  padding: 70px 0 110px;     /* extra bottom padding leaves room for info-bar + floating explorer */
   position: relative;
   overflow: hidden;
 }
@@ -61,18 +61,19 @@
   margin-bottom:18px;
 }
 
-/* ===== INFO BAR ===== */
+/* ===== INFO BAR — sits inside hero, above the floating dashboard ===== */
 .cot-info-bar {
-  background: linear-gradient(135deg, #FEF7E8 0%, #fff 100%);
+  background: rgba(254, 247, 232, 0.96);
   border: 1px solid #FCD9A5;
   border-radius: 12px;
   padding: 14px 18px;
-  margin: 24px auto;
-  max-width: 1100px;
+  margin: 28px 0 0;          /* sits at end of hero container */
   font-size: 13px;
   color: var(--cot-navy);
   display: flex; align-items: center; gap: 12px;
-  box-shadow: 0 2px 8px rgba(217,119,6,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  position: relative;
+  z-index: 2;
 }
 .cot-info-bar .icon { font-size: 22px; flex-shrink: 0; }
 .cot-info-bar a { color: var(--cot-red); font-weight: 800; text-decoration: none; }
@@ -769,7 +770,7 @@
             <h5 data-i18n="megamenu.featured_title">Destacado este mes</h5>
             <a href="cotizador.html" style="background:linear-gradient(135deg,#EAF6FB,#fff); border-left:3px solid var(--mc-teal);">
               <strong style="color:var(--mc-teal);">🧭 NGS Explorador</strong>
-              <small>7 apps · 48 librerías · 9 plataformas · cotización al especialista</small>
+              <small>9 apps · 60 librerías · 13 plataformas · cotización al especialista</small>
             </a>
             <a href="servicios/sanger.html" style="background:linear-gradient(135deg,#FEF2F4,#FEF7E8); border-left:3px solid var(--mc-red);">
               <strong style="color:var(--mc-red);" data-i18n="megamenu.featured_sanger_title">🚀 NUEVO10 · 10% OFF</strong>
@@ -809,18 +810,18 @@
   <div class="container">
     <span class="eyebrow">🧭 Explorador NGS interactivo</span>
     <h1>Aplicación · librería · plataforma.<br><span class="accent">Configura, compara y solicita cotización.</span></h1>
-    <p>Catálogo oficial 2026 con <strong style="color:#fff;">7 aplicaciones · 48 librerías · 9 plataformas</strong>. Click libre entre opciones, ve la combinación en tiempo real, y solicita cotización con tu configuración exacta al especialista correspondiente.</p>
+    <p>Catálogo oficial 2026 con <strong style="color:#fff;">9 aplicaciones · 60 librerías · 13 plataformas</strong>. Click libre entre opciones, ve la combinación en tiempo real, y solicita cotización con tu configuración exacta al especialista correspondiente.</p>
+
+    <!-- ===== INFO BAR (within hero, above floating dashboard) ===== -->
+    <div class="cot-info-bar">
+      <span class="icon">🎓</span>
+      <span>
+        Diseñado por bioinformáticos del equipo Macrogen Iberoamérica. La recomendación se basa en buenas prácticas científicas, no en upselling.
+        <a href="contacto.html"> ¿Prefieres hablar con un humano directo? →</a>
+      </span>
+    </div>
   </div>
 </section>
-
-<!-- ===== INFO BAR ===== -->
-<div class="cot-info-bar">
-  <span class="icon">🎓</span>
-  <span>
-    Diseñado por bioinformáticos del equipo Macrogen Iberoamérica. La recomendación se basa en buenas prácticas científicas, no en upselling.
-    <a href="contacto.html"> ¿Prefieres hablar con un humano directo? →</a>
-  </span>
-</div>
 
 <!-- ===== INTERACTIVE EXPLORER · 3-column dashboard ===== -->
 <div class="cot-explorer">
@@ -830,7 +831,7 @@
     <div class="cot-col">
       <div class="cot-col-head">
         <h3><span class="step-num">1</span>Aplicación</h3>
-        <span class="count" id="appCount">7 aplicaciones</span>
+        <span class="count" id="appCount">9 aplicaciones</span>
       </div>
       <div class="cot-col-list" id="appList"><!-- Filled by JS --></div>
     </div>
@@ -1752,6 +1753,19 @@ const TREE = {
 // Application Groups → Libraries → Platforms (real product matrix)
 // ===================================================
 
+// ===================================================
+// CATÁLOGO OFICIAL · Sync con Catalogo.ods (Macrogen Chile · 2026)
+// 9 grupos de aplicación · plataformas NovaSeq X Plus / MiSeq i100 / PacBio Revio / ONT PromethION
+// ===================================================
+
+// Shortcut platform groups — same NovaSeq X Plus 4-tier shared across short-read apps
+const PLAT_NOVAX_4 = [
+  { id:'plat-novax-25b-th', name:'NovaSeq X Plus · 25B throughput', desc:'Máximo throughput · más eficiente $/Gb · proyectos grandes' },
+  { id:'plat-novax-10b-th', name:'NovaSeq X Plus · 10B throughput', desc:'Throughput medio · proyectos medianos' },
+  { id:'plat-novax-25b-lane', name:'NovaSeq X Plus · 25B Lane (~360 Gb)', desc:'Lane parcial 25B · ideal para volúmenes intermedios' },
+  { id:'plat-novax-10b-lane', name:'NovaSeq X Plus · 10B Lane (~900 Gb)', desc:'Lane completo 10B · alto throughput por muestra' },
+];
+
 const APPLICATIONS = {
   WGS: {
     label: 'WGS',
@@ -1761,26 +1775,17 @@ const APPLICATIONS = {
     specialist: 'Equipo Clinical NGS · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/wgs.html',
-    defaultRead: '150PE (recomendado) o 100PE',
+    defaultRead: '150PE (recomendado) · insert 350bp/550bp',
     tat: '5-7 semanas desde recibo de muestras conformes',
     libraries: [
-      { id:'lib-truseq-pcrfree', name:'TruSeq PCR-free Library Construction', desc:'Estándar industry · sin amplificación PCR · uniformidad máxima' },
-      { id:'lib-truseq-nano', name:'TruSeq Nano Library Construction', desc:'Bajo input DNA · ideal cuando hay poca muestra' },
-      { id:'lib-nextera-xt', name:'Nextera DNA XT Library Construction', desc:'Tagmentation rápida · genomas pequeños/virales' },
-      { id:'lib-chipseq', name:'ChIP-Seq Library Construction', desc:'Para ChIP-seq · histone marks · TF binding' },
-      { id:'lib-illumina-pcrfree', name:'Illumina DNA PCR-free Prep Library Construction', desc:'Sin amplificación · alternativa moderna a TruSeq PCR-free' },
-      { id:'lib-illumina-prep', name:'Illumina DNA Prep Library Construction', desc:'Versátil · costo-eficiente · estándar Illumina actual' },
-      { id:'lib-ultima-pcrfree', name:'Ultima TruSeq PCR free library', desc:'Específico para plataforma Ultima UG100' },
-      { id:'lib-ultima-pcrplus', name:'Ultima TruSeq PCR plus library', desc:'Plataforma Ultima · más sensible · Ultima UG100' },
+      { id:'lib-truseq-nano-350-550', name:'TruSeq Nano DNA Library (350bp / 550bp)', desc:'Bajo input DNA · ideal cuando hay poca muestra · insert seleccionable 350bp o 550bp' },
+      { id:'lib-truseq-pcrfree-350-550', name:'TruSeq DNA PCR-free Library (350bp / 550bp)', desc:'Estándar industry · sin amplificación PCR · uniformidad máxima · 350bp o 550bp' },
+      { id:'lib-nextera-xt', name:'Nextera DNA XT', desc:'Tagmentation rápida · genomas pequeños / virales · workflow ágil' },
+      { id:'lib-shotgun-lmw', name:'Shotgun Library (low molecular weight)', desc:'Para DNA degradado o de bajo peso molecular' },
+      { id:'lib-xgen-cfdna', name:'xGen cfDNA Library Preparation Kit', desc:'cfDNA · liquid biopsy · DNA circulante en plasma' },
+      { id:'lib-xgen-ffpe', name:'xGen FFPE DNA Library Preparation Kit', desc:'FFPE optimizado · DNA dañado o crosslinked' },
     ],
-    platforms: [
-      { id:'plat-novax-25b', name:'NovaX plus (25B)', desc:'Newest · highest throughput · más eficiente $/Gb' },
-      { id:'plat-novax-10b', name:'NovaX plus (10B)', desc:'Medium throughput · 10B reads' },
-      { id:'plat-novaseq6k', name:'NovaSeq 6000', desc:'Plataforma anterior · stock + capacidad' },
-      { id:'plat-miseq-i100', name:'MiSeq i100', desc:'Low throughput · genomas pequeños / proof-of-concept' },
-      { id:'plat-nextseq', name:'NextSeq', desc:'Mid throughput · flexible' },
-      { id:'plat-ug100', name:'Ultima UG100', desc:'Plataforma Ultima Genomics · solo Ultima libraries' },
-    ],
+    platforms: PLAT_NOVAX_4,
   },
   WES: {
     label: 'WES',
@@ -1790,166 +1795,190 @@ const APPLICATIONS = {
     specialist: 'Equipo Clinical NGS · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/wes.html',
-    defaultRead: '300PE (estándar para WES) o 150PE',
+    defaultRead: '150PE / 300PE según captura',
     tat: '4-6 semanas desde recibo de muestras conformes',
     libraries: [
-      { id:'lib-sureselect-v6', name:'SureSelect V6-post Library Construction', desc:'51 Mb · captura clásica · alta cobertura' },
-      { id:'lib-sureselect-v7', name:'SureSelect V7-post Library Construction', desc:'35 Mb · captura mejorada · más eficiente $/exon' },
-      { id:'lib-sureselect-v8', name:'SureSelect V8-post Library Construction', desc:'35 Mb · última versión · UTR + lncRNA coverage' },
-      { id:'lib-twist-v1', name:'TWIST Core Exome V1 Library Construction', desc:'Alternativa a SureSelect · costo-eficiente' },
-      { id:'lib-twist-v2', name:'TWIST Core Exome V2 Library Construction', desc:'TWIST v2 · cobertura mejorada' },
+      { id:'lib-sureselect-v6', name:'SureSelect V6', desc:'51 Mb · captura clásica · alta cobertura' },
+      { id:'lib-sureselect-v6-utr', name:'SureSelect V6 + UTR', desc:'V6 + regiones UTR para análisis regulatorio' },
+      { id:'lib-sureselect-v7', name:'SureSelect V7', desc:'35 Mb · captura mejorada · más eficiente $/exon' },
+      { id:'lib-sureselect-v8', name:'SureSelect V8', desc:'35 Mb · última versión · cobertura optimizada' },
+      { id:'lib-sureselect-mouse', name:'SureSelect Mouse', desc:'Captura exoma murino · análogo al humano' },
+      { id:'lib-twist-exome', name:'Twist Exome', desc:'Alternativa a SureSelect · costo-eficiente' },
+      { id:'lib-twist-refseq', name:'Twist kit + RefSeq', desc:'Captura Twist enriquecida con regiones RefSeq' },
+      { id:'lib-twist-refseq-mito', name:'Twist kit + RefSeq + Mitochondria kit', desc:'Combina exoma + RefSeq + mitocondria completo' },
+      { id:'lib-twist-exome-v2', name:'Twist Exome 2.0', desc:'Twist v2 · cobertura mejorada · última generación' },
     ],
-    platforms: [
-      { id:'plat-novax-25b', name:'NovaX plus (25B)', desc:'Estándar para WES · 300PE recomendado' },
-      { id:'plat-novax-10b', name:'NovaX plus (10B)', desc:'Para volúmenes medios' },
-      { id:'plat-novaseq6k', name:'NovaSeq 6000', desc:'Plataforma anterior · stock disponible' },
-      { id:'plat-miseq-i100', name:'MiSeq i100', desc:'Solo para pilots / paneles pequeños' },
-      { id:'plat-nextseq', name:'NextSeq', desc:'Mid throughput · alternativa' },
-    ],
-  },
-  Methylation: {
-    label: 'Methylation',
-    fullName: 'Methylation · Metilación / Epigenoma',
-    icon: '🔬',
-    description: 'WGBS bisulfite · paneles methylome targeted · DMRs · epigenoma',
-    specialist: 'Equipo Epigenómica · Iberoamérica',
-    contactEmail: 'info-chile@macrogen.com',
-    serviceUrl: 'servicios/epigenoma.html',
-    defaultRead: '150PE (estándar) o 100PE',
-    tat: '5-7 semanas (WGBS) o 4-6 semanas (panel targeted)',
-    libraries: [
-      { id:'lib-accel-methyl', name:'Accel-NGS Methyl-Seq DNA Library Construction', desc:'WGBS bisulfite · genome-wide CpG methylation' },
-      { id:'lib-sureselect-methyl-human', name:'SureSelect Human Methyl-seq Library Construction', desc:'Targeted humano · 100× cobertura objetivo' },
-      { id:'lib-sureselect-methyl-mouse', name:'SureSelect Mouse Methyl-seq Library Construction', desc:'Targeted ratón · análogo al humano' },
-      { id:'lib-twist-methylome', name:'Twist Human Methylome panel', desc:'~3 Gb panel · costo-eficiente vs WGBS' },
-    ],
-    platforms: [
-      { id:'plat-novax-25b', name:'NovaX plus (25B)', desc:'Estándar metilación · 150PE' },
-      { id:'plat-novax-10b', name:'NovaX plus (10B)', desc:'Mid throughput · 150PE' },
-      { id:'plat-novaseq6k', name:'NovaSeq 6000', desc:'Plataforma anterior · stock' },
-      { id:'plat-miseq-i100', name:'MiSeq i100', desc:'Solo pilots' },
-      { id:'plat-nextseq', name:'NextSeq', desc:'Mid throughput · alternativa' },
-    ],
-  },
-  Meta: {
-    label: 'Meta',
-    fullName: 'Meta · Microbioma / Metagenómica',
-    icon: '🦠',
-    description: 'Microbioma · 16S/ITS amplicon · shotgun metagenomics · MAGs · taxonomía + funcional',
-    specialist: 'Equipo Metagenómica · Iberoamérica',
-    contactEmail: 'info-chile@macrogen.com',
-    serviceUrl: 'servicios/metagenoma.html',
-    defaultRead: 'Amplicón: 300PE 600cycle / Shotgun: 150PE',
-    tat: 'Amplicón 16S/ITS: 2-3 semanas · Shotgun: 4-6 semanas',
-    libraries: [
-      { id:'lib-meta-shotgun', name:'Meta shotgun', desc:'Funcional + strain level + pathways · MAGs' },
-      { id:'lib-amplicon', name:'Amplicon library', desc:'16S V3-V4 · ITS · taxonomía clásica amplicon' },
-    ],
-    platforms: [
-      { id:'plat-novax-25b', name:'NovaX plus (25B)', desc:'Estándar metagenómica · 300PE para amplicón' },
-      { id:'plat-novax-10b', name:'NovaX plus (10B)', desc:'Mid throughput' },
-      { id:'plat-novaseq6k', name:'NovaSeq 6000', desc:'Plataforma anterior' },
-      { id:'plat-miseq-i100', name:'MiSeq i100', desc:'Ideal para 16S amplicón pequeño · 300PE 600cycle' },
-      { id:'plat-nextseq', name:'NextSeq', desc:'Mid throughput · alternativa' },
-    ],
+    platforms: PLAT_NOVAX_4,
   },
   RNA: {
-    label: 'RNA',
-    fullName: 'RNA · Transcriptómica',
-    icon: '🧬',
-    description: 'mRNA polyA · Total RNA ribozero · small RNA · transcriptómica · DEG',
+    label: 'Transcriptómica',
+    fullName: 'Transcriptómica · RNA-Seq',
+    icon: '🌿',
+    description: 'mRNA polyA · Total RNA Ribo-Zero · small RNA · stranded · capture · ultra low input',
     specialist: 'Equipo RNA-Seq · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/rna-seq.html',
-    defaultRead: 'mRNA / Total: 150PE · small RNA: 75cycle single-end',
-    tat: '3-5 semanas (estándar) · 4-6 semanas (small RNA)',
+    defaultRead: 'mRNA / Total: 150PE · small RNA: 75 cycle single-end',
+    tat: '3-5 semanas (estándar) · 4-6 semanas (small RNA / capture)',
     libraries: [
-      { id:'lib-mrna-polya', name:'TruSeq stranded mRNA (polyA)', desc:'Estándar para DEG · captura mRNA con poly-A' },
-      { id:'lib-totalrna-gold', name:'TruSeq Stranded Total RNA Gold kit (with ribozero)', desc:'Total RNA · ribozero · captura mRNA+lncRNA+snoRNA' },
-      { id:'lib-totalrna-globin', name:'TruSeq Stranded Total RNA Globin (with ribozero)', desc:'Total RNA con depleción de globina · sangre' },
-      { id:'lib-totalrna-microbe', name:'TruSeq Stranded Total RNA with NEB Microbe', desc:'RNA bacteriano/microbiano · ribozero NEB' },
-      { id:'lib-truseq-smrna', name:'TruSeq small RNA', desc:'miRNAs · piRNAs · 16-40 nt' },
-      { id:'lib-nebnext-smrna', name:'NEBNext Small RNA library', desc:'NEB alternativa para small RNA' },
-      { id:'lib-smarter-smrna', name:'SMARTer small RNA', desc:'Bajo input · SMARTer chemistry' },
-      { id:'lib-sureselect-rna-direct', name:'SureSelect RNA Direct (Human)', desc:'Captura targeted RNA humano' },
-      { id:'lib-truseq-rna-exome', name:'TruSeq RNA Exome (Human)', desc:'Captura del exoma a nivel RNA · humano' },
-      { id:'lib-smarter-stranded', name:'SMARTer Stranded RNA library', desc:'Stranded · low input · ribozero' },
-      { id:'lib-smarter-ultra-low', name:'SMARTer Ultra low input RNA library', desc:'Ultra low input (~1 ng) · single cells o tejidos limitados' },
+      { id:'lib-truseq-stranded-mrna', name:'TruSeq stranded mRNA Library', desc:'Estándar para DEG · captura mRNA con poly-A · stranded' },
+      { id:'lib-truseq-totalrna-rz', name:'TruSeq stranded Total RNA · Ribo-Zero (Human/Mouse/Rat)', desc:'Total RNA · ribozero · captura mRNA + lncRNA + snoRNA' },
+      { id:'lib-truseq-totalrna-rz-gold', name:'TruSeq stranded Total RNA · Ribo-Zero Gold (Human/Mouse/Rat)', desc:'Versión Gold · depleción rRNA mejorada' },
+      { id:'lib-truseq-totalrna-rz-globin', name:'TruSeq stranded Total RNA · Ribo-Zero Globin (Human/Mouse/Rat)', desc:'Total RNA con depleción de globina · sangre' },
+      { id:'lib-truseq-totalrna-rz-plant', name:'TruSeq stranded Total RNA · Ribo-Zero Plant', desc:'Depleción específica para plantas' },
+      { id:'lib-truseq-totalrna-neb-microbe', name:'TruSeq stranded Total RNA · NEB Microbe', desc:'RNA bacteriano / microbiano · ribozero NEB' },
+      { id:'lib-truseq-totalrna-rz-plus', name:'TruSeq stranded Total RNA · Ribo-Zero Plus', desc:'Última generación depleción Plus · mayor flexibilidad de especies' },
+      { id:'lib-smarter-smrna', name:'SMARTer smRNA library', desc:'SMARTer chemistry · low input · miRNAs / piRNAs' },
+      { id:'lib-nebnext-smrna', name:'NEBNext Small RNA library', desc:'NEB alternativa para small RNA · miRNAs 16-40 nt' },
+      { id:'lib-qiaseq-mirna', name:'Qiaseq miRNA Library', desc:'miRNA QIAseq · UMI · cuantificación precisa de miRNAs' },
+      { id:'lib-sureselect-rna-direct-human', name:'SureSelectXT RNA Direct (Human)', desc:'Captura targeted RNA · humano · panel-based' },
+      { id:'lib-sureselect-rna-direct-mouse', name:'SureSelectXT RNA Direct (Mouse)', desc:'Captura targeted RNA · ratón' },
+      { id:'lib-truseq-rna-access', name:'TruSeq RNA Access', desc:'Captura del exoma a nivel RNA · ideal para FFPE' },
+      { id:'lib-smarter-stranded-rz', name:'SMARTer Stranded RNA library (Ribo-Zero)', desc:'Stranded · low input · ribozero · workflow integrado' },
+      { id:'lib-smarter-ultralow-polya', name:'SMARTer Ultra low input RNA (PolyA · NexteraXT)', desc:'Ultra low input (~1 ng) · single cells o tejidos limitados · NexteraXT' },
+    ],
+    platforms: PLAT_NOVAX_4,
+  },
+  Epigenome: {
+    label: 'Epigenómica',
+    fullName: 'Epigenómica · Methyl-Seq / ChIP-Seq',
+    icon: '🔬',
+    description: 'Methyl-Seq · WGBS · EM-seq · Twist Methylome · SureSelect Methyl · ChIP-Seq',
+    specialist: 'Equipo Epigenómica · Iberoamérica',
+    contactEmail: 'info-chile@macrogen.com',
+    serviceUrl: 'servicios/epigenoma.html',
+    defaultRead: '150PE (estándar)',
+    tat: '5-7 semanas (WGBS) · 4-6 semanas (panel targeted) · 4-5 semanas (ChIP-Seq)',
+    libraries: [
+      { id:'lib-accel-methyl', name:'Accel-NGS® Methyl-Seq DNA Library (Swift Bioscience)', desc:'WGBS bisulfite · genome-wide CpG · low input' },
+      { id:'lib-nebnext-em-seq', name:'NEBNext® Enzymatic Methyl-seq Kit', desc:'EM-seq enzimático · alternativa a bisulfite · mejor preservación DNA' },
+      { id:'lib-twist-methylome', name:'Twist Human Methylome panel', desc:'~3 Gb panel · costo-eficiente vs WGBS · CpG islands focus' },
+      { id:'lib-sureselect-methyl-human', name:'SureSelect Human Methyl-seq', desc:'Targeted humano · 100× cobertura objetivo' },
+      { id:'lib-sureselect-methyl-mouse', name:'SureSelect Mouse Methyl-seq', desc:'Targeted ratón · análogo al humano' },
+      { id:'lib-chipseq', name:'TruSeq ChIP-Seq Library', desc:'ChIP-Seq · histone marks · transcription factor binding · estándar Illumina' },
+    ],
+    platforms: PLAT_NOVAX_4,
+  },
+  Shotgun: {
+    label: 'Shotgun',
+    fullName: 'Shotgun · Metagenómica funcional',
+    icon: '🦠',
+    description: 'Shotgun metagenomics · strain-level resolution · pathways funcionales · MAGs',
+    specialist: 'Equipo Metagenómica · Iberoamérica',
+    contactEmail: 'info-chile@macrogen.com',
+    serviceUrl: 'servicios/metagenoma.html',
+    defaultRead: '150PE (estándar) · profundidad 4-10 Gb / muestra',
+    tat: '4-6 semanas desde recibo de muestras conformes',
+    libraries: [
+      { id:'lib-truseq-nano-meta', name:'TruSeq Nano DNA META Library', desc:'Bajo input DNA · ideal microbioma de tejidos/biofluidos' },
+      { id:'lib-nextera-xt-meta', name:'Nextera DNA XT META Library', desc:'Tagmentation · workflow rápido · muestras ambientales' },
+    ],
+    platforms: PLAT_NOVAX_4,
+  },
+  Amplicon: {
+    label: 'Amplicón',
+    fullName: 'Amplicón · 16S / ITS / 18S / Arc / COI',
+    icon: '🧫',
+    description: 'Amplicones de marcadores filogenéticos · bacterias / hongos / eucariotas / arqueas / invertebrados',
+    specialist: 'Equipo Metagenómica · Iberoamérica',
+    contactEmail: 'info-chile@macrogen.com',
+    serviceUrl: 'servicios/metagenoma.html',
+    defaultRead: '300PE (MiSeq i100 estándar amplicón)',
+    tat: '2-3 semanas desde recibo de muestras conformes',
+    libraries: [
+      { id:'lib-amp-16s-v3v4', name:'16S V3-V4 Metagenome Amplicon Library', desc:'Bacterias · región más usada · taxonomía clásica' },
+      { id:'lib-amp-16s-v1v2', name:'16S V1-V2 Metagenome Amplicon Library', desc:'Bacterias · resolución para géneros específicos' },
+      { id:'lib-amp-its1', name:'ITS1-ITS2 (ITS1) Metagenome Amplicon Library', desc:'Hongos · región ITS1 · taxonomía fúngica' },
+      { id:'lib-amp-its2', name:'ITS3-ITS4 (ITS2) Metagenome Amplicon Library', desc:'Hongos · región ITS2 · alternativa a ITS1' },
+      { id:'lib-amp-18s-v4', name:'18S V4F-V4R Metagenome Amplicon Library', desc:'Eucariotas · región V4 · protistas / pequeños eucariotas' },
+      { id:'lib-amp-18s-v9', name:'18S V9F-V9R Metagenome Amplicon Library', desc:'Eucariotas · región V9 · short amplicon' },
+      { id:'lib-amp-arc-21f', name:'Arc 21F-516R Metagenome Amplicon Library', desc:'Arqueas · región 21F-516R' },
+      { id:'lib-amp-arc-787f', name:'Arc 787F-1059R Metagenome Amplicon Library', desc:'Arqueas · región 787F-1059R · alternativa' },
+      { id:'lib-amp-coi-uea3f', name:'COI UEA3F-HCO2198R Metagenome Amplicon Library', desc:'Invertebrados / metazoos · barcoding COI · UEA3F primer' },
+      { id:'lib-amp-coi-mlcoi', name:'COI mlCOIintF-HCO2198R Metagenome Amplicon Library', desc:'Invertebrados · COI mini-barcode · mlCOIintF' },
     ],
     platforms: [
-      { id:'plat-novax-25b', name:'NovaX plus (25B)', desc:'Estándar RNA-Seq · 150PE' },
-      { id:'plat-novax-10b', name:'NovaX plus (10B)', desc:'Mid throughput · 150PE' },
-      { id:'plat-novaseq6k', name:'NovaSeq 6000', desc:'Plataforma anterior · stock' },
-      { id:'plat-miseq-i100', name:'MiSeq i100', desc:'Solo pilots o targeted small' },
-      { id:'plat-nextseq', name:'NextSeq', desc:'Mid throughput · alternativa' },
+      { id:'plat-miseq-i100-03', name:'MiSeq i100 (300PE) · 0.03 Gb (~200,000 reads)', desc:'Volumen pequeño · ideal para 1-10 muestras amplicón' },
+      { id:'plat-miseq-i100-fc', name:'MiSeq i100 (300PE) · FlowCell (10 Gb)', desc:'Flow cell completo · ~50-100 muestras amplicón por corrida' },
     ],
   },
-  SingleCell: {
-    label: 'Single Cell',
-    fullName: 'SingleCell · 10x Chromium / Visium',
-    icon: '🔬',
-    description: 'Single cell RNA · ATAC · multiome · spatial Visium · 10x Chromium · Visium FFPE',
-    specialist: 'Equipo Single Cell · Iberoamérica',
+  ReadyToRun: {
+    label: 'Ready to Run',
+    fullName: 'Ready to Run · Single Cell + librerías cliente',
+    icon: '🚀',
+    description: 'Librerías ya preparadas por el cliente o servicios single-cell que requieren cotización personalizada',
+    specialist: 'Equipo NGS · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/single-cell.html',
-    defaultRead: '150PE (10x estándar) o 100PE',
-    tat: '4-6 semanas (scRNA) · 5-6 semanas (Multiome / Spatial)',
+    defaultRead: 'Según librería entregada (consultar con especialista)',
+    tat: 'A confirmar con el especialista según volumen y plataforma destino',
     libraries: [
-      { id:'lib-10x-3p-v31', name:'Chromium Next GEM Single Cell 3p RNA Library v3.1', desc:'Estándar de la industria · 5K-10K células · 20K reads/cell' },
-      { id:'lib-10x-5p-v2', name:'Chromium Next GEM Single Cell 5p RNA Library v2', desc:'5\' end · ideal para análisis de TCR/BCR' },
-      { id:'lib-10x-atac-v11', name:'Chromium Next GEM Single Cell ATAC library v1.1', desc:'Single cell ATAC · accesibilidad de cromatina' },
-      { id:'lib-10x-multiome-gex', name:'Chromium Next GEM Single Cell Multiome Gene Expression library v1', desc:'Multiome GEX (parte 1 de 2)' },
-      { id:'lib-10x-multiome-atac', name:'Chromium Next GEM Single Cell Multiome ATAC library v1', desc:'Multiome ATAC (parte 2 de 2)' },
-      { id:'lib-visium-spatial', name:'Visium Spatial Gene Expression library + Tissue Optimization', desc:'Spatial transcriptomics fresh frozen' },
-      { id:'lib-visium-ffpe', name:'Visium Spatial Gene Expression for FFPE library v2', desc:'Spatial transcriptomics para FFPE' },
-      { id:'lib-10x-fixed-rna', name:'Chromium Fixed RNA kit', desc:'Para tejidos fijados (PFA) · fixed cells' },
-      { id:'lib-10x-gemx-3p-v4', name:'Chromium GEM-X Single Cell 3\' Kit v4', desc:'Nueva generación 10x · 3\' end · 2024+' },
-      { id:'lib-10x-gemx-5p-v3', name:'Chromium GEM-X Single Cell 5p RNA library v3', desc:'Nueva generación 10x · 5\' end · 2024+' },
+      { id:'lib-rtr-singlecell', name:'Single Cell (10x Chromium / Visium / GEM-X)', desc:'Consulta personalizada con nuestros agentes · scRNA · ATAC · Multiome · Spatial Visium' },
+      { id:'lib-rtr-otros', name:'Otros (librerías ya preparadas)', desc:'Consulta personalizada con nuestros agentes · solo secuenciación de librerías que el cliente entrega listas' },
     ],
     platforms: [
-      { id:'plat-novax-25b', name:'NovaX plus (25B)', desc:'Estándar single cell · 150PE' },
-      { id:'plat-novax-10b', name:'NovaX plus (10B)', desc:'Mid throughput single cell' },
-      { id:'plat-novaseq6k', name:'NovaSeq 6000', desc:'Plataforma anterior · alternativa' },
-      { id:'plat-miseq-i100', name:'MiSeq i100', desc:'Solo pilots' },
-      { id:'plat-nextseq', name:'NextSeq', desc:'Mid throughput · alternativa' },
+      { id:'plat-rtr-consulta', name:'Consulta personalizada con especialista', desc:'La plataforma destino se confirma según diseño experimental, profundidad y formato de librería entregada.' },
     ],
   },
-  LongRead: {
-    label: 'Long Read',
-    fullName: 'Long Read · PacBio / Nanopore',
+  PacBio: {
+    label: 'PacBio',
+    fullName: 'PacBio · Revio · HiFi long reads',
     icon: '⚡',
-    description: 'Long reads HiFi PacBio · ONT PromethION · de novo assembly · 16S full-length · Iso-Seq · Kinnex',
-    specialist: 'Equipo Long Reads (PacBio + ONT) · Iberoamérica',
+    description: 'HiFi long reads · de novo assembly · Iso-Seq · Kinnex · 16S full-length · MetaShotgun',
+    specialist: 'Equipo Long Reads · Iberoamérica',
     contactEmail: 'info-chile@macrogen.com',
     serviceUrl: 'servicios/wgs.html',
-    defaultRead: 'PacBio HiFi: 15-25 kb · ONT: hasta 100+ kb ultra-largo',
-    tat: '4-6 semanas (PacBio) · 4-6 semanas (ONT PromethION)',
+    defaultRead: 'PacBio HiFi: 15-25 kb por read · throughput por SMRT cell según librería',
+    tat: '4-6 semanas desde recibo de muestras conformes',
     libraries: [
       { id:'lib-pacbio-hifi', name:'PacBio HiFi Library', desc:'Estándar long read HiFi · WGS humano/eucariotas · variantes estructurales' },
       { id:'lib-pacbio-microbial', name:'PacBio Microbial Library', desc:'De novo assembly bacteriano · contigs circulares' },
-      { id:'lib-pacbio-16s', name:'PacBio 16s full-length Library', desc:'16S completo (~1.5 kb) HiFi · resolución a especie' },
-      { id:'lib-pacbio-isoseq', name:'PacBio ISO-Seq Library', desc:'Transcripts full-length · isoformas · splice variants' },
-      { id:'lib-pacbio-kinnex-rna', name:'PacBio Kinnex full-length RNA Library', desc:'Bulk RNA full-length · Kinnex · alta throughput' },
-      { id:'lib-pacbio-kinnex-sc', name:'PacBio Kinnex single-cell RNA Library', desc:'Single cell con full-length reads · combina con 10x' },
-      { id:'lib-pacbio-kinnex-16s', name:'PacBio Kinnex 16S rRNA amplicons Library', desc:'16S amplicons Kinnex · throughput alta' },
-      { id:'lib-ont-prom', name:'ONT Library Construction', desc:'Nanopore PromethION · ultra-long reads >100 kb' },
+      { id:'lib-pacbio-metashotgun', name:'PacBio MetaShotgun Library', desc:'Metagenómica long-read · MAGs de alta calidad · resolución a especie' },
+      { id:'lib-pacbio-kinnex-sc', name:'Kinnex single cell RNA kit', desc:'Single cell con full-length reads · combina con 10x · concatenación Kinnex' },
+      { id:'lib-pacbio-isoseq', name:'Iso-Seq Library', desc:'Transcripts full-length · isoformas · splice variants' },
+      { id:'lib-pacbio-kinnex-rna', name:'Kinnex full-length RNA library', desc:'Bulk RNA full-length · Kinnex · alta throughput' },
+      { id:'lib-pacbio-amplicon', name:'PacBio Amplicon Library', desc:'Amplicones largos PacBio · HiFi · resolución a especie' },
+      { id:'lib-pacbio-kinnex-16s', name:'PacBio Kinnex 16S rRNA kit', desc:'16S amplicons Kinnex · throughput alta' },
+      { id:'lib-pacbio-16s-full', name:'PacBio 16s full-length Library', desc:'16S completo (~1.5 kb) HiFi · resolución a especie' },
     ],
     platforms: [
-      { id:'plat-pacbio-revio', name:'PacBio Revio', desc:'Última generación PacBio · ~100 Gb HiFi por SMRT cell' },
-      { id:'plat-ont-prom', name:'ONT PromethION', desc:'Nanopore · ~100 Gb por flow cell · long reads ultra-largos' },
+      { id:'plat-pacbio-200mb', name:'PacBio Revio · 200 Mb', desc:'Genome size ~ 8 Mb · pequeños microorganismos / virus / amplicones' },
+      { id:'plat-pacbio-500mb', name:'PacBio Revio · 500 Mb', desc:'Genome size 8 – 15 Mb · bacterias / archaea' },
+      { id:'plat-pacbio-1gb', name:'PacBio Revio · 1 Gb', desc:'Genome size 15 – 30 Mb · hongos / pequeños eucariotas' },
+      { id:'plat-pacbio-5gb', name:'PacBio Revio · 5 Gb', desc:'Genome size 30 – 150 Mb · eucariotas medianos' },
+      { id:'plat-pacbio-smrt', name:'PacBio Revio · 1 SMRT Cell', desc:'Humano / Ratón / Rata: 60 Gb · Otros: 30 Gb · WGS eucariota completo' },
+    ],
+  },
+  Nanopore: {
+    label: 'Nanopore',
+    fullName: 'Nanopore · ONT PromethION',
+    icon: '🌀',
+    description: 'ONT long-read ultra-largos · PromethION · genomas estructurales · methylation nativa',
+    specialist: 'Equipo Long Reads · Iberoamérica',
+    contactEmail: 'info-chile@macrogen.com',
+    serviceUrl: 'servicios/wgs.html',
+    defaultRead: 'ONT: hasta 100+ kb ultra-largo · N50 típico 30-50 kb',
+    tat: '4-6 semanas desde recibo de muestras conformes',
+    libraries: [
+      { id:'lib-ont-sqk-lsk114', name:'ONT SQK-LSK114', desc:'Ligation Sequencing Kit V14 · estándar PromethION · long reads ultra-largos' },
+    ],
+    platforms: [
+      { id:'plat-ont-prom-fc', name:'PromethION FlowCell (~60 Gb)', desc:'Nanopore PromethION · ~60 Gb por flow cell · long reads ultra-largos' },
     ],
   },
 };
 
 // Spanish names for the application choices on root screen
 const APP_HEADINGS = {
-  WGS: { title:'WGS · Whole Genome Sequencing', desc:'Secuenciación del genoma completo · variantes germinales y somáticas · investigación clínica.' },
-  WES: { title:'WES · Whole Exome Sequencing', desc:'Captura del exoma · enfermedades raras · oncología hereditaria · farmacogenómica.' },
-  Methylation: { title:'Methylation · Epigenoma', desc:'WGBS bisulfite · paneles targeted · metilación CpG · DMRs entre condiciones.' },
-  Meta: { title:'Meta · Microbioma', desc:'16S / ITS amplicon · shotgun metagenomics · taxonomía + funcional + MAGs.' },
-  RNA: { title:'RNA · Transcriptómica', desc:'mRNA polyA · Total RNA · small RNA · DEG · isoformas.' },
-  SingleCell: { title:'Single Cell · 10x Chromium', desc:'scRNA · ATAC · Multiome · Spatial Visium · célula a célula.' },
-  LongRead: { title:'Long Read · PacBio / Nanopore', desc:'HiFi long reads · de novo assembly · Iso-Seq · Kinnex · ONT PromethION.' },
+  WGS:        { title:'WGS · Whole Genome Sequencing',          desc:'Genoma completo · variantes germinales/somáticas · TruSeq Nano · PCR-free · Nextera · cfDNA · FFPE.' },
+  WES:        { title:'WES · Whole Exome Sequencing',           desc:'Captura del exoma · SureSelect V6/V7/V8 (+ UTR / Mouse) · Twist Exome / RefSeq / Mito.' },
+  RNA:        { title:'Transcriptómica · RNA-Seq',              desc:'mRNA polyA · Total RNA Ribo-Zero (Gold/Globin/Plant/Microbe/Plus) · small RNA · SMARTer · capture.' },
+  Epigenome:  { title:'Epigenómica · Methyl-Seq / ChIP-Seq',    desc:'Accel-NGS · NEBNext EM-seq · Twist Methylome · SureSelect Methyl · TruSeq ChIP-Seq.' },
+  Shotgun:    { title:'Shotgun · Metagenómica funcional',       desc:'TruSeq Nano META · Nextera XT META · funcional + strain + pathways + MAGs.' },
+  Amplicon:   { title:'Amplicón · 16S / ITS / 18S / Arc / COI', desc:'Bacterias · hongos · eucariotas · arqueas · invertebrados · MiSeq i100 300PE.' },
+  ReadyToRun: { title:'Ready to Run · Single Cell + librerías cliente', desc:'10x Chromium / Visium / GEM-X o librerías ya preparadas · consulta personalizada con especialista.' },
+  PacBio:     { title:'PacBio · Revio · HiFi long reads',       desc:'HiFi WGS · Microbial · MetaShotgun · Iso-Seq · Kinnex (RNA / sc / 16S) · Amplicon.' },
+  Nanopore:   { title:'Nanopore · ONT PromethION',              desc:'ONT SQK-LSK114 · PromethION FlowCell · ultra-long reads >100 kb · methylation nativa.' },
 };
 
 // ===================================================
