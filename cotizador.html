@@ -949,6 +949,17 @@
   </div>
 </section>
 
+<!-- ===== BRAND STRIP · Humanizing Genomics · One Team. One Macrogen. ===== -->
+<section class="brand-strip" aria-label="Macrogen brand signature">
+  <div class="container">
+    <h2 class="brand-strip-slogan">Humanizing Genomics</h2>
+    <div class="brand-strip-motto">
+      <span>One Team. One Macrogen.</span>
+    </div>
+    <p class="brand-strip-regions">España · Portugal · Chile · Perú · Iberoamérica</p>
+  </div>
+</section>
+
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -2419,108 +2430,4 @@ function openContactModal() {
   // === SHOW the configuration card inside the modal ===
   const cfg = document.getElementById('modalConfigCard');
   cfg.style.display = 'block';
-  document.getElementById('cfgApp').innerHTML = '<strong>' + app.fullName + '</strong>';
-  document.getElementById('cfgLib').innerHTML = '<strong>' + lib.name + '</strong>';
-  document.getElementById('cfgPlat').innerHTML = '<strong>' + plat.name + '</strong>';
-  document.getElementById('cfgRead').innerHTML = app.defaultRead;
-  document.getElementById('cfgTat').innerHTML = app.tat;
-
-  // Pre-fill notes textarea so specialist receives the full structured config in email body
-  const notesPrefill =
-    '── CONFIGURACIÓN SELECCIONADA EN COTIZADOR ──\n' +
-    'Aplicación: ' + app.fullName + '\n' +
-    'Librería: ' + lib.name + '\n' +
-    'Plataforma: ' + plat.name + '\n' +
-    'Read length / Cycle: ' + app.defaultRead + '\n' +
-    'TAT estimado: ' + app.tat + '\n' +
-    'Hub: Madrid + Santiago\n' +
-    'URL servicio: https://macrogen-es.com/' + app.serviceUrl + '\n' +
-    '\n── PERSONALIZA TU PROYECTO ──\n' +
-    'Tipo de muestra (DNA / RNA / FFPE / fresh): \n' +
-    'Organismo / referencia: \n' +
-    'Plazo deseado de entrega: \n' +
-    'Presupuesto aproximado (orientativo): \n' +
-    'Notas adicionales: ';
-  document.getElementById('formNotes').value = notesPrefill;
-  document.getElementById('formNotes').rows = 12;
-
-  // Open
-  document.getElementById('modalOverlay').classList.add('is-open');
-  setTimeout(() => { document.getElementById('formName').focus(); }, 200);
-}
-
-// Wire the CTA button (in preview bar) to opener
-document.getElementById('ctaContact').addEventListener('click', () => openContactModal());
-
-function closeContactModal() {
-  document.getElementById('modalOverlay').classList.remove('is-open');
-}
-
-document.getElementById('modalClose').addEventListener('click', closeContactModal);
-document.getElementById('modalOverlay').addEventListener('click', e => {
-  if (e.target.id === 'modalOverlay') closeContactModal();
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeContactModal();
-});
-
-// Form submit
-document.getElementById('contactForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const submit = document.getElementById('formSubmit');
-  submit.disabled = true;
-  submit.textContent = 'Enviando...';
-
-  const data = new FormData(form);
-  try {
-    await fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' },
-    });
-  } catch(e) { /* fire-and-forget */ }
-
-  // Show success view
-  const country = data.get('pais');
-  const hub = (country === 'ES' || country === 'PT') ? 'Madrid 🇪🇸' : 'Santiago 🇨🇱';
-  const email = (country === 'ES' || country === 'PT') ? 'info-spain@macrogen.com' : 'info-chile@macrogen.com';
-
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('successView').style.display = 'block';
-  document.getElementById('successService').textContent =
-    (currentLeaf.app ? currentLeaf.app.label : (currentLeaf.label || 'tu servicio'));
-  document.getElementById('successContact').innerHTML = `
-    <div style="font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--cot-gray); margin-bottom:6px;">Hub asignado</div>
-    <div style="font-size:14px; font-weight:700; margin-bottom:8px;">${hub}</div>
-    <div style="font-size:12px;">📧 <strong>${email}</strong></div>
-    <div style="font-size:11.5px; color:var(--cot-gray); margin-top:6px; font-style:italic;">Si necesitas escribirnos directamente, este es el email del hub asignado.</div>
-  `;
-
-  submit.disabled = false;
-  submit.innerHTML = '📧 Enviar al especialista →';
-
-  showToast('✓ Consulta enviada al especialista');
-});
-
-// ===================================================
-// TOAST
-// ===================================================
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// ===================================================
-// INIT
-// ===================================================
-renderAll();
-</script>
-
-<script src="assets/js/main.js"></script>
-<script src="assets/js/i18n.js"></script>
-</body>
-</html>
+  document.getElementById('cfgApp').innerHTML = '<strong>
