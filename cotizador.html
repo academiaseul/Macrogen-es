@@ -2475,21 +2475,81 @@ function closeContactModal() {
   document.getElementById('modalOverlay').classList.remove('open');
 }
 
-// === CTA wiring ===
+// === CTA wiring · open mail client with config pre-filled ===
+// Routes directly to chash@macrogen.com (Macrogen Iberoamérica specialist inbox)
+function buildSpecialistMailto() {
+  if (!state.app || !state.library || !state.platform) return null;
+  var app = APPLICATIONS[state.app];
+  var lib = app.libraries.find(function(l) { return l.id === state.library; });
+  var plat = app.platforms.find(function(p) { return p.id === state.platform; });
+  if (!app || !lib || !plat) return null;
+
+  var to = 'chash@macrogen.com';
+  var subject = 'Cotización NGS · ' + app.label + ' · ' + lib.name + ' · ' + plat.name;
+
+  var lines = [
+    'Hola equipo Macrogen,',
+    '',
+    'Solicito cotización para la siguiente configuración desde el NGS Explorador (macrogen-es.com/cotizador.html):',
+    '',
+    '── CONFIGURACIÓN SELECCIONADA ──',
+    'Aplicación:    ' + app.fullName,
+    'Librería:      ' + lib.name,
+    'Plataforma:    ' + plat.name,
+    'Read length:   ' + app.defaultRead,
+    'TAT estimado:  ' + app.tat,
+    'Especialista:  ' + app.specialist,
+    '',
+    '── MI PROYECTO ──',
+    'Nombre completo:           ',
+    'Institución / Empresa:     ',
+    'País:                      ',
+    'Tipo de muestra:           ',
+    'Organismo / referencia:    ',
+    'Profundidad / cobertura:   ',
+    'Número de muestras:        ',
+    'Plazo deseado:             ',
+    'Presupuesto orientativo:   ',
+    'Notas adicionales:         ',
+    '',
+    '── DATOS DE CONTACTO ──',
+    'Teléfono:                  ',
+    'Email (si difiere):        ',
+    '',
+    'Gracias,',
+    ''
+  ];
+  var body = lines.join('\r\n');
+
+  return 'mailto:' + to
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(body);
+}
+
 (function wireContactCTA() {
   var ctaBtn = document.getElementById('ctaContact');
   if (ctaBtn) {
     ctaBtn.addEventListener('click', function(e) {
       e.preventDefault();
       if (this.disabled) return;
-      openContactModal();
+      var url = buildSpecialistMailto();
+      if (!url) {
+        showToast('⚠️ Elige aplicación + librería + plataforma primero');
+        return;
+      }
+      // Open user's default email client
+      window.location.href = url;
+      showToast('📧 Abriendo tu cliente de email...');
     });
   }
+  // Generic fallback for data-open-contact elements (still goes to mailto)
   document.addEventListener('click', function(e) {
     var t = e.target.closest && e.target.closest('[data-open-contact]');
     if (t) {
       e.preventDefault();
-      openContactModal();
+      var url = buildSpecialistMailto();
+      if (url) window.location.href = url;
+      else showToast('⚠️ Selecciona configuración completa primero');
     }
   });
 })();
