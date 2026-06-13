@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Epigenome Sequencing | Macrogen Iberoamérica</title>
-<meta name="description" content="Análisis de metilación whole-genome bisulfite (WGBS), reduced representation (RRBS) y ChIP-seq en Macrogen Chile.">
+<meta name="description" content="Análisis de metilación whole-genome bisulfite (WGBS) y ChIP-seq en Macrogen Iberoamérica. TAT 4-6 semanas. Pipelines Bismark / MACS3.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -71,7 +71,7 @@
             <a href="../servicios/rna-seq.html"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
             <a href="../servicios/single-cell.html"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
             <a href="../servicios/metagenoma.html"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
-            <a href="../servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+            <a href="../servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · ChIP-seq</small></a>
           </div>
           <div class="megamenu-col">
             <h5 data-i18n-html="megamenu.ces_title">CES · Sanger <span class="count">(1)</span></h5>
@@ -143,11 +143,11 @@
       <div class="service-switcher-menu" role="menu" aria-label="Cambiar de servicio NGS">
         <div class="switcher-header">
           <strong>Catálogo NGS</strong>
-          <small>8 servicios · 1 sola ventanilla</small>
+          <small>8 servicios NGS · una sola ventanilla</small>
         </div>
-        <div class="service-switcher-grid">
-          <div class="service-switcher-col">
-            <h5>NGS · Estándar</h5>
+        <div class="service-switcher-grid is-unified">
+          <div class="service-switcher-col is-full">
+            <h5>NGS · Catálogo completo</h5>
         <a href="./wgs.html">
           <span class="switcher-icon">🧬</span>
           <span class="switcher-text"><strong>WGS</strong><small>Whole Genome Sequencing</small></span>
@@ -164,16 +164,13 @@
           <span class="switcher-icon">🔬</span>
           <span class="switcher-text"><strong>Single Cell</strong><small>10x Chromium · Parse</small></span>
         </a>
-          </div>
-          <div class="service-switcher-col">
-            <h5>NGS · Especializado</h5>
         <a href="./metagenoma.html">
           <span class="switcher-icon">🦠</span>
           <span class="switcher-text"><strong>Metagenómica</strong><small>16S · ITS · shotgun · ASV</small></span>
         </a>
         <a href="#" class="is-current" aria-current="page">
           <span class="switcher-icon">🧬</span>
-          <span class="switcher-text"><strong>Epigenoma</strong><small>WGBS · RRBS · ChIP-seq</small></span>
+          <span class="switcher-text"><strong>Epigenoma</strong><small>WGBS · ChIP-seq</small></span>
         </a>
         <a href="./microarray.html">
           <span class="switcher-icon">💎</span>
@@ -186,7 +183,7 @@
           </div>
         </div>
         <div class="service-switcher-footer">
-          <span>10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+          <span>8 servicios NGS · 1 sola ventanilla · Madrid + Santiago</span>
           <a href="../servicios.html">Ver catálogo completo →</a>
         </div>
       </div>
@@ -260,7 +257,7 @@
       <div>
         <span class="eyebrow on-light">Descripción</span>
         <h2>Tres técnicas, un mismo objetivo: regulación.</h2>
-        <p>Ofrecemos los tres flujos epigenéticos más utilizados en investigación biomédica: análisis de metilación de citosinas (WGBS, RRBS), perfilado de modificaciones de histonas (ChIP-seq) y arquitectura cromatínica abierta (ATAC-seq).</p>
+        <p>Ofrecemos los dos flujos epigenéticos más utilizados en investigación biomédica: análisis de metilación de citosinas (WGBS · Whole-Genome Bisulfite Sequencing) y perfilado de modificaciones de histonas y unión de factores de transcripción (ChIP-seq).</p>
         <p>Cada flujo viene acompañado de su pipeline bioinformático estándar de oro: Bismark/methylKit para metilación, MACS3 para peak calling de ChIP/ATAC, y deepTools para visualizaciones.</p>
         <p style="margin-bottom:0;">Aplicaciones: oncoepigenética, biología del desarrollo, respuesta a estímulos ambientales, biomarcadores de envejecimiento, herencia epigenética.</p>
       </div>
@@ -284,32 +281,23 @@
       <span class="eyebrow on-light">Opciones disponibles</span>
       <h2>Elige según tu pregunta regulatoria.</h2>
     </div>
-    <div class="grid grid-3">
+    <div class="grid grid-2" style="max-width:880px; margin:0 auto;">
       <div class="pillar-card">
         <div class="pillar-icon">🧬</div>
         <h3>WGBS</h3>
-        <p>Whole-Genome Bisulfite Sequencing — metilación de cada citosina en el genoma.</p>
+        <p>Whole-Genome Bisulfite Sequencing — metilación de cada citosina en el genoma. También disponible vía librerías Accel-NGS Methyl-Seq, NEBNext EM-seq, Twist Human Methylome panel, SureSelect Methyl-seq (Human / Mouse).</p>
         <table class="spec-table">
           <tr><th>Cobertura</th><td>15–30x</td></tr>
-          <tr><th>TAT</th><td>6–8 sem.</td></tr>
-        </table>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-icon teal">🎯</div>
-        <h3>RRBS</h3>
-        <p>Reduced Representation Bisulfite Seq — enfoque en regiones CpG-ricas a menor costo.</p>
-        <table class="spec-table">
-          <tr><th>Cobertura CpG</th><td>20–30x</td></tr>
-          <tr><th>TAT</th><td>5 sem.</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
       <div class="pillar-card">
         <div class="pillar-icon green">🧪</div>
-        <h3>ChIP-seq · ATAC-seq</h3>
-        <p>Perfilado de unión de proteínas (TFs, histonas) o accesibilidad cromatínica.</p>
+        <h3>ChIP-seq</h3>
+        <p>Perfilado de unión de proteínas (factores de transcripción, modificaciones de histonas) al DNA. Librería TruSeq ChIP-Seq.</p>
         <table class="spec-table">
           <tr><th>Reads</th><td>20–50 M PE</td></tr>
-          <tr><th>TAT</th><td>5–6 sem.</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
     </div>

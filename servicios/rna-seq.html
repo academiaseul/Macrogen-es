@@ -143,11 +143,11 @@
       <div class="service-switcher-menu" role="menu" aria-label="Cambiar de servicio NGS">
         <div class="switcher-header">
           <strong>Catálogo NGS</strong>
-          <small>8 servicios · 1 sola ventanilla</small>
+          <small>8 servicios NGS · una sola ventanilla</small>
         </div>
-        <div class="service-switcher-grid">
-          <div class="service-switcher-col">
-            <h5>NGS · Estándar</h5>
+        <div class="service-switcher-grid is-unified">
+          <div class="service-switcher-col is-full">
+            <h5>NGS · Catálogo completo</h5>
         <a href="./wgs.html">
           <span class="switcher-icon">🧬</span>
           <span class="switcher-text"><strong>WGS</strong><small>Whole Genome Sequencing</small></span>
@@ -164,9 +164,6 @@
           <span class="switcher-icon">🔬</span>
           <span class="switcher-text"><strong>Single Cell</strong><small>10x Chromium · Parse</small></span>
         </a>
-          </div>
-          <div class="service-switcher-col">
-            <h5>NGS · Especializado</h5>
         <a href="./metagenoma.html">
           <span class="switcher-icon">🦠</span>
           <span class="switcher-text"><strong>Metagenómica</strong><small>16S · ITS · shotgun · ASV</small></span>
@@ -186,7 +183,7 @@
           </div>
         </div>
         <div class="service-switcher-footer">
-          <span>10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+          <span>8 servicios NGS · 1 sola ventanilla · Madrid + Santiago</span>
           <a href="../servicios.html">Ver catálogo completo →</a>
         </div>
       </div>
@@ -288,50 +285,56 @@
     <div class="grid grid-3">
       <div class="pillar-card">
         <div class="pillar-icon">📈</div>
-        <h3>RNA-Seq DEG estándar</h3>
-        <p>Para análisis de expresión diferencial gen-a-gen entre condiciones.</p>
+        <h3>mRNA-Seq</h3>
+        <p>Captura selectiva de mRNA por poliA. Estándar para análisis de expresión diferencial (DEG) en muestras de calidad estándar.</p>
         <table class="spec-table">
-          <tr><th>Reads</th><td>~30 M PE / muestra</td></tr>
+          <tr><th>Librería tipo</th><td>TruSeq stranded mRNA</td></tr>
+          <tr><th>Output</th><td>6–9 Gb / muestra</td></tr>
           <tr><th>Read length</th><td>2 × 100 bp</td></tr>
-          <tr><th>TAT</th><td>4 semanas</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
       <div class="pillar-card">
         <div class="pillar-icon teal">🔬</div>
-        <h3>RNA-Seq isoforma</h3>
-        <p>Mayor profundidad para detección de splicing alternativo y lncRNAs.</p>
+        <h3>Total RNA-Seq</h3>
+        <p>Depleción de rRNA (Ribo-Zero) para capturar mRNA + lncRNA + snoRNA + RNAs no codificantes. Ideal para FFPE, muestras degradadas y descubrimiento.</p>
         <table class="spec-table">
-          <tr><th>Reads</th><td>~60 M PE / muestra</td></tr>
+          <tr><th>Librería tipo</th><td>TruSeq Total RNA · Ribo-Zero (Gold / Globin / Plant / Microbe / Plus)</td></tr>
+          <tr><th>Output</th><td>9–15 Gb / muestra</td></tr>
           <tr><th>Read length</th><td>2 × 150 bp</td></tr>
-          <tr><th>TAT</th><td>5 semanas</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
       <div class="pillar-card">
-        <div class="pillar-icon green">🧫</div>
-        <h3>Iso-Seq (PacBio)</h3>
-        <p>Long reads para reconstruir transcriptos completos sin ensamblaje.</p>
+        <div class="pillar-icon green">🧬</div>
+        <h3>small RNA-Seq</h3>
+        <p>Captura específica de RNAs pequeños (miRNAs, piRNAs, 16–40 nt). Útil para microRNAs reguladores, biomarcadores circulantes y descubrimiento.</p>
         <table class="spec-table">
-          <tr><th>Plataforma</th><td>PacBio Revio</td></tr>
-          <tr><th>Read length</th><td>1.5–10 kb HiFi</td></tr>
-          <tr><th>TAT</th><td>6–8 semanas</td></tr>
+          <tr><th>Librería tipo</th><td>SMARTer smRNA · NEBNext Small RNA · QIAseq miRNA</td></tr>
+          <tr><th>Read length</th><td>75 cycle single-end</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
     </div>
+    <p style="text-align:center; font-size:13px; color:var(--mc-mute); margin-top:24px;">
+      ¿Necesitas <strong>Iso-Seq full-length</strong> (PacBio Revio · 1.5–10 kb HiFi) para reconstruir transcriptos completos sin ensamblaje?
+      <a href="../contacto.html" style="color:var(--mc-teal); font-weight:700;">Consulta con un especialista →</a>
+    </p>
   </div>
 </section>
 
 <section id="muestra" class="section">
   <div class="container">
-    <h2 style="text-align:center; margin-bottom:36px;">Requerimientos de muestra</h2>
-    <div style="max-width:760px; margin:0 auto;">
-      <table class="spec-table">
-        <tr><th>Tipo</th><td>Tejido fresco/congelado (RNAlater) · células en cultivo · sangre PAXgene · RNA total extraído</td></tr>
-        <tr><th>Cantidad mín.</th><td>500 ng RNA total (ideal: 1–2 µg)</td></tr>
-        <tr><th>RIN</th><td>≥7 para tejido (≥6 para FFPE)</td></tr>
-        <tr><th>Concentración</th><td>≥20 ng/µL</td></tr>
-        <tr><th>Pureza</th><td>A260/280: 1.9–2.1 · A260/230: ≥1.8</td></tr>
-        <tr><th>Almacenamiento</th><td>-80°C · evitar ciclos congelación/descongelación</td></tr>
-      </table>
+    <div style="max-width:760px; margin:0 auto; text-align:center;">
+      <span class="eyebrow on-light">Requerimientos de muestra</span>
+      <h2 style="margin-bottom:16px;">Cada librería RNA tiene sus propias especificaciones.</h2>
+      <p style="font-size:15px; color:var(--mc-mute); line-height:1.65; margin-bottom:24px;">
+        Las cantidades mínimas, RIN aceptable y concentraciones varían significativamente entre mRNA, Total RNA y small RNA — y dentro de cada categoría, según la librería específica (TruSeq stranded, Ribo-Zero variantes, SMARTer, NEBNext, QIAseq, SureSelectXT RNA Direct, etc.). Consulta los <strong style="color:var(--mc-navy);">requerimientos validados oficiales</strong> en nuestro hub de recursos para evitar rechazos en QC.
+      </p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="../recursos.html" class="btn btn-primary">📁 Ver requerimientos por librería</a>
+        <a href="../contacto.html" class="btn btn-ghost">Consultar con especialista</a>
+      </div>
     </div>
   </div>
 </section>

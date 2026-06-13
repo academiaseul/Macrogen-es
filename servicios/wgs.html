@@ -143,11 +143,11 @@
       <div class="service-switcher-menu" role="menu" aria-label="Cambiar de servicio NGS">
         <div class="switcher-header">
           <strong>Catálogo NGS</strong>
-          <small>8 servicios · 1 sola ventanilla</small>
+          <small>8 servicios NGS · una sola ventanilla</small>
         </div>
-        <div class="service-switcher-grid">
-          <div class="service-switcher-col">
-            <h5>NGS · Estándar</h5>
+        <div class="service-switcher-grid is-unified">
+          <div class="service-switcher-col is-full">
+            <h5>NGS · Catálogo completo</h5>
         <a href="#" class="is-current" aria-current="page">
           <span class="switcher-icon">🧬</span>
           <span class="switcher-text"><strong>WGS</strong><small>Whole Genome Sequencing</small></span>
@@ -164,9 +164,6 @@
           <span class="switcher-icon">🔬</span>
           <span class="switcher-text"><strong>Single Cell</strong><small>10x Chromium · Parse</small></span>
         </a>
-          </div>
-          <div class="service-switcher-col">
-            <h5>NGS · Especializado</h5>
         <a href="./metagenoma.html">
           <span class="switcher-icon">🦠</span>
           <span class="switcher-text"><strong>Metagenómica</strong><small>16S · ITS · shotgun · ASV</small></span>
@@ -186,7 +183,7 @@
           </div>
         </div>
         <div class="service-switcher-footer">
-          <span>10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+          <span>8 servicios NGS · 1 sola ventanilla · Madrid + Santiago</span>
           <a href="../servicios.html">Ver catálogo completo →</a>
         </div>
       </div>
@@ -263,7 +260,7 @@
         <span class="eyebrow on-light">Descripción</span>
         <h2>Genoma completo en una sola corrida.</h2>
         <p>Whole Genome Sequencing (WGS) cubre el 100% del genoma — exones, intrones, regiones reguladoras, intergénicas y regiones repetitivas — entregando la base de datos más completa para responder cualquier pregunta genómica posterior.</p>
-        <p>En Macrogen Chile lo ofrecemos sobre Illumina NovaSeq X Plus para máxima profundidad y costo por base, o sobre PacBio Revio cuando se requieren long reads para resolver regiones complejas.</p>
+        <p>En Macrogen operamos con Illumina NovaSeq X Plus para máxima profundidad y costo por base, o con PacBio Revio cuando se requieren long reads para resolver regiones complejas.</p>
         <p style="margin-bottom:0;">Aplicaciones típicas: estudios poblacionales, genómica del cáncer, enfermedades raras, mejoramiento genético animal/vegetal y secuenciación de novo de organismos no modelo.</p>
       </div>
       <div>
@@ -306,7 +303,7 @@
           <tr><th>Plataforma</th><td>NovaSeq X Plus</td></tr>
           <tr><th>Read length</th><td>2 × 150 bp</td></tr>
           <tr><th>Output mín.</th><td>~180 Gb / muestra</td></tr>
-          <tr><th>TAT</th><td>5–7 semanas</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
       <div class="pillar-card">
@@ -317,7 +314,7 @@
           <tr><th>Plataforma</th><td>PacBio Revio</td></tr>
           <tr><th>Read length</th><td>15–20 kb HiFi</td></tr>
           <tr><th>Precisión</th><td>>99.9% Q30</td></tr>
-          <tr><th>TAT</th><td>6–8 semanas</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
     </div>
@@ -341,17 +338,16 @@
 
 <section id="muestra" class="section section-bg">
   <div class="container">
-    <h2 style="text-align:center; margin-bottom:36px;">Requerimientos de muestra</h2>
-    <div style="max-width:760px; margin:0 auto;">
-      <table class="spec-table">
-        <tr><th>Tipo de muestra</th><td>Sangre periférica · saliva · tejido fresco · FFPE · DNA extraído</td></tr>
-        <tr><th>Cantidad mín.</th><td>500 ng (ideal: ≥1 µg)</td></tr>
-        <tr><th>Concentración</th><td>≥20 ng/µL</td></tr>
-        <tr><th>Pureza</th><td>A260/280: 1.8–2.0 · A260/230: ≥1.8</td></tr>
-        <tr><th>Integridad</th><td>DIN ≥7 (Tapestation) o gel sin smearing</td></tr>
-        <tr><th>Contenedor</th><td>Tubo de bajo binding · etiqueta resistente al frío</td></tr>
-        <tr><th>Envío</th><td>Hielo seco · cadena de frío documentada</td></tr>
-      </table>
+    <div style="max-width:760px; margin:0 auto; text-align:center;">
+      <span class="eyebrow on-light">Requerimientos de muestra</span>
+      <h2 style="margin-bottom:16px;">Cada librería tiene sus propias especificaciones.</h2>
+      <p style="font-size:15px; color:var(--mc-mute); line-height:1.65; margin-bottom:24px;">
+        Las cantidades, concentraciones y QC aceptables varían según la librería WGS específica (TruSeq Nano, TruSeq PCR-free 350/550 bp, Nextera DNA XT, Shotgun LMW, xGen cfDNA, xGen FFPE) y la plataforma de destino. Consulta los <strong style="color:var(--mc-navy);">requerimientos validados oficiales</strong> en nuestro hub de recursos para evitar rechazos en QC.
+      </p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="../recursos.html" class="btn btn-primary">📁 Ver requerimientos por librería</a>
+        <a href="../contacto.html" class="btn btn-ghost">Consultar con especialista</a>
+      </div>
     </div>
   </div>
 </section>

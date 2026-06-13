@@ -143,11 +143,11 @@
       <div class="service-switcher-menu" role="menu" aria-label="Cambiar de servicio NGS">
         <div class="switcher-header">
           <strong>Catálogo NGS</strong>
-          <small>8 servicios · 1 sola ventanilla</small>
+          <small>8 servicios NGS · una sola ventanilla</small>
         </div>
-        <div class="service-switcher-grid">
-          <div class="service-switcher-col">
-            <h5>NGS · Estándar</h5>
+        <div class="service-switcher-grid is-unified">
+          <div class="service-switcher-col is-full">
+            <h5>NGS · Catálogo completo</h5>
         <a href="./wgs.html">
           <span class="switcher-icon">🧬</span>
           <span class="switcher-text"><strong>WGS</strong><small>Whole Genome Sequencing</small></span>
@@ -186,7 +186,7 @@
           </div>
         </div>
         <div class="service-switcher-footer">
-          <span>10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+          <span>8 servicios NGS · 1 sola ventanilla · Madrid + Santiago</span>
           <a href="../servicios.html">Ver catálogo completo →</a>
         </div>
       </div>
@@ -291,11 +291,11 @@
       <div class="pillar-card">
         <div class="pillar-icon green">🦠</div>
         <h3>16S rRNA</h3>
-        <p>Bacterias y arqueas. Regiones V3-V4, V4 o full-length disponibles.</p>
+        <p>Bacterias y arqueas. Regiones V3-V4, V1-V2 o full-length disponibles.</p>
         <table class="spec-table">
-          <tr><th>Reads</th><td>~50.000 / muestra</td></tr>
+          <tr><th>Reads</th><td>Mín. 100K · óptimo 100–200K / muestra</td></tr>
           <tr><th>Costo</th><td>Más económico</td></tr>
-          <tr><th>TAT</th><td>4 semanas</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
       <div class="pillar-card">
@@ -303,9 +303,9 @@
         <h3>ITS · 18S</h3>
         <p>ITS1/ITS2 para hongos. 18S para eucariontes (protistas, microalgas).</p>
         <table class="spec-table">
-          <tr><th>Reads</th><td>~50.000 / muestra</td></tr>
+          <tr><th>Reads</th><td>Mín. 100K · óptimo 100–200K / muestra</td></tr>
           <tr><th>Pipeline</th><td>DADA2 + UNITE</td></tr>
-          <tr><th>TAT</th><td>4 semanas</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
       <div class="pillar-card">
@@ -313,9 +313,10 @@
         <h3>Shotgun metagenomics</h3>
         <p>Resolución a nivel de gen funcional, cepa y reconstrucción de MAGs.</p>
         <table class="spec-table">
-          <tr><th>Reads</th><td>20–50 M / muestra</td></tr>
+          <tr><th>Output (taxonómico)</th><td>6 Gb / muestra</td></tr>
+          <tr><th>Output (funcional / genes)</th><td>15 Gb / muestra</td></tr>
           <tr><th>Pipeline</th><td>nf-core/mag · MetaPhlAn</td></tr>
-          <tr><th>TAT</th><td>6–8 semanas</td></tr>
+          <tr><th>TAT</th><td>4–6 semanas</td></tr>
         </table>
       </div>
     </div>
@@ -422,15 +423,16 @@
 
 <section id="muestra" class="section">
   <div class="container">
-    <h2 style="text-align:center; margin-bottom:36px;">Requerimientos de muestra</h2>
-    <div style="max-width:760px; margin:0 auto;">
-      <table class="spec-table">
-        <tr><th>Tipo</th><td>Heces · saliva · hisopado · tejido · suelo · agua · sedimento · DNA extraído</td></tr>
-        <tr><th>Cantidad mín. (DNA)</th><td>50 ng (ideal ≥100 ng)</td></tr>
-        <tr><th>Cantidad mín. (muestra fresca)</th><td>200 mg sólido · 2 mL líquido</td></tr>
-        <tr><th>Conservante</th><td>RNAlater · DNA/RNA Shield · -80°C</td></tr>
-        <tr><th>Controles</th><td>Recomendamos incluir mock community + extracción negativa</td></tr>
-      </table>
+    <div style="max-width:760px; margin:0 auto; text-align:center;">
+      <span class="eyebrow on-light">Requerimientos de muestra</span>
+      <h2 style="margin-bottom:16px;">Cada librería metagenómica tiene sus propias especificaciones.</h2>
+      <p style="font-size:15px; color:var(--mc-mute); line-height:1.65; margin-bottom:24px;">
+        Las cantidades mínimas, conservantes y QC varían entre amplicón (16S V3-V4, 16S V1-V2, ITS1, ITS2, 18S V4, 18S V9, Arc, COI) y shotgun (TruSeq Nano META, Nextera XT META), y según el tipo de matriz (heces · saliva · tejido · suelo · agua · sedimento). Consulta los <strong style="color:var(--mc-navy);">requerimientos validados oficiales</strong> en nuestro hub de recursos para evitar rechazos en QC.
+      </p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="../recursos.html" class="btn btn-primary">📁 Ver requerimientos por librería</a>
+        <a href="../contacto.html" class="btn btn-ghost">Consultar con especialista</a>
+      </div>
     </div>
   </div>
 </section>
