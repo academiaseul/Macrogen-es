@@ -266,6 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
           <p class="promo-validity">⏱ Disponible <strong>hasta el 31 de agosto de 2026</strong> · Solicitud web + recepción de muestras antes del cierre</p>
+          <button type="button" class="promo-btn-never" data-promo-never aria-label="Stop showing this promotion" style="display:block; margin:12px auto 0; background:transparent; border:none; color:rgba(255,255,255,0.42); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:0.3px; font-weight:500; padding:6px 12px; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)';" onmouseout="this.style.color='rgba(255,255,255,0.42)';">🚫 No mostrar más esta promoción</button>
         </div>
       </div>
     `;
@@ -277,28 +278,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Dismiss logic
-    function snooze(days) {
-      const until = Date.now() + days * 24 * 60 * 60 * 1000;
-      localStorage.setItem(STORAGE_KEY, String(until));
+    function permanentDismiss() {
+      // Suppress until promo expires (Sep 1, 2026). After that, popup naturally stops anyway.
+      localStorage.setItem(STORAGE_KEY, String(EXPIRES_AT));
     }
-    function closePopup(snoozeDays) {
+    function closePopup() {
       overlay.classList.remove('is-open');
       setTimeout(() => overlay.remove(), 400);
-      if (snoozeDays != null) snooze(snoozeDays);
       document.removeEventListener('keydown', onEsc);
     }
     function onEsc(e) {
-      if (e.key === 'Escape') closePopup(SNOOZE_DAYS);
+      if (e.key === 'Escape') closePopup();
     }
 
-    // Bindings
-    overlay.querySelector('[data-promo-close]').addEventListener('click', () => closePopup(SNOOZE_DAYS));
-    overlay.querySelector('[data-promo-dismiss]').addEventListener('click', () => closePopup(SNOOZE_DAYS));
-    overlay.querySelector('[data-promo-order]').addEventListener('click', () => closePopup(SNOOZE_DAYS * 4)); // longer snooze if they clicked through
+    // Bindings — popup re-appears every visit by default.
+    // Only [data-promo-never] persists a permanent dismissal in localStorage.
+    overlay.querySelector('[data-promo-close]').addEventListener('click', closePopup);
+    overlay.querySelector('[data-promo-dismiss]').addEventListener('click', closePopup);
+    overlay.querySelector('[data-promo-order]').addEventListener('click', closePopup); // user converted → just close
+    const neverBtn = overlay.querySelector('[data-promo-never]');
+    if (neverBtn) {
+      neverBtn.addEventListener('click', () => {
+        permanentDismiss();
+        closePopup();
+      });
+    }
 
-    // Click outside the modal closes
+    // Click outside the modal closes (no snooze — shows again next visit)
     overlay.addEventListener('click', e => {
-      if (e.target === overlay) closePopup(SNOOZE_DAYS);
+      if (e.target === overlay) closePopup();
     });
 
     // Copy code to clipboard
