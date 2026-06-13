@@ -2464,7 +2464,7 @@ function openContactModal() {
   }
 
   // === Open modal ===
-  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('modalOverlay').classList.add('is-open');
   setTimeout(function() {
     var fn = document.getElementById('formName');
     if (fn) fn.focus();
@@ -2472,7 +2472,7 @@ function openContactModal() {
 }
 
 function closeContactModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('modalOverlay').classList.remove('is-open');
 }
 
 // === Mailto helper (unused by UI · primary routing is via Formspree popup) ===
