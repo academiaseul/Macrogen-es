@@ -2475,8 +2475,9 @@ function closeContactModal() {
   document.getElementById('modalOverlay').classList.remove('open');
 }
 
-// === CTA wiring · open mail client with config pre-filled ===
-// Routes directly to chash@macrogen.com (Macrogen Iberoamérica specialist inbox)
+// === Mailto helper (unused by UI · primary routing is via Formspree popup) ===
+// Routing convention: TO jaykim@macrogen.com · CC chash@macrogen.com
+// Kept as fallback in case a direct-email link is reintroduced later.
 function buildSpecialistMailto() {
   if (!state.app || !state.library || !state.platform) return null;
   var app = APPLICATIONS[state.app];
@@ -2484,7 +2485,8 @@ function buildSpecialistMailto() {
   var plat = app.platforms.find(function(p) { return p.id === state.platform; });
   if (!app || !lib || !plat) return null;
 
-  var to = 'chash@macrogen.com';
+  var to = 'jaykim@macrogen.com';
+  var cc = 'chash@macrogen.com';
   var subject = 'Cotización NGS · ' + app.label + ' · ' + lib.name + ' · ' + plat.name;
 
   var lines = [
@@ -2522,7 +2524,8 @@ function buildSpecialistMailto() {
   var body = lines.join('\r\n');
 
   return 'mailto:' + to
-    + '?subject=' + encodeURIComponent(subject)
+    + '?cc=' + encodeURIComponent(cc)
+    + '&subject=' + encodeURIComponent(subject)
     + '&body=' + encodeURIComponent(body);
 }
 
@@ -2532,27 +2535,25 @@ function buildSpecialistMailto() {
     ctaBtn.addEventListener('click', function(e) {
       e.preventDefault();
       if (this.disabled) return;
-      var url = buildSpecialistMailto();
-      if (!url) {
+      if (!state.app || !state.library || !state.platform) {
         showToast('⚠️ Elige aplicación + librería + plataforma primero');
         return;
       }
-      // Open user's default email client
-      window.location.href = url;
-      showToast('📧 Abriendo tu cliente de email...');
+      // Open the popup with the contact form + config card
+      openContactModal();
     });
   }
-  // Generic fallback for data-open-contact elements (still goes to mailto)
+  // Generic fallback for data-open-contact elements
   document.addEventListener('click', function(e) {
     var t = e.target.closest && e.target.closest('[data-open-contact]');
     if (t) {
       e.preventDefault();
-      var url = buildSpecialistMailto();
-      if (url) window.location.href = url;
-      else showToast('⚠️ Selecciona configuración completa primero');
+      openContactModal();
     }
   });
 })();
+
+// (Mailto fallback button removed — popup form handles all leads via Formspree)
 
 // === Modal close handlers ===
 (function wireModalClose() {
