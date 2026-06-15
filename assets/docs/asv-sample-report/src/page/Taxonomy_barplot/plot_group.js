@@ -6,29 +6,39 @@ if (typeof new_name !== 'undefined' && new_name.length > 0) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const sortkey_input = document.querySelector("#sortkey");
-    sortkey_input.addEventListener("input", (event) => {
-        set_sortopt();
-        barplot(data);
-    });
+    if(sortkey_input) { // null 에러 방지
+        sortkey_input.addEventListener("input", (event) => {
+            set_sortopt();
+            barplot(data);
+        });
+    }
 
     const sortopt_input = document.querySelector("#sortopt");
-    sortopt_input.addEventListener("input", (event) => {
-        barplot(data);
-    });
+    if(sortopt_input) {
+        sortopt_input.addEventListener("input", (event) => {
+            barplot(data);
+        });
+    }
 
     const input = document.querySelector("#bandwidth");
-    input.addEventListener("input", (event) => {
-        barplot(data);
-    });
+    if(input) {
+        input.addEventListener("input", (event) => {
+            barplot(data);
+        });
+    }
 
     const top20_check = document.querySelector("#top20_check");
-    top20_check.addEventListener("input", (event) => {
-        const value = document.querySelector("#current_page");
-        var script_src = document.getElementById("json_data");
-        var s_path = script_src.src;
-        var text_name = value.value.split('(')[1].split(')')[0];
-        load_json(s_path, text_name);
-    });
+    if(top20_check) {
+        top20_check.addEventListener("input", (event) => {
+            const value = document.querySelector("#current_page");
+            var script_src = document.getElementById("json_data");
+            if (script_src && value) {
+                var s_path = script_src.src;
+                var text_name = value.value.split('(')[1].split(')')[0];
+                load_json(s_path, text_name);
+            }
+        });
+    }
 });
 
 var hovertemplates = "<b>Sample      :</b>  %{x}<br>" +
@@ -76,9 +86,7 @@ function calculateGroupAverages(data, groupList) {
     return groupAverages;
 }
 
-
 function load_json(src, dataKey) {
-    // group_name이 비어 있고 groupSelector가 "Custom"이 아니며 uploadedData가 없을 경우 플롯을 그리지 않음
     if ((typeof group_name === 'undefined' || group_name.length === 0) && 
         (document.getElementById('groupSelector').value !== "Custom" || !uploadedData)) {
         console.log("No group data available. Skipping plot.");
@@ -89,10 +97,8 @@ function load_json(src, dataKey) {
     var element = head.getElementsByClassName("json")[0];
 
     try {
-        element.parentNode.removeChild(element);
-    } catch (e) {
-        // Do nothing
-    }
+        if(element) element.parentNode.removeChild(element);
+    } catch (e) {}
 
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -105,133 +111,39 @@ function load_json(src, dataKey) {
     var select = document.getElementById("loading-message");
     var select_2 = document.getElementById("taxonomy_bar");
 
-    select.style.display = "block";
-    select_2.innerHTML = "";
+    if(select) select.style.display = "block";
+    if(select_2) select_2.innerHTML = "";
+    
     const value = document.querySelector("#current_page");
-    value.textContent = "Taxonomy Bar plot (" + dataKey + ")";
+    if(value) value.textContent = "Taxonomy Bar plot (" + dataKey + ")";
 
     script.onload = function () {
         switch (dataKey) {
-            case 'Phylum':
-                data = L2_data;
-                break;
-            case 'Class':
-                data = L3_data;
-                break;
-            case 'Order':
-                data = L4_data;
-                break;
-            case 'Family':
-                data = L5_data;
-                break;
-            case 'Genus':
-                data = L6_data;
-                break;
-            case 'Species':
-                data = L7_data;
-                break;
+            case 'Phylum': data = L2_data; break;
+            case 'Class': data = L3_data; break;
+            case 'Order': data = L4_data; break;
+            case 'Family': data = L5_data; break;
+            case 'Genus': data = L6_data; break;
+            case 'Species': data = L7_data; break;
             default:
                 console.error("Unknown dataKey: " + dataKey);
                 return;
         }
 
-        if (document.getElementById('top20_check').checked) {
+        if (document.getElementById('top20_check') && document.getElementById('top20_check').checked) {
             data = cut_count(data);
         }
 
-        var groupList;
-        if (document.getElementById('groupSelector').value === "Custom" && uploadedData) {
-            var samplelist = window['sample_list'];
-            groupList = samplelist.map(sample => dict[sample]);
-        } else {
-            var groupIndex = document.getElementById('groupSelector').selectedIndex;
-            groupList = window[`group_list${groupIndex + 1}`];
-        }
-
-        var groupAverages = calculateGroupAverages(data, groupList);
-
-        // === Custom일 때 sortkey 정렬 반영 ===
-        var sortkey = get_sortkey();
-        var sortopt = get_sortopt();
-        var xAxisGroups = Object.keys(groupAverages);
-
-        if (sortkey !== "default") {
-            if (sortkey === "samplename") {
-                xAxisGroups.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-                if (sortopt === "Descending") xAxisGroups.reverse();
-            } else {
-                var idx = data.findIndex(trace => trace.name === sortkey);
-                if (idx !== -1) {
-                    xAxisGroups.sort(function (a, b) {
-                        var valA = groupAverages[a].y[idx];
-                        var valB = groupAverages[b].y[idx];
-                        return sortopt === "Ascending" ? valA - valB : valB - valA;
-                    });
-                }
-            }
-        }
-
-        const plotData = data.map((trace, traceIndex) => ({
-            x: xAxisGroups,
-            y: xAxisGroups.map(group => groupAverages[group].y[traceIndex]),
-            name: trace.name,
-            type: 'bar',
-            hovertemplate: trace.name === 'Others'
-                ? "<b>Sample :</b> %{x}<br><b>Taxonomy :</b> Others<br><b>Percent :</b> %{y}<extra></extra>"
-                : hovertemplates,
-            customdata: trace.name === 'Others'
-                ? undefined
-                : Array(xAxisGroups.length).fill(trace.customdata),
-            marker: { color: trace.marker.color }
-        }));
-
+        // Dropdown 옵션 최신화
         set_sortkey(data);
         set_sortopt();
 
-        var layout = {
-            barmode: 'stack',
-            margin: { t: 20 },
-            yaxis: {
-                title: {
-                    text: 'Relative abundance (%)',
-                    font: {
-                        family: 'Arial',
-                        size: 25,
-                        color: '#000000'
-                    }
-                },
-                tickfont: {
-                    family: 'Arial',
-                    size: 20,
-                    color: '#323232'
-                },
-                showgrid: false
-            },
-            xaxis: {
-                type: 'category',
-                tickfont: {
-                    family: 'Arial',
-                    size: 16,
-                    color: '#323232'
-                },
-                automargin: true
-            },
-            autosize: false,
-            width: getwidth(),
-            height: 700
-        };
-
-        var config = {
-            displaylogo: false,
-            modeBarButtonsToRemove: ["pan", "zoom", "select", "lasso2d", "autoScale", "resetScale", "hoverCompareCartesian", "hoverClosestCartesian", "plotly-logo"]
-        };
-
-        Plotly.newPlot('taxonomy_bar', plotData, layout, config).then(function() {
-            var select = document.getElementById("loading-message");
-            select.style.display = "none";
-        }).catch(function(error) {
-            console.error("Plotly error:", error);
-        });
+        // =====================================================================
+        // [핵심 해결 로직]
+        // 기존의 중복된 낡은 그리기 코드를 모두 삭제하고, 
+        // 엑셀 정렬 유지 기능이 탑재된 barplot 함수로 깔끔하게 일원화했습니다!
+        // =====================================================================
+        barplot(data);
     };
 }
 
@@ -263,8 +175,8 @@ function cut_count(data) {
         y: total.map(val => 100 - val),
         name: 'Others',
         type: 'bar',
-        hovertemplate: "<b>Sample :</b> %{x}<br><b>Taxonomy :</b> Others<br><b>Percent :</b> %{y}<extra></extra>", // Others일 경우 Detail을 표시하지 않음
-        customdata: Array(data[0].x.length).fill(""), // 빈 문자열로 설정
+        hovertemplate: "<b>Sample :</b> %{x}<br><b>Taxonomy :</b> Others<br><b>Percent :</b> %{y}<extra></extra>", 
+        customdata: Array(data[0].x.length).fill(""), 
         marker: { color: colors[20] }
     };
 
@@ -272,10 +184,10 @@ function cut_count(data) {
     return data;
 }
 
-
-
 function set_sortkey(data) {
     var select = document.getElementById("sortkey");
+    if(!select) return; 
+    
     select.innerHTML = "";
     var el = document.createElement("option");
     el.textContent = "default";
@@ -298,6 +210,8 @@ function set_sortkey(data) {
 
 function set_sortopt() {
     var select = document.getElementById("sortkey");
+    if(!select) return; 
+    
     var value = select.value;
     if (value == "default") {
         $("#sortopt").attr("disabled", true);
@@ -308,18 +222,15 @@ function set_sortopt() {
 
 function get_sortkey() {
     var select = document.getElementById("sortkey");
-    var value = select.value;
-    return value;
+    return select ? select.value : "default";
 }
 
 function get_sortopt() {
     var select = document.getElementById("sortopt");
-    var value = select.value;
-    return value;
+    return select ? select.value : "Ascending";
 }
 
 function barplot(data) {
-    // 데이터 유효성 검사
     if (!data || data.length === 0 || !data[0].x || !data[0].y) {
         console.error("Invalid data structure for plotting.");
         return;
@@ -334,10 +245,10 @@ function barplot(data) {
         type: 'bar',
         hovertemplate: trace.name === 'Others'
             ? "<b>Sample :</b> %{x}<br><b>Taxonomy :</b> Others<br><b>Percent :</b> %{y}<extra></extra>"
-            : hovertemplates, // Others일 경우 Detail을 표시하지 않음
+            : hovertemplates, 
         customdata: trace.name === 'Others'
             ? undefined
-            : Array(trace.x.length).fill(trace.customdata), // customdata 설정
+            : Array(trace.x.length).fill(Array.isArray(trace.customdata) ? trace.customdata[0] : trace.customdata),
         marker: { color: trace.marker.color }
     }));
 
@@ -380,17 +291,12 @@ function barplot(data) {
     };
 
     Plotly.newPlot('taxonomy_bar', plotData, layout, config).then(function() {
-        const select = document.getElementById("loading-message");
-        select.style.display = "none";
+        var select = document.getElementById("loading-message");
+        if(select) select.style.display = "none";
     }).catch(function(error) {
         console.error("Plotly error:", error);
     });
 }
-
-
-
-
-
 
 function sortWithIndeces(toSort) {
     for (var i = 0; i < toSort.length; i++) {
@@ -439,10 +345,9 @@ function sort_data(data) {
     const sampleList = window['sample_list'];
     let groupList;
 
-    // === Custom 그룹 여부 확인 ===
-    if (document.getElementById('groupSelector').value === "Custom") {
+    if (document.getElementById('groupSelector') && document.getElementById('groupSelector').value === "Custom") {
         groupList = sampleList.map(sample => dict[sample]);
-    } else {
+    } else if (document.getElementById('groupSelector')) {
         const groupIndex = document.getElementById('groupSelector').selectedIndex;
         groupList = window[`group_list${groupIndex + 1}`];
     }
@@ -455,15 +360,16 @@ function sort_data(data) {
     let indexing_ = 0;
     let plotData = [];
 
-    // === 1. 그룹 평균 계산 ===
     const groupAverages = calculateGroupAverages(data, groupList);
     const groupKeys = Object.keys(groupAverages);
 
     let xAxisGroups;
 
-    // === 2. x축 그룹 정렬 로직 ===
-    if (sortkey === "default") {
-        // sample_list 순서를 기반으로 group 이름 표시
+    if (sortkey === "default" && window.custom_x_order && window.custom_x_order.length > 0) {
+        xAxisGroups = window.custom_x_order.filter(g => groupKeys.includes(g));
+        groupKeys.forEach(g => { if(!xAxisGroups.includes(g)) xAxisGroups.push(g); });
+    } 
+    else if (sortkey === "default") {
         xAxisGroups = sampleList.map((_, i) => groupList[i]);
         xAxisGroups = [...new Set(xAxisGroups)];
     } else if (sortkey === "samplename") {
@@ -485,7 +391,6 @@ function sort_data(data) {
         });
     }
 
-    // === 3. plotData 생성 ===
     plotData = data.map((trace, traceIndex) => ({
         x: xAxisGroups,
         y: xAxisGroups.map(g => groupAverages[g].y[traceIndex]),
@@ -496,11 +401,10 @@ function sort_data(data) {
             : hovertemplates,
         customdata: trace.name === 'Others'
             ? undefined
-            : Array(xAxisGroups.length).fill(trace.customdata),
+            : Array(xAxisGroups.length).fill(Array.isArray(trace.customdata) ? trace.customdata[0] : trace.customdata),
         marker: { color: trace.marker.color }
     }));
 
-    // === 4. stack 순서 조정: 선택된 trace → percent 높은 순 → Others ===
     let selectedTrace = null;
 
     if (sortkey !== "default" && sortkey !== "samplename") {
@@ -510,13 +414,11 @@ function sort_data(data) {
         }
     }
 
-    // === 5. 전체 샘플 기준으로 y값 합산 (stack 정렬용) ===
     const totalPercentMap = {};
     data.forEach(trace => {
         totalPercentMap[trace.name] = trace.y.reduce((acc, val) => acc + val, 0);
     });
 
-    // === 6. stack 순서 정렬 ===
     const othersIndex = plotData.findIndex(trace => trace.name === 'Others');
     const othersTrace = othersIndex !== -1 ? plotData.splice(othersIndex, 1)[0] : null;
 
@@ -531,7 +433,6 @@ function sort_data(data) {
         return sumB - sumA;
     });
 
-    // === 7. 최종 조립 ===
     plotData = [];
     if (selectedTrace) plotData.push(selectedTrace);
     plotData = [...plotData, ...middleTraces];
@@ -539,13 +440,6 @@ function sort_data(data) {
 
     return [plotData, indexing_];
 }
-
-
-
-
-
-
-
 
 function setwidth(data) {
     for (var i = 0; i < data.length; i++) {
@@ -556,7 +450,7 @@ function setwidth(data) {
 
 function getwidth() {
     const input = document.querySelector("#bandwidth");
-    return parseInt(input.value, 10);
+    return input ? parseInt(input.value, 10) : 1100;
 }
 
 function downloadimg(type) {
@@ -576,44 +470,16 @@ function highlight(element) {
 }
 
 var gcolors = [
-    "#1D5D9B",
-    "#75C2F6",
-    "#F4D160",
-    "#FBEEAC",
-    "#008B8B",
-    "#DAA520",
-    "#E6E6FA",
-    "#8B0000",
-    "#ADD8E6",
-    "#E1BEE7",
-    "#D8D8D8",
-    "#FFE4B5",
-    "#FFDAB9",
-    "#00CED1",
+    "#1D5D9B", "#75C2F6", "#F4D160", "#FBEEAC", "#008B8B",
+    "#DAA520", "#E6E6FA", "#8B0000", "#ADD8E6", "#E1BEE7",
+    "#D8D8D8", "#FFE4B5", "#FFDAB9", "#00CED1",
 ];
 
 var colors = [
-    "#A54657",
-    "#582630",
-    "#fdf6b9",
-    "#b8aa99",
-    "#CDE990",
-    "#4DAA57",
-    "#AFD3E2",
-    "#19A7CE",
-    "#d7accb",
-    "#cb5898",
-    "#7B8FA1",
-    "#3465be",
-    "#F4D160",
-    "#F6AE2D",
-    "#aba5cf",
-    "#64489e",
-    "#F1A66A",
-    "#F26157",
-    "#97DECE",
-    "#439A97",
-    "#D3D3D3"
+    "#A54657", "#582630", "#fdf6b9", "#b8aa99", "#CDE990",
+    "#4DAA57", "#AFD3E2", "#19A7CE", "#d7accb", "#cb5898",
+    "#7B8FA1", "#3465be", "#F4D160", "#F6AE2D", "#aba5cf",
+    "#64489e", "#F1A66A", "#F26157", "#97DECE", "#439A97", "#D3D3D3"
 ];
 
 var currentColorIndex;
@@ -626,34 +492,38 @@ function toggleColorPicker() {
     Array.from(colorPickerButtons).forEach(function (button) {
         button.style.display = "inline-block";
     });
-    colorPickerModal.style.display = "flex";
+    if(colorPickerModal) colorPickerModal.style.display = "flex";
 }
 
 function openColorPicker(colorIndex) {
     currentColorIndex = colorIndex;
     var colorPickerModal = document.getElementById("colorPickerModal");
     var colorPickerInput = document.getElementById("colorPickerInput");
-    colorPickerInput.value = colors[currentColorIndex];
-    colorPickerModal.style.display = "flex";
+    if(colorPickerInput) colorPickerInput.value = colors[currentColorIndex];
+    if(colorPickerModal) colorPickerModal.style.display = "flex";
 }
 
 function changeColor() {
     var colorPickerModal = document.getElementById("colorPickerModal");
     var colorPickerInput = document.getElementById("colorPickerInput");
+    if(!colorPickerInput) return;
+    
     var selectedColor = colorPickerInput.value;
     colors[currentColorIndex] = selectedColor;
     updateColorPickerButton(currentColorIndex, selectedColor);
 
     const value = document.querySelector("#current_page");
     var script_src = document.getElementById("json_data");
-    var s_path = script_src.src;
-    var text_name = value.value.split('(')[1].split(')')[0];
-    load_json(s_path, text_name);
+    if(script_src && value) {
+        var s_path = script_src.src;
+        var text_name = value.value.split('(')[1].split(')')[0];
+        load_json(s_path, text_name);
+    }
 }
 
 function closeColor() {
     var colorPickerModal = document.getElementById("colorPickerModal");
-    colorPickerModal.style.display = "none";
+    if(colorPickerModal) colorPickerModal.style.display = "none";
 }
 
 function updateColorPickerButton(colorIndex, color) {
@@ -662,22 +532,3 @@ function updateColorPickerButton(colorIndex, color) {
         button.style.backgroundColor = color;
     }
 }
-
-// DOMContentLoaded 이벤트 리스너 내에서 초기화
-document.addEventListener("DOMContentLoaded", function () {
-    // 초기화 시 각 버튼에 색상 적용
-    colors.forEach(function (color, index) {
-        updateColorPickerButton(index, color);
-    });
-
-    // 페이지 로드 시 기본 데이터를 로드하고 그래프를 그립니다.
-    const defaultButton = document.getElementById("default_button");
-    if (defaultButton) {
-        defaultButton.click();
-    } else {
-        // 기본 데이터가 없을 경우, 직접 barplot 함수를 호출하여 초기 그래프를 그립니다.
-        if (data) {
-            barplot(data);
-        }
-    }
-});

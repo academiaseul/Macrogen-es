@@ -5,35 +5,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--css-->
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="../css/group-modal.css">
 
-    <!--tools-->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
 
-    <!--json data-->
     <script src="../main.js"></script>
+    <script src="../js/excel/xlsx.full.min.js"></script>
 
     <script>
         var array;
-        var ordernumber = array.project;
-        var customer = array.name;
-        var institute = array.organization;
-        var application = array.application;
-        var appCode = array.appCode;
-        var numberofsample = array.numberofsample;
+        var ordernumber = (typeof array !== 'undefined' && array.project) ? array.project : "N/A";
+        var customer = (typeof array !== 'undefined' && array.name) ? array.name : "N/A";
+        var institute = (typeof array !== 'undefined' && array.organization) ? array.organization : "N/A";
+        var application = (typeof array !== 'undefined' && array.application) ? array.application : "N/A";
+        var appCode = (typeof array !== 'undefined' && array.appCode) ? array.appCode : "N/A";
+        var numberofsample = (typeof array !== 'undefined' && array.numberofsample) ? array.numberofsample : 0;
         document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
     </script>
 </head>
 
 <body class="total_font">
-    <!--header-->
     <header id="header">
         <div class="header-wrap clearfix">
             <div class="logo">
@@ -51,10 +50,10 @@
                 function generateMenuHtml(menuArray) {
                     let html = '';
                     menuArray.forEach(item => {
-                        if (item.category) { // 변경
+                        if (item.category) { 
                             html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
                             html += '<ul class="dropdown-menu">';
-                            html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                            html += generateMenuHtml(item.path); 
                             html += '</ul></li>';
                         } else if (item.display) {
                             if (item.path === "") {
@@ -69,7 +68,7 @@
 
                 var html = "";
                 var nav_ = document.getElementById('navbar_ui');
-                if (array.page) {
+                if (typeof array !== 'undefined' && array.page) {
                     array.page.forEach(page => {
                         if (page.category) {
                             let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
@@ -86,9 +85,6 @@
         </nav>
     </header>
 
-
-    <!--Main title-->
-    <!-- Top button -->
     <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
     <script>
         $(function () {
@@ -100,7 +96,6 @@
                 }
             });
 
-            //top 버튼 누르면 맨 위로 이동
             $('#backtotop').click(function () {
                 $('body,html').animate({
                     scrollTop: 0
@@ -110,9 +105,6 @@
     </script>
 
     <div class="container">
-
-
-        <!-- Main Title -->
         <div class="div_icon">
             <img src="../img/Icon_img/VARIANT_stats.png">
         </div>
@@ -120,9 +112,6 @@
         <div class="div_h1" id="WorkFlow">
             <h1>Taxonomy analysis</h1>
         </div><br><br>
-        <!-- Main Title  end-->
-
-        <!-- HTML 파일의 버튼 부분 수정 -->
         <div style="width:100%; display: flex; padding-bottom:30px; ">
             <button id="default_button" class="myButton big" style="flex-grow: 1;"
                 onclick="load_json('./Taxonomy_heatmap/Bayesian_NCBI_16S/Heatmapplot_L2.js','Phylum');highlight(this);">Phylum</button>
@@ -138,25 +127,19 @@
                 onclick="load_json('./Taxonomy_heatmap/Bayesian_NCBI_16S/Heatmapplot_L7.js','Species');highlight(this);">Species</button>
         </div>
 
-        <!-- box package  start-->
         <div class="col-sm-12">
             <div class="panel-group">
                 <div class="panel panel-default">
-                    <!--  heaer -->
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" href="#collapse_1"><output id="current_page"
                                     style="color: rgb(0, 0, 0);font-size:22px;font-weight:1000;;"></output></a>
                         </h4>
                     </div>
-                    <!--  inner -->
                     <div id="collapse_1" class="panel-collapse collapse in ">
                         <div class="panel-body xy_scroll">
-
-
                             <div style="display: flex;padding-top:15px;padding-bottom:20px">
-                                <div style="">
-
+                                <div>
                                     <label>Heatmap Plot Controls</label><br><br>
                                     <div style="display: flex">
                                         <button class="myButton_1 left" onclick="click_color()">Heatmap Color</button>
@@ -172,38 +155,27 @@
                                 </div>
                             </div>
 
-
                             <div id="inchlib" style="padding-top:15px;padding-bottom:30px"></div>
 
                             <hr>
                             <p style="font-size:17px;text-indent:50px; white-space: nowrap; ">&#9679; Taxonomic profiles
                                 for the mean relative abundance of top abundant (up to 20) Taxon were visualized. The
                                 full results can be found in the downloaded result file.</p>
-                            </ </div>
-
-
-                            <script src="../js/heatmap/Inchlib.js"></script>
-                            <script src="../js/heatmap/kinetic-v5.1.0.min.js"></script>
-                            <script src="./Taxonomy_heatmap/plot.js"></script>
-                            <script>
-                                document.addEventListener("DOMContentLoaded", function (event) {
-                                    document.getElementById("default_button").click();
-                                });
-                                //download_image(dataUrl);
-                            </script>
                         </div>
+                        
+                        <script src="../js/heatmap/Inchlib.js"></script>
+                        <script src="../js/heatmap/kinetic-v5.1.0.min.js"></script>
+                        <script src="./Taxonomy_heatmap/plot.js"></script>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function (event) {
+                                document.getElementById("default_button").click();
+                            });
+                        </script>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
-        <!-- box package end -->
-
-
-
-
+        
         <footer id="footer" style="display:none" class="footer_style">
             <div class="container">
                 <div class="left">
@@ -270,6 +242,154 @@
                 </div>
             </div>
         </footer>
-</body>
+    </div>
 
+    <button class="floating-btn" style="position: fixed; right: 30px; top: calc(50% + 35px); z-index: 1000;" onclick="$('#metadataModal').modal('show')">
+        <i class="fa fa-edit"></i>
+        <span id="tooltipText" class="tooltip-text">
+            <strong>Sample Customization</strong><br>
+            Upload <code>metadata.xlsx</code> for custom sample ordering.
+        </span>
+    </button>
+
+    <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Sample Management</h4>
+        </div>
+        <div class="modal-body">
+            <div id="usage">
+                <h4>How to Customize Samples:</h4>
+                <ol>
+                    <li id="usageText">Click <strong>Download Template</strong> to get the <code>metadata.xlsx</code> file.</li>
+                    <li>Open the file and specify your custom sample order in the 'SampleID' column.</li>
+                    <li>Save the changes and click <strong>Upload File</strong> to apply your custom ordering.</li>
+                </ol>
+                <p>Important: Custom sample settings are temporary. If you navigate away or refresh this page, you will need to re-upload the file.</p>
+            </div>
+            <div class="button-container">
+                <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button" download>
+                    <i class="fa fa-download"></i>Download Template
+                </a>
+                <label class="btn-modal-action upload_label_button">
+                    <i class="fa fa-upload"></i> Upload File
+                    <input type="file" id="fileInput" accept=".xlsx" style="display: none;" />
+                </label>
+            </div>
+            <div id="fileNameDisplay"></div>
+        </div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // 모달 텍스트 및 템플릿 파일명 동적 초기화
+                if (typeof ordernumber !== 'undefined') {
+                    const newFileName = `metadata_${ordernumber}.xlsx`;
+                    const newFileNameHtml = `<code>${newFileName}</code>`;
+                    
+                    const downloadLink = document.getElementById('downloadTemplateLink');
+                    if (downloadLink) {
+                        downloadLink.href = `../${newFileName}`;
+                        downloadLink.download = newFileName;
+                    }
+                    
+                    const tooltipText = document.getElementById('tooltipText');
+                    if (tooltipText) {
+                        tooltipText.innerHTML = `<strong>Sample Customization</strong><br>Upload ${newFileNameHtml} for custom sample ordering.`;
+                    }
+                    
+                    const usageText = document.getElementById('usageText');
+                    if (usageText) {
+                        usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
+                    }
+                }
+
+                // 엑셀에서 SampleID 추출 후 정렬 로직 (Inchlib Heatmap 전용)
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput) {
+                    fileInput.addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (!file) return;
+
+                        const fileNameDisplay = document.getElementById('fileNameDisplay');
+                        if (fileNameDisplay) {
+                            fileNameDisplay.style.display = 'flex';
+                            fileNameDisplay.innerHTML = `<span class="file-icon"><i class="fa fa-check-circle"></i></span> <span class="file-name-text">Successfully loaded: ${file.name}</span>`;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            try {
+                                const dataXLSX = new Uint8Array(e.target.result);
+                                const workbook = XLSX.read(dataXLSX, { type: 'array' });
+                                const sheet = workbook.Sheets['Group'] || workbook.Sheets[workbook.SheetNames[0]];
+                                
+                                const json_data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                                const newOrder = [];
+                                
+                                // SampleID 열 자동 탐색
+                                let sampleIdx = 0; 
+                                if(json_data[0]) {
+                                    for(let i = 0; i < json_data[0].length; i++) {
+                                        if(String(json_data[0][i]).trim().toLowerCase() === 'sampleid') {
+                                            sampleIdx = i;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                // 위에서 아래로 추출
+                                for (let i = 1; i < json_data.length; i++) {
+                                    let val = json_data[i][sampleIdx];
+                                    if (val) {
+                                        let sampleName = String(val).trim();
+                                        if (!newOrder.includes(sampleName)) {
+                                            newOrder.push(sampleName);
+                                        }
+                                    }
+                                }
+
+                                if (newOrder.length > 0) {
+                                    if (typeof sample_list !== 'undefined') {
+                                        const oldOrder = [...sample_list];
+                                        window.sample_list = newOrder; // 전역 변수 업데이트
+                                        
+                                        // [핵심] Inchlib 데이터 객체(currentLoadedHeatmapData)의 Z축 렌더링 강제 재배치
+                                        if (typeof currentLoadedHeatmapData !== 'undefined' && currentLoadedHeatmapData && currentLoadedHeatmapData.data && currentLoadedHeatmapData.data.nodes) {
+                                            
+                                            // 이전 순서에서 새 순서로 가는 인덱스 맵 생성
+                                            const indices = newOrder.map(val => oldOrder.indexOf(val));
+                                            
+                                            Object.values(currentLoadedHeatmapData.data.nodes).forEach(node => {
+                                                const oldFeatures = [...node.features];
+                                                // 매핑된 인덱스에 따라 각 row(Taxon)의 배열을 통째로 뒤바꿈
+                                                node.features = indices.map(i => i !== -1 ? oldFeatures[i] : 0); 
+                                            });
+                                            currentLoadedHeatmapData.data.feature_names = newOrder;
+                                            
+                                            if (typeof setwidth === 'function') setwidth();
+                                            if (typeof runinchlib === 'function') runinchlib(currentLoadedHeatmapData, getcolor(), false);
+                                        }
+                                    }
+
+                                    // 정렬이 완료되면 자연스럽게 모달 닫기
+                                    setTimeout(() => {
+                                        $('#metadataModal').modal('hide');
+                                    }, 800);
+                                    
+                                } else {
+                                    throw new Error("No valid SampleID data found.");
+                                }
+                            } catch (error) {
+                                if (fileNameDisplay) {
+                                    fileNameDisplay.innerHTML = `<span class="file-icon" style="color:#c0392b;"><i class="fa fa-times-circle"></i></span> <span class="file-name-text" style="color:#c0392b;">Error: ${error.message}</span>`;
+                                }
+                            }
+                        };
+                        reader.readAsArrayBuffer(file);
+                    });
+                }
+            });
+        </script>
+    </div>
+</body>
 </html>

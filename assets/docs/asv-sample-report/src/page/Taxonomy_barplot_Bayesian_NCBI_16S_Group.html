@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="../css/group-modal.css">
 
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -21,7 +20,6 @@
     <script src="../js/plotly/plotly-2.20.0.min.js"></script>
     <script src="../js/excel/xlsx.full.min.js"></script>
     <script src="./Taxonomy_barplot/plot_group.js"></script>
-
     <script src="../js/group-modal.js"></script>
 
     <script>
@@ -53,10 +51,10 @@
                 function generateMenuHtml(menuArray) {
                     let html = '';
                     menuArray.forEach(item => {
-                        if (item.category) { // 변경
+                        if (item.category) { 
                             html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
                             html += '<ul class="dropdown-menu">';
-                            html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                            html += generateMenuHtml(item.path); 
                             html += '</ul></li>';
                         } else if (item.display) {
                             if (item.path === "") {
@@ -138,7 +136,7 @@
                                     </div>
                                 </div>
                                 <div style="display: flex;padding-top:0px;padding-left:150px">
-                                    <div style="width:100%;"><b>Sample Sorting By </b><br><select name="sortkey" id="sortkey" ></select></div>
+                                    <div style="width:100%;"><b>Group Sorting By </b><br><select name="sortkey" id="sortkey" style="width:100%;"></select></div>
                                     <div style="width:2%;"></div>
                                     <div style="padding-right:15px;"><br><select name="sortopt" id="sortopt">
                                             <option value="Ascending">Ascending</option>
@@ -197,7 +195,6 @@
                             <div id="taxonomy_bar"></div>
 
                             <script>
-                                // plot_group.js가 참조할 수 있도록 전역 변수 'dict'와 'uploadedData'를 선언합니다.
                                 var dict = {};
                                 var uploadedData = null;
 
@@ -206,7 +203,54 @@
                                     const taxonomyBarDiv = document.getElementById('taxonomy_bar');
                                     const fileNameDisplayDiv = document.getElementById('fileNameDisplay');
 
-                                    // groupSelector 옵션 채우기
+                                    // =========================================================================
+                                    // [핵심 해결] Plotly 엔진 직접 가로채기 (강력한 툴팁 중복 제거)
+                                    // =========================================================================
+                                    if (window.Plotly) {
+                                        const cleanHoverText = function(chartData) {
+                                            if (Array.isArray(chartData)) {
+                                                chartData.forEach(trace => {
+                                                    ['text', 'hovertext'].forEach(prop => {
+                                                        if (trace[prop]) {
+                                                            if (Array.isArray(trace[prop])) {
+                                                                trace[prop] = trace[prop].map(t => {
+                                                                    if (typeof t === 'string') {
+                                                                        // 콤마(,)나 <br> 등 구분자를 처리하여 중복 단어 하나만 남김
+                                                                        let parts = t.split(/,|<br>/).map(s => s.trim()).filter(Boolean);
+                                                                        let uniqueParts = [...new Set(parts)];
+                                                                        return uniqueParts.join(', ');
+                                                                    }
+                                                                    return t;
+                                                                });
+                                                            } else if (typeof trace[prop] === 'string') {
+                                                                let parts = trace[prop].split(/,|<br>/).map(s => s.trim()).filter(Boolean);
+                                                                let uniqueParts = [...new Set(parts)];
+                                                                trace[prop] = uniqueParts.join(', ');
+                                                            }
+                                                        }
+                                                    });
+                                                });
+                                            }
+                                        };
+
+                                        if (typeof Plotly.newPlot === 'function') {
+                                            const originalNewPlot = Plotly.newPlot;
+                                            Plotly.newPlot = function(divId, chartData, layout, config) {
+                                                cleanHoverText(chartData); // 그래프를 그리기 직전에 데이터 세탁
+                                                return originalNewPlot(divId, chartData, layout, config);
+                                            };
+                                        }
+
+                                        if (typeof Plotly.react === 'function') {
+                                            const originalReact = Plotly.react;
+                                            Plotly.react = function(divId, chartData, layout, config) {
+                                                cleanHoverText(chartData); // 업데이트될 때도 데이터 세탁
+                                                return originalReact(divId, chartData, layout, config);
+                                            };
+                                        }
+                                    }
+
+                                    // 기본 그룹 옵션 생성
                                     if (typeof group_count !== 'undefined' && group_count > 0 && typeof group_name !== 'undefined' && Array.isArray(group_name)) {
                                         for (let i = 0; i < group_count; i++) {
                                             const option = document.createElement('option');
@@ -227,94 +271,77 @@
                                         groupSelector.value = 'Custom';
                                     }
 
-                                    // groupSelector 변경 시 동작 정의
                                     groupSelector.addEventListener('change', function () {
                                         const currentLevelButton = document.querySelector('.myButton.big.highlighted') || document.getElementById("default_button");
 
                                         if (this.value === "Custom") {
-                                            // 'Custom'을 다시 선택했을 때
                                             if (uploadedData) {
-                                                // 이전에 업로드한 데이터가 있으면, 파일 이름을 다시 보여주고 그래프를 그립니다.
                                                 if (fileNameDisplayDiv) fileNameDisplayDiv.style.display = 'flex';
                                                 updateGraphWithNewData(uploadedData);
                                             } else {
-                                                // 업로드한 데이터가 없으면 안내 문구를 표시합니다.
                                                 taxonomyBarDiv.innerHTML = "<p style='text-align:center; padding:20px;'>Please upload a metadata file for custom grouping.</p>";
-                                                
-                                                // ==================== [수정된 부분] ====================
-                                                // 로딩 메시지를 강제로 숨깁니다.
-                                                document.getElementById('loading-message').style.display = 'none';
-                                                // ======================================================
+                                                const loadingMsg = document.getElementById('loading-message');
+                                                if(loadingMsg) loadingMsg.style.display = 'none';
 
                                                 if (typeof highlightFloatingButton === 'function') {
-                                                    highlightFloatingButton(3000); // 3초 동안 강조
+                                                    highlightFloatingButton(3000); 
                                                 }
                                             }
                                         } else {
-                                            // 사전 정의된 그룹을 선택했을 때
+                                            window.custom_x_order = [];
                                             if (fileNameDisplayDiv) fileNameDisplayDiv.style.display = 'none';
-
                                             if (currentLevelButton && typeof load_json === 'function') {
                                                 currentLevelButton.click();
                                             }
                                         }
                                     });
 
-                                    // 페이지 로드 시 기본 버튼 클릭
-                                    const defaultButton = document.getElementById("default_button");
-                                    if (typeof group_name !== 'undefined' && group_name.length > 0) {
-                                        if (defaultButton && typeof load_json === 'function' && typeof highlight === 'function') {
-                                            defaultButton.click();
-                                        }
+                                    // group-modal.js에서 엑셀 읽기를 마치고 딕셔너리(data)를 넘겨주는 함수
+                                    window.updateGraphWithNewData = function(data) {
+                                        window.dict = data;
+                                        window.uploadedData = data;
+                                        if (data && Object.keys(data).length > 0) {
+                                            
+                                            // 1. group-modal.js가 생성한 딕셔너리의 삽입 순서(B -> A)를 추출
+                                            const newOrder = [...new Set(Object.values(data))];
+
+                                            // 2. 기본 그래프 그리기 로직 호출 (여기서 기존의 알파벳 정렬이 수행됨)
+                                            const currentLevelButton = document.querySelector('.myButton.big.highlighted') || document.getElementById("default_button");
+                                            if (currentLevelButton && typeof load_json === 'function') {
+                                                currentLevelButton.click(); 
+                                            }
+
+                                            // 3. [타이밍 문제 완벽 해결]
+                                            // 기본 그래프 로직이 셋팅될 때까지 0.3초(300ms) 기다렸다가, 우리가 추출한 순서로 강제 덮어쓰고 다시 렌더링
+                                            setTimeout(() => {
+                                                window.custom_x_order = newOrder; 
+                                                
+                                                const sortkeyElem = document.getElementById("sortkey");
+                                                if(sortkeyElem) sortkeyElem.value = "default";
+                                                if (typeof set_sortopt === 'function') set_sortopt();
+                                                
+                                                if (typeof barplot === 'function' && typeof window.data !== 'undefined') {
+                                                    barplot(window.data); // 완벽하게 B->A 순서가 적용된 채로 그래프 재표출
+                                                }
+                                            }, 300); 
+
                                         } else {
-                                            // 사전 정의된 그룹이 없으면 'Custom' 상태를 트리거하여 안내 문구 표시
-                                            groupSelector.dispatchEvent(new Event('change'));
+                                            document.getElementById('taxonomy_bar').innerHTML = "<p style='text-align:center; padding:20px;'>No valid custom data to display.</p>";
                                         }
-                                    });
+                                    };
 
-                                    
-
-                                /**
-                                 * group-modal.js로부터 데이터를 받아 그래프를 업데이트하는 페이지 고유 함수.
-                                 * @param {object} data - 파일에서 파싱된 키-값 형태의 그룹 데이터.
-                                 */
-                                function updateGraphWithNewData(data) {
-                                    // 전역 변수 dict와 uploadedData에 데이터를 할당합니다.
-                                    window.dict = data;
-                                    window.uploadedData = data;
-
-                                    if (data && Object.keys(data).length > 0) {
-                                        const currentLevelButton = document.querySelector('.myButton.big.highlighted') || document.getElementById("default_button");
-                                        if (currentLevelButton && typeof load_json === 'function') {
-                                            currentLevelButton.click();
-                                        }
-                                    } else {
-                                        document.getElementById('taxonomy_bar').innerHTML = "<p style='text-align:center; padding:20px;'>No valid custom data to display.</p>";
+                                    if (typeof load_json === 'undefined') {
+                                        window.load_json = function (path, level) {
+                                            document.getElementById('current_page').innerText = level;
+                                        };
                                     }
-                                }
-
-                                // 페이지에 필요한 플레이스홀더 함수들
-                                if (typeof load_json === 'undefined') {
-                                    window.load_json = function (path, level) {
-                                        document.getElementById('current_page').innerText = level;
-                                        if (document.getElementById('groupSelector').value === 'Custom' && uploadedData) {
-                                            document.getElementById('taxonomy_bar').innerHTML = `<p style='text-align:center; padding:20px;'>Placeholder: Displaying custom group for ${level}</p>`;
-                                        } else {
-                                            document.getElementById('taxonomy_bar').innerHTML = `<p style='text-align:center; padding:20px;'>Placeholder: Displaying predefined group for ${level}</p>`;
-                                        }
-                                    };
-                                }
-                                if (typeof highlight === 'undefined') {
-                                    window.highlight = function (elem) {
-                                        document.querySelectorAll('.myButton.big.highlighted').forEach(b => b.classList.remove('highlighted'));
-                                        if (elem) elem.classList.add('highlighted');
-                                    };
-                                }
-                                if (typeof group_count === 'undefined') window.group_count = 0;
-                                if (typeof group_name === 'undefined') window.group_name = [];
-                                if (typeof toggleColorPicker === 'undefined') window.toggleColorPicker = function () { };
-                                if (typeof downloadimg === 'undefined') window.downloadimg = function (format) { };
-                                if (typeof openColorPicker === 'undefined') window.openColorPicker = function (idx) { };
+                                    if (typeof highlight === 'undefined') {
+                                        window.highlight = function (elem) {
+                                            document.querySelectorAll('.myButton.big.highlighted').forEach(b => b.classList.remove('highlighted'));
+                                            if (elem) elem.classList.add('highlighted');
+                                        };
+                                    }
+                                });
                             </script>
                         </div>
                     </div>
@@ -323,17 +350,17 @@
         </div>
     </div>
 
-    <button class="floating-btn">
+    <button class="floating-btn" style="position: fixed; right: 30px; top: calc(50% + 35px); z-index: 1000;" onclick="$('#metadataModal').modal('show')">
         <i class="fa fa-edit"></i>
         <span id="tooltipText" class="tooltip-text">
             <strong>Group Customization</strong><br>
             Upload <code>metadata.xlsx</code> for custom group analysis.
         </span>
     </button>
+
     <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Group Management</h4>
         </div>
         <div class="modal-body">
@@ -344,8 +371,7 @@
                     <li>Open the file and specify your custom groups for each sample in the 'Group' sheet.</li>
                     <li>Save the changes and click <strong>Upload File</strong> to apply your custom grouping.</li>
                 </ol>
-                <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you will
-                    need to re-upload the file.</p>
+                <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you will need to re-upload the file.</p>
             </div>
             <div class="button-container">
                 <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button" download>
@@ -360,34 +386,31 @@
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                // 'ordernumber' 변수는 페이지 상단에서 'array.project' 값으로 이미 정의되어 있습니다.
+                // 모달 텍스트 초기화
                 if (typeof ordernumber !== 'undefined') {
                     const newFileName = `metadata_${ordernumber}.xlsx`;
                     const newFileNameHtml = `<code>${newFileName}</code>`;
 
-                    // 1. 다운로드 링크의 href와 download 속성을 변경합니다.
                     const downloadLink = document.getElementById('downloadTemplateLink');
                     if (downloadLink) {
                         downloadLink.href = `../${newFileName}`;
                         downloadLink.download = newFileName;
                     }
 
-                    // 2. 플로팅 버튼의 툴팁 텍스트를 변경합니다.
                     const tooltipText = document.getElementById('tooltipText');
                     if (tooltipText) {
                         tooltipText.innerHTML = `<strong>Group Customization</strong><br>Upload ${newFileNameHtml} for custom group analysis.`;
                     }
 
-                    // 3. 사용법 안내 문구의 텍스트를 변경합니다.
                     const usageText = document.getElementById('usageText');
                     if (usageText) {
                         usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
                     }
                 }
+                
+                // 엑셀 파일을 읽고 업데이트하는 핵심 로직은 충돌을 막기 위해 첨부해주신 group-modal.js에 일임하였습니다.
             });
         </script>
     </div>
-
 </body>
-
 </html>

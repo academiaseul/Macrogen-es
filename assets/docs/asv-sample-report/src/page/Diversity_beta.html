@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--css-->
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/common.css">
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="../css/group-modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!--tools-->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
     <script src="../js/plotly/plotly-2.20.0.min.js"></script>
@@ -33,6 +31,7 @@
         var appCode = array.appCode;
         var numberofsample = array.numberofsample;
         document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
+        
         window.sample_list = sample_list;
         window.group_count = group_count;
         window.group_list = [];
@@ -49,967 +48,564 @@
             width: 150px;
             height: 30px;
         }
+
+        .btn-minimal-primary {
+            background-color: #4c3a8d;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-minimal-primary:hover {
+            background-color: #3b2c6e;
+        }
+        .btn-minimal-cancel {
+            background-color: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-minimal-cancel:hover {
+            background-color: #f5f5f5;
+            color: #333;
+        }
     </style>
 </head>
 
 <body class="total_font">
-    <!--header-->
-    <header id="header">
-        <div class="header-wrap clearfix">
-            <div class="logo">
-                <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+    <div id="wrap">
+        <header id="header">
+            <div class="header-wrap clearfix">
+                <div class="logo">
+                    <a href="../../Report.html"><img src="../img/logo.png" alt="MACROGEN LOGO"></a>
+                </div>
+                <div class="center-txt sans_font"><b id="banner_id"></b></div>
+                <script>
+                    document.getElementById('banner_id').innerHTML = application;
+                </script>
+                <p class="notice">Research Use Only</p>
             </div>
-            <div class="center-txt sans_font"><b id="banner_id"></b></div>
-            <script>
-                document.getElementById('banner_id').innerHTML = application;
-            </script>
-            <p class="notice">Research Use Only</p>
-        </div>
-        <nav class="navbar">
-            <ul id="navbar_ui"></ul>
-            <script>
-                function generateMenuHtml(menuArray) {
-                    let html = '';
-                    menuArray.forEach(item => {
-                        if (item.category) { // 변경
-                            html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
-                            html += '<ul class="dropdown-menu">';
-                            html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
-                            html += '</ul></li>';
-                        } else if (item.display) {
-                            if (item.path === "") {
-                                html += "<li><p>" + item.name + "</p></li>";
-                            } else {
-                                html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+            <nav class="navbar">
+                <ul id="navbar_ui"></ul>
+                <script>
+                    function generateMenuHtml(menuArray) {
+                        let html = '';
+                        menuArray.forEach(item => {
+                            if (item.category) { 
+                                html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
+                                html += '<ul class="dropdown-menu">';
+                                html += generateMenuHtml(item.path); 
+                                html += '</ul></li>';
+                            } else if (item.display) {
+                                if (item.path === "") {
+                                    html += "<li><p>" + item.name + "</p></li>";
+                                } else {
+                                    html += "<li><a href=\"" + item.path.replace("/src", ".") + "\">" + item.name + "</a></li>";
+                                }
                             }
-                        }
-                    });
-                    return html;
-                }
+                        });
+                        return html;
+                    }
 
-                var html = "";
-                var nav_ = document.getElementById('navbar_ui');
-                if (array.page) {
-                    array.page.forEach(page => {
-                        if (page.category) {
-                            let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
-                            tmphtml += generateMenuHtml(page.path);
-                            tmphtml += '</ul></li>';
-                            html += tmphtml;
-                        } else if (page.path && page.path[0] && page.path[0].display) {
-                            html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
-                        }
-                    });
-                }
-                nav_.innerHTML = html;
-            </script>
-        </nav>
-    </header>
+                    var html = "";
+                    var nav_ = document.getElementById('navbar_ui');
+                    if (array.page) {
+                        array.page.forEach(page => {
+                            if (page.category) {
+                                let tmphtml = '<li class="dropdown" id="contiganal"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' + page.name + '<span class="caret"></span></a><ul class="dropdown-menu">';
+                                tmphtml += generateMenuHtml(page.path);
+                                tmphtml += '</ul></li>';
+                                html += tmphtml;
+                            } else if (page.path && page.path[0] && page.path[0].display) {
+                                html += '<li><a href="' + page.path[0].path.replace("/src", ".") + '">' + page.path[0].name + '</a></li>';
+                            }
+                        });
+                    }
+                    nav_.innerHTML = html;
+                </script>
+            </nav>
+        </header>
 
-    <!-- Top button -->
-    <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
-    <script>
-        $(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() != 0) {
-                    $('#backtotop').fadeIn();
-                } else {
-                    $('#backtotop').fadeOut();
-                }
+        <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
+        <script>
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() != 0) {
+                        $('#backtotop').fadeIn();
+                    } else {
+                        $('#backtotop').fadeOut();
+                    }
+                });
+                $('#backtotop').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 800);
+                });
             });
+        </script>
 
-            //top 버튼 누르면 맨 위로 이동
-            $('#backtotop').click(function () {
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 800);
-            });
-        });
-    </script>
+        <div class="container">
+            <div class="row">
+                <div class="div_icon">
+                    <img src="../img/Icon_img/VARIANT_stats.png">
+                </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="div_icon">
-                <img src="../img/Icon_img/VARIANT_stats.png">
-            </div>
-
-            <div class="div_h1" id="WorkFlow">
-                <h1>Diversity analysis</h1>
-                <p style="font-size:27px;">(beta diversity: between sample diversity)</p>
-            </div><br><br>
-            <!-- Main Title  end-->
-            <div id="bray-container" class="col-sm-12">
-                <div class="panel-group" draggable="false">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"
-                                style="display: flex; justify-content: space-between; align-items: center;">
-                                <a data-toggle="collapse" href="#collapse_bray"><b>PCoA (bray-curtis)</b></a>
-                                <div id="groupSelectorContainer_bray" style="display: flex; align-items: center; margin-left: auto;">
-                                    <b style="margin-right: 5px;">Select a Group Type:</b>
-                                    <select id="groupSelector_bray" class="custom-group-selector" style="margin-left: 5px;">
-                                    <!-- <select id="groupSelector_bray" style="margin-left: 5px;"> -->
-                                        <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                    </select>
-                                </div>
-                            </h4>
-                        </div>
-
-
-                        <div id="collapse_bray" class="panel-collapse collapse in">
-                            <div class="panel-body xy_scroll">
-                                <div style="display: flex;padding-top:15px">
-                                    <div style="width:320px;">
-                                        <label style="font-size:17px;padding-left:10px">Plot Controls</label><br>
-                                        <div style="display: flex;padding-top:15px;padding-left:20px">
-                                            <select name="plottype" id="plottype_bray">
-                                                <option value="2D" selected>2D plot</option>
-                                                <option value="3D">3D plot</option>
-                                            </select>
-                                        </div>
+                <div class="div_h1" id="WorkFlow">
+                    <h1>Diversity analysis</h1>
+                    <p style="font-size:27px;">(beta diversity: between sample diversity)</p>
+                </div><br><br>
+                
+                <div id="bray-container" class="col-sm-12">
+                    <div class="panel-group" draggable="false">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                    <a data-toggle="collapse" href="#collapse_bray"><b>PCoA (bray-curtis)</b></a>
+                                    <div id="groupSelectorContainer_bray" style="display: flex; align-items: center; margin-left: auto;">
+                                        <b style="margin-right: 5px;">Select a Group Type:</b>
+                                        <select id="groupSelector_bray" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
-                                    <!-- JavaScript로 옵션을 동적으로 추가 -->
+                                </h4>
+                            </div>
 
-                                    <div style="display: flex;padding-top:5px;display:none;" id="2D_plot_controls_bray">
-                                        <div style="display: flex;padding-bottom:5px;padding-top:10px;">
-                                            <div style="">
-                                                X : <br>
-                                                <select name="getx" id="getx_bray"></select>
-                                            </div>
-                                            <div style="width: 15px;"></div>
-                                            <div style="">
-                                                Y : <br>
-                                                <select name="gety" id="gety_bray"></select>
+                            <div id="collapse_bray" class="panel-collapse collapse in">
+                                <div class="panel-body xy_scroll">
+                                    <div style="display: flex;padding-top:15px">
+                                        <div style="width:320px;">
+                                            <label style="font-size:17px;padding-left:10px">Plot Controls</label><br>
+                                            <div style="display: flex;padding-top:15px;padding-left:20px">
+                                                <select name="plottype" id="plottype_bray">
+                                                    <option value="2D" selected>2D plot</option>
+                                                    <option value="3D">3D plot</option>
+                                                </select>
                                             </div>
                                         </div>
 
-                                        <div style="width: 20px;"></div>
-                                        <div style="display: flex;padding-bottom:5px;padding-top:30px">
-                                            <div style="">
-
+                                        <div style="display: flex;padding-top:5px;display:none;" id="2D_plot_controls_bray">
+                                            <div style="display: flex;padding-bottom:5px;padding-top:10px;">
+                                                <div>X : <br><select name="getx" id="getx_bray"></select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div>Y : <br><select name="gety" id="gety_bray"></select></div>
+                                            </div>
+                                            <div style="width: 20px;"></div>
+                                            <div style="display: flex;padding-bottom:5px;padding-top:30px">
                                                 <div style="display: flex">
-
-                                                    <button class="myButton_1 left"
-                                                        onclick="downloadimg('png','PCoA(2D)(bray-curtis)')">Save
-                                                        PNG</button>
-                                                    <button class="myButton_1 right"
-                                                        onclick="downloadimg('svg','PCoA(2D)(bray-curtis)')">Save
-                                                        SVG</button>
+                                                    <button class="myButton_1 left" onclick="downloadimg('png','PCoA(2D)(bray-curtis)')">Save PNG</button>
+                                                    <button class="myButton_1 right" onclick="downloadimg('svg','PCoA(2D)(bray-curtis)')">Save SVG</button>
                                                 </div>
                                             </div>
                                         </div>
 
-                                    </div>
-
-                                    <div style="display: flex;padding-top:5px;display:none;" id="3D_plot_controls_bray">
-                                        <div style="display: flex;padding-bottom:5px;padding-top:10px;">
-                                            <div style=""> X : <br> <select name="get3x" id="get3x_bray"></select>
+                                        <div style="display: flex;padding-top:5px;display:none;" id="3D_plot_controls_bray">
+                                            <div style="display: flex;padding-bottom:5px;padding-top:10px;">
+                                                <div>X : <br><select name="get3x" id="get3x_bray"></select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div>Y : <br><select name="get3y" id="get3y_bray"></select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div>Z : <br><select name="get3z" id="get3z_bray"></select></div>
                                             </div>
-
-                                            <div style="width: 15px;"></div>
-
-                                            <div style=""> Y : <br><select name="get3y" id="get3y_bray"> </select></div>
-
-                                            <div style="width: 15px;"></div>
-
-                                            <div style=""> Z : <br><select name="get3z" id="get3z_bray"></select> </div>
-                                        </div>
-
-                                        <div style="width: 20px;"></div>
-                                        <div style="display: flex;padding-bottom:5px;padding-top:30px">
-                                            <div style="">
-
+                                            <div style="width: 20px;"></div>
+                                            <div style="display: flex;padding-bottom:5px;padding-top:30px">
                                                 <div style="display: flex">
-
-                                                    <button class="myButton_1 left"
-                                                        onclick="downloadimg('png','PCoA(3D)(bray-curtis)')">Save
-                                                        PNG</button>
-                                                    <button class="myButton_1 right"
-                                                        onclick="downloadimg('svg','PCoA(3D)(bray-curtis)')">Save
-                                                        SVG</button>
+                                                    <button class="myButton_1 left" onclick="downloadimg('png','PCoA(3D)(bray-curtis)')">Save PNG</button>
+                                                    <button class="myButton_1 right" onclick="downloadimg('svg','PCoA(3D)(bray-curtis)')">Save SVG</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div id="pcoa-plot-container-bray"></div>
+
+                                    <div style="text-align: left;">
+                                        <br>
+                                        <p>Principal Coordinates Analysis (PCoA) were performed using the Bray Curtis distance between samples.<br><br>
+                                            Gower, J. C. (1966). Some distance properties of latent root and vector methods used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
+                                            Bray, J. R., and J. T. Curtis. (1957). An ordination of the upland forest communities of southern Wisconsin. Ecological Monographs 27:325–349.</p>
+                                    </div>
                                 </div>
-
-                                <div id="pcoa-plot-container-bray"></div>
-
-                                <div style="text-align: left;">
-                                    <br>
-                                    <p>Principal Coordinates Analysis (PCoA) were performed using the Bray Curtis
-                                        distance between samples.<br><br>
-                                        Gower, J. C. (1966). Some distance properties of latent root and vector methods
-                                        used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
-                                        Bray, J. R., and J. T. Curtis. (1957). An ordination of the upland forest
-                                        communities of southern Wisconsin. Ecological Monographs 27:325–349.</p>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="weighted-container" class="col-sm-12">
-                <div class="panel-group" draggable="false">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"
-                                style="display: flex; justify-content: space-between; align-items: center;">
-                                <a data-toggle="collapse" href="#collapse_weighted"><b>PCoA (weighted-unifrac)</b></a>
-                                <div id="groupSelectorContainer_weighted"
-                                    style="display: flex; align-items: center; margin-left: auto;">
-                                    <b style="margin-right: 5px;">Select a Group Type:</b>
-                                    <select id="groupSelector_weighted" class="custom-group-selector" style="margin-left: 5px;">
-                                        <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                    </select>
-                                </div>
-                            </h4>
-                        </div>
-
-                        <div id="collapse_1" class="panel-collapse collapse in ">
-                            <div class="panel-body xy_scroll">
-                                <div style="display: flex;padding-top:15px">
-                                    <div style="width:320px;">
-                                        <label style="font-size:17px;padding-left:10px">Plot Controls</label><br>
-                                        <div style="display: flex;padding-top:15px;padding-left:20px">
-                                            <select name="plottype" id="plottype_weighted">
-                                                <option value="2D" selected>2D plot</option>
-                                                <option value="3D">3D plot</option>
-                                            </select>
-                                        </div>
+                <div id="weighted-container" class="col-sm-12">
+                    <div class="panel-group" draggable="false">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                    <a data-toggle="collapse" href="#collapse_weighted"><b>PCoA (weighted-unifrac)</b></a>
+                                    <div id="groupSelectorContainer_weighted" style="display: flex; align-items: center; margin-left: auto;">
+                                        <b style="margin-right: 5px;">Select a Group Type:</b>
+                                        <select id="groupSelector_weighted" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
+                                </h4>
+                            </div>
 
-                                    <div style="display: flex;padding-top:5px;display:none;"
-                                        id="2D_plot_controls_weighted">
-                                        <div style="display: flex;padding-bottom:5px;padding-top:10px;">
-                                            <div style="">
-                                                X : <br>
-                                                <select name="getx" id="getx_weighted">
-
+                            <div id="collapse_weighted" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <div style="display: flex;padding-top:15px">
+                                        <div style="width:320px;">
+                                            <label style="font-size:17px;padding-left:10px">Plot Controls</label><br>
+                                            <div style="display: flex;padding-top:15px;padding-left:20px">
+                                                <select name="plottype" id="plottype_weighted">
+                                                    <option value="2D" selected>2D plot</option>
+                                                    <option value="3D">3D plot</option>
                                                 </select>
                                             </div>
-                                            <div style="width: 15px;"></div>
-                                            <div style="">
-                                                Y : <br>
-                                                <select name="gety" id="gety_weighted"></select>
-                                            </div>
                                         </div>
 
-                                        <div style="width: 20px;"></div>
-                                        <div style="display: flex;padding-bottom:5px;padding-top:30px">
-                                            <div style="">
-
+                                        <div style="display: flex;padding-top:5px;display:none;" id="2D_plot_controls_weighted">
+                                            <div style="display: flex;padding-bottom:5px;padding-top:10px;">
+                                                <div>X : <br><select name="getx" id="getx_weighted"></select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div>Y : <br><select name="gety" id="gety_weighted"></select></div>
+                                            </div>
+                                            <div style="width: 20px;"></div>
+                                            <div style="display: flex;padding-bottom:5px;padding-top:30px">
                                                 <div style="display: flex">
-
-                                                    <button class="myButton_1 left"
-                                                        onclick="downloadimg('png','PCoA(2D)(weighted-unifrac)')">Save
-                                                        PNG</button>
-                                                    <button class="myButton_1 right"
-                                                        onclick="downloadimg('svg','PCoA(2D)(weighted-unifrac)')">Save
-                                                        SVG</button>
+                                                    <button class="myButton_1 left" onclick="downloadimg('png','PCoA(2D)(weighted-unifrac)')">Save PNG</button>
+                                                    <button class="myButton_1 right" onclick="downloadimg('svg','PCoA(2D)(weighted-unifrac)')">Save SVG</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-
-                                    <div style="display: flex;padding-top:5px;display:none;"
-                                        id="3D_plot_controls_weighted">
-                                        <div style="display: flex;padding-bottom:5px;padding-top:10px;">
-                                            <div style=""> X : <br> <select name="get3x" id="get3x_weighted"></select>
+                                        <div style="display: flex;padding-top:5px;display:none;" id="3D_plot_controls_weighted">
+                                            <div style="display: flex;padding-bottom:5px;padding-top:10px;">
+                                                <div> X : <br> <select name="get3x" id="get3x_weighted"></select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div> Y : <br><select name="get3y" id="get3y_weighted"> </select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div> Z : <br><select name="get3z" id="get3z_weighted"></select></div>
                                             </div>
-
-                                            <div style="width: 15px;"></div>
-
-                                            <div style=""> Y : <br><select name="get3y" id="get3y_weighted"> </select>
-                                            </div>
-
-                                            <div style="width: 15px;"></div>
-
-                                            <div style=""> Z : <br><select name="get3z" id="get3z_weighted"></select>
-                                            </div>
-                                        </div>
-
-                                        <div style="width: 20px;"></div>
-                                        <div style="display: flex;padding-bottom:5px;padding-top:30px">
-                                            <div style="">
-
+                                            <div style="width: 20px;"></div>
+                                            <div style="display: flex;padding-bottom:5px;padding-top:30px">
                                                 <div style="display: flex">
-
-                                                    <button class="myButton_1 left"
-                                                        onclick="downloadimg('png','PCoA(3D)(weighted-unifrac)')">Save
-                                                        PNG</button>
-                                                    <button class="myButton_1 right"
-                                                        onclick="downloadimg('svg','PCoA(3D)(weighted-unifrac)')">Save
-                                                        SVG</button>
+                                                    <button class="myButton_1 left" onclick="downloadimg('png','PCoA(3D)(weighted-unifrac)')">Save PNG</button>
+                                                    <button class="myButton_1 right" onclick="downloadimg('svg','PCoA(3D)(weighted-unifrac)')">Save SVG</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div id="pcoa-plot-container-weighted"></div>
 
                                 <div style="text-align: left;">
                                     <br>
-                                    <p>Principal Coordinates Analysis (PCoA) were performed using the Weighted UniFrac
-                                        distance between samples.<br><br>
-                                        Gower, J. C. (1966). Some distance properties of latent root and vector methods
-                                        used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
-                                        Lozupone, C., Lladser, M. E., Knights, D., Stombaugh, J., & Knight, R. (2011).
-                                        UniFrac: an effective distance metric for microbial community comparison. The
-                                        ISME journal, 5(2), 169-172.</p>
+                                    <p>Principal Coordinates Analysis (PCoA) were performed using the Weighted UniFrac distance between samples.<br><br>
+                                        Gower, J. C. (1966). Some distance properties of latent root and vector methods used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
+                                        Lozupone, C., Lladser, M. E., Knights, D., Stombaugh, J., & Knight, R. (2011). UniFrac: an effective distance metric for microbial community comparison. The ISME journal, 5(2), 169-172.</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-
-            <div id="unweighted-container" class="col-sm-12">
-                <div class="panel-group" draggable="false">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"
-                                style="display: flex; justify-content: space-between; align-items: center;">
-                                <a data-toggle="collapse" href="#collapse_unweighted"><b>PCoA
-                                        (unweighted-unifrac)</b></a>
-                                <div id="groupSelectorContainer_unweighted"
-                                    style="display: flex; align-items: center; margin-left: auto;">
-                                    <b style="margin-right: 5px;">Select a Group Type:</b>
-                                    <select id="groupSelector_unweighted" class="custom-group-selector" style="margin-left: 5px;">
-                                        <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                    </select>
-                                </div>
-                            </h4>
-                        </div>
-
-                        <div id="collapse_1" class="panel-collapse collapse in ">
-                            <div class="panel-body xy_scroll">
-                                <div style="display: flex;padding-top:15px">
-                                    <div style="width:320px;">
-                                        <label style="font-size:17px;padding-left:10px">Plot Controls</label><br>
-                                        <div style="display: flex;padding-top:15px;padding-left:20px">
-                                            <select name="plottype" id="plottype_unweighted">
-                                                <option value="2D" selected>2D plot</option>
-                                                <option value="3D">3D plot</option>
-                                            </select>
-                                        </div>
+                <div id="unweighted-container" class="col-sm-12">
+                    <div class="panel-group" draggable="false">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                    <a data-toggle="collapse" href="#collapse_unweighted"><b>PCoA (unweighted-unifrac)</b></a>
+                                    <div id="groupSelectorContainer_unweighted" style="display: flex; align-items: center; margin-left: auto;">
+                                        <b style="margin-right: 5px;">Select a Group Type:</b>
+                                        <select id="groupSelector_unweighted" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
+                                </h4>
+                            </div>
 
-                                    <div style="display: flex;padding-top:5px;display:none;"
-                                        id="2D_plot_controls_unweighted">
-                                        <div style="display: flex;padding-bottom:5px;padding-top:10px;">
-                                            <div style="">
-                                                X : <br>
-                                                <select name="getx" id="getx_unweighted">
-
+                            <div id="collapse_unweighted" class="panel-collapse collapse in ">
+                                <div class="panel-body xy_scroll">
+                                    <div style="display: flex;padding-top:15px">
+                                        <div style="width:320px;">
+                                            <label style="font-size:17px;padding-left:10px">Plot Controls</label><br>
+                                            <div style="display: flex;padding-top:15px;padding-left:20px">
+                                                <select name="plottype" id="plottype_unweighted">
+                                                    <option value="2D" selected>2D plot</option>
+                                                    <option value="3D">3D plot</option>
                                                 </select>
                                             </div>
-                                            <div style="width: 15px;"></div>
-                                            <div style="">
-                                                Y : <br>
-                                                <select name="gety" id="gety_unweighted"></select>
+                                        </div>
+
+                                        <div style="display: flex;padding-top:5px;display:none;" id="2D_plot_controls_unweighted">
+                                            <div style="display: flex;padding-bottom:5px;padding-top:10px;">
+                                                <div>X : <br><select name="getx" id="getx_unweighted"></select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div>Y : <br><select name="gety" id="gety_unweighted"></select></div>
+                                            </div>
+                                            <div style="width: 20px;"></div>
+                                            <div style="display: flex;padding-bottom:5px;padding-top:30px">
+                                                <div style="display: flex">
+                                                    <button class="myButton_1 left" onclick="downloadimg('png','PCoA(2D)(unweighted-unifrac)')">Save PNG</button>
+                                                    <button class="myButton_1 right" onclick="downloadimg('svg','PCoA(2D)(unweighted-unifrac)')">Save SVG</button>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div style="width: 20px;"></div>
-                                        <div style="display: flex;padding-bottom:5px;padding-top:30px">
-                                            <div style="">
-
+                                        <div style="display: flex;padding-top:5px;display:none;" id="3D_plot_controls_unweighted">
+                                            <div style="display: flex;padding-bottom:5px;padding-top:10px;">
+                                                <div> X : <br> <select name="get3x" id="get3x_unweighted"></select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div> Y : <br><select name="get3y" id="get3y_unweighted"> </select></div>
+                                                <div style="width: 15px;"></div>
+                                                <div> Z : <br><select name="get3z" id="get3z_unweighted"></select></div>
+                                            </div>
+                                            <div style="width: 20px;"></div>
+                                            <div style="display: flex;padding-bottom:5px;padding-top:30px">
                                                 <div style="display: flex">
-
-                                                    <button class="myButton_1 left"
-                                                        onclick="downloadimg('png','PCoA(2D)(unweighted-unifrac)')">Save
-                                                        PNG</button>
-                                                    <button class="myButton_1 right"
-                                                        onclick="downloadimg('svg','PCoA(2D)(unweighted-unifrac)')">Save
-                                                        SVG</button>
+                                                    <button class="myButton_1 left" onclick="downloadimg('png','PCoA(3D)(unweighted-unifrac)')">Save PNG</button>
+                                                    <button class="myButton_1 right" onclick="downloadimg('svg','PCoA(3D)(unweighted-unifrac)')">Save SVG</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div style="display: flex;padding-top:5px;display:none;"
-                                        id="3D_plot_controls_unweighted">
-                                        <div style="display: flex;padding-bottom:5px;padding-top:10px;">
-                                            <div style=""> X : <br> <select name="get3x" id="get3x_unweighted"></select>
-                                            </div>
+                                    <div id="pcoa-plot-container-unweighted"></div>
 
-                                            <div style="width: 15px;"></div>
-
-                                            <div style=""> Y : <br><select name="get3y" id="get3y_unweighted"> </select>
-                                            </div>
-
-                                            <div style="width: 15px;"></div>
-
-                                            <div style=""> Z : <br><select name="get3z" id="get3z_unweighted"></select>
-                                            </div>
-                                        </div>
-
-                                        <div style="width: 20px;"></div>
-                                        <div style="display: flex;padding-bottom:5px;padding-top:30px">
-                                            <div style="">
-
-                                                <div style="display: flex">
-
-                                                    <button class="myButton_1 left"
-                                                        onclick="downloadimg('png','PCoA(3D)(unweighted-unifrac)')">Save
-                                                        PNG</button>
-                                                    <button class="myButton_1 right"
-                                                        onclick="downloadimg('svg','PCoA(3D)(unweighted-unifrac)')">Save
-                                                        SVG</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div style="text-align: left;">
+                                        <br>
+                                        <p>Principal Coordinates Analysis (PCoA) were performed using the Unweighted UniFrac distance between samples.<br><br>
+                                            Gower, J. C. (1966). Some distance properties of latent root and vector methods used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
+                                            Lozupone, C., Lladser, M. E., Knights, D., Stombaugh, J., & Knight, R. (2011). UniFrac: an effective distance metric for microbial community comparison. The ISME journal, 5(2), 169-172.</p>
                                     </div>
-                                </div>
+                                    
+                                    <script>
+                                        var uploadedData = null; // 커스텀 그룹 데이터를 저장할 전역 변수
 
-                                <div id="pcoa-plot-container-unweighted"></div>
-
-                                <div style="text-align: left;">
-                                    <br>
-                                    <p>Principal Coordinates Analysis (PCoA) were performed using the Unweighted UniFrac
-                                        distance between samples.<br><br>
-                                        Gower, J. C. (1966). Some distance properties of latent root and vector methods
-                                        used in multivariate analysis. Biometrika, 53(3-4), 325-338.<br>
-                                        Lozupone, C., Lladser, M. E., Knights, D., Stombaugh, J., & Knight, R. (2011).
-                                        UniFrac: an effective distance metric for microbial community comparison. The
-                                        ISME journal, 5(2), 169-172.</p>
-                                </div>
-                                <script>
-                                    var uploadedData = null; // 커스텀 그룹 데이터를 저장할 전역 변수
-
-                                    document.addEventListener("DOMContentLoaded", function (event) {
-                                        function initializeGroupSelector(selectorId, plotFunction2D, plotFunction3D, data, containerId, distance) {
-                                            var groupSelector = document.getElementById(selectorId);
-                                            groupSelector.innerHTML = ''; // 드롭다운 초기화
-
-                                            // [수정] 1. "SampleID" 옵션을 최우선으로 추가
-                                            var sampleIdOption = document.createElement('option');
-                                            sampleIdOption.value = 'SampleID';
-                                            sampleIdOption.textContent = 'SampleID';
-                                            groupSelector.appendChild(sampleIdOption);
-
-                                            // [수정] 2. 기존 그룹 옵션 추가
-                                            if (typeof group_name !== 'undefined' && Array.isArray(group_name) && group_name.length > 0) {
-                                                group_name.forEach(function (name, index) {
-                                                    var option = document.createElement('option');
-                                                    option.value = index;
-                                                    option.textContent = name;
-                                                    groupSelector.appendChild(option);
-                                                });
-                                            }
-
-                                            // [수정] 3. 'Custom' 옵션 추가
-                                            var customOption = document.createElement('option');
-                                            customOption.value = 'Custom';
-                                            customOption.textContent = 'Group Customization';
-                                            groupSelector.appendChild(customOption);
-
-                                            // 초기 플롯 생성 (이제 기본으로 SampleID가 선택된 상태로 그려짐)
-                                            plotFunction2D(data, sample_list, containerId, distance);
-
-                                            // 그룹 선택 변경 시 플롯 업데이트
-                                            groupSelector.addEventListener('change', function () {
-                                                const plotType = document.getElementById('plottype_' + distance).value;
-                                                const plotFunction = (plotType === '2D') ? plotFunction2D : plotFunction3D;
-                                                // sample_list를 항상 전체 샘플 목록으로 전달합니다.
-                                                plotFunction(data, sample_list, containerId, distance);
-                                            });
-                                        }
-
-                                        // 초기화 함수 호출 (데이터가 존재할 경우에만)
-                                        if (typeof bray_curtis !== 'undefined') {
-                                            initializeGroupSelector('groupSelector_bray', D2_plot, D3_plot, bray_curtis, 'pcoa-plot-container-bray', 'bray');
-                                        }
-                                        if (typeof weighted_unifrac !== 'undefined') {
-                                            initializeGroupSelector('groupSelector_weighted', D2_plot, D3_plot, weighted_unifrac, 'pcoa-plot-container-weighted', 'weighted');
-                                        }
-                                        var unweightedDataExists = typeof unweighted_unifrac !== 'undefined' && !isAllZeroOrNan(unweighted_unifrac);
-                                        if (unweightedDataExists) {
-                                            initializeGroupSelector('groupSelector_unweighted', D2_plot, D3_plot, unweighted_unifrac, 'pcoa-plot-container-unweighted', 'unweighted');
-                                        }
-                                    });
-
-                                    // group-modal.js에서 호출할 전역 함수
-                                    function updateGraphWithNewData(data) {
-                                        window.uploadedData = data; // 전역 변수에 데이터 저장
-                                        
-                                        // 모든 PCoA 플롯의 그룹 선택기를 'Custom'으로 설정하고 변경 이벤트를 발생시켜 그래프를 다시 그립니다.
-                                        ['bray', 'weighted', 'unweighted'].forEach(distance => {
-                                            const groupSelector = document.getElementById('groupSelector_' + distance);
-                                            if (groupSelector) {
-                                                groupSelector.value = 'Custom';
-                                                groupSelector.dispatchEvent(new Event('change'));
-                                            }
-                                        });
-                                        // [수정됨] 파일 업로드 후 모달이 자동으로 닫히지 않도록 아래 코드를 제거하거나 주석 처리합니다.
-                                        // $('#metadataModal').modal('hide'); 
-                                    }
-                                </script>
-
-                                <script>
-                                    if (group_count > 0) {
-                                        $("#group_check_2d_div_bray").css("display", "block");
-                                    } else {
-                                        $("#group_check_2d_div_bray").css("display", "none");
-                                    }
-                                    var xselectBray = document.getElementById("getx_bray");
-                                    var yselectBray = document.getElementById("gety_bray");
-                                    html1 = "";
-                                    html2 = "";
-                                    for (var i = 0; i < pc_list_bray_curtis.length; i++) {
-                                        if (i == 0) {
-                                            html1 += '<option value="' + pc_list_bray_curtis[i] + '" selected >' + pc_list_bray_curtis[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_bray_curtis[i] + '" >' + pc_list_bray_curtis[i] + '</option>'
-                                        } else if (i == 1) {
-                                            html1 += '<option value="' + pc_list_bray_curtis[i] + '"  >' + pc_list_bray_curtis[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_bray_curtis[i] + '" selected >' + pc_list_bray_curtis[i] + '</option>'
-                                        } else {
-                                            html1 += '<option value="' + pc_list_bray_curtis[i] + '"  >' + pc_list_bray_curtis[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_bray_curtis[i] + '"  >' + pc_list_bray_curtis[i] + '</option>'
-                                        }
-                                    }
-                                    xselectBray.innerHTML = html1;
-                                    yselectBray.innerHTML = html2;
-                                </script>
-                                <script>
-                                    if (group_count > 0) {
-                                        $("#group_check_3d_div_bray").css("display", "block");
-                                    } else {
-                                        $("#group_check_3d_div_bray").css("display", "none");
-                                    }
-                                    var xselectBray3D = document.getElementById("get3x_bray");
-                                    var yselectBray3D = document.getElementById("get3y_bray");
-                                    var zselectBray3D = document.getElementById("get3z_bray");
-                                    if (pc_list_bray_curtis.length < 3) {
-                                        $("#3D_scatter").css("display", "none");
-                                    }
-                                    html1 = "";
-                                    html2 = "";
-                                    html3 = "";
-                                    for (var i = 0; i < pc_list_bray_curtis.length; i++) {
-                                        if (i == 0) {
-                                            html1 += '<option value="' + pc_list_bray_curtis[i] + '" selected >' + pc_list_bray_curtis[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_bray_curtis[i] + '" >' + pc_list_bray_curtis[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_bray_curtis[i] + '" >' + pc_list_bray_curtis[i] + '</option>'
-                                        } else if (i == 1) {
-                                            html1 += '<option value="' + pc_list_bray_curtis[i] + '"  >' + pc_list_bray_curtis[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_bray_curtis[i] + '" selected >' + pc_list_bray_curtis[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_bray_curtis[i] + '" >' + pc_list_bray_curtis[i] + '</option>'
-                                        } else if (i == 2) {
-                                            html1 += '<option value="' + pc_list_bray_curtis[i] + '"  >' + pc_list_bray_curtis[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_bray_curtis[i] + '"  >' + pc_list_bray_curtis[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_bray_curtis[i] + '" selected >' + pc_list_bray_curtis[i] + '</option>'
-                                        } else {
-                                            html1 += '<option value="' + pc_list_bray_curtis[i] + '"  >' + pc_list_bray_curtis[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_bray_curtis[i] + '"  >' + pc_list_bray_curtis[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_bray_curtis[i] + '" >' + pc_list_bray_curtis[i] + '</option>'
-                                        }
-                                    }
-                                    xselectBray3D.innerHTML = html1;
-                                    yselectBray3D.innerHTML = html2;
-                                    zselectBray3D.innerHTML = html3;
-                                </script>
-
-                                <script>
-                                    if (group_count > 0) {
-                                        $("#group_check_2d_div_weighted").css("display", "block");
-                                    } else {
-                                        $("#group_check_2d_div_weighted").css("display", "none");
-                                    }
-
-                                    var xselectWeighted = document.getElementById("getx_weighted");
-                                    var yselectWeighted = document.getElementById("gety_weighted");
-                                    html1 = "";
-                                    html2 = "";
-
-                                    for (var i = 0; i < pc_list_weighted_unifrac.length; i++) {
-                                        if (i == 0) {
-                                            html1 += '<option value="' + pc_list_weighted_unifrac[i] + '" selected >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_weighted_unifrac[i] + '" >' + pc_list_weighted_unifrac[i] + '</option>'
-                                        } else if (i == 1) {
-                                            html1 += '<option value="' + pc_list_weighted_unifrac[i] + '"  >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_weighted_unifrac[i] + '" selected >' + pc_list_weighted_unifrac[i] + '</option>'
-                                        } else {
-                                            html1 += '<option value="' + pc_list_weighted_unifrac[i] + '"  >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_weighted_unifrac[i] + '"  >' + pc_list_weighted_unifrac[i] + '</option>'
-                                        }
-                                    }
-                                    xselectWeighted.innerHTML = html1;
-                                    yselectWeighted.innerHTML = html2;
-                                </script>
-
-                                <script>
-                                    if (group_count > 0) {
-                                        $("#group_check_3d_div_weighted").css("display", "block");
-                                    } else {
-                                        $("#group_check_3d_div_weighted").css("display", "none");
-                                    }
-                                    var xselectWeighted = document.getElementById("get3x_weighted");
-                                    var yselectWeighted = document.getElementById("get3y_weighted");
-                                    var zselectWeighted = document.getElementById("get3z_weighted");
-                                    if (pc_list_weighted_unifrac.length < 3) {
-                                        $("#3D_scatter").css("display", "none");
-                                    }
-                                    html1 = "";
-                                    html2 = "";
-                                    html3 = "";
-                                    for (var i = 0; i < pc_list_weighted_unifrac.length; i++) {
-                                        if (i == 0) {
-                                            html1 += '<option value="' + pc_list_weighted_unifrac[i] + '" selected>' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_weighted_unifrac[i] + '" >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_weighted_unifrac[i] + '" >' + pc_list_weighted_unifrac[i] + '</option>'
-                                        } else if (i == 1) {
-                                            html1 += '<option value="' + pc_list_weighted_unifrac[i] + '"  >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_weighted_unifrac[i] + '" selected>' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_weighted_unifrac[i] + '" >' + pc_list_weighted_unifrac[i] + '</option>'
-                                        } else if (i == 2) {
-                                            html1 += '<option value="' + pc_list_weighted_unifrac[i] + '"  >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_weighted_unifrac[i] + '"  >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_weighted_unifrac[i] + '" selected>' + pc_list_weighted_unifrac[i] + '</option>'
-                                        } else {
-                                            html1 += '<option value="' + pc_list_weighted_unifrac[i] + '"  >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_weighted_unifrac[i] + '"  >' + pc_list_weighted_unifrac[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_weighted_unifrac[i] + '" >' + pc_list_weighted_unifrac[i] + '</option>'
-                                        }
-                                    }
-                                    xselectWeighted.innerHTML = html1;
-                                    yselectWeighted.innerHTML = html2;
-                                    zselectWeighted.innerHTML = html3;
-                                </script>
-
-                                <script>
-                                    if (group_count > 0) {
-                                        $("#group_check_2d_div_unweighted").css("display", "block");
-                                    } else {
-                                        $("#group_check_2d_div_unweighted").css("display", "none");
-                                    }
-                                    var xselectUnweighted = document.getElementById("getx_unweighted");
-                                    var yselectUnweighted = document.getElementById("gety_unweighted");
-                                    html1 = "";
-                                    html2 = "";
-                                    for (var i = 0; i < pc_list_unweighted_unifrac.length; i++) {
-                                        if (i == 0) {
-                                            html1 += '<option value="' + pc_list_unweighted_unifrac[i] + '"selected >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_unweighted_unifrac[i] + '" >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                        } else if (i == 1) {
-                                            html1 += '<option value="' + pc_list_unweighted_unifrac[i] + '"  >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_unweighted_unifrac[i] + '"selected >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                        } else {
-                                            html1 += '<option value="' + pc_list_unweighted_unifrac[i] + '"  >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_unweighted_unifrac[i] + '"  >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                        }
-                                    }
-                                    xselectUnweighted.innerHTML = html1;
-                                    yselectUnweighted.innerHTML = html2;
-                                </script>
-                                <script>
-                                    if (group_count > 0) {
-                                        $("#group_check_3d_div_unweighted").css("display", "block");
-                                    } else {
-                                        $("#group_check_3d_div_unweighted").css("display", "none");
-                                    }
-
-                                    var xselectUnweighted = document.getElementById("get3x_unweighted");
-                                    var yselectUnweighted = document.getElementById("get3y_unweighted");
-                                    var zselectUnweighted = document.getElementById("get3z_unweighted");
-
-                                    if (pc_list_unweighted_unifrac.length < 3) {
-                                        $("#3D_scatter").css("display", "none");
-                                    }
-                                    html1 = "";
-                                    html2 = "";
-                                    html3 = "";
-
-                                    for (var i = 0; i < pc_list_unweighted_unifrac.length; i++) {
-                                        if (i == 0) {
-                                            html1 += '<option value="' + pc_list_unweighted_unifrac[i] + '" selected >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_unweighted_unifrac[i] + '" >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_unweighted_unifrac[i] + '" >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                        } else if (i == 1) {
-                                            html1 += '<option value="' + pc_list_unweighted_unifrac[i] + '"  >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_unweighted_unifrac[i] + '" selected >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_unweighted_unifrac[i] + '" >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                        } else if (i == 2) {
-                                            html1 += '<option value="' + pc_list_unweighted_unifrac[i] + '"  >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_unweighted_unifrac[i] + '"  >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_unweighted_unifrac[i] + '" selected >' + pc_list_unweighted_unifrac[i] + '</option>'
-
-                                        } else {
-                                            html1 += '<option value="' + pc_list_unweighted_unifrac[i] + '"  >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html2 += '<option value="' + pc_list_unweighted_unifrac[i] + '"  >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                            html3 += '<option value="' + pc_list_unweighted_unifrac[i] + '" >' + pc_list_unweighted_unifrac[i] + '</option>'
-                                        }
-
-                                    }
-                                    xselectUnweighted.innerHTML = html1;
-                                    yselectUnweighted.innerHTML = html2;
-                                    zselectUnweighted.innerHTML = html3;
-                                </script>
-                                <script>
-                                    // 모든 값이 0인지 확인하는 함수
-                                    function isAllZeroOrNan(data) {
-                                        for (let key in data) {
-                                            if (data.hasOwnProperty(key)) {
-                                                let values = data[key];
-                                                for (let i = 0; i < values.length - 1; i++) { // 마지막 값은 'nan%'이므로 제외
-                                                    if (values[i] !== 0) {
-                                                        return false;
+                                        function isAllZeroOrNan(data) {
+                                            for (let key in data) {
+                                                if (data.hasOwnProperty(key)) {
+                                                    let values = data[key];
+                                                    for (let i = 0; i < values.length - 1; i++) {
+                                                        if (values[i] !== 0) return false;
                                                     }
                                                 }
                                             }
-                                        }
-                                        return true;
-                                    }
-
-
-                                    document.addEventListener("DOMContentLoaded", function (event) {
-                                        // Check if the variables exist
-                                        var hasBrayCurtis = typeof bray_curtis !== 'undefined';
-                                        var hasWeightedUnifrac = typeof weighted_unifrac !== 'undefined';
-                                        var hasUnweightedUnifrac = typeof unweighted_unifrac !== 'undefined' && !isAllZeroOrNan(unweighted_unifrac);
-
-                                        // Remove divs if the corresponding data does not exist
-                                        if (!hasBrayCurtis) {
-                                            var brayContainer = document.getElementById("bray-container");
-                                            if (brayContainer) brayContainer.remove();
+                                            return true;
                                         }
 
-                                        if (!hasWeightedUnifrac) {
-                                            var weightedContainer = document.getElementById("weighted-container");
-                                            if (weightedContainer) weightedContainer.remove();
-                                        }
-
-                                        if (!hasUnweightedUnifrac) {
-                                            var unweightedContainer = document.getElementById("unweighted-container");
-                                            if (unweightedContainer) unweightedContainer.remove();
-                                        }
-
-                                        // 초기 플롯 생성
-                                        if (hasBrayCurtis) {
-                                            D2_plot(bray_curtis, sample_list, 'pcoa-plot-container-bray', 'bray');
-                                        }
-                                        if (hasWeightedUnifrac) {
-                                            D2_plot(weighted_unifrac, sample_list, 'pcoa-plot-container-weighted', 'weighted');
-                                        }
-                                        if (hasUnweightedUnifrac) {
-                                            D2_plot(unweighted_unifrac, sample_list, 'pcoa-plot-container-unweighted', 'unweighted');
-                                        }
-
-                                        // 초기 2D 플롯 컨트롤 표시
-                                        if (hasBrayCurtis) {
-                                            set_controls('2D', 'bray');
-                                        }
-                                        if (hasWeightedUnifrac) {
-                                            set_controls('2D', 'weighted');
-                                        }
-                                        if (hasUnweightedUnifrac) {
-                                            set_controls('2D', 'unweighted');
-                                        }
-
-                                        // 플롯 타입 선택 시 이벤트 핸들러
-                                        const plottypeBray = document.getElementById("plottype_bray");
-                                        if (plottypeBray) {
-                                            plottypeBray.addEventListener("input", (event) => {
-                                                const input_type = document.querySelector("#plottype_bray").value;
-                                                set_controls(input_type, 'bray');
-                                                if (input_type == "2D") {
-                                                    D2_plot(bray_curtis, sample_list, 'pcoa-plot-container-bray', 'bray');
-                                                } else if (input_type == "3D") {
-                                                    D3_plot(bray_curtis, sample_list, 'pcoa-plot-container-bray', 'bray');
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                            
+                                            // 1. 드롭다운(X, Y, Z) 옵션 동적 생성 및 할당 (그래프 그리기 전 선행 필수)
+                                            function populateSelect(xId, yId, zId, pcList) {
+                                                if (!pcList || !document.getElementById(xId)) return;
+                                                let h1 = "", h2 = "", h3 = "";
+                                                for (let i = 0; i < pcList.length; i++) {
+                                                    h1 += `<option value="${pcList[i]}" ${i === 0 ? 'selected' : ''}>${pcList[i]}</option>`;
+                                                    h2 += `<option value="${pcList[i]}" ${i === 1 ? 'selected' : ''}>${pcList[i]}</option>`;
+                                                    h3 += `<option value="${pcList[i]}" ${i === 2 ? 'selected' : ''}>${pcList[i]}</option>`;
                                                 }
-                                            });
-                                        }
+                                                document.getElementById(xId).innerHTML = h1;
+                                                if (yId && document.getElementById(yId)) document.getElementById(yId).innerHTML = h2;
+                                                if (zId && document.getElementById(zId)) document.getElementById(zId).innerHTML = h3;
+                                            }
 
-                                        const plottypeWeighted = document.getElementById("plottype_weighted");
-                                        if (plottypeWeighted) {
-                                            plottypeWeighted.addEventListener("input", (event) => {
-                                                const input_type = document.querySelector("#plottype_weighted").value;
-                                                set_controls(input_type, 'weighted');
-                                                if (input_type == "2D") {
-                                                    D2_plot(weighted_unifrac, sample_list, 'pcoa-plot-container-weighted', 'weighted');
-                                                } else if (input_type == "3D") {
-                                                    D3_plot(weighted_unifrac, sample_list, 'pcoa-plot-container-weighted', 'weighted');
+                                            // 각 지표별 PC 리스트가 있을 경우 옵션 생성
+                                            if (typeof pc_list_bray_curtis !== 'undefined') {
+                                                populateSelect("getx_bray", "gety_bray", null, pc_list_bray_curtis);
+                                                populateSelect("get3x_bray", "get3y_bray", "get3z_bray", pc_list_bray_curtis);
+                                            }
+                                            if (typeof pc_list_weighted_unifrac !== 'undefined') {
+                                                populateSelect("getx_weighted", "gety_weighted", null, pc_list_weighted_unifrac);
+                                                populateSelect("get3x_weighted", "get3y_weighted", "get3z_weighted", pc_list_weighted_unifrac);
+                                            }
+                                            if (typeof pc_list_unweighted_unifrac !== 'undefined') {
+                                                populateSelect("getx_unweighted", "gety_unweighted", null, pc_list_unweighted_unifrac);
+                                                populateSelect("get3x_unweighted", "get3y_unweighted", "get3z_unweighted", pc_list_unweighted_unifrac);
+                                            }
+
+                                            // 2. 데이터 존재 여부 확인 및 빈 컨테이너 제거
+                                            var hasBrayCurtis = typeof bray_curtis !== 'undefined';
+                                            var hasWeightedUnifrac = typeof weighted_unifrac !== 'undefined';
+                                            var hasUnweightedUnifrac = typeof unweighted_unifrac !== 'undefined' && !isAllZeroOrNan(unweighted_unifrac);
+
+                                            if (!hasBrayCurtis) { var el = document.getElementById("bray-container"); if (el) el.remove(); }
+                                            if (!hasWeightedUnifrac) { var el = document.getElementById("weighted-container"); if (el) el.remove(); }
+                                            if (!hasUnweightedUnifrac) { var el = document.getElementById("unweighted-container"); if (el) el.remove(); }
+
+                                            // 3. 그룹 선택기 초기화 및 초기 플롯(2D) 렌더링
+                                            function initializeGroupSelector(selectorId, data, containerId, distance) {
+                                                var groupSelector = document.getElementById(selectorId);
+                                                if(!groupSelector) return;
+                                                
+                                                groupSelector.innerHTML = ''; // 드롭다운 초기화
+
+                                                var sampleIdOption = document.createElement('option');
+                                                sampleIdOption.value = 'SampleID';
+                                                sampleIdOption.textContent = 'SampleID';
+                                                groupSelector.appendChild(sampleIdOption);
+
+                                                if (typeof group_name !== 'undefined' && Array.isArray(group_name) && group_name.length > 0) {
+                                                    group_name.forEach(function (name, index) {
+                                                        var option = document.createElement('option');
+                                                        option.value = index;
+                                                        option.textContent = name;
+                                                        groupSelector.appendChild(option);
+                                                    });
                                                 }
-                                            });
-                                        }
 
-                                        const plottypeUnweighted = document.getElementById("plottype_unweighted");
-                                        if (plottypeUnweighted) {
-                                            plottypeUnweighted.addEventListener("input", (event) => {
-                                                const input_type = document.querySelector("#plottype_unweighted").value;
-                                                set_controls(input_type, 'unweighted');
-                                                if (input_type == "2D") {
-                                                    D2_plot(unweighted_unifrac, sample_list, 'pcoa-plot-container-unweighted', 'unweighted');
-                                                } else if (input_type == "3D") {
-                                                    D3_plot(unweighted_unifrac, sample_list, 'pcoa-plot-container-unweighted', 'unweighted');
+                                                var customOption = document.createElement('option');
+                                                customOption.value = 'Custom';
+                                                customOption.textContent = 'Group Customization';
+                                                groupSelector.appendChild(customOption);
+
+                                                // 초기 플롯 생성 (SampleID 기본)
+                                                D2_plot(data, window.sample_list, containerId, distance);
+                                                set_controls('2D', distance); // 2D 컨트롤 박스 보이기
+
+                                                // 그룹 변경 이벤트
+                                                groupSelector.addEventListener('change', function () {
+                                                    const plotType = document.getElementById('plottype_' + distance).value;
+                                                    if (plotType === '2D') D2_plot(data, window.sample_list, containerId, distance);
+                                                    else D3_plot(data, window.sample_list, containerId, distance);
+                                                });
+                                            }
+
+                                            // 실행
+                                            if (hasBrayCurtis) initializeGroupSelector('groupSelector_bray', bray_curtis, 'pcoa-plot-container-bray', 'bray');
+                                            if (hasWeightedUnifrac) initializeGroupSelector('groupSelector_weighted', weighted_unifrac, 'pcoa-plot-container-weighted', 'weighted');
+                                            if (hasUnweightedUnifrac) initializeGroupSelector('groupSelector_unweighted', unweighted_unifrac, 'pcoa-plot-container-unweighted', 'unweighted');
+
+                                            // 4. 플롯 축 변경 및 2D/3D 전환 컨트롤 이벤트 리스너 통합 등록
+                                            function attachPlotControls(distance, data, containerId) {
+                                                const plottypeSelect = document.getElementById("plottype_" + distance);
+                                                if (plottypeSelect) {
+                                                    plottypeSelect.addEventListener("input", () => {
+                                                        const input_type = plottypeSelect.value;
+                                                        set_controls(input_type, distance);
+                                                        if (input_type === "2D") D2_plot(data, window.sample_list, containerId, distance);
+                                                        else D3_plot(data, window.sample_list, containerId, distance);
+                                                    });
                                                 }
-                                            });
+
+                                                ['getx', 'gety', 'get3x', 'get3y', 'get3z'].forEach(axis => {
+                                                    const el = document.getElementById(axis + "_" + distance);
+                                                    if (el) {
+                                                        el.addEventListener("change", () => {
+                                                            const input_type = document.getElementById("plottype_" + distance).value;
+                                                            if (input_type === "2D") D2_plot(data, window.sample_list, containerId, distance);
+                                                            else D3_plot(data, window.sample_list, containerId, distance);
+                                                        });
+                                                    }
+                                                });
+                                            }
+
+                                            if (hasBrayCurtis) attachPlotControls('bray', bray_curtis, 'pcoa-plot-container-bray');
+                                            if (hasWeightedUnifrac) attachPlotControls('weighted', weighted_unifrac, 'pcoa-plot-container-weighted');
+                                            if (hasUnweightedUnifrac) attachPlotControls('unweighted', unweighted_unifrac, 'pcoa-plot-container-unweighted');
+
+                                            // 그룹 정보가 없을 경우 그룹 선택창 강제 표시
+                                            if (window.group_count === 0) {
+                                                ['bray', 'weighted', 'unweighted'].forEach(dist => {
+                                                    let el = document.getElementById("groupSelectorContainer_" + dist);
+                                                    if(el) el.style.display = "flex";
+                                                });
+                                            }
+                                        });
+
+                                        // group-modal.js에서 파일 업로드 완료 시 이 함수를 가장 먼저 호출합니다.
+                                        // 엑셀에서 내려온 샘플 배열의 순서(B->A)를 가지고 화면을 강제 갱신합니다.
+                                        window.updateGraphWithNewData = function(newOrderFromExcel) {
+                                            
+                                            // 기존 데이터에 맞춰 PCoA 데이터를 정렬하는 헬퍼 함수
+                                            function reorderPCoA(pcoaData, oldOrder, indices) {
+                                                if (typeof pcoaData !== 'undefined' && pcoaData) {
+                                                    for (let key in pcoaData) {
+                                                        if (Array.isArray(pcoaData[key])) {
+                                                            const oldArr = [...pcoaData[key]];
+                                                            if (oldArr.length === oldOrder.length + 1) { 
+                                                                const variance = oldArr[oldArr.length - 1]; // 분산 비율 텍스트(%) 분리
+                                                                const newArr = indices.map(i => oldArr[i]);
+                                                                newArr.push(variance); // 다시 뒤에 합침
+                                                                pcoaData[key] = newArr;
+                                                            } else if (oldArr.length === oldOrder.length) {
+                                                                pcoaData[key] = indices.map(i => oldArr[i]);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            if (typeof sample_list !== 'undefined' && newOrderFromExcel.length > 0) {
+                                                const oldOrder = [...window.sample_list];
+                                                const newOrder = [];
+                                                
+                                                // 엑셀 샘플들 중에서 기존 sample_list에 존재하는 것만 필터링하여 순서 확보
+                                                newOrderFromExcel.forEach(s => {
+                                                    if (oldOrder.includes(s)) newOrder.push(s);
+                                                });
+                                                // 엑셀에 누락된 기존 샘플들이 있으면 맨 뒤에 이어서 붙임
+                                                oldOrder.forEach(s => {
+                                                    if (!newOrder.includes(s)) newOrder.push(s);
+                                                });
+                                                
+                                                // 전역 변수 덮어쓰기
+                                                window.sample_list = newOrder; 
+                                                sample_list = newOrder; 
+                                                
+                                                const indices = newOrder.map(val => oldOrder.indexOf(val));
+                                                
+                                                // 1. PCoA 좌표 배열 재정렬 수행
+                                                reorderPCoA(typeof bray_curtis !== 'undefined' ? bray_curtis : null, oldOrder, indices);
+                                                reorderPCoA(typeof weighted_unifrac !== 'undefined' ? weighted_unifrac : null, oldOrder, indices);
+                                                reorderPCoA(typeof unweighted_unifrac !== 'undefined' ? unweighted_unifrac : null, oldOrder, indices);
+                                                
+                                                // 2. 사전에 정의된 그룹 리스트 배열들도 샘플 순서에 맞춰서 재정렬
+                                                if (typeof group_count !== 'undefined') {
+                                                    for (let i = 1; i <= group_count; i++) {
+                                                        if (window['group_list' + i]) {
+                                                            const oldGroupArr = [...window['group_list' + i]];
+                                                            window['group_list' + i] = indices.map(idx => oldGroupArr[idx]);
+                                                        }
+                                                    }
+                                                }
+
+                                                // 3. 플롯 강제 업데이트 (change 이벤트를 발생시켜 새로 그리게 함)
+                                                ['bray', 'weighted', 'unweighted'].forEach(distance => {
+                                                    const groupSelector = document.getElementById('groupSelector_' + distance);
+                                                    if (groupSelector) {
+                                                        groupSelector.value = 'Custom';
+                                                        groupSelector.dispatchEvent(new Event('change'));
+                                                    }
+                                                });
+                                            }
                                         }
-
-                                        // getx와 gety 값 변경 시 플롯 업데이트
-                                        document.getElementById("getx_bray").addEventListener("change", function () {
-                                            D2_plot(bray_curtis, sample_list, 'pcoa-plot-container-bray', 'bray');
-                                        });
-
-                                        document.getElementById("gety_bray").addEventListener("change", function () {
-                                            D2_plot(bray_curtis, sample_list, 'pcoa-plot-container-bray', 'bray');
-                                        });
-
-                                        document.getElementById("getx_weighted").addEventListener("change", function () {
-                                            D2_plot(weighted_unifrac, sample_list, 'pcoa-plot-container-weighted', 'weighted');
-                                        });
-
-                                        document.getElementById("gety_weighted").addEventListener("change", function () {
-                                            D2_plot(weighted_unifrac, sample_list, 'pcoa-plot-container-weighted', 'weighted');
-                                        });
-
-                                        document.getElementById("getx_unweighted").addEventListener("change", function () {
-                                            D2_plot(unweighted_unifrac, sample_list, 'pcoa-plot-container-unweighted', 'unweighted');
-                                        });
-
-                                        document.getElementById("gety_unweighted").addEventListener("change", function () {
-                                            D2_plot(unweighted_unifrac, sample_list, 'pcoa-plot-container-unweighted', 'unweighted');
-                                        });
-
-                                        // 3D 플롯의 X, Y, Z 값 변경 시 플롯 업데이트
-                                        document.getElementById("get3x_bray").addEventListener("change", function () {
-                                            D3_plot(bray_curtis, sample_list, 'pcoa-plot-container-bray', 'bray');
-                                        });
-
-                                        document.getElementById("get3y_bray").addEventListener("change", function () {
-                                            D3_plot(bray_curtis, sample_list, 'pcoa-plot-container-bray', 'bray');
-                                        });
-
-                                        document.getElementById("get3z_bray").addEventListener("change", function () {
-                                            D3_plot(bray_curtis, sample_list, 'pcoa-plot-container-bray', 'bray');
-                                        });
-
-                                        document.getElementById("get3x_weighted").addEventListener("change", function () {
-                                            D3_plot(weighted_unifrac, sample_list, 'pcoa-plot-container-weighted', 'weighted');
-                                        });
-
-                                        document.getElementById("get3y_weighted").addEventListener("change", function () {
-                                            D3_plot(weighted_unifrac, sample_list, 'pcoa-plot-container-weighted', 'weighted');
-                                        });
-
-                                        document.getElementById("get3z_weighted").addEventListener("change", function () {
-                                            D3_plot(weighted_unifrac, sample_list, 'pcoa-plot-container-weighted', 'weighted');
-                                        });
-
-                                        document.getElementById("get3x_unweighted").addEventListener("change", function () {
-                                            D3_plot(unweighted_unifrac, sample_list, 'pcoa-plot-container-unweighted', 'unweighted');
-                                        });
-
-                                        document.getElementById("get3y_unweighted").addEventListener("change", function () {
-                                            D3_plot(unweighted_unifrac, sample_list, 'pcoa-plot-container-unweighted', 'unweighted');
-                                        });
-
-                                        document.getElementById("get3z_unweighted").addEventListener("change", function () {
-                                            D3_plot(unweighted_unifrac, sample_list, 'pcoa-plot-container-unweighted', 'unweighted');
-                                        });
-                                    });
-                                </script>
-                                <script>
-                                    document.addEventListener("DOMContentLoaded", function () {
-                                        if (group_count === 0) {
-                                            document.getElementById("groupSelectorContainer_bray").style.display = "flex";
-                                            document.getElementById("groupSelectorContainer_weighted").style.display = "flex";
-                                            document.getElementById("groupSelectorContainer_unweighted").style.display = "flex";
-                                        }
-                                    });
-                                </script>
+                                    </script>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
     </div>
 
-    <footer id="footer" style="display:none" class="footer_style">
-        <div class="container">
-            <div class="left">
-                <div class="footer-box">
-                    <h5>MACROGEN Inc.</h5>
-                    <ul>
-                        <li>[08511] 1001, 10F, 254 Beotkkot-ro,</li>
-                        <li>Geumcheon-gu, Seoul, Republic of Korea</li>
-                        <li>(Gasan-dong, World Meridian 1)</li>
-                        <li>T. +82-2-2180-7000</li>
-                        <li>E1. ngs@macrogen.com(Overseas)</li>
-                        <li>E2. ngskr@macrogen.com(Republic of Korea)</li>
-                        <li>Web. <a href="http://www.macrogen.com" target="_blank">http://www.macrogen.com</a></li>
-                        <li>LIMS. <a href="http://dna.macrogen.com" target="_blank">http://dna.macrogen.com</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="right">
-                <div class="col-sm-3">
-                    <h5>PSOMAGEN</h5>
-                    <ul>
-                        <li>1330 Piccard Drive, Suite 103, Rockville,</li>
-                        <li>MD 20850, United States</li>
-                        <li>T. +1-301-251-1007</li>
-                        <li>E. inquiry@psomagen.com</li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>MACROGEN EUROPE</h5>
-                    <ul>
-                        <li>Meibergdreef 31, 1105 AZ, Amsterdam,</li>
-                        <li>the Netherlands</li>
-                        <li>T. +31-20-333-7563</li>
-                        <li>E. ngs@macrogen.eu</li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>MACROGEN JAPAN</h5>
-                    <ul>
-                        <li>16F Time24 Building, 2-4-32 Aomi,</li>
-                        <li>Koto-ku, Tokyo 135-0064 JAPAN</li>
-                        <li>T: +81-3-5962-1124</li>
-                        <li>E: ngs@macrogen-japan.co.jp</li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>MACROGEN SINGAPORE</h5>
-                    <ul>
-                        <li>3 Biopolis Drive #05-18, Synapse,</li>
-                        <li>Singapore 138623</li>
-                        <li>T. +65-6339-0927</li>
-                        <li>E. info-sg@macrogen.com</li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>MACROGEN SPAIN</h5>
-                    <ul>
-                        <li>Av. Sur del Aeropuerto de Barajas,</li>
-                        <li>28, Office B-2, 28042 Madrid, Spain</li>
-                        <li>T. +34-911-138-378</li>
-                        <li>E. info-spain@macrogen.com</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <script src="../js/group-modal.js"></script>
 
-    <button class="floating-btn">
+    <button class="floating-btn" style="position: fixed; right: 30px; top: calc(50% + 35px); z-index: 1000;" onclick="$('#metadataModal').modal('show')">
         <i class="fa fa-edit"></i>
         <span id="tooltipText" class="tooltip-text">
             <strong>Group Customization</strong><br>
             Upload <code>metadata.xlsx</code> for custom group analysis.
         </span>
     </button>
+
     <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Group Management</h4>
         </div>
         <div class="modal-body">
@@ -1020,8 +616,7 @@
                     <li>Open the file and specify your custom groups for each sample in the 'Group' sheet.</li>
                     <li>Save the changes and click <strong>Upload File</strong> to apply your custom grouping.</li>
                 </ol>
-                <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you will
-                    need to re-upload the file.</p>
+                <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you will need to re-upload the file.</p>
             </div>
             <div class="button-container">
                 <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button" download>
@@ -1034,36 +629,116 @@
             </div>
             <div id="fileNameDisplay"></div>
         </div>
+        
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                // 'ordernumber' 변수는 페이지 상단에서 'array.project' 값으로 이미 정의되어 있습니다.
                 if (typeof ordernumber !== 'undefined') {
                     const newFileName = `metadata_${ordernumber}.xlsx`;
                     const newFileNameHtml = `<code>${newFileName}</code>`;
 
-                    // 1. 다운로드 링크의 href와 download 속성을 변경합니다.
                     const downloadLink = document.getElementById('downloadTemplateLink');
                     if (downloadLink) {
                         downloadLink.href = `../${newFileName}`;
                         downloadLink.download = newFileName;
                     }
 
-                    // 2. 플로팅 버튼의 툴팁 텍스트를 변경합니다.
                     const tooltipText = document.getElementById('tooltipText');
                     if (tooltipText) {
                         tooltipText.innerHTML = `<strong>Group Customization</strong><br>Upload ${newFileNameHtml} for custom group analysis.`;
                     }
 
-                    // 3. 사용법 안내 문구의 텍스트를 변경합니다.
                     const usageText = document.getElementById('usageText');
                     if (usageText) {
                         usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
                     }
                 }
+
+                // [핵심] 엑셀 파일 로컬 처리 로직 (HTML 내부에서 독립적으로 처리 후 updateGraphWithNewData 호출)
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput) {
+                    fileInput.addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (!file) return;
+
+                        const fileNameDisplay = document.getElementById('fileNameDisplay');
+                        if (fileNameDisplay) {
+                            fileNameDisplay.style.display = 'flex';
+                            fileNameDisplay.innerHTML = `<span class="file-icon"><i class="fa fa-check-circle"></i></span> <span class="file-name-text">Successfully loaded: ${file.name}</span>`;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            try {
+                                const dataXLSX = new Uint8Array(e.target.result);
+                                const workbook = XLSX.read(dataXLSX, { type: 'array' });
+                                const sheet = workbook.Sheets['Group'] || workbook.Sheets[workbook.SheetNames[0]];
+                                
+                                const json_data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                                const newOrder = [];
+                                
+                                // SampleID 컬럼 찾기
+                                let sampleIdx = 0; 
+                                if(json_data[0]) {
+                                    for(let i = 0; i < json_data[0].length; i++) {
+                                        if(String(json_data[0][i]).trim().toLowerCase() === 'sampleid') {
+                                            sampleIdx = i;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                // 엑셀에서 위에서 아래로 순서대로 샘플 추출
+                                for (let i = 1; i < json_data.length; i++) {
+                                    let val = json_data[i][sampleIdx];
+                                    if (val) {
+                                        let sampleName = String(val).trim();
+                                        if (!newOrder.includes(sampleName)) {
+                                            newOrder.push(sampleName);
+                                        }
+                                    }
+                                }
+
+                                if (newOrder.length > 0) {
+                                    // 엑셀에서 읽어들인 그룹 매핑 정보도 저장
+                                    const customGroupMap = {};
+                                    // 기본적으로 'Group' 컬럼을 찾습니다. (없으면 두번째 열 사용)
+                                    let groupIdx = 1; 
+                                    if(json_data[0]) {
+                                        for(let i = 0; i < json_data[0].length; i++) {
+                                            if(String(json_data[0][i]).trim().toLowerCase() === 'group') {
+                                                groupIdx = i;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    for (let i = 1; i < json_data.length; i++) {
+                                        let sName = String(json_data[i][sampleIdx]).trim();
+                                        let gName = json_data[i][groupIdx] ? String(json_data[i][groupIdx]).trim() : 'Undefined';
+                                        customGroupMap[sName] = gName;
+                                    }
+                                    window.uploadedData = customGroupMap;
+
+                                    // PCoA 정렬 함수 호출!
+                                    updateGraphWithNewData(newOrder); 
+                                    
+                                    setTimeout(() => {
+                                        $('#metadataModal').modal('hide');
+                                    }, 800);
+                                    
+                                } else {
+                                    throw new Error("No valid SampleID data found.");
+                                }
+                            } catch (error) {
+                                if (fileNameDisplay) {
+                                    fileNameDisplay.innerHTML = `<span class="file-icon" style="color:#c0392b;"><i class="fa fa-times-circle"></i></span> <span class="file-name-text" style="color:#c0392b;">Error: ${error.message}</span>`;
+                                }
+                            }
+                        };
+                        reader.readAsArrayBuffer(file);
+                    });
+                }
             });
         </script>
     </div>
-    <script src="../js/group-modal.js"></script>
 </body>
-
 </html>

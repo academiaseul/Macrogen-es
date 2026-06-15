@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ReportApp">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--css-->
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <link rel="stylesheet" href="../css/group-modal.css">
 
-    <!--tools-->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
     <script src="../js/plotly/plotly-2.20.0.min.js"></script>
     <script src="../js/excel/xlsx.full.min.js"></script>
 
-    <!--json data-->
     <script src="../main.js"></script>
     <script src="./Diversity_alpha/alpha_diversity_rarefaction.js"></script>
+    
     <script src="./Diversity_alpha/plot.js"></script>
     <script src="../js/group-modal.js"></script>
+
     <script>
         var array;
         var ordernumber = array.project;
@@ -39,7 +39,6 @@
 
 <body class="total_font">
     <div id="wrap">
-        <!--header-->
         <header id="header">
             <div class="header-wrap clearfix">
                 <div class="logo">
@@ -57,10 +56,10 @@
                     function generateMenuHtml(menuArray) {
                         let html = '';
                         menuArray.forEach(item => {
-                            if (item.category) { // 변경
+                            if (item.category) { 
                                 html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
                                 html += '<ul class="dropdown-menu">';
-                                html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                                html += generateMenuHtml(item.path); 
                                 html += '</ul></li>';
                             } else if (item.display) {
                                 if (item.path === "") {
@@ -92,16 +91,25 @@
             </nav>
         </header>
 
-        <!--top 버튼-->
         <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
+        <script>
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() != 0) { $('#backtotop').fadeIn(); } 
+                    else { $('#backtotop').fadeOut(); }
+                });
+                $('#backtotop').click(function () {
+                    $('body,html').animate({ scrollTop: 0 }, 800);
+                });
+            });
+        </script>
+
         <div class="container">
             <div class="row">
                 <div>
-                    <!--icon-->
                     <div class="div_icon">
                         <img src="../img/Icon_img/VARIANT_stats.png">
                     </div>
-                    <!--title-->
                     <div class="div_h1">
                         <h1>Diversity analysis<h3>(Alpha diversity > Rarefaction Curve)</h3>
                         </h1>
@@ -109,41 +117,24 @@
                 </div>
                 <div class="col-sm-12">
                     <br>
-                    <!--ASV chart-->
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <!--Panel head-->
                             <div class="panel-heading">
                                 <h4 class="panel-title"
                                     style="display: flex; justify-content: space-between; align-items: center;">
                                     <a data-toggle="collapse" href="#collapse_1"><b>Rarefaction Curve (ASVs)</b></a>
                                     <div style="display: flex; align-items: center; margin-left: auto;">
                                         <b style="margin-right: 5px;">Select a Group Type:</b>
-                                        <select id="groupSelectorASV" class="custom-group-selector"
-                                            style="margin-left: 5px;">
-                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                        </select>
+                                        <select id="groupSelectorASV" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
                                 </h4>
                             </div>
-
-                            <!--Chart-->
                             <div id="collapse_1" class="panel-collapse collapse in">
                                 <div class="panel-body xy_scroll" style="text-align: center;">
                                     <div id="asv_plot" style="width:1000px;height:500px;margin: 0 auto;"></div>
                                     <div style="text-align: left;">
                                         <br>
-                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis
-                                            was sufficient in identifying species/ASV.
-                                            If the curve becomes flatter to the right, it indicates that a reasonable
-                                            number of reads have been used in the analysis,thus additional sequencing is
-                                            not necessary.
-                                            In contrast, if the graph does not plateau, the additional reads is likely
-                                            to discover more ASVs for the sample (x-axis: read number; y-axis: number of
-                                            ASVS).
-                                            Below each plot is a table displaying average values for each measure of
-                                            alpha diversity for each group of samples the specified category. <br><br>
-
+                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis was sufficient in identifying species/ASV. If the curve becomes flatter to the right, it indicates that a reasonable number of reads have been used in the analysis,thus additional sequencing is not necessary. In contrast, if the graph does not plateau, the additional reads is likely to discover more ASVs for the sample (x-axis: read number; y-axis: number of ASVS). Below each plot is a table displaying average values for each measure of alpha diversity for each group of samples the specified category.<br><br>
                                             * Metric : ASVs<br>
                                         </p>
                                     </div>
@@ -152,7 +143,6 @@
                         </div>
                     </div>
 
-                    <!-- Chao1 chart -->
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -161,10 +151,7 @@
                                     <a data-toggle="collapse" href="#collapse_5"><b>Rarefaction Curve (Chao1)</b></a>
                                     <div style="display: flex; align-items: center; margin-left: auto;">
                                         <b style="margin-right: 5px;">Select a Group Type:</b>
-                                        <select id="groupSelectorChao1" class="custom-group-selector"
-                                            style="margin-left: 5px;">
-                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                        </select>
+                                        <select id="groupSelectorChao1" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
                                 </h4>
                             </div>
@@ -173,17 +160,7 @@
                                     <div id="chao1_plot" style="width:1000px;height:500px;margin: 0 auto;"></div>
                                     <div style="text-align: left;">
                                         <br>
-                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis
-                                            was sufficient in identifying species/ASV.
-                                            If the curve becomes flatter to the right, it indicates that a reasonable
-                                            number of reads have been used in the analysis,thus additional sequencing is
-                                            not necessary.
-                                            In contrast, if the graph does not plateau, the additional reads is likely
-                                            to discover more ASVs for the sample (x-axis: read number; y-axis: number of
-                                            ASVS).
-                                            Below each plot is a table displaying average values for each measure of
-                                            alpha diversity for each group of samples the specified category. <br><br>
-
+                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis was sufficient in identifying species/ASV. If the curve becomes flatter to the right, it indicates that a reasonable number of reads have been used in the analysis,thus additional sequencing is not necessary. In contrast, if the graph does not plateau, the additional reads is likely to discover more ASVs for the sample (x-axis: read number; y-axis: number of ASVS). Below each plot is a table displaying average values for each measure of alpha diversity for each group of samples the specified category.<br><br>
                                             * Metric : Chao1<br>
                                         </p>
                                     </div>
@@ -192,9 +169,6 @@
                         </div>
                     </div>
 
-
-
-                    <!-- Shannon chart -->
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -203,10 +177,7 @@
                                     <a data-toggle="collapse" href="#collapse_2"><b>Rarefaction Curve (Shannon)</b></a>
                                     <div style="display: flex; align-items: center; margin-left: auto;">
                                         <b style="margin-right: 5px;">Select a Group Type:</b>
-                                        <select id="groupSelectorShannon" class="custom-group-selector"
-                                            style="margin-left: 5px;">
-                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                        </select>
+                                        <select id="groupSelectorShannon" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
                                 </h4>
                             </div>
@@ -215,17 +186,7 @@
                                     <div id="shannon_plot" style="width:1000px;height:500px;margin: 0 auto;"></div>
                                     <div style="text-align: left;">
                                         <br>
-                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis
-                                            was sufficient in identifying species/ASV.
-                                            If the curve becomes flatter to the right, it indicates that a reasonable
-                                            number of reads have been used in the analysis,thus additional sequencing is
-                                            not necessary.
-                                            In contrast, if the graph does not plateau, the additional reads is likely
-                                            to discover more ASVs for the sample (x-axis: read number; y-axis: number of
-                                            ASVS).
-                                            Below each plot is a table displaying average values for each measure of
-                                            alpha diversity for each group of samples the specified category. <br><br>
-
+                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis was sufficient in identifying species/ASV. If the curve becomes flatter to the right, it indicates that a reasonable number of reads have been used in the analysis,thus additional sequencing is not necessary. In contrast, if the graph does not plateau, the additional reads is likely to discover more ASVs for the sample (x-axis: read number; y-axis: number of ASVS). Below each plot is a table displaying average values for each measure of alpha diversity for each group of samples the specified category.<br><br>
                                             * Metric : Shannon<br>
                                         </p>
                                     </div>
@@ -234,20 +195,15 @@
                         </div>
                     </div>
 
-                    <!-- Faiths_PD chart -->
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title"
                                     style="display: flex; justify-content: space-between; align-items: center;">
-                                    <a data-toggle="collapse" href="#collapse_4"><b>Rarefaction Curve
-                                            (Faiths_PD)</b></a>
+                                    <a data-toggle="collapse" href="#collapse_4"><b>Rarefaction Curve (Faiths_PD)</b></a>
                                     <div style="display: flex; align-items: center; margin-left: auto;">
                                         <b style="margin-right: 5px;">Select a Group Type:</b>
-                                        <select id="groupSelectorFaithsPD" class="custom-group-selector"
-                                            style="margin-left: 5px;">
-                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                        </select>
+                                        <select id="groupSelectorFaithsPD" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
                                 </h4>
                             </div>
@@ -256,17 +212,7 @@
                                     <div id="faiths_pd_plot" style="width:1000px;height:500px;margin: 0 auto;"></div>
                                     <div style="text-align: left;">
                                         <br>
-                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis
-                                            was sufficient in identifying species/ASV.
-                                            If the curve becomes flatter to the right, it indicates that a reasonable
-                                            number of reads have been used in the analysis,thus additional sequencing is
-                                            not necessary.
-                                            In contrast, if the graph does not plateau, the additional reads is likely
-                                            to discover more ASVs for the sample (x-axis: read number; y-axis: number of
-                                            ASVS).
-                                            Below each plot is a table displaying average values for each measure of
-                                            alpha diversity for each group of samples the specified category. <br><br>
-
+                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis was sufficient in identifying species/ASV. If the curve becomes flatter to the right, it indicates that a reasonable number of reads have been used in the analysis,thus additional sequencing is not necessary. In contrast, if the graph does not plateau, the additional reads is likely to discover more ASVs for the sample (x-axis: read number; y-axis: number of ASVS). Below each plot is a table displaying average values for each measure of alpha diversity for each group of samples the specified category.<br><br>
                                             * Metric : Faith's PD<br>
                                         </p>
                                     </div>
@@ -274,9 +220,7 @@
                             </div>
                         </div>
                     </div>
-                
 
-                    <!-- Simpson chart -->
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -285,10 +229,7 @@
                                     <a data-toggle="collapse" href="#collapse_6"><b>Rarefaction Curve (Simpson)</b></a>
                                     <div style="display: flex; align-items: center; margin-left: auto;">
                                         <b style="margin-right: 5px;">Select a Group Type:</b>
-                                        <select id="groupSelectorSimpson" class="custom-group-selector"
-                                            style="margin-left: 5px;">
-                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                        </select>
+                                        <select id="groupSelectorSimpson" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
                                 </h4>
                             </div>
@@ -297,17 +238,7 @@
                                     <div id="simpson_plot" style="width:1000px;height:500px;margin: 0 auto;"></div>
                                     <div style="text-align: left;">
                                         <br>
-                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis
-                                            was sufficient in identifying species/ASV.
-                                            If the curve becomes flatter to the right, it indicates that a reasonable
-                                            number of reads have been used in the analysis,thus additional sequencing is
-                                            not necessary.
-                                            In contrast, if the graph does not plateau, the additional reads is likely
-                                            to discover more ASVs for the sample (x-axis: read number; y-axis: number of
-                                            ASVS).
-                                            Below each plot is a table displaying average values for each measure of
-                                            alpha diversity for each group of samples the specified category. <br><br>
-
+                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis was sufficient in identifying species/ASV. If the curve becomes flatter to the right, it indicates that a reasonable number of reads have been used in the analysis,thus additional sequencing is not necessary. In contrast, if the graph does not plateau, the additional reads is likely to discover more ASVs for the sample (x-axis: read number; y-axis: number of ASVS). Below each plot is a table displaying average values for each measure of alpha diversity for each group of samples the specified category.<br><br>
                                             * Metric : Simpson<br>
                                         </p>
                                     </div>
@@ -316,20 +247,15 @@
                         </div>
                     </div>
 
-                    <!-- Gini-Simpson chart -->
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title"
                                     style="display: flex; justify-content: space-between; align-items: center;">
-                                    <a data-toggle="collapse" href="#collapse_3"><b>Rarefaction Curve
-                                            (Gini-Simpson)</b></a>
+                                    <a data-toggle="collapse" href="#collapse_3"><b>Rarefaction Curve (Gini-Simpson)</b></a>
                                     <div style="display: flex; align-items: center; margin-left: auto;">
                                         <b style="margin-right: 5px;">Select a Group Type:</b>
-                                        <select id="groupSelectorGiniSimpson" class="custom-group-selector"
-                                            style="margin-left: 5px;">
-                                            <!-- JavaScript로 옵션을 동적으로 추가합니다. -->
-                                        </select>
+                                        <select id="groupSelectorGiniSimpson" class="custom-group-selector" style="margin-left: 5px;"></select>
                                     </div>
                                 </h4>
                             </div>
@@ -338,17 +264,7 @@
                                     <div id="gini_simpson_plot" style="width:1000px;height:500px;margin: 0 auto;"></div>
                                     <div style="text-align: left;">
                                         <br>
-                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis
-                                            was sufficient in identifying species/ASV.
-                                            If the curve becomes flatter to the right, it indicates that a reasonable
-                                            number of reads have been used in the analysis,thus additional sequencing is
-                                            not necessary.
-                                            In contrast, if the graph does not plateau, the additional reads is likely
-                                            to discover more ASVs for the sample (x-axis: read number; y-axis: number of
-                                            ASVS).
-                                            Below each plot is a table displaying average values for each measure of
-                                            alpha diversity for each group of samples the specified category. <br><br>
-
+                                        <p>* Alpha rarefaction graph shows whether the number of reads used in analysis was sufficient in identifying species/ASV. If the curve becomes flatter to the right, it indicates that a reasonable number of reads have been used in the analysis,thus additional sequencing is not necessary. In contrast, if the graph does not plateau, the additional reads is likely to discover more ASVs for the sample (x-axis: read number; y-axis: number of ASVS). Below each plot is a table displaying average values for each measure of alpha diversity for each group of samples the specified category.<br><br>
                                             * Metric : Gini-Simpson<br>
                                         </p>
                                     </div>
@@ -356,42 +272,36 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
-                <!--div class="col-sm-12"-->
             </div>
-            <!--end: div row-->
         </div>
 
-        <button class="floating-btn">
+        <button class="floating-btn" style="position: fixed; right: 30px; top: calc(50% + 35px); z-index: 1000;" onclick="$('#metadataModal').modal('show')">
             <i class="fa fa-edit"></i>
             <span id="tooltipText" class="tooltip-text">
                 <strong>Group Customization</strong><br>
                 Upload <code>metadata.xlsx</code> for custom group analysis.
             </span>
         </button>
+
         <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Group Management</h4>
             </div>
             <div class="modal-body">
                 <div id="usage">
                     <h4>How to Customize Groups:</h4>
                     <ol>
-                        <li id="usageText">Click <strong>Download Template</strong> to get the
-                            <code>metadata.xlsx</code> file.
-                        </li>
+                        <li id="usageText">Click <strong>Download Template</strong> to get the <code>metadata.xlsx</code> file.</li>
                         <li>Open the file and specify your custom groups for each sample in the 'Group' sheet.</li>
                         <li>Save the changes and click <strong>Upload File</strong> to apply your custom grouping.</li>
                     </ol>
-                    <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you
-                        will
-                        need to re-upload the file.</p>
+                    <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you will need to re-upload the file.</p>
                 </div>
                 <div class="button-container">
-                    <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button"
-                        download>
+                    <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button" download>
                         <i class="fa fa-download"></i>Download Template
                     </a>
                     <label class="btn-modal-action upload_label_button">
@@ -401,143 +311,128 @@
                 </div>
                 <div id="fileNameDisplay"></div>
             </div>
+            
             <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    // 'ordernumber' 변수는 페이지 상단에서 'array.project' 값으로 이미 정의되어 있습니다.
+                document.addEventListener("DOMContentLoaded", function() {
                     if (typeof ordernumber !== 'undefined') {
                         const newFileName = `metadata_${ordernumber}.xlsx`;
                         const newFileNameHtml = `<code>${newFileName}</code>`;
 
-                        // 1. 다운로드 링크의 href와 download 속성을 변경합니다.
                         const downloadLink = document.getElementById('downloadTemplateLink');
                         if (downloadLink) {
                             downloadLink.href = `../${newFileName}`;
                             downloadLink.download = newFileName;
                         }
 
-                        // 2. 플로팅 버튼의 툴팁 텍스트를 변경합니다.
                         const tooltipText = document.getElementById('tooltipText');
                         if (tooltipText) {
                             tooltipText.innerHTML = `<strong>Group Customization</strong><br>Upload ${newFileNameHtml} for custom group analysis.`;
                         }
 
-                        // 3. 사용법 안내 문구의 텍스트를 변경합니다.
                         const usageText = document.getElementById('usageText');
                         if (usageText) {
                             usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
                         }
                     }
                 });
+
+                // ==============================================================================
+                // [해결의 핵심] group-modal.js가 엑셀 파싱 성공 후 반드시 호출해야 하는 전역 함수
+                // ==============================================================================
+                window.updateGraphWithNewData = function(data) {
+                    if (data && Object.keys(data).length > 0) {
+                        // 1. 엑셀 데이터 파싱 저장
+                        window.uploadedData = data;
+                        
+                        // 2. 엑셀에서 넘어온 딕셔너리 값들의 고유 순서(B->A)를 배열에 차례대로 담음
+                        const newOrder = [];
+                        for (let key in data) {
+                            let gName = data[key];
+                            if (gName && !newOrder.includes(gName)) {
+                                newOrder.push(gName);
+                            }
+                        }
+                        // plot.js가 정렬할 때 참고하는 뼈대 기준 전역 변수에 저장
+                        window.currentUniqueGroupNames = newOrder; 
+
+                        // 3. 모든 드롭다운 메뉴를 일괄 'Custom' 모드로 돌리고 새로고침(change) 이벤트를 쏴줌
+                        const groupSelectors = [
+                            document.getElementById('groupSelectorASV'),
+                            document.getElementById('groupSelectorChao1'),
+                            document.getElementById('groupSelectorShannon'),
+                            document.getElementById('groupSelectorFaithsPD'),
+                            document.getElementById('groupSelectorSimpson'),
+                            document.getElementById('groupSelectorGiniSimpson')
+                        ];
+
+                        groupSelectors.forEach(selector => {
+                            if (selector) {
+                                selector.value = 'Custom';
+                                selector.dispatchEvent(new Event('change'));
+                            }
+                        });
+                        
+                        setTimeout(() => {
+                            $('#metadataModal').modal('hide');
+                        }, 800);
+                        
+                    } else {
+                        console.error("No valid metadata found.");
+                    }
+                };
             </script>
         </div>
 
         <script>
-            // 커스텀 그룹 데이터를 저장할 전역 변수
-            var uploadedData = null;
-
-            /**
-             * 각 그룹 선택 드롭다운을 설정하고 이벤트 리스너를 바인딩하는 통합 함수.
-             * @param {string} selectorId - select 요소의 ID
-             * @param {object} plotData - 해당 그래프의 데이터 (e.g., ASV, shannon)
-             * @param {string} plotDivId - 그래프가 그려질 div 요소의 ID
-             * @param {string} plotName - 그래프의 이름 (e.g., 'ASVs')
-             */
             function setupGroupSelector(selectorId, plotData, plotDivId, plotName) {
                 const selector = document.getElementById(selectorId);
                 if (!selector || !plotData) return;
 
-                // 1. 드롭다운 메뉴를 초기화하고 옵션을 순서대로 채웁니다.
-                selector.innerHTML = ''; // 기존 옵션 모두 제거
-
-                // 'SampleID' 옵션 추가
+                selector.innerHTML = ''; 
                 selector.innerHTML += '<option value="sample">SampleID</option>';
 
-                // main.js에 정의된 사전 그룹 옵션들 추가 (e.g., Group1, Group2)
                 if (typeof group_name !== 'undefined' && Array.isArray(group_name)) {
                     group_name.forEach((name, index) => {
                         selector.innerHTML += `<option value="${index}">${name}</option>`;
                     });
                 }
-
-                // 'Group Customization' 옵션 추가
                 selector.innerHTML += '<option value="Custom">Group Customization</option>';
 
-                // 2. 드롭다운 변경 시 그래프를 업데이트하는 이벤트 리스너 설정
                 selector.addEventListener('change', function () {
                     const selectedValue = this.value;
 
                     if (selectedValue === 'sample') {
-                        // 'SampleID' 선택 시: 개별 샘플 그래프를 그립니다.
                         plotRarefaction(plotData, plotDivId, plotName);
                         return;
                     }
 
                     let groupList, legendTitle;
                     if (selectedValue === 'Custom') {
-                        // 'Custom' 선택 시
                         if (window.uploadedData) {
-                            // 업로드된 데이터가 있으면, 전체 샘플 리스트(sample_list) 순서에 맞춰 그룹 리스트를 생성합니다.
                             groupList = sample_list.map(id => window.uploadedData[id] || 'Undefined');
-                            legendTitle = 'Group'; // 범례 제목을 'Group'으로 고정합니다.
+                            legendTitle = 'Group';
                         } else {
-                            // 업로드된 데이터가 없으면 안내 메시지를 표시하고 종료합니다.
                             document.getElementById(plotDivId).innerHTML = "<p style='text-align:center; padding:20px;'>Please upload a metadata file for custom grouping.</p>";
-                            // 플로팅 버튼 강조
                             if (typeof highlightFloatingButton === 'function') {
                                 highlightFloatingButton(4000);
                             }
                             return;
                         }
                     } else {
-                        // 사전 정의된 그룹 선택 시 (e.g., 'Group1' -> value '0')
                         const index = parseInt(selectedValue, 10);
                         groupList = window['group_list' + (index + 1)];
-                        legendTitle = group_name[index]; // 범례 제목을 해당 그룹명으로 지정합니다.
+                        legendTitle = group_name[index];
                     }
 
-                    // 생성된 그룹 정보로 그룹 그래프를 그립니다.
                     if (groupList) {
                         plotGroupRarefaction(plotData, plotDivId, plotName, groupList, legendTitle);
                     }
                 });
 
-                // 3. 페이지 로드 시 초기 그래프를 'SampleID' 기준으로 먼저 그립니다.
                 plotRarefaction(plotData, plotDivId, plotName);
             }
 
-            /**
-             * group-modal.js에서 파일 업로드 성공 시 호출될 전역 함수.
-             * @param {object} data - 파일에서 파싱된 { 샘플ID: 그룹명 } 형태의 데이터.
-             */
-
-            function updateGraphWithNewData(data) {
-                // 1. 전역 변수에 업로드된 데이터를 저장합니다.
-                window.uploadedData = data;
-
-                const groupSelectors = [
-                    document.getElementById('groupSelectorASV'),
-                    document.getElementById('groupSelectorChao1'),
-                    document.getElementById('groupSelectorShannon'),
-                    document.getElementById('groupSelectorFaithsPD'),
-                    document.getElementById('groupSelectorSimpson'),
-                    document.getElementById('groupSelectorGiniSimpson')
-                ];
-
-                // 2. 모든 드롭다운의 값을 'Custom'으로 설정하고,
-                //    프로그래밍적으로 'change' 이벤트를 발생시켜 그래프 업데이트를 강제합니다.
-                groupSelectors.forEach(selector => {
-                    if (selector) {
-                        selector.value = 'Custom';
-
-                        // [핵심 수정] 'change' 이벤트를 강제로 발생시켜 연결된 이벤트 리스너가 동작하게 합니다.
-                        selector.dispatchEvent(new Event('change'));
-                    }
-                });
-            }
-
-            // DOM 컨텐츠가 모두 로드된 후, 4개의 그래프에 대한 설정을 각각 실행합니다.
             document.addEventListener('DOMContentLoaded', function () {
-                // 전역 변수들이 존재하는지 확인 후 실행
                 if (typeof ASV !== 'undefined' && typeof shannon !== 'undefined') {
                     setupGroupSelector('groupSelectorASV', ASV, 'asv_plot', 'ASVs');
                     setupGroupSelector('groupSelectorChao1', chao1, 'chao1_plot', 'Chao1');
@@ -546,16 +441,14 @@
                     setupGroupSelector('groupSelectorSimpson', simpson, 'simpson_plot', 'Simpson');
                     setupGroupSelector('groupSelectorGiniSimpson', gini_simpson, 'gini_simpson_plot', 'Gini-Simpson');
                 } else {
-                    console.error("Rarefaction data (ASV, shannon, etc.) is not loaded.");
+                    console.error("Rarefaction data is not loaded.");
                 }
             });
         </script>
 
-        <!--end: div container-->
         <div class="clear"></div>
         <div style="height:150px"></div>
         <div class="clear"></div>
     </div>
 </body>
-
 </html>

@@ -5,25 +5,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--css-->
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="../css/group-modal.css">
+    
+    <link rel="stylesheet" href="../js/tablesorter-master/css/theme.bootstrap.css">
+    <link rel="stylesheet" href="../js/tablesorter-master/addons/pager/jquery.tablesorter.pager.css">
 
-    <!--tools-->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
     <script src="../js/plotly/plotly-2.20.0.min.js"></script>
-    <!-- Load main.js first to access sample_list -->
+    <script src="../js/excel/xlsx.full.min.js"></script>
     <script src="../main.js"></script>
+    
     <script src="./Diversity_beta/beta_diversity_dm.js"></script>
     <script src="./Diversity_beta/plot.js"></script>
 
     <script>
-        var array;
         var ordernumber = array.project;
         var customer = array.name;
         var institute = array.organization;
@@ -33,25 +36,24 @@
         document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
     </script>
     <style>
-            .btn {
-                background-color: #333;
-                border: none;
-                color: white;
-                padding: 4px 20px;
-                cursor: pointer;
-                font-size: 18px;
-            }
-            
-            /* Darker background on mouse-over */
-            .btn:hover {
-                background-color: #f2f2f2;
-            }
-        </style>
+        .btn {
+            background-color: #333;
+            border: none;
+            color: white;
+            padding: 4px 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .btn:hover {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body class="total_font">
     <div id="wrap">
-        <!--header-->
         <header id="header">
             <div class="header-wrap clearfix">
                 <div class="logo">
@@ -69,10 +71,10 @@
                     function generateMenuHtml(menuArray) {
                         let html = '';
                         menuArray.forEach(item => {
-                            if (item.category) { // 변경
+                            if (item.category) { 
                                 html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
                                 html += '<ul class="dropdown-menu">';
-                                html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                                html += generateMenuHtml(item.path); 
                                 html += '</ul></li>';
                             } else if (item.display) {
                                 if (item.path === "") {
@@ -104,16 +106,20 @@
             </nav>
         </header>
 
-        <!--top 버튼-->
         <div id="backtotop"><img src="../img/Etc_Icon_img/GotoTop_Icon.png"></div>
+        <script>
+            $(function () {
+                $(window).scroll(function () { if ($(this).scrollTop() != 0) { $('#backtotop').fadeIn(); } else { $('#backtotop').fadeOut(); } });
+                $('#backtotop').click(function () { $('body,html').animate({ scrollTop: 0 }, 800); });
+            });
+        </script>
+
         <div class="container">
             <div class="row">
                 <div>
-                    <!--icon-->
                     <div class="div_icon">
                         <img src="../img/Icon_img/VARIANT_stats.png">
                     </div>
-                    <!--title-->
                     <a href="../../data/Diversity_analysis/Beta_diversity/DistanceMatrix/DistanceMatrix.xlsx"
                         target="_blank"><button class="btn" style="float:right; margin-top: 30px;" download><img
                                 width="20px" style="margin-bottom: 3px;" src="../img/Icon_img/Link.png" alt="Link Icon">
@@ -126,17 +132,14 @@
                 </div>
                 <div class="col-sm-12">
                     <br>
-                    <!--Distance Matrix chart-->
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <!--Panel head-->
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" href="#collapse_1"><b>Distance Matrix - Bray
                                             Curtis</b></a>
                                 </h4>
                             </div>
-                            <!--Chart-->
                             <div id="collapse_1" class="panel-collapse collapse in">
                                 <div class="panel-body xy_scroll" style="text-align: center;">
                                     <div style="display: flex; padding-top:15px; justify-content: flex-start;">
@@ -149,7 +152,7 @@
                                                     onclick="downloadimg2('png','Distance Matrix(bray-curtis)')">Save
                                                     PNG</button>
                                                 <button class="myButton_1 right"
-                                                    onclick="downloadimg2('svg','Distance Matrix(2D-PCoA)')">Save
+                                                    onclick="downloadimg2('svg','Distance Matrix(bray-curtis)')">Save
                                                     SVG</button>
                                             </div>
 
@@ -197,17 +200,14 @@
                         </div>
                     </div>
                     <br>
-                    <!--Distance Matrix chart-->
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <!--Panel head-->
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" href="#collapse_2"><b>Distance Matrix - Weighted
                                             UniFrac</b></a>
                                 </h4>
                             </div>
-                            <!--Chart-->
                             <div id="collapse_2" class="panel-collapse collapse in">
                                 <div class="panel-body xy_scroll" style="text-align: center;">
                                     <div style="display: flex; padding-top:15px; justify-content: flex-start;">
@@ -220,7 +220,7 @@
                                                     onclick="downloadimg2('png','Distance Matrix(weighted-unifrac)')">Save
                                                     PNG</button>
                                                 <button class="myButton_1 right"
-                                                    onclick="downloadimg2('svg','Distance Matrix(2D-PCoA)')">Save
+                                                    onclick="downloadimg2('svg','Distance Matrix(weighted-unifrac)')">Save
                                                     SVG</button>
                                             </div>
 
@@ -270,17 +270,14 @@
                         </div>
                     </div>
                     <br>
-                    <!--Distance Matrix chart-->
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <!--Panel head-->
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" href="#collapse_3"><b>Distance Matrix - Unweighted
                                             UniFrac</b></a>
                                 </h4>
                             </div>
-                            <!--Chart-->
                             <div id="collapse_3" class="panel-collapse collapse in">
                                 <div class="panel-body xy_scroll" style="text-align: center;">
                                     <div style="display: flex; padding-top:15px; justify-content: flex-start;">
@@ -293,7 +290,7 @@
                                                     onclick="downloadimg2('png','Distance Matrix(unweighted-unifrac)')">Save
                                                     PNG</button>
                                                 <button class="myButton_1 right"
-                                                    onclick="downloadimg2('svg','Distance Matrix(2D-PCoA)')">Save
+                                                    onclick="downloadimg2('svg','Distance Matrix(unweighted-unifrac)')">Save
                                                     SVG</button>
                                             </div>
 
@@ -350,6 +347,181 @@
         <div style="height:150px"></div>
         <div class="clear"></div>
     </div>
-</body>
 
+    <script src="../js/group-modal.js"></script>
+
+    <button class="floating-btn" style="position: fixed; right: 30px; top: calc(50% + 35px); z-index: 1000;" onclick="$('#metadataModal').modal('show')">
+        <i class="fa fa-edit"></i>
+        <span id="tooltipText" class="tooltip-text">
+            <strong>Sample Customization</strong><br>
+            Upload <code>metadata.xlsx</code> for custom sample ordering.
+        </span>
+    </button>
+
+    <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Sample Management</h4>
+        </div>
+        <div class="modal-body">
+            <div id="usage">
+                <h4>How to Customize Samples:</h4>
+                <ol>
+                    <li id="usageText">Click <strong>Download Template</strong> to get the <code>metadata.xlsx</code> file.</li>
+                    <li>Open the file and specify your custom sample order in the 'SampleID' column.</li>
+                    <li>Save the changes and click <strong>Upload File</strong> to apply your custom ordering.</li>
+                </ol>
+                <p>Important: Custom sample settings are temporary. If you navigate away or refresh this page, you will
+                    need to re-upload the file.</p>
+            </div>
+            <div class="button-container">
+                <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button" download>
+                    <i class="fa fa-download"></i>Download Template
+                </a>
+                <label class="btn-modal-action upload_label_button">
+                    <i class="fa fa-upload"></i> Upload File
+                    <input type="file" id="fileInput" accept=".xlsx" style="display: none;" />
+                </label>
+            </div>
+            <div id="fileNameDisplay"></div>
+        </div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof ordernumber !== 'undefined') {
+                    const newFileName = `metadata_${ordernumber}.xlsx`;
+                    const newFileNameHtml = `<code>${newFileName}</code>`;
+
+                    const downloadLink = document.getElementById('downloadTemplateLink');
+                    if (downloadLink) {
+                        downloadLink.href = `../${newFileName}`;
+                        downloadLink.download = newFileName;
+                    }
+
+                    const tooltipText = document.getElementById('tooltipText');
+                    if (tooltipText) {
+                        tooltipText.innerHTML = `<strong>Sample Customization</strong><br>Upload ${newFileNameHtml} for custom sample ordering.`;
+                    }
+
+                    const usageText = document.getElementById('usageText');
+                    if (usageText) {
+                        usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
+                    }
+                }
+
+                // 엑셀 파일 로컬 처리 로직 (HTML 내부에서 독립적으로 처리)
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput) {
+                    fileInput.addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (!file) return;
+
+                        const fileNameDisplay = document.getElementById('fileNameDisplay');
+                        if (fileNameDisplay) {
+                            fileNameDisplay.style.display = 'flex';
+                            fileNameDisplay.innerHTML = `<span class="file-icon"><i class="fa fa-check-circle"></i></span> <span class="file-name-text">Successfully loaded: ${file.name}</span>`;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            try {
+                                const dataXLSX = new Uint8Array(e.target.result);
+                                const workbook = XLSX.read(dataXLSX, { type: 'array' });
+                                const sheet = workbook.Sheets['Group'] || workbook.Sheets[workbook.SheetNames[0]];
+                                
+                                const json_data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                                const newOrder = [];
+                                
+                                // SampleID 컬럼 찾기
+                                let sampleIdx = 0; 
+                                if(json_data[0]) {
+                                    for(let i = 0; i < json_data[0].length; i++) {
+                                        if(String(json_data[0][i]).trim().toLowerCase() === 'sampleid') {
+                                            sampleIdx = i;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                // 데이터 행부터 추출 (순서 보장)
+                                for (let i = 1; i < json_data.length; i++) {
+                                    let val = json_data[i][sampleIdx];
+                                    if (val) {
+                                        let sampleName = String(val).trim();
+                                        if (!newOrder.includes(sampleName)) {
+                                            newOrder.push(sampleName);
+                                        }
+                                    }
+                                }
+
+                                if (newOrder.length > 0) {
+                                    updateGraphWithNewData(newOrder); // 아래 정의된 함수 호출
+                                    
+                                    setTimeout(() => {
+                                        $('#metadataModal').modal('hide');
+                                    }, 800);
+                                    
+                                } else {
+                                    throw new Error("No valid SampleID data found.");
+                                }
+                            } catch (error) {
+                                if (fileNameDisplay) {
+                                    fileNameDisplay.innerHTML = `<span class="file-icon" style="color:#c0392b;"><i class="fa fa-times-circle"></i></span> <span class="file-name-text" style="color:#c0392b;">Error: ${error.message}</span>`;
+                                }
+                            }
+                        };
+                        reader.readAsArrayBuffer(file);
+                    });
+                }
+            });
+
+            // 엑셀에서 추출한 새로운 순서 배열(newOrder)을 받아 모든 매트릭스를 2D 재정렬하는 핵심 함수
+            window.updateGraphWithNewData = function(newOrderFromExcel) {
+                if (typeof sample_list !== 'undefined' && newOrderFromExcel.length > 0) {
+                    const oldOrder = [...sample_list];
+                    const newOrder = [];
+                    
+                    // 기존 sample_list에 존재하는 엑셀 샘플들만 추출
+                    newOrderFromExcel.forEach(s => {
+                        if (oldOrder.includes(s)) newOrder.push(s);
+                    });
+                    
+                    // 혹시 엑셀에 누락된 기존 샘플이 있다면 맨 뒤에 붙임
+                    oldOrder.forEach(s => {
+                        if (!newOrder.includes(s)) newOrder.push(s);
+                    });
+                    
+                    sample_list = newOrder; // 전역 변수 덮어쓰기
+                    const indices = newOrder.map(val => oldOrder.indexOf(val));
+                    
+                    // 1. Bray-Curtis 매트릭스 2차원(행, 열) 재정렬 및 재렌더링
+                    if (typeof bray_curtis_matrix !== 'undefined') {
+                        bray_curtis_matrix = indices.map(i => indices.map(j => bray_curtis_matrix[i][j]));
+                        if(document.getElementById('distance_chart_container_bray')) {
+                            Distance_plot('distance_chart_container_bray', sample_list, bray_curtis_matrix);
+                        }
+                    }
+                    
+                    // 2. Weighted UniFrac 매트릭스 재정렬 및 재렌더링
+                    if (typeof weighted_unifrac_matrix !== 'undefined') {
+                        weighted_unifrac_matrix = indices.map(i => indices.map(j => weighted_unifrac_matrix[i][j]));
+                        if(document.getElementById('distance_chart_container_weighted')) {
+                            Distance_plot('distance_chart_container_weighted', sample_list, weighted_unifrac_matrix);
+                        }
+                    }
+                    
+                    // 3. Unweighted UniFrac 매트릭스 재정렬 및 재렌더링
+                    if (typeof unweighted_unifrac_matrix !== 'undefined') {
+                        unweighted_unifrac_matrix = indices.map(i => indices.map(j => unweighted_unifrac_matrix[i][j]));
+                        if(document.getElementById('distance_chart_container_unweighted')) {
+                            Distance_plot('distance_chart_container_unweighted', sample_list, unweighted_unifrac_matrix);
+                        }
+                    }
+                }
+            };
+        </script>
+    </div>
+
+</body>
 </html>

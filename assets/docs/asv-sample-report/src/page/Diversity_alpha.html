@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.2.3.1.min.css">
     <link rel="stylesheet" href="../js/bootstrap-3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/common.css">
@@ -37,6 +36,7 @@
         var numberofsample = array.numberofsample;
         document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
     </script>
+    
     <style>
         .boxplot-div {
             width: 48%;
@@ -73,10 +73,10 @@
                     function generateMenuHtml(menuArray) {
                         let html = '';
                         menuArray.forEach(item => {
-                            if (item.category) { // 변경
+                            if (item.category) { 
                                 html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
                                 html += '<ul class="dropdown-menu">';
-                                html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                                html += generateMenuHtml(item.path); 
                                 html += '</ul></li>';
                             } else if (item.display) {
                                 if (item.path === "") {
@@ -177,9 +177,8 @@
                             </div>
 
                             <script>
-                                var uploadedData = null; // 커스텀 그룹 데이터 저장용 전역 변수
+                                var uploadedData = null; 
 
-                                // Boxplot을 업데이트하는 중앙 함수
                                 function updatePlots() {
                                     const selectedValue = document.getElementById('groupSelector').value;
                                     const boxplotContainer = document.getElementById('boxplot-container');
@@ -207,7 +206,6 @@
 
                                     if (!xAxisData) return;
 
-                                    // boxplot-container 초기화 및 div 생성
                                     boxplotContainer.innerHTML = '';
                                     Object.keys(alpha_diversity).forEach(function (key) {
                                         var div = document.createElement('div');
@@ -221,19 +219,88 @@
                                     });
                                 }
 
-                                // group-modal.js에서 파일 업로드 성공 시 호출될 전역 함수
+                                // [핵심] group-modal.js에서 엑셀 파일 업로드가 완료되면 호출되는 콜백 함수
                                 function updateGraphWithNewData(data) {
                                     uploadedData = data;
                                     document.getElementById('groupSelector').value = 'Custom';
-                                    updatePlots(); // 커스텀 데이터로 플롯 업데이트
+                                    
+                                    // 1. 엑셀에서 읽어들인 딕셔너리의 Key(SampleID) 배열 추출 (B -> A 순서 유지)
+                                    const newOrderFromExcel = Object.keys(data);
+                                    
+                                    if (typeof sample_list !== 'undefined' && newOrderFromExcel.length > 0) {
+                                        const oldOrder = [...sample_list];
+                                        const newOrder = [];
+                                        
+                                        // 엑셀에 있는 샘플 중 기존 sample_list에 존재하는 것만 순서대로 추출
+                                        newOrderFromExcel.forEach(s => {
+                                            if (oldOrder.includes(s)) newOrder.push(s);
+                                        });
+                                        // 엑셀에 누락된 샘플이 있다면 맨 뒤에 그대로 이어붙이기
+                                        oldOrder.forEach(s => {
+                                            if (!newOrder.includes(s)) newOrder.push(s);
+                                        });
+                                        
+                                        // 전역 sample_list 업데이트
+                                        sample_list = newOrder; 
+                                        
+                                        // 기존 배열 인덱스와 새 배열 인덱스를 매핑
+                                        const indices = newOrder.map(val => oldOrder.indexOf(val));
+                                        
+                                        // 2. alpha_diversity 내부 데이터 배열 재정렬
+                                        if (typeof alpha_diversity !== 'undefined') {
+                                            Object.keys(alpha_diversity).forEach(key => {
+                                                const oldArr = [...alpha_diversity[key]];
+                                                alpha_diversity[key] = indices.map(i => oldArr[i]);
+                                            });
+                                        }
+
+                                        // 3. 그룹 리스트 데이터 재정렬
+                                        if (typeof group_count !== 'undefined') {
+                                            for (let i = 1; i <= group_count; i++) {
+                                                if (window['group_list' + i]) {
+                                                    const oldGroupArr = [...window['group_list' + i]];
+                                                    window['group_list' + i] = indices.map(idx => oldGroupArr[idx]);
+                                                }
+                                            }
+                                        }
+
+                                        // 4. Line plot(shannon_gini-simpson) 새로 고침
+                                        if (document.getElementById('shannon_gini-simpson')) {
+                                            D2_dual_plot(alpha_diversity, sample_list, "shannon", "gini-simpson");
+                                        }
+
+                                        // 5. 하단 표(Table) 업데이트 및 플러그인 리로드
+                                        var tableBody = document.getElementById('tb_fastq_raw');
+                                        if (tableBody) {
+                                            tableBody.innerHTML = '';
+                                            var keys = Object.keys(alpha_diversity);
+                                            sample_list.forEach(function (sampleName, index) {
+                                                var tr = document.createElement('tr');
+                                                var html_str = "<td class='td_char'>" + sampleName + "</td>";
+                                                keys.forEach(function (key) {
+                                                    var value = alpha_diversity[key][index];
+                                                    html_str += "<td class='td_num' style='text-align:center;'>" + value.toFixed(2) + "</td>";
+                                                });
+                                                tr.innerHTML = html_str;
+                                                tableBody.appendChild(tr);
+                                            });
+                                            $(".tablesorter").trigger("update");
+                                        }
+                                    }
+
+                                    // Boxplot 업데이트 (여기서 새로 정렬된 sample_list를 참조하게 됨)
+                                    updatePlots(); 
+
+                                    // 모달 창 자연스럽게 닫기
+                                    setTimeout(() => {
+                                        $('#metadataModal').modal('hide');
+                                    }, 800);
                                 }
 
-                                // 페이지 로드 시 실행될 기본 설정
                                 document.addEventListener("DOMContentLoaded", function () {
                                     const groupSelector = document.getElementById('groupSelector');
                                     const boxplotContainer = document.getElementById('boxplot-container');
 
-                                    // Boxplot을 그릴 div 동적 생성
                                     Object.keys(alpha_diversity).forEach(function (key) {
                                         var div = document.createElement('div');
                                         div.id = 'boxplot_' + key.replace(/[^a-zA-Z0-9]/g, '');
@@ -241,27 +308,18 @@
                                         boxplotContainer.appendChild(div);
                                     });
 
-                                    // groupSelector 옵션 채우기
                                     if (groupSelector) {
-                                        groupSelector.innerHTML = ''; // 드롭다운 초기화
-
-                                        // 1. "SampleID"를 기본 옵션으로 추가
+                                        groupSelector.innerHTML = ''; 
                                         groupSelector.innerHTML += '<option value="SampleID">SampleID</option>';
 
-                                        // 2. main.js에 정의된 사전 그룹 옵션 추가
                                         if (typeof group_name !== 'undefined' && Array.isArray(group_name)) {
                                             group_name.forEach(function (name, index) {
                                                 groupSelector.innerHTML += `<option value="${index}">${name}</option>`;
                                             });
                                         }
 
-                                        // 3. "Group Customization" 옵션 추가
                                         groupSelector.innerHTML += '<option value="Custom">Group Customization</option>';
-
-                                        // 드롭다운 변경 시 Boxplot 업데이트 이벤트 리스너 연결
                                         groupSelector.addEventListener('change', updatePlots);
-
-                                        // 페이지 로드 시 초기 Boxplot을 기본값("SampleID")으로 설정하여 그림
                                         updatePlots();
                                     }
                                 });
@@ -285,7 +343,6 @@
                                         <tbody id="tb_fastq_raw"></tbody>
                                     </table>
                                     <script>
-                                        // 테이블 헤더 동적 생성
                                         var tableHeader = document.getElementById('table-header');
                                         var keys = Object.keys(alpha_diversity);
                                         keys.forEach(function (key) {
@@ -294,7 +351,7 @@
                                             th.textContent = key;
                                             tableHeader.appendChild(th);
                                         });
-                                        // 테이블 바디 채우기
+
                                         var tableBody = document.getElementById('tb_fastq_raw');
                                         sample_list.forEach(function (sampleName, index) {
                                             var tr = document.createElement('tr');
@@ -348,39 +405,40 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="clear"></div>
-    <div style="height:50px"></div>
+        <div class="clear"></div>
+        <div style="height:150px"></div>
+        <div class="clear"></div>
     </div>
 
-    <button class="floating-btn">
+    <script src="../js/group-modal.js"></script>
+
+    <button class="floating-btn" style="position: fixed; right: 30px; top: calc(50% + 35px); z-index: 1000;" onclick="$('#metadataModal').modal('show')">
         <i class="fa fa-edit"></i>
         <span id="tooltipText" class="tooltip-text">
-            <strong>Group Customization</strong><br>
-            Upload <code>metadata.xlsx</code> for custom group analysis.
+            <strong>Sample Customization</strong><br>
+            Upload <code>metadata.xlsx</code> for custom sample ordering.
         </span>
     </button>
+
     <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Group Management</h4>
+            <h4 class="modal-title">Sample Management</h4>
         </div>
         <div class="modal-body">
             <div id="usage">
-                <h4>How to Customize Groups:</h4>
+                <h4>How to Customize Samples:</h4>
                 <ol>
-                    <li id="usageText">Click <strong>Download Template</strong> to get the <code>metadata.xlsx</code>
-                        file.</li>
-                    <li>Open the file and specify your custom groups for each sample in the 'Group' sheet.</li>
-                    <li>Save the changes and click <strong>Upload File</strong> to apply your custom grouping.</li>
+                    <li id="usageText">Click <strong>Download Template</strong> to get the <code>metadata.xlsx</code> file.</li>
+                    <li>Open the file and specify your custom sample order in the 'SampleID' column.</li>
+                    <li>Save the changes and click <strong>Upload File</strong> to apply your custom ordering.</li>
                 </ol>
-                <p>Important: Custom group settings are temporary. If you navigate away or refresh this page, you will
+                <p>Important: Custom sample settings are temporary. If you navigate away or refresh this page, you will
                     need to re-upload the file.</p>
             </div>
             <div class="button-container">
-                <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button"
-                    download>
+                <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button" download>
                     <i class="fa fa-download"></i>Download Template
                 </a>
                 <label class="btn-modal-action upload_label_button">
@@ -390,8 +448,9 @@
             </div>
             <div id="fileNameDisplay"></div>
         </div>
+        
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
+            document.addEventListener("DOMContentLoaded", function() {
                 if (typeof ordernumber !== 'undefined') {
                     const newFileName = `metadata_${ordernumber}.xlsx`;
                     const newFileNameHtml = `<code>${newFileName}</code>`;
@@ -404,7 +463,7 @@
 
                     const tooltipText = document.getElementById('tooltipText');
                     if (tooltipText) {
-                        tooltipText.innerHTML = `<strong>Group Customization</strong><br>Upload ${newFileNameHtml} for custom group analysis.`;
+                        tooltipText.innerHTML = `<strong>Sample Customization</strong><br>Upload ${newFileNameHtml} for custom sample ordering.`;
                     }
 
                     const usageText = document.getElementById('usageText');
@@ -415,24 +474,16 @@
             });
         </script>
     </div>
-    <script src="../js/group-modal.js"></script>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // main.js의 stat_summary 배열에서 첫 번째 객체의 NumberOfSample 값을 가져옵니다.
             const numberOfSamples = numberofsample;
-
-            // 샘플 수가 2 미만인지 확인합니다.
             if (numberOfSamples < 2) {
                 const boxplotSection1 = document.getElementById('alpha-section1');
-                // 해당 요소가 존재하면 화면에 보이지 않도록 'display' 속성을 'none'으로 변경합니다.
                 if (boxplotSection1) {
                     boxplotSection1.style.display = 'none';
                 }
-
                 const boxplotSection2 = document.getElementById('alpha-section2');
-                // 해당 요소가 존재하면 화면에 보이지 않도록 'display' 속성을 'none'으로 변경합니다.
                 if (boxplotSection2) {
                     boxplotSection2.style.display = 'none';
                 }
@@ -440,8 +491,5 @@
         });
     </script>
 
-
-
 </body>
-
 </html>

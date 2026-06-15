@@ -1,8 +1,10 @@
+var data; // 전역 변수로 설정하여 모든 함수에서 접근 가능
+
 if (typeof new_name !== 'undefined' && new_name.length > 0) {
     sample_list = new_name;
 }
 
-// 전역 변수로 현재 히트맵의 원본 데이터, 선택된 그룹 리스트, 고유 그룹 이름을 저장합니다.
+// 전역 변수로 현재 히트맵의 원본 데이터 및 그룹 정보 저장
 var currentRawHeatmapData = null;
 var currentSelectedGroupList = null;
 var currentUniqueGroupNames = null;
@@ -12,7 +14,7 @@ function load_json(src, dataKey) {
     var element = head.getElementsByClassName("json")[0];
 
     try {
-        element.parentNode.removeChild(element);
+        if(element) element.parentNode.removeChild(element);
     } catch (e) {
         // Do nothing
     }
@@ -23,64 +25,71 @@ function load_json(src, dataKey) {
     script.className = "json";
     script.async = false;
     head.appendChild(script);
+    
     const value = document.querySelector("#current_page");
-    value.textContent = "Taxonomy Heatmap plot (" + dataKey + ")";
+    if(value) value.textContent = "Taxonomy Heatmap plot (" + dataKey + ")";
 
     script.onload = function () {
         let heatmapData;
-        switch (dataKey) {
-            case 'Phylum': heatmapData = L2_Heatmap; break;
-            case 'Class': heatmapData = L3_Heatmap; break;
-            case 'Order': heatmapData = L4_Heatmap; break;
-            case 'Family': heatmapData = L5_Heatmap; break;
-            case 'Genus': heatmapData = L6_Heatmap; break;
-            case 'Species': heatmapData = L7_Heatmap; break;
-            default: console.error("Unknown dataKey: " + dataKey); return;
+        // 변수명 에러(L2_data is not defined) 방지를 위해 L2_Heatmap 변수명 사용 및 예외처리 적용
+        try {
+            switch (dataKey) {
+                case 'Phylum': heatmapData = typeof L2_Heatmap !== 'undefined' ? L2_Heatmap : null; break;
+                case 'Class': heatmapData = typeof L3_Heatmap !== 'undefined' ? L3_Heatmap : null; break;
+                case 'Order': heatmapData = typeof L4_Heatmap !== 'undefined' ? L4_Heatmap : null; break;
+                case 'Family': heatmapData = typeof L5_Heatmap !== 'undefined' ? L5_Heatmap : null; break;
+                case 'Genus': heatmapData = typeof L6_Heatmap !== 'undefined' ? L6_Heatmap : null; break;
+                case 'Species': heatmapData = typeof L7_Heatmap !== 'undefined' ? L7_Heatmap : null; break;
+                default: console.error("Unknown dataKey: " + dataKey); return;
+            }
+        } catch(e) {
+            console.error(e);
         }
-        
-        // ==================== [수정된 부분 START] ====================
-        // 그룹핑 로직: 커스텀 그룹과 사전 정의된 그룹을 분기하여 처리합니다.
-        
+
+        if (!heatmapData) {
+            console.error("Data variable for " + dataKey + " is missing.");
+            return;
+        }
+
         const groupSelector = document.getElementById('groupSelector');
         let selectedGroupList;
         let isCustomGroup = (groupSelector && groupSelector.value === 'Custom');
 
+        // 1. 그룹 매핑 설정
         if (isCustomGroup && window.uploadedData && Object.keys(window.uploadedData).length > 0) {
-            // 1. 커스텀 그룹이 선택되고, 업로드된 데이터가 있을 경우
-            console.log("Using custom group data.");
             const customGroupMap = window.uploadedData;
-            // main.js에 정의된 전체 샘플 리스트(sample_list)를 기준으로 새로운 그룹 리스트를 생성합니다.
             selectedGroupList = window.sample_list.map(sampleId => customGroupMap[sampleId] || 'Undefined');
-            
-            if (selectedGroupList.includes('Undefined')) {
-                console.warn("Some samples in `sample_list` were not found in the uploaded metadata. They will be grouped as 'Undefined'.");
-            }
-        }else if(isCustomGroup && ! window.uploadedData ) {
+        } else if(isCustomGroup && !window.uploadedData) {
             document.getElementById('inchlib').innerHTML = "<p style='text-align:center; padding:20px;'>Please upload a metadata file for custom grouping.</p>";
-             if (typeof highlightFloatingButton === 'function') {
-                                 highlightFloatingButton(4000); // 4초 동안 강조
-             }
-             return 1
-        }  else {
-            // 2. 사전 정의된 그룹을 선택한 경우 (기존 로직)
-            console.log("Using predefined group data.");
+            if (typeof highlightFloatingButton === 'function') {
+                highlightFloatingButton(4000); 
+            }
+            return;
+        } else {
             if (groupSelector && groupSelector.options.length > 0 && groupSelector.selectedIndex >= 0) {
                 const groupIndex = groupSelector.selectedIndex;
-                // main.js의 group_list1, group_list2 등을 참조
                 selectedGroupList = window[`group_list${groupIndex + 1}`] || window.sample_list || [];
             } else {
                 selectedGroupList = window.sample_list || [];
             }
         }
-        // ==================== [수정된 부분 END] ======================
 
-        const uniqueGroupNames = [...new Set(selectedGroupList)].filter(groupName => groupName !== undefined && groupName !== null);
+        // 2. [정렬의 핵심] X축 헤더 순서 결정 (엑셀에서 읽어들인 B->A 순서가 있다면 최우선 적용)
+        let uniqueGroupNames = [];
+        if (isCustomGroup && window.currentUniqueGroupNames && window.currentUniqueGroupNames.length > 0) {
+            uniqueGroupNames = window.currentUniqueGroupNames.slice();
+            if (selectedGroupList.includes('Undefined') && !uniqueGroupNames.includes('Undefined')) {
+                uniqueGroupNames.push('Undefined');
+            }
+        } else {
+            uniqueGroupNames = [...new Set(selectedGroupList)].filter(groupName => groupName !== undefined && groupName !== null);
+        }
 
-        // 전역 변수 업데이트
         currentRawHeatmapData = heatmapData;
         currentSelectedGroupList = selectedGroupList;
         currentUniqueGroupNames = uniqueGroupNames;
 
+        // 3. 결정된 순서대로 평균 계산 및 렌더링
         const groupedData = calculateGroupAverages(heatmapData, selectedGroupList, uniqueGroupNames);
 
         setwidth(uniqueGroupNames);
@@ -100,6 +109,7 @@ function calculateGroupAverages(originalData, groupList, uniqueGroupNames) {
     Object.entries(originalNodes).forEach(([nodeId, nodeData]) => {
         const taxonName = nodeData.objects[0];
         const groupAggregates = {};
+        
         uniqueGroupNames.forEach(groupName => {
             groupAggregates[groupName] = { sum: 0, count: 0 };
         });
@@ -112,6 +122,7 @@ function calculateGroupAverages(originalData, groupList, uniqueGroupNames) {
             }
         });
 
+        // uniqueGroupNames(B -> A) 배열 순서대로 평균값을 뽑아 features 배열에 저장
         const averagedFeatures = uniqueGroupNames.map(groupName => {
             const aggregate = groupAggregates[groupName];
             return aggregate.count > 0 ? aggregate.sum / aggregate.count : 0;
@@ -204,7 +215,7 @@ function getcolor() {
 
 function getwidth() {
     const input = document.querySelector("#bandwitdh");
-    return input ? Number(input.value) : 20; // Default to 20 if slider not found
+    return input ? Number(input.value) : 20; 
 }
 
 function downloadimg() { if (window.inchlib) { inchlib._export_icon_click(); } }

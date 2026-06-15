@@ -39,7 +39,7 @@ array = {
   "organization": "(주)마크로젠",
   "name": "META사업부",
   "country": "Korea (the Republic of)",
-  "curtime": "November 2025",
+  "curtime": "June 2026",
   "project": "HN00sample",
   "application": "Amplicon Metagenomic Sequencing Report",
   "appCode": "MAS",

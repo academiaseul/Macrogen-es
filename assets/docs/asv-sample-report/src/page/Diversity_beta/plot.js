@@ -363,15 +363,18 @@ document.addEventListener("DOMContentLoaded", function() {
     initializeColorPicker();
 });
 
+
 function downloadimg(format, filename) {
-    // Get the current plot container based on the filename
     var containerId;
     if (filename.includes('bray-curtis')) {
         containerId = 'pcoa-plot-container-bray';
-    } else if (filename.includes('weighted-unifrac')) {
-        containerId = 'pcoa-plot-container-weighted';
-    } else if (filename.includes('unweighted-unifrac')) {
+    } else if (filename.includes('unweighted-unifrac')) { 
         containerId = 'pcoa-plot-container-unweighted';
+    } else if (filename.includes('weighted-unifrac')) {     
+        containerId = 'pcoa-plot-container-weighted';
+    } else {
+         console.error('Cannot determine containerId from filename: ' + filename);
+         return;
     }
 
     var graphDiv = document.getElementById(containerId);
@@ -390,15 +393,38 @@ function downloadimg(format, filename) {
     }
 }
 
+
+
 function downloadimg2(format, filename) {
-    var graphDiv = document.getElementById('distance_chart_container_bray'); // 예시로 bray를 사용
-    Plotly.toImage(graphDiv, { format: format, width: 800, height: 800 })
-        .then(function (url) {
-            var a = document.createElement('a');
-            a.href = url;
-            a.download = filename + '.' + format;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        });
+    var containerId;
+
+    // 전달받은 filename에 포함된 키워드를 확인하여 올바른 containerId를 지정합니다.   
+    if (filename.includes('bray-curtis')) {
+        containerId = 'distance_chart_container_bray';
+    } else if (filename.includes('unweighted-unifrac')) {
+        containerId = 'distance_chart_container_unweighted';
+    } else if (filename.includes('weighted-unifrac')) {
+        containerId = 'distance_chart_container_weighted';
+    } else {
+        // 만약 키워드가 매칭되지 않을 경우를 대비한 예외 처리 (기본값 설정 또는 에러 로그)    
+        console.error('Cannot determine containerId from filename: ' + filename);
+        return;
+    }
+
+    var graphDiv = document.getElementById(containerId);
+    
+    if (graphDiv) {
+        Plotly.toImage(graphDiv, { format: format, width: 800, height: 800 })
+            .then(function (url) {
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = filename + '.' + format;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+    } else {
+        console.error('Graph container not found (' + containerId + ') for filename:', filename);
+    }
 }
+

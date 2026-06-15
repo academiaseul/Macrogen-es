@@ -11,21 +11,24 @@
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/group-modal.css">
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
 
     <script src="../main.js"></script>
     <script src="../js/plotly/plotly-2.20.0.min.js"></script>
+    <script src="../js/excel/xlsx.full.min.js"></script>
+    
     <script src="./Taxonomy_barplot/plot.js"></script>
 
     <script>
-        var ordernumber = array.project;
-        var customer = array.name;
-        var institute = array.organization;
-        var application = array.application;
-        var appCode = array.appCode;
-        var numberofsample = array.numberofsample;
+        var ordernumber = (typeof array !== 'undefined' && array.project) ? array.project : "N/A";
+        var customer = (typeof array !== 'undefined' && array.name) ? array.name : "N/A";
+        var institute = (typeof array !== 'undefined' && array.organization) ? array.organization : "N/A";
+        var application = (typeof array !== 'undefined' && array.application) ? array.application : "N/A";
+        var appCode = (typeof array !== 'undefined' && array.appCode) ? array.appCode : "N/A";
+        var numberofsample = (typeof array !== 'undefined' && array.numberofsample) ? array.numberofsample : 0;
         document.title = ordernumber + " (" + customer + ") -" + appCode + " Analysis Report";
     </script>
 </head>
@@ -48,10 +51,10 @@
                 function generateMenuHtml(menuArray) {
                     let html = '';
                     menuArray.forEach(item => {
-                        if (item.category) { // 변경
+                        if (item.category) { 
                             html += '<li class="dropdown-submenu"><a href="#">' + item.name + '</a>';
                             html += '<ul class="dropdown-menu">';
-                            html += generateMenuHtml(item.path); // 재귀적으로 하위 메뉴 생성
+                            html += generateMenuHtml(item.path); 
                             html += '</ul></li>';
                         } else if (item.display) {
                             if (item.path === "") {
@@ -91,7 +94,8 @@
         <div class="div_h1" id="WorkFlow">
             <h1>Taxonomy analysis</h1>
         </div><br><br>
-        <div style="width:100%; display: flex; padding-bottom:30px;  ">
+        
+        <div style="width:100%; display: flex; padding-bottom:30px;">
             <button id="default_button" class="myButton big" style="flex-grow: 1;"
                 onclick="load_json('./Taxonomy_barplot/Bayesian_NCBI_16S/Barplot_L2.js','Phylum');highlight(this);">Phylum</button>
             <button class="myButton big" style="flex-grow: 1;"
@@ -105,6 +109,7 @@
             <button class="myButton big" style="flex-grow: 1;"
                 onclick="load_json('./Taxonomy_barplot/Bayesian_NCBI_16S/Barplot_L7.js','Species');highlight(this);">Species</button>
         </div>
+        
         <div class="col-sm-12">
             <div class="panel-group">
                 <div class="panel panel-default">
@@ -123,7 +128,6 @@
                             </div>
                             <div style="display: flex;">
                                 <div style="display: flex;padding-top:15px;padding-left:10px">
-
                                     <div style="display:flex">
                                         <button class="myButton_1 left" onclick="toggleColorPicker()"
                                             style="height:35px" id="toggleButton">Change Color</button>
@@ -134,14 +138,11 @@
                                     </div>
                                 </div>
                                 <div style="display: flex;padding-top:0px;padding-left:150px">
-
                                     <div style="width:100%;">
                                         <b>Sample Sorting By </b><br>
                                         <select name="sortkey" id="sortkey" style="width:100%;"> </select>
                                     </div>
-
                                     <div style="width:2%;"></div>
-
                                     <div style="padding-right:15px;">
                                         <br>
                                         <select name="sortopt" id="sortopt">
@@ -165,75 +166,95 @@
                                         style="width: 20px;height: 20px;vertical-align: top;" checked>
                                 </div>
                             </div>
+                            
                             <div id="colorPickerModal" class="modal">
-
                                 <div class="color-picker" style="width:100%;height:100%">
                                     <b> Color list </b>
                                     <p>click color want change</p>
                                     <div>
-                                        <button class="color-picker-button" onclick="openColorPicker(0)"
-                                            id="button1">#1</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(1)"
-                                            id="button2">#2</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(2)"
-                                            id="button3">#3</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(3)"
-                                            id="button4">#4</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(4)"
-                                            id="button5">#5</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(5)"
-                                            id="button6">#6</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(6)"
-                                            id="button7">#7</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(7)"
-                                            id="button8">#8</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(8)"
-                                            id="button9">#9</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(9)"
-                                            id="button10">#10</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(0)" id="button1">#1</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(1)" id="button2">#2</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(2)" id="button3">#3</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(3)" id="button4">#4</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(4)" id="button5">#5</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(5)" id="button6">#6</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(6)" id="button7">#7</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(7)" id="button8">#8</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(8)" id="button9">#9</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(9)" id="button10">#10</button>
                                     </div>
                                     <div style="padding-bottom:15px">
-                                        <button class="color-picker-button" onclick="openColorPicker(10)"
-                                            id="button11">#11</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(11)"
-                                            id="button12">#12</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(12)"
-                                            id="button13">#13</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(13)"
-                                            id="button14">#14</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(14)"
-                                            id="button15">#15</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(15)"
-                                            id="button16">#16</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(16)"
-                                            id="button17">#17</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(17)"
-                                            id="button18">#18</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(18)"
-                                            id="button19">#19</button>
-                                        <button class="color-picker-button" onclick="openColorPicker(19)"
-                                            id="button20">#20</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(10)" id="button11">#11</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(11)" id="button12">#12</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(12)" id="button13">#13</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(13)" id="button14">#14</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(14)" id="button15">#15</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(15)" id="button16">#16</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(16)" id="button17">#17</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(17)" id="button18">#18</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(18)" id="button19">#19</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(19)" id="button20">#20</button>
                                     </div>
                                     <b>Others Color</b><br>
                                     <div style="padding-top:5px">
-                                        <button class="color-picker-button" onclick="openColorPicker(20)"
-                                            id="button21">#0</button>
+                                        <button class="color-picker-button" onclick="openColorPicker(20)" id="button21">#0</button>
                                     </div>
 
-                                    <div id="color-picker-input"
-                                        style="padding-top:10px;text-align: center;align-items: center;">
+                                    <div id="color-picker-input" style="padding-top:10px;text-align: center;align-items: center;">
                                         <input type="color" id="colorPickerInput">
                                         <button class="myButton small" onclick="changeColor()">Select</button>
                                         <button class="myButton small" onclick="closeColor()">Close</button>
                                     </div>
-
                                 </div>
                             </div>
+                            
                             <div class="loading-message" id="loading-message">Creating Image</div>
                             <div id="taxonomy_bar"></div>
+                            
                             <script>
+                                // Plotly HoverText 콤마 클리닝 방어 로직 (Detail 중복 방지)
                                 document.addEventListener("DOMContentLoaded", function (event) {
-                                    document.getElementById("default_button").click();
+                                    if (window.Plotly) {
+                                        const cleanHoverText = function(chartData) {
+                                            if (Array.isArray(chartData)) {
+                                                chartData.forEach(trace => {
+                                                    ['text', 'hovertext'].forEach(prop => {
+                                                        if (trace[prop]) {
+                                                            if (Array.isArray(trace[prop])) {
+                                                                trace[prop] = trace[prop].map(t => {
+                                                                    if (typeof t === 'string') {
+                                                                        let parts = t.split(/,|<br>/).map(s => s.trim()).filter(Boolean);
+                                                                        let uniqueParts = [...new Set(parts)];
+                                                                        return uniqueParts.join(', ');
+                                                                    }
+                                                                    return t;
+                                                                });
+                                                            } else if (typeof trace[prop] === 'string') {
+                                                                let parts = trace[prop].split(/,|<br>/).map(s => s.trim()).filter(Boolean);
+                                                                let uniqueParts = [...new Set(parts)];
+                                                                trace[prop] = uniqueParts.join(', ');
+                                                            }
+                                                        }
+                                                    });
+                                                });
+                                            }
+                                        };
+
+                                        if (typeof Plotly.newPlot === 'function') {
+                                            const originalNewPlot = Plotly.newPlot;
+                                            Plotly.newPlot = function(divId, chartData, layout, config) {
+                                                cleanHoverText(chartData);
+                                                return originalNewPlot(divId, chartData, layout, config);
+                                            };
+                                        }
+                                        if (typeof Plotly.react === 'function') {
+                                            const originalReact = Plotly.react;
+                                            Plotly.react = function(divId, chartData, layout, config) {
+                                                cleanHoverText(chartData);
+                                                return originalReact(divId, chartData, layout, config);
+                                            };
+                                        }
+                                    }
                                 });
                             </script>
                         </div>
@@ -242,6 +263,147 @@
             </div>
         </div>
     </div>
-</body>
 
+    <button class="floating-btn" style="position: fixed; right: 30px; top: calc(50% + 35px); z-index: 1000;" onclick="$('#metadataModal').modal('show')">
+        <i class="fa fa-edit"></i>
+        <span id="tooltipText" class="tooltip-text">
+            <strong>Sample Customization</strong><br>
+            Upload <code>metadata.xlsx</code> for custom sample ordering.
+        </span>
+    </button>
+
+    <div id="metadataModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Sample Management</h4>
+        </div>
+        <div class="modal-body">
+            <div id="usage">
+                <h4>How to Customize Samples:</h4>
+                <ol>
+                    <li id="usageText">Click <strong>Download Template</strong> to get the <code>metadata.xlsx</code> file.</li>
+                    <li>Open the file and specify your custom sample order in the 'SampleID' column.</li>
+                    <li>Save the changes and click <strong>Upload File</strong> to apply your custom ordering.</li>
+                </ol>
+                <p>Important: Custom sample settings are temporary. If you navigate away or refresh this page, you will need to re-upload the file.</p>
+            </div>
+            <div class="button-container">
+                <a id="downloadTemplateLink" href="../metadata.xlsx" class="btn-modal-action metadata_down_button" download>
+                    <i class="fa fa-download"></i>Download Template
+                </a>
+                <label class="btn-modal-action upload_label_button">
+                    <i class="fa fa-upload"></i> Upload File
+                    <input type="file" id="fileInput" accept=".xlsx" style="display: none;" />
+                </label>
+            </div>
+            <div id="fileNameDisplay"></div>
+        </div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // 모달 텍스트 및 템플릿 파일명 동적 초기화
+                if (typeof ordernumber !== 'undefined') {
+                    const newFileName = `metadata_${ordernumber}.xlsx`;
+                    const newFileNameHtml = `<code>${newFileName}</code>`;
+                    
+                    const downloadLink = document.getElementById('downloadTemplateLink');
+                    if (downloadLink) {
+                        downloadLink.href = `../${newFileName}`;
+                        downloadLink.download = newFileName;
+                    }
+                    
+                    const tooltipText = document.getElementById('tooltipText');
+                    if (tooltipText) {
+                        tooltipText.innerHTML = `<strong>Sample Customization</strong><br>Upload ${newFileNameHtml} for custom sample ordering.`;
+                    }
+                    
+                    const usageText = document.getElementById('usageText');
+                    if (usageText) {
+                        usageText.innerHTML = `Click <strong>Download Template</strong> to get the ${newFileNameHtml} file.`;
+                    }
+                }
+
+                // 엑셀에서 SampleID 추출 후 정렬 강제 적용 로직 (Sample 전용)
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput) {
+                    fileInput.addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (!file) return;
+
+                        const fileNameDisplay = document.getElementById('fileNameDisplay');
+                        if (fileNameDisplay) {
+                            fileNameDisplay.style.display = 'flex';
+                            fileNameDisplay.innerHTML = `<span class="file-icon"><i class="fa fa-check-circle"></i></span> <span class="file-name-text">Successfully loaded: ${file.name}</span>`;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            try {
+                                const dataXLSX = new Uint8Array(e.target.result);
+                                const workbook = XLSX.read(dataXLSX, { type: 'array' });
+                                const sheet = workbook.Sheets['Group'] || workbook.Sheets[workbook.SheetNames[0]];
+                                
+                                const json_data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                                const newOrder = [];
+                                
+                                // SampleID 열 탐색 (기본값 인덱스 0)
+                                let sampleIdx = 0; 
+                                if(json_data[0]) {
+                                    for(let i = 0; i < json_data[0].length; i++) {
+                                        if(String(json_data[0][i]).trim().toLowerCase() === 'sampleid') {
+                                            sampleIdx = i;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                // 엑셀 위에서 아래로 순서대로 추출 (중복 제거)
+                                for (let i = 1; i < json_data.length; i++) {
+                                    let val = json_data[i][sampleIdx];
+                                    if (val) {
+                                        let sampleName = String(val).trim();
+                                        if (!newOrder.includes(sampleName)) {
+                                            newOrder.push(sampleName);
+                                        }
+                                    }
+                                }
+
+                                if (newOrder.length > 0) {
+                                    window.sample_list = newOrder; // plot.js에 반영될 전역 변수에 덮어쓰기
+                                    
+                                    const sortkeyElem = document.getElementById("sortkey");
+                                    if(sortkeyElem) sortkeyElem.value = "default";
+                                    if (typeof set_sortopt === 'function') set_sortopt();
+                                    
+                                    // 그래프 다시 그리기 (정렬 순서 유지)
+                                    if (typeof barplot === 'function' && typeof window.data !== 'undefined') {
+                                        barplot(window.data);
+                                    } else {
+                                        const currentLevelButton = document.querySelector('.myButton.big.highlighted') || document.getElementById("default_button");
+                                        if (currentLevelButton && typeof load_json === 'function') {
+                                            currentLevelButton.click();
+                                        }
+                                    }
+                                    
+                                    // 정렬이 완료되면 자연스럽게 모달 닫기
+                                    setTimeout(() => {
+                                        $('#metadataModal').modal('hide');
+                                    }, 800);
+                                    
+                                } else {
+                                    throw new Error("No valid SampleID data found.");
+                                }
+                            } catch (error) {
+                                if (fileNameDisplay) {
+                                    fileNameDisplay.innerHTML = `<span class="file-icon" style="color:#c0392b;"><i class="fa fa-times-circle"></i></span> <span class="file-name-text" style="color:#c0392b;">Error: ${error.message}</span>`;
+                                }
+                            }
+                        };
+                        reader.readAsArrayBuffer(file);
+                    });
+                }
+            });
+        </script>
+    </div>
+</body>
 </html>
