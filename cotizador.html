@@ -2604,4 +2604,31 @@ function buildSpecialistMailto() {
       '<div style="font-size:15px; font-weight:800; color:var(--cot-navy); margin-bottom:6px;">' + hubFlag + ' ' + hub + '</div>' +
       '<div style="font-size:13px; margin-bottom:4px;">📧 <a href="mailto:' + hubEmail + '" style="color:var(--cot-teal); font-weight:700; text-decoration:none;">' + hubEmail + '</a></div>' +
       '<div style="font-size:13px; margin-bottom:8px;">📞 ' + hubPhone + '</div>' +
-      '<div style="font-size:11.5px; color:var(--cot-gray); font-style:italic;">Si necesitas escribirnos directamente, este es el email del hub asignado
+      '<div style="font-size:11.5px; color:var(--cot-gray); font-style:italic;">Si necesitas escribirnos directamente, este es el email del hub asignado.</div>';
+    btn.disabled = false;
+    btn.innerHTML = '📧 Enviar al especialista →';
+    showToast('✓ Consulta enviada al especialista');
+  });
+})();
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3200);
+}
+
+// === Initial render — populate the 3 columns ===
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderAll);
+} else {
+  renderAll();
+}
+
+</script>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/i18n.js"></script>
+</body>
+</html>
