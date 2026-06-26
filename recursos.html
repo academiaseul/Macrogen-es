@@ -559,7 +559,45 @@
       </div>
     </div>
 
-    <!-- ============== CATEGORY 5 · NGS SAMPLE REPORTS ============== -->
+    <!-- ============== CATEGORY 5 · FREE TOOLS (Utilidades) ============== -->
+    <div id="tools" class="res-category">
+      <div class="res-cat-header">
+        <h2>🛠 Tools · Utilidades gratuitas</h2>
+        <span class="count">1 herramienta · open-source · sin registro</span>
+      </div>
+      <p style="color:var(--mc-mute); font-size:14px; margin:-6px 0 18px; max-width:760px;">
+        Herramientas gratuitas que el equipo bioinformático de Macrogen Iberoamérica desarrolló para que verifiques tus datos NGS antes y después del análisis. <strong>Sin servidor, sin registro, 100% en tu navegador o Colab.</strong>
+      </p>
+
+      <div class="res-grid">
+        <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB; border-width:2px;">
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-teal);">🧬</div>
+          <div class="res-card-eyebrow">★ Free Tool · Google Colab</div>
+          <h3>FASTQ.gz Viewer + Quality Control</h3>
+          <p>Inspecciona archivos <code>.fastq.gz</code> sin descomprimir + genera QC visual al instante: distribución Phred (Q30), contenido GC, y calidad por posición estilo FastQC. Lee directo del comprimido — no satura RAM.</p>
+          <ul style="list-style:none; padding:0; margin:8px 0 12px; font-size:12px; color:var(--mc-navy); line-height:1.7;">
+            <li>✓ <strong>Visor estructural:</strong> primeras N lecturas (ID Illumina + secuencia + Phred)</li>
+            <li>✓ <strong>Histograma Phred</strong> (línea Q30 marcada)</li>
+            <li>✓ <strong>Histograma %GC</strong> (campana Gauss típica)</li>
+            <li>✓ <strong>Calidad por posición</strong> (estilo FastQC verde/amarillo/rojo)</li>
+            <li>✓ Submuestreo automático 10.000 lecturas (rápido en cualquier tamaño)</li>
+          </ul>
+          <div class="res-card-meta">
+            <span>Jupyter Notebook</span><span>~190 KB</span><span>ES + EN</span><span style="background:#EAF6E5; color:var(--mc-green);">v.1 · jun 2026</span>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
+            <a class="res-card-cta" href="assets/docs/tools/fastq-viewer-macrogen.ipynb" download style="color:var(--mc-red); font-weight:800;">📥 Descargar .ipynb →</a>
+            <a class="res-card-cta" href="https://colab.research.google.com/" target="_blank" rel="noopener" style="color:var(--mc-teal);">🚀 Abrir Colab →</a>
+          </div>
+          <p style="font-size:11px; color:var(--mc-mute); margin:10px 0 0; font-style:italic; line-height:1.5;">
+            <strong>Para usar en Colab:</strong> descarga el .ipynb → abre Google Colab → menú <em>File → Upload notebook</em> → arrastra el archivo → ejecuta las celdas en orden. Sube tu <code>.fastq.gz</code> al panel lateral 📂 cuando llegues al paso 3.
+          </p>
+        </article>
+      </div>
+    </div>
+
+
+    <!-- ============== CATEGORY 6 · NGS SAMPLE REPORTS ============== -->
     <div id="sample-reports" class="res-category">
       <div class="res-cat-header">
         <h2>📊 Sample reports · Bioinformática NGS</h2>
@@ -571,6 +609,7 @@
 
       <!-- Sub-category nav (inline chips inside the section) -->
       <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; padding:14px 16px; background:var(--mc-bg); border-radius:10px; border:1px solid var(--mc-border);">
+        <a href="#tools" style="font-size:12px; font-weight:800; color:#fff; padding:6px 12px; background:var(--mc-teal); border-radius:6px; text-decoration:none; border:1px solid var(--mc-teal);">🛠 Tools (1) · NUEVO</a>
         <a href="#sr-rawdata" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">📥 Raw Data (2)</a>
         <a href="#sr-longreads" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 Long Reads (3)</a>
         <a href="#sr-dna" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🔬 Short Reads · DNA (13)</a>
