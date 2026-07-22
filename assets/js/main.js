@@ -701,11 +701,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const visitorEmail = (formData.get('email') || '').trim();
 
       // Append Formspree configuration fields
-      // _cc: SINGLE recipient based on country (no more dual emails to avoid duplicates)
+      // _cc: always chash@macrogen.com. Formspree's default recipient for this
+      // form (xaqvkoaw) is jaykim@macrogen.com, so CL/PE/OTRO previously set
+      // _cc to config.to (also jaykim@macrogen.com), which Formspree rejects
+      // as a duplicate ("Each email address ... should be unique between to,
+      // cc, and bcc"). Fixed 2026-07-22.
       // _replyto: clicking Reply in the email goes to the visitor
       // _subject: human-readable subject line
       // _format: plain text email
-      formData.set('_cc', config.to);
+      formData.set('_cc', 'chash@macrogen.com');
       formData.set('_replyto', visitorEmail);
       formData.set('_subject', `Nueva cotización · ${config.flag} ${config.label} · ${servicio} · ${institucion}`);
       formData.set('_format', 'plain');

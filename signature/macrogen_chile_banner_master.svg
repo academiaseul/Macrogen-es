@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="500" viewBox="0 0 1500 500" font-family="Helvetica,Arial,sans-serif">
+  <!-- BG -->
+  <rect width="1500" height="500" fill="#ffffff"/>
+  <!-- subtle grid dots -->
+  <g fill="#E8ECF3">
+    <circle cx="150" cy="30" r="1.5"/><circle cx="300" cy="30" r="1.5"/><circle cx="450" cy="30" r="1.5"/><circle cx="600" cy="30" r="1.5"/><circle cx="750" cy="30" r="1.5"/><circle cx="900" cy="30" r="1.5"/>
+    <circle cx="150" cy="470" r="1.5"/><circle cx="300" cy="470" r="1.5"/><circle cx="450" cy="470" r="1.5"/><circle cx="600" cy="470" r="1.5"/><circle cx="750" cy="470" r="1.5"/><circle cx="900" cy="470" r="1.5"/>
+  </g>
+
+  <!-- ============== LEFT SIDE ============== -->
+  <!-- Humanizing Genomics tagline -->
+  <text x="90" y="70" font-size="20" font-weight="700" fill="#0A1F4F">Humanizing Genomics</text>
+  <!-- Small DNA icon -->
+  <g transform="translate(78,90)" stroke-width="4" fill="none">
+    <path d="M 0 0 Q 15 15, 0 30 Q -15 45, 0 60" stroke="#84BD00"/>
+    <path d="M 0 0 Q -15 15, 0 30 Q 15 45, 0 60" stroke="#00BFB2"/>
+    <circle cx="0" cy="30" r="4" fill="#0A1F4F" stroke="none"/>
+  </g>
+  <!-- macrogen wordmark (custom text with "ro" teal) -->
+  <text x="120" y="132" font-size="62" font-weight="900" letter-spacing="-2" fill="#0A1F4F">mac<tspan fill="#00BFB2">ro</tspan>gen</text>
+  <!-- CHILE pink pill -->
+  <rect x="330" y="150" width="88" height="26" rx="4" fill="#E0004D"/>
+  <text x="374" y="169" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff" letter-spacing="2">CHILE</text>
+
+  <!-- LANZAMIENTO WEB pill -->
+  <rect x="88" y="212" width="220" height="42" rx="21" fill="#ffffff" stroke="#DDE3EE" stroke-width="1.5"/>
+  <circle cx="112" cy="233" r="6" fill="#E0004D"/>
+  <text x="128" y="239" font-size="14" font-weight="700" fill="#0A1F4F" letter-spacing="3">LANZAMIENTO WEB</text>
+
+  <!-- Headline: Nueva web. Misma ciencia. -->
+  <text x="88" y="330" font-size="82" font-weight="900" fill="#0A1F4F" letter-spacing="-2">Nueva web.</text>
+  <text x="88" y="410" font-size="82" font-weight="900" fill="#E0004D" letter-spacing="-2">Misma ciencia.</text>
+
+  <!-- Services strip -->
+  <text x="88" y="450" font-size="24" font-weight="500" fill="#4a5a70">NGS  ·  Sanger  ·  Síntesis  ·  Oligos</text>
+  <!-- Countries strip -->
+  <text x="88" y="480" font-size="15" font-weight="700" letter-spacing="3" fill="#6B7B95">ESPAÑA  ·  PORTUGAL  ·  CHILE  ·  PERÚ</text>
+
+  <!-- Vertical dashed divider -->
+  <line x1="1080" y1="60" x2="1080" y2="440" stroke="#DDE3EE" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <!-- ============== RIGHT SIDE ============== -->
+  <!-- 10% big -->
+  <text x="1280" y="170" text-anchor="middle" font-size="200" font-weight="900" fill="#E0004D" letter-spacing="-8">10%</text>
+  <!-- OFF -->
+  <text x="1280" y="230" text-anchor="middle" font-size="42" font-weight="900" fill="#0A1F4F" letter-spacing="4">OFF</text>
+  <!-- CODE pill -->
+  <rect x="1140" y="270" width="280" height="66" rx="6" fill="#0A1F4F"/>
+  <text x="1180" y="311" font-size="18" font-weight="700" fill="#DDE3EE" letter-spacing="4">CÓDIGO</text>
+  <line x1="1258" y1="288" x2="1258" y2="318" stroke="#4a5a70" stroke-width="1.5"/>
+  <text x="1275" y="313" font-size="26" font-weight="900" fill="#ffffff" letter-spacing="2">NUEVO10</text>
+  <!-- URL pill -->
+  <rect x="1140" y="356" width="280" height="52" rx="26" fill="#0A1F4F"/>
+  <text x="1280" y="389" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">www.macrogen-es.com</text>
+</svg>
