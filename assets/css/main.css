@@ -538,6 +538,14 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   transition: transform .25s ease, box-shadow .25s ease;
 }
 .pillar-card:hover { transform: translateY(-4px); box-shadow: var(--mc-shadow); }
+.pillar-card.is-linked { position: relative; cursor: pointer; }
+.pillar-card.is-linked h3 { transition: color .2s ease; }
+.pillar-card.is-linked:hover h3 { color: var(--mc-teal); }
+/* Makes the whole card a click target while a smaller foreground link (e.g. a PDF
+   guide) inside the same card stays independently clickable above it. */
+.pillar-card .card-stretched-link { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 1; }
+.pillar-card .card-stretched-link:focus-visible { outline: 2px solid var(--mc-teal); outline-offset: 2px; }
+.pillar-card .card-fg-link { position: relative; z-index: 2; }
 .pillar-icon {
   width: 52px; height: 52px;
   border-radius: 12px;
