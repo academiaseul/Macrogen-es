@@ -1,0 +1,19 @@
+# Internal working documents — must never ship to the live macrogen-es.com deploy.
+# These sat in the repo root with no protection and were publicly reachable at
+# their literal URL even though unlinked (e.g. macrogen-es.com/PROJECT_LOG.html).
+# Found during SEO audit — 2026-08-12.
+
+PROJECT_LOG.html
+Auditoria_Macrogen_Iberoamerica.html
+Email_Performance_OnePager_Q1_2026.html
+Email_Performance_OnePager_Q1_2026_EN.html
+recursos_clean.html
+dna-3d-preview.html
+dna-video-preview.html
+
+outputs/
+emails/
+reports_EN/
+
+# Keep .git out of the deploy artifact too
+.git/
