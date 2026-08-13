@@ -35,6 +35,77 @@
 ]}
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://macrogen-es.com/servicios/sanger.html#service",
+  "name": "Secuenciación Sanger / CES (Capillary Electrophoresis Sequencing)",
+  "serviceType": "Servicio de secuenciación de ADN por electroforesis capilar",
+  "description": "Servicios CES de Macrogen Iberoamérica sobre plataforma ABI 3730xl: Standard Sequencing, Fragment Analysis (GeneScan), Identificación microbiana y fúngica, y Customized Sequencing. Read length hasta 1.050 bp, primers universales gratuitos y hubs en Madrid y Santiago.",
+  "url": "https://macrogen-es.com/servicios/sanger.html",
+  "provider": {
+    "@type": "Organization",
+    "name": "Macrogen Iberoamérica",
+    "url": "https://macrogen-es.com/"
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "España" },
+    { "@type": "Country", "name": "Portugal" },
+    { "@type": "Country", "name": "Chile" },
+    { "@type": "Country", "name": "Perú" }
+  ],
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://macrogen-es.com/contacto.html",
+    "name": "Solicitud de cotización online"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Catálogo de servicios CES",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Standard Sequencing",
+          "description": "Secuenciación de productos de PCR y ADN plasmídico en ABI 3730xl, con read length de hasta 1.050 bp. Incluye modalidades en tubo, placa 96, media placa, multi-primer, Difficult Sequencing y Primer Walking."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Fragment Analysis (GeneScan)",
+          "description": "Análisis de fragmentos por electroforesis capilar para genotipado, microsatélites (SSR), SNPs, AFLP, T-RFLP y análisis de alelos. Entrega de datos crudos .fsa y análisis opcional con GeneMapper v.5."
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Identificación microbiana y fúngica",
+        "description": "Identificación de especies mediante secuenciación de 16S rRNA (bacterias), 18S rRNA, región ITS y 26S rRNA D1/D2/D3 (hongos), con análisis BLAST incluido."
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Customized Sequencing",
+          "description": "Servicios a medida: optimización y amplificación por PCR, pyrosequencing para análisis de metilación, validación de resultados NGS por Sanger, MLST, cloning y One-click Sanger Sequencing."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cell Line ID · Autenticación STR",
+          "description": "Autenticación de líneas celulares humanas con PowerPlex Fusion 6c y reportes conforme al estándar ICLAC, comparados contra ATCC y Cellosaurus."
+        }
+      }
+    ]
+  }
+}
+</script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'granted','ad_storage':'granted','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
 <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","x8wd9440bz");</script>
@@ -150,11 +221,14 @@
       <span class="label-hide-sm">Sanger CES</span>
     </span>
     <a href="#productos" data-anchor="productos"><span class="icon">🧪</span>Productos</a>
+    <a href="#standard-sequencing" data-anchor="standard-sequencing"><span class="icon">📋</span>Standard</a>
+    <a href="#fragment-analysis" data-anchor="fragment-analysis"><span class="icon">📊</span>Fragment</a>
+    <a href="#identificacion" data-anchor="identificacion"><span class="icon">🔍</span>Identificación</a>
+    <a href="#customized-sequencing" data-anchor="customized-sequencing"><span class="icon">⚙️</span>Customized</a>
     <a href="#primers" data-anchor="primers"><span class="icon">🧷</span>Primers<span class="count">96</span></a>
     <a href="#cell-line-id" data-anchor="cell-line-id"><span class="icon">👤</span>Cell Line ID</a>
     <a href="#envio" data-anchor="envio"><span class="icon">📦</span>Envío</a>
     <a href="#protocolo" data-anchor="protocolo"><span class="icon">🔬</span>Protocolo</a>
-    <a href="#identificacion" data-anchor="identificacion"><span class="icon">🔍</span>Identificación</a>
     <a href="#tarifas" data-anchor="tarifas"><span class="icon">💶</span>Tarifas</a>
     <a href="../recursos.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon">📁</span>Documentos →</a>
   </div>
@@ -166,7 +240,7 @@
   const subnav = document.querySelector('[data-subnav]');
   if (!subnav) return;
   const links = subnav.querySelectorAll('a[data-anchor]');
-  const sections = ['productos','primers','cell-line-id','envio','protocolo','identificacion','tarifas']
+  const sections = ['productos','standard-sequencing','fragment-analysis','identificacion','customized-sequencing','primers','cell-line-id','envio','protocolo','tarifas']
     .map(id => document.getElementById(id))
     .filter(Boolean);
 
@@ -236,6 +310,7 @@
       <div>
         <span class="eyebrow on-light">Descripción</span>
         <h2>Cuatro líneas de servicio CES.</h2>
+        <p style="font-size:13px; color:var(--mc-mute);"><a href="#standard-sequencing" style="color:var(--mc-teal); font-weight:700;">Standard Sequencing</a> · <a href="#fragment-analysis" style="color:var(--mc-teal); font-weight:700;">Fragment Analysis</a> · <a href="#identificacion" style="color:var(--mc-teal); font-weight:700;">Identification</a> · <a href="#customized-sequencing" style="color:var(--mc-teal); font-weight:700;">Customized Sequencing</a></p>
         <p>Macrogen es referencia mundial en Sanger: opera flotas dedicadas de Applied Biosystems 3730xl DNA Analyzer y procesa cientos de miles de reacciones al mes. La oferta cubre desde una secuenciación estándar de un único primer hasta servicios customizados con prep PCR, cloning y pyrosequencing incluidos.</p>
         <p style="margin-bottom:0;">Aplicaciones: validación de variantes NGS, secuenciación de plásmidos, genotipado de microsatélites (fragment analysis), identificación de cepas microbianas y screening dirigido.</p>
       </div>
@@ -245,8 +320,9 @@
           <tr><th>Reacciones / día</th><td>Hasta 96 por placa</td></tr>
           <tr><th>Read length</th><td>350–1.050 bases (ABI 3730xl)</td></tr>
           <tr><th>Precisión</th><td>>99% post Q20</td></tr>
-          <tr><th>TAT estándar</th><td>3–5 días hábiles</td></tr>
-          <tr><th>Express</th><td>24–48h (sobrecargo)</td></tr>
+          <tr><th>TAT en laboratorio</th><td><strong>24 h</strong> desde la recepción de la muestra en el laboratorio de procesamiento (recepciones antes de las 18:00)</td></tr>
+          <tr><th>TAT total estimado</th><td>3–5 días hábiles puerta a puerta, incluyendo logística regional</td></tr>
+          <tr><th>Fragment Analysis</th><td>5–7 días hábiles</td></tr>
         </table>
       </div>
     </div>
@@ -265,6 +341,7 @@
         <div class="pillar-icon red">📋</div>
         <h3>Standard Sequencing</h3>
         <p>Secuenciación clásica de un primer sobre un template (plásmido o producto PCR purificado). Ideal para verificar clones.</p>
+        <a href="#standard-sequencing" class="card-fg-link" style="font-size:12px; color:var(--mc-navy); font-weight:700; display:inline-block; margin-right:12px;">Ver detalle ↓</a>
         <a href="../assets/docs/order-guide-standard-sequencing.pdf" target="_blank" rel="noopener" class="card-fg-link" style="font-size:12px; color:var(--mc-teal); font-weight:700; display:inline-block;">📥 Guía de pedido</a>
       </div>
       <div class="pillar-card t-red is-linked">
@@ -278,14 +355,16 @@
         <a href="../contacto.html?promo=SANGER10&amp;servicio=fragment-analysis" class="card-stretched-link" aria-label="Cotizar Fragment Analysis"></a>
         <div class="pillar-icon red">📊</div>
         <h3>Fragment Analysis</h3>
-        <p>Genotipado de microsatélites (STR), AFLP, MLPA y análisis de longitud de fragmentos con marcadores fluorescentes.</p>
+        <p>Genotipado de microsatélites (SSR/STR), AFLP, T-RFLP y análisis de longitud de fragmentos con marcadores fluorescentes.</p>
+        <a href="#fragment-analysis" class="card-fg-link" style="font-size:12px; color:var(--mc-navy); font-weight:700; display:inline-block; margin-right:12px;">Ver detalle ↓</a>
         <a href="../assets/docs/order-guide-fragment-analysis.pdf" target="_blank" rel="noopener" class="card-fg-link" style="font-size:12px; color:var(--mc-teal); font-weight:700; display:inline-block;">📥 Guía de pedido</a>
       </div>
       <div class="pillar-card t-red is-linked">
         <a href="../contacto.html?promo=SANGER10&amp;servicio=customized-sequencing" class="card-stretched-link" aria-label="Cotizar Customized Sequencing"></a>
         <div class="pillar-icon red">⚙️</div>
         <h3>Customized Sequencing</h3>
-        <p>Tu workflow llave en mano: PCR + purificación + cloning + secuenciación + pyrosequencing si lo requieres.</p>
+        <p>Tu workflow llave en mano: PCR optimization, cloning, pyrosequencing, MLST y validación de NGS por Sanger.</p>
+        <a href="#customized-sequencing" class="card-fg-link" style="font-size:12px; color:var(--mc-navy); font-weight:700; display:inline-block; margin-right:12px;">Ver detalle ↓</a>
         <a href="../assets/docs/order-guide-customized-sequencing.pdf" target="_blank" rel="noopener" class="card-fg-link" style="font-size:12px; color:var(--mc-teal); font-weight:700; display:inline-block;">📥 Guía de pedido</a>
       </div>
       <div class="pillar-card t-red is-linked" style="border:2px solid var(--mc-green); position:relative;">
@@ -307,417 +386,284 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <h2 style="text-align:center; margin-bottom:36px;">Requerimientos de muestra</h2>
-    <div style="max-width:760px; margin:0 auto;">
-      <table class="spec-table">
-        <tr><th>Plásmido</th><td>200–500 ng/µL · A260/280 ≥1.8 · 5 µL mín.</td></tr>
-        <tr>
-          <th>Producto PCR<br><span style="font-weight:400; font-size:11px; color:var(--mc-mute);">Recomendado: 10 ng/µL por cada 100 bases</span></th>
-          <td>
-            <strong>≥ 30 ng/µL</strong> · PCR &lt; 600 bp<br>
-            <strong>≥ 60 ng/µL</strong> · PCR &gt; 600 bp<br>
-            <span style="font-size:11px; color:var(--mc-mute);">Purificado · A260/280 ≥1.8</span>
-          </td>
-        </tr>
-        <tr><th>Primer</th><td>10 µM · 5 µL mín. (o usa primers universales M13/T7/SP6 — 90+ gratis en stock)</td></tr>
-        <tr><th>Etiquetado</th><td>Tubos individuales o placa 96 (ABI/Eppendorf)</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============== PRIMERS UNIVERSALES · TABLA BUSCABLE ============== -->
-<section id="primers" class="section">
-  <div class="container">
-    <div class="text-center" style="max-width:760px; margin:0 auto 32px;">
-      <span class="eyebrow on-light">96 primers en stock · gratis con Sanger</span>
-      <h2>Primers Universales · busca el tuyo.</h2>
-      <p>Si tu primer está en esta lista <strong>no necesitas enviarlo</strong>. Lo aplicamos sin coste adicional a tu reacción Sanger CES. Cubrimos los vectores y barcodes más comunes: M13, T7, SP6, T3, BGH, CMV, EGFP, AOX1, ITS1–5, 16S (27F/1492R), COI (LCO/HCO), entre otros.</p>
-    </div>
-
-    <div style="max-width:920px; margin:0 auto;">
-      <div style="position:relative; margin-bottom:18px;">
-        <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:16px; color:var(--mc-mute);">🔎</span>
-        <input
-          type="text"
-          id="primer-search"
-          placeholder="Busca por nombre o secuencia… (ej. M13, T7, ITS, ATGCC, 16S, EGFP)"
-          autocomplete="off"
-          aria-label="Buscar primer"
-          style="width:100%; padding:14px 16px 14px 44px; border:1.5px solid var(--mc-border); border-radius:10px; font-size:14px; font-family:inherit;">
-      </div>
-
-      <div id="primer-result-count" style="font-size:12px; color:var(--mc-mute); margin-bottom:10px;">Mostrando <strong>96</strong> de 96 primers.</div>
-
-      <div style="overflow-x:auto; border:1px solid var(--mc-border); border-radius:10px;">
-        <table id="primer-table" style="width:100%; border-collapse:collapse; font-size:13px;">
-          <thead style="background:var(--mc-navy); color:#fff;">
-            <tr>
-              <th style="padding:11px 14px; text-align:left; font-weight:700; width:40px;">#</th>
-              <th style="padding:11px 14px; text-align:left; font-weight:700;">Primer Name</th>
-              <th style="padding:11px 14px; text-align:left; font-weight:700;">Sequence (5'→3')</th>
-              <th style="padding:11px 14px; text-align:left; font-weight:700; width:80px;">Length (bp)</th>
-            </tr>
-          </thead>
-          <tbody id="primer-tbody">
-        <tr><td>1</td><td><strong>Bluescript_SK</strong></td><td><code>CGCTCTAGAACTAGTGGATC</code></td><td>20</td></tr>
-        <tr><td>2</td><td><strong>Bluescript_KS</strong></td><td><code>TCGAGGTCGACGGTATC</code></td><td>17</td></tr>
-        <tr><td>3</td><td><strong>KAN2-FP</strong></td><td><code>ACCTACAACAAAGCTCTCATCAACC</code></td><td>25</td></tr>
-        <tr><td>4</td><td><strong>KAN2-RP</strong></td><td><code>GCAATGTAACATCAGAGATTTTGAG</code></td><td>25</td></tr>
-        <tr><td>5</td><td><strong>pBacPAC-RP</strong></td><td><code>GTCTGTAAATCAACAACGC</code></td><td>19</td></tr>
-        <tr><td>6</td><td><strong>pBAD-FP</strong></td><td><code>ATGCCATAGCATTTTATCC</code></td><td>20</td></tr>
-        <tr><td>7</td><td><strong>pDONOR-FP</strong></td><td><code>TAACGCTAGCATGGATCTC</code></td><td>19</td></tr>
-        <tr><td>8</td><td><strong>pEGFP_N</strong></td><td><code>CCGTCCAGCTCGACCAG</code></td><td>17</td></tr>
-        <tr><td>9</td><td><strong>pEGFP-FP</strong></td><td><code>TTTAGTGAACCGTCAGATC</code></td><td>19</td></tr>
-        <tr><td>10</td><td><strong>pEGFP-RP</strong></td><td><code>AACAGCTCCTCGCCTTG</code></td><td>18</td></tr>
-        <tr><td>11</td><td><strong>pESP-RP</strong></td><td><code>TCCAAAAGAAGTCGAGTGG</code></td><td>19</td></tr>
-        <tr><td>12</td><td><strong>pET-24a</strong></td><td><code>GGGTTATGCTAGTTATTGCTCAG</code></td><td>23</td></tr>
-        <tr><td>13</td><td><strong>pET-RP</strong></td><td><code>CTAGTTATTGCTCAGCGG</code></td><td>18</td></tr>
-        <tr><td>14</td><td><strong>pMalE</strong></td><td><code>TACGACTGTCGATGAAGC</code></td><td>18</td></tr>
-        <tr><td>15</td><td><strong>pREP-fwd</strong></td><td><code>GCTCGATACAATAAACGCC</code></td><td>19</td></tr>
-        <tr><td>16</td><td><strong>35S-A</strong></td><td><code>AAGGGTCTTGCGAAGGATAG</code></td><td>20</td></tr>
-        <tr><td>17</td><td><strong>35S-B</strong></td><td><code>AGTGGAAAAGGAAGGTGGCT</code></td><td>20</td></tr>
-        <tr><td>18</td><td><strong>AD_Reverse</strong></td><td><code>AGATGGTGCACGATGCACAG</code></td><td>20</td></tr>
-        <tr><td>19</td><td><strong>a-Factor</strong></td><td><code>TACTATTGCCAGCATTGCTGC</code></td><td>21</td></tr>
-        <tr><td>20</td><td><strong>CYC1_Reverse</strong></td><td><code>GCGTGAATGTAAGCGTGAC</code></td><td>19</td></tr>
-        <tr><td>21</td><td><strong>DsRed1-C</strong></td><td><code>AGCTGGACATCACCTCCCACAACG</code></td><td>24</td></tr>
-        <tr><td>22</td><td><strong>DsRed1-N</strong></td><td><code>GTACTGGAACTGGGGGGACAG</code></td><td>21</td></tr>
-        <tr><td>23</td><td><strong>EBV-RP</strong></td><td><code>GTGGTTTGTCCAAACTCATC</code></td><td>20</td></tr>
-        <tr><td>24</td><td><strong>EGFP-C</strong></td><td><code>CATGGTCCTGCTGGAGTTCGTG</code></td><td>22</td></tr>
-        <tr><td>25</td><td><strong>EGFP-N</strong></td><td><code>CGTCGCCGTCCAGCTCGACCAG</code></td><td>22</td></tr>
-        <tr><td>26</td><td><strong>U-19mer_Primer</strong></td><td><code>GTTTTCCCAGTCACGACGT</code></td><td>19</td></tr>
-        <tr><td>27</td><td><strong>T7 EEV</strong></td><td><code>ATGTCGTAATAACCCCGCCCCG</code></td><td>22</td></tr>
-        <tr><td>28</td><td><strong>pFastBac_Forward</strong></td><td><code>GGATTATTCATACCGTCCCA</code></td><td>20</td></tr>
-        <tr><td>29</td><td><strong>pFastBac_Reverse</strong></td><td><code>CAAATGTGGTATGGCTGATT</code></td><td>20</td></tr>
-        <tr><td>30</td><td><strong>AOX1_Forward</strong></td><td><code>GACTGGTTCCAATTGACAAGC</code></td><td>21</td></tr>
-        <tr><td>31</td><td><strong>AOX1_Reverse</strong></td><td><code>GCAAATGGCATTCTGACATCC</code></td><td>21</td></tr>
-        <tr><td>32</td><td><strong>STag_18mer_Primer</strong></td><td><code>GAACGCCAGCACATGGAC</code></td><td>18</td></tr>
-        <tr><td>33</td><td><strong>MT_Forward</strong></td><td><code>CATCTCAGTGCAACTAAA</code></td><td>18</td></tr>
-        <tr><td>34</td><td><strong>QE_Promoter</strong></td><td><code>CCGAAAAGTGCCACCTG</code></td><td>17</td></tr>
-        <tr><td>35</td><td><strong>pRH_Forward</strong></td><td><code>CTGTCTCTATACTCCCCTATAG</code></td><td>22</td></tr>
-        <tr><td>36</td><td><strong>pRH_Reverse</strong></td><td><code>CAAAATTCAATAGTTACTATCGC</code></td><td>23</td></tr>
-        <tr><td>37</td><td><strong>pTrcHis_Forward</strong></td><td><code>GAGGTATATATTAATGTATCG</code></td><td>21</td></tr>
-        <tr><td>38</td><td><strong>pJET1.2F</strong></td><td><code>CGACTCACTATAGGGAGAGCGGC</code></td><td>23</td></tr>
-        <tr><td>39</td><td><strong>pJET1.2R</strong></td><td><code>AAGAACATCGATTTTCCATGGCAG</code></td><td>24</td></tr>
-        <tr><td>40</td><td><strong>SV40-pArev</strong></td><td><code>CCTCTACAAATGTGGTATGG</code></td><td>20</td></tr>
-        <tr><td>41</td><td><strong>SV40-Promoter</strong></td><td><code>GCCCCTAACTCCGCCCATCC</code></td><td>20</td></tr>
-        <tr><td>42</td><td><strong>SP6</strong></td><td><code>ATTTAGGTGACACTATAG</code></td><td>18</td></tr>
-        <tr><td>43</td><td><strong>T3</strong></td><td><code>ATTAACCCTCACTAAAG</code></td><td>17</td></tr>
-        <tr><td>44</td><td><strong>T7</strong></td><td><code>AATACGACTCACTATAG</code></td><td>17</td></tr>
-        <tr><td>45</td><td><strong>T7terminator</strong></td><td><code>GCTAGTTATTGCTCAGCGG</code></td><td>19</td></tr>
-        <tr><td>46</td><td><strong>T7promoter</strong></td><td><code>TAATACGACTCACTATAGGG</code></td><td>20</td></tr>
-        <tr><td>47</td><td><strong>M13-FP</strong></td><td><code>TGTAAAACGACGGCCAGT</code></td><td>18</td></tr>
-        <tr><td>48</td><td><strong>M13F-pUC(-40)</strong></td><td><code>GTTTTCCCAGTCACGAC</code></td><td>17</td></tr>
-        <tr><td>49</td><td><strong>M13R-pUC(-40)</strong></td><td><code>CAGGAAACAGCTATGAC</code></td><td>17</td></tr>
-        <tr><td>50</td><td><strong>M13F</strong></td><td><code>GTAAAACGACGGCCAGT</code></td><td>17</td></tr>
-        <tr><td>51</td><td><strong>M13R</strong></td><td><code>GCGGATAACAATTTCACACAGG</code></td><td>22</td></tr>
-        <tr><td>52</td><td><strong>pGEX5</strong></td><td><code>GGCAAGCCACGTTTGGTG</code></td><td>18</td></tr>
-        <tr><td>53</td><td><strong>pGEX3</strong></td><td><code>GGAGCTGCATGTGTCAGAGG</code></td><td>20</td></tr>
-        <tr><td>54</td><td><strong>BGH-R</strong></td><td><code>TAGAAGGCACAGTCGAGG</code></td><td>18</td></tr>
-        <tr><td>55</td><td><strong>CMV-F</strong></td><td><code>CGCAAATGGGCGGTAGGCGTG</code></td><td>21</td></tr>
-        <tr><td>56</td><td><strong>RVprimer3</strong></td><td><code>CTAGCAAAATAGGCTGTCCC</code></td><td>20</td></tr>
-        <tr><td>57</td><td><strong>RVprimer4</strong></td><td><code>GACGATAGTCATGCCCCGCG</code></td><td>20</td></tr>
-        <tr><td>58</td><td><strong>GLprimer1</strong></td><td><code>TGTATCTTATGGTACTGTAACTG</code></td><td>23</td></tr>
-        <tr><td>59</td><td><strong>GLprimer2</strong></td><td><code>CTTTATGTTTTTGGCGTCTTCCA</code></td><td>23</td></tr>
-        <tr><td>60</td><td><strong>GAL1_Forward</strong></td><td><code>AATATACCTCTATACTTTAACGTC</code></td><td>24</td></tr>
-        <tr><td>61</td><td><strong>Gal4AD</strong></td><td><code>TACCACTACAATGGATG</code></td><td>17</td></tr>
-        <tr><td>62</td><td><strong>pQE-F</strong></td><td><code>CCCGAAAAGTGCCACCTG</code></td><td>18</td></tr>
-        <tr><td>63</td><td><strong>pQE-R</strong></td><td><code>GTTCTGAGGTCATTACTGG</code></td><td>19</td></tr>
-        <tr><td>64</td><td><strong>pBAD-F</strong></td><td><code>ATGCCATAGCATTTTTATCCA</code></td><td>21</td></tr>
-        <tr><td>65</td><td><strong>pBAD-R</strong></td><td><code>GATTTAATCTGTATCAGG</code></td><td>18</td></tr>
-        <tr><td>66</td><td><strong>EGFP-CF</strong></td><td><code>AGCACCCAGTCCGCCCTGAGC</code></td><td>21</td></tr>
-        <tr><td>67</td><td><strong>EGFP-CR</strong></td><td><code>CGTCCATGCCGAGAGTG</code></td><td>17</td></tr>
-        <tr><td>68</td><td><strong>EGFP-NR</strong></td><td><code>CGTCGCCGTCCAGCTC</code></td><td>16</td></tr>
-        <tr><td>69</td><td><strong>DuetDown1</strong></td><td><code>GATTATGCGGCCGTGTACAA</code></td><td>20</td></tr>
-        <tr><td>70</td><td><strong>DuetUP2</strong></td><td><code>TTGTACACGGCCGCATAATC</code></td><td>20</td></tr>
-        <tr><td>71</td><td><strong>pET-upstream</strong></td><td><code>ATGCGTCCGGCGTAGAGG</code></td><td>18</td></tr>
-        <tr><td>72</td><td><strong>LCO1490</strong></td><td><code>GGTCAACAAATCATAAAGATATTGG</code></td><td>25</td></tr>
-        <tr><td>73</td><td><strong>HCO2198</strong></td><td><code>TAAACTTCAGGGTGACCAAAAAATCA</code></td><td>26</td></tr>
-        <tr><td>74</td><td><strong>ITS1</strong></td><td><code>TCCGTAGGTGAACCTGCGG</code></td><td>19</td></tr>
-        <tr><td>75</td><td><strong>ITS2</strong></td><td><code>GCTGCGTTCTTCATCGATGC</code></td><td>20</td></tr>
-        <tr><td>76</td><td><strong>ITS3</strong></td><td><code>GCATCGATGAAGAACGCAGC</code></td><td>20</td></tr>
-        <tr><td>77</td><td><strong>ITS4</strong></td><td><code>TCCTCCGCTTATTGATATGC</code></td><td>20</td></tr>
-        <tr><td>78</td><td><strong>ITS5</strong></td><td><code>GGAAGTAAAAGTCGTAACAAGG</code></td><td>22</td></tr>
-        <tr><td>79</td><td><strong>27F</strong></td><td><code>AGAGTTTGATCMTGGCTCAG</code></td><td>20</td></tr>
-        <tr><td>80</td><td><strong>1492R</strong></td><td><code>TACGGYTACCTTGTTACGACTT</code></td><td>22</td></tr>
-        <tr><td>81</td><td><strong>518F</strong></td><td><code>CCAGCAGCCGCGGTAATACG</code></td><td>20</td></tr>
-        <tr><td>82</td><td><strong>800R</strong></td><td><code>TACCAGGGTATCTAATCC</code></td><td>18</td></tr>
-        <tr><td>83</td><td><strong>785F</strong></td><td><code>GGATTAGATACCCTGGTA</code></td><td>18</td></tr>
-        <tr><td>84</td><td><strong>907R</strong></td><td><code>CCGTCAATTCMTTTRAGTTT</code></td><td>20</td></tr>
-        <tr><td>85</td><td><strong>1100R</strong></td><td><code>GGGTTGCGCTCGTTG</code></td><td>15</td></tr>
-        <tr><td>86</td><td><strong>337F</strong></td><td><code>GACTCCTACGGGAGGCWGCAG</code></td><td>21</td></tr>
-        <tr><td>87</td><td><strong>NS1</strong></td><td><code>GTAGTCATATGCTTGTCTC</code></td><td>19</td></tr>
-        <tr><td>88</td><td><strong>NS8</strong></td><td><code>TCCGCAGGTTCACCTACGGA</code></td><td>20</td></tr>
-        <tr><td>89</td><td><strong>NS24</strong></td><td><code>AAACCTTGTTACGACTTTTA</code></td><td>20</td></tr>
-        <tr><td>90</td><td><strong>LR0R</strong></td><td><code>ACCCGCTGAACTTAAGC</code></td><td>17</td></tr>
-        <tr><td>91</td><td><strong>LR7</strong></td><td><code>TACTACCACCAAGATCT</code></td><td>17</td></tr>
-        <tr><td>92</td><td><strong>Alphafor</strong></td><td><code>CATTTTCCAACAGCACA</code></td><td>17</td></tr>
-        <tr><td>93</td><td><strong>SV40-pAR</strong></td><td><code>GAAATTTGTGATGCTATTGC</code></td><td>20</td></tr>
-        <tr><td>94</td><td><strong>pE-C-R</strong></td><td><code>CCTCACAAATGTGTATGG</code></td><td>18</td></tr>
-        <tr><td>95</td><td><strong>U6</strong></td><td><code>CAGTGCAGGGGAAAGAATAGTAGAC</code></td><td>25</td></tr>
-        <tr><td>96</td><td><strong>RAM14F</strong></td><td><code>GTTGGATTATTTTAACCAATGCAGAT</code></td><td>26</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-top:18px;">
-        <span style="font-size:12px; color:var(--mc-mute);">Fuente: <em>Stock Primers Universales v3</em> · Macrogen Chile</span>
-        <a href="../assets/docs/primers-universales.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light" style="font-size:13px; padding:9px 18px;">📥 Descargar PDF</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-#primer-table tbody tr { border-bottom:1px solid var(--mc-border); transition:background .15s; }
-#primer-table tbody tr:hover { background:#F8FAFC; }
-#primer-table tbody td { padding:10px 14px; vertical-align:middle; }
-#primer-table tbody td code { background:#F0F4FB; color:var(--mc-navy); padding:2px 6px; border-radius:4px; font-family:'SF Mono','Monaco','Courier New',monospace; font-size:12px; }
-#primer-table tbody tr.is-hidden { display:none; }
-#primer-search:focus { outline:2px solid var(--mc-teal); outline-offset:2px; border-color:var(--mc-teal); }
-</style>
-
-<script>
-(function() {
-  const input = document.getElementById('primer-search');
-  const tbody = document.getElementById('primer-tbody');
-  const counter = document.getElementById('primer-result-count');
-  if (!input || !tbody) return;
-  const rows = Array.from(tbody.querySelectorAll('tr'));
-  const total = rows.length;
-
-  function filter() {
-    const q = input.value.trim().toUpperCase();
-    let visible = 0;
-    rows.forEach(r => {
-      const text = r.textContent.toUpperCase();
-      const match = !q || text.includes(q);
-      r.classList.toggle('is-hidden', !match);
-      if (match) visible++;
-    });
-    if (counter) counter.innerHTML = q
-      ? 'Mostrando <strong>' + visible + '</strong> de ' + total + ' primers que coinciden con "<strong>' + input.value + '</strong>".'
-      : 'Mostrando <strong>' + total + '</strong> de ' + total + ' primers.';
-  }
-  input.addEventListener('input', filter);
-})();
-</script>
-
-<!-- ============== CELL LINE ID · STR ============== -->
-<section id="cell-line-id" class="section section-bg">
-  <div class="container">
-    <div class="grid grid-2" style="gap:48px; align-items:start;">
-      <div>
-        <span class="eyebrow on-light" style="color:var(--mc-green);">★ Nuevo en Iberoamérica</span>
-        <h2>Cell Line ID · Autenticación STR.</h2>
-        <p>Servicio de <strong>autenticación de líneas celulares humanas</strong> con kit <strong>PowerPlex Fusion 6c</strong> en ABI 3730xl. Genera STR profiles que se comparan contra las bases de referencia <strong>ATCC</strong> y <strong>Cellosaurus</strong> según el estándar internacional <strong>ICLAC</strong>.</p>
-        <p>Crítico para investigadores que publican en revistas que requieren autenticación de líneas celulares (Nature, Cell, Cancer Research, etc.), validación de bancos celulares institucionales y detección de contaminación cruzada.</p>
-        <p style="font-size:13px; color:var(--mc-mute);"><strong>99,99% de precisión</strong> · TAT <strong>3-4 días hábiles</strong> · Reportes válidos para publicación.</p>
-        <div class="hero-actions" style="margin-top:18px;">
-          <a href="../contacto.html?promo=SANGER10&amp;servicio=cell-line-id" class="btn btn-primary">Cotizar Cell Line ID</a>
-          <a href="../assets/docs/cell-line-id-str.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light">📥 Guía técnica</a>
-        </div>
-      </div>
-      <div>
-        <h3>Requerimientos &amp; reportes</h3>
-        <table class="spec-table">
-          <tr><th>DNA</th><td>≥ 10 ng/µL · ≥ 200 ng total</td></tr>
-          <tr><th>Pellet celular</th><td>&gt; 10.000 células · DNA extraction fee</td></tr>
-          <tr><th>Tejido</th><td>&gt; 20 mg · envío con hielo seco · extraction fee</td></tr>
-          <tr><th>Sangre</th><td>&gt; 2 mL · envío con hielo seco · extraction fee</td></tr>
-          <tr><th>FFPE</th><td style="color:var(--mc-red);">⚠️ No serviceable (use NGS targeted)</td></tr>
-          <tr><th>Instrumento</th><td>ABI 3730xl + PowerPlex Fusion 6c</td></tr>
-          <tr><th>TAT</th><td>3–4 días hábiles</td></tr>
-        </table>
-
-        <h3 style="margin-top:24px;">Tipos de reporte</h3>
-        <div style="background:#fff; border:1px solid var(--mc-border); border-radius:10px; padding:18px; font-size:13px; line-height:1.7;">
-          <strong>1. STR Profiles individual</strong> — perfiles STR de cada muestra sin comparación.<br>
-          <strong>2. Cliente vs Reference DB</strong> — matching score contra ATCC, Cellosaurus, o ambas.<br>
-          <strong>3. Cliente vs Cliente</strong> — comparativa entre muestras del mismo cliente.<br>
-          <strong>4. Cliente vs Muestra previa</strong> — versus muestras enviadas en pedidos anteriores.
-        </div>
-
-        <div style="background:#EAF6E5; border-left:3px solid var(--mc-green); border-radius:8px; padding:14px 16px; margin-top:18px; font-size:12.5px; line-height:1.6;">
-          <strong style="color:var(--mc-green); display:block; margin-bottom:4px;">📊 Interpretación ICLAC</strong>
-          <strong>0-55% match</strong> → líneas no relacionadas (donantes distintos)<br>
-          <strong>56-79% match</strong> → indeterminado, requiere más loci<br>
-          <strong>80-100% match</strong> → líneas relacionadas (mismo donante)
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== CÓMO ENVIAR MUESTRAS ============== -->
-<section id="envio" class="section">
-  <div class="container">
-    <div class="text-center" style="max-width:760px; margin:0 auto 36px;">
-      <span class="eyebrow on-light">Logística de envío</span>
-      <h2>Cómo enviar tus muestras Sanger.</h2>
-      <p>Pick-up gratis en Madrid 🇪🇸 y Santiago 🇨🇱. Para envíos internacionales, descarga la etiqueta correspondiente al hub que te atiende.</p>
-    </div>
-
-    <div class="grid grid-2" style="gap:32px; max-width:920px; margin:0 auto;">
-
-      <div style="background:linear-gradient(135deg,#7FC97F 0%,#1A8754 100%); color:#fff; padding:28px; border-radius:14px; position:relative; overflow:hidden;">
-        <div style="position:absolute; top:-30px; right:-30px; font-size:160px; opacity:.08;">🇨🇱</div>
-        <span style="font-size:11px; letter-spacing:1.5px; font-weight:700; opacity:.9; text-transform:uppercase;">Hub Santiago</span>
-        <h3 style="color:#fff; font-size:22px; margin:6px 0 14px;">Macrogen Chile</h3>
-        <p style="font-size:14px; line-height:1.6; opacity:.96; margin-bottom:18px;">
-          <strong>Magdalena 140, Of. 401</strong><br>
-          Las Condes, Santiago. 7550104.<br>
-          🇨🇱 Chile<br>
-          <span style="opacity:.8;">+56 9 5845 1395</span>
-        </p>
-        <p style="font-size:12px; opacity:.9; margin-bottom:16px;">Sirve a Chile y Perú · USD invoicing · pick-up gratis en Santiago</p>
-        <a href="../assets/docs/shipping-label-santiago.html" target="_blank" rel="noopener" class="btn" style="background:#fff; color:#1A8754; font-weight:800;">🖨️ Imprimir etiqueta CES →</a>
-      </div>
-
-      <div style="background:linear-gradient(135deg,#3FA9C9 0%,#1B2A57 100%); color:#fff; padding:28px; border-radius:14px; position:relative; overflow:hidden;">
-        <div style="position:absolute; top:-30px; right:-30px; font-size:160px; opacity:.08;">🇪🇸</div>
-        <span style="font-size:11px; letter-spacing:1.5px; font-weight:700; opacity:.9; text-transform:uppercase;">Hub Madrid</span>
-        <h3 style="color:#fff; font-size:22px; margin:6px 0 14px;">Macrogen Spain</h3>
-        <p style="font-size:14px; line-height:1.6; opacity:.96; margin-bottom:18px;">
-          <strong>C. de Martínez Villergas, 52</strong><br>
-          28027 Madrid<br>
-          🇪🇸 España<br>
-          <span style="opacity:.8;">+34 911 138 378</span>
-        </p>
-        <p style="font-size:12px; opacity:.9; margin-bottom:16px;">Sirve a España y Portugal · EUR invoicing · pick-up gratis en Madrid</p>
-        <a href="../contacto.html#madrid" class="btn" style="background:#fff; color:#1B2A57; font-weight:800;">Ver contactos hub Madrid →</a>
-      </div>
-
-    </div>
-
-    <div style="max-width:920px; margin:36px auto 0; padding:22px 24px; background:var(--mc-bg); border-radius:12px; font-size:13px; line-height:1.65;">
-      <strong style="color:var(--mc-navy); display:block; margin-bottom:10px;">📦 ¿Cómo coordinar el envío?</strong>
-      Para envíos por <strong>FedEx</strong> o <strong>DHL</strong> consulta nuestras guías en <a href="../recursos.html#envio" style="color:var(--mc-teal); font-weight:700;">la página de Recursos</a> — incluyen procedimientos con y sin hielo seco, tarifas y declared price recomendado (USD 10-100 para evitar inspección aduanal). Para volúmenes grandes (&gt;20 reacciones Sanger), el envío es gratuito.
-    </div>
-  </div>
-</section>
-
-<!-- NUEVO · 5 ventajas Chile -->
-<section class="section section-bg">
-  <div class="container">
-    <div class="text-center" style="max-width:720px; margin:0 auto 40px;">
-      <span class="eyebrow on-light">Ventajas Sanger Chile</span>
-      <h2>5 diferenciadores que protegen tu investigación.</h2>
-      <p>Cada proyecto tiene requerimientos diferentes. Adaptamos el servicio a tu volumen y presupuesto.</p>
-    </div>
-    <div class="grid grid-2" style="gap:24px;">
-      <div class="pillar-card t-red">
-        <div class="pillar-icon red">💰</div>
-        <h3>Ahorro con Primers Universales gratis</h3>
-        <p>Más de <strong>90 primers de stock sin cargo adicional</strong>: T7, T3, M13F/R, 27F, 1492R, 518F, 785F, ITS1–5, NS1/NS8, LR0R/LR7, pET, pGEX, pBAD, EGFP-C y muchos más. Lista completa disponible por correo.</p>
-      </div>
-      <div class="pillar-card t-red">
-        <div class="pillar-icon red">⚗️</div>
-        <h3>Modalidad Premix · mayor ahorro</h3>
-        <p>Entrega tus muestras <strong>premezcladas con el primer</strong> (Premix) y accede a una tarifa aún más económica por reacción o por placa. Optimiza tiempo y presupuesto.</p>
-      </div>
-      <div class="pillar-card t-red">
-        <div class="pillar-icon red">🧪</div>
-        <h3>Purificación enzimática de ADN</h3>
-        <p>Altamente recomendada para eliminar remanentes de PCR. Garantiza <strong>máxima resolución y lecturas limpias</strong> con cromatogramas listos para publicación.</p>
-      </div>
-      <div class="pillar-card t-red">
-        <div class="pillar-icon red">🛡️</div>
-        <h3>Garantía de tranquilidad (tubos)</h3>
-        <p>Para tu total seguridad, si algo falla en el formato de tubos estándar, cuentas con el beneficio de <strong>resecuenciación gratuita</strong> para proteger el avance de tu investigación.</p>
-      </div>
-      <div class="pillar-card t-red" style="grid-column: 1 / -1;">
-        <div class="pillar-icon red">📦</div>
-        <h3>Eficiencia en grandes volúmenes (placas)</h3>
-        <p>¿Proyectos de gran escala? Optimiza drásticamente tu presupuesto con el formato de <strong>placas de 96 pocillos</strong> para abaratar el costo por reacción.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============== MATERIALS & METHODS · MPA design ============== -->
-<section id="protocolo" class="section section-bg">
+<!-- ============== STANDARD SEQUENCING · DETALLE ============== -->
+<section id="standard-sequencing" class="section">
   <div class="container">
     <div class="text-center" style="max-width:780px; margin:0 auto 40px;">
-      <span class="eyebrow on-light">Protocolo Macrogen</span>
-      <h2>🔬 Materiales y Métodos.</h2>
-      <p>Protocolo oficial actualizado · 2025. Mismo workflow en los dos hubs (Madrid + Santiago) — la única diferencia es la moneda de facturación.</p>
+      <span class="eyebrow on-light">Servicio 1 de 4</span>
+      <h2>Standard Sequencing.</h2>
+      <p>Secuenciación de productos de PCR y ADN plasmídico sobre sistema automatizado ABI 3730xl. Es el servicio más utilizado del catálogo CES y la base sobre la que se construyen el resto de modalidades.</p>
     </div>
 
-    <div class="grid grid-2" style="gap:32px; max-width:1040px; margin:0 auto;">
+    <div class="grid grid-2" style="gap:48px; align-items:start; margin-bottom:44px;">
       <div>
-        <h3 style="font-size:18px; margin-bottom:14px;">⚗️ Reactivos &amp; equipamiento</h3>
+        <h3>Características del servicio</h3>
+        <ul style="font-size:14px; line-height:1.9; padding-left:20px; margin-bottom:22px;">
+          <li>Plataforma <strong>ABI 3730xl</strong> · read length normal hasta <strong>1.050 bp</strong></li>
+          <li>Resultados en <strong>24 h</strong> desde la recepción de la muestra (recepciones antes de las 18:00)</li>
+          <li>Monitoreo en tiempo real vía <strong>LIMS</strong>, desde la recepción del pedido hasta el envío de resultados</li>
+          <li>Análisis básico <strong>gratuito</strong> — búsqueda de homología por BlastN / BlastX</li>
+          <li><strong>Primers universales gratuitos</strong> — 96 secuencias en stock</li>
+          <li><strong>Re-reacción gratuita</strong> en formato tubo individual</li>
+          <li>Gestión post-resultado a cargo de un especialista asignado</li>
+        </ul>
+
+        <h3>Servicios adicionales</h3>
+        <ul style="font-size:14px; line-height:1.9; padding-left:20px; margin-bottom:0;">
+          <li>Purificación de producto PCR (tubo y placa)</li>
+          <li>Extracción desde gel (gel extraction)</li>
+          <li>Picking de clones y extracción de plásmido (tubo / placa / placa de agar)</li>
+          <li>Extracción de BAC / Fósmido / Cósmido</li>
+          <li>Verificación de concentración mediante gel running</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Modalidades disponibles</h3>
         <table class="spec-table">
-          <tr><th>🧬 Muestra</th><td>20–100 ng / reacción</td></tr>
-          <tr><th>🔧 Secuenciador</th><td>ABI PRISM 3730xl <span style="color:var(--mc-mute); font-size:11px;">(96 capilares)</span></td></tr>
-          <tr><th>🧫 Kit</th><td>BigDye® Terminator v3.1 <span style="color:var(--mc-mute); font-size:11px;">(Applied Biosystems)</span></td></tr>
-          <tr><th>🧲 Purificación PCR</th><td>ExoSAP-IT™ Express <span style="color:var(--mc-mute); font-size:11px;">(ThermoFisher)</span></td></tr>
-          <tr><th>🌡️ Termociclador</th><td>DNA Engine Tetrad 2 Peltier <span style="color:var(--mc-mute); font-size:11px;">(BIO-RAD)</span></td></tr>
-          <tr><th>💻 Análisis</th><td>Variant Reporter v2.1 · DNASTAR Lasergene SeqMan 7.0</td></tr>
-          <tr><th>🔬 Extracción gDNA</th><td>InstaGene Matrix (BIO-RAD) / Exgene Tissue SV</td></tr>
-          <tr><th>📊 Electroforesis</th><td>Agarosa 1,5% · 300V · 200A · 20 min</td></tr>
+          <tr><th>Standard Sequencing</th><td>Tubo individual o placa 96 · 1 reacción = 1 template + 1 primer</td></tr>
+          <tr><th>1 primer / 1 placa</th><td>Placa 96 pocillos, un mismo primer en todos los pocillos</td></tr>
+          <tr><th>1 primer / media placa</th><td>48 pocillos — ideal para proyectos intermedios</td></tr>
+          <tr><th>Multi-primer / 1 placa</th><td>Placa 96 con 2 a 6 primers distintos</td></tr>
+          <tr><th>Difficult Sequencing</th><td>Templates con estructura compleja — ver más abajo</td></tr>
+          <tr><th>Primer Walking</th><td>Secuencias largas de 2–10 kb — ver más abajo</td></tr>
         </table>
-      </div>
-      <div>
-        <h3 style="font-size:18px; margin-bottom:14px;">⏱️ Condiciones PCR</h3>
-        <table class="spec-table" style="font-size:13px;">
-          <thead>
-            <tr style="background:var(--mc-navy); color:#fff;">
-              <th style="color:#fff;">Paso PCR</th>
-              <th style="color:#fff;">Temp</th>
-              <th style="color:#fff;">Tiempo</th>
-              <th style="color:#fff;">Ciclos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Desnaturalización inicial</td><td>95 °C</td><td>5 min</td><td>1×</td></tr>
-            <tr style="background:#FEF7E8;"><td><strong>Desnaturalización</strong></td><td><strong>95 °C</strong></td><td><strong>30 seg</strong></td><td rowspan="3" style="vertical-align:middle; font-weight:800; color:var(--mc-red);">35×</td></tr>
-            <tr style="background:#FEF7E8;"><td><strong>Anillamiento</strong></td><td><strong>55 °C</strong></td><td><strong>30 seg</strong></td></tr>
-            <tr style="background:#FEF7E8;"><td><strong>Extensión</strong></td><td><strong>72 °C</strong></td><td><strong>1 min</strong></td></tr>
-            <tr><td>Extensión final</td><td>72 °C</td><td>7 min</td><td>1×</td></tr>
-            <tr><td>Almacenamiento</td><td>4 °C</td><td>∞</td><td>—</td></tr>
-          </tbody>
-        </table>
-        <div style="margin-top:18px; padding:14px 16px; background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; font-size:12.5px; line-height:1.6;">
-          <strong style="color:var(--mc-navy); display:block; margin-bottom:4px;">📋 Validación</strong>
-          Cada lote de reactivos pasa control de calidad interno. Cromatogramas listos para publicación. Análisis <strong>BlastN incluido sin costo</strong> para identificación de secuencias.
+
+        <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:14px 16px; margin-top:18px; font-size:12.5px; line-height:1.6;">
+          <strong style="color:var(--mc-navy); display:block; margin-bottom:4px;">💡 Modalidad Premix</strong>
+          Envía el template ya mezclado con el primer en un mismo tubo y accede a la tarifa más económica por reacción. Disponible en tubo y en placa.
         </div>
-        <a href="../assets/docs/pcr-sequencing-protocol.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light" style="margin-top:14px; font-size:13px; padding:10px 18px;">📥 Descargar protocolo completo (PDF)</a>
       </div>
     </div>
 
-    <!-- 4 tech guarantees -->
-    <div style="margin-top:48px; max-width:1040px; margin-left:auto; margin-right:auto;">
-      <div class="text-center" style="margin-bottom:28px;">
-        <span class="eyebrow on-light">Respaldo tecnológico</span>
-        <h3 style="font-size:22px; margin-top:6px;">Cuatro garantías incluidas en cada pedido.</h3>
+    <!-- Guía oficial de preparación -->
+    <div style="max-width:860px; margin:0 auto;">
+      <h3 style="text-align:center; margin-bottom:6px;">Guía de preparación de muestra y primer</h3>
+      <p style="text-align:center; font-size:12.5px; color:var(--mc-mute); margin-bottom:20px;">Cantidades por reacción, según la guía oficial del sistema de pedidos <a href="https://dna.macrogen.com" target="_blank" rel="noopener" style="color:var(--mc-teal); font-weight:700;">dna.macrogen.com</a>.</p>
+      <table class="spec-table" style="width:100%;">
+        <thead>
+          <tr style="background:var(--mc-navy); color:var(--mc-white);">
+            <th style="text-align:left; padding:12px 14px;">Template</th>
+            <th style="text-align:left; padding:12px 14px;">Tamaño</th>
+            <th style="text-align:left; padding:12px 14px;">Concentración</th>
+            <th style="text-align:left; padding:12px 14px;">Volumen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th rowspan="4">Producto PCR<br><span style="font-weight:400; font-size:11px; color:var(--mc-mute);">purificado o sin purificar</span></th><td>&lt; 200 bp</td><td><strong>3–5 ng/µL</strong></td><td rowspan="6" style="vertical-align:middle;">Mínimo <strong>10 µL</strong><br>+5 µL por reacción adicional</td></tr>
+          <tr><td>200–600 bp</td><td><strong>5–10 ng/µL</strong></td></tr>
+          <tr><td>600–1.000 bp</td><td><strong>10–20 ng/µL</strong></td></tr>
+          <tr><td>&gt; 1.000 bp</td><td><strong>20–50 ng/µL</strong></td></tr>
+          <tr><th>Plásmido</th><td>—</td><td><strong>100–150 ng/µL</strong></td></tr>
+          <tr><th>Extracción de gel</th><td>—</td><td><strong>50–100 ng/µL</strong> · &gt; 30 µL</td></tr>
+          <tr><th>Primer</th><td>TM 50–58 °C</td><td><strong>5–10 pmol/µL</strong></td><td>Mínimo <strong>10 µL</strong><br>+5 µL por reacción adicional</td></tr>
+        </tbody>
+      </table>
+      <div style="background:#FEF2F4; border-left:3px solid var(--mc-red); border-radius:8px; padding:14px 16px; margin-top:16px; font-size:12.5px; line-height:1.6;">
+        <strong style="color:var(--mc-red);">⚠️ Importante:</strong> si la muestra no cumple la concentración recomendada, la reacción de secuenciación no rendirá correctamente. Verifica siempre pureza <strong>A260/280 ≈ 1,8</strong> y <strong>A260/230 ≈ 2,0</strong> antes del envío.
       </div>
-      <div class="grid grid-2" style="gap:18px;">
-        <div style="background:#fff; border-left:4px solid var(--mc-red); border-radius:10px; padding:18px 22px;">
-          <strong style="color:var(--mc-red); font-size:14px; letter-spacing:.5px;">⚡ TIEMPOS DE RESPUESTA</strong>
-          <h4 style="font-size:16px; margin:6px 0 8px;">24–48 horas tras recepción</h4>
-          <p style="font-size:13px; color:var(--mc-mute); margin:0; line-height:1.55;">TAT competitivo desde Madrid y Santiago. Resultados disponibles vía portal LIMS.</p>
-        </div>
-        <div style="background:#fff; border-left:4px solid var(--mc-teal); border-radius:10px; padding:18px 22px;">
-          <strong style="color:var(--mc-teal); font-size:14px; letter-spacing:.5px;">📊 TRAZABILIDAD ABSOLUTA</strong>
-          <h4 style="font-size:16px; margin:6px 0 8px;">Plataforma LIMS</h4>
-          <p style="font-size:13px; color:var(--mc-mute); margin:0; line-height:1.55;">Monitoreo en tiempo real del estado de sus solicitudes desde el portal seguro.</p>
-        </div>
-        <div style="background:#fff; border-left:4px solid var(--mc-green); border-radius:10px; padding:18px 22px;">
-          <strong style="color:var(--mc-green); font-size:14px; letter-spacing:.5px;">🧠 ANÁLISIS COMPLEMENTARIO</strong>
-          <h4 style="font-size:16px; margin:6px 0 8px;">BlastN sin costo</h4>
-          <p style="font-size:13px; color:var(--mc-mute); margin:0; line-height:1.55;">Análisis BlastN automático para identificación de secuencias — incluido sin cargo.</p>
-        </div>
-        <div style="background:#fff; border-left:4px solid var(--mc-navy); border-radius:10px; padding:18px 22px;">
-          <strong style="color:var(--mc-navy); font-size:14px; letter-spacing:.5px;">📦 LOGÍSTICA SIN COSTO</strong>
-          <h4 style="font-size:16px; margin:6px 0 8px;">Envío gratis + recogida</h4>
-          <p style="font-size:13px; color:var(--mc-mute); margin:0; line-height:1.55;">Envío gratuito para órdenes &gt;20 reacciones (DHL/FedEx) · pick-up gratis en Madrid + Santiago.</p>
+    </div>
+
+    <!-- Difficult + Primer Walking -->
+    <div class="grid grid-2" style="gap:24px; margin-top:44px;">
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">🧬</div>
+        <h3>Difficult Sequencing</h3>
+        <p>Secuenciación de templates con estructuras que bloquean la reacción estándar. Aplicamos condiciones y aditivos específicos para obtener lecturas limpias y reproducibles.</p>
+        <p style="font-size:13px; margin-bottom:0;"><strong>Aplica a:</strong> siRNA con estructura hairpin · estructuras secundarias atípicas · regiones G-rich · tractos homopoliméricos (poly-G) · regiones repetitivas GT.</p>
+      </div>
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">🚶</div>
+        <h3>Primer Walking</h3>
+        <p>Para plásmidos o productos de PCR que no pueden leerse en una sola reacción. Se secuencian los extremos y, a partir del resultado, diseñamos y sintetizamos primers internos para extender la lectura.</p>
+        <p style="font-size:13px; margin-bottom:0;"><strong>Rango típico:</strong> 2–10 kb · extensión de <strong>500–800 bp</strong> por dirección y ronda · aprox. <strong>4 días</strong> por ronda de walking. Incluye diseño, síntesis y secuenciación.</p>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top:34px;">
+      <a href="../contacto.html?promo=SANGER10&amp;servicio=standard-sequencing" class="btn btn-primary">Cotizar Standard Sequencing →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FRAGMENT ANALYSIS · GENESCAN ============== -->
+<section id="fragment-analysis" class="section section-bg">
+  <div class="container">
+    <div class="text-center" style="max-width:800px; margin:0 auto 40px;">
+      <span class="eyebrow on-light">Servicio 2 de 4</span>
+      <h2>Fragment Analysis · GeneScan.</h2>
+      <p>Separación y análisis de productos de PCR marcados con fluoróforos mediante electroforesis capilar de alta resolución en <strong>ABI 3730xl</strong>. Es la solución de referencia para genotipado, microsatélites (SSR), SNPs y análisis de alelos.</p>
+    </div>
+
+    <div class="grid grid-2" style="gap:48px; align-items:start; margin-bottom:44px;">
+      <div>
+        <h3>Aplicaciones</h3>
+        <ul style="font-size:14px; line-height:1.9; padding-left:20px; margin-bottom:22px;">
+          <li><strong>Genotipado</strong> y análisis de microsatélites (SSR / VNTR)</li>
+          <li><strong>DNA profiling</strong> y detección de mutaciones con fines médicos</li>
+          <li><strong>Microsatellite instability</strong> (MSI)</li>
+          <li><strong>AFLP</strong> — Amplified Fragment Length Polymorphism</li>
+          <li><strong>T-RFLP</strong> — Terminal Restriction Fragment Length Polymorphism</li>
+          <li><strong>SRAP</strong> — Sequence-Related Amplified Polymorphism</li>
+          <li><strong>Cuantificación fluorescente relativa</strong> — pérdida de heterocigosidad (LOH), ensayos de aneuploidía y detección de deleciones cromosómicas grandes</li>
+          <li>Investigación agrícola y mejoramiento genético</li>
+        </ul>
+
+        <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:14px 16px; font-size:12.5px; line-height:1.6;">
+          <strong style="color:var(--mc-navy); display:block; margin-bottom:4px;">🔗 Ecosistema completo</strong>
+          Sintetizamos también tus <strong>primers marcados con fluorescencia</strong> (5'-6-FAM, 5'-HEX, 5'-TAMRA, 5'-ROX, entre otros). Un solo proveedor para primer y corrida reduce errores de compatibilidad. <a href="oligo.html" style="color:var(--mc-teal); font-weight:700;">Ver síntesis de oligos →</a>
         </div>
       </div>
+
+      <div>
+        <h3>Requisitos de la muestra</h3>
+        <table class="spec-table">
+          <tr><th>Tipo de muestra</th><td>Productos de PCR <strong>ya amplificados</strong> y marcados con fluorescencia, a partir de ADN genómico</td></tr>
+          <tr><th>Volumen</th><td><strong>20 µL</strong> por muestra</td></tr>
+          <tr><th>Concentración</th><td>Recomendada <strong>50 ng/µL</strong></td></tr>
+          <tr><th>Tubos</th><td>EP <strong>ámbar o negros</strong> (o envueltos en papel aluminio / caja opaca) para evitar la degradación del fluoróforo por exposición a la luz</td></tr>
+          <tr><th>Sellado</th><td>Hermético, para prevenir evaporación y contaminación cruzada durante el transporte</td></tr>
+          <tr><th>TAT</th><td><strong>5–7 días hábiles</strong> desde la recepción de las muestras y la confirmación de la orden</td></tr>
+        </table>
+
+        <h3 style="margin-top:24px;">Entregables</h3>
+        <div style="background:#fff; border:1px solid var(--mc-border); border-radius:10px; padding:18px; font-size:13px; line-height:1.7;">
+          <strong>Resultado estándar</strong> — datos crudos en formato <strong>.fsa</strong>, compatibles con Peak Scanner o GeneMapper.<br>
+          <strong style="display:block; margin-top:10px;">Análisis de alelos (servicio adicional)</strong> — análisis mediante <strong>GeneMapper v.5</strong> con reporte consolidado en Excel (tabla de alelos) más reportes en PDF (Raw Peak y Size Peak).
+        </div>
+      </div>
+    </div>
+
+    <!-- Modalidades GeneScan -->
+    <div style="max-width:860px; margin:0 auto 40px;">
+      <h3 style="text-align:center; margin-bottom:20px;">Modalidades de servicio</h3>
+      <table class="spec-table" style="width:100%;">
+        <thead>
+          <tr style="background:var(--mc-navy); color:var(--mc-white);">
+            <th style="text-align:left; padding:12px 14px;">Modalidad</th>
+            <th style="text-align:left; padding:12px 14px;">Formato</th>
+            <th style="text-align:left; padding:12px 14px;">Tamaño máx. de producto PCR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>GeneScan · Single 600 LIZ</th><td>Tubo individual</td><td>Hasta <strong>600 bp</strong></td></tr>
+          <tr><th>GeneScan · Single 1200 LIZ</th><td>Tubo individual</td><td>Hasta <strong>1.200 bp</strong></td></tr>
+          <tr><th>GeneScan · Plate 600 LIZ</th><td>Placa 96 pocillos</td><td>Hasta <strong>600 bp</strong></td></tr>
+          <tr><th>GeneScan · Plate 1200 LIZ</th><td>Placa 96 pocillos</td><td>Hasta <strong>1.200 bp</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Dye sets -->
+    <div style="max-width:860px; margin:0 auto;">
+      <h3 style="text-align:center; margin-bottom:6px;">¿Qué dye set debo usar?</h3>
+      <p style="text-align:center; font-size:12.5px; color:var(--mc-mute); margin-bottom:20px;">Sets de fluoróforos compatibles y marcadores de tamaño (size standard) según el canal de detección.</p>
+      <table class="spec-table dye-matrix">
+        <colgroup>
+          <col style="width:15%"><col style="width:19%"><col style="width:26%"><col style="width:40%">
+        </colgroup>
+        <thead>
+          <tr style="background:var(--mc-navy); color:var(--mc-white);">
+            <th style="text-align:left;">Canal</th>
+            <th style="text-align:left;">DS-30</th>
+            <th style="text-align:left;">DS-33</th>
+            <th style="text-align:left;">Síntesis Macrogen<br><span style="font-weight:400; opacity:.85; text-transform:none; letter-spacing:0;">modificación 5′ del primer</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th style="background:#EAF3FB;">🔵&nbsp; Azul</th>
+            <td><span class="dye-chips"><span class="dye-chip">6-FAM</span></span></td>
+            <td><span class="dye-chips"><span class="dye-chip">6-FAM</span></span></td>
+            <td>
+              <span class="dye-chips"><span class="dye-chip is-exact">5′-FAM</span></span>
+              <span class="dye-note">✓ Coincidencia directa en ambos sets.</span>
+            </td>
+          </tr>
+          <tr>
+            <th style="background:#EAFAF0;">🟢&nbsp; Verde</th>
+            <td><span class="dye-chips"><span class="dye-chip">HEX</span></span></td>
+            <td><span class="dye-chips"><span class="dye-chip">VIC</span></span></td>
+            <td>
+              <span class="dye-chips"><span class="dye-chip is-exact">5′-HEX</span>
+              <span class="dye-chip is-alt">5′-JOE</span>
+              <span class="dye-chip is-alt">5′-TET</span>
+              <span class="dye-chip is-alt">5′-YakimaYellow</span></span>
+              <span class="dye-note">✓ HEX es directa en DS-30. JOE y Yakima Yellow son las alternativas más próximas a VIC.</span>
+            </td>
+          </tr>
+          <tr>
+            <th style="background:#FEF9E7;">🟡&nbsp; Amarillo</th>
+            <td><span class="dye-chips"><span class="dye-chip">NED</span></span></td>
+            <td><span class="dye-chips"><span class="dye-chip">NED</span></span></td>
+            <td>
+              <span class="dye-chips"><span class="dye-chip is-alt">5′-TAMRA</span>
+              <span class="dye-chip is-alt">5′-CY3</span>
+              <span class="dye-chip is-alt">5′-CAL Fluor 560</span></span>
+              <span class="dye-note">Alternativa espectral — NED es propietario de ABI.</span>
+            </td>
+          </tr>
+          <tr>
+            <th style="background:#FDECEF;">🔴&nbsp; Rojo</th>
+            <td><span class="dye-chips"><span class="dye-chip is-none">reservado al size standard</span></span></td>
+            <td><span class="dye-chips"><span class="dye-chip">PET</span></span></td>
+            <td>
+              <span class="dye-chips"><span class="dye-chip is-alt">5′-ROX</span>
+              <span class="dye-chip is-alt">5′-TexasRed</span>
+              <span class="dye-chip is-alt">5′-CAL Fluor 610</span>
+              <span class="dye-chip is-alt">5′-ATTO565</span></span>
+              <span class="dye-note">Alternativa espectral — PET es propietario de ABI. <strong>Solo en DS-33</strong> (ver aviso).</span>
+            </td>
+          </tr>
+          <tr>
+            <th style="background:#F4F5F9;">Marcador<br>de tamaño</th>
+            <td>
+              <span class="dye-chips"><span class="dye-chip">350 ROX</span>
+              <span class="dye-chip">400HD</span></span>
+              <span class="dye-note">350 bp · 400 bp</span>
+            </td>
+            <td>
+              <span class="dye-chips"><span class="dye-chip">120 LIZ</span>
+              <span class="dye-chip">500 LIZ</span>
+              <span class="dye-chip">600 LIZ</span>
+              <span class="dye-chip">1200 LIZ</span></span>
+              <span class="dye-note">120 · 500 · 600 · 1.200 bp</span>
+            </td>
+            <td>
+              <span class="dye-note" style="margin-top:0;">Lo aporta Macrogen con la corrida — no requiere síntesis por tu parte.</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:16px 18px; margin-top:16px; font-size:12.5px; line-height:1.7;">
+        <strong style="color:var(--mc-navy); display:block; margin-bottom:6px;">🧷 Marcaje fluorescente 5′ disponible en síntesis</strong>
+        Sintetizamos tus primers con marcaje 5′ en <strong>FAM · HEX · TET · JOE · TAMRA · CY3 · CY3.5 · CY5 · CY5.5 · ROX · TexasRed · YakimaYellow · ATTO565 · CAL Fluor 560 · CAL Fluor 610</strong>.
+        Pedir primer y corrida al mismo proveedor evita incompatibilidades y acorta el ciclo del proyecto.
+        <a href="oligo.html#modificaciones" style="color:var(--mc-teal); font-weight:700;">Ver catálogo completo de modificaciones 5′ / 3′ / internas →</a>
+      </div>
+
+      <div style="background:#FEF7E8; border-left:3px solid #F5A623; border-radius:8px; padding:16px 18px; margin-top:14px; font-size:12.5px; line-height:1.7;">
+        <strong style="color:#B45309; display:block; margin-bottom:6px;">⚠️ Dos reglas antes de encargar primers marcados</strong>
+        <strong>1 · No uses el fluoróforo reservado al marcador de tamaño.</strong> En <strong>DS-30 el canal rojo lo ocupa el size standard ROX</strong>, por lo que un primer marcado con ROX invadiría ese canal: úsalo solo en <strong>DS-33</strong>, donde el marcador es LIZ. Por la misma razón, el canal rojo de DS-30 no está disponible para muestras.
+        <br><br>
+        <strong>2 · VIC, NED, PET y LIZ son propietarios de Applied Biosystems</strong> y no pueden sintetizarse por terceros. Las alternativas de la tabla ocupan una posición espectral próxima pero <strong>no idéntica</strong>: sustituir un dye exige que la <strong>calibración espectral (matrix) de tu equipo</strong> contemple el fluoróforo empleado, o aparecerá <em>pull-up</em> y solapamiento entre canales.
+        <br><br>
+        Confirma siempre con nuestro equipo técnico la combinación de <strong>fluoróforo + dye set + matrix + software</strong> antes de sintetizar. Si tu flujo ya está validado con dyes ABI, lo más seguro es mantenerlos.
+      </div>
+
+      <div style="background:#f5f7fa; padding:14px 18px; border-radius:8px; margin-top:14px; font-size:12.5px; color:var(--mc-mute); line-height:1.6;">
+        <strong style="color:var(--mc-navy);">Nota sobre CY5 y CY5.5:</strong> son fluoróforos de rojo lejano (emisión &gt;660 nm) fuera del rango de detección de un set estándar de 4 colores. Solo son utilizables en configuraciones de 5 dyes específicamente calibradas — consúltanos antes de diseñar un multiplex con ellos.
+      </div>
+
+      <div style="background:#EAF6E5; border-left:3px solid var(--mc-green); border-radius:8px; padding:14px 16px; margin-top:16px; font-size:12.5px; line-height:1.6;">
+        <strong style="color:var(--mc-green); display:block; margin-bottom:4px;">🎨 Servicio de diseño experimental</strong>
+        Si lo requieres, ofrecemos servicio completo desde la <strong>optimización de la PCR</strong> hasta el análisis final de fragmentos — no solo la corrida.
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top:34px;">
+      <a href="../contacto.html?promo=SANGER10&amp;servicio=fragment-analysis" class="btn btn-primary">Cotizar Fragment Analysis →</a>
     </div>
   </div>
 </section>
@@ -726,9 +672,15 @@
 <section id="identificacion" class="section">
   <div class="container">
     <div class="text-center" style="max-width:780px; margin:0 auto 40px;">
-      <span class="eyebrow on-light">Servicios de identificación molecular</span>
+      <span class="eyebrow on-light">Servicio 3 de 4</span>
       <h2>🔍 Identificación microbiana y fúngica.</h2>
-      <p>Amplificación y secuenciación de regiones marcadoras con primers universales de stock — sin coste adicional de primer. Análisis BlastN incluido.</p>
+      <p>Servicio en paquete, desde la preparación hasta el análisis, para determinar la especie de microorganismos. Amplificación y secuenciación de regiones marcadoras con primers universales de stock — sin coste adicional de primer. Análisis BlastN incluido.</p>
+    </div>
+
+    <div style="max-width:1040px; margin:0 auto 28px; background:#fff; border:1px solid var(--mc-border); border-radius:12px; padding:18px 22px; font-size:13px; line-height:1.75;">
+      <strong style="color:var(--mc-navy); display:block; margin-bottom:8px;">📏 Longitudes de secuencia garantizadas</strong>
+      <strong>Bacterias · 16S rRNA</strong> — PCR con 27F/1492R y secuenciación con inter-primers 785F/907R: más de <strong>1.350 bp</strong>. Puedes añadir o cambiar primers si lo necesitas.<br>
+      <strong>Hongos · 18S rRNA</strong> — más de <strong>1.600 bp</strong> &nbsp;·&nbsp; <strong>Región ITS</strong> — más de <strong>500 bp</strong> &nbsp;·&nbsp; <strong>26S rRNA (D1/D2/D3)</strong> — más de <strong>1.300 bp</strong>.
     </div>
 
     <div class="grid grid-2" style="gap:24px; max-width:1040px; margin:0 auto;">
@@ -1048,6 +1000,537 @@
 </section>
 
 <!-- Tarifas Iberoamérica -->
+<!-- ============== CUSTOMIZED SEQUENCING ============== -->
+<section id="customized-sequencing" class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:800px; margin:0 auto 40px;">
+      <span class="eyebrow on-light">Servicio 4 de 4</span>
+      <h2>Customized Sequencing.</h2>
+      <p>Cuando el flujo estándar no basta. Servicios llave en mano que combinan preparación de muestra, PCR, cloning, pyrosequencing y validación — diseñados sobre las necesidades específicas de tu proyecto.</p>
+    </div>
+
+    <div class="grid grid-2" style="gap:24px; margin-bottom:36px;">
+
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">⚗️</div>
+        <h3>PCR Optimization / Amplification</h3>
+        <p>Proceso completo a partir de células o gDNA con su referencia: diseño de primers, amplificación por PCR, secuenciación y reporte bioinformático.</p>
+        <p style="font-size:13px; margin-bottom:0;">Incluye <strong>touch-down PCR</strong>, <strong>nested PCR</strong> y <strong>PCR sobre FFPE</strong> — especialmente útil cuando la especificidad de la muestra genera altas tasas de re-experimentación. Se realiza <strong>pre-test</strong> antes del procesamiento masivo. Extracción de gDNA disponible desde muestras animales, vegetales e insectos.</p>
+      </div>
+
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">🔬</div>
+        <h3>Pyrosequencing</h3>
+        <p>Determinación de secuencia mediante detección del pirofosfato (PPi) liberado durante la polimerización. Referencia para análisis cuantitativo de <strong>metilación del ADN</strong>.</p>
+        <p style="font-size:13px; margin-bottom:0;"><strong>Aplicaciones:</strong> estudios de metilación · análisis de SNP e InDel · investigación en cáncer (detecta frecuencias alélicas bajas, &lt;5%; apto para mutación somática y análisis di-, tri- y tetra-alélico) · validación de resultados NGS y verificación de biomarcadores/GWAS.</p>
+      </div>
+
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">✅</div>
+        <h3>NGS Validation</h3>
+        <p>Verificación por Sanger de variantes detectadas por NGS, para elevar la precisión y confiabilidad del dato. Analizamos SNPs y mutaciones en posiciones específicas a partir de la posición cromosómica o secuencia de referencia.</p>
+        <p style="font-size:13px; margin-bottom:0;">Servicio <strong>one-stop</strong> si tu NGS también se procesó en Macrogen: recibimos la muestra directamente. Incluye diseño de primers, secuenciación y análisis comparativo de variantes. Opcional: comparación contra <strong>control normal</strong> y verificación con <strong>dos sets de primers</strong> sobre la misma región.</p>
+      </div>
+
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">🦠</div>
+        <h3>MLST · Multilocus Sequence Typing</h3>
+        <p>Clasificación de cepas dentro de una misma especie de bacterias u hongos mediante la secuenciación de <strong>5 a 7 genes housekeeping</strong>.</p>
+        <p style="font-size:13px; margin-bottom:0;">Analiza la relación entre Sequence Types (ST) y, mediante la combinación de alelos por cepa, permite establecer relaciones evolutivas genéticas y moleculares dentro de la especie.</p>
+      </div>
+
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">🧫</div>
+        <h3>Cloning</h3>
+        <p>Aislamiento y replicación masiva de un gen o fragmento específico. Insertamos tu producto de PCR en un vector proporcionado por Macrogen (<strong>T-vector</strong> o <strong>blunt-vector</strong>) o en tu propio vector (sub-cloning).</p>
+        <p style="font-size:13px; margin-bottom:0;">Especialmente útil cuando existe <strong>más de un producto de PCR</strong> en la muestra: en ese escenario la secuenciación directa no entrega resultados limpios, y el cloning resuelve el problema además de permitir replicación masiva y almacenamiento estable.</p>
+      </div>
+
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">🖱️</div>
+        <h3>One-click Sanger Sequencing</h3>
+        <p>Análisis de variantes en genes específicos ampliamente estudiados, con un flujo preconfigurado que va desde la <strong>extracción de gDNA</strong> hasta el análisis de SNP.</p>
+        <p style="font-size:13px; margin-bottom:0;">Utiliza sets de primers optimizados por nuestro equipo para secuenciar exones concretos y entregar directamente el resultado de análisis de variantes.</p>
+      </div>
+
+    </div>
+
+    <div class="text-center">
+      <a href="../contacto.html?promo=SANGER10&amp;servicio=customized-sequencing" class="btn btn-primary">Hablar con un especialista →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PRIMERS UNIVERSALES · TABLA BUSCABLE ============== -->
+<section id="primers" class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:760px; margin:0 auto 32px;">
+      <span class="eyebrow on-light">96 primers en stock · gratis con Sanger</span>
+      <h2>Primers Universales · busca el tuyo.</h2>
+      <p>Si tu primer está en esta lista <strong>no necesitas enviarlo</strong>. Lo aplicamos sin coste adicional a tu reacción Sanger CES. Cubrimos los vectores y barcodes más comunes: M13, T7, SP6, T3, BGH, CMV, EGFP, AOX1, ITS1–5, 16S (27F/1492R), COI (LCO/HCO), entre otros.</p>
+    </div>
+
+    <div style="max-width:920px; margin:0 auto;">
+      <div style="position:relative; margin-bottom:18px;">
+        <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:16px; color:var(--mc-mute);">🔎</span>
+        <input
+          type="text"
+          id="primer-search"
+          placeholder="Busca por nombre o secuencia… (ej. M13, T7, ITS, ATGCC, 16S, EGFP)"
+          autocomplete="off"
+          aria-label="Buscar primer"
+          style="width:100%; padding:14px 16px 14px 44px; border:1.5px solid var(--mc-border); border-radius:10px; font-size:14px; font-family:inherit;">
+      </div>
+
+      <div id="primer-result-count" style="font-size:12px; color:var(--mc-mute); margin-bottom:10px;">Mostrando <strong>96</strong> de 96 primers.</div>
+
+      <div style="overflow-x:auto; border:1px solid var(--mc-border); border-radius:10px;">
+        <table id="primer-table" style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead style="background:var(--mc-navy); color:#fff;">
+            <tr>
+              <th style="padding:11px 14px; text-align:left; font-weight:700; width:40px;">#</th>
+              <th style="padding:11px 14px; text-align:left; font-weight:700;">Primer Name</th>
+              <th style="padding:11px 14px; text-align:left; font-weight:700;">Sequence (5'→3')</th>
+              <th style="padding:11px 14px; text-align:left; font-weight:700; width:80px;">Length (bp)</th>
+            </tr>
+          </thead>
+          <tbody id="primer-tbody">
+        <tr><td>1</td><td><strong>Bluescript_SK</strong></td><td><code>CGCTCTAGAACTAGTGGATC</code></td><td>20</td></tr>
+        <tr><td>2</td><td><strong>Bluescript_KS</strong></td><td><code>TCGAGGTCGACGGTATC</code></td><td>17</td></tr>
+        <tr><td>3</td><td><strong>KAN2-FP</strong></td><td><code>ACCTACAACAAAGCTCTCATCAACC</code></td><td>25</td></tr>
+        <tr><td>4</td><td><strong>KAN2-RP</strong></td><td><code>GCAATGTAACATCAGAGATTTTGAG</code></td><td>25</td></tr>
+        <tr><td>5</td><td><strong>pBacPAC-RP</strong></td><td><code>GTCTGTAAATCAACAACGC</code></td><td>19</td></tr>
+        <tr><td>6</td><td><strong>pBAD-FP</strong></td><td><code>ATGCCATAGCATTTTATCC</code></td><td>20</td></tr>
+        <tr><td>7</td><td><strong>pDONOR-FP</strong></td><td><code>TAACGCTAGCATGGATCTC</code></td><td>19</td></tr>
+        <tr><td>8</td><td><strong>pEGFP_N</strong></td><td><code>CCGTCCAGCTCGACCAG</code></td><td>17</td></tr>
+        <tr><td>9</td><td><strong>pEGFP-FP</strong></td><td><code>TTTAGTGAACCGTCAGATC</code></td><td>19</td></tr>
+        <tr><td>10</td><td><strong>pEGFP-RP</strong></td><td><code>AACAGCTCCTCGCCTTG</code></td><td>18</td></tr>
+        <tr><td>11</td><td><strong>pESP-RP</strong></td><td><code>TCCAAAAGAAGTCGAGTGG</code></td><td>19</td></tr>
+        <tr><td>12</td><td><strong>pET-24a</strong></td><td><code>GGGTTATGCTAGTTATTGCTCAG</code></td><td>23</td></tr>
+        <tr><td>13</td><td><strong>pET-RP</strong></td><td><code>CTAGTTATTGCTCAGCGG</code></td><td>18</td></tr>
+        <tr><td>14</td><td><strong>pMalE</strong></td><td><code>TACGACTGTCGATGAAGC</code></td><td>18</td></tr>
+        <tr><td>15</td><td><strong>pREP-fwd</strong></td><td><code>GCTCGATACAATAAACGCC</code></td><td>19</td></tr>
+        <tr><td>16</td><td><strong>35S-A</strong></td><td><code>AAGGGTCTTGCGAAGGATAG</code></td><td>20</td></tr>
+        <tr><td>17</td><td><strong>35S-B</strong></td><td><code>AGTGGAAAAGGAAGGTGGCT</code></td><td>20</td></tr>
+        <tr><td>18</td><td><strong>AD_Reverse</strong></td><td><code>AGATGGTGCACGATGCACAG</code></td><td>20</td></tr>
+        <tr><td>19</td><td><strong>a-Factor</strong></td><td><code>TACTATTGCCAGCATTGCTGC</code></td><td>21</td></tr>
+        <tr><td>20</td><td><strong>CYC1_Reverse</strong></td><td><code>GCGTGAATGTAAGCGTGAC</code></td><td>19</td></tr>
+        <tr><td>21</td><td><strong>DsRed1-C</strong></td><td><code>AGCTGGACATCACCTCCCACAACG</code></td><td>24</td></tr>
+        <tr><td>22</td><td><strong>DsRed1-N</strong></td><td><code>GTACTGGAACTGGGGGGACAG</code></td><td>21</td></tr>
+        <tr><td>23</td><td><strong>EBV-RP</strong></td><td><code>GTGGTTTGTCCAAACTCATC</code></td><td>20</td></tr>
+        <tr><td>24</td><td><strong>EGFP-C</strong></td><td><code>CATGGTCCTGCTGGAGTTCGTG</code></td><td>22</td></tr>
+        <tr><td>25</td><td><strong>EGFP-N</strong></td><td><code>CGTCGCCGTCCAGCTCGACCAG</code></td><td>22</td></tr>
+        <tr><td>26</td><td><strong>U-19mer_Primer</strong></td><td><code>GTTTTCCCAGTCACGACGT</code></td><td>19</td></tr>
+        <tr><td>27</td><td><strong>T7 EEV</strong></td><td><code>ATGTCGTAATAACCCCGCCCCG</code></td><td>22</td></tr>
+        <tr><td>28</td><td><strong>pFastBac_Forward</strong></td><td><code>GGATTATTCATACCGTCCCA</code></td><td>20</td></tr>
+        <tr><td>29</td><td><strong>pFastBac_Reverse</strong></td><td><code>CAAATGTGGTATGGCTGATT</code></td><td>20</td></tr>
+        <tr><td>30</td><td><strong>AOX1_Forward</strong></td><td><code>GACTGGTTCCAATTGACAAGC</code></td><td>21</td></tr>
+        <tr><td>31</td><td><strong>AOX1_Reverse</strong></td><td><code>GCAAATGGCATTCTGACATCC</code></td><td>21</td></tr>
+        <tr><td>32</td><td><strong>STag_18mer_Primer</strong></td><td><code>GAACGCCAGCACATGGAC</code></td><td>18</td></tr>
+        <tr><td>33</td><td><strong>MT_Forward</strong></td><td><code>CATCTCAGTGCAACTAAA</code></td><td>18</td></tr>
+        <tr><td>34</td><td><strong>QE_Promoter</strong></td><td><code>CCGAAAAGTGCCACCTG</code></td><td>17</td></tr>
+        <tr><td>35</td><td><strong>pRH_Forward</strong></td><td><code>CTGTCTCTATACTCCCCTATAG</code></td><td>22</td></tr>
+        <tr><td>36</td><td><strong>pRH_Reverse</strong></td><td><code>CAAAATTCAATAGTTACTATCGC</code></td><td>23</td></tr>
+        <tr><td>37</td><td><strong>pTrcHis_Forward</strong></td><td><code>GAGGTATATATTAATGTATCG</code></td><td>21</td></tr>
+        <tr><td>38</td><td><strong>pJET1.2F</strong></td><td><code>CGACTCACTATAGGGAGAGCGGC</code></td><td>23</td></tr>
+        <tr><td>39</td><td><strong>pJET1.2R</strong></td><td><code>AAGAACATCGATTTTCCATGGCAG</code></td><td>24</td></tr>
+        <tr><td>40</td><td><strong>SV40-pArev</strong></td><td><code>CCTCTACAAATGTGGTATGG</code></td><td>20</td></tr>
+        <tr><td>41</td><td><strong>SV40-Promoter</strong></td><td><code>GCCCCTAACTCCGCCCATCC</code></td><td>20</td></tr>
+        <tr><td>42</td><td><strong>SP6</strong></td><td><code>ATTTAGGTGACACTATAG</code></td><td>18</td></tr>
+        <tr><td>43</td><td><strong>T3</strong></td><td><code>ATTAACCCTCACTAAAG</code></td><td>17</td></tr>
+        <tr><td>44</td><td><strong>T7</strong></td><td><code>AATACGACTCACTATAG</code></td><td>17</td></tr>
+        <tr><td>45</td><td><strong>T7terminator</strong></td><td><code>GCTAGTTATTGCTCAGCGG</code></td><td>19</td></tr>
+        <tr><td>46</td><td><strong>T7promoter</strong></td><td><code>TAATACGACTCACTATAGGG</code></td><td>20</td></tr>
+        <tr><td>47</td><td><strong>M13-FP</strong></td><td><code>TGTAAAACGACGGCCAGT</code></td><td>18</td></tr>
+        <tr><td>48</td><td><strong>M13F-pUC(-40)</strong></td><td><code>GTTTTCCCAGTCACGAC</code></td><td>17</td></tr>
+        <tr><td>49</td><td><strong>M13R-pUC(-40)</strong></td><td><code>CAGGAAACAGCTATGAC</code></td><td>17</td></tr>
+        <tr><td>50</td><td><strong>M13F</strong></td><td><code>GTAAAACGACGGCCAGT</code></td><td>17</td></tr>
+        <tr><td>51</td><td><strong>M13R</strong></td><td><code>GCGGATAACAATTTCACACAGG</code></td><td>22</td></tr>
+        <tr><td>52</td><td><strong>pGEX5</strong></td><td><code>GGCAAGCCACGTTTGGTG</code></td><td>18</td></tr>
+        <tr><td>53</td><td><strong>pGEX3</strong></td><td><code>GGAGCTGCATGTGTCAGAGG</code></td><td>20</td></tr>
+        <tr><td>54</td><td><strong>BGH-R</strong></td><td><code>TAGAAGGCACAGTCGAGG</code></td><td>18</td></tr>
+        <tr><td>55</td><td><strong>CMV-F</strong></td><td><code>CGCAAATGGGCGGTAGGCGTG</code></td><td>21</td></tr>
+        <tr><td>56</td><td><strong>RVprimer3</strong></td><td><code>CTAGCAAAATAGGCTGTCCC</code></td><td>20</td></tr>
+        <tr><td>57</td><td><strong>RVprimer4</strong></td><td><code>GACGATAGTCATGCCCCGCG</code></td><td>20</td></tr>
+        <tr><td>58</td><td><strong>GLprimer1</strong></td><td><code>TGTATCTTATGGTACTGTAACTG</code></td><td>23</td></tr>
+        <tr><td>59</td><td><strong>GLprimer2</strong></td><td><code>CTTTATGTTTTTGGCGTCTTCCA</code></td><td>23</td></tr>
+        <tr><td>60</td><td><strong>GAL1_Forward</strong></td><td><code>AATATACCTCTATACTTTAACGTC</code></td><td>24</td></tr>
+        <tr><td>61</td><td><strong>Gal4AD</strong></td><td><code>TACCACTACAATGGATG</code></td><td>17</td></tr>
+        <tr><td>62</td><td><strong>pQE-F</strong></td><td><code>CCCGAAAAGTGCCACCTG</code></td><td>18</td></tr>
+        <tr><td>63</td><td><strong>pQE-R</strong></td><td><code>GTTCTGAGGTCATTACTGG</code></td><td>19</td></tr>
+        <tr><td>64</td><td><strong>pBAD-F</strong></td><td><code>ATGCCATAGCATTTTTATCCA</code></td><td>21</td></tr>
+        <tr><td>65</td><td><strong>pBAD-R</strong></td><td><code>GATTTAATCTGTATCAGG</code></td><td>18</td></tr>
+        <tr><td>66</td><td><strong>EGFP-CF</strong></td><td><code>AGCACCCAGTCCGCCCTGAGC</code></td><td>21</td></tr>
+        <tr><td>67</td><td><strong>EGFP-CR</strong></td><td><code>CGTCCATGCCGAGAGTG</code></td><td>17</td></tr>
+        <tr><td>68</td><td><strong>EGFP-NR</strong></td><td><code>CGTCGCCGTCCAGCTC</code></td><td>16</td></tr>
+        <tr><td>69</td><td><strong>DuetDown1</strong></td><td><code>GATTATGCGGCCGTGTACAA</code></td><td>20</td></tr>
+        <tr><td>70</td><td><strong>DuetUP2</strong></td><td><code>TTGTACACGGCCGCATAATC</code></td><td>20</td></tr>
+        <tr><td>71</td><td><strong>pET-upstream</strong></td><td><code>ATGCGTCCGGCGTAGAGG</code></td><td>18</td></tr>
+        <tr><td>72</td><td><strong>LCO1490</strong></td><td><code>GGTCAACAAATCATAAAGATATTGG</code></td><td>25</td></tr>
+        <tr><td>73</td><td><strong>HCO2198</strong></td><td><code>TAAACTTCAGGGTGACCAAAAAATCA</code></td><td>26</td></tr>
+        <tr><td>74</td><td><strong>ITS1</strong></td><td><code>TCCGTAGGTGAACCTGCGG</code></td><td>19</td></tr>
+        <tr><td>75</td><td><strong>ITS2</strong></td><td><code>GCTGCGTTCTTCATCGATGC</code></td><td>20</td></tr>
+        <tr><td>76</td><td><strong>ITS3</strong></td><td><code>GCATCGATGAAGAACGCAGC</code></td><td>20</td></tr>
+        <tr><td>77</td><td><strong>ITS4</strong></td><td><code>TCCTCCGCTTATTGATATGC</code></td><td>20</td></tr>
+        <tr><td>78</td><td><strong>ITS5</strong></td><td><code>GGAAGTAAAAGTCGTAACAAGG</code></td><td>22</td></tr>
+        <tr><td>79</td><td><strong>27F</strong></td><td><code>AGAGTTTGATCMTGGCTCAG</code></td><td>20</td></tr>
+        <tr><td>80</td><td><strong>1492R</strong></td><td><code>TACGGYTACCTTGTTACGACTT</code></td><td>22</td></tr>
+        <tr><td>81</td><td><strong>518F</strong></td><td><code>CCAGCAGCCGCGGTAATACG</code></td><td>20</td></tr>
+        <tr><td>82</td><td><strong>800R</strong></td><td><code>TACCAGGGTATCTAATCC</code></td><td>18</td></tr>
+        <tr><td>83</td><td><strong>785F</strong></td><td><code>GGATTAGATACCCTGGTA</code></td><td>18</td></tr>
+        <tr><td>84</td><td><strong>907R</strong></td><td><code>CCGTCAATTCMTTTRAGTTT</code></td><td>20</td></tr>
+        <tr><td>85</td><td><strong>1100R</strong></td><td><code>GGGTTGCGCTCGTTG</code></td><td>15</td></tr>
+        <tr><td>86</td><td><strong>337F</strong></td><td><code>GACTCCTACGGGAGGCWGCAG</code></td><td>21</td></tr>
+        <tr><td>87</td><td><strong>NS1</strong></td><td><code>GTAGTCATATGCTTGTCTC</code></td><td>19</td></tr>
+        <tr><td>88</td><td><strong>NS8</strong></td><td><code>TCCGCAGGTTCACCTACGGA</code></td><td>20</td></tr>
+        <tr><td>89</td><td><strong>NS24</strong></td><td><code>AAACCTTGTTACGACTTTTA</code></td><td>20</td></tr>
+        <tr><td>90</td><td><strong>LR0R</strong></td><td><code>ACCCGCTGAACTTAAGC</code></td><td>17</td></tr>
+        <tr><td>91</td><td><strong>LR7</strong></td><td><code>TACTACCACCAAGATCT</code></td><td>17</td></tr>
+        <tr><td>92</td><td><strong>Alphafor</strong></td><td><code>CATTTTCCAACAGCACA</code></td><td>17</td></tr>
+        <tr><td>93</td><td><strong>SV40-pAR</strong></td><td><code>GAAATTTGTGATGCTATTGC</code></td><td>20</td></tr>
+        <tr><td>94</td><td><strong>pE-C-R</strong></td><td><code>CCTCACAAATGTGTATGG</code></td><td>18</td></tr>
+        <tr><td>95</td><td><strong>U6</strong></td><td><code>CAGTGCAGGGGAAAGAATAGTAGAC</code></td><td>25</td></tr>
+        <tr><td>96</td><td><strong>RAM14F</strong></td><td><code>GTTGGATTATTTTAACCAATGCAGAT</code></td><td>26</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-top:18px;">
+        <span style="font-size:12px; color:var(--mc-mute);">Fuente: <em>Stock Primers Universales v3</em> · Macrogen Chile</span>
+        <a href="../assets/docs/primers-universales.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light" style="font-size:13px; padding:9px 18px;">📥 Descargar PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ---- Matriz de dye sets (Fragment Analysis) ---- */
+.dye-matrix { table-layout:fixed; width:100%; }
+.dye-matrix th, .dye-matrix td { vertical-align:top; padding:12px 14px; }
+/* anula el width:36% global de .spec-table th para que manden los <col> */
+.dye-matrix th { width:auto; }
+.dye-matrix thead th { font-size:11px; line-height:1.35; }
+.dye-matrix tbody th {
+  font-size:12px; text-transform:uppercase; letter-spacing:.4px;
+  white-space:nowrap; vertical-align:middle;
+}
+.dye-chips { display:flex; flex-wrap:wrap; gap:5px; }
+.dye-chip {
+  display:inline-block; white-space:nowrap;
+  background:#F0F4FB; border:1px solid #DDE3EE; border-radius:6px;
+  padding:3px 8px; margin:0 4px 5px 0;
+  font-size:12px; font-weight:600; color:var(--mc-navy);
+  font-family:'SF Mono','Monaco','Courier New',monospace;
+}
+.dye-chips .dye-chip { margin:0; }
+.dye-chip.is-exact { background:#EAF6E5; border-color:#B5DEA8; color:#3D6B00; }
+.dye-chip.is-alt   { background:#FFF8EC; border-color:#F5D98C; color:#8A5A00; }
+.dye-chip.is-none  { background:transparent; border:1px dashed #DDE3EE; color:var(--mc-mute); font-weight:500; }
+.dye-note { display:block; font-size:11px; line-height:1.5; color:var(--mc-mute); margin-top:5px; }
+.dye-note strong { color:var(--mc-red); }
+@media (max-width:820px){
+  .dye-matrix { table-layout:auto; }
+  .dye-matrix th, .dye-matrix td { padding:10px 10px; }
+  .dye-chip { font-size:11px; padding:2px 6px; }
+}
+
+#primer-table tbody tr { border-bottom:1px solid var(--mc-border); transition:background .15s; }
+#primer-table tbody tr:hover { background:#F8FAFC; }
+#primer-table tbody td { padding:10px 14px; vertical-align:middle; }
+#primer-table tbody td code { background:#F0F4FB; color:var(--mc-navy); padding:2px 6px; border-radius:4px; font-family:'SF Mono','Monaco','Courier New',monospace; font-size:12px; }
+#primer-table tbody tr.is-hidden { display:none; }
+#primer-search:focus { outline:2px solid var(--mc-teal); outline-offset:2px; border-color:var(--mc-teal); }
+</style>
+
+<script>
+(function() {
+  const input = document.getElementById('primer-search');
+  const tbody = document.getElementById('primer-tbody');
+  const counter = document.getElementById('primer-result-count');
+  if (!input || !tbody) return;
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const total = rows.length;
+
+  function filter() {
+    const q = input.value.trim().toUpperCase();
+    let visible = 0;
+    rows.forEach(r => {
+      const text = r.textContent.toUpperCase();
+      const match = !q || text.includes(q);
+      r.classList.toggle('is-hidden', !match);
+      if (match) visible++;
+    });
+    if (counter) counter.innerHTML = q
+      ? 'Mostrando <strong>' + visible + '</strong> de ' + total + ' primers que coinciden con "<strong>' + input.value + '</strong>".'
+      : 'Mostrando <strong>' + total + '</strong> de ' + total + ' primers.';
+  }
+  input.addEventListener('input', filter);
+})();
+</script>
+
+<!-- ============== CELL LINE ID · STR ============== -->
+<section id="cell-line-id" class="section section-bg">
+  <div class="container">
+    <div class="grid grid-2" style="gap:48px; align-items:start;">
+      <div>
+        <span class="eyebrow on-light" style="color:var(--mc-green);">★ Nuevo en Iberoamérica</span>
+        <h2>Cell Line ID · Autenticación STR.</h2>
+        <p>Servicio de <strong>autenticación de líneas celulares humanas</strong> con kit <strong>PowerPlex Fusion 6c</strong> en ABI 3730xl. Genera STR profiles que se comparan contra las bases de referencia <strong>ATCC</strong> y <strong>Cellosaurus</strong> según el estándar internacional <strong>ICLAC</strong>.</p>
+        <p>Crítico para investigadores que publican en revistas que requieren autenticación de líneas celulares (Nature, Cell, Cancer Research, etc.), validación de bancos celulares institucionales y detección de contaminación cruzada.</p>
+        <p style="font-size:13px; color:var(--mc-mute);"><strong>99,99% de precisión</strong> · TAT <strong>3-4 días hábiles</strong> · Reportes válidos para publicación.</p>
+        <div class="hero-actions" style="margin-top:18px;">
+          <a href="../contacto.html?promo=SANGER10&amp;servicio=cell-line-id" class="btn btn-primary">Cotizar Cell Line ID</a>
+          <a href="../assets/docs/cell-line-id-str.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light">📥 Guía técnica</a>
+        </div>
+      </div>
+      <div>
+        <h3>Requerimientos &amp; reportes</h3>
+        <table class="spec-table">
+          <tr><th>DNA</th><td>≥ 10 ng/µL · ≥ 200 ng total</td></tr>
+          <tr><th>Pellet celular</th><td>&gt; 10.000 células · DNA extraction fee</td></tr>
+          <tr><th>Tejido</th><td>&gt; 20 mg · envío con hielo seco · extraction fee</td></tr>
+          <tr><th>Sangre</th><td>&gt; 2 mL · envío con hielo seco · extraction fee</td></tr>
+          <tr><th>FFPE</th><td style="color:var(--mc-red);">⚠️ No serviceable (use NGS targeted)</td></tr>
+          <tr><th>Instrumento</th><td>ABI 3730xl + PowerPlex Fusion 6c</td></tr>
+          <tr><th>TAT</th><td>3–4 días hábiles</td></tr>
+        </table>
+
+        <h3 style="margin-top:24px;">Tipos de reporte</h3>
+        <div style="background:#fff; border:1px solid var(--mc-border); border-radius:10px; padding:18px; font-size:13px; line-height:1.7;">
+          <strong>1. STR Profiles individual</strong> — perfiles STR de cada muestra sin comparación.<br>
+          <strong>2. Cliente vs Reference DB</strong> — matching score contra ATCC, Cellosaurus, o ambas.<br>
+          <strong>3. Cliente vs Cliente</strong> — comparativa entre muestras del mismo cliente.<br>
+          <strong>4. Cliente vs Muestra previa</strong> — versus muestras enviadas en pedidos anteriores.
+        </div>
+
+        <div style="background:#EAF6E5; border-left:3px solid var(--mc-green); border-radius:8px; padding:14px 16px; margin-top:18px; font-size:12.5px; line-height:1.6;">
+          <strong style="color:var(--mc-green); display:block; margin-bottom:4px;">📊 Interpretación ICLAC</strong>
+          <strong>0-55% match</strong> → líneas no relacionadas (donantes distintos)<br>
+          <strong>56-79% match</strong> → indeterminado, requiere más loci<br>
+          <strong>80-100% match</strong> → líneas relacionadas (mismo donante)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CÓMO ENVIAR MUESTRAS ============== -->
+<section id="envio" class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:760px; margin:0 auto 36px;">
+      <span class="eyebrow on-light">Logística de envío</span>
+      <h2>Cómo enviar tus muestras Sanger.</h2>
+      <p>Pick-up gratis en Madrid 🇪🇸 y Santiago 🇨🇱. Para envíos internacionales, descarga la etiqueta correspondiente al hub que te atiende.</p>
+    </div>
+
+    <div class="grid grid-2" style="gap:32px; max-width:920px; margin:0 auto;">
+
+      <div style="background:linear-gradient(135deg,#7FC97F 0%,#1A8754 100%); color:#fff; padding:28px; border-radius:14px; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-30px; right:-30px; font-size:160px; opacity:.08;">🇨🇱</div>
+        <span style="font-size:11px; letter-spacing:1.5px; font-weight:700; opacity:.9; text-transform:uppercase;">Hub Santiago</span>
+        <h3 style="color:#fff; font-size:22px; margin:6px 0 14px;">Macrogen Chile</h3>
+        <p style="font-size:14px; line-height:1.6; opacity:.96; margin-bottom:18px;">
+          <strong>Magdalena 140, Of. 401</strong><br>
+          Las Condes, Santiago. 7550104.<br>
+          🇨🇱 Chile<br>
+          <span style="opacity:.8;">+56 9 5845 1395</span>
+        </p>
+        <p style="font-size:12px; opacity:.9; margin-bottom:16px;">Sirve a Chile y Perú · USD invoicing · pick-up gratis en Santiago</p>
+        <a href="../assets/docs/shipping-label-santiago.html" target="_blank" rel="noopener" class="btn" style="background:#fff; color:#1A8754; font-weight:800;">🖨️ Imprimir etiqueta CES →</a>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#3FA9C9 0%,#1B2A57 100%); color:#fff; padding:28px; border-radius:14px; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-30px; right:-30px; font-size:160px; opacity:.08;">🇪🇸</div>
+        <span style="font-size:11px; letter-spacing:1.5px; font-weight:700; opacity:.9; text-transform:uppercase;">Hub Madrid</span>
+        <h3 style="color:#fff; font-size:22px; margin:6px 0 14px;">Macrogen Spain</h3>
+        <p style="font-size:14px; line-height:1.6; opacity:.96; margin-bottom:18px;">
+          <strong>C. de Martínez Villergas, 52</strong><br>
+          28027 Madrid<br>
+          🇪🇸 España<br>
+          <span style="opacity:.8;">+34 911 138 378</span>
+        </p>
+        <p style="font-size:12px; opacity:.9; margin-bottom:16px;">Sirve a España y Portugal · EUR invoicing · pick-up gratis en Madrid</p>
+        <a href="../contacto.html#madrid" class="btn" style="background:#fff; color:#1B2A57; font-weight:800;">Ver contactos hub Madrid →</a>
+      </div>
+
+    </div>
+
+    <!-- Protocolos de preparación · tubo y placa -->
+    <div style="max-width:920px; margin:44px auto 0;">
+      <h3 style="text-align:center; margin-bottom:6px;">Protocolo de preparación antes del envío</h3>
+      <p style="text-align:center; font-size:12.5px; color:var(--mc-mute); margin-bottom:24px;">Seguir estos pasos asegura que tus muestras lleguen en óptimas condiciones y mejora directamente la calidad de la secuenciación.</p>
+
+      <div class="grid grid-2" style="gap:24px;">
+
+        <div style="background:#fff; border:1px solid var(--mc-border); border-radius:14px; padding:24px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <div style="width:44px; height:44px; background:#EAF6FB; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px;">🧪</div>
+            <div>
+              <strong style="font-size:11px; letter-spacing:1.5px; color:var(--mc-teal); text-transform:uppercase;">Formato tubo</strong>
+              <h4 style="margin:2px 0 0; font-size:17px;">Producto PCR / ADN plasmídico</h4>
+            </div>
+          </div>
+          <ol style="font-size:13px; line-height:1.75; padding-left:20px; margin:0;">
+            <li><strong>Purifica tu muestra</strong> — o contrata nuestro servicio de purificación enzimática.</li>
+            <li><strong>Mide la concentración:</strong> mínimo 100 ng/µL y máximo 300 ng/µL. Para ADN plasmídico, se recomienda entre <strong>100–200 ng/µL</strong>.</li>
+            <li><strong>Verifica la pureza:</strong> A260/280 ≈ 1,8 y A260/230 ≈ 2,0.</li>
+            <li><strong>15 µL de muestra por reacción.</strong> Ejemplo: muestra 1 + primer Fw + primer Rv = 2 reacciones → 30 µL a enviar.</li>
+            <li><strong>Rotula la tapa</strong> del tubo con el nombre de la muestra y coloca <strong>parafilm</strong> para evitar evaporación o derrames en el transporte.</li>
+            <li><strong>Prepara los partidores</strong> considerando 1,5 µL por reacción, a una concentración de <strong>10 pmol/µL</strong>.</li>
+            <li><strong>Empaca con la etiqueta</strong> del número de orden <code style="background:#F0F4FB; padding:1px 6px; border-radius:4px;">HCXXXXXXXX</code>.</li>
+          </ol>
+        </div>
+
+        <div style="background:#fff; border:1px solid var(--mc-border); border-radius:14px; padding:24px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <div style="width:44px; height:44px; background:#EAF6E5; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px;">🧫</div>
+            <div>
+              <strong style="font-size:11px; letter-spacing:1.5px; color:var(--mc-green); text-transform:uppercase;">Formato placa</strong>
+              <h4 style="margin:2px 0 0; font-size:17px;">Placa de 96 pocillos</h4>
+            </div>
+          </div>
+          <p style="font-size:12.5px; color:var(--mc-mute); line-height:1.6; margin-bottom:12px;">Permite enviar muchas reacciones organizadas en un solo formato, procesadas de forma automatizada, consistente y a <strong>menor costo por reacción</strong>.</p>
+          <ol style="font-size:13px; line-height:1.75; padding-left:20px; margin:0;">
+            <li><strong>Ajusta las concentraciones de gDNA</strong> para obtener bandas claras y limpias tras la PCR.</li>
+            <li><strong>Purifica la muestra</strong> para evitar problemas por contaminantes como proteínas, sales o fenoles.</li>
+            <li><strong>Envía primers a 10 pmol</strong> y ADN entre <strong>100–300 ng/µL</strong>, verificando A260/280 y A260/230 ≈ 1,8–2,0.</li>
+            <li><strong>Coloca 20 µL por pocillo</strong>, respetando las coordenadas A1–H12. Es crítico que el orden de la placa coincida con el registrado en el sistema, para evitar errores de trazabilidad.</li>
+            <li><strong>Evita adhesivos de sellado</strong> que puedan causar derrames o filtraciones entre pocillos. Prefiere <strong>strip caps</strong> o <strong>heat seal</strong>.</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="max-width:920px; margin:36px auto 0; padding:22px 24px; background:var(--mc-bg); border-radius:12px; font-size:13px; line-height:1.65;">
+      <strong style="color:var(--mc-navy); display:block; margin-bottom:10px;">📦 ¿Cómo coordinar el envío?</strong>
+      Para envíos por <strong>FedEx</strong> o <strong>DHL</strong> consulta nuestras guías en <a href="../recursos.html#envio" style="color:var(--mc-teal); font-weight:700;">la página de Recursos</a> — incluyen procedimientos con y sin hielo seco, tarifas y declared price recomendado (USD 10-100 para evitar inspección aduanal). Para volúmenes grandes (&gt;20 reacciones Sanger), el envío es gratuito.
+    </div>
+  </div>
+</section>
+
+<!-- NUEVO · 5 ventajas Chile -->
+<section class="section section-bg">
+  <div class="container">
+    <div class="text-center" style="max-width:720px; margin:0 auto 40px;">
+      <span class="eyebrow on-light">Ventajas Sanger Chile</span>
+      <h2>5 diferenciadores que protegen tu investigación.</h2>
+      <p>Cada proyecto tiene requerimientos diferentes. Adaptamos el servicio a tu volumen y presupuesto.</p>
+    </div>
+    <div class="grid grid-2" style="gap:24px;">
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">💰</div>
+        <h3>Ahorro con Primers Universales gratis</h3>
+        <p>Más de <strong>90 primers de stock sin cargo adicional</strong>: T7, T3, M13F/R, 27F, 1492R, 518F, 785F, ITS1–5, NS1/NS8, LR0R/LR7, pET, pGEX, pBAD, EGFP-C y muchos más. Lista completa disponible por correo.</p>
+      </div>
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">⚗️</div>
+        <h3>Modalidad Premix · mayor ahorro</h3>
+        <p>Entrega tus muestras <strong>premezcladas con el primer</strong> (Premix) y accede a una tarifa aún más económica por reacción o por placa. Optimiza tiempo y presupuesto.</p>
+      </div>
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">🧪</div>
+        <h3>Purificación enzimática de ADN</h3>
+        <p>Altamente recomendada para eliminar remanentes de PCR. Garantiza <strong>máxima resolución y lecturas limpias</strong> con cromatogramas listos para publicación.</p>
+      </div>
+      <div class="pillar-card t-red">
+        <div class="pillar-icon red">🛡️</div>
+        <h3>Garantía de tranquilidad (tubos)</h3>
+        <p>Para tu total seguridad, si algo falla en el formato de tubos estándar, cuentas con el beneficio de <strong>resecuenciación gratuita</strong> para proteger el avance de tu investigación.</p>
+      </div>
+      <div class="pillar-card t-red" style="grid-column: 1 / -1;">
+        <div class="pillar-icon red">📦</div>
+        <h3>Eficiencia en grandes volúmenes (placas)</h3>
+        <p>¿Proyectos de gran escala? Optimiza drásticamente tu presupuesto con el formato de <strong>placas de 96 pocillos</strong> para abaratar el costo por reacción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============== MATERIALS & METHODS · MPA design ============== -->
+<section id="protocolo" class="section section-bg">
+  <div class="container">
+    <div class="text-center" style="max-width:780px; margin:0 auto 40px;">
+      <span class="eyebrow on-light">Protocolo Macrogen</span>
+      <h2>🔬 Materiales y Métodos.</h2>
+      <p>Protocolo oficial actualizado · 2025. Mismo workflow en los dos hubs (Madrid + Santiago) — la única diferencia es la moneda de facturación.</p>
+    </div>
+
+    <div class="grid grid-2" style="gap:32px; max-width:1040px; margin:0 auto;">
+      <div>
+        <h3 style="font-size:18px; margin-bottom:14px;">⚗️ Reactivos &amp; equipamiento</h3>
+        <table class="spec-table">
+          <tr><th>🧬 Muestra</th><td>20–100 ng / reacción</td></tr>
+          <tr><th>🔧 Secuenciador</th><td>ABI PRISM 3730xl <span style="color:var(--mc-mute); font-size:11px;">(96 capilares)</span></td></tr>
+          <tr><th>🧫 Kit</th><td>BigDye® Terminator v3.1 <span style="color:var(--mc-mute); font-size:11px;">(Applied Biosystems)</span></td></tr>
+          <tr><th>🧲 Purificación PCR</th><td>ExoSAP-IT™ Express <span style="color:var(--mc-mute); font-size:11px;">(ThermoFisher)</span></td></tr>
+          <tr><th>🌡️ Termociclador</th><td>DNA Engine Tetrad 2 Peltier <span style="color:var(--mc-mute); font-size:11px;">(BIO-RAD)</span></td></tr>
+          <tr><th>💻 Análisis</th><td>Variant Reporter v2.1 · DNASTAR Lasergene SeqMan 7.0</td></tr>
+          <tr><th>🔬 Extracción gDNA</th><td>InstaGene Matrix (BIO-RAD) / Exgene Tissue SV</td></tr>
+          <tr><th>📊 Electroforesis</th><td>Agarosa 1,5% · 300V · 200A · 20 min</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size:18px; margin-bottom:14px;">⏱️ Condiciones PCR</h3>
+        <table class="spec-table" style="font-size:13px;">
+          <thead>
+            <tr style="background:var(--mc-navy); color:#fff;">
+              <th style="color:#fff;">Paso PCR</th>
+              <th style="color:#fff;">Temp</th>
+              <th style="color:#fff;">Tiempo</th>
+              <th style="color:#fff;">Ciclos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Desnaturalización inicial</td><td>95 °C</td><td>5 min</td><td>1×</td></tr>
+            <tr style="background:#FEF7E8;"><td><strong>Desnaturalización</strong></td><td><strong>95 °C</strong></td><td><strong>30 seg</strong></td><td rowspan="3" style="vertical-align:middle; font-weight:800; color:var(--mc-red);">35×</td></tr>
+            <tr style="background:#FEF7E8;"><td><strong>Anillamiento</strong></td><td><strong>55 °C</strong></td><td><strong>30 seg</strong></td></tr>
+            <tr style="background:#FEF7E8;"><td><strong>Extensión</strong></td><td><strong>72 °C</strong></td><td><strong>1 min</strong></td></tr>
+            <tr><td>Extensión final</td><td>72 °C</td><td>7 min</td><td>1×</td></tr>
+            <tr><td>Almacenamiento</td><td>4 °C</td><td>∞</td><td>—</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:18px; padding:14px 16px; background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; font-size:12.5px; line-height:1.6;">
+          <strong style="color:var(--mc-navy); display:block; margin-bottom:4px;">📋 Validación</strong>
+          Cada lote de reactivos pasa control de calidad interno. Cromatogramas listos para publicación. Análisis <strong>BlastN incluido sin costo</strong> para identificación de secuencias.
+        </div>
+        <a href="../assets/docs/pcr-sequencing-protocol.pdf" target="_blank" rel="noopener" class="btn btn-ghost-light" style="margin-top:14px; font-size:13px; padding:10px 18px;">📥 Descargar protocolo completo (PDF)</a>
+      </div>
+    </div>
+
+    <!-- 4 tech guarantees -->
+    <div style="margin-top:48px; max-width:1040px; margin-left:auto; margin-right:auto;">
+      <div class="text-center" style="margin-bottom:28px;">
+        <span class="eyebrow on-light">Respaldo tecnológico</span>
+        <h3 style="font-size:22px; margin-top:6px;">Cuatro garantías incluidas en cada pedido.</h3>
+      </div>
+      <div class="grid grid-2" style="gap:18px;">
+        <div style="background:#fff; border-left:4px solid var(--mc-red); border-radius:10px; padding:18px 22px;">
+          <strong style="color:var(--mc-red); font-size:14px; letter-spacing:.5px;">⚡ TIEMPOS DE RESPUESTA</strong>
+          <h4 style="font-size:16px; margin:6px 0 8px;">24–48 horas tras recepción</h4>
+          <p style="font-size:13px; color:var(--mc-mute); margin:0; line-height:1.55;">TAT competitivo desde Madrid y Santiago. Resultados disponibles vía portal LIMS.</p>
+        </div>
+        <div style="background:#fff; border-left:4px solid var(--mc-teal); border-radius:10px; padding:18px 22px;">
+          <strong style="color:var(--mc-teal); font-size:14px; letter-spacing:.5px;">📊 TRAZABILIDAD ABSOLUTA</strong>
+          <h4 style="font-size:16px; margin:6px 0 8px;">Plataforma LIMS</h4>
+          <p style="font-size:13px; color:var(--mc-mute); margin:0; line-height:1.55;">Monitoreo en tiempo real del estado de sus solicitudes desde el portal seguro.</p>
+        </div>
+        <div style="background:#fff; border-left:4px solid var(--mc-green); border-radius:10px; padding:18px 22px;">
+          <strong style="color:var(--mc-green); font-size:14px; letter-spacing:.5px;">🧠 ANÁLISIS COMPLEMENTARIO</strong>
+          <h4 style="font-size:16px; margin:6px 0 8px;">BlastN sin costo</h4>
+          <p style="font-size:13px; color:var(--mc-mute); margin:0; line-height:1.55;">Análisis BlastN automático para identificación de secuencias — incluido sin cargo.</p>
+        </div>
+        <div style="background:#fff; border-left:4px solid var(--mc-navy); border-radius:10px; padding:18px 22px;">
+          <strong style="color:var(--mc-navy); font-size:14px; letter-spacing:.5px;">📦 LOGÍSTICA SIN COSTO</strong>
+          <h4 style="font-size:16px; margin:6px 0 8px;">Envío gratis + recogida</h4>
+          <p style="font-size:13px; color:var(--mc-mute); margin:0; line-height:1.55;">Envío gratuito para órdenes &gt;20 reacciones (DHL/FedEx) · pick-up gratis en Madrid + Santiago.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="tarifas" class="section">
   <div class="container">
     <div class="text-center" style="max-width:720px; margin:0 auto 36px;">

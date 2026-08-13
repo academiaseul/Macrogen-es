@@ -287,25 +287,66 @@
 </section>
 
 <!-- Modificaciones -->
-<section class="section section-bg">
+<section id="modificaciones" class="section section-bg">
   <div class="container">
     <div class="text-center" style="max-width:720px; margin:0 auto 36px;">
       <span class="eyebrow on-light">Catálogo de modificaciones</span>
       <h2>Lo que puedes pedir para tus oligos.</h2>
+      <p style="font-size:13px; color:var(--mc-mute);">¿Necesitas primers marcados para <a href="sanger.html#fragment-analysis" style="color:var(--mc-teal); font-weight:700;">Fragment Analysis / GeneScan</a>? Consulta la tabla de equivalencias por dye set (DS-30 / DS-33).</p>
     </div>
+    <!-- Modificaciones por posición · catálogo del sistema de pedidos -->
+    <div class="grid grid-3" style="gap:20px; max-width:1080px; margin:0 auto 28px;">
+
+      <div style="background:#fff; border:1px solid var(--mc-border); border-radius:14px; padding:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <span style="background:#EAF6FB; color:var(--mc-teal); font-weight:800; font-size:12px; letter-spacing:1px; padding:5px 10px; border-radius:6px;">5′ MOD</span>
+        </div>
+        <strong style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--mc-navy); margin-bottom:6px;">Fluoróforos</strong>
+        <p style="font-size:13px; line-height:1.75; margin-bottom:14px;">FAM · HEX · TET · JOE · TAMRA · CY3 · CY3.5 · CY5 · CY5.5 · ROX · TexasRed · YakimaYellow · ATTO565 · CAL Fluor 560 · CAL Fluor 610</p>
+        <strong style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--mc-navy); margin-bottom:6px;">Funcionales</strong>
+        <p style="font-size:13px; line-height:1.75; margin-bottom:0;">Fosforilación · NH2 C6 · NH2 C12 · Biotina · Biotina-TEG · C3 spacer · dSpacer · Thiol C6 S-S</p>
+      </div>
+
+      <div style="background:#fff; border:1px solid var(--mc-border); border-radius:14px; padding:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <span style="background:#FEF2F4; color:var(--mc-red); font-weight:800; font-size:12px; letter-spacing:1px; padding:5px 10px; border-radius:6px;">3′ MOD</span>
+        </div>
+        <strong style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--mc-navy); margin-bottom:6px;">Quenchers</strong>
+        <p style="font-size:13px; line-height:1.75; margin-bottom:14px;">BHQ1 · BHQ2 · BHQ3 · BBQ650 · Dabcyl · Eclipse · MGB Eclipse</p>
+        <strong style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--mc-navy); margin-bottom:6px;">Fluoróforos</strong>
+        <p style="font-size:13px; line-height:1.75; margin-bottom:14px;">FAM · CY3 · CY5 · TAMRA</p>
+        <strong style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--mc-navy); margin-bottom:6px;">Funcionales</strong>
+        <p style="font-size:13px; line-height:1.75; margin-bottom:0;">Fosforilación · Biotina · Biotina-TEG · C3 spacer</p>
+      </div>
+
+      <div style="background:#fff; border:1px solid var(--mc-border); border-radius:14px; padding:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <span style="background:#EAF6E5; color:var(--mc-green); font-weight:800; font-size:12px; letter-spacing:1px; padding:5px 10px; border-radius:6px;">INTERNAL MOD</span>
+        </div>
+        <strong style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--mc-navy); margin-bottom:6px;">Fluoróforos</strong>
+        <p style="font-size:13px; line-height:1.75; margin-bottom:14px;">Int. CY3 · Int. CY5</p>
+        <strong style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--mc-navy); margin-bottom:6px;">Bases modificadas</strong>
+        <p style="font-size:13px; line-height:1.75; margin-bottom:14px;">LNA-A · LNA-C · LNA-G · LNA-T</p>
+        <strong style="display:block; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--mc-navy); margin-bottom:6px;">Funcionales</strong>
+        <p style="font-size:13px; line-height:1.75; margin-bottom:0;">Int. C3 spacer · Int. dSpacer · Int. Thiol C6 S-S</p>
+      </div>
+
+    </div>
+
+    <div style="max-width:1080px; margin:0 auto 28px; background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:14px 18px; font-size:12.5px; line-height:1.65;">
+      <strong style="color:var(--mc-navy);">💡 Sondas de qPCR:</strong> la combinación habitual es un fluoróforo en 5′ y un quencher en 3′ — por ejemplo <strong>5′-FAM / 3′-BHQ1</strong> o <strong>5′-CAL Fluor 610 / 3′-BHQ2</strong>. Para sondas cortas con Tm elevada, <strong>MGB Eclipse</strong> en 3′ o bases <strong>LNA</strong> internas mejoran la especificidad.
+    </div>
+
     <div class="grid grid-2" style="gap:24px; max-width:880px; margin:0 auto;">
-      <table class="spec-table">
-        <tr><th>Fluoróforos</th><td>FAM, HEX, TET, Cy3, Cy5, Texas Red, TAMRA, FITC</td></tr>
-        <tr><th>Quenchers</th><td>BHQ-1, BHQ-2, BHQ-3, TAMRA, MGB, Dabcyl</td></tr>
-        <tr><th>Funcionales</th><td>Biotina, Amino-link, Tiol, Fosforilación 5'/3'</td></tr>
-        <tr><th>Internas</th><td>LNA, 2'-O-Me, 2'-Fluoro, deoxyU, dSpacer, PS bond</td></tr>
-      </table>
       <table class="spec-table">
         <tr><th>Purificación DNA</th><td>Desalt · MOPC · HPLC &gt; 90% · PAGE &gt; 95%</td></tr>
         <tr><th>Purificación RNA</th><td>MOPC + BIO-LC HPLC</td></tr>
         <tr><th>Escalas DNA</th><td>25 nmol · 50 nmol · 200 nmol · 1 µmol</td></tr>
+      </table>
+      <table class="spec-table">
         <tr><th>Escalas RNA</th><td>10 nmol · 30 nmol · 50 nmol</td></tr>
         <tr><th>Largo DNA</th><td>3–130 bases (estándar) · gBlocks hasta 3.000 bp</td></tr>
+        <tr><th>QC</th><td>MALDI-TOF MS en el 100% de los lotes</td></tr>
       </table>
     </div>
   </div>
