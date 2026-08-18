@@ -2916,3 +2916,71 @@ font[style*="background-color"] { background-color: transparent !important; box-
 @media (max-width: 920px) {
   .nav-logo-tagline { display: none; }
 }
+
+/* ============================================================
+   SCROLL REVEAL · desenfoque que se aclara al hacer scroll
+   ------------------------------------------------------------
+   Los bloques de contenido entran ligeramente desplazados y
+   desenfocados, y se aclaran al entrar en el viewport.
+
+   Puntos importantes de la implementación:
+
+   1. Todo está condicionado a html.js-reveal, clase que añade
+      main.js. Si el JS falla o está desactivado, el contenido
+      se ve normal — nunca queda invisible (crítico para SEO
+      y accesibilidad).
+   2. El estado se marca con [data-reveal], que también asigna
+      main.js. No hace falta tocar el HTML de las 37 páginas.
+   3. Al terminar la animación se elimina el filter y el
+      will-change: filter:blur(0) sigue creando un stacking
+      context (rompería position:fixed en descendientes) y
+      will-change mantiene viva una capa de GPU.
+   ============================================================ */
+
+html.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(7px);
+  transition:
+    opacity   .75s cubic-bezier(.22, .61, .36, 1),
+    transform .75s cubic-bezier(.22, .61, .36, 1),
+    filter    .75s cubic-bezier(.22, .61, .36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+html.js-reveal [data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Animación terminada — se libera la capa de GPU y el stacking context. */
+html.js-reveal [data-reveal].reveal-done {
+  filter: none;
+  transform: none;
+  will-change: auto;
+}
+
+/* Contenido visible al cargar: aparece de inmediato, sin parpadeo. */
+html.js-reveal [data-reveal].reveal-instant {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition: none;
+  will-change: auto;
+}
+
+/* WCAG 2.3.3 — sin movimiento ni desenfoque para quien lo pide.
+   Va con !important porque debe ganar al estado inicial de arriba
+   aunque el JS nunca llegue a marcar el elemento como revelado. */
+@media (prefers-reduced-motion: reduce) {
+  html.js-reveal [data-reveal],
+  html.js-reveal [data-reveal].is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+}

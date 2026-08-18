@@ -763,4 +763,111 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ========== SCROLL REVEAL · desenfoque que se aclara al hacer scroll ==========
+  // Los bloques de contenido entran desplazados y desenfocados, y se aclaran
+  // al entrar en el viewport. Estilos en main.css (bloque "SCROLL REVEAL").
+  //
+  // Decisiones importantes:
+  //  · El HTML no se toca: los elementos se marcan aquí con [data-reveal].
+  //  · html.js-reveal sólo se añade si el navegador soporta IntersectionObserver,
+  //    así que sin JS (o en navegadores antiguos) el contenido se ve normal.
+  //  · Lo que ya está en pantalla al cargar se revela de inmediato — evita el
+  //    parpadeo y el efecto "página vacía que aparece de golpe".
+  //  · Se excluye todo el chrome (header, subnav sticky, footer, modales) para
+  //    que nada de la navegación se mueva ni se desenfoque.
+  (function scrollReveal() {
+    if (!('IntersectionObserver' in window)) return;
+
+    // Bloques de contenido a animar. Se toman los hijos de .grid (tarjetas)
+    // en lugar del .grid completo, para poder escalonar la entrada.
+    const SELECTORS = [
+      '.section > .container > *:not(.grid)',
+      '.section > .container-narrow > *:not(.grid)',
+      '.section .grid > *',
+      '.article-body > h2',
+      '.article-body > h3',
+      '.article-body > p',
+      '.article-body > ul',
+      '.article-body > ol',
+      '.article-body > table',
+      '.article-body > div',
+      'article.article > .container-narrow > figure',
+      'article.article > .container-narrow > .article-header'
+    ].join(',');
+
+    // Nada de la navegación ni de los overlays entra en la animación.
+    // .hero queda fuera a propósito: es lo primero que se ve y debe estar
+    // nítido desde el primer frame.
+    const EXCLUDE = [
+      '.site-header', '.service-subnav', '.site-footer', '.launch-bar',
+      '.promo-modal', '.promo-overlay', '.hero', '.brand-strip', '.nav-megamenu'
+    ].join(',');
+
+    let els = Array.from(document.querySelectorAll(SELECTORS))
+      .filter(el => !el.closest(EXCLUDE));
+
+    // Si un elemento contiene a otro de la lista, se anima sólo el interior
+    // (evita animar dos veces lo mismo y permite el escalonado en las grillas).
+    const set = new Set(els);
+    els = els.filter(el => {
+      for (const other of set) {
+        if (other !== el && el.contains(other)) return false;
+      }
+      return true;
+    });
+
+    if (!els.length) return;
+
+    document.documentElement.classList.add('js-reveal');
+    els.forEach(el => el.setAttribute('data-reveal', ''));
+
+    // Con reduced-motion el CSS ya los deja visibles: no observamos nada.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Escalonado entre hermanos de una misma grilla o fila.
+    const count = new Map();
+    els.forEach(el => {
+      const parent = el.parentElement;
+      const i = count.get(parent) || 0;
+      count.set(parent, i + 1);
+      if (i > 0) el.style.setProperty('--reveal-delay', Math.min(i, 5) * 70 + 'ms');
+    });
+
+    // Lo que ya se ve al cargar: visible de inmediato, sin transición.
+    const vh = window.innerHeight || 800;
+    const pending = [];
+    els.forEach(el => {
+      if (el.getBoundingClientRect().top < vh * 0.92) {
+        el.classList.add('reveal-instant');
+        el.style.removeProperty('--reveal-delay');
+      } else {
+        pending.push(el);
+      }
+    });
+
+    if (!pending.length) return;
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.classList.add('is-revealed');
+        io.unobserve(el);
+
+        // Al terminar, se sueltan filter y will-change (ver comentario en main.css).
+        let done = false;
+        const cleanup = () => {
+          if (done) return;
+          done = true;
+          el.classList.add('reveal-done');
+          el.style.removeProperty('--reveal-delay');
+        };
+        el.addEventListener('transitionend', cleanup, { once: true });
+        setTimeout(cleanup, 1500); // por si transitionend no llega a dispararse
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+    pending.forEach(el => io.observe(el));
+  })();
+
 });
