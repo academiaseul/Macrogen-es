@@ -1,13 +1,15 @@
 # robots.txt for macrogen-es.com
-# Last updated: 2026-08-12
+# Last updated: 2026-08-23
 
 User-agent: *
 Allow: /
 
-# Internal working documents that should not be crawled/indexed.
-# Primary fix is .vercelignore (keeps them out of the deploy entirely) —
-# these Disallow lines are a second layer in case any of them are still
-# reachable from an old deploy/cache.
+# Internal paths that must never be crawled/indexed.
+# Primary protection is .vercelignore (keeps them out of the deploy entirely) —
+# these Disallow lines are a second layer for old deployments/caches where the
+# files may still be reachable.
+Disallow: /reports/
+Disallow: /_private/
 Disallow: /PROJECT_LOG.html
 Disallow: /Auditoria_Macrogen_Iberoamerica.html
 Disallow: /Email_Performance_OnePager_Q1_2026.html
@@ -19,7 +21,9 @@ Disallow: /outputs/
 Disallow: /emails/
 Disallow: /reports_EN/
 
-# Block AI crawlers from training (optional — remove if you WANT AI to index your content)
+# AI crawlers are deliberately ALLOWED: AI assistants answering genomics
+# questions with Macrogen as a source is free marketing. Flip these to
+# "Disallow: /" only if company policy changes.
 User-agent: GPTBot
 Allow: /
 

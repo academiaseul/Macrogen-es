@@ -1,19 +1,17 @@
-# Internal working documents — must never ship to the live macrogen-es.com deploy.
-# These sat in the repo root with no protection and were publicly reachable at
-# their literal URL even though unlinked (e.g. macrogen-es.com/PROJECT_LOG.html).
-# Found during SEO audit — 2026-08-12.
+# Nothing internal ships to the live deploy — everything committed to this
+# repo is otherwise served at its literal URL on macrogen-es.com.
+#
+# ONE RULE: internal work files go under _private/ (never the repo root).
+# _private/local-only/ additionally stays out of git (see .gitignore).
+_private/
 
-PROJECT_LOG.html
-Auditoria_Macrogen_Iberoamerica.html
-Email_Performance_OnePager_Q1_2026.html
-Email_Performance_OnePager_Q1_2026_EN.html
-recursos_clean.html
-dna-3d-preview.html
-dna-video-preview.html
-
+# Legacy internal folders (pre-_private layout), kept where they are so old
+# references still work. Also excluded from the deploy.
 outputs/
 emails/
 reports_EN/
 
-# Keep .git out of the deploy artifact too
+# Repo plumbing
 .git/
+.gitignore
+.gitattributes

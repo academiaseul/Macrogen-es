@@ -1,0 +1,10 @@
+# Personal/financial data never enters git (repo history is hard to scrub).
+# Anything in here exists only on this machine — back it up separately.
+_private/local-only/
+
+# Office / LibreOffice lock & temp files
+.~lock.*#
+~$*
+*.tmp
+Thumbs.db
+desktop.ini
