@@ -7,8 +7,11 @@
 <meta name="description" content="Hub de recursos técnicos Macrogen Iberoamérica: guías de pedido Sanger CES, protocolos PCR, 96 primers universales, info de pago, autenticación de líneas celulares (STR), guías de envío Madrid y Santiago.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#001E62">
 <link rel="stylesheet" href="assets/css/main.css">
 
 <link rel="canonical" href="https://macrogen-es.com/recursos.html">
@@ -28,8 +31,7 @@
 <meta name="twitter:image" content="https://macrogen-es.com/assets/img/og-image.png">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'granted','ad_storage':'granted','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
-<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","x8wd9440bz");</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
 
 <style>
 .res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
@@ -51,16 +53,9 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
 
-<!-- ===== Launch announcement bar · NUEVO10 promo (Web launch – Aug 31, 2026) ===== -->
-<div class="launch-bar" style="background:linear-gradient(90deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); color:#fff; text-align:center; padding:10px 16px; font-size:13px; font-weight:600; letter-spacing:.2px;">
-  🚀 <span style="background:rgba(255,255,255,0.18); padding:2px 8px; border-radius:4px; margin:0 4px;">LANZAMIENTO WEB</span>
-  <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código
-  <code style="background:#fff; color:#1B2A57; padding:2px 8px; border-radius:4px; font-weight:800;">NUEVO10</code>
-  · hasta 31 ago 2026
-  <a href="contacto.html?promo=NUEVO10" style="color:#FEF7E8; text-decoration:underline; margin-left:8px; font-weight:700;">Cotizar →</a>
-</div>
 
 <header class="site-header">
   <div class="container nav">
@@ -123,11 +118,11 @@
       <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
       <li class="nav-dropdown nav-more is-active"><a href="#" aria-haspopup="true" aria-expanded="false" data-i18n="nav.more">Más</a>
         <div class="nav-more-menu" aria-label="Más enlaces">
-          <a href="recursos.html" class="active"><span class="icon">📁</span>Recursos</a>
-          <a href="certificaciones.html"><span class="icon">🏅</span>Certificaciones</a>
-          <a href="esg.html"><span class="icon">🌱</span>ESG</a>
-          <a href="newsletter.html" data-i18n="nav.newsletter"><span class="icon">📬</span>Newsletter</a>
-          <a href="faq.html" data-i18n="nav.faq"><span class="icon">❓</span>FAQ</a>
+          <a href="recursos.html" class="active"><span class="icon" aria-hidden="true">📁</span>Recursos</a>
+          <a href="certificaciones.html"><span class="icon" aria-hidden="true">🏅</span>Certificaciones</a>
+          <a href="esg.html"><span class="icon" aria-hidden="true">🌱</span>ESG</a>
+          <a href="newsletter.html" data-i18n="nav.newsletter"><span class="icon" aria-hidden="true">📬</span>Newsletter</a>
+          <a href="faq.html" data-i18n="nav.faq"><span class="icon" aria-hidden="true">❓</span>FAQ</a>
         </div>
       </li>
       <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
@@ -136,8 +131,8 @@
   </div>
 </header>
 
-<section class="hero hero-mini has-video">
-  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-hidden="true" poster="assets/img/hero-poster.jpg">
+<section id="main" class="hero hero-mini has-video">
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="metadata" aria-hidden="true" poster="assets/img/hero-poster.jpg">
     <source src="assets/video/dna-hero.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay" aria-hidden="true"></div>
@@ -159,7 +154,7 @@
     </span>
     <div class="service-switcher" data-service-switcher>
       <a href="#" class="service-switcher-trigger" data-switcher-trigger aria-haspopup="menu" aria-expanded="false">
-        <span class="icon">🗂️</span>
+        <span class="icon" aria-hidden="true">🗂️</span>
         <span>Categorías</span>
         <span class="caret">▾</span>
       </a>
@@ -210,14 +205,14 @@
         </div>
       </div>
     </div>
-    <a href="#guias" data-anchor="guias"><span class="icon">📘</span>Guías de pedido</a>
-    <a href="#guias-usuario" data-anchor="guias-usuario"><span class="icon">👤</span>Guías de usuario</a>
-    <a href="#protocolos" data-anchor="protocolos"><span class="icon">🧬</span>Protocolos</a>
-    <a href="#primers" data-anchor="primers"><span class="icon">🧷</span>Primers</a>
-    <a href="#envio" data-anchor="envio"><span class="icon">📦</span>Envío</a>
-    <a href="#sample-reports" data-anchor="sample-reports"><span class="icon">📊</span>Sample Reports (29)</a>
-    <a href="#portal" data-anchor="portal"><span class="icon">💼</span>Portal</a>
-    <a href="contacto.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon">💬</span>Contacto →</a>
+    <a href="#guias" data-anchor="guias"><span class="icon" aria-hidden="true">📘</span>Guías de pedido</a>
+    <a href="#guias-usuario" data-anchor="guias-usuario"><span class="icon" aria-hidden="true">👤</span>Guías de usuario</a>
+    <a href="#protocolos" data-anchor="protocolos"><span class="icon" aria-hidden="true">🧬</span>Protocolos</a>
+    <a href="#primers" data-anchor="primers"><span class="icon" aria-hidden="true">🧷</span>Primers</a>
+    <a href="#envio" data-anchor="envio"><span class="icon" aria-hidden="true">📦</span>Envío</a>
+    <a href="#sample-reports" data-anchor="sample-reports"><span class="icon" aria-hidden="true">📊</span>Sample Reports (29)</a>
+    <a href="#portal" data-anchor="portal"><span class="icon" aria-hidden="true">💼</span>Portal</a>
+    <a href="contacto.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon" aria-hidden="true">💬</span>Contacto →</a>
   </div>
 </nav>
 
@@ -943,8 +938,11 @@
           <div class="res-card-eyebrow">SQC · QC report</div>
           <h3>Sequencing QC report · SRS + LRS</h3>
           <p>Reporte estándar de control de calidad pre-secuenciación: integridad RNA (RIN), pureza DNA (260/280, 260/230), gel/TapeStation, concentración Qubit y aprobación para library prep.</p>
-          <div class="res-card-meta"><span>PDF</span><span>~0,8 MB</span></div>
-          <a class="res-card-cta" href="assets/docs/sample-reports/sqc-universal.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
+          <div class="res-card-meta"><span>2 PDF</span><span>SRS 0,1 MB · LRS 0,15 MB</span></div>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="res-card-cta" href="assets/docs/SQC_Criteria_SRS.pdf" target="_blank" rel="noopener">SRS · Illumina →</a>
+            <a class="res-card-cta" href="assets/docs/SQC_Criteria_LRS.pdf" target="_blank" rel="noopener" style="color:var(--mc-teal);">LRS · PacBio/ONT →</a>
+          </div>
         </article>
 
       </div>
@@ -1006,10 +1004,10 @@
       <span>One Team. One Macrogen.</span>
     </div>
     <a href="contacto.html" class="brand-strip-cta">
-      <span>Cuéntanos sobre tu proyecto</span>
+      <span data-i18n="brand_strip.cta">Cuéntanos sobre tu proyecto</span>
       <span class="brand-strip-cta-arrow">→</span>
     </a>
-    <p class="brand-strip-cta-sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
+    <p class="brand-strip-cta-sub" data-i18n="brand_strip.cta_sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
     <p class="brand-strip-regions">España · Portugal · Chile · Perú · Iberoamérica</p>
   </div>
 </section>
@@ -1018,7 +1016,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img">
+        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img" loading="lazy" decoding="async">
         <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
         <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
         <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>

@@ -88,15 +88,15 @@
     "lead": "An edition curated by our team: featured papers, bioinformatics tutorials, technical offers and updates from the global Macrogen network."
   },
   "pillars": {
-    "section_eyebrow": "Why choose Macrogen",
+    "section_eyebrow": "Why choose Macrogen Iberoamérica",
     "section_title": "Three pillars for world-class genomics.",
     "section_subtitle": "Globally standardized technology. Locally delivered service.",
     "speed_title": "Speed",
-    "speed_body": "International logistics with Chilexpress, DHL and FedEx. Industry-leading turnaround times thanks to the global Macrogen hub network.",
+    "speed_body": "International logistics with DHL, FedEx and local couriers in each country. Region-leading turnaround thanks to Macrogen's global hub network.",
     "precision_title": "Precision",
     "precision_body": "ISO 9001, ISO 13485 and ISO 27001 certifications. Official Certified Service Provider (CSP) status for Illumina and 10x Genomics.",
     "connectivity_title": "Connectivity",
-    "connectivity_body": "The same data a researcher receives in Seoul or New York arrives at your lab in Santiago, through our local portal."
+    "connectivity_body": "The same data a researcher receives in Seoul or New York reaches your laboratory in Madrid, Lisbon, Santiago or Lima, through our local portal."
   },
   "stats": {
     "clients_global": "Global clients",
@@ -134,7 +134,7 @@
   },
   "newsletter_form": {
     "label": "Your email",
-    "placeholder": "you@laboratory.com",
+    "placeholder": "you@lab.com",
     "btn": "Subscribe",
     "note": "We'll send a confirmation email. You can unsubscribe anytime."
   },
@@ -152,8 +152,8 @@
     "field_phone": "Phone / WhatsApp",
     "field_phone_placeholder": "Select country first",
     "field_service": "Service of interest",
-    "field_message": "Project details",
-    "field_message_placeholder": "Sample type, quantity, target budget, desired timeline, any question...",
+    "field_message": "Tell us briefly about your project",
+    "field_message_placeholder": "Sample type, number of samples, organism, desired depth, estimated date...",
     "btn_submit": "Submit request",
     "country_note": "Select your country so your request reaches the right hub."
   },
@@ -216,5 +216,40 @@
     "featured_oligo_sub": "DNA · RNA · Peptides · Genes",
     "footer_text": "10 genomic services · 1 single window · Madrid + Santiago",
     "footer_view_all": "View full catalog →"
+  },
+  "services_preview": {
+    "eyebrow": "Catalog",
+    "title": "End-to-end genomic services.",
+    "subtitle": "From a single Sanger reaction to WGS cohorts of thousands of samples. One single point of contact."
+  },
+  "certs": {
+    "eyebrow": "Certifications & partnerships",
+    "title": "Globally recognized quality."
+  },
+  "tech": {
+    "eyebrow": "Platforms we operate",
+    "title": "Technology from the world's leaders.",
+    "subtitle": "We run instruments and kits from the leading genomics platform manufacturers."
+  },
+  "index_blog": {
+    "eyebrow": "Blog",
+    "title": "Knowledge from the lab.",
+    "subtitle": "Tutorials, use cases and technical guides for the Ibero-American genomics community.",
+    "view_all": "View all posts"
+  },
+  "newsletter_box": {
+    "eyebrow": "Monthly newsletter",
+    "title": "Genomics news, straight to your inbox.",
+    "subtitle": "Once a month we send technical news, exclusive discounts for the Ibero-American community and practical tutorials. No spam."
+  },
+  "brand_strip": {
+    "cta": "Tell us about your project",
+    "cta_sub": "NGS / CES / Synthesis specialist · reply within 24 business hours from Madrid or Santiago"
+  },
+  "consent": {
+    "text": "We use analytics cookies (GA4 and Clarity) to understand how the site is used and improve it. They only activate if you accept.",
+    "more": "More information",
+    "accept": "Accept",
+    "reject": "Essential only"
   }
 }

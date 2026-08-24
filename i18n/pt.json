@@ -88,15 +88,15 @@
     "lead": "Uma edição curada pela nossa equipa: papers em destaque, tutoriais bioinformáticos, ofertas técnicas e novidades da rede global Macrogen."
   },
   "pillars": {
-    "section_eyebrow": "Porquê escolher a Macrogen",
+    "section_eyebrow": "Porquê escolher a Macrogen Iberoamérica",
     "section_title": "Três pilares para uma genómica de classe mundial.",
     "section_subtitle": "Tecnologia padronizada globalmente. Serviço entregue localmente.",
     "speed_title": "Velocidade",
-    "speed_body": "Logística internacional com Chilexpress, DHL e FedEx. Tempos de entrega líderes na região graças à rede global de hubs Macrogen.",
+    "speed_body": "Logística internacional com DHL, FedEx e couriers locais em cada país. Prazos de entrega líderes na região graças à rede global de hubs Macrogen.",
     "precision_title": "Precisão",
     "precision_body": "Certificações ISO 9001, ISO 13485 e ISO 27001. Estatuto oficial de Certified Service Provider (CSP) para Illumina e 10x Genomics.",
     "connectivity_title": "Conectividade",
-    "connectivity_body": "Os mesmos dados que um investigador recebe em Seul ou Nova Iorque chegam ao seu laboratório em Santiago, através do nosso portal local."
+    "connectivity_body": "O mesmo dado que um investigador recebe em Seul ou Nova Iorque chega ao seu laboratório em Madrid, Lisboa, Santiago ou Lima, através do nosso portal local."
   },
   "stats": {
     "clients_global": "Clientes globais",
@@ -134,7 +134,7 @@
   },
   "newsletter_form": {
     "label": "O seu email",
-    "placeholder": "voce@laboratorio.pt",
+    "placeholder": "seu@laboratorio.pt",
     "btn": "Subscrever",
     "note": "Enviaremos um email de confirmação. Pode cancelar a qualquer momento."
   },
@@ -152,8 +152,8 @@
     "field_phone": "Telefone / WhatsApp",
     "field_phone_placeholder": "Selecione primeiro o país",
     "field_service": "Serviço de interesse",
-    "field_message": "Detalhes do projeto",
-    "field_message_placeholder": "Tipo de amostra, quantidade, orçamento estimado, prazo desejado, qualquer questão...",
+    "field_message": "Fale-nos brevemente do projeto",
+    "field_message_placeholder": "Tipo de amostra, número de amostras, organismo, profundidade desejada, data estimada...",
     "btn_submit": "Enviar pedido",
     "country_note": "Selecione o seu país para que o pedido chegue ao hub correto."
   },
@@ -216,5 +216,40 @@
     "featured_oligo_sub": "DNA · RNA · Péptidos · Genes",
     "footer_text": "10 serviços genómicos · 1 só balcão · Madrid + Santiago",
     "footer_view_all": "Ver catálogo completo →"
+  },
+  "services_preview": {
+    "eyebrow": "Catálogo",
+    "title": "Serviços genómicos de ponta a ponta.",
+    "subtitle": "De uma única reação de Sanger a coortes WGS de milhares de amostras. Um único ponto de contacto."
+  },
+  "certs": {
+    "eyebrow": "Certificações e parcerias",
+    "title": "Qualidade reconhecida globalmente."
+  },
+  "tech": {
+    "eyebrow": "Plataformas que operamos",
+    "title": "Tecnologia dos líderes mundiais.",
+    "subtitle": "Operamos os equipamentos e kits dos principais fabricantes de plataformas genómicas."
+  },
+  "index_blog": {
+    "eyebrow": "Blog",
+    "title": "Conhecimento a partir do laboratório.",
+    "subtitle": "Tutoriais, casos de uso e guias técnicos para a comunidade genómica ibero-americana.",
+    "view_all": "Ver todo o blog"
+  },
+  "newsletter_box": {
+    "eyebrow": "Newsletter mensal",
+    "title": "Genómica em dia, na sua caixa de entrada.",
+    "subtitle": "Uma vez por mês enviamos novidades técnicas, descontos exclusivos para a comunidade ibero-americana e tutoriais práticos. Sem spam."
+  },
+  "brand_strip": {
+    "cta": "Fale-nos do seu projeto",
+    "cta_sub": "Especialista NGS / CES / Síntese · resposta em 24 h úteis desde Madrid ou Santiago"
+  },
+  "consent": {
+    "text": "Usamos cookies de análise (GA4 e Clarity) para perceber como o site é usado e melhorá-lo. Só são ativados se aceitar.",
+    "more": "Mais informação",
+    "accept": "Aceitar",
+    "reject": "Apenas essenciais"
   }
 }

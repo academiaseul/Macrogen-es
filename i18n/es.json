@@ -88,15 +88,15 @@
     "lead": "Una edición curada por nuestro equipo: papers destacados, tutoriales bioinformáticos, ofertas técnicas y novedades de la red global Macrogen."
   },
   "pillars": {
-    "section_eyebrow": "Por qué elegir Macrogen",
+    "section_eyebrow": "Por qué elegir Macrogen Iberoamérica",
     "section_title": "Tres pilares para una genómica de clase mundial.",
     "section_subtitle": "Tecnología estandarizada globalmente. Servicio entregado localmente.",
     "speed_title": "Velocidad",
-    "speed_body": "Logística internacional con Chilexpress, DHL y FedEx. Tiempos de entrega líderes en la región gracias a la red global de hubs Macrogen.",
+    "speed_body": "Logística internacional con DHL, FedEx y couriers locales en cada país. Tiempos de entrega líderes en la región gracias a la red global de hubs Macrogen.",
     "precision_title": "Precisión",
     "precision_body": "Certificaciones ISO 9001, ISO 13485 e ISO 27001. Status oficial de Certified Service Provider (CSP) para Illumina y 10x Genomics.",
     "connectivity_title": "Conectividad",
-    "connectivity_body": "El mismo dato que recibe un investigador en Seúl o Nueva York llega a tu laboratorio en Santiago, a través de nuestro portal local."
+    "connectivity_body": "El mismo dato que recibe un investigador en Seúl o Nueva York llega a tu laboratorio en Madrid, Lisboa, Santiago o Lima, a través de nuestro portal local."
   },
   "stats": {
     "clients_global": "Clientes globales",
@@ -134,7 +134,7 @@
   },
   "newsletter_form": {
     "label": "Tu correo electrónico",
-    "placeholder": "tu@laboratorio.cl",
+    "placeholder": "tu@laboratorio.com",
     "btn": "Suscribirme",
     "note": "Te enviaremos un correo de confirmación. Puedes darte de baja en cualquier momento."
   },
@@ -152,8 +152,8 @@
     "field_phone": "Teléfono / WhatsApp",
     "field_phone_placeholder": "Selecciona país primero",
     "field_service": "Servicio de interés",
-    "field_message": "Detalles del proyecto",
-    "field_message_placeholder": "Tipo de muestra, cantidad, presupuesto orientativo, plazo deseado, cualquier pregunta...",
+    "field_message": "Cuéntanos brevemente del proyecto",
+    "field_message_placeholder": "Tipo de muestra, número de muestras, organismo, profundidad deseada, fecha estimada...",
     "btn_submit": "Enviar solicitud",
     "country_note": "Selecciona tu país para que tu solicitud llegue al hub correspondiente."
   },
@@ -216,5 +216,40 @@
     "featured_oligo_sub": "DNA · RNA · Péptidos · Genes",
     "footer_text": "10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago",
     "footer_view_all": "Ver catálogo completo →"
+  },
+  "services_preview": {
+    "eyebrow": "Catálogo",
+    "title": "Servicios genómicos de extremo a extremo.",
+    "subtitle": "Desde una reacción de Sanger hasta cohortes WGS de miles de muestras. Una sola ventanilla."
+  },
+  "certs": {
+    "eyebrow": "Certificaciones y partnerships",
+    "title": "Calidad reconocida globalmente."
+  },
+  "tech": {
+    "eyebrow": "Plataformas que operamos",
+    "title": "Tecnología de los líderes mundiales.",
+    "subtitle": "Operamos los equipos y kits de los principales fabricantes de plataformas genómicas."
+  },
+  "index_blog": {
+    "eyebrow": "Blog",
+    "title": "Conocimiento desde el laboratorio.",
+    "subtitle": "Tutoriales, casos de uso y guías técnicas para la comunidad genómica iberoamericana.",
+    "view_all": "Ver todo el blog"
+  },
+  "newsletter_box": {
+    "eyebrow": "Newsletter mensual",
+    "title": "Genómica al día, en tu bandeja de entrada.",
+    "subtitle": "Una vez al mes te enviamos novedades técnicas, descuentos exclusivos para la comunidad iberoamericana y tutoriales prácticos. Sin spam."
+  },
+  "brand_strip": {
+    "cta": "Cuéntanos sobre tu proyecto",
+    "cta_sub": "Especialista NGS / CES / Síntesis · respuesta en <24 h hábiles desde Madrid o Santiago"
+  },
+  "consent": {
+    "text": "Usamos cookies de analítica (GA4 y Clarity) para entender cómo se usa la web y mejorarla. Solo se activan si aceptas.",
+    "more": "Más información",
+    "accept": "Aceptar",
+    "reject": "Solo esenciales"
   }
 }

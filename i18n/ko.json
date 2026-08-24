@@ -88,15 +88,15 @@
     "lead": "저희 팀이 큐레이션한 에디션: 주목할 만한 논문, 생물정보학 튜토리얼, 기술 혜택 및 글로벌 Macrogen 네트워크의 최신 소식."
   },
   "pillars": {
-    "section_eyebrow": "Macrogen을 선택하는 이유",
+    "section_eyebrow": "Macrogen Iberoamérica를 선택하는 이유",
     "section_title": "세계적 수준의 유전체학을 위한 세 가지 핵심 가치.",
     "section_subtitle": "글로벌 표준 기술. 현지 서비스 제공.",
     "speed_title": "속도",
-    "speed_body": "Chilexpress, DHL, FedEx와의 국제 물류. 글로벌 Macrogen 허브 네트워크 덕분에 업계 선도적인 처리 시간.",
+    "speed_body": "DHL, FedEx 및 각국 현지 특송사를 통한 국제 물류. Macrogen 글로벌 허브 네트워크 덕분에 지역 최고 수준의 납기를 제공합니다.",
     "precision_title": "정밀도",
     "precision_body": "ISO 9001, ISO 13485, ISO 27001 인증. Illumina 및 10x Genomics 공식 인증 서비스 제공업체(CSP).",
     "connectivity_title": "연결성",
-    "connectivity_body": "서울이나 뉴욕의 연구자가 받는 동일한 데이터가 현지 포털을 통해 산티아고의 귀하의 실험실에 도착합니다."
+    "connectivity_body": "서울이나 뉴욕의 연구자가 받는 것과 동일한 데이터가 로컬 포털을 통해 마드리드, 리스본, 산티아고, 리마의 실험실로 전달됩니다."
   },
   "stats": {
     "clients_global": "글로벌 고객",
@@ -134,7 +134,7 @@
   },
   "newsletter_form": {
     "label": "이메일",
-    "placeholder": "you@laboratory.com",
+    "placeholder": "you@lab.com",
     "btn": "구독하기",
     "note": "확인 이메일을 보내드립니다. 언제든지 구독을 취소할 수 있습니다."
   },
@@ -152,8 +152,8 @@
     "field_phone": "전화 / WhatsApp",
     "field_phone_placeholder": "먼저 국가를 선택하세요",
     "field_service": "관심 서비스",
-    "field_message": "프로젝트 세부 사항",
-    "field_message_placeholder": "샘플 유형, 수량, 예상 예산, 희망 일정, 모든 질문...",
+    "field_message": "프로젝트를 간단히 설명해 주세요",
+    "field_message_placeholder": "샘플 유형, 샘플 수, 생물종, 원하는 심도, 예상 일정...",
     "btn_submit": "요청 제출",
     "country_note": "귀하의 요청이 올바른 허브로 전달되도록 국가를 선택하세요."
   },
@@ -216,5 +216,40 @@
     "featured_oligo_sub": "DNA · RNA · 펩타이드 · 유전자",
     "footer_text": "10개 게놈 서비스 · 단일 창구 · 마드리드 + 산티아고",
     "footer_view_all": "전체 카탈로그 보기 →"
+  },
+  "services_preview": {
+    "eyebrow": "카탈로그",
+    "title": "엔드투엔드 유전체 서비스.",
+    "subtitle": "Sanger 반응 1건부터 수천 샘플의 WGS 코호트까지, 단일 창구로 해결합니다."
+  },
+  "certs": {
+    "eyebrow": "인증 및 파트너십",
+    "title": "세계적으로 인정받는 품질."
+  },
+  "tech": {
+    "eyebrow": "운영 플랫폼",
+    "title": "세계 선도 기업의 기술.",
+    "subtitle": "주요 유전체 플랫폼 제조사의 장비와 키트를 운영합니다."
+  },
+  "index_blog": {
+    "eyebrow": "블로그",
+    "title": "실험실에서 전하는 지식.",
+    "subtitle": "이베로아메리카 유전체 커뮤니티를 위한 튜토리얼, 활용 사례, 기술 가이드.",
+    "view_all": "블로그 전체 보기"
+  },
+  "newsletter_box": {
+    "eyebrow": "월간 뉴스레터",
+    "title": "유전체학 소식을 메일함으로.",
+    "subtitle": "한 달에 한 번, 기술 소식과 이베로아메리카 커뮤니티 전용 할인, 실용 튜토리얼을 보내드립니다. 스팸은 없습니다."
+  },
+  "brand_strip": {
+    "cta": "프로젝트를 알려주세요",
+    "cta_sub": "NGS / CES / 합성 전문가 · 마드리드 또는 산티아고에서 영업일 24시간 내 회신"
+  },
+  "consent": {
+    "text": "웹사이트 사용 현황을 파악하고 개선하기 위해 분석 쿠키(GA4, Clarity)를 사용합니다. 동의하신 경우에만 활성화됩니다.",
+    "more": "자세히 보기",
+    "accept": "동의",
+    "reject": "필수만 사용"
   }
 }

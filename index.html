@@ -7,8 +7,11 @@
 <meta name="description" content="Macrogen Iberoamérica — operación regional conjunta de Macrogen Spain y Macrogen Chile. Servicios de NGS, Sanger, microarrays y bioinformática para España, Portugal, Chile y Perú con dos hubs: Madrid y Santiago.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#001E62">
 <link rel="stylesheet" href="assets/css/main.css">
 
 <!-- ============ SEO ============ -->
@@ -119,40 +122,27 @@
 }
 </script>
 
-<!-- ============ Google Analytics 4 (PLACEHOLDER) ============ -->
+<!-- ============ Google Analytics 4 ============ -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('consent', 'default', {
-    'analytics_storage': 'granted',
-    'ad_storage': 'granted',
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
     'wait_for_update': 500
   });
   gtag('config', 'G-9W3JGVHY2D', { 'anonymize_ip': true });
 </script>
 
-<!-- ============ Microsoft Clarity (PLACEHOLDER) ============ -->
-<script type="text/javascript">
-  (function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "x8wd9440bz");
-</script>
 
 </head>
 <body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
-<!-- ===== Launch announcement bar · NUEVO10 promo (Web launch – Aug 31, 2026) ===== -->
-<div class="launch-bar" style="background:linear-gradient(90deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); color:#fff; text-align:center; padding:10px 16px; font-size:13px; font-weight:600; letter-spacing:.2px;">
-  🚀 <span style="background:rgba(255,255,255,0.18); padding:2px 8px; border-radius:4px; margin:0 4px;">LANZAMIENTO WEB</span>
-  <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código
-  <code style="background:#fff; color:#1B2A57; padding:2px 8px; border-radius:4px; font-weight:800;">NUEVO10</code>
-  · hasta 31 ago 2026
-  <a href="contacto.html?promo=NUEVO10" style="color:#FEF7E8; text-decoration:underline; margin-left:8px; font-weight:700;">Cotizar →</a>
-</div>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -216,11 +206,11 @@
       <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
       <li class="nav-dropdown nav-more"><a href="#" aria-haspopup="true" aria-expanded="false" data-i18n="nav.more">Más</a>
         <div class="nav-more-menu" aria-label="Más enlaces">
-          <a href="recursos.html"><span class="icon">📁</span>Recursos</a>
-          <a href="certificaciones.html"><span class="icon">🏅</span>Certificaciones</a>
-          <a href="esg.html"><span class="icon">🌱</span>ESG</a>
-          <a href="newsletter.html" data-i18n="nav.newsletter"><span class="icon">📬</span>Newsletter</a>
-          <a href="faq.html" data-i18n="nav.faq"><span class="icon">❓</span>FAQ</a>
+          <a href="recursos.html"><span class="icon" aria-hidden="true">📁</span>Recursos</a>
+          <a href="certificaciones.html"><span class="icon" aria-hidden="true">🏅</span>Certificaciones</a>
+          <a href="esg.html"><span class="icon" aria-hidden="true">🌱</span>ESG</a>
+          <a href="newsletter.html" data-i18n="nav.newsletter"><span class="icon" aria-hidden="true">📬</span>Newsletter</a>
+          <a href="faq.html" data-i18n="nav.faq"><span class="icon" aria-hidden="true">❓</span>FAQ</a>
         </div>
       </li>
       <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
@@ -230,8 +220,8 @@
 </header>
 
 <!-- HERO -->
-<section class="hero has-video">
-  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-hidden="true" poster="assets/img/hero-poster.jpg">
+<section id="main" class="hero has-video">
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="metadata" aria-hidden="true" poster="assets/img/hero-poster.jpg">
     <source src="assets/video/dna-hero.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay" aria-hidden="true"></div>
@@ -253,19 +243,19 @@
     <div class="grid grid-4" style="background:var(--mc-white); border:1px solid var(--mc-line); border-radius:var(--mc-radius-lg); padding:14px; box-shadow:var(--mc-shadow);">
       <div class="stat-card">
         <div class="stat-num"><span data-counter="18000">18.000</span>+</div>
-        <div class="stat-label">Clientes globales</div>
+        <div class="stat-label" data-i18n="stats.clients_global">Clientes globales</div>
       </div>
       <div class="stat-card">
         <div class="stat-num"><span data-counter="150">150</span></div>
-        <div class="stat-label">Países atendidos</div>
+        <div class="stat-label" data-i18n="stats.countries_served">Países atendidos</div>
       </div>
       <div class="stat-card">
         <div class="stat-num"><span data-counter="28">28</span></div>
-        <div class="stat-label">Años de experiencia</div>
+        <div class="stat-label" data-i18n="stats.years_experience">Años de experiencia</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">24/7</div>
-        <div class="stat-label">Soporte en español</div>
+        <div class="stat-label" data-i18n="stats.support_spanish">Soporte en español</div>
       </div>
     </div>
   </div>
@@ -275,25 +265,25 @@
 <section class="section">
   <div class="container">
     <div class="text-center" style="max-width:680px; margin:0 auto 56px;">
-      <span class="eyebrow on-light">Por qué elegir Macrogen Chile</span>
-      <h2>Tres pilares para una genómica de clase mundial.</h2>
-      <p>Tecnología estandarizada globalmente. Servicio entregado localmente.</p>
+      <span class="eyebrow on-light" data-i18n="pillars.section_eyebrow">Por qué elegir Macrogen Iberoamérica</span>
+      <h2 data-i18n="pillars.section_title">Tres pilares para una genómica de clase mundial.</h2>
+      <p data-i18n="pillars.section_subtitle">Tecnología estandarizada globalmente. Servicio entregado localmente.</p>
     </div>
     <div class="grid grid-3">
       <article class="pillar-card">
-        <div class="pillar-icon">⚡</div>
-        <h3>Velocidad</h3>
-        <p>Logística internacional con Chilexpress, DHL y FedEx. Tiempos de entrega líderes en la región gracias a la red global de hubs Macrogen.</p>
+        <div class="pillar-icon" aria-hidden="true">⚡</div>
+        <h3 data-i18n="pillars.speed_title">Velocidad</h3>
+        <p data-i18n="pillars.speed_body">Logística internacional con DHL, FedEx y couriers locales en cada país. Tiempos de entrega líderes en la región gracias a la red global de hubs Macrogen.</p>
       </article>
       <article class="pillar-card">
-        <div class="pillar-icon teal">🎯</div>
-        <h3>Precisión</h3>
-        <p>Certificaciones ISO 9001, ISO 13485 e ISO 27001. Status oficial de Certified Service Provider (CSP) para Illumina y 10x Genomics.</p>
+        <div class="pillar-icon teal" aria-hidden="true">🎯</div>
+        <h3 data-i18n="pillars.precision_title">Precisión</h3>
+        <p data-i18n="pillars.precision_body">Certificaciones ISO 9001, ISO 13485 e ISO 27001. Status oficial de Certified Service Provider (CSP) para Illumina y 10x Genomics.</p>
       </article>
       <article class="pillar-card">
-        <div class="pillar-icon green">🔗</div>
-        <h3>Conectividad</h3>
-        <p>El mismo dato que recibe un investigador en Seúl o Nueva York llega a tu laboratorio en Santiago, a través de nuestro portal local.</p>
+        <div class="pillar-icon green" aria-hidden="true">🔗</div>
+        <h3 data-i18n="pillars.connectivity_title">Conectividad</h3>
+        <p data-i18n="pillars.connectivity_body">El mismo dato que recibe un investigador en Seúl o Nueva York llega a tu laboratorio en Madrid, Lisboa, Santiago o Lima, a través de nuestro portal local.</p>
       </article>
     </div>
   </div>
@@ -303,52 +293,52 @@
 <section class="section section-bg">
   <div class="container">
     <div class="text-center" style="max-width:680px; margin:0 auto 48px;">
-      <span class="eyebrow on-light">Catálogo</span>
-      <h2>Servicios genómicos de extremo a extremo.</h2>
-      <p>Desde una reacción de Sanger hasta cohortes WGS de miles de muestras. Una sola ventanilla.</p>
+      <span class="eyebrow on-light" data-i18n="services_preview.eyebrow">Catálogo</span>
+      <h2 data-i18n="services_preview.title">Servicios genómicos de extremo a extremo.</h2>
+      <p data-i18n="services_preview.subtitle">Desde una reacción de Sanger hasta cohortes WGS de miles de muestras. Una sola ventanilla.</p>
     </div>
 
     <div class="grid grid-3">
       <a href="servicios/wgs.html" class="service-card" style="text-decoration:none;">
         <span class="badge">NGS</span>
-        <h3>Whole Genome Sequencing</h3>
-        <p>Cobertura completa del genoma para detectar SNPs, InDels, CNVs y variantes estructurales con la máxima resolución posible.</p>
-        <div class="card-foot"><span>NovaSeq X Plus</span><span>Ver →</span></div>
+        <h3 data-i18n="service_card.wgs_title">Whole Genome Sequencing</h3>
+        <p data-i18n="service_card.wgs_body">Cobertura completa del genoma para detectar SNPs, InDels, CNVs y variantes estructurales con la máxima resolución posible.</p>
+        <div class="card-foot"><span>NovaSeq X Plus</span><span data-i18n="service_card.view">Ver →</span></div>
       </a>
       <a href="servicios/wes.html" class="service-card t-teal" style="text-decoration:none;">
         <span class="badge b-teal">NGS</span>
-        <h3>Whole Exome Sequencing</h3>
-        <p>Captura dirigida de la fracción codificante del genoma con Agilent SureSelect V8. Cobertura >100x para diagnóstico clínico.</p>
-        <div class="card-foot"><span>SureSelect V8</span><span>Ver →</span></div>
+        <h3 data-i18n="service_card.wes_title">Whole Exome Sequencing</h3>
+        <p data-i18n="service_card.wes_body">Captura dirigida de la fracción codificante del genoma con Agilent SureSelect V8. Cobertura >100x para diagnóstico clínico.</p>
+        <div class="card-foot"><span>SureSelect V8</span><span data-i18n="service_card.view">Ver →</span></div>
       </a>
       <a href="servicios/rna-seq.html" class="service-card t-green" style="text-decoration:none;">
         <span class="badge b-green">RNA-Seq</span>
-        <h3>Transcriptoma (RNA-Seq)</h3>
-        <p>Análisis de expresión diferencial completo, incluyendo entrega de volcano-plots y enriquecimiento funcional GO/KEGG.</p>
-        <div class="card-foot"><span>~30M reads/muestra</span><span>Ver →</span></div>
+        <h3 data-i18n="service_card.rnaseq_title">Transcriptoma (RNA-Seq)</h3>
+        <p data-i18n="service_card.rnaseq_body">Análisis de expresión diferencial completo, incluyendo entrega de volcano-plots y enriquecimiento funcional GO/KEGG.</p>
+        <div class="card-foot"><span>~30M reads/muestra</span><span data-i18n="service_card.view">Ver →</span></div>
       </a>
       <a href="servicios/single-cell.html" class="service-card t-teal" style="text-decoration:none;">
         <span class="badge b-teal">Single Cell</span>
-        <h3>Single Cell Sequencing</h3>
-        <p>Resolución a nivel de célula individual con la plataforma 10x Genomics Chromium. Perfilado transcriptómico y multiómico.</p>
-        <div class="card-foot"><span>10x Chromium</span><span>Ver →</span></div>
+        <h3 data-i18n="service_card.singlecell_title">Single Cell Sequencing</h3>
+        <p data-i18n="service_card.singlecell_body">Resolución a nivel de célula individual con la plataforma 10x Genomics Chromium. Perfilado transcriptómico y multiómico.</p>
+        <div class="card-foot"><span>10x Chromium</span><span data-i18n="service_card.view">Ver →</span></div>
       </a>
       <a href="servicios/metagenoma.html" class="service-card t-green" style="text-decoration:none;">
         <span class="badge b-green">Microbioma</span>
-        <h3>Metagenómica</h3>
-        <p>Perfilado 16S/18S/ITS por ASV (DADA2) o shotgun metagenomics para comunidades microbianas complejas.</p>
-        <div class="card-foot"><span>16S · 18S · ITS</span><span>Ver →</span></div>
+        <h3 data-i18n="service_card.metagenoma_title">Metagenómica</h3>
+        <p data-i18n="service_card.metagenoma_body">Perfilado 16S/18S/ITS por ASV (DADA2) o shotgun metagenomics para comunidades microbianas complejas.</p>
+        <div class="card-foot"><span>16S · 18S · ITS</span><span data-i18n="service_card.view">Ver →</span></div>
       </a>
       <a href="servicios/sanger.html" class="service-card t-red" style="text-decoration:none;">
         <span class="badge b-red">Sanger / CES</span>
-        <h3>Secuenciación Sanger</h3>
-        <p>El gold-standard para validación. Servicios estándar, identificación, fragment analysis y secuenciación personalizada.</p>
-        <div class="card-foot"><span>3730xl DNA Analyzer</span><span>Ver →</span></div>
+        <h3 data-i18n="service_card.sanger_title">Secuenciación Sanger</h3>
+        <p data-i18n="service_card.sanger_body">El gold-standard para validación. Servicios estándar, identificación, fragment analysis y secuenciación personalizada.</p>
+        <div class="card-foot"><span>3730xl DNA Analyzer</span><span data-i18n="service_card.view">Ver →</span></div>
       </a>
     </div>
 
     <div class="text-center" style="margin-top:40px;">
-      <a href="servicios.html" class="btn btn-navy">Ver catálogo completo</a>
+      <a href="servicios.html" class="btn btn-navy" data-i18n="service_card.btn_full_catalog">Ver catálogo completo</a>
     </div>
   </div>
 </section>
@@ -357,30 +347,30 @@
 <section class="section">
   <div class="container">
     <div class="text-center" style="max-width:680px; margin:0 auto 32px;">
-      <span class="eyebrow on-light">Cómo trabajamos</span>
-      <h2>De la muestra al insight publicable.</h2>
-      <p>Workflow estandarizado, trazable y auditable en cada etapa.</p>
+      <span class="eyebrow on-light" data-i18n="workflow.section_eyebrow">Cómo trabajamos</span>
+      <h2 data-i18n="workflow.section_title">De la muestra al insight publicable.</h2>
+      <p data-i18n="workflow.section_subtitle">Workflow estandarizado, trazable y auditable en cada etapa.</p>
     </div>
     <div class="pipeline">
       <div class="pipeline-step">
-        <div class="step-num">01 · Recepción</div>
-        <h4>Cotización y envío</h4>
-        <p>Solicitas cotización online, preparas la muestra siguiendo nuestras guías y la enviamos al hub más cercano.</p>
+        <div class="step-num" data-i18n="workflow.step1_label">01 · Recepción</div>
+        <h4 data-i18n="workflow.step1_title">Cotización y envío</h4>
+        <p data-i18n="workflow.step1_body">Solicitas cotización online, preparas la muestra siguiendo nuestras guías y la enviamos al hub más cercano.</p>
       </div>
       <div class="pipeline-step">
-        <div class="step-num">02 · Laboratorio</div>
-        <h4>QC + librería</h4>
-        <p>Control de calidad de ácidos nucleicos, preparación de librería con kits Illumina/PacBio/ONT validados.</p>
+        <div class="step-num" data-i18n="workflow.step2_label">02 · Laboratorio</div>
+        <h4 data-i18n="workflow.step2_title">QC + librería</h4>
+        <p data-i18n="workflow.step2_body">Control de calidad de ácidos nucleicos, preparación de librería con kits Illumina/PacBio/ONT validados.</p>
       </div>
       <div class="pipeline-step">
-        <div class="step-num">03 · Secuenciación</div>
-        <h4>NGS run</h4>
-        <p>Plataformas NovaSeq X Plus, PacBio Revio o equipos especializados según tu aplicación.</p>
+        <div class="step-num" data-i18n="workflow.step3_label">03 · Secuenciación</div>
+        <h4 data-i18n="workflow.step3_title">NGS run</h4>
+        <p data-i18n="workflow.step3_body">Plataformas NovaSeq X Plus, PacBio Revio o equipos especializados según tu aplicación.</p>
       </div>
       <div class="pipeline-step">
-        <div class="step-num">04 · Análisis</div>
-        <h4>Bioinformática + entrega</h4>
-        <p>Pipelines GATK Best Practices, Bioconductor y reportes científicos en español. Datos vía portal seguro.</p>
+        <div class="step-num" data-i18n="workflow.step4_label">04 · Análisis</div>
+        <h4 data-i18n="workflow.step4_title">Bioinformática + entrega</h4>
+        <p data-i18n="workflow.step4_body">Pipelines GATK Best Practices, Bioconductor y reportes científicos en español. Datos vía portal seguro.</p>
       </div>
     </div>
   </div>
@@ -389,8 +379,8 @@
 <!-- CERTIFICATIONS -->
 <section class="section-sm section-bg">
   <div class="container text-center">
-    <span class="eyebrow on-light">Certificaciones y partnerships</span>
-    <h2 style="margin-bottom:24px;">Calidad reconocida globalmente.</h2>
+    <span class="eyebrow on-light" data-i18n="certs.eyebrow">Certificaciones y partnerships</span>
+    <h2 style="margin-bottom:24px;" data-i18n="certs.title">Calidad reconocida globalmente.</h2>
     <div class="cert-strip">
       <span class="cert-chip"><span class="dot"></span>ISO 9001 · Calidad</span>
       <span class="cert-chip"><span class="dot"></span>ISO 13485 · Diagnóstico</span>
@@ -407,35 +397,35 @@
 <section class="tech-partners">
   <div class="container">
     <div class="tech-partners-header">
-      <span class="eyebrow">Plataformas que operamos</span>
-      <h3>Tecnología de los líderes mundiales.</h3>
-      <p>Operamos los equipos y kits de los principales fabricantes de plataformas genómicas.</p>
+      <span class="eyebrow" data-i18n="tech.eyebrow">Plataformas que operamos</span>
+      <h3 data-i18n="tech.title">Tecnología de los líderes mundiales.</h3>
+      <p data-i18n="tech.subtitle">Operamos los equipos y kits de los principales fabricantes de plataformas genómicas.</p>
     </div>
   </div>
   <div class="tech-partners-fade">
     <div class="tech-partners-track">
-      <!-- First loop -->
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image_illumina.png" alt="Illumina">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image01.png" alt="PacBio">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image_nanopore.png" alt="Oxford Nanopore">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image03.png" alt="10x Genomics">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image05.png" alt="Agilent">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image07.png" alt="Twist Bioscience">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image02.png" alt="Thermo Fisher">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image04.png" alt="Olink">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image_ug.png" alt="Ultima Genomics">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image06.png" alt="Microsoft">
-      <!-- Second loop (duplicate for seamless infinite scroll) -->
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image_illumina.png" alt="Illumina">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image01.png" alt="PacBio">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image_nanopore.png" alt="Oxford Nanopore">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image03.png" alt="10x Genomics">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image05.png" alt="Agilent">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image07.png" alt="Twist Bioscience">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image02.png" alt="Thermo Fisher">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image04.png" alt="Olink">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image_ug.png" alt="Ultima Genomics">
-      <img src="https://www.macrogen.com/resources/images/main/marquee_image06.png" alt="Microsoft">
+      <!-- First loop (logos self-hosted in assets/img/partners/) -->
+      <img src="assets/img/partners/illumina.png" alt="Illumina" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/pacbio.png" alt="PacBio" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/nanopore.png" alt="Oxford Nanopore" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/10x-genomics.png" alt="10x Genomics" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/agilent.png" alt="Agilent" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/twist.png" alt="Twist Bioscience" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/thermo-fisher.png" alt="Thermo Fisher" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/olink.png" alt="Olink" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/ultima.png" alt="Ultima Genomics" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/microsoft.png" alt="Microsoft" width="270" height="110" loading="lazy" decoding="async">
+      <!-- Second loop (duplicate for seamless infinite scroll — hidden from screen readers) -->
+      <img src="assets/img/partners/illumina.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/pacbio.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/nanopore.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/10x-genomics.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/agilent.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/twist.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/thermo-fisher.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/olink.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/ultima.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
+      <img src="assets/img/partners/microsoft.png" alt="" aria-hidden="true" width="270" height="110" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -444,41 +434,41 @@
 <section class="section">
   <div class="container">
     <div class="text-center" style="max-width:680px; margin:0 auto 48px;">
-      <span class="eyebrow on-light">Blog</span>
-      <h2>Conocimiento desde el laboratorio.</h2>
-      <p>Tutoriales, casos de uso y guías técnicas para la comunidad genómica chilena.</p>
+      <span class="eyebrow on-light" data-i18n="index_blog.eyebrow">Blog</span>
+      <h2 data-i18n="index_blog.title">Conocimiento desde el laboratorio.</h2>
+      <p data-i18n="index_blog.subtitle">Tutoriales, casos de uso y guías técnicas para la comunidad genómica iberoamericana.</p>
     </div>
     <div class="grid grid-3">
-      <a href="blog/lanzamiento-macrogen-chile.html" class="post-card" style="text-decoration:none; color:inherit;">
+      <a href="blog/precio-secuenciacion-ngs-sanger.html" class="post-card" style="text-decoration:none; color:inherit;">
         <div class="post-thumb"></div>
         <div class="post-body">
-          <div class="post-meta"><span class="cat">Empresa</span> · 2 May 2026</div>
-          <h3>Macrogen Chile abre oficina en Santiago</h3>
-          <p>Conoce nuestro modelo "Local-Global" y por qué llegamos a Chile a apoyar a la comunidad científica nacional.</p>
+          <div class="post-meta"><span class="cat">NGS · Sanger</span> · 13 ago 2026</div>
+          <h3>Cuánto cuesta secuenciar en 2026: la anatomía real del precio</h3>
+          <p>El precio por muestra es la parte menos determinante del costo total. Desglosamos las 5 capas del presupuesto en NGS y Sanger.</p>
           <span class="read-more">Leer artículo →</span>
         </div>
       </a>
-      <a href="blog/que-es-ngs.html" class="post-card" style="text-decoration:none; color:inherit;">
+      <a href="blog/sanger-vs-ngs-validacion.html" class="post-card" style="text-decoration:none; color:inherit;">
         <div class="post-thumb t2"></div>
         <div class="post-body">
-          <div class="post-meta"><span class="cat">Tutorial</span> · 25 Abr 2026</div>
-          <h3>¿Qué es NGS y cómo elegir el servicio adecuado?</h3>
-          <p>Una guía clara y sin jerga para investigadores que se acercan por primera vez a la secuenciación de nueva generación.</p>
+          <div class="post-meta"><span class="cat">Sanger · CES</span> · 4 jun 2026</div>
+          <h3>Sanger CES vs NGS: cuándo elegir cada uno para validación</h3>
+          <p>Las dos tecnologías no compiten — se complementan. Qué usar en cada etapa: discovery, validación, screening o reporte clínico.</p>
           <span class="read-more">Leer artículo →</span>
         </div>
       </a>
-      <a href="blog/microbioma-chile.html" class="post-card" style="text-decoration:none; color:inherit;">
+      <a href="blog/identificacion-microbiana-16s.html" class="post-card" style="text-decoration:none; color:inherit;">
         <div class="post-thumb t3"></div>
         <div class="post-body">
-          <div class="post-meta"><span class="cat">Caso de uso</span> · 18 Abr 2026</div>
-          <h3>Microbioma del salmón chileno: 5 lecciones aprendidas</h3>
-          <p>Resumen de un proyecto colaborativo de metagenómica 16S aplicada a la acuicultura del sur de Chile.</p>
+          <div class="post-meta"><span class="cat">Identificación</span> · 4 jun 2026</div>
+          <h3>Identificación bacteriana 16S rRNA: tu primera orden paso a paso</h3>
+          <p>Workflow completo: tipo de muestra, primers 27F/1492R, análisis BLAST e interpretación del reporte de identificación.</p>
           <span class="read-more">Leer artículo →</span>
         </div>
       </a>
     </div>
     <div class="text-center" style="margin-top:36px;">
-      <a href="blog.html" class="btn btn-ghost">Ver todo el blog</a>
+      <a href="blog.html" class="btn btn-ghost" data-i18n="index_blog.view_all">Ver todo el blog</a>
     </div>
   </div>
 </section>
@@ -488,14 +478,14 @@
   <div class="container">
     <div class="newsletter-box">
       <div class="nl-inner">
-        <span class="eyebrow">Newsletter mensual</span>
-        <h2>Genómica al día, en tu bandeja de entrada.</h2>
-        <p>Una vez al mes te enviamos novedades técnicas, descuentos exclusivos para la comunidad chilena y tutoriales prácticos. Sin spam.</p>
+        <span class="eyebrow" data-i18n="newsletter_box.eyebrow">Newsletter mensual</span>
+        <h2 data-i18n="newsletter_box.title">Genómica al día, en tu bandeja de entrada.</h2>
+        <p data-i18n="newsletter_box.subtitle">Una vez al mes te enviamos novedades técnicas, descuentos exclusivos para la comunidad iberoamericana y tutoriales prácticos. Sin spam.</p>
         <form class="nl-form" data-demo>
-          <input type="email" name="email" placeholder="tu@laboratorio.cl" required>
-          <button type="submit" class="btn btn-primary">Suscribirme</button>
+          <input type="email" name="email" placeholder="tu@laboratorio.com" data-i18n-attr="placeholder:newsletter_form.placeholder" required>
+          <button type="submit" class="btn btn-primary" data-i18n="newsletter_form.btn">Suscribirme</button>
         </form>
-        <div class="nl-mini-note" data-demo-msg>Te enviaremos un correo de confirmación. Puedes darte de baja en cualquier momento.</div>
+        <div class="nl-mini-note" data-demo-msg data-i18n="newsletter_form.note">Te enviaremos un correo de confirmación. Puedes darte de baja en cualquier momento.</div>
       </div>
     </div>
   </div>
@@ -505,12 +495,12 @@
 <section class="section">
   <div class="container">
     <div class="cta-banner">
-      <span class="eyebrow">Listos para colaborar</span>
-      <h2>¿Tienes un proyecto en mente?</h2>
-      <p>Conversa con nuestros equipos bioinformáticos en Madrid o Santiago. Consultoría inicial sin costo.</p>
+      <span class="eyebrow" data-i18n="cta_block.eyebrow">Listos para colaborar</span>
+      <h2 data-i18n="cta_block.title">¿Tienes un proyecto en mente?</h2>
+      <p data-i18n="cta_block.lead">Conversa con nuestros equipos bioinformáticos en Madrid o Santiago. Consultoría inicial sin costo.</p>
       <div class="hero-actions" style="justify-content:center;">
-        <a href="contacto.html" class="btn btn-primary">Solicitar cotización</a>
-        <a href="https://wa.me/56958451395" class="btn btn-ghost-light">WhatsApp directo →</a>
+        <a href="contacto.html" class="btn btn-primary" data-i18n="common.btn_quote">Solicitar cotización</a>
+        <a href="https://wa.me/56958451395" class="btn btn-ghost-light" data-i18n="common.btn_whatsapp">WhatsApp directo →</a>
       </div>
     </div>
   </div>
@@ -520,14 +510,14 @@
 <section class="section" style="padding-top:0;">
   <div class="container">
     <div class="cta-banner" style="background:linear-gradient(120deg, #E0004D 0%, #B8003E 60%, #8E0030 100%); text-align:center;">
-      <span class="eyebrow" style="color:#ffffff; opacity:.85;">¿Ya sabes lo que necesitas?</span>
-      <h2 style="color:#ffffff; max-width:680px; margin:0 auto 14px;">Salta la cotización y haz tu pedido directo.</h2>
-      <p style="color:rgba(255,255,255,.9); max-width:560px; margin:0 auto 28px;">Si ya conoces el servicio que requieres, accede al portal oficial de pedidos Macrogen y comienza tu solicitud en línea ahora mismo.</p>
+      <span class="eyebrow" style="color:#ffffff; opacity:.85;" data-i18n="order_block.eyebrow">¿Ya sabes lo que necesitas?</span>
+      <h2 style="color:#ffffff; max-width:680px; margin:0 auto 14px;" data-i18n="order_block.title">Salta la cotización y haz tu pedido directo.</h2>
+      <p style="color:rgba(255,255,255,.9); max-width:560px; margin:0 auto 28px;" data-i18n="order_block.lead">Si ya conoces el servicio que requieres, accede al portal oficial de pedidos Macrogen y comienza tu solicitud en línea ahora mismo.</p>
       <div class="hero-actions" style="justify-content:center;">
         <a href="https://dna.macrogen.com" target="_blank" rel="noopener" class="btn" style="background:#ffffff; color:#8E0030; font-weight:900; box-shadow:0 8px 24px rgba(0,0,0,.18);">Order Now ↗</a>
         <a href="servicios.html" class="btn btn-ghost-light">Ver catálogo →</a>
       </div>
-      <p style="margin-top:18px; font-size:11px; color:rgba(255,255,255,.7); letter-spacing:.5px;">Portal seguro · acceso 24/7 · trazabilidad completa de tu muestra</p>
+      <p style="margin-top:18px; font-size:11px; color:rgba(255,255,255,.7); letter-spacing:.5px;" data-i18n="order_block.trust">Portal seguro · acceso 24/7 · trazabilidad completa de tu muestra</p>
     </div>
   </div>
 </section>
@@ -541,10 +531,10 @@
       <span>One Team. One Macrogen.</span>
     </div>
     <a href="contacto.html" class="brand-strip-cta">
-      <span>Cuéntanos sobre tu proyecto</span>
+      <span data-i18n="brand_strip.cta">Cuéntanos sobre tu proyecto</span>
       <span class="brand-strip-cta-arrow">→</span>
     </a>
-    <p class="brand-strip-cta-sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
+    <p class="brand-strip-cta-sub" data-i18n="brand_strip.cta_sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
     <p class="brand-strip-regions">España · Portugal · Chile · Perú · Iberoamérica</p>
   </div>
 </section>
@@ -553,7 +543,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img">
+        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img" loading="lazy" decoding="async">
         <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
         <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
         <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>

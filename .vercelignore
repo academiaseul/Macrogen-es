@@ -15,3 +15,6 @@ reports_EN/
 .git/
 .gitignore
 .gitattributes
+
+# Local tooling
+.claude/

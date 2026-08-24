@@ -1,5 +1,5 @@
 /* =========================================================
-   Macrogen Chile — Hoja de estilos principal
+   Macrogen Iberoamérica — Hoja de estilos principal
    Identidad corporativa: One Team. One Macrogen.
    Paleta:
      navy   #001E62  azul institucional
@@ -2984,3 +2984,58 @@ html.js-reveal [data-reveal].reveal-instant {
     will-change: auto !important;
   }
 }
+
+/* =========================================================
+   Announcement bar — injected by main.js (see PROMO config).
+   Colors come from the CI tokens, not ad-hoc hex values.
+   ========================================================= */
+.launch-bar {
+  background: linear-gradient(90deg, var(--mc-navy) 0%, #007A9E 55%, var(--mc-teal) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+.launch-bar .lb-tag { background: rgba(255,255,255,.18); padding: 2px 8px; border-radius: 4px; margin: 0 4px; }
+.launch-bar .lb-code { background: #fff; color: var(--mc-navy); padding: 2px 8px; border-radius: 4px; font-weight: 800; font-family: var(--mc-font-mono); }
+.launch-bar .lb-cta { color: #FEF7E8; text-decoration: underline; margin-left: 8px; font-weight: 700; }
+
+/* =========================================================
+   Cookie consent banner (RGPD) — injected by main.js.
+   Analytics stay off until the visitor accepts.
+   ========================================================= */
+.consent-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 400;
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--mc-navy);
+  color: #fff;
+  border-radius: var(--mc-radius);
+  box-shadow: var(--mc-shadow-lg);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.consent-banner p { margin: 0; font-size: 13.5px; line-height: 1.5; flex: 1 1 300px; color: #fff; }
+.consent-banner a { color: var(--mc-teal); text-decoration: underline; }
+.consent-actions { display: flex; gap: 10px; }
+.consent-banner button {
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: inherit;
+}
+.btn-consent-accept { background: var(--mc-teal); color: #00332F; border: 0; }
+.btn-consent-accept:hover { background: #00d4c5; }
+.btn-consent-reject { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.45); }
+.btn-consent-reject:hover { border-color: #fff; }

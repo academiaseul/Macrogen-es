@@ -8,3 +8,6 @@ _private/local-only/
 *.tmp
 Thumbs.db
 desktop.ini
+
+# Claude Code local tooling
+.claude/

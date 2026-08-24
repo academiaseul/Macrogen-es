@@ -7,8 +7,11 @@
 <meta name="description" content="Solicita una cotización o agenda una consultoría con el equipo de Macrogen Iberoamérica. Atención desde Madrid (España, Portugal) y Santiago (Chile, Perú), soporte 24/7 en español.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="assets/img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#001E62">
 <link rel="stylesheet" href="assets/css/main.css">
 
 <link rel="canonical" href="https://macrogen-es.com/contacto.html">
@@ -28,21 +31,13 @@
 <meta name="twitter:image" content="https://macrogen-es.com/assets/img/og-image.png">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'granted','ad_storage':'granted','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
-<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","x8wd9440bz");</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
 
 </head>
 <body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
 
-<!-- ===== Launch announcement bar · NUEVO10 promo (Web launch – Aug 31, 2026) ===== -->
-<div class="launch-bar" style="background:linear-gradient(90deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); color:#fff; text-align:center; padding:10px 16px; font-size:13px; font-weight:600; letter-spacing:.2px;">
-  🚀 <span style="background:rgba(255,255,255,0.18); padding:2px 8px; border-radius:4px; margin:0 4px;">LANZAMIENTO WEB</span>
-  <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código
-  <code style="background:#fff; color:#1B2A57; padding:2px 8px; border-radius:4px; font-weight:800;">NUEVO10</code>
-  · hasta 31 ago 2026
-  <a href="contacto.html?promo=NUEVO10" style="color:#FEF7E8; text-decoration:underline; margin-left:8px; font-weight:700;">Cotizar →</a>
-</div>
 
 <header class="site-header">
   <div class="container nav">
@@ -105,11 +100,11 @@
       <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
       <li class="nav-dropdown nav-more"><a href="#" aria-haspopup="true" aria-expanded="false" data-i18n="nav.more">Más</a>
         <div class="nav-more-menu" aria-label="Más enlaces">
-          <a href="recursos.html"><span class="icon">📁</span>Recursos</a>
-          <a href="certificaciones.html"><span class="icon">🏅</span>Certificaciones</a>
-          <a href="esg.html"><span class="icon">🌱</span>ESG</a>
-          <a href="newsletter.html" data-i18n="nav.newsletter"><span class="icon">📬</span>Newsletter</a>
-          <a href="faq.html" data-i18n="nav.faq"><span class="icon">❓</span>FAQ</a>
+          <a href="recursos.html"><span class="icon" aria-hidden="true">📁</span>Recursos</a>
+          <a href="certificaciones.html"><span class="icon" aria-hidden="true">🏅</span>Certificaciones</a>
+          <a href="esg.html"><span class="icon" aria-hidden="true">🌱</span>ESG</a>
+          <a href="newsletter.html" data-i18n="nav.newsletter"><span class="icon" aria-hidden="true">📬</span>Newsletter</a>
+          <a href="faq.html" data-i18n="nav.faq"><span class="icon" aria-hidden="true">❓</span>FAQ</a>
         </div>
       </li>
       <li><a href="contacto.html" class="active" data-i18n="nav.contact">Contacto</a></li>
@@ -118,8 +113,8 @@
   </div>
 </header>
 
-<section class="hero hero-mini has-video">
-  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-hidden="true" poster="assets/img/hero-poster.jpg">
+<section id="main" class="hero hero-mini has-video">
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="metadata" aria-hidden="true" poster="assets/img/hero-poster.jpg">
     <source src="assets/video/dna-hero.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay" aria-hidden="true"></div>
@@ -136,8 +131,8 @@
     <div class="grid grid-2" style="gap:48px; align-items:start;">
       <!-- FORM -->
       <div>
-        <h2>Solicita una cotización</h2>
-        <p>Cuéntanos los detalles preliminares de tu proyecto. Te responderemos en menos de 24h hábiles desde el hub que sirve a tu país.</p>
+        <h2 data-i18n="form.section_title">Solicita una cotización</h2>
+        <p data-i18n="form.section_lead">Cuéntanos los detalles preliminares de tu proyecto. Te responderemos en menos de 24h hábiles desde el hub que sirve a tu país.</p>
 
         <!-- ===== NUEVO10 launch promo + Direct Customer pricing note ===== -->
         <div style="margin-top:18px; padding:14px 16px; background:linear-gradient(135deg,#FEF7E8,#FFE9D6); border:1.5px solid #F5A623; border-radius:10px; font-size:13px; line-height:1.55;">
@@ -153,37 +148,36 @@
         <form data-demo data-country-form action="https://formspree.io/f/xaqvkoaw" method="POST" style="margin-top:24px;">
           <div class="form-grid">
             <div class="field full">
-              <label>País <span style="color:var(--mc-red);">*</span></label>
+              <label><span data-i18n="form.field_country">País</span> <span style="color:var(--mc-red);">*</span></label>
               <select name="pais" data-country required>
-                <option value="">— Selecciona tu país —</option>
+                <option value="" data-i18n="form.field_country_placeholder">— Selecciona tu país —</option>
                 <option value="ES">🇪🇸 España</option>
                 <option value="PT">🇵🇹 Portugal</option>
                 <option value="CL">🇨🇱 Chile</option>
                 <option value="PE">🇵🇪 Perú</option>
                 <option value="OTRO">🌎 Otro país</option>
               </select>
-              <div data-inbox-note style="margin-top:10px; padding:10px 14px; background:var(--mc-bg); border-radius:6px; font-size:12px; color:var(--mc-mute); border-left:3px solid var(--mc-line);">
-                Selecciona tu país para que tu solicitud llegue al hub correspondiente.
+              <div data-inbox-note style="margin-top:10px; padding:10px 14px; background:var(--mc-bg); border-radius:6px; font-size:12px; color:var(--mc-mute); border-left:3px solid var(--mc-line);"><span data-i18n="form.country_note">Selecciona tu país para que tu solicitud llegue al hub correspondiente.</span>
               </div>
             </div>
             <div class="field">
-              <label>Nombre</label>
-              <input type="text" name="nombre" placeholder="Nombre completo" required>
+              <label data-i18n="form.field_name">Nombre</label>
+              <input type="text" name="nombre" placeholder="Nombre completo" data-i18n-attr="placeholder:form.field_name_placeholder" required>
             </div>
             <div class="field">
-              <label>Institución</label>
-              <input type="text" name="institucion" placeholder="Universidad / empresa" required>
+              <label data-i18n="form.field_institution">Institución</label>
+              <input type="text" name="institucion" placeholder="Universidad / empresa" data-i18n-attr="placeholder:form.field_institution_placeholder" required>
             </div>
             <div class="field">
-              <label>Correo electrónico</label>
-              <input type="email" name="email" data-email placeholder="tu@laboratorio.com" required>
+              <label data-i18n="form.field_email">Correo electrónico</label>
+              <input type="email" name="email" data-email placeholder="tu@laboratorio.com" data-i18n-attr="placeholder:form.field_email_placeholder" required>
             </div>
             <div class="field">
-              <label>Teléfono / WhatsApp</label>
-              <input type="tel" name="telefono" data-phone placeholder="Selecciona país primero">
+              <label data-i18n="form.field_phone">Teléfono / WhatsApp</label>
+              <input type="tel" name="telefono" data-phone placeholder="Selecciona país primero" data-i18n-attr="placeholder:form.field_phone_placeholder">
             </div>
             <div class="field full">
-              <label>Servicio de interés</label>
+              <label data-i18n="form.field_service">Servicio de interés</label>
               <select name="servicio">
                 <option>WGS — Whole Genome Sequencing</option>
                 <option>WES — Whole Exome Sequencing</option>
@@ -199,11 +193,11 @@
               </select>
             </div>
             <div class="field full">
-              <label>Cuéntanos brevemente del proyecto</label>
-              <textarea name="mensaje" placeholder="Tipo de muestra, número de muestras, organismo, profundidad deseada, fecha estimada..."></textarea>
+              <label data-i18n="form.field_message">Cuéntanos brevemente del proyecto</label>
+              <textarea name="mensaje" placeholder="Tipo de muestra, número de muestras, organismo, profundidad deseada, fecha estimada..." data-i18n-attr="placeholder:form.field_message_placeholder"></textarea>
             </div>
             <div class="field full">
-              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Enviar solicitud</button>
+              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;" data-i18n="form.btn_submit">Enviar solicitud</button>
             </div>
             <div class="field full" data-demo-msg style="font-size:12px; color:var(--mc-mute); text-align:center;">
               Te responderemos en menos de 24h hábiles.
@@ -233,17 +227,17 @@
       <div>
         <h2>Información directa</h2>
         <div class="pillar-card" style="margin-bottom:18px;">
-          <div class="pillar-icon">🇪🇸</div>
+          <div class="pillar-icon" aria-hidden="true">🇪🇸</div>
           <h3 style="font-size:1.05rem;">Oficina en Madrid</h3>
           <p>C. de Martínez Villergas, 52<br>28027 Madrid<br>España<br><span style="font-size:.85rem; color:var(--mc-mute);">Cubre España y Portugal</span></p>
         </div>
         <div class="pillar-card" style="margin-bottom:18px;">
-          <div class="pillar-icon red">🇨🇱</div>
+          <div class="pillar-icon red" aria-hidden="true">🇨🇱</div>
           <h3 style="font-size:1.05rem;">Oficina en Santiago</h3>
           <p>Magdalena 140, Of. 401<br>Las Condes, Región Metropolitana<br>Chile<br><span style="font-size:.85rem; color:var(--mc-mute);">Cubre Chile y Perú</span></p>
         </div>
         <div class="pillar-card" style="margin-bottom:18px;">
-          <div class="pillar-icon teal">📧</div>
+          <div class="pillar-icon teal" aria-hidden="true">📧</div>
           <h3 style="font-size:1.05rem;">Email</h3>
           <p>
             <strong style="color:var(--mc-navy);">🇪🇸 España y Portugal:</strong><br>
@@ -253,7 +247,7 @@
           </p>
         </div>
         <div class="pillar-card" style="margin-bottom:18px;">
-          <div class="pillar-icon green">💬</div>
+          <div class="pillar-icon green" aria-hidden="true">💬</div>
           <h3 style="font-size:1.05rem;">WhatsApp y teléfono</h3>
           <p>
             <strong style="color:var(--mc-navy);">🇪🇸 Madrid:</strong><br>
@@ -264,12 +258,12 @@
           </p>
         </div>
         <div class="pillar-card" style="margin-bottom:18px;">
-          <div class="pillar-icon red">📦</div>
+          <div class="pillar-icon red" aria-hidden="true">📦</div>
           <h3 style="font-size:1.05rem;">Drop-off de muestras</h3>
-          <p>Recibimos muestras en la oficina (lunes a viernes, 09:00–17:00). También coordinamos retiro en regiones vía Chilexpress, DHL o FedEx.</p>
+          <p>Recibimos muestras en la oficina (lunes a viernes, 09:00–17:00). También coordinamos retiro vía DHL, FedEx o Chilexpress (Chile).</p>
         </div>
         <div class="pillar-card">
-          <div class="pillar-icon">🔗</div>
+          <div class="pillar-icon" aria-hidden="true">🔗</div>
           <h3 style="font-size:1.05rem;">Síguenos</h3>
           <p>
             <strong style="color:var(--mc-navy);">🇪🇸 España:</strong><br>
@@ -289,7 +283,7 @@
   <div class="container">
     <div class="note-bar">
       <span><strong>💼 USD para Chile/Perú · EUR para España/Portugal</strong> · 🚚 Pick-up gratis en Madrid y Santiago</span>
-      <span><strong>📦 Logística internacional Chilexpress · DHL · FedEx</strong></span>
+      <span><strong>📦 Logística internacional DHL · FedEx · Chilexpress</strong></span>
       <span><strong>🇪🇸🇨🇱 Equipos locales en Madrid y Santiago</strong></span>
     </div>
   </div>
@@ -319,10 +313,10 @@
       <span>One Team. One Macrogen.</span>
     </div>
     <a href="contacto.html" class="brand-strip-cta">
-      <span>Cuéntanos sobre tu proyecto</span>
+      <span data-i18n="brand_strip.cta">Cuéntanos sobre tu proyecto</span>
       <span class="brand-strip-cta-arrow">→</span>
     </a>
-    <p class="brand-strip-cta-sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
+    <p class="brand-strip-cta-sub" data-i18n="brand_strip.cta_sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
     <p class="brand-strip-regions">España · Portugal · Chile · Perú · Iberoamérica</p>
   </div>
 </section>
@@ -331,7 +325,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img">
+        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img" loading="lazy" decoding="async">
         <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
         <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
         <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>

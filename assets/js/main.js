@@ -3,20 +3,85 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ========== Launch announcement bar · auto-hide after Aug 31, 2026 ==========
-  // The NUEVO10 launch campaign ends 2026-08-31. After that date, hide the
-  // top gradient bar on ALL pages so we don't show an expired offer.
-  // We INTENTIONALLY show the bar before the launch date too (May–Jun 2026)
-  // because the bar is also a pre-launch teaser — the message "vigente hasta
-  // 31 ago 2026" is valid all the way through.
-  (function manageLaunchBar() {
-    const bar = document.querySelector('.launch-bar');
-    if (!bar) return;
-    const EXPIRES_AT = new Date('2026-09-01T00:00:00Z').getTime();
+  // ========== Announcement bar · one config for the whole site ==========
+  // The bar is INJECTED here on every page (no HTML copies to maintain).
+  // While `ends` has not passed it shows everywhere, including servicios/
+  // and blog/ pages; after that date the bar AND the megamenu promo tiles
+  // that mention the code disappear automatically. Next campaign = edit
+  // this PROMO object only. Test an expired promo with ?showpromo=1.
+  const PATH_PREFIX = /\/(servicios|blog)\//.test(location.pathname) ? '../' : '';
+  const PROMO = {
+    code: 'NUEVO10',
+    ends: '2026-08-31', // last valid day, inclusive (local time)
+    html: '🚀 <span class="lb-tag">LANZAMIENTO WEB</span> <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código <code class="lb-code">NUEVO10</code> · hasta 31 ago 2026 <a href="{pre}contacto.html?promo=NUEVO10" class="lb-cta">Cotizar →</a>'
+  };
+
+  (function renderPromo() {
     const force = new URLSearchParams(location.search).get('showpromo') === '1';
-    if (!force && Date.now() >= EXPIRES_AT) {
-      bar.remove();
+    const active = force || Date.now() <= new Date(PROMO.ends + 'T23:59:59').getTime();
+    if (active) {
+      const bar = document.createElement('div');
+      bar.className = 'launch-bar';
+      bar.innerHTML = PROMO.html.replace(/\{pre\}/g, PATH_PREFIX);
+      document.body.insertBefore(bar, document.body.firstChild);
+    } else {
+      document.querySelectorAll('.nav-megamenu a').forEach(a => {
+        if (a.textContent.includes(PROMO.code)) a.remove();
+      });
     }
+  })();
+
+  // ========== Cookie consent (RGPD) · Google Consent Mode v2 ==========
+  // Every page starts with all consent DENIED (see the gtag snippet in
+  // <head>). GA4 falls back to cookieless pings; full analytics cookies and
+  // Microsoft Clarity load only after the visitor accepts. The choice is
+  // remembered in localStorage['mc_consent'] = 'granted' | 'denied'.
+  (function cookieConsent() {
+    const KEY = 'mc_consent';
+
+    function loadClarity() {
+      if (window.clarity) return;
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "x8wd9440bz");
+    }
+
+    function grantAll() {
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+      }
+      loadClarity();
+    }
+
+    const saved = localStorage.getItem(KEY);
+    if (saved === 'granted') { grantAll(); return; }
+    if (saved === 'denied') return;
+
+    const box = document.createElement('div');
+    box.className = 'consent-banner';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-label', 'Aviso de cookies');
+    box.innerHTML =
+      '<p><span data-i18n="consent.text">Usamos cookies de analítica (GA4 y Clarity) para entender cómo se usa la web y mejorarla. Solo se activan si aceptas.</span> ' +
+      '<a href="' + PATH_PREFIX + 'privacidad.html" data-i18n="consent.more">Más información</a></p>' +
+      '<div class="consent-actions">' +
+      '<button type="button" class="btn-consent-accept" data-i18n="consent.accept">Aceptar</button>' +
+      '<button type="button" class="btn-consent-reject" data-i18n="consent.reject">Solo esenciales</button>' +
+      '</div>';
+    document.body.appendChild(box);
+    box.querySelector('.btn-consent-accept').addEventListener('click', () => {
+      localStorage.setItem(KEY, 'granted'); grantAll(); box.remove();
+    });
+    box.querySelector('.btn-consent-reject').addEventListener('click', () => {
+      localStorage.setItem(KEY, 'denied'); box.remove();
+    });
   })();
 
   // ========== Main header Servicios mega menu · click-to-pin ==========

@@ -7,8 +7,11 @@
 <meta name="description" content="Single Cell Sequencing en Macrogen Chile con plataforma 10x Genomics Chromium. Gene Expression, ATAC-seq y multiómica a resolución de célula individual.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="../assets/img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#001E62">
 <link rel="stylesheet" href="../assets/css/main.css">
 
 <link rel="canonical" href="https://macrogen-es.com/servicios/single-cell.html">
@@ -36,21 +39,13 @@
 </script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'granted','ad_storage':'granted','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
-<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","x8wd9440bz");</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
 
 </head>
 <body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
 
-<!-- ===== Launch announcement bar · SANGER10 promo (Jun 15 – Aug 31, 2026) ===== -->
-<div class="launch-bar" style="background:linear-gradient(90deg,#1B2A57 0%,#3FA9C9 50%,#1A8754 100%); color:#fff; text-align:center; padding:10px 16px; font-size:13px; font-weight:600; letter-spacing:.2px;">
-  🎉 <span style="background:rgba(255,255,255,0.18); padding:2px 8px; border-radius:4px; margin:0 4px;">LANZAMIENTO</span>
-  <strong>10% OFF</strong> en Secuenciación Sanger (CES) con código
-  <code style="background:#fff; color:#1B2A57; padding:2px 8px; border-radius:4px; font-weight:800;">SANGER10</code>
-  · vigente hasta 31 ago 2026
-  <a href="../contacto.html?promo=SANGER10&servicio=sanger" style="color:#FEF7E8; text-decoration:underline; margin-left:8px; font-weight:700;">Cotizar →</a>
-</div>
 
 <header class="site-header">
   <div class="container nav">
@@ -116,7 +111,7 @@
   </div>
 </header>
 
-<section class="hero hero-mini">
+<section id="main" class="hero hero-mini">
   <div class="container">
     <div class="breadcrumb" style="color:var(--mc-light-blue);"><a href="../servicios.html" style="color:var(--mc-teal);">Servicios</a> <span class="sep">/</span> Single Cell</div>
     <span class="eyebrow">10x Genomics CSP</span>
@@ -136,7 +131,7 @@
     </span>
     <div class="service-switcher" data-service-switcher>
       <a href="#" class="service-switcher-trigger" data-switcher-trigger aria-haspopup="menu" aria-expanded="false">
-        <span class="icon">🧬</span>
+        <span class="icon" aria-hidden="true">🧬</span>
         <span>Servicios NGS</span>
         <span class="caret">▾</span>
       </a>
@@ -188,11 +183,11 @@
         </div>
       </div>
     </div>
-    <a href="#overview" data-anchor="overview"><span class="icon">📋</span>Overview</a>
-    <a href="#aplicaciones" data-anchor="aplicaciones"><span class="icon">🎯</span>Aplicaciones</a>
-    <a href="#muestra" data-anchor="muestra"><span class="icon">🧪</span>Muestra</a>
-    <a href="#cotizar" data-anchor="cotizar"><span class="icon">💬</span>Cotizar</a>
-    <a href="../recursos.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon">📁</span>Documentos →</a>
+    <a href="#overview" data-anchor="overview"><span class="icon" aria-hidden="true">📋</span>Overview</a>
+    <a href="#aplicaciones" data-anchor="aplicaciones"><span class="icon" aria-hidden="true">🎯</span>Aplicaciones</a>
+    <a href="#muestra" data-anchor="muestra"><span class="icon" aria-hidden="true">🧪</span>Muestra</a>
+    <a href="#cotizar" data-anchor="cotizar"><span class="icon" aria-hidden="true">💬</span>Cotizar</a>
+    <a href="../recursos.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon" aria-hidden="true">📁</span>Documentos →</a>
   </div>
 </nav>
 
@@ -284,32 +279,32 @@
     </div>
     <div class="grid grid-3">
       <div class="pillar-card">
-        <div class="pillar-icon">🧬</div>
+        <div class="pillar-icon" aria-hidden="true">🧬</div>
         <h3>Gene Expression 3'</h3>
         <p>El estándar para perfilado transcriptómico. ~10.000 células / canal, 50.000 reads/célula.</p>
       </div>
       <div class="pillar-card">
-        <div class="pillar-icon teal">🔓</div>
+        <div class="pillar-icon teal" aria-hidden="true">🔓</div>
         <h3>ATAC-seq</h3>
         <p>Mapeo de accesibilidad cromatínica para inferir actividad regulatoria por célula.</p>
       </div>
       <div class="pillar-card">
-        <div class="pillar-icon green">⚙️</div>
+        <div class="pillar-icon green" aria-hidden="true">⚙️</div>
         <h3>Multiome</h3>
         <p>RNA + ATAC en la misma célula — la información más completa por experimento.</p>
       </div>
       <div class="pillar-card">
-        <div class="pillar-icon red">🛡️</div>
+        <div class="pillar-icon red" aria-hidden="true">🛡️</div>
         <h3>Immune Profiling 5'</h3>
         <p>TCR/BCR + transcriptoma para caracterización completa de células T y B.</p>
       </div>
       <div class="pillar-card">
-        <div class="pillar-icon">🌐</div>
+        <div class="pillar-icon" aria-hidden="true">🌐</div>
         <h3>Spatial · Visium</h3>
         <p>Transcriptoma con coordenadas espaciales en cortes histológicos.</p>
       </div>
       <div class="pillar-card">
-        <div class="pillar-icon teal">🔬</div>
+        <div class="pillar-icon teal" aria-hidden="true">🔬</div>
         <h3>Fixed RNA Profiling</h3>
         <p>Para muestras fijadas con formaldehído o FFPE recientes.</p>
       </div>
@@ -378,11 +373,11 @@
     <div class="brand-strip-motto">
       <span>One Team. One Macrogen.</span>
     </div>
-    <a href="contacto.html" class="brand-strip-cta">
-      <span>Cuéntanos sobre tu proyecto</span>
+    <a href="../contacto.html" class="brand-strip-cta">
+      <span data-i18n="brand_strip.cta">Cuéntanos sobre tu proyecto</span>
       <span class="brand-strip-cta-arrow">→</span>
     </a>
-    <p class="brand-strip-cta-sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
+    <p class="brand-strip-cta-sub" data-i18n="brand_strip.cta_sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
     <p class="brand-strip-regions">España · Portugal · Chile · Perú · Iberoamérica</p>
   </div>
 </section>
@@ -391,7 +386,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../assets/img/logo.png" alt="Macrogen" class="logo-img">
+        <img src="../assets/img/logo.png" alt="Macrogen" class="logo-img" loading="lazy" decoding="async">
         <h4 style="margin-bottom:6px;">Macrogen Iberoamérica</h4>
         <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;">ES · PT · CL · PE</p>
         <p>Operación conjunta Macrogen Spain + Chile.<br><br><strong style="color:#fff;">One Team. One Macrogen.</strong></p>
