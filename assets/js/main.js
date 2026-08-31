@@ -935,4 +935,100 @@ document.addEventListener('DOMContentLoaded', () => {
     pending.forEach(el => io.observe(el));
   })();
 
+  // ========== Sub-nav: keep the clicked item selected immediately ==========
+  // The per-page scroll-spy re-syncs afterwards; this makes the blue selected
+  // state appear the instant the user clicks, not after the smooth scroll.
+  document.querySelectorAll('[data-subnav] a[data-anchor]').forEach(a => {
+    a.addEventListener('click', () => {
+      a.closest('[data-subnav]').querySelectorAll('a[data-anchor]').forEach(x => {
+        x.classList.toggle('is-active', x === a);
+      });
+    });
+  });
+
+  // ========== TYPING EFFECT · hero + main subtitles ==========
+  // Types the hero eyebrow (with a blinking caret, console-style), then the
+  // hero lead, and each section subtitle when it scrolls into view.
+  //  · Waits for i18n to settle so it types the final (dictionary) text.
+  //  · Skipped entirely under prefers-reduced-motion.
+  //  · Skipped for non-Spanish sessions: Google Translate mutates the DOM
+  //    while translating and would fight the animation.
+  (function typeFx() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const lang = localStorage.getItem('mc_lang') || 'es';
+    if (lang !== 'es') return;
+
+    const heroEyebrow = document.querySelector('.hero .eyebrow');
+    const heroLead = document.querySelector('.hero p.lead');
+    const subtitles = Array.from(document.querySelectorAll('.section-head p'));
+    if (!heroEyebrow && !heroLead && !subtitles.length) return;
+
+    function textNodesOf(el) {
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      let n;
+      while ((n = walker.nextNode())) nodes.push(n);
+      return nodes;
+    }
+
+    // HTML-aware typing: reveals characters across the element's text nodes
+    // in order, so <strong>/<br> structure survives.
+    function typeElement(el, opts, done) {
+      if (!el || el.dataset.typed) { if (done) done(); return; }
+      el.dataset.typed = '1';
+      const nodes = textNodesOf(el);
+      const originals = nodes.map(t => t.textContent);
+      const total = originals.reduce((s, t) => s + t.length, 0);
+      if (!total) { el.classList.remove('typefx-pending'); if (done) done(); return; }
+      // Whole element types in ~1.2–1.8s regardless of length
+      const perChar = Math.max(4, Math.min(18, Math.round(1500 / total)));
+      nodes.forEach(t => { t.textContent = ''; });
+      el.classList.remove('typefx-pending');
+      let caret = null;
+      if (opts && opts.caret) {
+        caret = document.createElement('span');
+        caret.className = 'type-caret';
+        caret.setAttribute('aria-hidden', 'true');
+        el.appendChild(caret);
+      }
+      let ni = 0, ci = 0;
+      (function tick() {
+        if (ni >= nodes.length) {
+          if (caret) setTimeout(() => caret.remove(), 3200);
+          if (done) done();
+          return;
+        }
+        ci++;
+        nodes[ni].textContent = originals[ni].slice(0, ci);
+        if (ci >= originals[ni].length) { ni++; ci = 0; }
+        setTimeout(tick, perChar);
+      })();
+    }
+
+    function start() {
+      // Hide targets just before typing begins (no flash of empty content
+      // for elements far below the fold — they only hide once observed).
+      [heroEyebrow, heroLead].forEach(el => { if (el && !el.dataset.typed) el.classList.add('typefx-pending'); });
+      typeElement(heroEyebrow, { caret: true }, () => typeElement(heroLead, {}, null));
+
+      if (subtitles.length && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            io.unobserve(e.target);
+            typeElement(e.target, {}, null);
+          });
+        }, { threshold: .5 });
+        subtitles.forEach(p => io.observe(p));
+      }
+    }
+
+    // Wait for the i18n dictionary to land (it rewrites tagged text on load);
+    // fall back after 900ms in case i18n.js fails to run.
+    let started = false;
+    function startOnce() { if (!started) { started = true; start(); } }
+    document.addEventListener('i18n:changed', startOnce, { once: true });
+    setTimeout(startOnce, 900);
+  })();
+
 });
