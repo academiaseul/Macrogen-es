@@ -327,6 +327,18 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 
 .nav-cta { margin-left: 4px; }
 .nav-cta .btn { padding: 9px 18px; font-size: 13px; }
+/* White quote button (high specificity: .nav-menu a rules must not repaint it) */
+.nav-menu li.nav-cta a.btn {
+  background: var(--mc-white);
+  color: var(--mc-navy);
+  border: 1px solid var(--mc-navy);
+  font-weight: 600;
+}
+.nav-menu li.nav-cta a.btn:hover {
+  background: var(--mc-navy);
+  color: var(--mc-white);
+  border-color: var(--mc-navy);
+}
 
 .nav-toggle {
   display: none;
