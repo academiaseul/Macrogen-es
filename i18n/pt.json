@@ -44,10 +44,10 @@
     "btn_more": "Ler mais →"
   },
   "hero_index": {
-    "eyebrow": "Humanizando a genómica · Madrid + Santiago",
-    "title_part1": "Serviços de sequenciação de ADN e NGS,",
-    "title_accent": "com suporte em espanhol.",
-    "lead": "Sanger, NGS, microarrays, síntese de oligos e bioinformática. Laboratórios próprios em <strong style=\"color:#fff;\">Madrid</strong> e <strong style=\"color:#fff;\">Santiago</strong>, resposta em menos de 24 h úteis e resultados Sanger em 24–48 h. Mais de 18.000 clientes em 150 países confiam na plataforma global Macrogen. Faturação em EUR ou USD."
+    "eyebrow": "Humanizando a genómica",
+    "title_part1": "Serviços de sequenciação de ADN e NGS",
+    "title_accent": "com suporte em espanhol",
+    "lead": "Sanger, NGS, microarrays, síntese e bioinformática. Atendimento no seu idioma e fuso horário, com resultados Sanger em 24-48 h."
   },
   "hero_nosotros": {
     "eyebrow": "Sobre nós",
