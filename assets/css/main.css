@@ -1500,7 +1500,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 .site-footer a:hover { color: var(--mc-teal); }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;
   gap: 48px;
   padding-bottom: 44px;
   border-bottom: 1px solid rgba(255,255,255,.1);
