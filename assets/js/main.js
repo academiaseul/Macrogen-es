@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const PROMO = {
     code: 'NUEVO10',
     ends: '2026-08-31', // last valid day, inclusive (local time)
-    html: '<span class="lb-tag">LANZAMIENTO WEB</span> <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código <code class="lb-code">NUEVO10</code> · hasta 31 ago 2026 <a href="{pre}contacto?promo=NUEVO10" class="lb-cta">Cotizar →</a>'
+    html: '<span class="lb-tag">LANZAMIENTO WEB</span> <strong>10% OFF</strong> en <strong>Sanger · NGS · Oligos &amp; Síntesis</strong> con código <code class="lb-code">NUEVO10</code> · hasta 31 ago 2026 <a href="{pre}contacto?promo=NUEVO10" class="lb-cta">Cotizar →</a>'
   };
 
   (function renderPromo() {
@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="promo-service-pill is-sanger">
               <span class="ico">🧬</span>
               <div class="name">SANGER</div>
-              <div class="desc">CES · 24-48h</div>
+              <div class="desc">24-48 h</div>
             </div>
             <div class="promo-service-pill is-ngs">
               <span class="ico">🔬</span>

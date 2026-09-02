@@ -72,7 +72,7 @@
 <header class="site-header">
   <div class="container nav">
     <a href="/" class="nav-logo" aria-label="Macrogen Iberoamérica">
-      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img" width="522" height="147">
       <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
     </a>
     <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
@@ -111,22 +111,13 @@
           </div>
         </div>
       </li>
-      <li><a href="../cotizador">NGS Explorador</a></li>
+      <li><a href="../servicios" data-nav="precios">Precios</a></li>
+      <li><a href="../recursos" data-nav="recursos">Recursos</a></li>
       <li><a href="../blog" data-i18n="nav.blog">Blog</a></li>
-      <li class="nav-dropdown nav-more"><a href="../recursos" aria-haspopup="true" aria-expanded="false">Recursos</a>
-        <div class="nav-more-menu" aria-label="Recursos y documentación">
-          <a href="../recursos">Centro de recursos</a>
-          <a href="../faq" data-i18n="nav.faq">FAQ</a>
-          <a href="../certificaciones">Certificaciones</a>
-          <a href="../esg">ESG</a>
-          <a href="../newsletter" data-i18n="nav.newsletter">Newsletter</a>
-        </div>
-      </li>
       <li><a href="../nosotros" data-i18n="nav.about">Nosotros</a></li>
       <li><a href="../contacto" data-i18n="nav.contact">Contacto</a></li>
-      <li><a href="https://dna.macrogen.com/?utm_source=web-es" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
       <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
-      <li class="nav-cta"><a href="../contacto" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-cta"><a href="../contacto" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Solicitar cotización</a></li>
     </ul>
   </div>
 </header>
@@ -406,37 +397,56 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../assets/img/logo.png" alt="Macrogen" class="logo-img" loading="lazy" decoding="async">
-        <h4 style="margin-bottom:6px;">Macrogen Iberoamérica</h4>
-        <p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;">ES · PT · CL · PE</p>
-        <p>Operación conjunta Macrogen Spain + Chile.<br><br><strong style="color:#fff;">One Team. One Macrogen.</strong></p>
+        <img src="../assets/img/logo.png" alt="Macrogen" class="logo-img" width="522" height="147" loading="lazy" decoding="async">
+        <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
+        <p style="font-family:var(--mc-font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mc-teal); font-weight:500; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
+        <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>
+        <p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p>
       </div>
       <div>
-        <h4>Servicios</h4>
-        <a href="wgs-genoma-completo">WGS</a>
-        <a href="wes-exoma">WES</a>
-        <a href="rna-seq-transcriptoma">RNA-Seq</a>
-        <a href="single-cell">Single Cell</a>
-        <a href="../servicios">Ver todos →</a>
+        <h4 data-i18n="footer.services_heading">Servicios</h4>
+        <a href="../servicios/wgs-genoma-completo">WGS</a>
+        <a href="../servicios/wes-exoma">WES</a>
+        <a href="../servicios/rna-seq-transcriptoma">RNA-Seq</a>
+        <a href="../servicios/single-cell">Single Cell</a>
+        <a href="../servicios/metagenomica-16s">Metagenómica</a>
+        <a href="../servicios/secuenciacion-sanger">Sanger</a>
+        <a href="../servicios/sintesis">Síntesis</a>
+        <a href="../servicios" data-i18n="footer.service_view_all">Ver todos →</a>
       </div>
       <div>
-        <h4>Compañía</h4>
-        <a href="../nosotros">Nosotros</a>
-        <a href="../blog">Blog</a>
-        <a href="../newsletter">Newsletter</a>
-        <a href="../faq">FAQ</a>
-        <a href="../contacto">Contacto</a>
+        <h4 data-i18n="footer.company_heading">Compañía</h4>
+        <a href="../nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="../blog" data-i18n="nav.blog">Blog</a>
+        <a href="../cotizador">NGS Explorador</a>
+        <a href="../contacto" data-i18n="nav.contact">Contacto</a>
       </div>
       <div>
-        <h4>Hubs</h4>
-        <p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇪🇸 Madrid</strong><br>+34 911 138 378</p>
-        <p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇨🇱 Santiago</strong><br>+56 9 5845 1395</p>
-        <a href="mailto:info-spain@macrogen.com" style="font-size:12px;">🇪🇸 info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12px;">🇨🇱 info-chile@macrogen.com</a>
+        <h4>Recursos</h4>
+        <a href="../recursos">Centro de recursos</a>
+        <a href="../faq" data-i18n="nav.faq">FAQ</a>
+        <a href="../certificaciones">Certificaciones</a>
+        <a href="../esg">ESG</a>
+        <a href="../newsletter" data-i18n="nav.newsletter">Newsletter</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.hubs_heading">Hubs</h4>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Madrid</strong><br>C. de Martínez Villergas, 52<br>28027 Madrid · España<br>+34 911 138 378
+        </p>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Santiago</strong><br>Magdalena 140, Of. 401<br>Las Condes, Santiago · Chile<br>+56 9 5845 1395
+        </p>
+        <a href="mailto:info-spain@macrogen.com" style="font-size:12.5px;">info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12.5px;">info-chile@macrogen.com</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Macrogen Iberoamérica</span>
-      <span><a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener">Portal global ↗</a></span>
+      <span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span>
+      <span>
+        <a href="../privacidad" data-i18n="footer.privacy">Privacidad</a>
+        <a href="../terminos" data-i18n="footer.terms">Términos</a>
+        <a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener">Portal de pedidos ↗</a>
+      </span>
     </div>
   </div>
 </footer>

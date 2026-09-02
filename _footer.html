@@ -1,35 +1,18 @@
-<!--
-  FUENTE DE VERDAD · PIE DE PÁGINA · macrogen-es.com
-  ===============================================
-  Este archivo NO se publica (está en .vercelignore). Es la referencia canónica
-  para los 49 archivos HTML. Variantes al aplicarlo:
-   · Páginas en subcarpeta (servicios/, blog/, recursos/): prefijo ../ en enlaces
-     internos y en assets/img/logo.png.
-   · class="active" en el enlace de la sección de la página.
-  Si cambias el menú o el pie: edita AQUÍ primero y replica por script en todas
-  las páginas (ver plan de cambios, tarea 2.9).
--->
+<!-- ============================================================
+     _footer.html · FUENTE DE VERDAD del pie (NO SE PUBLICA — está
+     en .vercelignore). Cambios de pie: aquí y repropagar.
 
-<section class="brand-strip" aria-label="Macrogen brand signature">
-  <div class="container">
-    <h2 class="brand-strip-slogan">Humanizing Genomics</h2>
-    <div class="brand-strip-motto">
-      <span>One Team. One Macrogen.</span>
-    </div>
-    <a href="contacto" class="brand-strip-cta">
-      <span data-i18n="brand_strip.cta">Cuéntanos sobre tu proyecto</span>
-      <span class="brand-strip-cta-arrow">→</span>
-    </a>
-    <p class="brand-strip-cta-sub" data-i18n="brand_strip.cta_sub">Especialista NGS / Sanger / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
-    <p class="brand-strip-regions">España · Portugal · Chile · Perú · Iberoamérica</p>
-  </div>
-</section>
-
+     Variantes al aplicar:
+       · Subcarpetas (servicios/, blog/, recursos/): anteponer ../
+         a href relativos y al src del logo.
+     Requiere en main.css: .footer-grid a 5 columnas
+       (2fr 1fr 1fr 1fr 1.2fr) con su media query.
+     ============================================================ -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img" loading="lazy" decoding="async">
+        <img src="assets/img/logo.png" alt="Macrogen" class="logo-img" width="522" height="147" loading="lazy" decoding="async">
         <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
         <p style="font-family:var(--mc-font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mc-teal); font-weight:500; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
         <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>
@@ -43,15 +26,23 @@
         <a href="servicios/single-cell">Single Cell</a>
         <a href="servicios/metagenomica-16s">Metagenómica</a>
         <a href="servicios/secuenciacion-sanger">Sanger</a>
+        <a href="servicios/sintesis">Síntesis</a>
         <a href="servicios" data-i18n="footer.service_view_all">Ver todos →</a>
       </div>
       <div>
         <h4 data-i18n="footer.company_heading">Compañía</h4>
         <a href="nosotros" data-i18n="nav.about">Nosotros</a>
         <a href="blog" data-i18n="nav.blog">Blog</a>
-        <a href="newsletter" data-i18n="nav.newsletter">Newsletter</a>
-        <a href="faq" data-i18n="nav.faq">FAQ</a>
+        <a href="cotizador">NGS Explorador</a>
         <a href="contacto" data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div>
+        <h4>Recursos</h4>
+        <a href="recursos">Centro de recursos</a>
+        <a href="faq" data-i18n="nav.faq">FAQ</a>
+        <a href="certificaciones">Certificaciones</a>
+        <a href="esg">ESG</a>
+        <a href="newsletter" data-i18n="nav.newsletter">Newsletter</a>
       </div>
       <div>
         <h4 data-i18n="footer.hubs_heading">Hubs</h4>
@@ -69,7 +60,7 @@
       <span>
         <a href="privacidad" data-i18n="footer.privacy">Privacidad</a>
         <a href="terminos" data-i18n="footer.terms">Términos</a>
-        <a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a>
+        <a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener">Portal de pedidos ↗</a>
       </span>
     </div>
   </div>
