@@ -1,0 +1,36 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+
+    { "source": "/servicios/sanger", "destination": "/servicios/secuenciacion-sanger", "permanent": true },
+    { "source": "/servicios/sanger.html", "destination": "/servicios/secuenciacion-sanger", "permanent": true },
+    { "source": "/servicios/wgs", "destination": "/servicios/wgs-genoma-completo", "permanent": true },
+    { "source": "/servicios/wgs.html", "destination": "/servicios/wgs-genoma-completo", "permanent": true },
+    { "source": "/servicios/wes", "destination": "/servicios/wes-exoma", "permanent": true },
+    { "source": "/servicios/wes.html", "destination": "/servicios/wes-exoma", "permanent": true },
+    { "source": "/servicios/rna-seq", "destination": "/servicios/rna-seq-transcriptoma", "permanent": true },
+    { "source": "/servicios/rna-seq.html", "destination": "/servicios/rna-seq-transcriptoma", "permanent": true },
+    { "source": "/servicios/metagenoma", "destination": "/servicios/metagenomica-16s", "permanent": true },
+    { "source": "/servicios/metagenoma.html", "destination": "/servicios/metagenomica-16s", "permanent": true },
+    { "source": "/servicios/microarray", "destination": "/servicios/microarrays", "permanent": true },
+    { "source": "/servicios/microarray.html", "destination": "/servicios/microarrays", "permanent": true },
+    { "source": "/servicios/oligo", "destination": "/servicios/sintesis", "permanent": true },
+    { "source": "/servicios/oligo.html", "destination": "/servicios/sintesis", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/assets/docs/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/assets/(img|video|css|js)/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    }
+  ]
+}
