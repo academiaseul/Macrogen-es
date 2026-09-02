@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const PROMO = {
     code: 'NUEVO10',
     ends: '2026-08-31', // last valid day, inclusive (local time)
-    html: '🚀 <span class="lb-tag">LANZAMIENTO WEB</span> <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código <code class="lb-code">NUEVO10</code> · hasta 31 ago 2026 <a href="{pre}contacto.html?promo=NUEVO10" class="lb-cta">Cotizar →</a>'
+    html: '🚀 <span class="lb-tag">LANZAMIENTO WEB</span> <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código <code class="lb-code">NUEVO10</code> · hasta 31 ago 2026 <a href="{pre}contacto?promo=NUEVO10" class="lb-cta">Cotizar →</a>'
   };
 
   (function renderPromo() {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     box.setAttribute('aria-label', 'Aviso de cookies');
     box.innerHTML =
       '<p><span data-i18n="consent.text">Usamos cookies de analítica (GA4 y Clarity) para entender cómo se usa la web y mejorarla. Solo se activan si aceptas.</span> ' +
-      '<a href="' + PATH_PREFIX + 'privacidad.html" data-i18n="consent.more">Más información</a></p>' +
+      '<a href="' + PATH_PREFIX + 'privacidad" data-i18n="consent.more">Más información</a></p>' +
       '<div class="consent-actions">' +
       '<button type="button" class="btn-consent-accept" data-i18n="consent.accept">Aceptar</button>' +
       '<button type="button" class="btn-consent-reject" data-i18n="consent.reject">Solo esenciales</button>' +
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="promo-copy-btn" data-promo-copy>Copiar</button>
           </div>
           <div class="promo-actions">
-            <a href="contacto.html?promo=NUEVO10" class="promo-btn-order" data-promo-order>Aplicar descuento →</a>
+            <a href="contacto" class="promo-btn-order" data-promo-order>Aplicar descuento →</a>
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
           <p class="promo-validity">⏱ Disponible <strong>hasta el 31 de agosto de 2026</strong> · Solicitud web + recepción de muestras antes del cierre</p>
