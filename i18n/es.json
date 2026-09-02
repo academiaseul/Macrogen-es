@@ -36,7 +36,7 @@
   "common": {
     "btn_quote": "Solicitar cotización",
     "btn_quote_arrow": "Solicitar cotización →",
-    "btn_order_now": "Order Now ↗",
+    "btn_order_now": "Hacer pedido ↗",
     "btn_services": "Ver servicios",
     "btn_catalog": "Ver catálogo →",
     "btn_contact": "Contacto",
@@ -198,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "Sanger · Electroforesis capilar <span class=\"count\">(1)</span>",
+    "ces_title": "Sanger · Electroforesis capilar <span class=\"count\">(4)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48h",
     "other_title": "Análisis & Otros <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",

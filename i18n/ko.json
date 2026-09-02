@@ -36,7 +36,7 @@
   "common": {
     "btn_quote": "견적 요청하기",
     "btn_quote_arrow": "견적 요청하기 →",
-    "btn_order_now": "Order Now ↗",
+    "btn_order_now": "주문하기 ↗",
     "btn_services": "서비스 보기",
     "btn_catalog": "카탈로그 보기 →",
     "btn_contact": "문의하기",
@@ -198,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "Sanger · 모세관 전기영동 <span class=\"count\">(1)</span>",
+    "ces_title": "Sanger · 모세관 전기영동 <span class=\"count\">(4)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48시간",
     "other_title": "분석 & 기타 <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",

@@ -36,7 +36,7 @@
   "common": {
     "btn_quote": "Request a quote",
     "btn_quote_arrow": "Request a quote →",
-    "btn_order_now": "Order Now ↗",
+    "btn_order_now": "Place order ↗",
     "btn_services": "View services",
     "btn_catalog": "View catalog →",
     "btn_contact": "Contact",
@@ -198,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "Sanger · Capillary electrophoresis <span class=\"count\">(1)</span>",
+    "ces_title": "Sanger · Capillary electrophoresis <span class=\"count\">(4)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48h",
     "other_title": "Analysis & Other <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",
