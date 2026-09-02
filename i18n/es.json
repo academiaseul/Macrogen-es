@@ -44,10 +44,10 @@
     "btn_more": "Leer más →"
   },
   "hero_index": {
-    "eyebrow": "Humanizando la genómica · Madrid + Santiago",
-    "title_part1": "Servicios de secuenciación de ADN y NGS,",
-    "title_accent": "con soporte en español.",
-    "lead": "Sanger, NGS, microarrays, síntesis de oligos y bioinformática. Laboratorios propios en <strong style=\"color:#fff;\">Madrid</strong> y <strong style=\"color:#fff;\">Santiago</strong>, respuesta en menos de 24 h hábiles y resultados Sanger en 24–48 h. Más de 18.000 clientes en 150 países confían en la plataforma global Macrogen. Facturación en EUR o USD."
+    "eyebrow": "Humanizando la genómica",
+    "title_part1": "Servicios de secuenciación de ADN y NGS",
+    "title_accent": "con soporte en español",
+    "lead": "Sanger, NGS, microarrays, síntesis y bioinformática. Atención en tu idioma y en tu zona horaria, con resultados Sanger en 24-48 h."
   },
   "hero_nosotros": {
     "eyebrow": "Quiénes somos",
@@ -209,9 +209,9 @@
     "peptide_sub": "Desde $77 · 3 mg garantizados",
     "gene_sub": "Desde $180 · validación Sanger",
     "featured_title": "Destacado este mes",
-    "featured_sanger_title": "🔥 SANGER10 · 10% OFF",
+    "featured_sanger_title": "SANGER10 · 10% OFF",
     "featured_sanger_sub": "Sanger hasta 31 ago · ES · PT · CL · PE",
-    "featured_oligo_title": "✨ Síntesis 4-en-1",
+    "featured_oligo_title": "Síntesis 4-en-1",
     "featured_oligo_sub": "DNA · RNA · Péptidos · Genes",
     "footer_text": "10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago",
     "footer_view_all": "Ver catálogo completo →"

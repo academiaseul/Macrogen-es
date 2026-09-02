@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const PROMO = {
     code: 'NUEVO10',
     ends: '2026-08-31', // last valid day, inclusive (local time)
-    html: '🚀 <span class="lb-tag">LANZAMIENTO WEB</span> <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código <code class="lb-code">NUEVO10</code> · hasta 31 ago 2026 <a href="{pre}contacto?promo=NUEVO10" class="lb-cta">Cotizar →</a>'
+    html: '<span class="lb-tag">LANZAMIENTO WEB</span> <strong>10% OFF</strong> en <strong>CES · NGS · Oligos &amp; Síntesis</strong> con código <code class="lb-code">NUEVO10</code> · hasta 31 ago 2026 <a href="{pre}contacto?promo=NUEVO10" class="lb-cta">Cotizar →</a>'
   };
 
   (function renderPromo() {
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const banner = document.createElement('div');
     banner.className = 'promo-banner-inline';
     banner.innerHTML = `
-      <span class="promo-banner-icon">🎉</span>
+      <span class="promo-banner-icon"></span>
       <div class="promo-banner-text">
         <strong>Aplicaremos tu descuento de lanzamiento</strong>
         <span>Código <code>${promo}</code> · 10% OFF en Sanger · NGS · Oligos &amp; Síntesis · vigente hasta 31 ago 2026</span>
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="promo-modal">
         <button class="promo-close" data-promo-close aria-label="Close">×</button>
         <div class="promo-banner">
-          <span class="promo-decoration">🚀</span>
+          <span class="promo-decoration"></span>
           <span class="promo-eyebrow">◉ &nbsp;LANZAMIENTO · WEB NUEVA</span>
           <div class="promo-discount">10%</div>
         </div>

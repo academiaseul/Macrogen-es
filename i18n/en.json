@@ -44,10 +44,10 @@
     "btn_more": "Read more →"
   },
   "hero_index": {
-    "eyebrow": "Humanizing genomics · Madrid + Santiago",
-    "title_part1": "DNA sequencing and NGS services,",
-    "title_accent": "with support in Spanish.",
-    "lead": "Sanger, NGS, microarrays, oligo synthesis and bioinformatics. In-house laboratories in <strong style=\"color:#fff;\">Madrid</strong> and <strong style=\"color:#fff;\">Santiago</strong>, replies within 24 business hours and Sanger results in 24–48 h. Over 18,000 customers in 150 countries trust the global Macrogen platform. Invoicing in EUR or USD."
+    "eyebrow": "Humanizing genomics",
+    "title_part1": "DNA sequencing and NGS services",
+    "title_accent": "with support in Spanish",
+    "lead": "Sanger, NGS, microarrays, synthesis and bioinformatics. Support in your language and your time zone, with Sanger results in 24-48 h."
   },
   "hero_nosotros": {
     "eyebrow": "About us",
@@ -209,9 +209,9 @@
     "peptide_sub": "From $77 · 3 mg guaranteed",
     "gene_sub": "From $180 · Sanger validation",
     "featured_title": "Featured this month",
-    "featured_sanger_title": "🔥 SANGER10 · 10% OFF",
+    "featured_sanger_title": "SANGER10 · 10% OFF",
     "featured_sanger_sub": "Sanger through Aug 31 · ES · PT · CL · PE",
-    "featured_oligo_title": "✨ 4-in-1 Synthesis",
+    "featured_oligo_title": "4-in-1 Synthesis",
     "featured_oligo_sub": "DNA · RNA · Peptides · Genes",
     "footer_text": "10 genomic services · 1 single window · Madrid + Santiago",
     "footer_view_all": "View full catalog →"
