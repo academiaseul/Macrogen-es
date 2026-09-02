@@ -44,11 +44,10 @@
     "btn_more": "자세히 보기 →"
   },
   "hero_index": {
-    "eyebrow": "One Team · One Macrogen · 마드리드 + 산티아고",
-    "title_part1": "이베로아메리카 전역의",
-    "title_accent": "유전체학",
-    "title_part2": "을(를) 인간화합니다.",
-    "lead": "<strong>Macrogen Spain</strong>과 <strong>Macrogen Chile</strong>의 공동 운영입니다. 두 개의 허브, 하나의 네트워크로 스페인, 포르투갈, 칠레, 페루의 과학 커뮤니티에 서비스를 제공합니다. 150개국 18,000명 이상의 고객이 글로벌 Macrogen 플랫폼을 신뢰합니다. 이제 마드리드와 산티아고에서 현지 언어와 시간대로 지원을 받을 수 있습니다. USD 또는 EUR로 청구."
+    "eyebrow": "Humanizing Genomics · 마드리드 + 산티아고",
+    "title_part1": "DNA 시퀀싱 및 NGS 서비스,",
+    "title_accent": "스페인어 지원.",
+    "lead": "Sanger, NGS, 마이크로어레이, 올리고 합성 및 생물정보학. <strong style=\"color:#fff;\">마드리드</strong>와 <strong style=\"color:#fff;\">산티아고</strong> 자체 실험실, 영업일 기준 24시간 이내 회신, Sanger 결과 24–48시간. 전 세계 150개국 18,000여 고객이 Macrogen 글로벌 플랫폼을 신뢰합니다. EUR 또는 USD 결제."
   },
   "hero_nosotros": {
     "eyebrow": "회사 소개",
@@ -176,7 +175,7 @@
   "promo_sanger": {
     "eyebrow": "런칭 · Sanger 프로모션",
     "discount": "10%",
-    "title": "Sanger 시퀀싱 (CES) 10% 할인",
+    "title": "Sanger 시퀀싱 (Sanger) 10% 할인",
     "subtitle": "스페인·포르투갈·칠레·페루 웹에서 신청한 모든 Sanger 견적에 적용 · ABI 3730xl",
     "code_label": "코드 사용:",
     "code": "SANGER10",
@@ -189,7 +188,7 @@
   },
   "promo_banner": {
     "title": "Sanger 할인이 적용됩니다",
-    "subtitle": "코드 <code>{code}</code> · Sanger (CES) 10% 할인 · 2026년 8월 31일까지 유효"
+    "subtitle": "코드 <code>{code}</code> · Sanger 10% 할인 · 2026년 8월 31일까지 유효"
   },
   "megamenu": {
     "ngs_title": "NGS · 시퀀싱 <span class=\"count\">(6)</span>",
@@ -199,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "CES · Sanger <span class=\"count\">(1)</span>",
+    "ces_title": "Sanger · 모세관 전기영동 <span class=\"count\">(1)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48시간",
     "other_title": "분석 & 기타 <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",
@@ -211,7 +210,7 @@
     "gene_sub": "$180부터 · Sanger 검증",
     "featured_title": "이번 달 추천",
     "featured_sanger_title": "🔥 SANGER10 · 10% 할인",
-    "featured_sanger_sub": "Sanger CES 8월 31일까지 · ES · PT · CL · PE",
+    "featured_sanger_sub": "Sanger 8월 31일까지 · ES · PT · CL · PE",
     "featured_oligo_title": "✨ 4-in-1 합성",
     "featured_oligo_sub": "DNA · RNA · 펩타이드 · 유전자",
     "footer_text": "10개 게놈 서비스 · 단일 창구 · 마드리드 + 산티아고",
@@ -244,7 +243,7 @@
   },
   "brand_strip": {
     "cta": "프로젝트를 알려주세요",
-    "cta_sub": "NGS / CES / 합성 전문가 · 마드리드 또는 산티아고에서 영업일 24시간 내 회신"
+    "cta_sub": "NGS / Sanger / 합성 전문가 · 마드리드 또는 산티아고에서 영업일 24시간 내 회신"
   },
   "consent": {
     "text": "웹사이트 사용 현황을 파악하고 개선하기 위해 분석 쿠키(GA4, Clarity)를 사용합니다. 동의하신 경우에만 활성화됩니다.",
