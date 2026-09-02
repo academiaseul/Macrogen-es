@@ -1,295 +1,297 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-  <!-- HOME -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://macrogen-es.com/</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- COMPANY -->
   <url>
-    <loc>https://macrogen-es.com/nosotros.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/contacto.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://macrogen-es.com/servicios</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/faq.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://macrogen-es.com/cotizador</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/contacto</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/nosotros</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/certificaciones.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/esg.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- SERVICES OVERVIEW -->
-  <url>
-    <loc>https://macrogen-es.com/servicios.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://macrogen-es.com/blog</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- INDIVIDUAL SERVICES -->
-  <url>
-    <loc>https://macrogen-es.com/servicios/wgs.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/servicios/wes.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/servicios/rna-seq.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/servicios/single-cell.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/servicios/metagenoma.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/servicios/epigenoma.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://macrogen-es.com/faq</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/servicios/sanger.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://macrogen-es.com/recursos</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/servicios/oligo.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/servicios/microarray.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/servicios/bioinformatica.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- RECURSOS -->
-  <url>
-    <loc>https://macrogen-es.com/recursos.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/cotizador.html</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/assets/docs/guias-usuario/macrogen-ngs-ordersheet.xlsx</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/assets/docs/guias-usuario/sample-delivery-guide-v2.pdf</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/assets/docs/guias-usuario/website-registration-guide.pdf</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/assets/docs/guias-usuario/how-to-find-reference.pdf</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://macrogen-es.com/certificaciones</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/assets/docs/asv-sample-report/Report.html</loc>
-    <lastmod>2026-06-01</lastmod>
+    <loc>https://macrogen-es.com/esg</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/assets/docs/shotgun-sample-report/Report.html</loc>
-    <lastmod>2026-06-02</lastmod>
+    <loc>https://macrogen-es.com/newsletter</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/assets/docs/sample-reports-interactive/wgs-pacbio-mapping-cnv-sv/report.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://macrogen-es.com/privacidad</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/assets/docs/sample-reports-interactive/rna-transcriptome-basic-deg/report.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://macrogen-es.com/terminos</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/assets/docs/sample-reports-interactive/rna-transcriptome-deg-vc-lncrna/report.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- BLOG -->
-  <url>
-    <loc>https://macrogen-es.com/blog.html</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/newsletter-junio-2026-ai-hub-songdo-launch.html</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/newsletter-mayo-2026-ai-hub-songdo-sejong.html</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/precio-secuenciacion-ngs-sanger.html</loc>
-    <lastmod>2026-08-13</lastmod>
+    <loc>https://macrogen-es.com/servicios/secuenciacion-sanger</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/blog/sanger-vs-ngs-validacion.html</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/identificacion-microbiana-16s.html</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/dna-oligos-guia-tecnica.html</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/wgs-wes-targeted-matriz.html</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/spatial-biology-ffpe.html</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/proteomica-cancer-prostata.html</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/metagenomica-herramientas.html</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/lanzamiento-macrogen-chile.html</loc>
-    <lastmod>2026-05-02</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/que-es-ngs.html</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/microbioma-chile.html</loc>
-    <lastmod>2026-04-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://macrogen-es.com/blog/cobertura-secuenciacion.html</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- LEGAL -->
-  <url>
-    <loc>https://macrogen-es.com/newsletter.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://macrogen-es.com/servicios/analisis-de-fragmentos</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/privacidad.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://macrogen-es.com/servicios/identificacion-bacteriana-16s</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://macrogen-es.com/terminos.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://macrogen-es.com/servicios/autenticacion-lineas-celulares-str</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
-
+  <url>
+    <loc>https://macrogen-es.com/servicios/wgs-genoma-completo</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/wes-exoma</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/rna-seq-transcriptoma</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/single-cell</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/metagenomica-16s</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/epigenoma</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/microarrays</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/bioinformatica</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/sintesis</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/sintesis-oligos-adn</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/sintesis-oligos-arn</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/sintesis-peptidos</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/servicios/sintesis-de-genes</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/recursos/primers-universales</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/recursos/guias-de-pedido</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/recursos/protocolos</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/recursos/reportes-de-ejemplo</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/recursos/envio-de-muestras</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/cobertura-secuenciacion</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/dna-oligos-guia-tecnica</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/identificacion-microbiana-16s</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/lanzamiento-macrogen-chile</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/metagenomica-herramientas</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/microbioma-chile</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/newsletter-junio-2026-ai-hub-songdo-launch</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/newsletter-mayo-2026-ai-hub-songdo-sejong</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/precio-secuenciacion-ngs-sanger</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/proteomica-cancer-prostata</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/que-es-ngs</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/sanger-vs-ngs-validacion</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/spatial-biology-ffpe</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/wgs-wes-targeted-matriz</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

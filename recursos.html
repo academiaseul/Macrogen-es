@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Recursos · Guías · Protocolos · Primers | Macrogen Iberoamérica</title>
-<meta name="description" content="Hub de recursos técnicos Macrogen Iberoamérica: guías de pedido Sanger CES, protocolos PCR, 96 primers universales, info de pago, autenticación de líneas celulares (STR), guías de envío Madrid y Santiago.">
+<title>Guías de pedido, protocolos y primers | Macrogen</title>
+<meta name="description" content="Centro de documentación: guías de pedido paso a paso, protocolos citables, 96 primers universales y reportes de ejemplo. Todo descargable.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,20 +14,20 @@
 <meta name="theme-color" content="#001E62">
 <link rel="stylesheet" href="assets/css/main.css">
 
-<link rel="canonical" href="https://macrogen-es.com/recursos.html">
+<link rel="canonical" href="https://macrogen-es.com/recursos">
 <meta name="robots" content="index, follow, max-image-preview:large">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="Macrogen Iberoamérica">
-<meta property="og:url" content="https://macrogen-es.com/recursos.html">
-<meta property="og:title" content="Recursos técnicos · Guías Sanger · Primers · Protocolos | Macrogen Iberoamérica">
-<meta property="og:description" content="Descarga guías oficiales: 96 primers universales, protocolos PCR, criterios SQC, info de pago, autenticación STR de líneas celulares, guías de envío con/sin hielo seco.">
+<meta property="og:url" content="https://macrogen-es.com/recursos">
+<meta property="og:title" content="Guías de pedido, protocolos y primers | Macrogen">
+<meta property="og:description" content="Centro de documentación: guías de pedido paso a paso, protocolos citables, 96 primers universales y reportes de ejemplo. Todo descargable.">
 <meta property="og:image" content="https://macrogen-es.com/assets/img/og-image.png">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Recursos Macrogen Iberoamérica · Guías técnicas">
-<meta name="twitter:description" content="Toda la documentación técnica en un solo lugar.">
+<meta name="twitter:title" content="Guías de pedido, protocolos y primers | Macrogen">
+<meta name="twitter:description" content="Centro de documentación: guías de pedido paso a paso, protocolos citables, 96 primers universales y reportes de ejemplo. Todo descargable.">
 <meta name="twitter:image" content="https://macrogen-es.com/assets/img/og-image.png">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
@@ -59,59 +59,62 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a href="index.html" class="nav-logo" aria-label="Macrogen Iberoamérica">
+    <a href="/" class="nav-logo" aria-label="Macrogen Iberoamérica">
       <img src="assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
       <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
     </a>
     <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
     <ul class="nav-menu">
-      <li class="nav-dropdown"><a href="servicios.html" data-i18n="nav.services">Servicios</a>
+      <li class="nav-dropdown"><a href="servicios" data-i18n="nav.services">Servicios</a>
         <div class="nav-megamenu" aria-label="Catálogo de servicios">
           <div class="megamenu-col">
             <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
-            <a href="servicios/wgs.html"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
-            <a href="servicios/wes.html"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
-            <a href="servicios/rna-seq.html"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
-            <a href="servicios/single-cell.html"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
-            <a href="servicios/metagenoma.html"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
-            <a href="servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+            <a href="servicios/wgs-genoma-completo"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="servicios/wes-exoma"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="servicios/rna-seq-transcriptoma"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="servicios/single-cell"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="servicios/metagenomica-16s"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="servicios/epigenoma"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
           </div>
           <div class="megamenu-col">
-            <h5 data-i18n-html="megamenu.ces_title">CES · Sanger <span class="count">(1)</span></h5>
-            <a href="servicios/sanger.html"><strong>Sanger / CES</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <h5 data-i18n-html="megamenu.ces_title">Sanger · Electroforesis capilar <span class="count">(4)</span></h5>
+            <a href="servicios/secuenciacion-sanger"><strong>Sanger</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <a href="servicios/analisis-de-fragmentos"><strong>Análisis de fragmentos</strong><small>GeneScan · SSR · MSI</small></a>
+            <a href="servicios/identificacion-bacteriana-16s"><strong>Identificación 16S/ITS</strong><small>Bacterias · hongos · BLAST</small></a>
+            <a href="servicios/autenticacion-lineas-celulares-str"><strong>Cell Line ID · STR</strong><small>PowerPlex 6c · ICLAC</small></a>
             <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis &amp; Otros <span class="count">(2)</span></h5>
-            <a href="servicios/microarray.html"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
-            <a href="servicios/bioinformatica.html"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+            <a href="servicios/microarrays"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="servicios/bioinformatica"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
           </div>
           <div class="megamenu-col">
             <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos &amp; Genes <span class="count">(4)</span></h5>
-            <a href="servicios/oligo.html#servicios"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
-            <a href="servicios/oligo.html#servicios"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
-            <a href="servicios/oligo.html#servicios"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
-            <a href="servicios/oligo.html#servicios"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+            <a href="servicios/sintesis-oligos-adn"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="servicios/sintesis-oligos-arn"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="servicios/sintesis-peptidos"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="servicios/sintesis-de-genes"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
           </div>
           <div class="megamenu-footer">
             <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
-            <a href="servicios.html" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+            <a href="servicios" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
           </div>
         </div>
       </li>
-      <li><a href="cotizador.html">NGS Explorador</a></li>
-      <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
-      <li class="nav-dropdown nav-more"><a href="recursos.html" class="active" aria-haspopup="true" aria-expanded="false">Recursos</a>
+      <li><a href="cotizador">NGS Explorador</a></li>
+      <li><a href="blog" data-i18n="nav.blog">Blog</a></li>
+      <li class="nav-dropdown nav-more"><a href="recursos" class="active" aria-haspopup="true" aria-expanded="false">Recursos</a>
         <div class="nav-more-menu" aria-label="Recursos y documentación">
-          <a href="recursos.html">Centro de recursos</a>
-          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
-          <a href="certificaciones.html">Certificaciones</a>
-          <a href="esg.html">ESG</a>
-          <a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a>
+          <a href="recursos">Centro de recursos</a>
+          <a href="faq" data-i18n="nav.faq">FAQ</a>
+          <a href="certificaciones">Certificaciones</a>
+          <a href="esg">ESG</a>
+          <a href="newsletter" data-i18n="nav.newsletter">Newsletter</a>
         </div>
       </li>
-      <li><a href="nosotros.html" data-i18n="nav.about">Nosotros</a></li>
-      <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
-      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
+      <li><a href="nosotros" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="contacto" data-i18n="nav.contact">Contacto</a></li>
+      <li><a href="https://dna.macrogen.com/?utm_source=web-es" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
       <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
-      <li class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-cta"><a href="contacto" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
     </ul>
   </div>
 </header>
@@ -121,6 +124,49 @@
     <span class="eyebrow">Hub de documentación técnica</span>
     <h1>Recursos para tu <span class="accent">laboratorio.</span></h1>
     <p class="lead">Guías oficiales de pedido y de usuario (OrderSheet NGS, registro portal, sample delivery), protocolos PCR, 96 primers universales, info de pago y 10 procedimientos de envío DHL/FedEx con y sin hielo seco. Todo descargable en PDF y curado por el equipo técnico de Macrogen Iberoamérica.</p>
+  </div>
+</section>
+
+<!-- Subpáginas del centro de documentación -->
+<section class="section-sm">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow on-light">Centro de documentación</span>
+      <h2>Cada documento, con su página.</h2>
+      <p>Los PDF viven en páginas que puedes enlazar, citar y encontrar en Google — con el archivo descargable dentro.</p>
+    </div>
+    <div class="svc-index">
+      <a class="svc-row" href="recursos/primers-universales">
+        <span class="svc-num">R1</span>
+        <span><span class="svc-title">Primers universales</span><span class="svc-sub">96 secuencias · buscador · gratis con Sanger</span></span>
+        <p class="svc-desc">La tabla completa en HTML con nombre, secuencia 5′→3′ y longitud.</p>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="svc-row" href="recursos/guias-de-pedido">
+        <span class="svc-num">R2</span>
+        <span><span class="svc-title">Guías de pedido</span><span class="svc-sub">4 guías paso a paso · una por línea Sanger</span></span>
+        <p class="svc-desc">Standard, fragmentos, identificación y secuenciación a medida.</p>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="svc-row" href="recursos/protocolos">
+        <span class="svc-num">R3</span>
+        <span><span class="svc-title">Protocolos</span><span class="svc-sub">Materiales y métodos citables</span></span>
+        <p class="svc-desc">Reactivos, condiciones de PCR y control de calidad — igual en Madrid y Santiago.</p>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="svc-row" href="recursos/reportes-de-ejemplo">
+        <span class="svc-num">R4</span>
+        <span><span class="svc-title">Reportes de ejemplo</span><span class="svc-sub">BI-REPORT 16S · datos ficticios, diseño real</span></span>
+        <p class="svc-desc">Mira el entregable antes de pedir: BLAST, taxonomía y árbol filogenético.</p>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="svc-row" href="recursos/envio-de-muestras">
+        <span class="svc-num">R5</span>
+        <span><span class="svc-title">Envío de muestras</span><span class="svc-sub">DHL · FedEx · hielo seco · aduana</span></span>
+        <p class="svc-desc">Embalaje de tubos y placas, valor declarado recomendado y pick-up gratuito.</p>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -181,7 +227,7 @@
         </div>
         <div class="service-switcher-footer">
           <span>32+ documentos · ES · PT · CL · PE</span>
-          <a href="contacto.html">¿No encuentras algo? →</a>
+          <a href="contacto">¿No encuentras algo? →</a>
         </div>
       </div>
     </div>
@@ -192,7 +238,7 @@
     <a href="#envio" data-anchor="envio"><span class="icon" aria-hidden="true">📦</span>Envío</a>
     <a href="#sample-reports" data-anchor="sample-reports"><span class="icon" aria-hidden="true">📊</span>Sample Reports (29)</a>
     <a href="#portal" data-anchor="portal"><span class="icon" aria-hidden="true">💼</span>Portal</a>
-    <a href="contacto.html" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon" aria-hidden="true">💬</span>Contacto →</a>
+    <a href="contacto" style="margin-left:auto; background:#FEF2F4; color:var(--mc-red); border-color:#F5BCC8; font-weight:800;"><span class="icon" aria-hidden="true">💬</span>Contacto →</a>
   </div>
 </nav>
 
@@ -261,7 +307,7 @@
 
         <article class="res-card">
           <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">🧪</div>
-          <div class="res-card-eyebrow">Sanger CES</div>
+          <div class="res-card-eyebrow">Sanger</div>
           <h3>Guía de pedido · Standard Sequencing</h3>
           <p>Cómo cotizar y registrar pedidos de secuenciación Sanger estándar (Premix, EZ-Seq, Eco-Seq) en el portal dna.macrogen.com paso a paso.</p>
           <div class="res-card-meta"><span>PDF · ENG</span><span>v.2025</span></div>
@@ -270,7 +316,7 @@
 
         <article class="res-card">
           <div class="res-card-icon" style="background:#FEF2F4; color:var(--mc-red);">🎯</div>
-          <div class="res-card-eyebrow">Sanger CES</div>
+          <div class="res-card-eyebrow">Sanger</div>
           <h3>Guía de pedido · Customized Sequencing</h3>
           <p>Servicios customizados Sanger: secuenciación a partir de colonias/glycerol stock, BAC, PAC, plásmidos largos, repeats, GC-rich y secondary structures.</p>
           <div class="res-card-meta"><span>PDF · ENG</span><span>v1.0</span></div>
@@ -279,7 +325,7 @@
 
         <article class="res-card">
           <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">📊</div>
-          <div class="res-card-eyebrow">Sanger CES</div>
+          <div class="res-card-eyebrow">Sanger</div>
           <h3>Guía de pedido · Fragment Analysis</h3>
           <p>Cómo enviar muestras para Fragment Analysis (microsatélites/STR, genotipado, MLPA): elección de tube/plate, run type, size markers y additional services.</p>
           <div class="res-card-meta"><span>PDF · ENG</span><span>v1.0</span></div>
@@ -376,7 +422,7 @@
 
         <article class="res-card">
           <div class="res-card-icon" style="background:#EAF6FB; color:var(--mc-teal);">⚗️</div>
-          <div class="res-card-eyebrow">Sanger CES</div>
+          <div class="res-card-eyebrow">Sanger</div>
           <h3>Protocolo PCR &amp; Sequencing</h3>
           <p>Protocolo oficial para amplificación PCR previa a Sanger sequencing: condiciones de annealing, número de ciclos, dilución del producto, recomendaciones por tamaño de amplicón.</p>
           <div class="res-card-meta"><span>PDF · ENG</span><span>2025-06-27</span></div>
@@ -416,11 +462,11 @@
           <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">🧷</div>
           <div class="res-card-eyebrow">Stock primers gratis con Sanger</div>
           <h3>96 Primers Universales · Macrogen Chile</h3>
-          <p>Listado oficial v3 con los 96 primers universales en stock (M13, T7, SP6, T3, BGH, CMV, EGFP, AOX1, ITS1-5, 16S 27F/1492R, COI, etc.). <strong>Incluidos gratis</strong> con cualquier pedido Sanger CES — no necesitas enviar tu propio primer si está en esta lista. Consulta la tabla interactiva en la página de Sanger o descarga el PDF.</p>
+          <p>Listado oficial v3 con los 96 primers universales en stock (M13, T7, SP6, T3, BGH, CMV, EGFP, AOX1, ITS1-5, 16S 27F/1492R, COI, etc.). <strong>Incluidos gratis</strong> con cualquier pedido Sanger — no necesitas enviar tu propio primer si está en esta lista. Consulta la tabla interactiva en la página de Sanger o descarga el PDF.</p>
           <div class="res-card-meta"><span>PDF · ES</span><span>v3</span><span>96 primers</span></div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
             <a class="res-card-cta" href="assets/docs/primers-universales.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
-            <a class="res-card-cta" href="servicios/sanger.html#primers" style="color:var(--mc-red);">Ver tabla interactiva →</a>
+            <a class="res-card-cta" href="recursos/primers-universales" style="color:var(--mc-red);">Ver tabla interactiva →</a>
           </div>
         </article>
 
@@ -455,7 +501,7 @@
           <h3>Datos de recepción · Macrogen Spain</h3>
           <p>Dirección oficial para envío de muestras al hub de Madrid: <strong>C. de Martínez Villergas 52, 28027 Madrid</strong>. Atención: Logística. Tel +34 911 138 378.</p>
           <div class="res-card-meta"><span>Web</span><span>ES · PT</span></div>
-          <a class="res-card-cta" href="contacto.html#madrid">Ver datos de contacto →</a>
+          <a class="res-card-cta" href="contacto#madrid">Ver datos de contacto →</a>
         </article>
 
       </div>
@@ -485,7 +531,7 @@
           <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">📦</div>
           <div class="res-card-eyebrow">DHL · sin hielo seco · ES</div>
           <h3>Procedimiento de envío SIN hielo seco DHL</h3>
-          <p>Procedimiento DHL para muestras <strong>estables a temperatura ambiente</strong> (Sanger CES, DNA liofilizado, oligos). Sin dry-ice. Más económico y ágil.</p>
+          <p>Procedimiento DHL para muestras <strong>estables a temperatura ambiente</strong> (Sanger, DNA liofilizado, oligos). Sin dry-ice. Más económico y ágil.</p>
           <div class="res-card-meta"><span>PDF · ES</span><span>v.2026</span></div>
           <a class="res-card-cta" href="assets/docs/guias-usuario/envios-dhl/dhl-envio-sin-hielo-seco-ES.pdf" target="_blank" rel="noopener">Descargar PDF →</a>
         </article>
@@ -494,7 +540,7 @@
           <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">📦</div>
           <div class="res-card-eyebrow">DHL · without dry ice · EN</div>
           <h3>DHL Shipping procedure (without dry ice)</h3>
-          <p>DHL procedure for samples <strong>stable at ambient temperature</strong> (Sanger CES, lyophilized DNA, oligos). No dry-ice required. More economical and faster.</p>
+          <p>DHL procedure for samples <strong>stable at ambient temperature</strong> (Sanger, lyophilized DNA, oligos). No dry-ice required. More economical and faster.</p>
           <div class="res-card-meta"><span>PDF · EN</span><span>v.2026</span></div>
           <a class="res-card-cta" href="assets/docs/guias-usuario/envios-dhl/dhl-shipping-without-dry-ice-EN.pdf" target="_blank" rel="noopener">Download PDF →</a>
         </article>
@@ -526,7 +572,7 @@
           <div class="res-card-icon" style="background:#EAF6E5; color:var(--mc-green);">📦</div>
           <div class="res-card-eyebrow">FedEx · without dry ice · EN</div>
           <h3>FedEx Shipping procedure (without dry ice)</h3>
-          <p>FedEx procedure for samples <strong>stable at ambient temperature</strong> (Sanger CES, DNA lyophilized, primers, oligos). Free shipping with &gt;20 Sanger reactions.</p>
+          <p>FedEx procedure for samples <strong>stable at ambient temperature</strong> (Sanger, DNA lyophilized, primers, oligos). Free shipping with &gt;20 Sanger reactions.</p>
           <div class="res-card-meta"><span>PDF · EN</span><span>v.2026</span></div>
           <a class="res-card-cta" href="assets/docs/guias-usuario/envios-fedex/fedex-shipping-without-dry-ice-EN.pdf" target="_blank" rel="noopener">Download PDF →</a>
         </article>
@@ -943,7 +989,7 @@
           <h3>dna.macrogen.com · acceso unificado</h3>
           <p>Portal único para cotizar, registrar pedidos, hacer seguimiento, descargar resultados y gestionar facturación. Soporta multi-usuario por institución y exportes para purchasing.</p>
           <div class="res-card-meta"><span>Web</span><span>Multi-país</span></div>
-          <a class="res-card-cta" href="https://dna.macrogen.com" target="_blank" rel="noopener">Abrir portal ↗</a>
+          <a class="res-card-cta" href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener">Abrir portal ↗</a>
         </article>
 
         <article class="res-card">
@@ -952,7 +998,7 @@
           <h3>Datos de pago &amp; facturación</h3>
           <p>Facturación en <strong>USD (Chile/Perú)</strong> o <strong>EUR (España/Portugal)</strong>. Transferencia bancaria o tarjeta corporativa. Net 30 disponible para clientes institucionales validados.</p>
           <div class="res-card-meta"><span>Multi-moneda</span><span>Net 30</span></div>
-          <a class="res-card-cta" href="contacto.html">Solicitar Net 30 →</a>
+          <a class="res-card-cta" href="contacto">Solicitar Net 30 →</a>
         </article>
 
       </div>
@@ -969,8 +1015,8 @@
       <h2>Si no encontraste el documento que buscas.</h2>
       <p>Pídelo a nuestro equipo técnico en Madrid o Santiago — respondemos en menos de 24 horas con la guía, protocolo o sample report adecuado a tu proyecto.</p>
       <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
-        <a href="contacto.html" class="btn btn-primary">Contactar al equipo técnico →</a>
-        <a href="faq.html" class="btn btn-ghost">Ver FAQ</a>
+        <a href="contacto" class="btn btn-primary">Contactar al equipo técnico →</a>
+        <a href="faq" class="btn btn-ghost">Ver FAQ</a>
       </div>
     </div>
   </div>
@@ -983,11 +1029,11 @@
     <div class="brand-strip-motto">
       <span>One Team. One Macrogen.</span>
     </div>
-    <a href="contacto.html" class="brand-strip-cta">
+    <a href="contacto" class="brand-strip-cta">
       <span data-i18n="brand_strip.cta">Cuéntanos sobre tu proyecto</span>
       <span class="brand-strip-cta-arrow">→</span>
     </a>
-    <p class="brand-strip-cta-sub" data-i18n="brand_strip.cta_sub">Especialista NGS / CES / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
+    <p class="brand-strip-cta-sub" data-i18n="brand_strip.cta_sub">Especialista NGS / Sanger / Síntesis · respuesta en &lt;24 h hábiles desde Madrid o Santiago</p>
     <p class="brand-strip-regions">España · Portugal · Chile · Perú · Iberoamérica</p>
   </div>
 </section>
@@ -1004,22 +1050,22 @@
       </div>
       <div>
         <h4 data-i18n="footer.services_heading">Servicios</h4>
-        <a href="servicios/wgs.html">WGS</a>
-        <a href="servicios/wes.html">WES</a>
-        <a href="servicios/rna-seq.html">RNA-Seq</a>
-        <a href="servicios/single-cell.html">Single Cell</a>
-        <a href="servicios/metagenoma.html">Metagenómica</a>
-        <a href="servicios/sanger.html">Sanger / CES</a>
-        <a href="servicios.html" data-i18n="footer.service_view_all">Ver todos →</a>
+        <a href="servicios/wgs-genoma-completo">WGS</a>
+        <a href="servicios/wes-exoma">WES</a>
+        <a href="servicios/rna-seq-transcriptoma">RNA-Seq</a>
+        <a href="servicios/single-cell">Single Cell</a>
+        <a href="servicios/metagenomica-16s">Metagenómica</a>
+        <a href="servicios/secuenciacion-sanger">Sanger</a>
+        <a href="servicios" data-i18n="footer.service_view_all">Ver todos →</a>
       </div>
       <div>
         <h4 data-i18n="footer.company_heading">Compañía</h4>
-        <a href="nosotros.html" data-i18n="nav.about">Nosotros</a>
-        <a href="blog.html" data-i18n="nav.blog">Blog</a>
-        <a href="recursos.html">Recursos</a>
-        <a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a>
-        <a href="faq.html" data-i18n="nav.faq">FAQ</a>
-        <a href="contacto.html" data-i18n="nav.contact">Contacto</a>
+        <a href="nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="blog" data-i18n="nav.blog">Blog</a>
+        <a href="recursos">Recursos</a>
+        <a href="newsletter" data-i18n="nav.newsletter">Newsletter</a>
+        <a href="faq" data-i18n="nav.faq">FAQ</a>
+        <a href="contacto" data-i18n="nav.contact">Contacto</a>
       </div>
       <div>
         <h4 data-i18n="footer.hubs_heading">Hubs</h4>
@@ -1035,9 +1081,9 @@
     <div class="footer-bottom">
       <span>© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span>
       <span>
-        <a href="privacidad.html">Privacidad</a>
-        <a href="terminos.html">Términos</a>
-        <a href="https://dna.macrogen.com" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a>
+        <a href="privacidad">Privacidad</a>
+        <a href="terminos">Términos</a>
+        <a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a>
       </span>
     </div>
   </div>

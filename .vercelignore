@@ -11,6 +11,10 @@ outputs/
 emails/
 reports_EN/
 
+# Plantillas de referencia del menú y el pie (fuente de verdad, no se publican)
+_nav.html
+_footer.html
+
 # Repo plumbing
 .git/
 .gitignore

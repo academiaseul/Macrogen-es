@@ -36,7 +36,7 @@
   "common": {
     "btn_quote": "Request a quote",
     "btn_quote_arrow": "Request a quote →",
-    "btn_order_now": "Order Now ↗",
+    "btn_order_now": "Place order ↗",
     "btn_services": "View services",
     "btn_catalog": "View catalog →",
     "btn_contact": "Contact",
@@ -44,11 +44,10 @@
     "btn_more": "Read more →"
   },
   "hero_index": {
-    "eyebrow": "One Team · One Macrogen · Madrid + Santiago",
-    "title_part1": "Humanizing",
-    "title_accent": "genomics",
-    "title_part2": "across Ibero-America.",
-    "lead": "We are the joint operation of <strong>Macrogen Spain</strong> and <strong>Macrogen Chile</strong>: two hubs, one network, serving the scientific community of Spain, Portugal, Chile and Peru. Over 18,000 clients in 150 countries trust the global Macrogen platform — now with local support from Madrid and Santiago, in your language and time zone. Billing in USD or EUR."
+    "eyebrow": "Humanizing genomics · Madrid + Santiago",
+    "title_part1": "DNA sequencing and NGS services,",
+    "title_accent": "with support in Spanish.",
+    "lead": "Sanger, NGS, microarrays, oligo synthesis and bioinformatics. In-house laboratories in <strong style=\"color:#fff;\">Madrid</strong> and <strong style=\"color:#fff;\">Santiago</strong>, replies within 24 business hours and Sanger results in 24–48 h. Over 18,000 customers in 150 countries trust the global Macrogen platform. Invoicing in EUR or USD."
   },
   "hero_nosotros": {
     "eyebrow": "About us",
@@ -176,7 +175,7 @@
   "promo_sanger": {
     "eyebrow": "Launch · Sanger Promo",
     "discount": "10%",
-    "title": "10% OFF Sanger Sequencing (CES)",
+    "title": "10% OFF Sanger Sequencing (Sanger)",
     "subtitle": "Applies to all Sanger web quotes across Spain, Portugal, Chile and Peru · ABI 3730xl",
     "code_label": "Use code:",
     "code": "SANGER10",
@@ -189,7 +188,7 @@
   },
   "promo_banner": {
     "title": "We'll apply your Sanger discount",
-    "subtitle": "Code <code>{code}</code> · 10% off Sanger (CES) · valid through Aug 31, 2026"
+    "subtitle": "Code <code>{code}</code> · 10% off Sanger · valid through Aug 31, 2026"
   },
   "megamenu": {
     "ngs_title": "NGS · Sequencing <span class=\"count\">(6)</span>",
@@ -199,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "CES · Sanger <span class=\"count\">(1)</span>",
+    "ces_title": "Sanger · Capillary electrophoresis <span class=\"count\">(4)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48h",
     "other_title": "Analysis & Other <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",
@@ -211,7 +210,7 @@
     "gene_sub": "From $180 · Sanger validation",
     "featured_title": "Featured this month",
     "featured_sanger_title": "🔥 SANGER10 · 10% OFF",
-    "featured_sanger_sub": "Sanger CES through Aug 31 · ES · PT · CL · PE",
+    "featured_sanger_sub": "Sanger through Aug 31 · ES · PT · CL · PE",
     "featured_oligo_title": "✨ 4-in-1 Synthesis",
     "featured_oligo_sub": "DNA · RNA · Peptides · Genes",
     "footer_text": "10 genomic services · 1 single window · Madrid + Santiago",
@@ -244,7 +243,7 @@
   },
   "brand_strip": {
     "cta": "Tell us about your project",
-    "cta_sub": "NGS / CES / Synthesis specialist · reply within 24 business hours from Madrid or Santiago"
+    "cta_sub": "NGS / Sanger / Synthesis specialist · reply within 24 business hours from Madrid or Santiago"
   },
   "consent": {
     "text": "We use analytics cookies (GA4 and Clarity) to understand how the site is used and improve it. They only activate if you accept.",

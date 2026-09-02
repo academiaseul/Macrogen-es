@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanger CES vs NGS: cuándo elegir cada uno para validación | Blog Macrogen Iberoamérica</title>
-<meta name="description" content="Guía técnica para decidir entre Sanger CES y NGS según la pregunta científica. Costos, sensibilidad, casos de uso, workflow combinado discovery+validation.">
+<title>Sanger vs NGS: cuándo elegir cada uno para validación | Blog Macrogen Iberoamérica</title>
+<meta name="description" content="Guía técnica para decidir entre Sanger y NGS según la pregunta científica. Costos, sensibilidad, casos de uso, workflow combinado discovery+validation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,22 +14,22 @@
 <meta name="theme-color" content="#001E62">
 <link rel="stylesheet" href="../assets/css/main.css">
 
-<link rel="canonical" href="https://macrogen-es.com/blog/sanger-vs-ngs-validacion.html">
+<link rel="canonical" href="https://macrogen-es.com/blog/sanger-vs-ngs-validacion">
 <meta name="robots" content="index, follow, max-image-preview:large">
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="Macrogen Iberoamérica">
-<meta property="og:url" content="https://macrogen-es.com/blog/sanger-vs-ngs-validacion.html">
-<meta property="og:title" content="Sanger CES vs NGS: cuándo elegir cada uno para validación | Macrogen Blog">
-<meta property="og:description" content="Guía técnica para decidir entre Sanger CES y NGS según la pregunta científica. Costos, sensibilidad, casos de uso, workflow combinado discovery+validation.">
+<meta property="og:url" content="https://macrogen-es.com/blog/sanger-vs-ngs-validacion">
+<meta property="og:title" content="Sanger vs NGS: cuándo elegir cada uno para validación | Macrogen Blog">
+<meta property="og:description" content="Guía técnica para decidir entre Sanger y NGS según la pregunta científica. Costos, sensibilidad, casos de uso, workflow combinado discovery+validation.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&h=630&q=80">
 <meta property="article:published_time" content="2026-06-04">
 <meta property="article:section" content="Sanger · CES">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sanger CES vs NGS: cuándo elegir cada uno para validación">
-<meta name="twitter:description" content="Guía técnica para decidir entre Sanger CES y NGS según la pregunta científica. Costos, sensibilidad, casos de uso, workf">
+<meta name="twitter:title" content="Sanger vs NGS: cuándo elegir cada uno para validación">
+<meta name="twitter:description" content="Guía técnica para decidir entre Sanger y NGS según la pregunta científica. Costos, sensibilidad, casos de uso, workf">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&h=630&q=80">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
@@ -41,15 +41,15 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Sanger CES vs NGS: cuándo elegir cada uno para validación",
-  "description": "Guía técnica para decidir entre Sanger CES y NGS según la pregunta científica. Costos, sensibilidad, casos de uso, workflow combinado discovery+validation.",
+  "headline": "Sanger vs NGS: cuándo elegir cada uno para validación",
+  "description": "Guía técnica para decidir entre Sanger y NGS según la pregunta científica. Costos, sensibilidad, casos de uso, workflow combinado discovery+validation.",
   "datePublished": "2026-06-04",
   "dateModified": "2026-06-04",
   "inLanguage": "es",
-  "url": "https://macrogen-es.com/blog/sanger-vs-ngs-validacion.html",
+  "url": "https://macrogen-es.com/blog/sanger-vs-ngs-validacion",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://macrogen-es.com/blog/sanger-vs-ngs-validacion.html"
+    "@id": "https://macrogen-es.com/blog/sanger-vs-ngs-validacion"
   },
   "image": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&h=630&q=80",
   "author": {
@@ -75,70 +75,73 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a href="../index.html" class="nav-logo" aria-label="Macrogen Iberoamérica">
+    <a href="/" class="nav-logo" aria-label="Macrogen Iberoamérica">
       <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img">
       <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
     </a>
     <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
     <ul class="nav-menu">
-      <li class="nav-dropdown"><a href="../servicios.html" data-i18n="nav.services">Servicios</a>
+      <li class="nav-dropdown"><a href="../servicios" data-i18n="nav.services">Servicios</a>
         <div class="nav-megamenu" aria-label="Catálogo de servicios">
           <div class="megamenu-col">
             <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
-            <a href="../servicios/wgs.html"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
-            <a href="../servicios/wes.html"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
-            <a href="../servicios/rna-seq.html"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
-            <a href="../servicios/single-cell.html"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
-            <a href="../servicios/metagenoma.html"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
-            <a href="../servicios/epigenoma.html"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+            <a href="../servicios/wgs-genoma-completo"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes-exoma"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq-transcriptoma"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenomica-16s"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
           </div>
           <div class="megamenu-col">
-            <h5 data-i18n-html="megamenu.ces_title">CES · Sanger <span class="count">(1)</span></h5>
-            <a href="../servicios/sanger.html"><strong>Sanger / CES</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <h5 data-i18n-html="megamenu.ces_title">Sanger · Electroforesis capilar <span class="count">(4)</span></h5>
+            <a href="../servicios/secuenciacion-sanger"><strong>Sanger</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <a href="../servicios/analisis-de-fragmentos"><strong>Análisis de fragmentos</strong><small>GeneScan · SSR · MSI</small></a>
+            <a href="../servicios/identificacion-bacteriana-16s"><strong>Identificación 16S/ITS</strong><small>Bacterias · hongos · BLAST</small></a>
+            <a href="../servicios/autenticacion-lineas-celulares-str"><strong>Cell Line ID · STR</strong><small>PowerPlex 6c · ICLAC</small></a>
             <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis &amp; Otros <span class="count">(2)</span></h5>
-            <a href="../servicios/microarray.html"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
-            <a href="../servicios/bioinformatica.html"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+            <a href="../servicios/microarrays"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
           </div>
           <div class="megamenu-col">
             <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos &amp; Genes <span class="count">(4)</span></h5>
-            <a href="../servicios/oligo.html#servicios"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
-            <a href="../servicios/oligo.html#servicios"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
-            <a href="../servicios/oligo.html#servicios"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
-            <a href="../servicios/oligo.html#servicios"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+            <a href="../servicios/sintesis-oligos-adn"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/sintesis-oligos-arn"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/sintesis-peptidos"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/sintesis-de-genes"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
           </div>
           <div class="megamenu-footer">
             <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
-            <a href="../servicios.html" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+            <a href="../servicios" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
           </div>
         </div>
       </li>
-      <li><a href="../cotizador.html">NGS Explorador</a></li>
-      <li><a href="../blog.html" class="active" data-i18n="nav.blog">Blog</a></li>
-      <li class="nav-dropdown nav-more"><a href="../recursos.html" aria-haspopup="true" aria-expanded="false">Recursos</a>
+      <li><a href="../cotizador">NGS Explorador</a></li>
+      <li><a href="../blog" class="active" data-i18n="nav.blog">Blog</a></li>
+      <li class="nav-dropdown nav-more"><a href="../recursos" aria-haspopup="true" aria-expanded="false">Recursos</a>
         <div class="nav-more-menu" aria-label="Recursos y documentación">
-          <a href="../recursos.html">Centro de recursos</a>
-          <a href="../faq.html" data-i18n="nav.faq">FAQ</a>
-          <a href="../certificaciones.html">Certificaciones</a>
-          <a href="../esg.html">ESG</a>
-          <a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a>
+          <a href="../recursos">Centro de recursos</a>
+          <a href="../faq" data-i18n="nav.faq">FAQ</a>
+          <a href="../certificaciones">Certificaciones</a>
+          <a href="../esg">ESG</a>
+          <a href="../newsletter" data-i18n="nav.newsletter">Newsletter</a>
         </div>
       </li>
-      <li><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a></li>
-      <li><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></li>
-      <li><a href="https://dna.macrogen.com" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
+      <li><a href="../nosotros" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="../contacto" data-i18n="nav.contact">Contacto</a></li>
+      <li><a href="https://dna.macrogen.com/?utm_source=web-es" class="nav-order" target="_blank" rel="noopener" data-i18n="nav.orders">Pedidos ↗</a></li>
       <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
-      <li class="nav-cta"><a href="../contacto.html" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
+      <li class="nav-cta"><a href="../contacto" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Cotizar</a></li>
     </ul>
   </div>
 </header>
 
 <article id="main" class="article">
   <div class="container-narrow">
-    <div class="breadcrumb"><a href="../blog.html">Blog</a> <span class="sep">/</span> Sanger · CES</div>
+    <div class="breadcrumb"><a href="../blog">Blog</a> <span class="sep">/</span> Sanger · CES</div>
 
     <header class="article-header">
       <div class="meta"><span class="cat">Sanger · CES</span> · 4 junio 2026 · 8 min de lectura</div>
-      <h1>Sanger CES vs NGS: cuándo elegir cada uno para validación de variantes.</h1>
+      <h1>Sanger vs NGS: cuándo elegir cada uno para validación de variantes.</h1>
       <p style="font-size:1.1rem; color:var(--mc-mute); margin-bottom:0;">Las dos tecnologías no compiten — se complementan. Esta guía te ayuda a decidir qué usar en cada etapa de tu proyecto: discovery, validación, screening o reporte clínico.</p>
     </header>
 
@@ -194,9 +197,9 @@
           <tr><th>Necesidad</th><th>Mejor opción</th></tr>
         </thead>
         <tbody>
-          <tr><td>Validar 1-5 variantes específicas detectadas por NGS</td><td><strong style="color:var(--mc-red);">Sanger CES</strong></td></tr>
-          <tr><td>Confirmar identidad de un clon / plásmido / inserto</td><td><strong style="color:var(--mc-red);">Sanger CES</strong></td></tr>
-          <tr><td>Identificación de cepas microbianas (16S/ITS)</td><td><strong style="color:var(--mc-red);">Sanger CES</strong></td></tr>
+          <tr><td>Validar 1-5 variantes específicas detectadas por NGS</td><td><strong style="color:var(--mc-red);">Sanger</strong></td></tr>
+          <tr><td>Confirmar identidad de un clon / plásmido / inserto</td><td><strong style="color:var(--mc-red);">Sanger</strong></td></tr>
+          <tr><td>Identificación de cepas microbianas (16S/ITS)</td><td><strong style="color:var(--mc-red);">Sanger</strong></td></tr>
           <tr><td>Genotipado de microsatélites (STR · MLPA)</td><td><strong style="color:var(--mc-red);">Sanger Fragment Analysis</strong></td></tr>
           <tr><td>Descubrir variantes desconocidas en un genoma completo</td><td><strong style="color:var(--mc-teal);">NGS · WGS</strong></td></tr>
           <tr><td>Análisis de exoma (regiones codificantes)</td><td><strong style="color:var(--mc-teal);">NGS · WES</strong></td></tr>
@@ -230,7 +233,7 @@
         <ol style="margin:0; font-size:13.5px; line-height:1.65;">
           <li>WES o WGS del paciente trio (padre, madre, hijo afectado) → DESeq pipeline filtra variantes candidatas.</li>
           <li>Filtros bioinformáticos reducen el conjunto a 5-10 variantes candidatas con potencial patogénico.</li>
-          <li><strong>Sanger CES valida cada variante</strong> en padre, madre e hijo para confirmar herencia y descartar artefactos NGS.</li>
+          <li><strong>Sanger valida cada variante</strong> en padre, madre e hijo para confirmar herencia y descartar artefactos NGS.</li>
           <li>Solo las variantes confirmadas por Sanger entran al reporte clínico ACMG.</li>
         </ol>
       </div>
@@ -238,7 +241,7 @@
       <p>Este pipeline reduce falsos positivos cerca de cero y satisface los criterios ACMG-AMP para reportes de patogenicidad.</p>
 
       <h2>5. Costos comparados · cuándo el ahorro inclina la balanza</h2>
-      <p>Para Macrogen Iberoamérica, las tarifas Sanger CES (USD/EUR) son:</p>
+      <p>Para Macrogen Iberoamérica, las tarifas Sanger (USD/EUR) son:</p>
       <ul>
         <li><strong>Premix Tube</strong>: $4,5 / muestra (€4,2) — el más económico</li>
         <li><strong>Standard tube</strong>: $5 / reacción (€4,7)</li>
@@ -259,13 +262,13 @@
       </ul>
 
       <h2>7. Acceso desde Iberoamérica</h2>
-      <p>Macrogen Iberoamérica ofrece <strong>Sanger CES con TAT 24-48h</strong> desde Madrid (España, Portugal) y Santiago (Chile, Perú), con 96 primers universales gratuitos, BlastN incluido y soporte en español. Para NGS contamos con Illumina NovaSeq X Plus + PacBio Revio para long-reads.</p>
+      <p>Macrogen Iberoamérica ofrece <strong>Sanger con TAT 24-48h</strong> desde Madrid (España, Portugal) y Santiago (Chile, Perú), con 96 primers universales gratuitos, BlastN incluido y soporte en español. Para NGS contamos con Illumina NovaSeq X Plus + PacBio Revio para long-reads.</p>
 
       <div style="background:linear-gradient(135deg,#FEF7E8,#FFE9D6); border:1.5px solid #F5A623; border-radius:12px; padding:20px 24px; margin:32px 0;">
         <strong style="color:#D97706; display:block; margin-bottom:6px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;">🎉 Promo de lanzamiento</strong>
-        <h3 style="margin:0 0 10px; font-size:18px;">10% OFF en tu primer pedido Sanger CES</h3>
+        <h3 style="margin:0 0 10px; font-size:18px;">10% OFF en tu primer pedido Sanger</h3>
         <p style="font-size:13.5px; margin:0 0 14px;">Usa el código <code style="background:#1B2A57; color:#fff; padding:2px 8px; border-radius:4px; font-weight:700;">SANGER10</code> en tu cotización web hasta el 31 de agosto de 2026.</p>
-        <a href="../contacto.html?promo=SANGER10&servicio=sanger" class="btn btn-primary" style="font-size:14px;">Cotizar Sanger con SANGER10 →</a>
+        <a href="../contacto?servicio=sanger" class="btn btn-primary" style="font-size:14px;">Cotizar Sanger con SANGER10 →</a>
       </div>
 
       <p style="margin-top:32px; padding-top:24px; border-top:1px solid var(--mc-border); font-size:13px; color:var(--mc-mute);">
@@ -280,11 +283,11 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand"><img src="../assets/img/logo.png" alt="Macrogen" class="logo-img" loading="lazy" decoding="async"><h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4><p style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-teal); font-weight:700; margin-bottom:14px;" data-i18n="footer.brand_countries">ES · PT · CL · PE</p><p data-i18n-html="footer.brand_description">Operación conjunta Macrogen Spain + Chile.</p><p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p></div>
-      <div><h4 data-i18n="footer.services_heading">Servicios</h4><a href="../servicios/wgs.html">WGS</a><a href="../servicios/sanger.html">Sanger</a><a href="../servicios/oligo.html">Oligo</a><a href="../servicios.html" data-i18n="footer.service_view_all">Ver todos →</a></div>
-      <div><h4 data-i18n="footer.company_heading">Compañía</h4><a href="../nosotros.html" data-i18n="nav.about">Nosotros</a><a href="../blog.html" data-i18n="nav.blog">Blog</a><a href="../newsletter.html" data-i18n="nav.newsletter">Newsletter</a><a href="../faq.html" data-i18n="nav.faq">FAQ</a><a href="../contacto.html" data-i18n="nav.contact">Contacto</a></div>
+      <div><h4 data-i18n="footer.services_heading">Servicios</h4><a href="../servicios/wgs-genoma-completo">WGS</a><a href="../servicios/secuenciacion-sanger">Sanger</a><a href="../servicios/sintesis">Oligo</a><a href="../servicios" data-i18n="footer.service_view_all">Ver todos →</a></div>
+      <div><h4 data-i18n="footer.company_heading">Compañía</h4><a href="../nosotros" data-i18n="nav.about">Nosotros</a><a href="../blog" data-i18n="nav.blog">Blog</a><a href="../newsletter" data-i18n="nav.newsletter">Newsletter</a><a href="../faq" data-i18n="nav.faq">FAQ</a><a href="../contacto" data-i18n="nav.contact">Contacto</a></div>
       <div><h4 data-i18n="footer.hubs_heading">Hubs</h4><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇪🇸 Madrid</strong><br>+34 911 138 378</p><p style="font-size:12px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;"><strong style="color:#fff;">🇨🇱 Santiago</strong><br>+56 9 5845 1395</p><a href="mailto:info-spain@macrogen.com" style="font-size:12px;">🇪🇸 info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12px;">🇨🇱 info-chile@macrogen.com</a></div>
     </div>
-    <div class="footer-bottom"><span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span><span><a href="../privacidad.html" data-i18n="footer.privacy">Privacidad</a><a href="../terminos.html" data-i18n="footer.terms">Términos</a><a href="https://dna.macrogen.com" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a></span></div>
+    <div class="footer-bottom"><span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span><span><a href="../privacidad" data-i18n="footer.privacy">Privacidad</a><a href="../terminos" data-i18n="footer.terms">Términos</a><a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener" data-i18n="footer.global_portal">Portal global ↗</a></span></div>
   </div>
 </footer>
 
