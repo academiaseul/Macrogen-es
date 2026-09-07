@@ -138,27 +138,27 @@
     </header>
 
     <div class="article-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>La acuicultura es uno de los campos donde la metagenómica 16S está pasando más rápido del paper a la práctica: el microbioma intestinal del salmón se asocia con crecimiento, conversión de alimento y resistencia a patógenos. Más que los resultados — que corresponden contar a los equipos investigadores — queremos compartir las cinco lecciones metodológicas que dejó el trabajo conjunto, porque aplican a casi cualquier estudio de microbioma.</p>
 
       <h2>Lección 1 · El muestreo importa más que el pipeline</h2>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>La mayor fuente de variabilidad del estudio no fue bioinformática: fue preanalítica. Mucosa intestinal y contenido digestivo dan perfiles distintos; el tiempo entre eutanasia y congelación altera las proporciones; y una cadena de frío inconsistente entre centros de cultivo introduce señales espurias que ningún algoritmo elimina después. La regla que quedó: protocolo de muestreo escrito, idéntico en todos los sitios, congelación inmediata — y solo entonces preocuparse del análisis.</p>
 
       <h2>Lección 2 · DADA2 ha llegado para quedarse</h2>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <p>El procesamiento con DADA2 sustituye el agrupamiento clásico de OTUs al 97 % por variantes exactas de secuencia (ASVs), que se corrigen por el perfil de error de cada corrida. En la práctica eso significó dos cosas: resolución suficiente para separar taxones que un OTU fusionaba, y — clave en un proyecto multi-lote — resultados comparables entre corridas distintas, porque las ASVs son secuencias exactas reutilizables y no clústeres dependientes del conjunto de datos.</p>
 
       <blockquote>"Pasar de OTUs al 97% a ASVs cambió completamente cómo interpretamos la diversidad alfa de las muestras intestinales."</blockquote>
 
       <h2>Lección 3 · La región V3-V4 sigue siendo un buen estándar</h2>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+      <p>Se evaluaron alternativas, pero la región hipervariable V3-V4 del gen 16S siguió siendo el mejor compromiso: resolución taxonómica razonable a nivel de género, primers universales bien caracterizados, amplicón que encaja en lecturas pareadas de 300 nt y — no menor — comparabilidad directa con la mayoría de la literatura de microbioma de peces, que usa la misma región.</p>
 
       <h2>Lección 4 · Los controles negativos no son opcionales</h2>
-      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+      <p>Los reactivos de extracción y de PCR traen su propio fondo bacteriano (el famoso «kitome»), y en muestras de baja biomasa ese fondo puede dominar la señal. Incluir blancos de extracción y de PCR en cada lote permitió identificar y restar computacionalmente los contaminantes recurrentes. Sin esos controles, varios taxones «interesantes» habrían llegado hasta la discusión del manuscrito siendo, en realidad, química de laboratorio.</p>
 
       <h2>Lección 5 · Compartir datos crudos es ganar tiempo</h2>
-      <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+      <p>Acordar desde el día uno que los FASTQ crudos y los metadatos viajarían juntos — mismo formato de tabla, mismos nombres de muestra — evitó semanas de idas y vueltas entre equipos. Depositar los datos en un repositorio público al cerrar cada etapa no solo facilita la publicación (la mayoría de las revistas ya lo exige): permite que cualquier socio re-analice con otro pipeline sin pedir permisos ni archivos por correo.</p>
 
       <h2>Próximos pasos</h2>
-      <p>Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.</p>
+      <p>El 16S responde «quién está»; la siguiente pregunta es «qué hacen». La continuación natural es metagenómica shotgun en un subconjunto de muestras — resolución a nivel de especie y perfil funcional (genes de resistencia, rutas metabólicas) — y series temporales para separar la sucesión ecológica del efecto del tratamiento. Ambos diseños se benefician de todo lo aprendido arriba: el muestreo y los controles pesan aún más cuando la señal es más rica.</p>
 
       <hr>
       <p style="color:var(--mc-mute); font-size:.95rem;"><em>¿Trabajas en acuicultura, microbioma ambiental o salud animal? <a href="../servicios/metagenomica-16s">Conoce nuestros servicios de metagenómica</a> o <a href="../contacto">conversemos sobre tu proyecto</a>.</em></p>
