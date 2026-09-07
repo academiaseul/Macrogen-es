@@ -277,6 +277,24 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://macrogen-es.com/blog/que-es-secuenciacion-sanger</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/como-interpretar-cromatograma-sanger</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://macrogen-es.com/blog/como-preparar-muestras-secuenciacion-sanger</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://macrogen-es.com/blog/sanger-vs-ngs-validacion</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>yearly</changefreq>
