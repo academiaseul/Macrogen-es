@@ -26,7 +26,7 @@
     es: 'Español',
     en: 'English',
     pt: 'Português',
-    ko: '한국어'
+    ko: 'KR'
   };
 
   // ============ Path resolution ============
@@ -245,7 +245,7 @@
       bar.setAttribute('translate', 'no');
       bar.setAttribute('role', 'group');
       bar.setAttribute('aria-label', 'Idioma / Language');
-      const SEG_LABELS = { es: 'ES', en: 'EN', pt: 'PT', ko: '한국어' };
+      const SEG_LABELS = { es: 'ES', en: 'EN', pt: 'PT', ko: 'KR' };
       SUPPORTED.forEach(lang => {
         const b = document.createElement('button');
         b.type = 'button';
