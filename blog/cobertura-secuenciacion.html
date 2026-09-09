@@ -111,6 +111,7 @@
           </div>
           <div class="megamenu-footer">
             <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../recursos/primer-designer" class="view-all">Primer Designer · gratis →</a>
             <a href="../servicios" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
           </div>
         </div>
@@ -138,10 +139,11 @@
     </header>
 
     <div class="article-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Es la pregunta que recibimos en casi todas las cotizaciones de NGS: <strong>«¿a cuánta profundidad secuencio?»</strong>. Y la respuesta honesta es que depende de la pregunta científica, no del presupuesto: pedir de más quema recursos que podrían ir a más muestras, y pedir de menos convierte el proyecto entero en datos poco concluyentes. Esta guía resume los números de consenso y, más importante, el razonamiento detrás de cada uno.</p>
 
       <h2>Cobertura: definición operativa</h2>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <p>La cobertura media es el número de veces que cada base del genoma queda leída, en promedio: (nº de lecturas × longitud de lectura) ÷ tamaño del genoma. Decir «30x» significa que una posición típica está cubierta por unas 30 lecturas independientes — y eso es lo que permite distinguir una variante real (presente en ~15 de 30 lecturas si es heterocigota) de un error de secuenciación aislado.</p>
+      <p>Dos matices que importan tanto como la media: la <strong>uniformidad</strong> (de nada sirve un promedio de 30x si regiones enteras quedan a 5x — por eso se reporta también el «% de bases ≥20x») y, en exoma, la distinción entre cobertura bruta y <strong>on-target</strong>: solo cuentan las lecturas que caen dentro de las regiones capturadas, después de eliminar duplicados de PCR.</p>
 
       <h2>Recomendaciones por aplicación</h2>
       <table class="spec-table">
@@ -155,14 +157,14 @@
       </table>
 
       <h2>Trade-offs reales</h2>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+      <p>El costo escala de forma casi lineal con la profundidad; la información, no. Para variantes germinales, la sensibilidad de detección de SNVs se acerca a su techo alrededor de 30x — subir a 60x encarece el proyecto sin apenas mejorar el llamado de variantes comunes. El caso somático es distinto: para detectar una mutación presente en el 5–10 % de las lecturas de un tumor heterogéneo, la estadística exige muchas más observaciones por posición, y por eso los diseños oncológicos parten de 60x (o cientos de x en paneles dirigidos).</p>
 
       <blockquote>"Doblar la cobertura no significa doblar la información. Tras cierto umbral, los retornos decrecen rápidamente."</blockquote>
 
-      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+      <p>La consecuencia práctica: cuando sobra presupuesto, casi siempre rinde más invertirlo en <strong>más muestras o más réplicas</strong> que en más profundidad. En RNA-Seq esto es especialmente claro — para expresión diferencial, 3 réplicas a 20M de lecturas superan con holgura a 1 muestra a 60M, porque la variabilidad biológica domina sobre la técnica.</p>
 
       <h2>Cuándo pedir long reads</h2>
-      <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+      <p>Hay preguntas donde la profundidad no resuelve el problema porque el límite es la <strong>longitud de la lectura</strong>: variantes estructurales y regiones repetitivas (donde las lecturas cortas no se alinean de forma única), ensamblajes <em>de novo</em> de organismos sin genoma de referencia, faseo de haplotipos e isoformas completas de ARN. Para esos casos ofrecemos PacBio (HiFi) — y a menudo la estrategia ganadora es híbrida: long reads para armar el esqueleto y lecturas cortas Illumina para pulir la exactitud por base a bajo costo.</p>
 
       <hr>
       <p style="color:var(--mc-mute); font-size:.95rem;"><em>¿Diseñando un proyecto y dudas sobre profundidad? <a href="../contacto">Agenda 30 minutos con nuestro equipo</a> — análisis de poder estadístico incluido.</em></p>
@@ -201,6 +203,7 @@
       <div>
         <h4>Recursos</h4>
         <a href="../recursos">Centro de recursos</a>
+        <a href="../recursos/primer-designer">Primer Designer</a>
         <a href="../faq" data-i18n="nav.faq">FAQ</a>
         <a href="../certificaciones">Certificaciones</a>
         <a href="../esg">ESG</a>

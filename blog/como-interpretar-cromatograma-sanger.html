@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo interpretar un cromatograma Sanger | Blog Macrogen Iberoamérica</title>
+<meta name="description" content="Guía práctica para leer un cromatograma Sanger: valores Phred, picos dobles, ruido de fondo, caída de señal y cuándo repetir la reacción. Con soluciones para cada problema.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#001E62">
+<link rel="stylesheet" href="../assets/css/main.css">
+
+<link rel="canonical" href="https://macrogen-es.com/blog/como-interpretar-cromatograma-sanger">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Macrogen Iberoamérica">
+<meta property="og:url" content="https://macrogen-es.com/blog/como-interpretar-cromatograma-sanger">
+<meta property="og:title" content="Cómo interpretar un cromatograma Sanger | Macrogen Blog">
+<meta property="og:description" content="Guía práctica para leer un cromatograma Sanger: valores Phred, picos dobles, ruido de fondo, caída de señal y cuándo repetir la reacción.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&h=630&q=80">
+<meta property="article:published_time" content="2026-09-07">
+<meta property="article:section" content="Sanger">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cómo interpretar un cromatograma Sanger">
+<meta name="twitter:description" content="Valores Phred, picos dobles, ruido de fondo, caída de señal y cuándo repetir la reacción. Con soluciones para cada problema.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&h=630&q=80">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
+
+
+<!-- ============ Schema.org BlogPosting ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Cómo interpretar un cromatograma Sanger",
+  "description": "Guía práctica para leer un cromatograma Sanger: valores Phred, picos dobles, ruido de fondo, caída de señal y cuándo repetir la reacción. Con soluciones para cada problema.",
+  "datePublished": "2026-09-07",
+  "dateModified": "2026-09-07",
+  "inLanguage": "es",
+  "url": "https://macrogen-es.com/blog/como-interpretar-cromatograma-sanger",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://macrogen-es.com/blog/como-interpretar-cromatograma-sanger"
+  },
+  "image": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&h=630&q=80",
+  "author": {
+    "@type": "Organization",
+    "name": "Macrogen Iberoamérica",
+    "url": "https://macrogen-es.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Macrogen Iberoamérica",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://macrogen-es.com/assets/img/logo.png"
+    }
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img" width="522" height="147">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li class="nav-dropdown"><a href="../servicios" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs-genoma-completo"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes-exoma"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq-transcriptoma"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenomica-16s"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">Sanger · Electroforesis capilar <span class="count">(4)</span></h5>
+            <a href="../servicios/secuenciacion-sanger"><strong>Sanger</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <a href="../servicios/analisis-de-fragmentos"><strong>Análisis de fragmentos</strong><small>GeneScan · SSR · MSI</small></a>
+            <a href="../servicios/identificacion-bacteriana-16s"><strong>Identificación 16S/ITS</strong><small>Bacterias · hongos · BLAST</small></a>
+            <a href="../servicios/autenticacion-lineas-celulares-str"><strong>Cell Line ID · STR</strong><small>PowerPlex 6c · ICLAC</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis &amp; Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarrays"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos &amp; Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/sintesis-oligos-adn"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/sintesis-oligos-arn"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/sintesis-peptidos"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/sintesis-de-genes"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../recursos/primer-designer" class="view-all">Primer Designer · gratis →</a>
+            <a href="../servicios" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="../cotizador" data-nav="cotizador">NGS Explorador</a></li>
+      <li><a href="../servicios" data-nav="precios">Precios</a></li>
+      <li><a href="../recursos" data-nav="recursos">Recursos</a></li>
+      <li><a href="../blog" class="active" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../nosotros" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="../contacto" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+      <li class="nav-cta"><a href="../contacto" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Solicitar cotización</a></li>
+    </ul>
+  </div>
+</header>
+
+<article id="main" class="article">
+  <div class="container-narrow">
+    <div class="breadcrumb"><a href="../blog">Blog</a> <span class="sep">/</span> Sanger</div>
+
+    <header class="article-header">
+      <div class="meta"><span class="cat">Sanger</span> · 7 septiembre 2026 · 9 min de lectura</div>
+      <h1>Cómo interpretar un cromatograma Sanger (y detectar problemas a tiempo).</h1>
+      <p style="font-size:1.1rem; color:var(--mc-mute); margin-bottom:0;">El archivo .ab1 que recibes con cada secuencia es mucho más que un respaldo: es la evidencia primaria de cada base. Esta guía te enseña a distinguir un resultado excelente de uno que conviene repetir — y a diagnosticar por qué falló.</p>
+    </header>
+
+    <figure style="margin:32px 0 40px; padding:0;">
+      <div style="background:#0A1929; border-radius:14px; padding:28px; box-shadow:0 8px 24px rgba(27,42,87,0.18);">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:18px;">
+          <!-- LEFT: clean chromatogram -->
+          <div style="background:#F8FAFC; border-radius:10px; padding:14px;">
+            <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:var(--mc-mute); text-transform:uppercase; margin-bottom:6px;">Cromatograma limpio · QV&gt;30</div>
+            <svg viewBox="0 0 280 70" style="width:100%; height:auto; display:block;" role="img" aria-label="Cromatograma de buena calidad: picos altos, nítidos y sin solapamiento">
+              <path d="M5,60 Q15,8 25,60" fill="none" stroke="#E0004D" stroke-width="2"/>
+              <path d="M30,60 Q40,12 50,60" fill="none" stroke="#00BFB2" stroke-width="2"/>
+              <path d="M55,60 Q65,10 75,60" fill="none" stroke="#84BD00" stroke-width="2"/>
+              <path d="M80,60 Q90,9 100,60" fill="none" stroke="#1B2A57" stroke-width="2"/>
+              <path d="M105,60 Q115,11 125,60" fill="none" stroke="#00BFB2" stroke-width="2"/>
+              <path d="M130,60 Q140,8 150,60" fill="none" stroke="#E0004D" stroke-width="2"/>
+              <path d="M155,60 Q165,12 175,60" fill="none" stroke="#84BD00" stroke-width="2"/>
+              <path d="M180,60 Q190,10 200,60" fill="none" stroke="#1B2A57" stroke-width="2"/>
+              <path d="M205,60 Q215,9 225,60" fill="none" stroke="#E0004D" stroke-width="2"/>
+              <path d="M230,60 Q240,11 250,60" fill="none" stroke="#00BFB2" stroke-width="2"/>
+              <line x1="0" y1="60" x2="280" y2="60" stroke="#DDE3EE" stroke-width="0.5"/>
+            </svg>
+            <div style="font-size:9px; color:var(--mc-mute); margin-top:6px; font-style:italic;">Picos nítidos, uniformes, línea base plana</div>
+          </div>
+          <!-- RIGHT: noisy chromatogram -->
+          <div style="background:#F8FAFC; border-radius:10px; padding:14px;">
+            <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:var(--mc-mute); text-transform:uppercase; margin-bottom:6px;">Cromatograma con problemas</div>
+            <svg viewBox="0 0 280 70" style="width:100%; height:auto; display:block;" role="img" aria-label="Cromatograma problemático: picos dobles superpuestos y ruido en la línea base">
+              <path d="M5,60 Q15,20 25,60" fill="none" stroke="#E0004D" stroke-width="2"/>
+              <path d="M10,60 Q20,26 30,60" fill="none" stroke="#84BD00" stroke-width="2" opacity="0.8"/>
+              <path d="M35,60 Q45,24 55,60" fill="none" stroke="#00BFB2" stroke-width="2"/>
+              <path d="M40,60 Q50,30 60,60" fill="none" stroke="#1B2A57" stroke-width="2" opacity="0.8"/>
+              <path d="M65,60 Q75,28 85,60" fill="none" stroke="#84BD00" stroke-width="2"/>
+              <path d="M70,60 Q80,34 90,60" fill="none" stroke="#E0004D" stroke-width="2" opacity="0.8"/>
+              <path d="M95,60 Q105,32 115,60" fill="none" stroke="#1B2A57" stroke-width="2"/>
+              <path d="M120,60 Q130,38 140,60" fill="none" stroke="#00BFB2" stroke-width="2"/>
+              <path d="M145,60 Q155,42 165,60" fill="none" stroke="#E0004D" stroke-width="2"/>
+              <path d="M170,60 Q180,46 190,60" fill="none" stroke="#84BD00" stroke-width="2"/>
+              <path d="M195,60 Q205,50 215,60" fill="none" stroke="#1B2A57" stroke-width="2"/>
+              <path d="M220,60 Q230,52 240,60" fill="none" stroke="#00BFB2" stroke-width="2"/>
+              <path d="M0,58 L280,54" stroke="#E0004D" stroke-width="0.6" opacity="0.5"/>
+              <path d="M0,56 L280,58" stroke="#84BD00" stroke-width="0.6" opacity="0.5"/>
+              <line x1="0" y1="60" x2="280" y2="60" stroke="#DDE3EE" stroke-width="0.5"/>
+            </svg>
+            <div style="font-size:9px; color:var(--mc-mute); margin-top:6px; font-style:italic;">Picos dobles, señal decreciente, ruido de fondo</div>
+          </div>
+        </div>
+        <div style="text-align:center; color:#fff; padding-top:10px; border-top:1px solid rgba(255,255,255,0.08);">
+          <span style="font-size:11px; letter-spacing:2.5px; font-weight:700; color:#3FA9C9; text-transform:uppercase;">🧬 Bueno vs problemático · aprende a distinguirlos</span>
+          <p style="font-size:13px; color:#A8C0E0; margin:8px 0 0;">A la izquierda, un resultado publicable. A la derecha, tres problemas distintos en un mismo cromatograma — abajo te enseñamos a diagnosticar cada uno.</p>
+        </div>
+      </div>
+    </figure>
+
+    <div class="article-body">
+      <p>Cada reacción de secuenciación Sanger entrega dos cosas: la secuencia de texto y el <strong>cromatograma .ab1</strong> con los picos de fluorescencia de las cuatro bases. La secuencia es la interpretación; el cromatograma es el dato. Aprender a leerlo te permite confirmar bases dudosas, detectar heterocigotos reales y saber si un resultado flojo se debe a la muestra, al primer o al molde — antes de repetir a ciegas. Si necesitas repasar cómo se genera ese cromatograma, empieza por <a href="que-es-secuenciacion-sanger">qué es la secuenciación Sanger</a>.</p>
+
+      <h2>1. Anatomía de un cromatograma sano</h2>
+      <p>Primero, el código de colores. En el electroferograma analizado, el software de Applied Biosystems muestra siempre el mismo convenio, independientemente de la química usada: <strong>A en verde, C en azul, G en negro y T en rojo</strong>. Merece la pena memorizarlo — es igual en Chromas, 4Peaks, SnapGene y compañía, porque todos leen el mismo .ab1.</p>
+      <p>Con eso claro, un buen resultado tiene un patrón muy reconocible:</p>
+      <ul>
+        <li><strong>Picos nítidos y separados</strong>, un solo color por posición, con altura relativamente uniforme.</li>
+        <li><strong>Línea base plana</strong>, sin picos secundarios apreciables bajo los principales.</li>
+        <li><strong>Los primeros 20–40 nt tras el primer son ruidosos</strong> — es intrínseco al método, no un defecto. Por eso conviene que el primer hibride 50–100 bases antes de la región de interés.</li>
+        <li><strong>Zona central larga de alta calidad</strong> (típicamente 500–850 bases con QV&gt;30 en un molde limpio).</li>
+        <li><strong>Degradación gradual al final</strong>: los picos se ensanchan y bajan a partir de ~700–1.000 nt. También es normal.</li>
+      </ul>
+
+      <h2>2. Valores Phred: qué significa QV20, QV30, QV40</h2>
+      <p>Cada base del .ab1 lleva un <strong>valor de calidad Phred (QV)</strong> asignado por el software de <em>base calling</em>. La escala es logarítmica:</p>
+      <p class="table-hint" aria-hidden="true">Desliza para ver la tabla completa →</p>
+      <div class="table-scroll">
+      <table class="spec-table">
+        <thead>
+          <tr><th>QV</th><th>Probabilidad de error</th><th>Exactitud</th><th>Lectura práctica</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>QV20</strong></td><td>1 / 100</td><td>99 %</td><td>Mínimo aceptable para análisis</td></tr>
+          <tr><td><strong>QV30</strong></td><td>1 / 1.000</td><td>99,9 %</td><td>Buena calidad · estándar de trabajo</td></tr>
+          <tr><td><strong>QV40</strong></td><td>1 / 10.000</td><td>99,99 %</td><td>Excelente · típico de la zona central</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Dos métricas útiles al evaluar una lectura: la <strong>longitud QV20+</strong> (cuántas bases superan QV20) y dónde empieza y termina la <strong>región recortable (<em>trimming</em>)</strong>. Para validar una variante, exige que la posición de interés caiga en la zona QV&gt;30 — nunca en los extremos.</p>
+
+      <h2>3. Los nueve problemas más comunes (y su causa probable)</h2>
+      <p>Esta tabla resume los patrones que más vemos en el laboratorio, alineada con la taxonomía de síntomas de la guía de troubleshooting de Applied Biosystems para los ABI 3730xl:</p>
+      <p class="table-hint" aria-hidden="true">Desliza para ver la tabla completa →</p>
+      <div class="table-scroll">
+      <table class="spec-table">
+        <thead>
+          <tr><th>Lo que ves</th><th>Causa más probable</th><th>Qué hacer</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Picos dobles en todo el cromatograma</strong> desde el inicio</td>
+            <td>Molde mixto: dos plásmidos, colonia no clonal, producto PCR inespecífico o dos sitios de unión del primer</td>
+            <td>Re-estriar la colonia, verificar la PCR en gel (una sola banda) o rediseñar el primer</td>
+          </tr>
+          <tr>
+            <td><strong>Picos dobles a partir de un punto concreto</strong></td>
+            <td>Indel heterocigoto (las dos copias se desfasan) o mezcla de productos que divergen en ese punto</td>
+            <td>Si buscas heterocigotos: es un hallazgo, no un fallo. Confírmalo secuenciando la hebra contraria</td>
+          </tr>
+          <tr>
+            <td><strong>Un pico doble aislado</strong> en posición única, con el resto limpio</td>
+            <td>SNV heterocigoto (dos alelos ≈ 50/50)</td>
+            <td>Resultado válido · el software lo anota con código IUPAC (R, Y, S, W, K, M)</td>
+          </tr>
+          <tr>
+            <td><strong>Señal débil y ruidosa</strong> en toda la lectura</td>
+            <td>Poco molde, molde degradado o contaminantes (sales, etanol, EDTA) que inhiben la reacción</td>
+            <td>Cuantificar y repurificar · revisa nuestra <a href="como-preparar-muestras-secuenciacion-sanger">guía de preparación de muestras</a></td>
+          </tr>
+          <tr>
+            <td><strong>Caída brusca de señal</strong> a mitad de lectura</td>
+            <td>Estructura secundaria fuerte (horquilla, región rica en GC con compresión de picos) u homopolímero largo que la polimerasa no resuelve</td>
+            <td>Secuenciar desde la hebra contraria, usar un primer más cercano o química para GC alto</td>
+          </tr>
+          <tr>
+            <td><strong>Señal muy fuerte al inicio que se desploma pronto</strong> («top-heavy»)</td>
+            <td>Exceso de molde o de primer: la reacción agota los terminadores en fragmentos cortos</td>
+            <td>Cuantificar bien y diluir a la concentración recomendada; no es un fallo del secuenciador</td>
+          </tr>
+          <tr>
+            <td><strong>Picos dobles justo después de un homopolímero o repetición</strong> (limpio antes, doble después)</td>
+            <td>Deslizamiento de la polimerasa en la carrera: las copias quedan desfasadas ±1 a partir de ahí</td>
+            <td>Secuenciar desde la hebra contraria para leer esa zona «de frente»; en repeticiones largas, aceptar el límite de la técnica</td>
+          </tr>
+          <tr>
+            <td><strong>Doble secuencia desfasada una base (n−1) desde el inicio</strong></td>
+            <td>Primer con contaminantes de síntesis (moléculas a las que falta una base): dos escaleras a la vez</td>
+            <td>Usar primer de mayor pureza (HPLC) o resintetizarlo; el molde no tiene la culpa</td>
+          </tr>
+          <tr>
+            <td><strong>Picos anchos y desproporcionados («blobs») en las primeras ~120 bases</strong></td>
+            <td>Restos de terminadores fluorescentes de la purificación de la reacción — artefacto, no secuencia</td>
+            <td>Si tu región de interés está más adelante, ignóralos; si tapan una base crítica, pedir repetición</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:16px 20px; margin:20px 0;">
+        <strong style="color:var(--mc-navy); display:block; margin-bottom:6px;">📋 Caso especial: sin señal en absoluto</strong>
+        <p style="margin:0; font-size:13.5px; line-height:1.65;">Si el cromatograma está vacío o solo tiene ruido, casi siempre es una de estas tres: el primer no tiene sitio de unión en el molde (¿construcción correcta? ¿primer correcto?), la concentración de molde o primer era muy inferior a la solicitada, o el molde llegó degradado. Comprueba primero en un gel que el molde existe y tiene el tamaño esperado.</p>
+      </div>
+
+      <h2>4. Heterocigotos: pico doble no siempre es problema</h2>
+      <p>En ADN diploide (genómico humano, animal o vegetal), un <strong>SNV heterocigoto aparece como dos picos superpuestos de altura similar</strong> en la misma posición, cada uno de un alelo. Es información, no ruido. Las claves para no confundirlo con un artefacto:</p>
+      <ul>
+        <li>Los dos picos suman una altura comparable a la de los picos vecinos.</li>
+        <li>El resto del cromatograma permanece limpio.</li>
+        <li>Se reproduce al secuenciar la hebra contraria en la misma posición.</li>
+      </ul>
+      <p>Si estás validando variantes de un estudio NGS, este es exactamente el patrón que esperas confirmar — lo tratamos en <a href="sanger-vs-ngs-validacion">Sanger vs NGS para validación</a>.</p>
+
+      <h2>5. Software gratuito para revisar tus .ab1</h2>
+      <ul>
+        <li><strong>Chromas</strong> (Windows) y <strong>4Peaks</strong> (macOS) — visores ligeros y directos.</li>
+        <li><strong>SnapGene Viewer</strong> — alinea el cromatograma contra tu secuencia de referencia o el mapa del plásmido.</li>
+        <li><strong>Benchling</strong> — revisión y alineamiento en el navegador, útil para equipos.</li>
+        <li><strong>UGENE</strong> — suite libre y de código abierto con alineamiento y edición.</li>
+      </ul>
+      <p>Consejo transversal: revisa siempre el cromatograma antes de aceptar o descartar una base dudosa de la secuencia de texto, y alinea contra la referencia esperada — la mayoría de «mutaciones sorprendentes» de última hora son bases de baja calidad en los extremos de la lectura.</p>
+
+      <h2>6. Cuándo repetir (y cuándo no hace falta)</h2>
+      <ul>
+        <li><strong>No repitas</strong> si la región de interés cae en zona QV&gt;30, aunque los extremos sean feos: el recorte es parte normal del análisis.</li>
+        <li><strong>Repite con la hebra contraria</strong> si la región de interés queda cerca del primer (&lt;50 nt) o al final de la lectura.</li>
+        <li><strong>Repite con muestra nueva</strong> si hay señal débil generalizada o picos dobles desde el inicio: volver a inyectar la misma muestra rara vez lo arregla.</li>
+        <li><strong>Consulta antes de repetir</strong> si la caída de señal es siempre en el mismo punto: probablemente es el molde (GC, estructura), no la reacción, y existe una estrategia mejor que insistir.</li>
+      </ul>
+      <p>En Macrogen, nuestro equipo técnico revisa contigo los cromatogramas problemáticos y te dice si procede repetición, cambio de estrategia o ajuste de muestra — en español y con el archivo .ab1 delante.</p>
+
+      <div style="background:#F0F4FA; border:1.5px solid var(--mc-border); border-radius:12px; padding:20px 24px; margin:32px 0;">
+        <strong style="color:var(--mc-navy); display:block; margin-bottom:6px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;">Secuenciación Sanger con soporte real</strong>
+        <h3 style="margin:0 0 10px; font-size:18px;">Cromatograma .ab1 incluido en cada reacción</h3>
+        <p style="font-size:13.5px; margin:0 0 14px;">Resultados en 24–48 h desde Madrid y Santiago · desde 4,2 € / USD 4,5 por muestra · 96 primers universales gratuitos.</p>
+        <a href="../contacto?servicio=sanger" class="btn btn-primary" style="font-size:14px;">Solicitar cotización Sanger →</a>
+      </div>
+
+      <p style="font-size:12.5px; color:var(--mc-mute); font-style:italic; margin-top:28px;">Taxonomía de síntomas contrastada con la guía <em>DNA Sequencing by Capillary Electrophoresis</em> (Applied Biosystems / Thermo Fisher, 3.ª ed.) — el manual de troubleshooting del fabricante de los ABI 3730xl que usamos en Macrogen.</p>
+
+      <p style="margin-top:32px; padding-top:24px; border-top:1px solid var(--mc-border); font-size:13px; color:var(--mc-mute);">
+        ¿Tienes un cromatograma que no sabes interpretar? Envíanoslo a <a href="mailto:info-spain@macrogen.com" style="color:var(--mc-teal); font-weight:700;">info-spain@macrogen.com</a> o <a href="mailto:info-chile@macrogen.com" style="color:var(--mc-teal); font-weight:700;">info-chile@macrogen.com</a> y lo revisamos contigo.
+      </p>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/img/logo.png" alt="Macrogen" class="logo-img" width="522" height="147" loading="lazy" decoding="async">
+        <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
+        <p style="font-family:var(--mc-font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mc-teal); font-weight:500; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
+        <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>
+        <p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.services_heading">Servicios</h4>
+        <a href="../servicios/wgs-genoma-completo">WGS</a>
+        <a href="../servicios/wes-exoma">WES</a>
+        <a href="../servicios/rna-seq-transcriptoma">RNA-Seq</a>
+        <a href="../servicios/single-cell">Single Cell</a>
+        <a href="../servicios/metagenomica-16s">Metagenómica</a>
+        <a href="../servicios/secuenciacion-sanger">Sanger</a>
+        <a href="../servicios/sintesis">Síntesis</a>
+        <a href="../servicios" data-i18n="footer.service_view_all">Ver todos →</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.company_heading">Compañía</h4>
+        <a href="../nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="../blog" data-i18n="nav.blog">Blog</a>
+        <a href="../cotizador">NGS Explorador</a>
+        <a href="../contacto" data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div>
+        <h4>Recursos</h4>
+        <a href="../recursos">Centro de recursos</a>
+        <a href="../recursos/primer-designer">Primer Designer</a>
+        <a href="../faq" data-i18n="nav.faq">FAQ</a>
+        <a href="../certificaciones">Certificaciones</a>
+        <a href="../esg">ESG</a>
+        <a href="../newsletter" data-i18n="nav.newsletter">Newsletter</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.hubs_heading">Hubs</h4>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Madrid</strong><br>C. de Martínez Villergas, 52<br>28027 Madrid · España<br>+34 911 138 378
+        </p>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Santiago</strong><br>Magdalena 140, Of. 401<br>Las Condes, Santiago · Chile<br>+56 9 5845 1395
+        </p>
+        <a href="mailto:info-spain@macrogen.com" style="font-size:12.5px;">info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12.5px;">info-chile@macrogen.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span>
+      <span>
+        <a href="../privacidad" data-i18n="footer.privacy">Privacidad</a>
+        <a href="../terminos" data-i18n="footer.terms">Términos</a>
+        <a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener">Portal de pedidos ↗</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

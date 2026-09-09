@@ -111,6 +111,7 @@
           </div>
           <div class="megamenu-footer">
             <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../recursos/primer-designer" class="view-all">Primer Designer · gratis →</a>
             <a href="../servicios" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
           </div>
         </div>
@@ -138,23 +139,23 @@
     </header>
 
     <div class="article-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Si vienes del mundo de la PCR y la secuenciación Sanger, el catálogo de servicios NGS puede resultar abrumador: WGS, WES, RNA-Seq, paneles, single cell… Esta guía explica qué es realmente la secuenciación de nueva generación y cómo elegir el servicio correcto para un primer proyecto, sin dar nada por sabido.</p>
 
       <h2>¿Qué significa "NGS"?</h2>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+      <p>NGS (<em>Next-Generation Sequencing</em>) o secuenciación masiva en paralelo designa a las tecnologías que leen <strong>millones de fragmentos de ADN a la vez</strong>, en lugar de un fragmento por reacción como hace Sanger. El ADN se fragmenta, se convierte en una «librería» con adaptadores y se secuencia en paralelo; luego la bioinformática alinea o ensambla esas lecturas para reconstruir la información.</p>
+      <p>El efecto práctico es un cambio de escala en el costo por base: donde Sanger lee un locus con máxima precisión, NGS lee un genoma, un exoma o un transcriptoma completos en una sola corrida. No compiten — se complementan: descubrir con NGS, <a href="sanger-vs-ngs-validacion">validar con Sanger</a>.</p>
 
       <h2>Las tres opciones más comunes</h2>
-      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam.</p>
+      <p>La gran mayoría de los primeros proyectos NGS caen en uno de estos tres servicios. La diferencia no es de calidad sino de <strong>qué parte de la biología interrogan</strong>:</p>
 
       <h3>Whole Genome Sequencing (WGS)</h3>
-      <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+      <p>Secuencia el genoma completo, regiones codificantes y no codificantes por igual. Es la opción más informativa: detecta SNVs, indels y también variantes estructurales y CNVs con la mejor uniformidad, porque no depende de una captura. El estándar germinal humano es 30x. Su costo es el más alto por muestra, y genera el mayor volumen de datos que analizar y almacenar.</p>
 
       <h3>Whole Exome Sequencing (WES)</h3>
-      <p>Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.</p>
+      <p>Captura y secuencia solo las regiones codificantes — alrededor del 2 % del genoma donde se concentra la mayoría de las variantes de efecto conocido. Al enfocar el esfuerzo, consigue mucha más profundidad por el mismo costo (típicamente &gt;100x on-target), lo que lo hace ideal para diagnóstico de enfermedades mendelianas y estudios de cohortes con presupuesto acotado.</p>
 
       <h3>RNA-Seq (Transcriptoma)</h3>
-      <p>Non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.</p>
+      <p>Secuencia el ARN convertido a cDNA: no pregunta qué variantes existen, sino <strong>qué genes están activos, cuánto y en qué condiciones</strong>. Es la herramienta para expresión diferencial entre tratamientos, tejidos o fenotipos. Aquí la moneda no es la cobertura sino los millones de lecturas por muestra — y las réplicas biológicas pesan más que la profundidad.</p>
 
       <blockquote>"Antes de elegir tecnología, define la pregunta científica. La tecnología debe servir a la pregunta, no al revés."</blockquote>
 
@@ -166,7 +167,7 @@
       </ol>
 
       <h2>Conclusión</h2>
-      <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+      <p>Empieza por la pregunta, no por la tecnología: variantes en todo el genoma → WGS; variantes codificantes con presupuesto ajustado → WES; actividad génica → RNA-Seq; organismo sin referencia → long reads. Definido el servicio, la siguiente decisión es la profundidad — para eso tenemos una <a href="cobertura-secuenciacion">guía práctica de cobertura</a> — y para confirmar hallazgos puntuales, la <a href="que-es-secuenciacion-sanger">secuenciación Sanger</a> sigue siendo el estándar. Si dudas entre dos diseños, cuéntanos la pregunta científica: orientarte antes de cotizar es parte del servicio.</p>
 
       <hr>
       <p style="color:var(--mc-mute); font-size:.95rem;"><em>¿Tienes dudas específicas sobre tu proyecto? <a href="../contacto">Conversa con nuestro equipo bioinformático</a> — la consultoría inicial es sin costo.</em></p>
@@ -205,6 +206,7 @@
       <div>
         <h4>Recursos</h4>
         <a href="../recursos">Centro de recursos</a>
+        <a href="../recursos/primer-designer">Primer Designer</a>
         <a href="../faq" data-i18n="nav.faq">FAQ</a>
         <a href="../certificaciones">Certificaciones</a>
         <a href="../esg">ESG</a>

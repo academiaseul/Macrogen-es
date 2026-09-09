@@ -4,6 +4,9 @@
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
 
+    { "source": "/recursos/herramientas-primers", "destination": "/recursos/primer-designer", "permanent": true },
+    { "source": "/recursos/herramientas-primers.html", "destination": "/recursos/primer-designer", "permanent": true },
+
     { "source": "/servicios/sanger", "destination": "/servicios/secuenciacion-sanger", "permanent": true },
     { "source": "/servicios/sanger.html", "destination": "/servicios/secuenciacion-sanger", "permanent": true },
     { "source": "/servicios/wgs", "destination": "/servicios/wgs-genoma-completo", "permanent": true },
