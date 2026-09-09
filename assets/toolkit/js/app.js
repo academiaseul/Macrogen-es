@@ -20,8 +20,8 @@ function route() {
   current = view;
   view.mount(main);
   document.title = name
-    ? `${titles[name]} online gratis | Macrogen`
-    : 'Diseñador de primers y calculadora Tm online | Macrogen';
+    ? `${titles[name]} · Primer Designer | Macrogen`
+    : 'Primer Designer: primers y Tm online gratis | Macrogen';
   document.querySelectorAll('.tk-nav a[data-route]').forEach(a => {
     if (a.dataset.route === name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
