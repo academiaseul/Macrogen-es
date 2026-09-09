@@ -207,7 +207,9 @@
       el.textContent = FLAGS[lang] + ' ' + lang.toUpperCase();
     });
     document.querySelectorAll('[data-lang-option]').forEach(el => {
-      el.classList.toggle('is-active', el.dataset.langOption === lang);
+      const on = el.dataset.langOption === lang;
+      el.classList.toggle('is-active', on);
+      el.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
 
     // Trigger Google Translate for body content (header/footer/hero already curated)
@@ -237,66 +239,23 @@
       if (container.dataset.built) return;
       container.dataset.built = 'true';
 
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'lang-btn';
-      button.setAttribute('aria-label', 'Select language');
-      button.setAttribute('aria-haspopup', 'true');
-      button.setAttribute('aria-expanded', 'false');
-      const code = document.createElement('span');
-      code.setAttribute('data-lang-current', '');
-      code.textContent = '🇪🇸 ES';
-      button.appendChild(code);
-      const caret = document.createElement('span');
-      caret.className = 'lang-caret';
-      caret.textContent = '▾';
-      button.appendChild(caret);
-
-      const menu = document.createElement('ul');
-      menu.className = 'lang-menu';
-      menu.setAttribute('role', 'menu');
+      // Barra segmentada compacta: [ES][EN][PT][KO], idioma activo resaltado.
+      const bar = document.createElement('div');
+      bar.className = 'lang-bar';
+      bar.setAttribute('role', 'group');
+      bar.setAttribute('aria-label', 'Idioma / Language');
       SUPPORTED.forEach(lang => {
-        const li = document.createElement('li');
-        const a = document.createElement('button');
-        a.type = 'button';
-        a.className = 'lang-option';
-        a.dataset.langOption = lang;
-        a.setAttribute('role', 'menuitem');
-        a.innerHTML = '<span class="lang-flag">' + FLAGS[lang] + '</span>'
-                    + '<span class="lang-label">' + LABELS[lang] + '</span>'
-                    + '<span class="lang-code">' + lang.toUpperCase() + '</span>';
-        a.addEventListener('click', () => {
-          applyLanguage(lang);
-          menu.classList.remove('is-open');
-          button.setAttribute('aria-expanded', 'false');
-        });
-        li.appendChild(a);
-        menu.appendChild(li);
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'lang-seg';
+        b.dataset.langOption = lang;
+        b.textContent = lang.toUpperCase();
+        b.title = LABELS[lang];
+        b.setAttribute('aria-pressed', 'false');
+        b.addEventListener('click', () => applyLanguage(lang));
+        bar.appendChild(b);
       });
-
-      button.addEventListener('click', e => {
-        e.stopPropagation();
-        const wasOpen = menu.classList.contains('is-open');
-        menu.classList.toggle('is-open');
-        button.setAttribute('aria-expanded', wasOpen ? 'false' : 'true');
-      });
-
-      // Close on outside click or Escape
-      document.addEventListener('click', e => {
-        if (!container.contains(e.target)) {
-          menu.classList.remove('is-open');
-          button.setAttribute('aria-expanded', 'false');
-        }
-      });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-          menu.classList.remove('is-open');
-          button.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      container.appendChild(button);
-      container.appendChild(menu);
+      container.appendChild(bar);
     });
   }
 
