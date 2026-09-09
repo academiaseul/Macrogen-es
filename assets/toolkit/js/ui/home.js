@@ -8,7 +8,7 @@ export function mount(root) {
   root.append(
     el('div', { class: 'home' },
       el('p', { class: 'eyebrow', style: 'font-family:var(--mc-font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mc-teal-ink);margin:0 0 8px' }, 'Recursos · Herramientas online gratuitas'),
-      el('h1', { style: 'margin:0;font-size:30px;font-weight:600;color:var(--mc-navy);letter-spacing:-.01em' }, 'Primer Designer'),
+      el('h1', { style: 'margin:0;font-size:30px;font-weight:600;color:var(--mc-navy);letter-spacing:-.01em', translate: 'no' }, 'Primer Designer'),
       el('p', { class: 'lead' }, 'Diseña, verifica y calcula primers con métodos publicados y resultados explicables — gratis y sin registro. Todo el cálculo ocurre en tu navegador: tus secuencias nunca se envían a ningún servidor, ni siquiera al nuestro.'),
       el('div', { class: 'home-grid' },
         card('01', 'Diseñador de primers', 'Pega un molde y obtén pares candidatos puntuados, con posición, tamaño de producto, Tm, GC % y las razones de cada evaluación.', '#/designer'),

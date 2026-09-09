@@ -61,7 +61,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .mono { font-family: var(--mc-font-mono); }
 .sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 :focus-visible { outline: 2px solid var(--mc-teal); outline-offset: 2px; }
-.container { max-width: var(--mc-container); margin: 0 auto; padding: 0 24px; }
+.tk-nav .container, main.container { max-width: var(--mc-container); margin: 0 auto; padding: 0 24px; }
 
 /* ---------- cabecera ---------- */
 .tk-header { background: var(--mc-navy); color: #fff; border-bottom: 1px solid rgba(255,255,255,.12); }
@@ -72,7 +72,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .tk-brand .app-name { font-family: var(--mc-font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--mc-light-blue); }
 .tk-badge { margin-left: auto; font-family: var(--mc-font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--mc-navy); background: #fff; padding: 4px 10px; border-radius: var(--mc-radius-sm); white-space: nowrap; }
 
-.tk-nav { background: #fff; border-bottom: 1px solid var(--mc-line); position: sticky; top: 0; z-index: 30; }
+.tk-nav { background: #fff; border-bottom: 1px solid var(--mc-line); position: sticky; top: var(--header-h, 0px); z-index: 30; }
 .tk-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 4px; }
 .tk-nav a {
   display: inline-flex; align-items: center; gap: 6px; padding: 14px 16px; text-decoration: none;
@@ -149,13 +149,13 @@ details.adv[open] > summary::before { content: '−'; }
 details.adv > .adv-b { padding: 4px 12px 12px; border-top: 1px solid var(--mc-line); }
 
 /* botones */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border-radius: var(--mc-radius); border: 1px solid var(--mc-navy); background: var(--mc-navy); color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; transition: background var(--mc-t-fast) var(--mc-ease), transform var(--mc-t-fast) var(--mc-ease); }
-.btn:hover { background: var(--mc-navy-700); }
-.btn:active { transform: translateY(1px); }
-.btn:disabled, .btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; transform: none; }
-.btn-ghost { background: #fff; color: var(--mc-navy); }
-.btn-ghost:hover { background: var(--mc-bg-2); }
-.btn-sm { padding: 6px 12px; font-size: 13px; }
+main .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border-radius: var(--mc-radius); border: 1px solid var(--mc-navy); background: var(--mc-navy); color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; transition: background var(--mc-t-fast) var(--mc-ease), transform var(--mc-t-fast) var(--mc-ease); }
+main .btn:hover { background: var(--mc-navy-700); }
+main .btn:active { transform: translateY(1px); }
+main .btn:disabled, main .btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; transform: none; }
+main .btn-ghost { background: #fff; color: var(--mc-navy); }
+main .btn-ghost:hover { background: var(--mc-bg-2); }
+main .btn-sm { padding: 6px 12px; font-size: 13px; }
 .btn-link { background: none; border: 0; padding: 0; color: var(--mc-teal-ink); font-weight: 600; font-size: 13px; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
 .btn-link:hover { color: var(--mc-navy); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; align-items: center; }
@@ -308,3 +308,9 @@ ul.assump { margin: 6px 0 0; padding-left: 18px; color: var(--mc-mute); font-siz
   .metric .v { font-size: 17px; }
   .quality { grid-template-columns: 1fr; }
 }
+
+/* marca de la herramienta en la barra de pestañas (cuando va bajo la cabecera del sitio) */
+.tk-nav-brand { display: inline-flex; align-items: center; padding: 14px 16px 14px 0; margin-right: 8px; font-family: var(--mc-font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--mc-navy); font-weight: 600; white-space: nowrap; border-right: 1px solid var(--mc-line); }
+.tk-nav .container { display: flex; align-items: center; }
+.tk-nav .container > ul { flex: 1; }
+@media (max-width: 760px) { .tk-nav-brand { display: none; } }
