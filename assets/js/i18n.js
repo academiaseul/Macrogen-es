@@ -241,15 +241,17 @@
 
       // Barra segmentada compacta: [ES][EN][PT][KO], idioma activo resaltado.
       const bar = document.createElement('div');
-      bar.className = 'lang-bar';
+      bar.className = 'lang-bar notranslate';
+      bar.setAttribute('translate', 'no');
       bar.setAttribute('role', 'group');
       bar.setAttribute('aria-label', 'Idioma / Language');
+      const SEG_LABELS = { es: 'ES', en: 'EN', pt: 'PT', ko: '한국어' };
       SUPPORTED.forEach(lang => {
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'lang-seg';
         b.dataset.langOption = lang;
-        b.textContent = lang.toUpperCase();
+        b.textContent = SEG_LABELS[lang] || lang.toUpperCase();
         b.title = LABELS[lang];
         b.setAttribute('aria-pressed', 'false');
         b.addEventListener('click', () => applyLanguage(lang));
