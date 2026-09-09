@@ -47,7 +47,7 @@
     "eyebrow": "Humanizando a genómica",
     "title_part1": "Serviços de sequenciação de ADN e NGS",
     "title_accent": "com suporte em espanhol",
-    "lead": "<strong translate=\"no\">One Team, One Macrogen</strong>: a rede global de sequenciamento, com equipe própria entre Madri e Santiago. Sanger, NGS, microarrays, síntese e bioinformática — no seu idioma, no seu fuso horário e com resultados Sanger em 24-48 h."
+    "lead": "<strong translate=\"no\">One Team, One Macrogen</strong>: a rede global de sequenciamento, com equipe própria entre Madri e Santiago. Sequenciamento Sanger, NGS, microarrays, síntese e bioinformática — no seu idioma, no seu fuso horário e com resultados Sanger em 24-48 h."
   },
   "hero_nosotros": {
     "eyebrow": "Sobre nós",
@@ -59,7 +59,7 @@
     "eyebrow": "Catálogo completo",
     "title_part1": "Serviços genómicos",
     "title_accent": "de ponta a ponta.",
-    "lead": "Desde uma reação de Sanger até coortes WGS de milhares de amostras. Uma janela única, uma rede global."
+    "lead": "Desde uma reação de sequenciamento Sanger até coortes WGS de milhares de amostras. Uma janela única, uma rede global."
   },
   "hero_contacto": {
     "eyebrow": "Vamos falar",
@@ -198,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "Sanger · Eletroforese capilar <span class=\"count\">(4)</span>",
+    "ces_title": "Sequenciamento Sanger · Eletroforese capilar <span class=\"count\">(4)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48h",
     "other_title": "Análise & Outros <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",
@@ -219,7 +219,7 @@
   "services_preview": {
     "eyebrow": "Catálogo",
     "title": "Serviços genómicos de ponta a ponta.",
-    "subtitle": "De uma única reação de Sanger a coortes WGS de milhares de amostras. Um único ponto de contacto."
+    "subtitle": "De uma única reação de sequenciamento Sanger a coortes WGS de milhares de amostras. Um único ponto de contacto."
   },
   "certs": {
     "eyebrow": "Certificações e parcerias",

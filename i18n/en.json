@@ -47,7 +47,7 @@
     "eyebrow": "Humanizing genomics",
     "title_part1": "DNA sequencing and NGS services",
     "title_accent": "with support in Spanish",
-    "lead": "<strong translate=\"no\">One Team, One Macrogen</strong>: the global sequencing network, with its own team spanning Madrid and Santiago. Sanger, NGS, microarrays, synthesis and bioinformatics — in your language, in your time zone, with Sanger results in 24-48 h."
+    "lead": "<strong translate=\"no\">One Team, One Macrogen</strong>: the global sequencing network, with its own team spanning Madrid and Santiago. Sanger sequencing, NGS, microarrays, synthesis and bioinformatics — in your language, in your time zone, with Sanger results in 24-48 h."
   },
   "hero_nosotros": {
     "eyebrow": "About us",
@@ -59,7 +59,7 @@
     "eyebrow": "Full catalog",
     "title_part1": "Genomic services",
     "title_accent": "end to end.",
-    "lead": "From a single Sanger reaction to WGS cohorts of thousands of samples. One window, one global network."
+    "lead": "From a single Sanger sequencing reaction to WGS cohorts of thousands of samples. One window, one global network."
   },
   "hero_contacto": {
     "eyebrow": "Let's talk",
@@ -198,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "Sanger · Capillary electrophoresis <span class=\"count\">(4)</span>",
+    "ces_title": "Sanger sequencing · Capillary electrophoresis <span class=\"count\">(4)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48h",
     "other_title": "Analysis & Other <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",
@@ -219,7 +219,7 @@
   "services_preview": {
     "eyebrow": "Catalog",
     "title": "End-to-end genomic services.",
-    "subtitle": "From a single Sanger reaction to WGS cohorts of thousands of samples. One single point of contact."
+    "subtitle": "From a single Sanger sequencing reaction to WGS cohorts of thousands of samples. One single point of contact."
   },
   "certs": {
     "eyebrow": "Certifications & partnerships",

@@ -47,7 +47,7 @@
     "eyebrow": "Humanizando la genómica",
     "title_part1": "Servicios de secuenciación de ADN y NGS",
     "title_accent": "con soporte en español",
-    "lead": "<strong translate=\"no\">One Team, One Macrogen</strong>: la red global de secuenciación, con equipo propio entre Madrid y Santiago. Sanger, NGS, microarrays, síntesis y bioinformática — en tu idioma, en tu zona horaria y con resultados Sanger en 24-48 h."
+    "lead": "<strong translate=\"no\">One Team, One Macrogen</strong>: la red global de secuenciación, con equipo propio entre Madrid y Santiago. Secuenciación Sanger, NGS, microarrays, síntesis y bioinformática — en tu idioma, en tu zona horaria y con resultados Sanger en 24-48 h."
   },
   "hero_nosotros": {
     "eyebrow": "Quiénes somos",
@@ -59,7 +59,7 @@
     "eyebrow": "Catálogo completo",
     "title_part1": "Servicios genómicos",
     "title_accent": "de extremo a extremo.",
-    "lead": "Desde una reacción de Sanger hasta cohortes WGS de miles de muestras. Una sola ventanilla, una red global."
+    "lead": "Desde una reacción de secuenciación Sanger hasta cohortes WGS de miles de muestras. Una sola ventanilla, una red global."
   },
   "hero_contacto": {
     "eyebrow": "Hablemos",
@@ -198,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "Sanger · Electroforesis capilar <span class=\"count\">(4)</span>",
+    "ces_title": "Secuenciación Sanger · Electroforesis capilar <span class=\"count\">(4)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48h",
     "other_title": "Análisis & Otros <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",
@@ -219,7 +219,7 @@
   "services_preview": {
     "eyebrow": "Catálogo",
     "title": "Servicios genómicos de extremo a extremo.",
-    "subtitle": "Desde una reacción de Sanger hasta cohortes WGS de miles de muestras. Una sola ventanilla."
+    "subtitle": "Desde una reacción de secuenciación Sanger hasta cohortes WGS de miles de muestras. Una sola ventanilla."
   },
   "certs": {
     "eyebrow": "Certificaciones y partnerships",
