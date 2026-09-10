@@ -97,6 +97,7 @@ html[data-theme="dark"] {
   --mc-red-ink: #FF89A8;
 }
 html[data-theme="dark"] .site-header { background: rgba(11, 20, 36, .97); }
+html[data-theme="dark"] .service-subnav { background: rgba(11, 20, 36, .97); }
 html[data-theme="dark"] .nav-logo .logo-img { filter: brightness(0) invert(1) opacity(.95); }
 html[data-theme="dark"] .lang-seg.is-active,
 html[data-theme="dark"] .lang-seg.is-active:hover { background: var(--mc-ink); color: #0B1424; }

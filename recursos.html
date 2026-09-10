@@ -39,16 +39,16 @@
 .res-card:hover { border-color:var(--mc-teal); box-shadow:0 8px 24px rgba(63,169,201,0.12); transform:translateY(-2px); }
 .res-card-icon { width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:12px; }
 .res-card-eyebrow { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--mc-mute); margin-bottom:6px; }
-.res-card h3 { font-size:17px; line-height:1.3; margin:0 0 10px; color:var(--mc-navy); }
+.res-card h3 { font-size:17px; line-height:1.3; margin:0 0 10px; color:var(--mc-navy-ink); }
 .res-card p { font-size:13px; color:var(--mc-mute); line-height:1.6; margin:0 0 16px; flex-grow:1; }
 .res-card-meta { font-size:11px; color:var(--mc-mute); margin-bottom:10px; display:flex; gap:10px; flex-wrap:wrap; }
 .res-card-meta span { background:var(--mc-bg); padding:3px 8px; border-radius:4px; }
 .res-card-cta { display:inline-flex; align-items:center; gap:6px; color:var(--mc-teal); font-weight:700; font-size:13px; text-decoration:none; }
-.res-card-cta:hover { color:var(--mc-navy); }
+.res-card-cta:hover { color:var(--mc-navy-ink); }
 
 .res-category { margin-bottom:64px; }
 .res-cat-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:16px; border-bottom:2px solid var(--mc-border); padding-bottom:14px; }
-.res-cat-header h2 { margin:0; font-size:28px; color:var(--mc-navy); }
+.res-cat-header h2 { margin:0; font-size:28px; color:var(--mc-navy-ink); }
 .res-cat-header .count { font-size:13px; color:var(--mc-mute); }
 </style>
 </head>
@@ -335,7 +335,7 @@
         </article>
 
         <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">👤</div>
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy-ink);">👤</div>
           <div class="res-card-eyebrow">Human ID · STR</div>
           <h3>Guía de pedido · Cell Line ID (STR)</h3>
           <p>Autenticación de líneas celulares humanas con PowerPlex Fusion 6c en ABI 3730xl. Reportes ICLAC con matching score vs ATCC/Cellosaurus.</p>
@@ -394,7 +394,7 @@
         </article>
 
         <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🔐</div>
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy-ink);">🔐</div>
           <div class="res-card-eyebrow">Portal · Onboarding</div>
           <h3>Guía de registro en el portal</h3>
           <p>Paso a paso para crear tu cuenta en <strong>dna.macrogen.com</strong>: verificación de email institucional, asignación a tu institución, configuración de facturación y permisos para invitar a colaboradores del laboratorio.</p>
@@ -441,7 +441,7 @@
         </article>
 
         <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🔬</div>
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy-ink);">🔬</div>
           <div class="res-card-eyebrow">QC criteria</div>
           <h3>Criterios SQC · Long Read Sequencing</h3>
           <p>Sample Quality Criteria para librerías LRS (PacBio Revio, Oxford Nanopore): tamaños mínimos de DNA, criterios extra de integridad, evitar shearing.</p>
@@ -498,7 +498,7 @@
         </article>
 
         <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🇪🇸</div>
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy-ink);">🇪🇸</div>
           <div class="res-card-eyebrow">Envío Madrid</div>
           <h3>Datos de recepción · Macrogen Spain</h3>
           <p>Dirección oficial para envío de muestras al hub de Madrid: <strong>C. de Martínez Villergas 52, 28027 Madrid</strong>. Atención: Logística. Tel +34 911 138 378.</p>
@@ -598,7 +598,7 @@
           <div class="res-card-eyebrow">★ Free Tool · Google Colab</div>
           <h3>FASTQ.gz Viewer + Quality Control</h3>
           <p>Inspecciona archivos <code>.fastq.gz</code> sin descomprimir + genera QC visual al instante: distribución Phred (Q30), contenido GC, y calidad por posición estilo FastQC. Lee directo del comprimido — no satura RAM.</p>
-          <ul style="list-style:none; padding:0; margin:8px 0 12px; font-size:12px; color:var(--mc-navy); line-height:1.7;">
+          <ul style="list-style:none; padding:0; margin:8px 0 12px; font-size:12px; color:var(--mc-navy-ink); line-height:1.7;">
             <li>✓ <strong>Visor estructural:</strong> primeras N lecturas (ID Illumina + secuencia + Phred)</li>
             <li>✓ <strong>Histograma Phred</strong> (línea Q30 marcada)</li>
             <li>✓ <strong>Histograma %GC</strong> (campana Gauss típica)</li>
@@ -633,16 +633,16 @@
       <!-- Sub-category nav (inline chips inside the section) -->
       <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; padding:14px 16px; background:var(--mc-bg); border-radius:10px; border:1px solid var(--mc-border);">
         <a href="#tools" style="font-size:12px; font-weight:800; color:#fff; padding:6px 12px; background:var(--mc-teal); border-radius:6px; text-decoration:none; border:1px solid var(--mc-teal);">🛠 Tools (1) · NUEVO</a>
-        <a href="#sr-rawdata" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">📥 Raw Data (2)</a>
-        <a href="#sr-longreads" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 Long Reads (3)</a>
-        <a href="#sr-dna" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🔬 Short Reads · DNA (13)</a>
-        <a href="#sr-rna" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 Short Reads · RNA (8)</a>
-        <a href="#sr-meta" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🦠 Metabarcoding (2)</a>
-        <a href="#sr-other" style="font-size:12px; font-weight:700; color:var(--mc-navy); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">📋 Universal · QC (1)</a>
+        <a href="#sr-rawdata" style="font-size:12px; font-weight:700; color:var(--mc-navy-ink); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">📥 Raw Data (2)</a>
+        <a href="#sr-longreads" style="font-size:12px; font-weight:700; color:var(--mc-navy-ink); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 Long Reads (3)</a>
+        <a href="#sr-dna" style="font-size:12px; font-weight:700; color:var(--mc-navy-ink); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🔬 Short Reads · DNA (13)</a>
+        <a href="#sr-rna" style="font-size:12px; font-weight:700; color:var(--mc-navy-ink); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🧬 Short Reads · RNA (8)</a>
+        <a href="#sr-meta" style="font-size:12px; font-weight:700; color:var(--mc-navy-ink); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">🦠 Metabarcoding (2)</a>
+        <a href="#sr-other" style="font-size:12px; font-weight:700; color:var(--mc-navy-ink); padding:6px 12px; background:#fff; border-radius:6px; text-decoration:none; border:1px solid var(--mc-border);">📋 Universal · QC (1)</a>
       </div>
 
       <!-- ========== 1 · RAW DATA ========== -->
-      <h3 id="sr-rawdata" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid #D97706; padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">Raw Data <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">2 reportes · PDF (QC pre-pipeline)</span></h3>
+      <h3 id="sr-rawdata" style="font-size:18px; color:var(--mc-navy-ink); margin:0 0 16px; padding-left:6px; border-left:4px solid #D97706; padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">Raw Data <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">2 reportes · PDF (QC pre-pipeline)</span></h3>
       <div class="res-grid" style="margin-bottom:36px;">
 
         <article class="res-card">
@@ -666,7 +666,7 @@
       </div>
 
       <!-- ========== 2 · LONG READS ========== -->
-      <h3 id="sr-longreads" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-green); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 Long Reads · PacBio &amp; Nanopore <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">3 reportes · 1 HTML + 2 PDF</span></h3>
+      <h3 id="sr-longreads" style="font-size:18px; color:var(--mc-navy-ink); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-green); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 Long Reads · PacBio &amp; Nanopore <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">3 reportes · 1 HTML + 2 PDF</span></h3>
       <div class="res-grid" style="margin-bottom:36px;">
 
         <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6E5); border-color:#B5DEA8;">
@@ -699,7 +699,7 @@
       </div>
 
       <!-- ========== 3 · SHORT READS · DNA ========== -->
-      <h3 id="sr-dna" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-teal); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🔬 Short Reads · DNA <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">13 reportes · WGS · WES · Epigenoma</span></h3>
+      <h3 id="sr-dna" style="font-size:18px; color:var(--mc-navy-ink); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-teal); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🔬 Short Reads · DNA <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">13 reportes · WGS · WES · Epigenoma</span></h3>
       <p style="color:var(--mc-mute); font-size:13px; margin:-6px 0 14px;">Sub-bloques: <strong>WGS humano</strong> (5 reportes) · <strong>WGS genoma + multicalling</strong> (3) · <strong>WES exoma</strong> (4) · <strong>Epigenoma WGBS + ChIP-Seq</strong> (2).</p>
 
       <h4 style="font-size:14px; color:var(--mc-teal); text-transform:uppercase; letter-spacing:2px; margin:18px 0 10px; font-weight:800;">🧬 WGS · Humano (HumanWGS Basic)</h4>
@@ -715,7 +715,7 @@
         </article>
 
         <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB;">
-          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy);">🔧</div>
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy-ink);">🔧</div>
           <div class="res-card-eyebrow">★ HumanWGS · Interactivo</div>
           <h3>HumanWGS Basic · GATK 4.5</h3>
           <p>GATK best practices · BWA + HaplotypeCaller · annotación ClinVar + VEP. Pipeline humano clínico estándar.</p>
@@ -825,7 +825,7 @@
 
       </div>
 
-      <h4 style="font-size:14px; color:var(--mc-navy); text-transform:uppercase; letter-spacing:2px; margin:18px 0 10px; font-weight:800;">🧬 Epigenoma · WGBS + ChIP-Seq</h4>
+      <h4 style="font-size:14px; color:var(--mc-navy-ink); text-transform:uppercase; letter-spacing:2px; margin:18px 0 10px; font-weight:800;">🧬 Epigenoma · WGBS + ChIP-Seq</h4>
       <div class="res-grid" style="margin-bottom:36px;">
 
         <article class="res-card">
@@ -838,7 +838,7 @@
         </article>
 
         <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🧬</div>
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy-ink);">🧬</div>
           <div class="res-card-eyebrow">ChIP-Seq · PDF</div>
           <h3>ChIP-Seq</h3>
           <p>Peak calling MACS2, anotación vs TSS, motif discovery (MEME/HOMER), comparación entre condiciones, browser tracks.</p>
@@ -849,11 +849,11 @@
       </div>
 
       <!-- ========== 4 · SHORT READS · RNA ========== -->
-      <h3 id="sr-rna" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-teal); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 Short Reads · RNA <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">8 reportes · 3 HTML + 5 PDF</span></h3>
+      <h3 id="sr-rna" style="font-size:18px; color:var(--mc-navy-ink); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-teal); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🧬 Short Reads · RNA <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">8 reportes · 3 HTML + 5 PDF</span></h3>
       <div class="res-grid" style="margin-bottom:36px;">
 
         <article class="res-card" style="background:linear-gradient(135deg,#fff,#F0F4FB); border-color:#B8C7DB;">
-          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy);">🧬</div>
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy-ink);">🧬</div>
           <div class="res-card-eyebrow">★ Nuevo · Transcriptome · Interactivo</div>
           <h3>Transcriptome Basic · Align + Expression + DEG</h3>
           <p>Reporte HTML completo de Transcriptómica Basic: alineamiento STAR/HISAT2, cuantificación featureCounts/RSEM, perfilamiento de expresión y análisis diferencial DESeq2/edgeR. Tablas dinámicas y heatmaps interactivos.</p>
@@ -871,7 +871,7 @@
         </article>
 
         <article class="res-card" style="background:linear-gradient(135deg,#fff,#F0F4FB); border-color:#B8C7DB;">
-          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy);">🧬</div>
+          <div class="res-card-icon" style="background:#fff; color:var(--mc-navy-ink);">🧬</div>
           <div class="res-card-eyebrow">Total RNA · Interactivo</div>
           <h3>Total RNA · TRR Report</h3>
           <p>Total RNA-Seq rRNA-depleted · QC + alineamiento + cuantificación completa.</p>
@@ -889,7 +889,7 @@
         </article>
 
         <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">🔬</div>
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy-ink);">🔬</div>
           <div class="res-card-eyebrow">Total RNA · PDF</div>
           <h3>Total RNA-Seq · rRNA-depleted</h3>
           <p>Captura mRNA + lncRNA + snoRNA. Ideal para descubrimiento de transcritos no codificantes y full-length isoform.</p>
@@ -927,7 +927,7 @@
       </div>
 
       <!-- ========== 5 · METABARCODING ========== -->
-      <h3 id="sr-meta" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-green); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🦠 Metabarcoding · ASV + Shotgun <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">2 reportes · interactivos HTML</span></h3>
+      <h3 id="sr-meta" style="font-size:18px; color:var(--mc-navy-ink); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-green); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">🦠 Metabarcoding · ASV + Shotgun <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">2 reportes · interactivos HTML</span></h3>
       <div class="res-grid" style="margin-bottom:36px;">
 
         <article class="res-card" style="background:linear-gradient(135deg,#fff,#EAF6FB); border-color:#B8DCEB;">
@@ -935,7 +935,7 @@
           <div class="res-card-eyebrow">★ Amplicon · Interactivo · <span style="background:var(--mc-red); color:#fff; padding:1px 6px; border-radius:3px; font-size:9.5px; letter-spacing:.4px;">NEW v2</span></div>
           <h3>Reporte ASV · 16S Bayesian NCBI</h3>
           <p>Reporte HTML completo de pipeline ASV (Cutadapt + DADA2 + QIIME): pre-processing, taxonomía Bayesiana, alpha diversity (Shannon, Chao1, Faith's PD) y beta (PCoA Bray-Curtis · UniFrac · UPGMA).</p>
-          <p style="background:#FEF7E8; border-left:3px solid var(--mc-teal); padding:8px 10px; margin:8px 0 12px; font-size:11.5px; color:var(--mc-navy); line-height:1.5;"><strong>🆕 Actualización 15 jun 2026:</strong> ahora también puedes personalizar el <strong>orden de las muestras</strong> (no solo los grupos) en Barplot, Heatmap, Diversity Index, Rarefaction, Distance Matrix y PCoA. Mismo flujo: <em>Group Customization → Download Template → editar Excel → Upload</em>.</p>
+          <p style="background:#FEF7E8; border-left:3px solid var(--mc-teal); padding:8px 10px; margin:8px 0 12px; font-size:11.5px; color:var(--mc-navy-ink); line-height:1.5;"><strong>🆕 Actualización 15 jun 2026:</strong> ahora también puedes personalizar el <strong>orden de las muestras</strong> (no solo los grupos) en Barplot, Heatmap, Diversity Index, Rarefaction, Distance Matrix y PCoA. Mismo flujo: <em>Group Customization → Download Template → editar Excel → Upload</em>.</p>
           <div class="res-card-meta"><span>HTML</span><span>~38 MB</span><span>Offline</span><span style="background:#EAF6E5; color:var(--mc-green);">v2 · 15 jun 2026</span></div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <a class="res-card-cta" href="assets/docs/asv-sample-report/Report.html" target="_blank" rel="noopener" style="color:var(--mc-red); font-weight:800;">Abrir →</a>
@@ -958,11 +958,11 @@
       </div>
 
       <!-- ========== 6 · UNIVERSAL / QC ========== -->
-      <h3 id="sr-other" style="font-size:18px; color:var(--mc-navy); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-mute); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">Universal · QC &amp; Reportes generales <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">1 reporte · PDF</span></h3>
+      <h3 id="sr-other" style="font-size:18px; color:var(--mc-navy-ink); margin:0 0 16px; padding-left:6px; border-left:4px solid var(--mc-mute); padding-top:4px; padding-bottom:4px; scroll-margin-top:140px;">Universal · QC &amp; Reportes generales <span style="font-size:12px; color:var(--mc-mute); font-weight:500; margin-left:6px;">1 reporte · PDF</span></h3>
       <div class="res-grid" style="margin-bottom:36px;">
 
         <article class="res-card">
-          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy);">📋</div>
+          <div class="res-card-icon" style="background:#F0F4FB; color:var(--mc-navy-ink);">📋</div>
           <div class="res-card-eyebrow">SQC · QC report</div>
           <h3>Sequencing QC report · SRS + LRS</h3>
           <p>Reporte estándar de control de calidad pre-secuenciación: integridad RNA (RIN), pureza DNA (260/280, 260/230), gel/TapeStation, concentración Qubit y aprobación para library prep.</p>

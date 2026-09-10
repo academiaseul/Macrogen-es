@@ -194,8 +194,8 @@
   transform: none;
 }
 .cot-opt.is-active {
-  border-color: var(--mc-navy);
-  border-left-color: var(--mc-navy);
+  border-color: var(--mc-navy-ink);
+  border-left-color: var(--mc-navy-ink);
   background: var(--mc-bg);
   box-shadow: none;
 }
@@ -213,7 +213,7 @@
 .cot-opt-ico { display: none; }
 .cot-opt-body { flex: 1; min-width: 0; padding-right: 22px; }
 .cot-opt-title {
-  font-size: 13.5px; font-weight: 600; color: var(--mc-navy);
+  font-size: 13.5px; font-weight: 600; color: var(--mc-navy-ink);
   margin-bottom: 3px; line-height: 1.3;
 }
 .cot-opt-desc {
@@ -278,7 +278,7 @@
   display: inline-flex; align-items: center; gap: 8px;
   padding: 13px 24px;
   background: var(--mc-white);
-  color: var(--mc-navy) !important; border: 1px solid var(--mc-white); border-radius: var(--mc-radius-sm);
+  color: var(--mc-navy-ink) !important; border: 1px solid var(--mc-white); border-radius: var(--mc-radius-sm);
   font-family: inherit;
   font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none;
   letter-spacing: .01em;
@@ -289,7 +289,7 @@
   transform: none;
   box-shadow: none;
   background: #E9EEF6;
-  color: var(--mc-navy) !important;
+  color: var(--mc-navy-ink) !important;
 }
 .cot-preview-cta:disabled {
   background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.5) !important;
@@ -330,7 +330,7 @@
   padding-top: 2px;
 }
 .cot-detail-row .val { color: var(--mc-ink); }
-.cot-detail-row .val strong { font-weight: 600; color: var(--mc-navy); }
+.cot-detail-row .val strong { font-weight: 600; color: var(--mc-navy-ink); }
 .cot-detail-row .val small { display: block; color: var(--mc-mute); font-size: 12px; margin-top: 3px; }
 
 /* TREE WIZARD (legado, oculto por defecto) */
@@ -357,11 +357,11 @@
 }
 .cot-tree-back {
   background: transparent; border: 1px solid var(--mc-line-strong);
-  color: var(--mc-navy); padding: 8px 14px; border-radius: var(--mc-radius-sm);
+  color: var(--mc-navy-ink); padding: 8px 14px; border-radius: var(--mc-radius-sm);
   font-size: 13px; font-weight: 600; cursor: pointer;
   font-family: inherit; transition: border-color .15s ease, background .15s ease;
 }
-.cot-tree-back:hover { background: var(--mc-bg); border-color: var(--mc-navy); }
+.cot-tree-back:hover { background: var(--mc-bg); border-color: var(--mc-navy-ink); }
 .cot-tree-back:disabled { opacity: 0.35; cursor: not-allowed; }
 .cot-tree-progress { display: flex; align-items: center; gap: 10px; font-family: inherit; }
 .cot-step-indicator {
@@ -381,7 +381,7 @@
 .cot-tree-question { margin-bottom: 28px; }
 .cot-tree-question h2 {
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-  color: var(--mc-navy); margin: 0 0 8px;
+  color: var(--mc-navy-ink); margin: 0 0 8px;
   font-weight: 700; letter-spacing: -.02em; line-height: 1.25;
 }
 .cot-tree-question p {
@@ -414,7 +414,7 @@
 .cot-choice .ico { display: none; }
 .cot-choice .body { flex: 1; }
 .cot-choice .title {
-  font-size: 15px; font-weight: 600; color: var(--mc-navy);
+  font-size: 15px; font-weight: 600; color: var(--mc-navy-ink);
   margin-bottom: 4px; line-height: 1.3;
 }
 .cot-choice .desc {
@@ -505,7 +505,7 @@
   margin-bottom: 4px;
 }
 .cot-spec .val {
-  font-size: 14px; font-weight: 600; color: var(--mc-navy);
+  font-size: 14px; font-weight: 600; color: var(--mc-navy-ink);
   font-variant-numeric: tabular-nums;
 }
 .cot-next-steps {
@@ -556,7 +556,7 @@
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 13px 22px;
   background: var(--mc-white);
-  color: var(--mc-navy) !important;
+  color: var(--mc-navy-ink) !important;
   border: 1px solid var(--mc-line-strong);
   border-radius: var(--mc-radius-sm);
   font-weight: 600; font-size: 14px;
@@ -564,7 +564,7 @@
   font-family: inherit;
   transition: border-color .15s ease, background .15s ease;
 }
-.cot-btn-secondary:hover { border-color: var(--mc-navy); background: var(--mc-white); }
+.cot-btn-secondary:hover { border-color: var(--mc-navy-ink); background: var(--mc-white); }
 .cot-result-foot {
   margin-top: 24px; padding-top: 18px;
   border-top: 1px solid var(--mc-line);
@@ -651,12 +651,12 @@
   padding-top: 1px;
 }
 .cot-modal-config-row .val { color: var(--mc-ink); font-weight: 500; line-height: 1.4; }
-.cot-modal-config-row .val strong { font-weight: 600; color: var(--mc-navy); }
+.cot-modal-config-row .val strong { font-weight: 600; color: var(--mc-navy-ink); }
 .cot-modal-form { display: flex; flex-direction: column; gap: 12px; }
 .cot-modal-form label {
   font-family: var(--mc-font-mono);
   font-size: 10.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--mc-navy); margin-bottom: 2px;
+  color: var(--mc-navy-ink); margin-bottom: 2px;
 }
 .cot-modal-form input, .cot-modal-form select, .cot-modal-form textarea {
   padding: 12px 14px; border: 1px solid var(--mc-line-strong); border-radius: var(--mc-radius-sm);
@@ -684,7 +684,7 @@
 .cot-modal-success .check {
   font-size: 48px; line-height: 1; color: var(--mc-green-ink); margin-bottom: 12px;
 }
-.cot-modal-success h4 { color: var(--mc-navy); margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+.cot-modal-success h4 { color: var(--mc-navy-ink); margin: 0 0 8px; font-size: 20px; font-weight: 700; }
 .cot-modal-success p { color: var(--mc-mute); font-size: 14px; line-height: 1.55; margin: 0 0 18px; }
 .cot-modal-success .contact-info {
   background: var(--mc-bg); border: 1px solid var(--mc-line); border-radius: var(--mc-radius-sm); padding: 14px;
@@ -699,7 +699,7 @@
   padding: 60px 0;
   margin-top: 60px;
 }
-.cot-how h2 { text-align: center; color: var(--mc-navy); margin-bottom: 8px; }
+.cot-how h2 { text-align: center; color: var(--mc-navy-ink); margin-bottom: 8px; }
 .cot-how .lead { text-align: center; color: var(--mc-mute); margin-bottom: 36px; }
 .cot-how-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -723,7 +723,7 @@
   font-family: var(--mc-font-mono);
   font-size: 14px; font-weight: 500; margin-bottom: 14px;
 }
-.cot-how-card h4 { color: var(--mc-navy); margin: 0 0 8px; font-size: 16px; }
+.cot-how-card h4 { color: var(--mc-navy-ink); margin: 0 0 8px; font-size: 16px; }
 .cot-how-card p { color: var(--mc-mute); font-size: 13.5px; margin: 0; line-height: 1.6; }
 
 /* Toast */
