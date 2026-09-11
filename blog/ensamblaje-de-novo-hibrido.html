@@ -152,6 +152,7 @@
     </figure>
 
     <div class="article-body">
+      <style>#main .article-body > p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }</style>
       <p>Un <strong>ensamblaje de novo</strong> reconstruye el genoma de un organismo sin apoyarse en una secuencia de referencia previa. Es el camino obligado para organismos no modelo, cepas muy divergentes de la referencia disponible o proyectos donde la propia referencia es el resultado que se busca: un genoma nuevo, continuo y anotado, sobre el que después se harán todos los análisis.</p>
       <p>La idea del <strong>enfoque híbrido</strong> es sencilla. Las <strong>lecturas cortas de Illumina</strong> (100–250 pb, pareadas) son muy precisas base a base, pero demasiado cortas para resolver regiones repetitivas. Las <strong>lecturas largas de PacBio HiFi u Oxford Nanopore</strong> (de kilobases a megabases) atraviesan esas regiones y dan continuidad, a cambio de un perfil de error distinto. Usadas juntas, cada tecnología cubre el punto débil de la otra. El proceso tiene dos fases: primero se <strong>construye</strong> el genoma (pasos 1 a 6) y después se le <strong>da sentido</strong> (pasos 7 a 9).</p>
 
@@ -160,50 +161,50 @@
       <h3>1. Secuenciación</h3>
       <p>Todo empieza con dos tipos de datos complementarios generados a partir del mismo ADN. En Illumina se obtienen millones de lecturas cortas pareadas de alta precisión; en PacBio HiFi u Oxford Nanopore, lecturas largas que conservan el contexto de cada fragmento. En Macrogen las tres plataformas — <strong>NovaSeq X Plus</strong>, <strong>PacBio Revio</strong> y <strong>Nanopore PromethION</strong> — están bajo el mismo techo, de modo que ambas fracciones salen del mismo lote de ADN y con criterios de calidad coherentes.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step1.png" alt="Lecturas cortas Illumina de 100 a 250 pares de bases frente a lecturas largas PacBio HiFi u ONT de kilobases a megabases" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">Cortas y precisas frente a largas y con contexto: el punto de partida del enfoque híbrido.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step1.png" alt="Lecturas cortas Illumina de 100 a 250 pares de bases frente a lecturas largas PacBio HiFi u ONT de kilobases a megabases" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">Cortas y precisas frente a largas y con contexto: el punto de partida del enfoque híbrido.</figcaption>
       </figure>
       <p>La calidad del ADN de partida marca todo lo que viene después: para lecturas largas importan la integridad y el tamaño molecular, no solo la concentración. Los requisitos están en nuestros <a href="../assets/docs/SQC_Criteria_LRS.pdf" target="_blank" rel="noopener">criterios de calidad de muestra para long reads (PDF)</a>.</p>
 
       <h3>2. Corrección de errores</h3>
       <p>Antes de ensamblar se limpian las lecturas. En Illumina la corrección se basa en <strong>k-mers</strong>: se cuentan todas las subsecuencias de longitud <em>k</em> y se observa que los k-mers que aparecen muchas veces son genuinos, mientras que los raros son casi siempre errores de secuenciación. En lecturas largas la corrección viene del <strong>consenso de varias pasadas</strong> sobre la misma molécula — en PacBio, el consenso circular (CCS) que da lugar a las lecturas HiFi.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step2.png" alt="Histograma de frecuencia de k-mers con errores a baja frecuencia y consenso circular de varias pasadas en PacBio HiFi" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">Izquierda: los k-mers raros delatan errores. Derecha: varias pasadas sobre la misma molécula producen una lectura HiFi de consenso.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step2.png" alt="Histograma de frecuencia de k-mers con errores a baja frecuencia y consenso circular de varias pasadas en PacBio HiFi" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">Izquierda: los k-mers raros delatan errores. Derecha: varias pasadas sobre la misma molécula producen una lectura HiFi de consenso.</figcaption>
       </figure>
 
       <h3>3. Ensamblaje</h3>
       <p>Aquí las dos tecnologías siguen estrategias distintas que después se combinan. Para lecturas cortas se construye un <strong>grafo de De Bruijn</strong>: los k-mers son los nodos, los solapamientos exactos las aristas, y recorrer el grafo produce contigs. Para lecturas largas se usa <strong>Overlap-Layout-Consensus (OLC)</strong>: se detectan los solapamientos entre lecturas, se ordenan en un trazado y se calcula la secuencia consenso. El resultado en ambos casos son <strong>contigs</strong>, tramos continuos de secuencia sin huecos.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step3.png" alt="Grafo de De Bruijn con una burbuja que produce contigs y ensamblaje Overlap-Layout-Consensus de lecturas largas solapadas" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">De Bruijn para las cortas, OLC para las largas: dos caminos hacia los contigs.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step3.png" alt="Grafo de De Bruijn con una burbuja que produce contigs y ensamblaje Overlap-Layout-Consensus de lecturas largas solapadas" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">De Bruijn para las cortas, OLC para las largas: dos caminos hacia los contigs.</figcaption>
       </figure>
 
       <h3>4. Reducción de gaps y scaffolding</h3>
       <p>Los contigs se ordenan y orientan en <strong>scaffolds</strong> más grandes. La información de las lecturas largas — y la de los pares de lecturas cortas — permite saber qué contig va después de cuál y en qué sentido, y muchos de los huecos entre ellos se cierran o se reducen. El ensamblaje gana continuidad: menos piezas, más largas.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step4.png" alt="Contigs desordenados que se ordenan y orientan en un scaffold con gaps, puenteados por una lectura larga" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">Una lectura larga que abarca varios contigs fija su orden y orientación y acota los gaps.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step4.png" alt="Contigs desordenados que se ordenan y orientan en un scaffold con gaps, puenteados por una lectura larga" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">Una lectura larga que abarca varios contigs fija su orden y orientación y acota los gaps.</figcaption>
       </figure>
 
       <h3>5. Pulido con Illumina</h3>
       <p>Las lecturas cortas, de alta precisión, se <strong>mapean sobre el ensamblaje</strong> y cada base se contrasta con las lecturas que la cubren. Donde las lecturas coinciden entre sí pero no con el ensamblaje, es el ensamblaje el que estaba equivocado: se corrigen los <strong>indels y SNPs</strong> residuales. Con lecturas HiFi (calidad Q30 o superior) este paso aporta menos; con Nanopore sigue siendo muy recomendable.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step5.png" alt="Lecturas Illumina mapeadas sobre el ensamblaje señalan una base errónea que se corrige" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">Pulido: cada base del ensamblaje se contrasta con las lecturas cortas que la cubren.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step5.png" alt="Lecturas Illumina mapeadas sobre el ensamblaje señalan una base errónea que se corrige" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">Pulido: cada base del ensamblaje se contrasta con las lecturas cortas que la cubren.</figcaption>
       </figure>
 
       <h3>6. Ensamblaje final</h3>
       <p>El resultado es un genoma continuo y de alta calidad — contigs más scaffolds, idealmente a <strong>nivel de cromosoma</strong>. Es la referencia sobre la que se construye todo lo demás, y por eso hay que medir cuán buena es antes de seguir.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step6.png" alt="Tres cromosomas ensamblados a partir de contigs y scaffolds" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">Del conjunto de contigs a cromosomas completos.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step6.png" alt="Tres cromosomas ensamblados a partir de contigs y scaffolds" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">Del conjunto de contigs a cromosomas completos.</figcaption>
       </figure>
 
       <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:16px 20px; margin:20px 0;">
@@ -220,25 +221,25 @@
       <h3>7. Predicción de genes</h3>
       <p>Sobre el genoma ensamblado se localizan las <strong>regiones codificantes</strong> y los elementos funcionales. Los predictores construyen <strong>modelos de genes</strong> — exones, intrones, inicio y fin de la traducción — combinando señales de la propia secuencia con evidencia externa como transcritos o proteínas de organismos cercanos. También se anotan los elementos no codificantes: tRNA, rRNA y otros ncRNA.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step7.png" alt="Modelos de genes sobre el genoma con exones e intrones en ambas hebras y un elemento no codificante" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">Genes en ambas hebras, exones e intrones, y elementos no codificantes anotados sobre la secuencia.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step7.png" alt="Modelos de genes sobre el genoma con exones e intrones en ambas hebras y un elemento no codificante" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">Genes en ambas hebras, exones e intrones, y elementos no codificantes anotados sobre la secuencia.</figcaption>
       </figure>
 
       <h3>8. Anotación funcional</h3>
       <p>Un gen predicho es, de momento, solo una coordenada. La anotación funcional le asigna <strong>significado biológico</strong>: búsqueda de homólogos por <strong>BLAST</strong>, dominios proteicos con <strong>InterPro</strong>, términos <strong>GO</strong> que describen su función molecular, proceso y localización, y rutas metabólicas o de señalización en <strong>KEGG</strong> y <strong>Reactome</strong>.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step8.png" alt="Un gen predicho se conecta con BLAST, InterPro, GO y KEGG para su anotación funcional" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">Cuatro fuentes de evidencia para cada gen: homología, dominios, función y rutas.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step8.png" alt="Un gen predicho se conecta con BLAST, InterPro, GO y KEGG para su anotación funcional" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">Cuatro fuentes de evidencia para cada gen: homología, dominios, función y rutas.</figcaption>
       </figure>
 
       <h3>9. Genoma anotado</h3>
       <p>El resultado final es una <strong>referencia completa y bien anotada</strong>: genes, transcritos, repeticiones, contenido GC y elementos funcionales, organizados en pistas que se pueden navegar en un genome browser y usar directamente en cualquier análisis posterior — resecuenciación de poblaciones, expresión, variantes estructurales, genómica comparativa.</p>
       
-      <figure style="margin:18px 0 28px; padding:0;">
-        <img src="../assets/img/email/denovo/step9.png" alt="Navegador genómico con pistas de genes, transcritos, repeticiones y contenido GC" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:520px; height:auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:6px; box-sizing:border-box;">
-        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin-top:8px;">El genoma anotado, listo para navegar: cada pista es una capa de información sobre la misma secuencia.</figcaption>
+      <figure style="margin:20px auto 30px; padding:0; text-align:center;">
+        <img src="../assets/img/email/denovo/step9.png" alt="Navegador genómico con pistas de genes, transcritos, repeticiones y contenido GC" width="800" height="220" loading="lazy" decoding="async" style="display:block; width:100%; max-width:600px; height:auto; margin:0 auto; background:#fff; border:1px solid var(--mc-line); border-radius:8px; padding:8px 10px; box-sizing:border-box;">
+        <figcaption style="font-size:12.5px; color:var(--mc-mute); margin:10px auto 0; max-width:600px; text-align:center;">El genoma anotado, listo para navegar: cada pista es una capa de información sobre la misma secuencia.</figcaption>
       </figure>
 
       <div style="background:#F0F4FA; border:1.5px solid var(--mc-border); border-radius:12px; padding:18px 24px; margin:28px 0; text-align:center;">
