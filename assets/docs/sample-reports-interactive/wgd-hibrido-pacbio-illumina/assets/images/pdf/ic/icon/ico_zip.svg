@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_zip" width="39.919" height="41.632" viewBox="0 0 19.919 21.632">
+    <defs>
+        <clipPath id="clip">
+            <use xlink:href="#fill"/>
+        </clipPath>
+        <clipPath id="clip-2">
+            <use xlink:href="#fill-2"/>
+        </clipPath>
+        <clipPath id="clip-3">
+            <use xlink:href="#fill-3"/>
+        </clipPath>
+        <clipPath id="clip-4">
+            <use xlink:href="#fill-4"/>
+        </clipPath>
+        <style>
+            .cls-4{fill:#fff;stroke:#424242;stroke-linecap:round;stroke-linejoin:round}.cls-6{stroke:none}
+        </style>
+    </defs>
+    <g id="그룹_5222">
+        <g id="빼기_1" fill="#fff">
+            <path d="M17.919 21.132H1.999c-.826 0-1.499-.672-1.499-1.5V2C.5 1.173 1.173.5 2 .5h12.507l4.912 4.892v14.24c0 .828-.673 1.5-1.5 1.5z" class="cls-6" transform="translate(0 0)"/>
+            <path fill="#757575" d="M17.919 20.632c.551 0 1-.448 1-1V5.6L14.3 1H2c-.551 0-1 .449-1 1v17.633c0 .55.449 1 1 1h15.919m0 1H1.999c-1.102 0-1.999-.898-1.999-2V2C0 .897.897 0 2 0h12.713l5.206 5.184v14.449c0 1.102-.897 2-2 2z" transform="translate(0 0)"/>
+        </g>
+        <path id="패스_35" fill="#757575" d="M0 0l5.618 5.618H1.605A1.605 1.605 0 0 1 0 4.013z" transform="translate(14.301 0)"/>
+    </g>
+    <text id="ZIP" fill="#424242" font-family="Helvetica-Bold, Helvetica" font-size="7px" font-weight="700" transform="translate(4 10)">
+        <tspan x="0" y="0">ZIP</tspan>
+    </text>
+    <g id="사각형_856" class="cls-4" transform="translate(8.112 18.388)">
+        <path id="fill" d="M0 0H3.245V0.541H0z" class="cls-6"/>
+        <path fill="none" d="M0 .04h3.245m-.5-.04v.54m.5-.04H0m.5.04V0" clip-path="url(#clip)"/>
+    </g>
+    <g id="사각형_860" class="cls-4" transform="translate(8.112 19.469)">
+        <path id="fill-2" d="M0 0H3.245V0.541H0z" class="cls-6"/>
+        <path fill="none" d="M0 .04h3.245m-.5-.04v.54m.5-.04H0m.5.04V0" clip-path="url(#clip-2)"/>
+    </g>
+    <g id="사각형_857" class="cls-4" transform="translate(8.112 17.306)">
+        <path id="fill-3" d="M0 0H3.245V0.541H0z" class="cls-6"/>
+        <path fill="none" d="M0 .04h3.245m-.5-.04v.54m.5-.04H0m.5.04V0" clip-path="url(#clip-3)"/>
+    </g>
+    <g id="사각형_858" fill="#a8a8a8" stroke="#424242" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5px">
+        <path d="M1 0h1.245a1 1 0 0 1 1 1v1.7H0V1a1 1 0 0 1 1-1z" class="cls-6" transform="translate(8.112 12.979)"/>
+        <path fill="none" d="M1 .25h1.245a.75.75 0 0 1 .75.75v1.2a.25.25 0 0 1-.25.25H.5a.25.25 0 0 1-.25-.25V1A.75.75 0 0 1 1 .25z" transform="translate(8.112 12.979)"/>
+    </g>
+    <g id="사각형_859" class="cls-4" transform="translate(8.112 16.224)">
+        <path id="fill-4" d="M0 0H3.245V0.541H0z" class="cls-6"/>
+        <path fill="none" d="M0 .04h3.245m-.5-.04v.54m.5-.04H0m.5.04V0" clip-path="url(#clip-4)"/>
+    </g>
+</svg>

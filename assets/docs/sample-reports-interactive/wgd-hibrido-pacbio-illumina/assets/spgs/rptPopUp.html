@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs/rpt630.css" />
+
+<script type="text/javascript">const RPTPAGEMODE=false;</script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/d3.v4.min.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+
+<script type="text/javascript" src="../js/common/txtvars.js"></script>
+<script type="text/javascript" src="../js/spgs/dft.js"></script>
+<script type="text/javascript" src="../js/common/cijUtils.js"></script>
+<script type="text/javascript" src="../js/spgs/rdrpt/rawdatarpt.js"></script>
+<script type="text/javascript" src="../js/spgs/dftd3chart.js"></script>
+
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="../js/common/dftutils.js"></script>
+<script type="text/javascript" src="../js/data/rpt631data.js"></script>
+<script type="text/javascript" src="../js/data/rpt640data.js"></script>
+<script type="text/javascript" src="../js/data/rpt650data.js"></script>
+<script type="text/javascript" src="../js/spgs/rptPopUp.js"></script>
+
+
+</head>
+<body style="background-color:#ffffff;">
+
+
+
+<div class="layerpopup2" id="popup">
+	
+    <div class="popup">
+        <div class="pop-header">
+        
+        	<div class="pop-tit">
+        		<p class="main-tit">Result per Sample</p>
+        		<p class="sub-tit">Result per Sample</p>
+        	</div>
+            <div class="pop-btn">
+        		<a href="javascript:void(0);" class="close" onclick="window.close();"><i class="ico ico-close"></i></a>
+        	</div>
+        	    
+        </div>
+        
+        
+        <div class="pop-body">
+			
+			<div class="view-box">
+                <div class="box-header"><b class="tit">You can hover over the bars to see the data values.</b>
+                    <div class="right">
+                        <div class="sample-label">
+                            <span class="label">
+                            	<i class="rect" style="background: #54cecd;"></i><span id="chart_unit_span"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-content no-bg align-c" style="padding: 0;">
+                    <div id="popup_chart_area_div"></div>
+                    
+					
+
+
+                    
+                </div>
+            </div>
+			
+
+            <div class="footer"></div>
+        </div>
+        <!-- // pop-body -->
+    </div>
+    
+</div>
+
+<div id="tooltip1" class="d3ChartToolTip" style="background: none; border: none; display: none;">
+   <svg style="-webkit-filter: drop-shadow( 4px 4px 3px rgba(0, 0, 0, 0.7)); filter: drop-shadow( 4px 4px 3px rgba(0, 0, 0, 0.7));">
+        <path stroke="#099896" stroke-width="0.2" fill="#ffffff" />
+        <g class="toolTipInfo">
+            <text class="toolTipHeader" ></text>
+            <text class="toolTipName" ></text>
+            <text class="toolTipValue" ></text>
+        </g>
+    </svg>
+</div>
+
+<div id="tooltip2" class="d3ChartToolTip" style="background: none; border: none; display: none; ">
+
+   <svg viewBox="5 5 230 125" width="230" height="125" style="-webkit-filter: drop-shadow( 4px 4px 3px rgba(0, 0, 0, 0.7)); filter: drop-shadow( 4px 4px 3px rgba(0, 0, 0, 0.7));">
+        <path d="M 10 5 C 7 5 5 7 5 10 L 5 100 C 5 103 7 105 10 105 L 190 105 L 180 130 L 210 105 L 230 105 C 233 105 235 103 235 100 L 235 10 C 235 7 233 5 230 5 L 10 5 Z" stroke="#099896" stroke-width="0.2" fill="#ffffff" />
+        <g class="toolTipInfo">
+            <text class="toolTipHeader" x="40" y="30"></text>
+            <text x="40" y="60" class="toolTipName1" ></text><text class="d3HighLightTxt1 toolTipValue1" x="130" y="60"></text>
+            <text x="40" y="90" class="toolTipName2" ></text><text class="d3HighLightTxt3 toolTipValue2" x="130" y="90"></text>
+        </g>
+    </svg>
+
+</div>
+
+</body>
+
+</html>

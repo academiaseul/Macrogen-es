@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN</title>
+
+
+<link href="../css/rdrpt/w3.css" rel="stylesheet">
+<link href="../css/rdrpt/rdmain.css" rel="stylesheet">
+<style>
+.d3ChartBar { fill: #40bfbd; }
+.d3HighLightTxt {
+	font-size: 30px;
+	fill: #008e8c;
+}
+.d3ChartYGridline line {
+	stroke: #9e9e9e;
+	stroke-opacity: 0.7;
+	stroke-dasharray: 3,3;
+}
+.d3ChartToolTip {
+	position: absolute;
+	width:234px;
+	border: 1px solid #4e64c0;
+	background-color: white;
+	text-align: center;
+	font-size: 18px;
+}
+.d3TopAxis text{
+	font-size: 30px;
+	fill: #454545;
+}
+.d3TopAxis line{
+	stroke: #9e9e9e;
+}
+.d3LeftAxis text{
+	font-size: 35px;
+	fill: #454545;
+}
+
+.d3ChartToolTipHeader {
+	font-weight: bold;
+}
+
+.d3ChartToolTipValue {
+	font-weight: bold;
+	fill: #008e8c;
+}
+
+body{
+	background-color: #ffffff;
+}
+</style>
+
+
+
+</head>
+<body>
+
+<!-- Content -->
+<div class="w3-display-container" style="width: 2080px; margin: 0px; padding: 0px;">
+		<div class="w3-row">
+			<div class="w3-col l12">
+				<div class="w3-panel w3-display-container">
+					<div class="w3-display-right">
+						<img src="../images/common/raw/icon_total_reads_box.png" style="width: 34px;">&nbsp;
+						<span id="chart_unit_span" style="margin-right:10px; font-size: 30px; color: #212121;"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="w3-row" style="margin-top: 100px;">
+			<div id="barChartCVS" class="w3-col l12">
+			</div>
+		</div>
+</div>
+
+
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/d3.v4.min.js"></script>
+	<script src="../js/data/rpt630data.js"></script>
+	<script src="../js/data/rpt640data.js"></script>
+	<script src="../js/data/rpt650data.js"></script>	
+	<script src="../js/spgs/DftD3HorizentalBarChart.js"></script>
+
+</body>
+</html>

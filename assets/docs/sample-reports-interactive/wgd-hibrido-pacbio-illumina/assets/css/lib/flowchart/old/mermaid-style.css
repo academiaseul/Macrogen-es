@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+.gh-node-cwsn>rect, .gh-node-cwsn>polygon {
+	fill: #ffffff !important;
+	stroke:#4f98ee !important;
+}
+
+.gh-node-cbsn>rect, .gh-node-cbsn>polygon {
+	fill: #e4effd!important;
+	stroke:#4694ed !important;
+}
+
+/* class io3 gh-node-cgsn;\n */
+/* "class st gh-node-cgsn;\n" */
+
+/* cgsn 이게 중복이고,
+색상이 fill: #ffede8 인게 cosn 인거 같아요
+ */
+
+.gh-node-cgsn>rect, .gh-node-cgsn>polygon{
+	fill: #ffede8 !important;
+	stroke:#ff8d5a !important;
+}
+ 
+.gh-node-cgsn>rect, .gh-node-cgsn>polygon{
+	fill: rgba(6, 178, 176, 0.15) !important;
+	stroke: #61cacb !important;
+}
+
+
+.gh-node-cgrsn>rect, .gh-node-cgrsn>polygon {
+	fill: #e7eaed !important;
+	stroke:#212121 !important;
+}
+
+.gh-node-cgrsd>rect, .gh-node-cgrsd>polygon {
+	fill: #e7eaed !important;
+	stroke:#212121 !important;
+	stroke-width:2px !important;
+	stroke-dasharray: 5 5 !important;
+}
+
+.gh-txt-cr {
+	color: red;
+}
+
+.gh-txt-cb {
+	color: #6c80cd;
+}
+
+.gh-txt-cg{
+	color: green;
+}

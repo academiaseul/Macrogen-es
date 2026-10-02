@@ -1,0 +1,1 @@
+const rptjs_730_data={"title":"FAQ","subTitle":"","desc":[],"contents":[]};

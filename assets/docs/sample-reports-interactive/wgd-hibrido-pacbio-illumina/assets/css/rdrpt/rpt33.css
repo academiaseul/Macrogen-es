@@ -1,0 +1,47 @@
+.d3ChartBar1 { fill: #4167ce; opacity: 0.7;}
+.d3ChartBar2 { fill: #11bcba; opacity: 0.7;}
+.d3HighLightTxt1 {
+	font-size: 14px;
+	fill: #223a9d;
+}
+.d3HighLightTxt2 {
+	font-size: 14px;
+	fill: #099896;
+}
+.d3ChartYGridline line {
+	stroke: #9e9e9e;
+	stroke-opacity: 0.7;
+	stroke-dasharray: 3,3;
+}
+.d3ChartToolTip {
+	position: absolute;
+	width:234px;
+	border: 1px solid #4e64c0;
+	background-color: white;
+	text-align: center;
+	font-size: 18px;
+}
+.d3TopAxis text{
+	font-size: 12px;
+	fill: #9e9e9e;
+}
+.d3TopAxis line{
+	stroke: #9e9e9e;
+}
+
+.d3LeftAxis text{
+	font-size: 16px;
+}
+
+.d3ChartToolTipHeader {
+	font-weight: bold;
+}
+
+.d3ChartToolTipValue1 {
+	font-weight: bold;
+	fill: #223a9d;
+}
+.d3ChartToolTipValue2 {
+	font-weight: bold;
+	fill: #099896;
+}

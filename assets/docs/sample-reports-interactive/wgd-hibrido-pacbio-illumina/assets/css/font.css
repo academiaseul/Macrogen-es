@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo';
+    font-weight: 700;
+    src: url(../font/SpoqaHanSansNeo-Bold.eot);
+    src: url(../font/SpoqaHanSansNeo-Bold.eot?#iefix) format('embedded-opentype'),
+        url(../font/SpoqaHanSansNeo-Bold.woff) format('woff'),
+        url(../font/SpoqaHanSansNeo-Bold.ttf) format('opentype');
+}
+@font-face {
+    font-family: 'SpoqaHanSansNeo';
+    font-weight: 500;
+    src: url(../font/SpoqaHanSansNeo-Medium.eot);
+    src: url(../font/SpoqaHanSansNeo-Medium.eot?#iefix) format('embedded-opentype'),
+        url(../font/SpoqaHanSansNeo-Medium.woff) format('woff'),
+        url(../font/SpoqaHanSansNeo-Medium.ttf) format('opentype');
+}
+@font-face {
+    font-family: 'SpoqaHanSansNeo';
+    font-weight: 400;
+    src: url(../font/SpoqaHanSansNeo-Regular.eot);
+    src: url(../font/SpoqaHanSansNeo-Regular.eot?#iefix) format('embedded-opentype'),
+        url(../font/SpoqaHanSansNeo-Regular.woff) format('woff'),
+        url(../font/SpoqaHanSansNeo-Regular.ttf) format('opentype');
+}
+
+@font-face {
+    font-family: 'SpoqaHanSansNeo';
+    font-weight: 300;
+    src: url(../font/SpoqaHanSansNeo-Light.eot);
+    src: url(../font/SpoqaHanSansNeo-Light.eot?#iefix) format('embedded-opentype'),
+        url(../font/SpoqaHanSansNeo-Light.woff) format('woff'),
+        url(../font/SpoqaHanSansNeo-Light.ttf) format('opentype');
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    font-weight: 500;
+    src: url(../font/OpenSans-SemiBold.eot);
+    src: url(../font/OpenSans-SemiBold.eot?#iefix) format('embedded-opentype'),
+        url(../font/OpenSans-SemiBold.woff) format('woff'),
+        url(../font/OpenSans-SemiBold.ttf) format('opentype');
+}
+@font-face {
+    font-family: 'OpenSans';
+    font-weight: 400;
+    src: url(../font/OpenSans-Regular.eot);
+    src: url(../font/OpenSans-Regular.eot?#iefix) format('embedded-opentype'),
+        url(../font/OpenSans-Regular.woff) format('woff'),
+        url(../font/OpenSans-Regular.ttf) format('opentype');
+}
+@font-face {
+    font-family: 'OpenSans';
+    font-weight: 400;
+    src: url(../font/OpenSans-Light.eot);
+    src: url(../font/OpenSans-Light.eot?#iefix) format('embedded-opentype'),
+        url(../font/OpenSans-Light.woff) format('woff'),
+        url(../font/OpenSans-Light.ttf) format('opentype');
+}

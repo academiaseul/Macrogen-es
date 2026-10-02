@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="./assets/images/ic/macrogen_favicon.ico">
+
+<!-- <link type="text/css" rel="stylesheet" href="./assets/css/slick.css" /> -->
+<link type="text/css" rel="stylesheet" href="./assets/css/swiper.min.css" />
+<link type="text/css" rel="stylesheet" href="./assets/css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="./assets/css/style.css" />
+<link type="text/css" rel="stylesheet" href="./assets/css/main.css" />
+
+<style type="text/css">
+
+
+/*
+.apexcharts-tooltip.apexcharts-theme-light.apexcharts-active{
+	background: none; border: none; box-shadow: none;
+}
+.apexcharts-tooltip{
+	background: none; border: none; box-shadow: none;
+}
+.apexcharts-theme-light{
+	background: none; border: none; box-shadow: none;
+}
+.apexcharts-tooltip.apexcharts-theme-light.apexcharts-active{
+	background: none; border: none; box-shadow: none;
+}
+
+
+
+.radialBarTooltip {
+	display: flex;
+	height: 64px;
+	background: none;
+}
+
+.radialBarTooltip .lineForData {
+  width: 187.1px;
+  height: 0;
+  margin: 24.5px 15.4px 0 327.5px;
+  border: solid 1px #223a9d;
+}
+
+.radialBarTooltip span{
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.42;
+  letter-spacing: normal;
+  text-align: left;
+  color: #223a9d;
+}
+
+.radialBarTooltip span.valueData {
+  width: 85px;
+  height: 64px;
+  margin: 4px 23px 254px 15.4px;
+  font-size: 53px;
+  
+}
+.radialBarTooltip span.unitData {
+  font-size: 24px;
+}
+*/
+
+</style>
+
+<script type="text/javascript">const RPTPAGEMODE=true;</script>
+
+
+
+<script type="text/javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="./assets/js/lib/apexcharts.min.js"></script>
+
+
+<script type="text/javascript" src="./assets/js/swiper.min.js"></script>
+<script type="text/javascript" src="./assets/js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="./assets/js/ui.js"></script>
+
+<script type="text/javascript" src="./assets/js/common/dftutils.js"></script>
+<script type="text/javascript" src="./assets/js/common/txtvars.js"></script>
+<script type="text/javascript" src="./assets/js/spgs/dfttab.js"></script>
+
+<script type="text/javascript" src="./assets/js/data/rptjs_report_summary.js"></script>
+<script type="text/javascript" src="./assets/js/data/rptjs_main.js"></script>
+
+<script type="text/javascript" src="./assets/js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="./assets/js/common/rptmenu.js"></script>
+<script type="text/javascript" src="./assets/js/common/dftdesc.js"></script>
+<script type="text/javascript" src="./assets/js/spgs/dftchart.js"></script>
+<script type="text/javascript" src="./assets/js/main.js"></script>
+
+</head>
+
+<body>
+	<!-- wrapper -->
+	<div class="wrapper main main-bg expand">
+		<div class="gnb-dim"></div>
+		<!-- gnb-menu -->
+		<div class="gnb-menu-wrap expand">
+			<h1 class="logo"></h1>
+			<div class="expand">
+				<div class="info-wrap">
+					<div class="info">
+						<p class="date"></p>
+					</div>
+					<div class="user-info btn-user-info" style="padding-top: 20px;" onclick="javascript:popOpen('#ordInfoPopup');">
+						<b class="tit"></b>
+						<p class="form"></p>
+						<div class="order"></div>
+					</div>
+				</div>
+				<div class="gnb-menu">
+					<script>insertMainMenu(RPTPAGEMODE);</script>
+				</div>
+				<div class="download"></div>
+			</div>
+		</div>
+		<!-- // gnb-menu -->
+
+		<!-- container -->
+		<div class="container">
+			<div class="header">
+				<strong class="title"></strong>
+				<div class="right">
+					<div class="user-menu" style="display: none;">
+						<a href="javascript:popOpen('#comLocPopup');" class="menu"><i class="ico i-mapidx"></i></a> 
+						<a href="javascript:noticePopOpen('#mainNoticePopup');" class="menu"><i class="ico i-bell"></i><i class="ico i-new"></i></a>
+						<div class="main-tooltip-wrap popup-alert" id="mainNoticePopup" style="position:relative;top: 0; right: 0;">
+							<div class="pop-menu-close"></div>
+							<div class="main-tooltip-layer popup-menu-alert">
+								<div class="pop-menu-alert-close">
+									<a href="javascript:void(0);" class="close" onclick="noticePopOpenClose();"><i class="ico ico-close"></i></a>
+								</div>
+								<div class="menu-alert-title">
+									<img src="./assets/images/ico_main_down_blue.png">
+									<div>The data can be downloaded<br>from the link below.</div>
+								</div>
+								<div class="menu-alert-contents" style="word-wrap:break-word; word-break: break-word;">
+									<div class="main-tooltip-layer-text">The download link is active for 2 weeks only, so please download your data within this period. Once you download the data, please make sure to check the integrity of the files.</div>
+									<br />
+									<div class="main-tooltip-layer-text">The sequencing files will be deleted from our server 3 months after the analysis report is released; please contact us within 3 months if you encounter a problem with the data.</div>									
+								</div>
+								<div class="btn-menu-alert-download">
+									<a href="./assets/spgs/rpt720.html" class="btn-type2 st1"><i class="ico i-down-blue"></i>Download Data</a>
+								</div>
+							</div>
+						</div>
+						<a href="javascript:popOpen('#ordInfoPopup');" class="menu"><i class="ico i-user"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="top-btn"><a href="#">TOP</a></div>
+			
+			<div class="content">
+			
+				<div class="main-banner-wrap">
+					<div class="swiper-container main-banner">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="banner">
+									<strong id="banner_app_id" class="tit"><b>Whole Genome De novo</b> Sequencing</strong>
+									<p id="banner_app_desc"></p>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="banner">
+									<strong class="tit"><b>Wait a second! Have you downloaded your data?</b></strong>
+									<p>Your data will be deleted from our server after 3 months.<br>Make sure to download your data within this period and check the file integrity using md5sum,<br>before using the data. (Please refer to FAQ #1 for ways to check the md5sum value)</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				
+				<!-- result-summary -->
+				<section class="project-result-summary">
+					<h1>Project Results Summary</h1>
+					<div class="summary-wrap">
+	                    <div class="number-box">
+	                        <ul style="list-style:none;">
+
+	                        </ul>
+	                    </div>
+	                    <div id="main_chart" style="margin-left: 42px;">
+	                    	<div class="icon270div">
+	                    		<img alt="" src="./assets/images/ic/icon270.png"><span class="icon270Txt">0°(0%) ~ 270°(100%)</span>
+	                    	</div>
+	                    	<div id="radialBarChart" style="width: 700px;height:700px;">
+	                    	
+	                    	</div>	
+	                    
+	                    </div>
+	                </div>
+	                
+	                
+	                
+<!-- 	                <div class="report-comment"> -->
+<!-- 						<div class="title"> -->
+<!-- 							<span class="icon"><i class="ico i-speechbubble"></i></span> -->
+<!-- 							<span class="tit">Report <br>Comment</span> -->
+<!-- 						</div> -->
+<!-- 						<div class="comment"> -->
+							
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+					
+					
+				</section>
+				<div class="both-box">
+					<div class="download-data">
+						<p class="txt">Please download your data here.</p>
+						<a href="./assets/spgs/rpt720.html" class="btn-type2 st1"><i class="ico i-down-blue"></i>Download Data</a>
+					</div>
+					<div class="appendix" style="cursor: pointer;" onclick="goFAQ();">
+						<strong>Appendix</strong>
+						<p>
+								Find out more about the annotation
+								fields and analysis tools used.
+						</p>
+					</div>
+				</div>
+				
+				
+				
+				<!-- // result-summary -->
+
+			</div>
+		</div>
+		<!-- // container -->
+		<div class="footer"></div>
+	</div>
+	<!-- // wrapper -->
+	
+	
+	
+	<!-- company location --><div class="layerpopup" id="comLocPopup"></div><!-- company location -->
+	<!-- order info --><div class="layerpopup" id="ordInfoPopup"></div><!-- order info -->
+
+</body>
+
+</html>

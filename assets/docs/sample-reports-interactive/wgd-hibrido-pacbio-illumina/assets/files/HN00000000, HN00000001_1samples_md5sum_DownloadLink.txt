@@ -1,0 +1,10 @@
+File	Size	md5sum	Download_link
+<i class='ico i-tar'></i> SAMPLE1_rawdata1.tar	1.0GB	6f7e6b7a3b0a99f7e5782dc63d4887b9	-
+<i class='ico i-gz'></i> SAMPLE1_1.fastq.gz	900.0MB	63f157a648a731eaee5270f964f41f10	-
+<i class='ico i-gz'></i> SAMPLE1_2.fastq.gz	920.0MB	8db0e61b6b72384751fd5853e5b4a900	-
+<i class='ico i-gz'></i> SAMPLE1_filtered_1.fastq.gz	500.0MB	5bfe29083d0075c7e956791267314a01	-
+<i class='ico i-gz'></i> SAMPLE1_filtered_2.fastq.gz	490.0MB	9d4a7b0f73cdd28b770b74dababd3f92	-
+<i class='ico i-zip'></i> SAMPLE1.zip	20.0MB	7a5f65b16683c12c35ad23d65ed1d9b0	-
+<i class='ico i-zip'></i> SAMPLE1_FunctionalAnnotation.zip	15.0MB	d7759432732369919aaad8795ec2a2c5	-
+<i class='ico i-zip'></i> HN00000000_SAMPLE1_BaseModification.zip	5.0MB	6e14c1e63c93a83d9e24d29e43a477c7	-
+<i class='ico i-zip'></i> HN00000000_SAMPLE1_CpG.zip	10.0MB	2a89b9a56e088a04852b377f7d8bcb41	-

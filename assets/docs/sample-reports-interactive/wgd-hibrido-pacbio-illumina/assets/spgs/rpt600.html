@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Macrogen">
+<title>MACROGEN NGS Report</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/ic/macrogen_favicon.ico">
+
+<link type="text/css" rel="stylesheet" href="../css/nice-select.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css" />
+<link type="text/css" rel="stylesheet" href="../css/spgs.css" />
+<link type="text/css" rel="stylesheet" href="../css/rdrpt/w3.css" />
+<link type="text/css" rel="stylesheet" href="../css/rdrpt/rdmain.css" />
+
+<script type="text/javascript">const RPTPAGEMODE=false;</script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nice-select.js"></script>
+<script type="text/javascript" src="../js/ui.js"></script>
+
+
+<script type="text/javascript" src="../js/common/txtvars.js"></script>
+<script type="text/javascript" src="../js/spgs/dft.js"></script>
+<script type="text/javascript" src="../js/spgs/dfttab.js"></script>
+<script type="text/javascript" src="../js/spgs/rdrpt/rawdatarpt.js"></script>
+
+<script type="text/javascript" src="../js/data/rpt600data.js"></script>
+<script type="text/javascript" src="../js/data/rptjs_main.js"></script>
+<script type="text/javascript" src="../js/common/dftcpntwriter.js"></script>
+<script type="text/javascript" src="../js/common/rptmenu.js"></script>
+
+<script type="text/javascript" src="../js/common/dftutils.js"></script>
+<script type="text/javascript" src="../js/spgs/rpt600.js"></script>
+
+
+
+</head>
+<body>
+
+<!-- wrapper -->
+<div class="wrapper">
+  <div class="gnb-dim"></div>
+  <!-- gnb-menu -->
+  <div class="gnb-menu-wrap expand">
+    <h1 class="logo"></h1>
+    <div class="contract">
+      <a href="javascript:void(0);" class="menu"><i class="ico i-menu"></i></a>
+      <ul class="user-menu"></ul>
+    </div>
+    <div class="expand">
+        <div class="gnb-menu">
+          <script>insertMainMenu(RPTPAGEMODE);</script>
+      	</div>
+        <div class="download"></div>
+    </div>
+  </div>
+  <!-- // gnb-menu -->
+
+	<!-- container -->
+	<div class="container" style="margin-left: 188px;">
+        <div class="header">
+            <strong class="title"></strong>
+            <div class="right">
+                <span class="path">
+                    <script>insertTopMenu(getCurrentPageNameWithParam(null));</script>
+                </span>
+            </div>
+        </div>
+        <div class="top-btn"><a href="#">TOP</a></div>
+		<div class="content">
+		
+            <h1 class="title-type1"></h1>
+			<p class="text-type1"> <!-- c-skyblue -->
+				The samples are prepared according to NGS library preparation workflow, and sequenced using Illumina platform.<br>
+					The workflow illustrated below shows the common ligation based method of library preparation. The process may differ based<br> 
+					on the library preparation protocol followed.
+			</p>
+			
+			
+			<!--  -->
+			<div class="w3-row" style="margin-top: 50px;">
+				<div class="w3-col l12">
+					<span class="content_sub_title1">Overview</span>
+				</div>
+			</div>
+			<div style="margin-top: 28px; width: 1285px; height:80px; padding:0px; background-color: #f6f9fd;">
+				<div id="content_menu_div" style="width: 1285px; height:80px; background-color: rgba(246,249,253, 0.9);">
+					<div  style="margin: 0px 77px; position: relative;">
+					
+						<div class="w3-row">
+							<div class="w3-col l12 w3-center">
+								<div class="w3-row" style="background-image: url('../images/wf/wf_test_bg_line.png');">
+									
+									<div class="w3-col l3 w3-center">
+										<img src="../images/wf/icon_wf_step_1.png" class="workflow_step_icon">
+										<button id="workflow_btn_1" class="w3-btn w3-round-xxlarge workflow_dft_btn" style="margin-top: 20px;">
+										Library Preparation
+										</button>
+									</div>
+									<div class="w3-col l3 w3-center">
+										<img src="../images/wf/icon_wf_step_2.png" class="workflow_step_icon">
+										<button id="workflow_btn_2" class="w3-btn w3-round-xxlarge workflow_dft_btn" style="margin-top: 20px;">
+										Cluster Generation
+										</button>
+									</div>
+									<div class="w3-col l3 w3-center">
+										<img src="../images/wf/icon_wf_step_3.png" class="workflow_step_icon">
+										<button id="workflow_btn_3" class="w3-btn w3-round-xxlarge workflow_dft_btn" style="margin-top: 20px;">
+										Sequencing
+										</button>
+									</div>
+									<div class="w3-col l3 w3-center">
+										<img src="../images/wf/icon_wf_step_4.png" class="workflow_step_icon">
+										<button id="workflow_btn_4" class="w3-btn w3-round-xxlarge workflow_dft_btn" style="margin-top: 20px;">
+										Analysis
+										</button>
+									</div>
+								</div>		
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="content_menu_div_dummy" style="width: 1285px; height:50px; background-color: #f6f9fd;">&nbsp;</div>
+			
+			<div id="content_lib_div" class="w3-display-container" style="width: 1285px; height: 1166px; border-bottom: 1px solid #e0e0e0;">
+				<div style="margin-left: 107px; margin-top: 50px;">
+					<div>
+						<span style="font-size: 46px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 0.65; letter-spacing: -1.15px; color: #4e64c0;">Library Preparation</span>
+					</div>
+					<div class="w3-left" style="width: 447px; margin-top: 25px;">
+						<img src="../images/wf/100_wf_library_preparation_01.png" style="width: 446.1px; height: 264.1px;">
+						<div>
+							<span style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: left; color: #212121;">Sample Preparation</span>
+							<p style="font-size: 16px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: normal; color: #616161;">
+								DNA/RNA is first extracted from the sample,<br>
+								and samples which meet quality control standards<br> 
+								proceed to library construction.
+							</p>
+						</div>
+					</div>
+					<div class="w3-right" style="margin-top: 67.7px; margin-left: 53.8px;">
+						<img src="../images/wf/100_wf_library_preparation_02.png" style="width: 572.5px; height: 422.2px;">
+						
+						<div style="position: relative; top: 19px; left: -63.7px;">
+							<span style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: left; color: #212121;">Ligate Adapters</span>
+							<p style="font-size: 16px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: normal; color: #616161;">
+								The sequencing library is prepared by random fragmentation of the DNA or cDNA sample,<br>
+								followed by 5' and 3' adapter ligation. Alternatively, "tagmentation" combines the fragmentation<br> 
+								and ligation reactions into a single step which greatly increases the efficiency of the library<br>
+								preparation process.
+							</p>
+						</div>
+						<img src="../images/wf/100_wf_library_preparation_03.png" style="margin-top: 6.6px; width: 625px; height: 221.9px;">
+						
+						<div style="position: relative; top: 42.2px; left: -63.7px;">
+							<span style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: left; color: #212121;">Final library Construction</span>
+							<p style="font-size: 16px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: normal; color: #616161;">
+								Adapter-ligated fragments are then PCR amplified with a PCR primer solution which anneals<br>
+								to the ends of each adapters.<br>
+								The library templates undergo quality control and quantification process. 
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div id="content_cluster_div" class="w3-display-container" style="width: 1285px; height: 1237px; background-color: #eaf3ff; border-bottom: 1px solid #e0e0e0;">
+				<div style="padding-left: 107px; padding-top: 97px;">
+					<div>
+						<span style="font-size: 46px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 0.65; letter-spacing: -1.15px; color: #4e64c0;">Cluster Generation</span>
+					</div>
+					<div style="width: 1072px; height: 1086.5px;">
+						<div style="position: absolute; top: 203px; left: 130px;">
+							<span style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: left; color: #212121;">Cluster generation using bridge amplification</span>
+							<p style="font-size: 16px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: normal; color: #616161;">
+								The library is loaded onto a flow cell where fragments are captured on<br> 
+								a lawn of surface-bound oligos complementary to the library adapters.<br>
+								Each fragment is then amplified into distinct clonal clusters through bridge<br> 
+								amplification. Once cluster generation is complete, the templates are ready<br>
+								for sequencing.
+							</p>
+						</div>
+						<img class="w3-right" src="../images/wf/200_wf_cluster_generation_01.png" style="position: relative; top: -80px; width: 965.8px; height: 1086.5px;">
+					</div>
+				</div>
+			</div>
+			
+			
+			<div id="content_sequencing_div" class="w3-display-container" style="width: 1285px; height: 1750px; border-bottom: 1px solid #e0e0e0;">
+				<div style="padding-left: 107px; padding-top: 97px;">
+					<div>
+						<span style="font-size: 46px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 0.65; letter-spacing: -1.15px; color: #4e64c0;">Sequencing</span>
+					</div>
+					<div style="margin-top: 50px; margin-left: 23px;">
+						<span style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: left; color: #212121;">Sequencing by synthesis (SBS) technology</span>
+						<p style="font-size: 16px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: normal; color: #616161;">
+							Illumina SBS technology utilizes a proprietary reversible terminator-based method that detects single bases as they are incorporated<br>
+							into DNA template strands. As all 4-reversible, terminator-bound dNTPs are present during each sequencing cycle, natural competition<br>
+							minimizes incorporation bias and greatly reduces raw error rates compared to other technologies.<br>
+							The result is highly accurate base-by-base sequencing that virtually eliminates sequence-context-specific errors, even within repetitive<br> 
+							sequence regions and homopolymers.
+						</p>
+					</div>
+					<div style="margin-top: 40px; width: 1024px;">
+						<img class="w3-right" src="../images/wf/300_wf_sequencing_01.png" style="width: 1024px; height: 1068.2px;">
+						<table style="color: #757575; font-size: 14px; line-height: 1.86;">
+							<tr>
+								<td style="width: 350px;"><span style="color: #ff0000;">*</span>&nbsp;MiSeq™ and HiSeq™  Series</td>
+								<td style="width: 350px;"><span style="color: #ff0000;">*</span>&nbsp;MiniSeq™, NextSeq™, and NovaSeq™ Series</td>
+								<td style="width: 300px;"><span style="color: #ff0000;">*</span>&nbsp;iSeq 100 System</td>
+							</tr>
+						</table>
+						<div style="margin-top: 50px;">
+							<span style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: left; color: #212121;">Four, Two, and One-Channel Chemistry</span>
+							<p style="font-size: 16px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: normal; color: #616161;">
+								Systems using four-channel chemistry uses a mixture of nucleotides labeled with four different fluorescent dyes.<br>
+								Similarly, two-channel chemistry makes use of two different fluorescent dyes, and one-channel chemistry uses only one dye.<br> 
+								The images are processed by an image analysis software to determine nucleotide identity.
+							</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			
+			<div id="content_data_div" class="w3-display-container" style="width: 1285px; height: 1021px; background-color: #eaf3ff; border-bottom: 1px solid #e0e0e0;">
+				<div style="position: relative; top: 100px; left: 106px;">
+					<span style="font-size: 46px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 0.65; letter-spacing: -1.15px; color: #4e64c0;">Generation of Raw Data</span>
+				</div>
+				<img src="../images/wf/400_wf_generation_of_rawdata_01.png" style="position: absolute; width: 1003px; height: 630.4px; top: 147px; left: 123px;">
+				<div style="position: absolute; top: 786px; left: 129px;">
+					<span style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; color: #212121;">Generation of Raw Data</span>
+					<p style="font-size: 16px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.44; letter-spacing: normal; color: #616161;">
+						The Illumina sequencer generates raw images utilizing sequencing control software for system control and base calling, through integrated<br>
+						primary analysis software called RTA (Real Time Analysis).<br>
+						The BCL/cBCL (base call) binary files are converted into FASTQ files using bcl2fastq, which is an Illumina provided package.<br> 
+						Adapters are not trimmed away from the reads.
+					</p>
+				</div>
+			</div>
+			
+			
+			
+			
+			<!--  -->
+			
+			
+			
+			
+		</div>
+	</div>
+
+	<!-- // container -->
+	<div class="footer"></div>
+</div>
+<!-- // wrapper -->
+
+<!-- company location --><div class="layerpopup" id="comLocPopup"></div><!-- company location -->
+<!-- order info --><div class="layerpopup" id="ordInfoPopup"></div><!-- order info -->
+
+<!-- --------------------------------End-------------------------------- -->
+
+</body>
+</html>

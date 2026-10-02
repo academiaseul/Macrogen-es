@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo leer un reporte de ensamblaje de novo microbiano | Blog Macrogen Iberoamérica</title>
+<meta name="description" content="Guía para leer un reporte de ensamblaje de novo microbiano híbrido (PacBio HiFi + Illumina): lecturas, N50, BUSCO, ANI, anotación, metilación y entregables.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#001E62">
+<link rel="stylesheet" href="../assets/css/main.css">
+
+<link rel="canonical" href="https://macrogen-es.com/blog/como-leer-reporte-ensamblaje-de-novo-microbiano">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Macrogen Iberoamérica">
+<meta property="og:url" content="https://macrogen-es.com/blog/como-leer-reporte-ensamblaje-de-novo-microbiano">
+<meta property="og:title" content="Cómo leer un reporte de ensamblaje de novo microbiano | Macrogen Blog">
+<meta property="og:description" content="Guía para leer un reporte de ensamblaje de novo microbiano híbrido (PacBio HiFi + Illumina): lecturas, N50, BUSCO, ANI, anotación, metilación y entregables.">
+<meta property="og:image" content="https://macrogen-es.com/assets/img/blog/wgd/mapa-circular-contig1.jpg">
+<meta property="article:published_time" content="2026-10-02">
+<meta property="article:section" content="NGS">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cómo leer un reporte de ensamblaje de novo microbiano">
+<meta name="twitter:description" content="Q30, pasadas HiFi, contig circular, BUSCO, ANI con cobertura, anotación y metilación: qué muestra cada sección del reporte y qué comprobar antes de confiar en el ensamblaje.">
+<meta name="twitter:image" content="https://macrogen-es.com/assets/img/blog/wgd/mapa-circular-contig1.jpg">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
+
+
+<!-- ============ Schema.org BlogPosting ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Cómo leer un reporte de ensamblaje de novo microbiano, sección a sección",
+  "description": "Guía para leer un reporte de ensamblaje de novo microbiano híbrido (PacBio HiFi + Illumina): lecturas, N50, BUSCO, ANI, anotación, metilación y entregables.",
+  "datePublished": "2026-10-02",
+  "dateModified": "2026-10-02",
+  "inLanguage": "es",
+  "url": "https://macrogen-es.com/blog/como-leer-reporte-ensamblaje-de-novo-microbiano",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://macrogen-es.com/blog/como-leer-reporte-ensamblaje-de-novo-microbiano"
+  },
+  "image": "https://macrogen-es.com/assets/img/blog/wgd/mapa-circular-contig1.jpg",
+  "author": {
+    "@type": "Organization",
+    "name": "Macrogen Iberoamérica",
+    "url": "https://macrogen-es.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Macrogen Iberoamérica",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://macrogen-es.com/assets/img/logo.png"
+    }
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img" width="522" height="147">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li class="nav-dropdown"><a href="../servicios" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs-genoma-completo"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes-exoma"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq-transcriptoma"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenomica-16s"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">Secuenciación Sanger · Electroforesis capilar <span class="count">(4)</span></h5>
+            <a href="../servicios/secuenciacion-sanger"><strong>Sanger</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <a href="../servicios/analisis-de-fragmentos"><strong>Análisis de fragmentos</strong><small>GeneScan · SSR · MSI</small></a>
+            <a href="../servicios/identificacion-bacteriana-16s"><strong>Identificación 16S/ITS</strong><small>Bacterias · hongos · BLAST</small></a>
+            <a href="../servicios/autenticacion-lineas-celulares-str"><strong>Cell Line ID · STR</strong><small>PowerPlex 6c · ICLAC</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis &amp; Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarrays"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos &amp; Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/sintesis-oligos-adn"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/sintesis-oligos-arn"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/sintesis-peptidos"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/sintesis-de-genes"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../recursos/primer-designer" class="view-all" translate="no">Primer Designer · gratis →</a>
+            <a href="../servicios" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="../cotizador" data-nav="cotizador">NGS Explorador</a></li>
+      <li><a href="../servicios" data-nav="precios">Precios</a></li>
+      <li><a href="../recursos" data-nav="recursos">Recursos</a></li>
+      <li><a href="../blog" class="active" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../nosotros" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="../contacto" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+      <li class="nav-cta"><a href="../contacto" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Solicitar cotización</a></li>
+    </ul>
+  </div>
+</header>
+
+<article id="main" class="article">
+  <div class="container-narrow">
+    <div class="breadcrumb"><a href="../blog">Blog</a> <span class="sep">/</span> NGS</div>
+
+    <header class="article-header">
+      <div class="meta"><span class="cat">NGS · De novo</span> · 2 octubre 2026 · 10 min de lectura</div>
+      <h1>Cómo leer un reporte de ensamblaje de novo microbiano, sección a sección</h1>
+      <p style="font-size:1.1rem; color:var(--mc-mute); margin-bottom:0;">Recibes el reporte de tu genoma microbiano y tiene 48 páginas de tablas, gráficos y siglas. Esta guía lo recorre sección a sección con nuestro reporte de ejemplo PacBio HiFi + Illumina: qué muestra cada parte, cómo se lee y qué conviene comprobar antes de dar el ensamblaje por bueno.</p>
+    </header>
+
+    <figure style="margin:32px 0 40px; padding:0;">
+      <div style="background:#0A1929; border-radius:14px; padding:28px; box-shadow:0 8px 24px rgba(27,42,87,0.18);">
+        <div style="background:#F8FAFC; border-radius:10px; padding:16px;">
+          <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:#54637A; text-transform:uppercase; margin-bottom:10px;">Mapa circular · contig1 · reporte de ejemplo</div>
+          <img src="../assets/img/blog/wgd/mapa-circular-contig1.jpg" alt="Mapa circular Circos del contig1 del reporte de ejemplo, con anillos de CDS en hebra directa y reversa, tRNA, rRNA, contenido GC y GC skew" width="1200" height="1200" style="display:block; width:100%; max-width:520px; height:auto; margin:0 auto;">
+        </div>
+        <div style="text-align:center; color:#fff; padding-top:12px;">
+          <span style="font-size:11px; letter-spacing:2.5px; font-weight:700; color:#3FA9C9; text-transform:uppercase;">PacBio HiFi + Illumina</span>
+          <p style="font-size:13px; color:#A8C0E0; margin:8px 0 0;">Mapa circular del contig1 en el reporte de ejemplo: CDS en ambas hebras, tRNA, rRNA, contenido GC y GC skew. Datos de demostración, no de un organismo real.</p>
+        </div>
+      </div>
+    </figure>
+
+    <div class="article-body">
+      <style>
+      #main .article-body > p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+      #main .article-body .wgd-fig { margin: 22px auto 30px; padding: 0; text-align: center; }
+      #main .article-body .wgd-fig img { display: block; width: 100%; max-width: 600px; height: auto; margin: 0 auto; background: #fff; border: 1px solid var(--mc-line); border-radius: 8px; padding: 8px 10px; box-sizing: border-box; }
+      #main .article-body .wgd-fig figcaption { font-size: 12.5px; color: var(--mc-mute); margin: 10px auto 0; max-width: 600px; text-align: center; }
+      </style>
+      <p>Un reporte de <strong>ensamblaje de novo microbiano</strong> reúne todo el proceso: secuenciación, ensamblaje, corrección, validación, anotación y, en este ejemplo con datos PacBio, también el análisis de metilación. Leerlo bien te ahorra sorpresas cuando vayas a publicar el genoma o a usarlo como referencia.</p>
+      <p>Para explicarlo usamos el reporte de ejemplo <strong>Whole Genome De novo Sequencing</strong> de Macrogen, un proyecto híbrido con lecturas largas <strong>PacBio HiFi</strong> y lecturas cortas <strong>Illumina</strong>. Puedes abrirlo mientras lees: está en versión <a href="../assets/docs/sample-reports-interactive/wgd-hibrido-pacbio-illumina/report.html" target="_blank" rel="noopener">HTML interactiva</a> y en <a href="../assets/docs/sample-reports/wgd-hibrido-pacbio-illumina.pdf" target="_blank" rel="noopener">PDF</a>.</p>
+      
+      <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:16px 20px; margin:20px 0;">
+        <strong style="color:var(--mc-navy-ink); display:block; margin-bottom:6px;">Importante: es un reporte de demostración</strong>
+        <p style="margin:0; font-size:13.5px; line-height:1.65;">Las tablas usan valores de plantilla (números redondos, SAMPLE1, «TEST SPECIES», GCF_000000000.1) y varios gráficos proceden de otro conjunto de datos, así que no siempre cuadran entre sí. Sirve para conocer la estructura y aprender a interpretar cada métrica, pero no describe un organismo real. Cuando citamos cifras, son siempre <em>del reporte de ejemplo</em>.</p>
+      </div>
+      
+      <h2>1. Portada, pedido y flujo de trabajo</h2>
+      <p>Las primeras páginas son administrativas, pero ya te dicen algo útil. En <strong>Order Information</strong> aparecen dos tipos de librería: <strong>[3.0] PacBio Microbial Library</strong> (SMRTbell, datos HiFi) y <strong>TruSeq Nano DNA (350)</strong> de Illumina, con lecturas pareadas. Dos librerías indican un proyecto <strong>híbrido</strong>.</p>
+      <p>Las páginas de flujo experimental de Illumina y PacBio son explicativas, no específicas de tu muestra. Quédate con dos ideas: los archivos FASTQ crudos de Illumina todavía contienen adaptadores (por eso después se recortan), y las lecturas HiFi son precisas porque la polimerasa recorre varias veces la misma molécula circular y se calcula un consenso.</p>
+      <p>El <strong>Analysis Workflow</strong> es el mapa del resto del reporte. La lógica es «lecturas largas primero»:</p>
+      <ul>
+        <li>Con las lecturas HiFi se construye el ensamblaje (<strong>Microbial Genome Analysis</strong>, SMRT Link 13) y después se pule su secuencia consenso.</li>
+        <li>Las lecturas Illumina, ya filtradas con <strong>Trimmomatic</strong>, se usan para corregir bases con <strong>Pilon</strong> y para validar el ensamblaje.</li>
+        <li>Sobre el ensamblaje corregido se hacen la validación (k-mers, self-mapping, BLAST, BUSCO, ANI), la anotación (Prokka, EggNOG, InterProScan) y el análisis epigenético (motivos de metilación y CpG).</li>
+      </ul>
+      <p>Si quieres repasar por qué se combinan las dos tecnologías, lo contamos en <a href="ensamblaje-de-novo-hibrido">Ensamblaje de novo híbrido en 9 pasos</a>.</p>
+      
+      <h2>2. Datos crudos: Illumina y PacBio HiFi</h2>
+      <h3>Lecturas Illumina</h3>
+      <p>La tabla compara lecturas crudas y filtradas. Fíjate en tres cosas:</p>
+      <ul>
+        <li><strong>Q30</strong>: fracción de bases con calidad Phred de 30 o más, es decir, con probabilidad de error igual o inferior a 1 en 1.000. Valores altos (en torno al 90 % o más) son buena señal. En el ejemplo, 90,0 % en crudo y 95,0 % tras filtrar.</li>
+        <li><strong>Cuánto se pierde al filtrar</strong>: en el ejemplo se pasa de 25.000.000 a 15.000.000 lecturas (read1 + read2). Una pérdida grande no es un error en sí, pero conviene que la cobertura restante siga siendo suficiente.</li>
+        <li><strong>GC de las lecturas frente al GC del ensamblaje</strong>: deberían parecerse. Una diferencia marcada puede indicar contaminación o sesgo de librería.</li>
+      </ul>
+      <p>Los gráficos FastQC de calidad por posición completan la tabla: lo esperable es que las cajas queden en la zona verde y que, como mucho, caigan un poco en los últimos ciclos.</p>
+      
+      <h3>Lecturas PacBio HiFi</h3>
+      <p>Aquí se resume el rendimiento de las lecturas largas. En el ejemplo: 250.000.000 pb en 30.000 lecturas HiFi, <strong>N50 de lectura</strong> de 10.000 pb, calidad media <strong>Q35</strong> y una media de <strong>15 pasadas</strong>.</p>
+      <ul>
+        <li>El <strong>N50 de lectura</strong> es la longitud L tal que las lecturas de L o más contienen al menos la mitad de todas las bases: cuanto mayor sea, más fácil resulta atravesar repeticiones.</li>
+        <li><strong>Average Pass</strong> es el número medio de pasadas por molécula (cada pasada es una lectura completa de una hebra del inserto); más pasadas, consenso más preciso.</li>
+        <li>Por definición, una lectura HiFi es Q20 o superior; por eso el histograma de calidad empieza en Q20.</li>
+      </ul>
+      
+      <h2>3. Resumen del proyecto y ensamblaje</h2>
+      <p>La página de resumen es la que todo el mundo mira primero. En el ejemplo: <strong>1 contig circular</strong> de 8.000.000 pb, N50 de 8.000.000 pb, GC del 65,0 % y profundidad de 31,25×.</p>
+      <p>Cómo leerlo:</p>
+      <ul>
+        <li><strong>Número de contigs frente a número de replicones esperado.</strong> Un único contig circular para una bacteria sin plásmidos es el resultado ideal. Si tu organismo tiene plásmidos, espera un contig por replicón.</li>
+        <li><strong>Total de bases frente al tamaño estimado por k-mers.</strong> Deberían ser parecidos.</li>
+        <li><strong>Profundidad.</strong> Aquí se calcula como bases HiFi entre longitud del ensamblaje: 250.000.000 / 8.000.000 = 31,25×.</li>
+      </ul>
+      <p>En la sección de contigs verás dos tablas: <strong>antes y después de la corrección con Illumina</strong>. En el ejemplo, el contig pasa de 7.999.990 a 8.000.000 pb tras la corrección con Pilon: una diferencia neta de 10 pb, que no indica cuántas bases se corrigieron porque inserciones y deleciones se compensan.</p>
+      <p>Los cambios pequeños son lo normal; si son grandes, conviene preguntar a qué se deben.</p>
+      <p>Dos columnas de la tabla por contig son clave:</p>
+      <ul>
+        <li><strong>Circular = YES</strong>: los extremos 5′ y 3′ del contig están conectados, así que el replicón está cerrado. Además, el contig se rota para que empiece en el origen de replicación.</li>
+        <li><strong>Alias</strong>: se llama «Chromosome» o «Plasmid» solo si el mejor hit de BLAST cubre al menos el 80 % de la consulta y el tamaño es similar. Si no se cumplen ambas condiciones, queda como «Contig», como ocurre en el ejemplo con «Contig1».</li>
+      </ul>
+      <p>La tabla <strong>Nx</strong> (N10 a N100) muestra la longitud de contig a partir de la cual se acumula el x % del ensamblaje. Con un solo contig, todos los Nx coinciden con su longitud.</p>
+      
+      <h2>4. Validación: cinco pruebas complementarias</h2>
+      <p>Un ensamblaje continuo no es necesariamente correcto. El reporte lo valida desde cinco ángulos, y conviene leerlos juntos.</p>
+      
+      <h3>Análisis de k-mers</h3>
+      <p>Con k-mers de 21 bases (Jellyfish + GenomeScope) se estima el tamaño del genoma sin usar el ensamblaje. El pico estrecho de la izquierda corresponde a errores de secuenciación; el pico principal refleja la cobertura del genoma.</p>
+      <p>Un solo pico principal indica un genoma haploide u homocigoto, así que en una bacteria la <strong>heterocigosidad</strong> debería estar cerca de cero. El ejemplo muestra 0,500 sin unidad (GenomeScope la expresa en %): en una bacteria, un valor claramente distinto de cero apunta a mezcla de cepas, contaminación o un artefacto del modelo, que GenomeScope plantea para genomas diploides.</p>
+      
+      <h3>Self-mapping</h3>
+      <p>Las lecturas se vuelven a mapear sobre el ensamblaje: Illumina con BWA, PacBio con pbmm2. En el ejemplo se mapea el 99,99 % de las lecturas en ambas tecnologías, con una cobertura del 99,99 % (Illumina) y del 100,00 % (PacBio).</p>
+      <ul>
+        <li><strong>Lecturas mapeadas cerca del 100 %</strong>: el ensamblaje explica casi todos los datos, sin secuencia ausente ni contaminación evidente.</li>
+        <li><strong>Cobertura (%)</strong>: fracción de posiciones cubiertas al menos una vez. Las zonas sin cubrir pueden señalar errores de ensamblaje.</li>
+        <li><strong>Tamaño de inserto</strong>: debe encajar con el diseño de la librería. En el ejemplo, 450,00 pb (desviación estándar de 80,00 pb) para una librería con inserto nominal de 350 pb, en el límite superior del rango típico de 350–450 pb que cita la guía de lectura del reporte (en coreano).</li>
+      </ul>
+      
+      <h3>BLAST</h3>
+      <p>Cada contig se compara con la base de datos NT del NCBI. En el ejemplo, el mejor hit es «CP00000.1 TEST SPECIES», un identificador de plantilla, con un E-value de 0,0.</p>
+      <p>El propio reporte advierte que BLAST solo refleja secuencias registradas y que sirve para ver patrones, no como asignación absoluta de especie. Revisa la longitud del hit frente a la del contig.</p>
+      
+      <h3>BUSCO</h3>
+      <p>BUSCO mide la <strong>completitud biológica</strong> buscando genes de copia única casi universales en el linaje (aquí, bacteria_odb10, con 124 grupos). En el ejemplo: 120 completos de copia única (96,77 %), 4 duplicados (3,23 %), 0 fragmentados y 0 ausentes.</p>
+      <ul>
+        <li>Completos altos (la guía del reporte considera bueno el 90 % o más) y fragmentados o ausentes bajos indican un ensamblaje completo.</li>
+        <li>Los duplicados deben ser pocos. En una bacteria haploide pueden ser parálogos reales o un artefacto de duplicación en el ensamblaje.</li>
+        <li>Los taxones poco representados pueden puntuar algo más bajo por razones biológicas.</li>
+      </ul>
+      
+      <h3>ANI</h3>
+      <p>La identidad nucleotídica media (ANI, con pyani y el método ANIm) compara tu genoma con genomas del taxón detectado por BLAST. Por convención general, el umbral más usado para considerar dos genomas de la misma especie es un <strong>ANI de aproximadamente 95–96 %</strong>.</p>
+      <p>La regla de oro es leer siempre el ANI junto con la <strong>cobertura de alineamiento</strong>: una identidad muy alta sobre una fracción pequeña del genoma es una evidencia débil.</p>
+      <p>En el ejemplo, la identidad es del 100,00 %, pero la cobertura solo del 50,00 %, una combinación de demostración (el propio mapa de calor de identidad no muestra un 100 %). En un proyecto real, una identidad alta con cobertura baja obligaría a revisar la referencia elegida. Atención también a las unidades: la página de resumen las da como fracción (1,00 / 0,50) y la de ANI como porcentaje.</p>
+      
+      <p>Resumen de las métricas clave del reporte de ejemplo y qué buscar en las tuyas:</p>
+      <table class="spec-table">
+        <thead>
+          <tr><th>Métrica</th><th>Reporte de ejemplo</th><th>Qué buscar en general</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Contigs / circularidad</td><td>1 contig, Circular = YES</td><td>Un contig circular por replicón esperado</td></tr>
+          <tr><td>Q30 Illumina (lecturas filtradas)</td><td>95,0 %</td><td>Alto, en torno al 90 % o más</td></tr>
+          <tr><td>Calidad y pasadas HiFi</td><td>Q35 · 15 pasadas</td><td>Q20 como mínimo por definición; más pasadas, más precisión</td></tr>
+          <tr><td>Lecturas mapeadas</td><td>99,99 % (Illumina y PacBio)</td><td>Cerca del 100 %</td></tr>
+          <tr><td>BUSCO</td><td>124 de 124 completos (4 duplicados)</td><td>Completos altos, duplicados y ausentes bajos</td></tr>
+          <tr><td>ANI / cobertura</td><td>100,00 % / 50,00 %</td><td>~95–96 % como umbral de especie, con cobertura alta</td></tr>
+        </tbody>
+      </table>
+      
+      <h2>5. Anotación: genes, mapa circular y funciones</h2>
+      <p><strong>Prokka</strong> predice los genes. En el ejemplo: 5.700 genes, 5.500 CDS, 80 tRNA, 20 rRNA y 1 tmRNA. Para comprobar que los números tienen sentido:</p>
+      <ul>
+        <li>El total de genes debe ser coherente con la suma de CDS, tRNA, rRNA, tmRNA y otros ncRNA.</li>
+        <li>En bacterias se espera aproximadamente un gen por kilobase.</li>
+        <li>El número de rRNA dividido entre tres da una idea aproximada del número de operones ribosomales.</li>
+      </ul>
+      <p>En el <strong>mapa circular</strong> de la imagen de portada, los anillos de CDS muestran la densidad génica y el reparto por hebra. Las caídas de GC pueden señalar islas genómicas adquiridas por transferencia horizontal, y el GC skew suele cambiar de signo en el origen y el término de replicación, aunque el reporte avisa de que esa lectura es solo orientativa.</p>
+      <p>Comprueba también la escala: en el ejemplo termina poco después de 6.600 kb y no en los 8.000 kb de las tablas, porque el gráfico y las tablas de la demostración vienen de datos distintos. En tu reporte, el mismo dato (tamaño, GC, profundidad) debe coincidir en todas las secciones.</p>
+      <p>La tabla <strong>EggNOG</strong> agrupa las proteínas en categorías funcionales COG. En el ejemplo, las más numerosas son S «Function unknown» (1.599; 29,58 %), R «General function prediction only» (669; 12,38 %) y K «Transcription» (468; 8,66 %). Que S y R encabecen la lista es habitual en bacterias.</p>
+      <p>Ten en cuenta que el porcentaje se calcula sobre asignaciones de letra, no sobre CDS: una proteína con varias categorías cuenta en cada una.</p>
+      <p>La versión HTML incluye además un <strong>visor de anotación</strong> con todas las CDS, sus coordenadas, hebra, producto, términos GO e identificadores InterPro, Pfam, CDD, TIGRFAM y EggNOG, con acceso a la secuencia proteica y nucleotídica de cada gen.</p>
+      
+      <h2>6. Epigenética: metilación desde la cinética PacBio</h2>
+      <p>Las lecturas PacBio registran la velocidad de la polimerasa. Una base modificada altera el tiempo entre pulsos (IPD), e <strong>ipdSummary</strong> y <strong>motifMaker</strong> usan esa señal para encontrar los motivos que reconocen las metiltransferasas, normalmente ligadas a sistemas de restricción-modificación.</p>
+      
+      <figure class="wgd-fig">
+        <img src="../assets/img/blog/wgd/deteccion-cinetica-bases.jpg" alt="Gráfico de detecciones cinéticas por base del reporte de ejemplo: QV de modificación frente a cobertura por hebra en cuatro paneles para A, C, G y T, con una línea discontinua horizontal" width="1200" height="905" loading="lazy" decoding="async">
+        <figcaption>Detecciones cinéticas por base: QV de modificación frente a cobertura por hebra para A, C, G y T. Los puntos empiezan en QV 20; el reporte no explica la línea discontinua (en torno a QV 35). Reporte de ejemplo, valores ilustrativos.</figcaption>
+      </figure>
+      
+      <p>En la tabla de motivos, lo más informativo es la <strong>fracción metilada</strong>: los motivos detectados divididos entre sus ocurrencias en el genoma. Los motivos genuinos de una metiltransferasa suelen estar metilados casi al 100 %.</p>
+      <p>En el ejemplo, GGCCCSGA cumple ese patrón (2.000 de 2.005; 99,75 %; QV medio 65), mientras que BGNCCGCGGR (300 de 1.500; 20 %) y VGNCTGVDCR (1.000 de 10.901; 9,2 %) quedan muy por debajo y habría que tomarlos con cautela.</p>
+      <p>El <strong>análisis CpG</strong> agrupa por sitio las llamadas de 5mC que Jasmine añade a las lecturas HiFi (pb-CpG-tools) y estima la probabilidad de metilación de cada CpG; no evalúa la 5mC bacteriana en otros contextos de secuencia. En el ejemplo, de 1.000.000 de sitios, solo 10.000 alcanzan o superan el 50 % de probabilidad, y 2.500, el 90 %.</p>
+      <p>Que casi todos los CpG aparezcan como no metilados es lo esperable en la mayoría de las bacterias; este análisis es más relevante en eucariotas.</p>
+      
+      <h2>7. Entregables, md5 y anexos</h2>
+      <p>La lista de descarga detalla cada archivo con su tamaño y su <strong>md5</strong>. Las lecturas crudas están en RawData y los resultados (ensamblaje, anotación, metilación, CpG) en AnalysisResults. El diccionario de entregables te dice qué hay en cada extensión: <code>contigs.fasta</code> para el ensamblaje; <code>.gff</code>, <code>.gbk</code>, <code>.faa</code> y <code>.ffn</code> para la anotación, y <code>.sqn</code> para el envío a GenBank.</p>
+      <p>Dos avisos prácticos del reporte: los archivos se eliminan del servidor tres meses después de emitir el reporte, y el enlace de descarga solo está activo dos semanas. Descarga pronto y verifica cada md5 (en Linux, <code>md5sum -c</code> debe devolver «OK»).</p>
+      <p>Los anexos recogen los formatos FASTQ y BAM, la escala Phred y la lista de programas con versiones, útil para la sección de métodos de tu artículo.</p>
+      
+      <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:16px 20px; margin:20px 0;">
+        <strong style="color:var(--mc-navy-ink); display:block; margin-bottom:6px;">Lista de verificación antes de usar tu ensamblaje</strong>
+        <ul style="margin:0; font-size:13.5px; line-height:1.65;">
+          <li>¿El número de contigs coincide con los replicones esperados y están marcados como circulares?</li>
+          <li>¿El tamaño ensamblado se parece al estimado por k-mers y al esperado para tu organismo?</li>
+          <li>¿El GC de las lecturas, del ensamblaje y de las tablas coincide entre secciones?</li>
+          <li>¿Las lecturas mapeadas y la cobertura están cerca del 100 % en Illumina y en PacBio?</li>
+          <li>¿BUSCO da un porcentaje alto de completos y pocos duplicados o ausentes?</li>
+          <li>¿Has leído el ANI junto con la cobertura de alineamiento y tiene sentido la referencia?</li>
+          <li>¿Los recuentos de genes cuadran entre sí y con el tamaño del genoma?</li>
+          <li>¿Has descargado todo y verificado los md5 antes de que caduque el enlace?</li>
+        </ul>
+      </div>
+      
+      <p>La regla general es la <strong>coherencia cruzada</strong>: el mismo dato (tamaño, GC, profundidad) aparece en varias secciones y debería ser coherente en todas ellas. Si algo no cuadra en tu proyecto, pregúntanos antes de publicar.</p>
+      
+      <h2>Preguntas rápidas</h2>
+      <p><strong>¿Un solo contig garantiza un genoma correcto?</strong> No. Indica continuidad, no exactitud. Que el ensamblaje sea correcto se respalda con el self-mapping, BUSCO y la coherencia con el análisis de k-mers.</p>
+      <p><strong>¿Por qué mi contig se llama «Contig1» y no «Chromosome»?</strong> Porque el alias depende de BLAST: se necesita al menos un 80 % de cobertura de la consulta y un tamaño similar. Un genoma alejado de los ya publicados puede no cumplir esas condiciones aunque esté cerrado.</p>
+      <p><strong>¿Basta un ANI alto para asignar la especie?</strong> Solo si la cobertura de alineamiento también es alta y la referencia está bien identificada (idealmente, una cepa tipo). Por convención general, el umbral de especie ronda el 95–96 % de ANI.</p>
+      <p><strong>¿Necesito el análisis de metilación?</strong> No es imprescindible, pero se obtiene de los mismos datos PacBio, sin secuenciación adicional, siempre que se conserve la información cinética de las lecturas y haya cobertura suficiente por hebra. Es útil si te interesan los sistemas de restricción-modificación o la transformabilidad de la cepa.</p>
+      
+      <h2>Cómo lo hacemos en Macrogen</h2>
+      <p>Secuenciamos en <strong>PacBio Revio</strong>, <strong>Illumina NovaSeq X Plus</strong> y <strong>Oxford Nanopore PromethION</strong>. Somos <strong>Certified Service Provider de PacBio</strong> para Revio (HiFi WGS y Microbial de novo) y te atendemos en español desde <strong>Madrid</strong> y <strong>Santiago</strong>.</p>
+      <p>Tienes este y otros reportes en la sección de <a href="../recursos#sample-reports">reportes de ejemplo</a>, y el detalle del servicio, en <a href="../servicios/wgs-genoma-completo">secuenciación de genoma completo</a>. Si aún dudas entre HiFi, Nanopore o híbrido, el <a href="../cotizador">NGS Explorador</a> te orienta por la rama de ensamblaje de novo.</p>
+      
+      <div style="background:#F0F4FA; border:1.5px solid var(--mc-border); border-radius:12px; padding:20px 24px; margin:32px 0;">
+        <strong style="color:var(--mc-navy-ink); display:block; margin-bottom:6px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;">Ensamblaje de novo en tu idioma</strong>
+        <h3 style="margin:0 0 10px; font-size:18px;">¿Quieres un reporte así para tu cepa?</h3>
+        <p style="font-size:13.5px; margin:0 0 14px;">PacBio Revio · Illumina NovaSeq X Plus · Certified Service Provider de PacBio para Revio (HiFi WGS y Microbial de novo) · soporte en español desde Madrid y Santiago.</p>
+        <a href="../contacto?servicio=denovo" class="btn btn-primary" style="font-size:14px;">Solicitar propuesta de ensamblaje →</a>
+      </div>
+      
+      <p style="margin-top:32px; padding-top:24px; border-top:1px solid var(--mc-border); font-size:13px; color:var(--mc-mute);">
+        ¿Dudas al interpretar tu reporte de ensamblaje de novo? Escríbenos a <a href="mailto:info-spain@macrogen.com" style="color:var(--mc-teal); font-weight:700;">info-spain@macrogen.com</a> o <a href="mailto:info-chile@macrogen.com" style="color:var(--mc-teal); font-weight:700;">info-chile@macrogen.com</a> y te orientamos en español.
+      </p>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/img/logo.png" alt="Macrogen" class="logo-img" width="522" height="147" loading="lazy" decoding="async">
+        <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
+        <p style="font-family:var(--mc-font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mc-teal); font-weight:500; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
+        <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>
+        <p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.services_heading">Servicios</h4>
+        <a href="../servicios/wgs-genoma-completo">WGS</a>
+        <a href="../servicios/wes-exoma">WES</a>
+        <a href="../servicios/rna-seq-transcriptoma">RNA-Seq</a>
+        <a href="../servicios/single-cell">Single Cell</a>
+        <a href="../servicios/metagenomica-16s">Metagenómica</a>
+        <a href="../servicios/secuenciacion-sanger">Secuenciación Sanger</a>
+        <a href="../servicios/sintesis">Síntesis</a>
+        <a href="../servicios" data-i18n="footer.service_view_all">Ver todos →</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.company_heading">Compañía</h4>
+        <a href="../nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="../blog" data-i18n="nav.blog">Blog</a>
+        <a href="../cotizador">NGS Explorador</a>
+        <a href="../contacto" data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div>
+        <h4>Recursos</h4>
+        <a href="../recursos">Centro de recursos</a>
+        <a href="../recursos/primer-designer" translate="no">Primer Designer</a>
+        <a href="../faq" data-i18n="nav.faq">FAQ</a>
+        <a href="../certificaciones">Certificaciones</a>
+        <a href="../esg">ESG</a>
+        <a href="../newsletter" data-i18n="nav.newsletter">Newsletter</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.hubs_heading">Hubs</h4>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Madrid</strong><br>C. de Martínez Villergas, 52<br>28027 Madrid · España<br>+34 911 138 378
+        </p>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Santiago</strong><br>Magdalena 140, Of. 401<br>Las Condes, Santiago · Chile<br>+56 9 5845 1395
+        </p>
+        <a href="mailto:info-spain@macrogen.com" style="font-size:12.5px;">info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12.5px;">info-chile@macrogen.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span>
+      <span>
+        <a href="../privacidad" data-i18n="footer.privacy">Privacidad</a>
+        <a href="../terminos" data-i18n="footer.terms">Términos</a>
+        <a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener">Portal de pedidos ↗</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+ @counter-style decimal-closed-bracket{
+                system:fixed;
+                symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+                suffix: ") ";
+            }
+            @counter-style decimal-brackets{
+                system:fixed;
+                symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+                prefix: "(";
+                suffix: ") ";
+            }
+            @counter-style lower-alpha-closed-bracket{
+                system:fixed;
+                symbols: "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z";
+                suffix: ") ";
+            }
+            @counter-style lower-alpha-brackets{
+                system:fixed;
+                symbols: "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z";
+                prefix: "(";
+                suffix: ") ";
+            }
+            @counter-style decimal-brackets{
+                system:fixed;
+                symbols: "1" "2" "3" "4" "5" "6" "7" "8" "9";
+                prefix: "(";
+                suffix: ") ";
+            }
+            @counter-style dash{
+                system:cyclic;
+                symbols: "-";
+                suffix: " ";
+            }
+            .dash {
+                list-style: dash !imoprtant;
+            }
+            .decimal-closed-bracket {
+                list-style: decimal-closed-bracket;
+            }
+            .decimal-brackets {
+                list-style: decimal-brackets;
+            }
+            .lower-alpha-brackets {
+                list-style: lower-alpha-brackets;
+            }
+            .lower-alpha-closed-bracket {
+                list-style: lower-alpha-closed-bracket;
+            }
+            .circle {
+                list-style: circle;
+            }
+            .disc {
+                list-style: disc;
+            }
+            .square {
+                list-style: square;
+            }
+            .decimal {
+                list-style: decimal;
+            }
+            .none {
+                list-style: none;
+            }
+            
+            .lower-roman {
+                list-style: lower-roman;
+            }
+            .upper-roman {
+                list-style: upper-roman;
+            }
+            .lower-alpha {
+                list-style: lower-alpha;
+            }
+            .upper-alpha {
+                list-style: upper-alpha;
+            }
