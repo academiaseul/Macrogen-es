@@ -67,6 +67,7 @@
 
   /* Tokens semánticos (permiten el modo oscuro sin tocar componentes) */
   --mc-navy-ink: var(--mc-navy);   /* navy usado como COLOR DE TEXTO sobre fondos claros */
+  --mc-body-ink: #2A3A52;        /* texto corrido de artículos y FAQ */
   --mc-on-navy: #FFFFFF;           /* texto sobre fondos navy/oscuros */
 
 }
@@ -74,6 +75,7 @@
 /* ============================ Modo oscuro ============================ */
 html[data-theme="dark"] {
   color-scheme: dark;
+  --mc-body-ink: #C9D4E5;
   --mc-bg: #0B1424;
   --mc-bg-2: #0F1B30;
   --mc-white: #111C31;          /* superficie de tarjetas */
@@ -98,6 +100,10 @@ html[data-theme="dark"] {
 }
 html[data-theme="dark"] .site-header { background: rgba(11, 20, 36, .97); }
 html[data-theme="dark"] .service-subnav { background: rgba(11, 20, 36, .97); }
+html[data-theme="dark"] [style*="background:#EAF6FB"],
+html[data-theme="dark"] [style*="background: rgb(234, 246, 251)"] { background: var(--mc-teal-soft) !important; }
+html[data-theme="dark"] [style*="background:#F0F4FA"],
+html[data-theme="dark"] [style*="background: rgb(240, 244, 250)"] { background: var(--mc-bg-2) !important; }
 html[data-theme="dark"] .nav-logo .logo-img { filter: brightness(0) invert(1) opacity(.95); }
 html[data-theme="dark"] .lang-seg.is-active,
 html[data-theme="dark"] .lang-seg.is-active:hover { background: var(--mc-ink); color: #0B1424; }
@@ -1424,7 +1430,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   margin-bottom: 16px;
 }
 .article-header .meta .cat { color: var(--mc-teal-ink); }
-.article-body p { font-size: 1.02rem; color: #2A3A52; line-height: 1.78; max-width: 70ch; }
+.article-body p { font-size: 1.02rem; color: var(--mc-body-ink); line-height: 1.78; max-width: 70ch; }
 .article-body h2 { margin-top: 2.2em; }
 .article-body h3 { margin-top: 1.6em; }
 .article-body blockquote {
@@ -1436,7 +1442,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   font-size: 1.12rem;
   font-weight: 500;
 }
-.article-body ul, .article-body ol { padding-left: 22px; color: #2A3A52; line-height: 1.78; }
+.article-body ul, .article-body ol { padding-left: 22px; color: var(--mc-body-ink); line-height: 1.78; }
 
 /* ------------------------------ Newsletter -------------------------------- */
 .newsletter-box {
@@ -1787,8 +1793,8 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 .faq-item[open] summary::after { content: '−'; }
 .faq-answer { padding: 2px 0 24px; border-top: none; color: var(--mc-ink); font-size: 14.5px; line-height: 1.7; }
-.faq-answer p { margin-top: 12px; color: #2A3A52; max-width: 72ch; }
-.faq-answer ul { margin: 12px 0 0; padding-left: 22px; color: #2A3A52; }
+.faq-answer p { margin-top: 12px; color: var(--mc-body-ink); max-width: 72ch; }
+.faq-answer ul { margin: 12px 0 0; padding-left: 22px; color: var(--mc-body-ink); }
 .faq-answer li { margin-bottom: 10px; line-height: 1.65; }
 .faq-answer strong { color: var(--mc-navy-ink); }
 .faq-answer .download-link {
