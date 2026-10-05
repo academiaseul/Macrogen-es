@@ -199,6 +199,7 @@
 
     const dict = await loadDict(lang);
     if (dict) translate(dict);
+    document.dispatchEvent(new CustomEvent('i18n:applied', { detail: { lang } }));
 
     localStorage.setItem(STORAGE_KEY, lang);
 

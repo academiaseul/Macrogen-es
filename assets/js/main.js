@@ -595,12 +595,39 @@ document.addEventListener('DOMContentLoaded', () => {
       if (emailInput) emailInput.placeholder = config.email;
       if (phoneInput) phoneInput.placeholder = config.phone;
       if (note) {
-        note.innerHTML = `${config.flag} <strong style="color:var(--mc-navy);">Tu solicitud llegará al hub ${config.hub}</strong><br><span style="font-size:11px;">Atención por <a href="mailto:${config.to}" style="color:var(--mc-teal); font-weight:700;">${config.to}</a></span>`;
+        note.innerHTML = `${config.flag} <strong style="color:var(--mc-navy-ink);">Tu solicitud llegará al hub ${config.hub}</strong><br><span style="font-size:11px;">Atención por <a href="mailto:${config.to}" style="color:var(--mc-teal); font-weight:700;">${config.to}</a></span>`;
         note.style.borderLeftColor = 'var(--mc-green)';
         note.style.color = 'var(--mc-ink)';
       }
     });
+    // i18n.js rewrites placeholders after loading its dictionary; restore the country-specific ones
+    document.addEventListener('i18n:applied', () => {
+      if (select.value) select.dispatchEvent(new Event('change'));
+    });
   });
+
+  // ========== Contact form: preselect country + service from the URL ==========
+  // e.g. contacto?servicio=sanger&pais=CL (email and blog CTAs)
+  (function preselectFromUrl() {
+    const form = document.querySelector('form[data-country-form]');
+    if (!form) return;
+    const params = new URLSearchParams(window.location.search);
+
+    const countrySel = form.querySelector('[data-country]');
+    const pais = (params.get('pais') || '').toUpperCase();
+    if (countrySel && pais && [...countrySel.options].some(o => o.value === pais)) {
+      countrySel.value = pais;
+      countrySel.dispatchEvent(new Event('change'));
+    }
+
+    const serviceSel = form.querySelector('select[name="servicio"]');
+    const servicio = (params.get('servicio') || '').toLowerCase();
+    if (!serviceSel || !servicio) return;
+    const aliases = { denovo: 'wgs', rnaseq: 'rna-seq', oligos: 'síntesis', sintesis: 'síntesis' };
+    const key = aliases[servicio] || servicio;
+    const match = [...serviceSel.options].find(o => o.text.toLowerCase().startsWith(key));
+    if (match) serviceSel.value = match.value;
+  })();
 
   // ========== FAQ live search: filter questions by keyword ==========
   const faqInput = document.querySelector('[data-faq-search]');
