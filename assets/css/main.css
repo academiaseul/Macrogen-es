@@ -246,7 +246,9 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 0;
+  /* Sin padding lateral a ≥1248 px (el header ocupa los 1200 px del contenedor);
+     por debajo recupera hasta 24 px de margen para que el logo no toque el borde. */
+  padding: 14px clamp(0px, calc(24px - (100vw - var(--mc-container)) / 2), 24px);
   gap: 24px;
 }
 .nav-logo {
@@ -323,7 +325,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 26px;
+  gap: 20px;
   align-items: center;
   min-width: 0;
 }
@@ -396,7 +398,9 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   padding: 6px 10px;
 }
 
-/* Compact-header rules for narrower desktops & long translations */
+/* Compact-header rules for narrower desktops & long translations.
+   Logo + 7 enlaces + idiomas + modo oscuro + CTA llenan casi los 1200 px del
+   contenedor: cada tramo recorta algo y a ≤1080 px entra el menú hamburguesa. */
 @media (max-width: 1280px) {
   .nav { gap: 16px; }
   .nav-menu { gap: 18px; }
@@ -404,13 +408,8 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   .nav-logo .region-tag { font-size: 10px; padding-left: 10px; }
   .nav-logo .region-tag small { font-size: 8.5px; }
 }
-@media (max-width: 1140px) { .nav-logo .region-tag small { display: none; } }
-@media (max-width: 1040px) {
-  .nav-logo .region-tag { display: none; }
-  .nav-menu { gap: 14px; }
-  .nav-menu a { font-size: 12.5px; }
-}
-@media (max-width: 920px) {
+@media (max-width: 1210px) { .nav-logo .region-tag { display: none; } }
+@media (max-width: 1080px) {
   .nav-logo .logo-img { height: 36px; }
   .nav-toggle { display: inline-block; }
   .nav-menu {
@@ -424,13 +423,19 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
     align-items: flex-start;
     display: none;
     box-shadow: var(--mc-shadow);
+    /* el header es sticky: con el megamenú abierto el panel puede superar la
+       pantalla, así que se desplaza por dentro */
+    max-height: calc(100vh - var(--header-h, 70px));
+    max-height: calc(100dvh - var(--header-h, 70px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .nav-menu.is-open { display: flex; }
   .nav-logo-tagline { display: none; }
 }
 @media (max-width: 600px) {
   .nav-logo .logo-img { height: 32px; }
-  .nav { padding: 11px 0; gap: 10px; }
+  .nav { padding-top: 11px; padding-bottom: 11px; gap: 10px; }
 }
 
 /* ---------------------------- Mega menu --------------------------------- */
@@ -539,6 +544,34 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 
 @media (max-width: 1100px) { .nav-megamenu { grid-template-columns: repeat(2, 1fr); width: 680px; } }
 @media (max-width: 768px) { .nav-megamenu { display: none !important; } }
+/* Dentro del menú hamburguesa el megamenú se despliega en línea, no flotante
+   (si no, se abría centrado sobre "Servicios" y quedaba fuera de pantalla) */
+@media (max-width: 1080px) {
+  .nav-menu > .nav-dropdown { align-self: stretch; }
+  .nav-dropdown::after, .nav-megamenu::before { display: none; }
+  .nav-megamenu {
+    position: static;
+    display: none;
+    width: auto;
+    max-width: none;
+    margin-top: 10px;
+    padding: 12px 0 4px 16px;
+    background: transparent;
+    border: 0;
+    border-left: 2px solid var(--mc-line);
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    pointer-events: auto;
+    transition: none;
+  }
+  .nav-megamenu,
+  .nav-dropdown:hover .nav-megamenu,
+  .nav-dropdown:focus-within .nav-megamenu,
+  .nav-dropdown.is-open .nav-megamenu { transform: none; }
+  .nav-dropdown.is-open .nav-megamenu { display: grid; }
+  .megamenu-footer { flex-wrap: wrap; gap: 8px 20px; }
+}
 
 /* "Más"/Recursos simple dropdown */
 .nav-more > a { cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
@@ -590,7 +623,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 .nav-more-menu a:hover { background: var(--mc-bg); color: var(--mc-navy-ink); border-left-color: var(--mc-teal); }
 .nav-more-menu a .icon { display: none; } /* emoji icons retired */
-@media (max-width: 920px) {
+@media (max-width: 1080px) {
   .nav-more-menu {
     position: static;
     opacity: 1;
@@ -1954,7 +1987,7 @@ summary:focus-visible,
   background: transparent;
   border: 0;
   border-left: 1px solid var(--mc-line);
-  padding: 6px 10px;
+  padding: 6px 8px;
   font-family: var(--mc-font-mono);
   font-size: 10.5px;
   font-weight: 600;
@@ -1969,7 +2002,8 @@ summary:focus-visible,
 .lang-seg.is-active { background: var(--mc-navy); color: #fff; }
 .lang-seg.is-active:hover { background: var(--mc-navy); color: #fff; }
 .lang-seg:focus-visible { outline: 2px solid var(--mc-teal); outline-offset: -2px; }
-@media (max-width: 980px) {
+/* Mismo corte que el menú hamburguesa (.nav-toggle) */
+@media (max-width: 1080px) {
   .nav-menu .nav-lang { margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--mc-line); }
   .lang-switcher { width: 100%; }
   .lang-bar { flex: 1; }
@@ -1999,7 +2033,7 @@ body:has(.service-subnav) section[id] { scroll-margin-top: calc(var(--header-h, 
   padding: 6px 16px;
   max-width: var(--mc-container);
   margin: 0 auto;
-  flex-wrap: nowrap;
+  flex-wrap: wrap; /* con nowrap desbordaba hasta 370 px entre 721 y 1080 px */
 }
 .service-subnav-brand {
   display: inline-flex;
