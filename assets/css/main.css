@@ -201,6 +201,9 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   white-space: nowrap;
   line-height: 1.2;
 }
+/* Descargas PDF ("Descargar Sample Report (PDF · 2,9 MB)"): en columnas estrechas
+   el texto se parte en vez de desbordar la página */
+a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; }
 .btn-primary { background: var(--mc-navy); color: var(--mc-on-navy); border-color: var(--mc-navy-ink); }
 .btn-primary:hover { background: var(--mc-navy-700); border-color: var(--mc-navy-700); color: var(--mc-on-navy); }
 .btn-navy { background: var(--mc-navy); color: var(--mc-on-navy); border-color: var(--mc-navy-ink); }
@@ -543,9 +546,9 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 .megamenu-footer .view-all:hover { color: var(--mc-navy-ink); }
 
 @media (max-width: 1100px) { .nav-megamenu { grid-template-columns: repeat(2, 1fr); width: 680px; } }
-@media (max-width: 768px) { .nav-megamenu { display: none !important; } }
 /* Dentro del menú hamburguesa el megamenú se despliega en línea, no flotante
-   (si no, se abría centrado sobre "Servicios" y quedaba fuera de pantalla) */
+   (si no, se abría centrado sobre "Servicios" y quedaba fuera de pantalla).
+   El primer toque en "Servicios" lo abre (main.js añade .is-open); el segundo navega. */
 @media (max-width: 1080px) {
   .nav-menu > .nav-dropdown { align-self: stretch; }
   .nav-dropdown::after, .nav-megamenu::before { display: none; }
@@ -572,6 +575,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   .nav-dropdown.is-open .nav-megamenu { display: grid; }
   .megamenu-footer { flex-wrap: wrap; gap: 8px 20px; }
 }
+@media (max-width: 600px) { .nav-megamenu { grid-template-columns: 1fr; } }
 
 /* "Más"/Recursos simple dropdown */
 .nav-more > a { cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
@@ -2249,6 +2253,13 @@ body:has(.service-subnav) section[id] { scroll-margin-top: calc(var(--header-h, 
 .service-switcher-footer span { color: var(--mc-mute); }
 .service-switcher-footer a { padding: 0 !important; color: var(--mc-teal-ink) !important; font-weight: 600 !important; background: transparent !important; border: none !important; font-family: var(--mc-font-sans); font-size: 12.5px; }
 .service-switcher-footer a:hover { color: var(--mc-navy-ink) !important; }
+/* El menú de 680 px arranca en el selector (63–168 px desde el borde según la
+   página): bajo ~880 px se salía de pantalla aun invisible y creaba scroll
+   horizontal. Hasta 960 px usa la versión de una columna. */
+@media (max-width: 960px) {
+  .service-switcher-menu { left: -4px; width: calc(100vw - 32px); max-width: 420px; }
+  .service-switcher-grid { grid-template-columns: 1fr; gap: 2px; }
+}
 @media (max-width: 720px) {
   .service-switcher { padding-right: 8px; margin-right: 4px; }
   .service-switcher-trigger { padding: 7px 10px; font-size: 11.5px; }
