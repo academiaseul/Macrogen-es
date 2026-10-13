@@ -2480,7 +2480,7 @@ body:has(.service-subnav) section[id] { scroll-margin-top: calc(var(--header-h, 
 @media (max-width: 480px) {
   .promo-modal { max-width: 100%; }
   .promo-discount { font-size: 60px; }
-  .promo-banner { padding: 30px 18px 4px; }
+  .promo-banner { padding: 52px 18px 4px; } /* top padding keeps the eyebrow clear of the close button */
   .promo-body { padding: 8px 20px 22px; }
   .promo-code-value { font-size: 20px; letter-spacing: .1em; }
 }

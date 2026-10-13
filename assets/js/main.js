@@ -10,21 +10,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // that mention the code disappear automatically. Next campaign = edit
   // this PROMO object only. Test an expired promo with ?showpromo=1.
   const PATH_PREFIX = /\/(servicios|blog)\//.test(location.pathname) ? '../' : '';
+  // Promo PROMO10 (Oct–Nov 2026): 10% on NGS, CES (Sanger) and oligo synthesis, all site countries.
+  // NGS and CES: samples received by 30 Nov 2026; oligos: orders received by 30 Nov 2026.
+  // Not combinable with the CES year-end cashback campaign (Chile): one benefit per order.
   const PROMO = {
-    code: 'NUEVO10',
-    ends: '2026-08-31', // last valid day, inclusive (local time)
-    html: '<span class="lb-tag">LANZAMIENTO WEB</span> <strong>10% OFF</strong> en <strong>Sanger · NGS · Oligos &amp; Síntesis</strong> con código <code class="lb-code">NUEVO10</code> · hasta 31 ago 2026 <a href="{pre}contacto?promo=NUEVO10" class="lb-cta">Cotizar →</a>'
+    code: 'PROMO10',
+    ends: '2026-11-30', // last valid day, inclusive (local time)
+    summary: '10% en NGS · Sanger (CES) · síntesis de oligos · muestras recibidas hasta el 30 nov 2026',
+    html: '<span class="lb-tag">PROMOCIÓN</span> <strong>10% OFF</strong> en <strong>NGS · Sanger · Oligos</strong> · muestras recibidas hasta el 30 nov 2026 <a href="{pre}contacto?promo=PROMO10" class="lb-cta">Cotizar →</a>'
   };
+  const PROMO_ACTIVE = new URLSearchParams(location.search).get('showpromo') === '1'
+    || Date.now() <= new Date(PROMO.ends + 'T23:59:59').getTime();
 
   (function renderPromo() {
-    const force = new URLSearchParams(location.search).get('showpromo') === '1';
-    const active = force || Date.now() <= new Date(PROMO.ends + 'T23:59:59').getTime();
-    if (active) {
+    if (PROMO_ACTIVE) {
       const bar = document.createElement('div');
       bar.className = 'launch-bar';
       bar.innerHTML = PROMO.html.replace(/\{pre\}/g, PATH_PREFIX);
       document.body.insertBefore(bar, document.body.firstChild);
     } else {
+      // After the end date: drop the static promo note on contacto and any megamenu tile naming the code.
+      document.querySelectorAll('[data-promo-note]').forEach(el => el.remove());
       document.querySelectorAll('.nav-megamenu a').forEach(a => {
         if (a.textContent.includes(PROMO.code)) a.remove();
       });
@@ -198,10 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========== CONTACT FORM · detect ?promo= URL param and pre-fill ==========
-  // When user arrives at contacto.html?promo=NUEVO10 from the popup,
+  // When user arrives at contacto.html?promo=PROMO10 from the popup, bar or campaign email,
   // show a confirmation banner + inject hidden field so Sales sees the code in Brevo.
   (function initPromoBanner() {
-    const promo = new URLSearchParams(window.location.search).get('promo');
+    const promo = (new URLSearchParams(window.location.search).get('promo') || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 24);
     if (!promo) return;
     const form = document.querySelector('form[data-country-form]');
     if (!form) return;
@@ -221,11 +227,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!formSection) return;
     const banner = document.createElement('div');
     banner.className = 'promo-banner-inline';
-    banner.innerHTML = `
+    const isCurrent = promo.toUpperCase() === PROMO.code && PROMO_ACTIVE;
+    banner.innerHTML = isCurrent ? `
       <span class="promo-banner-icon"></span>
       <div class="promo-banner-text">
-        <strong>Aplicaremos tu descuento de lanzamiento</strong>
-        <span>Código <code>${promo}</code> · 10% OFF en Sanger · NGS · Oligos &amp; Síntesis · vigente hasta 31 ago 2026</span>
+        <strong>Aplicaremos tu descuento del 10%</strong>
+        <span>Código <code>${PROMO.code}</code> · ${PROMO.summary} (oligos: pedidos recibidos hasta esa fecha)</span>
+      </div>
+    ` : `
+      <span class="promo-banner-icon"></span>
+      <div class="promo-banner-text">
+        <strong>Código registrado</strong>
+        <span>Código <code>${promo}</code> · revisaremos si aplica a tu cotización</span>
       </div>
     `;
     form.parentNode.insertBefore(banner, form);
@@ -236,17 +249,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  // ========== PROMO POPUP · NUEVO10 launch campaign · 10% off CES + NGS + Oligos ==========
-  // Triggers only on home page (index.html or /).
-  // Activates with website launch and runs through Aug 31, 2026.
-  // Snoozes for 7 days when user dismisses or clicks "Order Now".
-  // Condition: web request + sample receipt must both occur before Aug 31.
+  // ========== PROMO POPUP · PROMO10 · 10% off NGS + CES (Sanger) + Oligos ==========
+  // Triggers only on home page (index.html or /). Runs until PROMO.ends (30 Nov 2026, local time).
+  // Shows on every visit; only "No mostrar más" persists a dismissal (until the promo ends).
+  // Conditions: NGS/CES samples received by 30 Nov 2026; oligo orders received by 30 Nov 2026;
+  // not combinable with the CES cashback campaign in Chile. New storage key, so visitors who
+  // dismissed the old NUEVO10 popup still see this one.
   (function initPromoPopup() {
-    const STORAGE_KEY = 'mc_promo_nuevo10_dismissed_until';
-    const STARTS_AT  = new Date('2026-06-15T00:00:00Z').getTime();
-    const EXPIRES_AT = new Date('2026-09-01T00:00:00Z').getTime();
+    const STORAGE_KEY = 'mc_promo_promo10_dismissed_until';
+    const EXPIRES_AT = new Date(PROMO.ends + 'T23:59:59').getTime() + 1000;
     const SHOW_AFTER_MS = 3000;
-    const SNOOZE_DAYS = 7;
 
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -254,14 +266,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Also clears the snooze flag so subsequent visits show it again naturally.
     const forceShow = urlParams.get('showpromo') === '1';
     if (forceShow) {
-      localStorage.removeItem(STORAGE_KEY);
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
       console.log('[promo] force-show triggered, snooze cleared');
     }
 
-    // Show the popup as a pre-launch teaser too — the message "vigente hasta
-    // 31 ago 2026" is valid before, during, and we only stop after expiry.
-    // STARTS_AT kept as a comment for documentation purposes only.
-    if (Date.now() >= EXPIRES_AT) return;
+    if (!forceShow && Date.now() >= EXPIRES_AT) return;
 
     // Only show on home page (unless force-show)
     const path = window.location.pathname.replace(/\/$/, '').toLowerCase();
@@ -278,7 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Bail if recently dismissed (unless force-show)
-    const dismissedUntil = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+    let dismissedUntil = 0;
+    try { dismissedUntil = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10); } catch (e) {}
     if (!forceShow && dismissedUntil > Date.now()) {
       const daysLeft = Math.ceil((dismissedUntil - Date.now()) / 86400000);
       console.log('[promo] snoozed for', daysLeft, 'more days. To force show: append ?showpromo=1 to URL');
@@ -296,41 +306,41 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="promo-close" data-promo-close aria-label="Close">×</button>
         <div class="promo-banner">
           <span class="promo-decoration"></span>
-          <span class="promo-eyebrow">◉ &nbsp;LANZAMIENTO · WEB NUEVA</span>
+          <span class="promo-eyebrow">◉ &nbsp;PROMOCIÓN · HASTA 30 NOV</span>
           <div class="promo-discount">10%</div>
         </div>
         <div class="promo-body">
-          <h3 class="promo-title" id="promo-title">de descuento en TODOS los servicios</h3>
-          <p class="promo-subtitle">Para celebrar nuestra <strong>nueva web</strong> · aplicable a tu próxima cotización en España, Portugal, Chile y Perú</p>
+          <h3 class="promo-title" id="promo-title">de descuento en NGS, Sanger y síntesis de oligos</h3>
+          <p class="promo-subtitle">Adelanta tus proyectos de fin de año · válido en España, Portugal, Chile y Perú</p>
           <div class="promo-services">
-            <div class="promo-service-pill is-sanger">
-              <span class="ico">🧬</span>
-              <div class="name">SANGER</div>
-              <div class="desc">24-48 h</div>
-            </div>
             <div class="promo-service-pill is-ngs">
               <span class="ico">🔬</span>
               <div class="name">NGS</div>
               <div class="desc">WGS · WES · RNA</div>
             </div>
+            <div class="promo-service-pill is-sanger">
+              <span class="ico">🧬</span>
+              <div class="name">SANGER</div>
+              <div class="desc">CES · 24-48 h</div>
+            </div>
             <div class="promo-service-pill is-synth">
               <span class="ico">⚗️</span>
-              <div class="name">SÍNTESIS</div>
-              <div class="desc">DNA · RNA · Pep</div>
+              <div class="name">OLIGOS</div>
+              <div class="desc">ADN · ARN</div>
             </div>
           </div>
           <div class="promo-code-box">
             <div class="promo-code-info">
               <div class="promo-code-label">Usa el código</div>
-              <div class="promo-code-value" data-promo-code>NUEVO10</div>
+              <div class="promo-code-value" data-promo-code>${PROMO.code}</div>
             </div>
             <button class="promo-copy-btn" data-promo-copy>Copiar</button>
           </div>
           <div class="promo-actions">
-            <a href="contacto" class="promo-btn-order" data-promo-order>Aplicar descuento →</a>
+            <a href="contacto?promo=${PROMO.code}" class="promo-btn-order" data-promo-order>Cotizar con 10% →</a>
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
-          <p class="promo-validity">⏱ Disponible <strong>hasta el 31 de agosto de 2026</strong> · Solicitud web + recepción de muestras antes del cierre</p>
+          <p class="promo-validity">⏱ NGS y Sanger: muestras recibidas <strong>hasta el 30 de noviembre de 2026</strong> · Oligos: pedidos recibidos hasta esa fecha · No acumulable con el cashback CES (Chile)</p>
           <button type="button" class="promo-btn-never" data-promo-never aria-label="Stop showing this promotion" style="display:block; margin:12px auto 0; background:transparent; border:none; color:rgba(255,255,255,0.42); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:0.3px; font-weight:500; padding:6px 12px; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)';" onmouseout="this.style.color='rgba(255,255,255,0.42)';">🚫 No mostrar más esta promoción</button>
         </div>
       </div>
@@ -344,8 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dismiss logic
     function permanentDismiss() {
-      // Suppress until promo expires (Sep 1, 2026). After that, popup naturally stops anyway.
-      localStorage.setItem(STORAGE_KEY, String(EXPIRES_AT));
+      // Suppress until the promo expires. After that, the popup stops anyway.
+      try { localStorage.setItem(STORAGE_KEY, String(EXPIRES_AT)); } catch (e) {}
     }
     function closePopup() {
       overlay.classList.remove('is-open');
