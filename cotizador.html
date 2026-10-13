@@ -1241,7 +1241,9 @@ const TREE = {
       'Envío muestras pre-mezcladas o EZ-Seq al hub Madrid o Santiago',
       'Reporte BI-REPORT con cromatograma + secuencia consenso',
       'Validación de variantes NGS típica (gold standard)',
-      'Promoción PROMO10: 10% en NGS · Sanger · oligos (muestras recibidas hasta el 30 nov 2026)',
+      ...(Date.now() <= new Date('2026-11-30T23:59:59').getTime()
+        ? ['Promoción PROMO10 (hasta el 30 nov 2026): Sanger y oligos con 10% de cashback (crédito para tu próximo pedido) · NGS con 10% de descuento · muestras y pedidos de oligos recibidos hasta esa fecha']
+        : []),
     ],
     specialist:'Equipo Sanger · Iberoamérica',
     contact:'info-chile@macrogen.com',
