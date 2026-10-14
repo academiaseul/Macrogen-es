@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const PROMO = {
     code: 'PROMO10',
     ends: '2026-11-30', // last valid day, inclusive (local time)
-    popup: false, // home-page popup paused 14 Oct 2026 while details are confirmed; set true to relaunch (?showpromo=1 still previews it)
+    popup: true, // home-page popup on/off switch (paused 14 Oct, relaunched 15 Oct 2026); ?showpromo=1 always previews it
     summary: 'NGS: 10% de descuento directo (sin cashback) · Sanger (CES) y síntesis de oligos: 10% de cashback en crédito válido 1 año desde su emisión, solo para Sanger u oligos',
-    html: '<span class="lb-tag">PROMOCIÓN</span> <strong>10% dto.</strong> en <strong>NGS</strong> · <strong>10% cashback</strong> en <strong>Sanger y oligos</strong> · hasta el 30 nov 2026 <a href="{pre}contacto?promo=PROMO10" class="lb-cta">Cotizar →</a>'
+    html: '<span class="lb-tag">PROMOCIÓN</span> <strong>10% dto.</strong> en <strong>NGS</strong> · <strong>10% cashback</strong> en <strong>Sanger y oligos</strong> · solo muestras recibidas hasta el 30 nov 2026 <a href="{pre}contacto?promo=PROMO10" class="lb-cta">Cotizar →</a>'
   };
   const PROMO_ACTIVE = new URLSearchParams(location.search).get('showpromo') === '1'
     || Date.now() <= new Date(PROMO.ends + 'T23:59:59').getTime();
@@ -315,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="promo-body">
           <h3 class="promo-title" id="promo-title">de descuento en NGS y de cashback en Sanger y oligos</h3>
           <p class="promo-subtitle">NGS: descuento directo, sin cashback · Sanger y oligos: crédito válido 1 año desde su emisión, solo para Sanger u oligos</p>
+          <p class="promo-deadline" style="margin:14px auto 16px; max-width:380px; padding:10px 14px; border:1px solid rgba(0,191,178,.6); border-radius:8px; background:rgba(0,191,178,.12); color:#fff; font-size:13.5px; line-height:1.45; font-weight:600; text-align:center;">Válido solo para muestras recibidas hasta el 30 de noviembre de 2026<br><span style="font-weight:400; font-size:12.5px; color:rgba(255,255,255,.78);">Síntesis de oligos: pedidos recibidos hasta esa fecha</span></p>
           <div class="promo-services">
             <div class="promo-service-pill is-ngs">
               <span class="ico">🔬</span>
@@ -343,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="contacto?promo=${PROMO.code}" class="promo-btn-order" data-promo-order>Cotizar ahora →</a>
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
-          <p class="promo-validity">⏱ NGS y Sanger: muestras recibidas <strong>hasta el 30 de noviembre de 2026</strong> · Oligos: pedidos recibidos hasta esa fecha · Válido en España, Portugal, Chile y Perú · El descuento NGS no se aplica a precios especiales o de contrato · No acumulable con el Beneficio de fin de año CES de Macrogen Chile</p>
+          <p class="promo-validity">Válido en España, Portugal, Chile y Perú · El descuento NGS no se aplica a precios especiales o de contrato · No acumulable con el Beneficio de fin de año CES de Macrogen Chile</p>
           <button type="button" class="promo-btn-never" data-promo-never style="display:block; margin:12px auto 0; background:transparent; border:none; color:rgba(255,255,255,0.42); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:0.3px; font-weight:500; padding:6px 12px; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)';" onmouseout="this.style.color='rgba(255,255,255,0.42)';"><span aria-hidden="true">🚫</span> No mostrar más esta promoción</button>
         </div>
       </div>
