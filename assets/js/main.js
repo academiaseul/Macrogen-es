@@ -10,14 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // that mention the code disappear automatically. Next campaign = edit
   // this PROMO object only. Test an expired promo with ?showpromo=1.
   const PATH_PREFIX = /\/(servicios|blog)\//.test(location.pathname) ? '../' : '';
-  // Promo PROMO10 (Oct–Nov 2026), all site countries: 10% discount on NGS (applied in the quote);
-  // 10% cashback on CES (Sanger) and oligo synthesis (credit worth 10% of the order, for the next order).
+  // Promo PROMO10 (Oct–Nov 2026), all site countries: 10% direct discount on NGS (normal price, applied in
+  // the quote; no cashback; not for special/contract prices). 10% cashback on CES (Sanger) and oligo synthesis:
+  // credit worth 10% of the order, valid 1 year from issue, usable only on CES and oligos.
   // NGS and CES: samples received by 30 Nov 2026; oligos: orders received by 30 Nov 2026.
   // Not combinable with the CES year-end cashback campaign (Chile): one benefit per order.
   const PROMO = {
     code: 'PROMO10',
     ends: '2026-11-30', // last valid day, inclusive (local time)
-    summary: '10% de descuento en NGS · 10% de cashback en Sanger (CES) y síntesis de oligos · muestras recibidas hasta el 30 nov 2026',
+    summary: 'NGS: 10% de descuento directo (sin cashback) · Sanger (CES) y síntesis de oligos: 10% de cashback en crédito válido 1 año desde su emisión, solo para Sanger u oligos',
     html: '<span class="lb-tag">PROMOCIÓN</span> <strong>10% dto.</strong> en <strong>NGS</strong> · <strong>10% cashback</strong> en <strong>Sanger y oligos</strong> · hasta el 30 nov 2026 <a href="{pre}contacto?promo=PROMO10" class="lb-cta">Cotizar →</a>'
   };
   const PROMO_ACTIVE = new URLSearchParams(location.search).get('showpromo') === '1'
@@ -233,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <span class="promo-banner-icon"></span>
       <div class="promo-banner-text">
         <strong>Aplicaremos tu beneficio PROMO10</strong>
-        <span>Código <code>${PROMO.code}</code> · ${PROMO.summary} (oligos: pedidos recibidos hasta esa fecha). El cashback se entrega como crédito para tu próximo pedido.</span>
+        <span>Código <code>${PROMO.code}</code> · ${PROMO.summary}. NGS y Sanger: muestras recibidas hasta el 30 nov 2026; oligos: pedidos recibidos hasta esa fecha. El descuento NGS no se aplica a precios especiales o de contrato. No acumulable con el Beneficio de fin de año CES de Macrogen Chile.</span>
       </div>
     ` : `
       <span class="promo-banner-icon"></span>
@@ -312,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="promo-body">
           <h3 class="promo-title" id="promo-title">de descuento en NGS y de cashback en Sanger y oligos</h3>
-          <p class="promo-subtitle">El cashback vuelve como crédito para tu próximo pedido · válido en España, Portugal, Chile y Perú</p>
+          <p class="promo-subtitle">NGS: descuento directo, sin cashback · Sanger y oligos: crédito válido 1 año desde su emisión, solo para Sanger u oligos</p>
           <div class="promo-services">
             <div class="promo-service-pill is-ngs">
               <span class="ico">🔬</span>
@@ -341,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="contacto?promo=${PROMO.code}" class="promo-btn-order" data-promo-order>Cotizar ahora →</a>
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
-          <p class="promo-validity">⏱ NGS y Sanger: muestras recibidas <strong>hasta el 30 de noviembre de 2026</strong> · Oligos: pedidos recibidos hasta esa fecha · No acumulable con la campaña de cashback CES de fin de año de Macrogen Chile</p>
+          <p class="promo-validity">⏱ NGS y Sanger: muestras recibidas <strong>hasta el 30 de noviembre de 2026</strong> · Oligos: pedidos recibidos hasta esa fecha · Válido en España, Portugal, Chile y Perú · El descuento NGS no se aplica a precios especiales o de contrato · No acumulable con el Beneficio de fin de año CES de Macrogen Chile</p>
           <button type="button" class="promo-btn-never" data-promo-never style="display:block; margin:12px auto 0; background:transparent; border:none; color:rgba(255,255,255,0.42); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:0.3px; font-weight:500; padding:6px 12px; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)';" onmouseout="this.style.color='rgba(255,255,255,0.42)';"><span aria-hidden="true">🚫</span> No mostrar más esta promoción</button>
         </div>
       </div>
