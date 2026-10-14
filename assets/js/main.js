@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const PROMO = {
     code: 'PROMO10',
     ends: '2026-11-30', // last valid day, inclusive (local time)
+    popup: false, // home-page popup paused 14 Oct 2026 while details are confirmed; set true to relaunch (?showpromo=1 still previews it)
     summary: 'NGS: 10% de descuento directo (sin cashback) · Sanger (CES) y síntesis de oligos: 10% de cashback en crédito válido 1 año desde su emisión, solo para Sanger u oligos',
     html: '<span class="lb-tag">PROMOCIÓN</span> <strong>10% dto.</strong> en <strong>NGS</strong> · <strong>10% cashback</strong> en <strong>Sanger y oligos</strong> · hasta el 30 nov 2026 <a href="{pre}contacto?promo=PROMO10" class="lb-cta">Cotizar →</a>'
   };
@@ -272,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('[promo] force-show triggered, snooze cleared');
     }
 
-    if (!forceShow && Date.now() >= EXPIRES_AT) return;
+    if (!forceShow && (!PROMO.popup || Date.now() >= EXPIRES_AT)) return;
 
     // Only show on home page (unless force-show)
     const path = window.location.pathname.replace(/\/$/, '').toLowerCase();
