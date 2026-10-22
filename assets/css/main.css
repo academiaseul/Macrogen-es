@@ -252,12 +252,12 @@ a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; 
   /* Sin padding lateral a ≥1248 px (el header ocupa los 1200 px del contenedor);
      por debajo recupera hasta 24 px de margen para que el logo no toque el borde. */
   padding: 14px clamp(0px, calc(24px - (100vw - var(--mc-container)) / 2), 24px);
-  gap: 24px;
+  gap: 16px;
 }
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   font-weight: 700;
   color: var(--mc-navy-ink);
   font-size: 19px;
@@ -291,12 +291,12 @@ a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; 
 .nav-logo .region-tag {
   display: inline-block;
   border-left: 1px solid var(--mc-line-strong);
-  padding-left: 12px;
+  padding-left: 10px;
   margin-left: 2px;
   font-family: var(--mc-font-mono);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: .12em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--mc-red); /* CI manual BS 2-2: regional designators set in Macrogen Red */
   line-height: 1.4;
@@ -305,10 +305,10 @@ a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; 
 }
 .nav-logo .region-tag small {
   display: block;
-  font-size: 9px;
+  font-size: 8.5px;
   color: var(--mc-mute-2);
   font-weight: 400;
-  letter-spacing: .1em;
+  letter-spacing: .06em;
   margin-top: 1px;
 }
 .nav-logo-tagline {
@@ -328,12 +328,12 @@ a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; 
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 20px;
+  gap: 14px;
   align-items: center;
   min-width: 0;
 }
 .nav-menu a {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--mc-ink);
   letter-spacing: .01em;
@@ -375,7 +375,7 @@ a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; 
 .nav-menu a.nav-order::after, .nav-menu a.nav-order::before { display: none !important; }
 
 .nav-cta { margin-left: 4px; }
-.nav-cta .btn { padding: 9px 18px; font-size: 13px; }
+.nav-cta .btn { padding: 9px 13px; font-size: 13px; }
 /* White quote button (high specificity: .nav-menu a rules must not repaint it) */
 .nav-menu li.nav-cta a.btn {
   background: var(--mc-white);
@@ -402,17 +402,12 @@ a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; 
 }
 
 /* Compact-header rules for narrower desktops & long translations.
-   Logo + 7 enlaces + idiomas + modo oscuro + CTA llenan casi los 1200 px del
-   contenedor: cada tramo recorta algo y a ≤1080 px entra el menú hamburguesa. */
-@media (max-width: 1280px) {
-  .nav { gap: 16px; }
-  .nav-menu { gap: 18px; }
-  .nav-menu a { font-size: 13px; }
-  .nav-logo .region-tag { font-size: 10px; padding-left: 10px; }
-  .nav-logo .region-tag small { font-size: 8.5px; }
-}
-@media (max-width: 1210px) { .nav-logo .region-tag { display: none; } }
-@media (max-width: 1080px) {
+   Logo + 8 enlaces + idiomas + modo oscuro + CTA llenan los 1200 px del
+   contenedor (medido 2026-10-22 al añadir Primer Designer): por debajo de
+   1250 px se oculta la etiqueta regional y a ≤1135 px entra el menú hamburguesa.
+   Tras cambiar enlaces o textos del menú, repetir el barrido de anchos. */
+@media (max-width: 1249px) { .nav-logo .region-tag { display: none; } }
+@media (max-width: 1135px) {
   .nav-logo .logo-img { height: 36px; }
   .nav-toggle { display: inline-block; }
   .nav-menu {
@@ -549,7 +544,7 @@ a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; 
 /* Dentro del menú hamburguesa el megamenú se despliega en línea, no flotante
    (si no, se abría centrado sobre "Servicios" y quedaba fuera de pantalla).
    El primer toque en "Servicios" lo abre (main.js añade .is-open); el segundo navega. */
-@media (max-width: 1080px) {
+@media (max-width: 1135px) {
   .nav-menu > .nav-dropdown { align-self: stretch; }
   .nav-dropdown::after, .nav-megamenu::before { display: none; }
   .nav-megamenu {
@@ -627,7 +622,7 @@ a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; 
 }
 .nav-more-menu a:hover { background: var(--mc-bg); color: var(--mc-navy-ink); border-left-color: var(--mc-teal); }
 .nav-more-menu a .icon { display: none; } /* emoji icons retired */
-@media (max-width: 1080px) {
+@media (max-width: 1135px) {
   .nav-more-menu {
     position: static;
     opacity: 1;
@@ -1957,7 +1952,7 @@ summary:focus-visible,
 
 /* -------------------------- Language switcher ------------------------------ */
 .nav-lang { position: relative; }
-.lang-switcher { display: inline-flex; align-items: stretch; gap: 8px; }
+.lang-switcher { display: inline-flex; align-items: stretch; gap: 6px; }
 
 .theme-toggle {
   display: inline-flex;
@@ -1991,7 +1986,7 @@ summary:focus-visible,
   background: transparent;
   border: 0;
   border-left: 1px solid var(--mc-line);
-  padding: 6px 8px;
+  padding: 6px 6px;
   font-family: var(--mc-font-mono);
   font-size: 10.5px;
   font-weight: 600;
@@ -2007,7 +2002,7 @@ summary:focus-visible,
 .lang-seg.is-active:hover { background: var(--mc-navy); color: #fff; }
 .lang-seg:focus-visible { outline: 2px solid var(--mc-teal); outline-offset: -2px; }
 /* Mismo corte que el menú hamburguesa (.nav-toggle) */
-@media (max-width: 1080px) {
+@media (max-width: 1135px) {
   .nav-menu .nav-lang { margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--mc-line); }
   .lang-switcher { width: 100%; }
   .lang-bar { flex: 1; }
@@ -2386,6 +2381,20 @@ body:has(.service-subnav) section[id] { scroll-margin-top: calc(var(--header-h, 
 .promo-title { font-size: 19px; font-weight: 600; color: var(--mc-on-navy); margin: 0 0 8px; line-height: 1.3; letter-spacing: -.01em; }
 .promo-subtitle { font-size: 13.5px; color: var(--mc-light-blue); line-height: 1.6; margin: 0 0 20px; }
 .promo-subtitle strong { color: var(--mc-on-navy); font-weight: 600; }
+.promo-deadline {
+  margin: 14px auto 16px;
+  max-width: 380px;
+  padding: 10px 14px;
+  border: 1px solid rgba(0,191,178,.6);
+  border-radius: 8px;
+  background: rgba(0,191,178,.12);
+  color: #fff;
+  font-size: 13.5px;
+  line-height: 1.45;
+  font-weight: 600;
+  text-align: center;
+}
+.promo-deadline span { font-weight: 400; font-size: 12.5px; color: rgba(255,255,255,.78); }
 .promo-services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 20px; }
 .promo-service-pill { padding: 12px 8px; border-radius: var(--mc-radius-sm); border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.04); text-align: center; font-family: inherit; }
 .promo-service-pill .ico { display: none; }
@@ -2507,6 +2516,75 @@ body:has(.service-subnav) section[id] { scroll-margin-top: calc(var(--header-h, 
 .promo-banner-inline .promo-banner-text { flex: 1; }
 .promo-banner-inline .promo-banner-text strong { display: block; color: var(--mc-navy-ink); font-size: 14px; margin-bottom: 2px; }
 .promo-banner-inline .promo-banner-text code { background: var(--mc-navy); color: var(--mc-on-navy); padding: 2px 7px; border-radius: var(--mc-radius-sm); font-weight: 600; font-size: 12px; font-family: var(--mc-font-mono); }
+
+/* ------------- Halloween look (PROMO.halloweenUntil in main.js) -------------
+   Same content as the standard bar/popup/banner; only the skin changes, and
+   main.js stops adding .is-halloween after 31 Oct. Palette = the team's
+   Halloween Brevo email (night purple, pumpkin orange, slime green). */
+.launch-bar.is-halloween {
+  background: #2A0F4A;
+  color: #EDE6FF;
+  border-bottom: 2px solid #FF7A1A;
+}
+.launch-bar.is-halloween strong { color: #FF9A4D; }
+.launch-bar.is-halloween .lb-tag { background: #FF7A1A; color: #1A0B00; font-weight: 700; }
+.launch-bar.is-halloween .lb-cta { color: #8CFF3F; }
+.launch-bar.is-halloween a:hover { color: #FFFFFF; }
+
+.promo-overlay.is-halloween { background: rgba(11, 7, 20, .8); }
+.is-halloween .promo-modal {
+  background: #140E22;
+  border: 1px solid #3A2C58;
+  box-shadow: 0 24px 60px rgba(0,0,0,.6), 0 0 44px rgba(155,92,255,.28);
+}
+.is-halloween .promo-banner { background: #2A0F4A; padding: 30px 28px 18px; }
+.is-halloween .promo-decoration {
+  display: block;
+  font-size: 22px;
+  letter-spacing: 8px;
+  line-height: 1;
+  margin-bottom: 12px;
+  animation: mcSpookyFloat 2.4s ease-in-out 2; /* ends before 5 s (WCAG 2.2.2) */
+}
+@keyframes mcSpookyFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.is-halloween .promo-eyebrow { border-color: rgba(140,255,63,.55); color: #8CFF3F; margin-bottom: 14px; }
+.is-halloween .promo-discount { color: #FF7A1A; text-shadow: 0 0 24px rgba(255,122,26,.55); margin-bottom: 0; }
+.is-halloween .promo-discount .pct { color: #8CFF3F; text-shadow: 0 0 18px rgba(140,255,63,.45); }
+.is-halloween .promo-body { padding-top: 20px; }
+.is-halloween .promo-title { color: #FFFFFF; }
+.is-halloween .promo-subtitle { color: #D9CCF5; }
+.is-halloween .promo-deadline { border-color: rgba(255,122,26,.75); background: rgba(255,122,26,.13); }
+.is-halloween .promo-deadline span { color: #D9CCF5; }
+.is-halloween .promo-service-pill { background: #1D1530; border-width: 2px; }
+.is-halloween .promo-service-pill.is-ngs { border-color: #9B5CFF; }
+.is-halloween .promo-service-pill.is-sanger { border-color: #FF7A1A; }
+.is-halloween .promo-service-pill.is-synth { border-color: #8CFF3F; }
+.is-halloween .promo-service-pill.is-ngs .name { color: #B48CFF; }
+.is-halloween .promo-service-pill.is-sanger .name { color: #FF9A4D; }
+.is-halloween .promo-service-pill.is-synth .name { color: #8CFF3F; }
+.is-halloween .promo-service-pill .desc { color: #D9CCF5; }
+.is-halloween .promo-code-box { background: #0B0714; border: 2px dashed #FF7A1A; }
+.is-halloween .promo-code-label { color: #A99CCB; }
+.is-halloween .promo-code-value { color: #FF7A1A; }
+.is-halloween .promo-copy-btn { background: #7C3AED; color: #FFFFFF; }
+.is-halloween .promo-copy-btn:hover { background: #6D28D9; }
+.is-halloween .promo-copy-btn.is-copied { background: #4D7000; }
+.is-halloween .promo-btn-order { background: #FF7A1A; color: #1A0B00 !important; }
+.is-halloween .promo-btn-order:hover { background: #FF9A4D; color: #1A0B00 !important; }
+.is-halloween .promo-btn-dismiss { color: #D9CCF5; }
+.is-halloween .promo-btn-dismiss:hover { color: #FFFFFF; }
+.is-halloween .promo-validity { color: #A99CCB; border-top-color: #3A2C58; }
+.is-halloween .promo-close { border-color: rgba(255,255,255,.3); }
+@media (max-width: 480px) {
+  .is-halloween .promo-banner { padding: 48px 18px 14px; }
+  .is-halloween .promo-decoration { font-size: 20px; letter-spacing: 4px; white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) { .is-halloween .promo-decoration { animation: none; } }
+
+.promo-banner-inline.is-halloween { background: #1D1530; border-color: #3A2C58; border-left: 3px solid #FF7A1A; color: #D9CCF5; }
+.promo-banner-inline.is-halloween .promo-banner-icon { display: block; font-size: 26px; line-height: 1; }
+.promo-banner-inline.is-halloween .promo-banner-text strong { color: #FFFFFF; }
+.promo-banner-inline.is-halloween .promo-banner-text code { background: #FF7A1A; color: #1A0B00; }
 
 /* ---------------- Google Translate widget — hide UI, keep engine ------------ */
 .goog-te-banner-frame.skiptranslate,

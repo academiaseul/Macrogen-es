@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // and blog/ pages; after that date the bar AND the megamenu promo tiles
   // that mention the code disappear automatically. Next campaign = edit
   // this PROMO object only. Test an expired promo with ?showpromo=1.
-  const PATH_PREFIX = /\/(servicios|blog)\//.test(location.pathname) ? '../' : '';
+  const PATH_PREFIX = /\/(servicios|blog|recursos)\//.test(location.pathname) ? '../' : '';
   // Promo PROMO10 (Oct–Nov 2026), all site countries: 10% direct discount on NGS (normal price, applied in
   // the quote; no cashback; not for special/contract prices). 10% cashback on CES (Sanger) and oligo synthesis:
   // credit worth 10% of the order, valid 1 year from issue, usable only on CES and oligos.
@@ -20,16 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
     ends: '2026-11-30', // last valid day, inclusive (local time)
     popup: true, // home-page popup on/off switch (paused 14 Oct, relaunched 15 Oct 2026); ?showpromo=1 always previews it
     summary: 'NGS: 10% de descuento directo (sin cashback) · Sanger (CES) y síntesis de oligos: 10% de cashback en crédito válido 1 año desde su emisión, solo para Sanger u oligos',
-    html: '<span class="lb-tag">PROMOCIÓN</span> <strong>10% dto.</strong> en <strong>NGS</strong> · <strong>10% cashback</strong> en <strong>Sanger y oligos</strong> · solo muestras recibidas hasta el 30 nov 2026 <a href="{pre}contacto?promo=PROMO10" class="lb-cta">Cotizar →</a>'
+    html: '<span class="lb-tag">PROMOCIÓN</span> <strong>10% dto.</strong> en <strong>NGS</strong> · <strong>10% cashback</strong> en <strong>Sanger y oligos</strong> · solo muestras recibidas hasta el 30 nov 2026 <a href="{pre}contacto?promo=PROMO10" class="lb-cta">Cotizar →</a>',
+    // Halloween look for the bar, the home popup and the contacto banner (team decision, Oct 2026).
+    // Same conditions and wording; after this day (inclusive, local time) everything returns to the
+    // standard design on its own. Preview: ?halloween=1 forces it on, ?halloween=0 forces it off.
+    halloweenUntil: '2026-10-31',
+    htmlHalloween: '<span class="lb-tag"><span aria-hidden="true">🎃</span> Promo de Halloween</span> <strong>10% dto.</strong> en <strong>NGS</strong> · <strong>10% cashback</strong> en <strong>Sanger y oligos</strong> · solo muestras recibidas hasta el 30 nov 2026 <a href="{pre}contacto?promo=PROMO10" class="lb-cta">Cotizar →</a>'
   };
   const PROMO_ACTIVE = new URLSearchParams(location.search).get('showpromo') === '1'
     || Date.now() <= new Date(PROMO.ends + 'T23:59:59').getTime();
+  const HALLOWEEN = PROMO_ACTIVE && (() => {
+    const q = new URLSearchParams(location.search).get('halloween');
+    if (q === '1' || q === '0') return q === '1';
+    return Date.now() <= new Date(PROMO.halloweenUntil + 'T23:59:59').getTime();
+  })();
 
   (function renderPromo() {
     if (PROMO_ACTIVE) {
       const bar = document.createElement('div');
-      bar.className = 'launch-bar';
-      bar.innerHTML = PROMO.html.replace(/\{pre\}/g, PATH_PREFIX);
+      bar.className = HALLOWEEN ? 'launch-bar is-halloween' : 'launch-bar';
+      bar.innerHTML = (HALLOWEEN ? PROMO.htmlHalloween : PROMO.html).replace(/\{pre\}/g, PATH_PREFIX);
       document.body.insertBefore(bar, document.body.firstChild);
     } else {
       // After the end date: drop the static promo note on contacto and any megamenu tile naming the code.
@@ -229,10 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const formSection = form.closest('section, div');
     if (!formSection) return;
     const banner = document.createElement('div');
-    banner.className = 'promo-banner-inline';
     const isCurrent = promo.toUpperCase() === PROMO.code && PROMO_ACTIVE;
+    banner.className = isCurrent && HALLOWEEN ? 'promo-banner-inline is-halloween' : 'promo-banner-inline';
     banner.innerHTML = isCurrent ? `
-      <span class="promo-banner-icon"></span>
+      <span class="promo-banner-icon" aria-hidden="true">${HALLOWEEN ? '🎃' : ''}</span>
       <div class="promo-banner-text">
         <strong>Aplicaremos tu beneficio PROMO10</strong>
         <span>Código <code>${PROMO.code}</code> · ${PROMO.summary}. NGS y Sanger: muestras recibidas hasta el 30 nov 2026; oligos: pedidos recibidos hasta esa fecha. El descuento NGS no se aplica a precios especiales o de contrato. No acumulable con el Beneficio de fin de año CES de Macrogen Chile.</span>
@@ -300,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Build popup HTML
     const overlay = document.createElement('div');
-    overlay.className = 'promo-overlay';
+    overlay.className = HALLOWEEN ? 'promo-overlay is-halloween' : 'promo-overlay';
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-labelledby', 'promo-title');
@@ -308,14 +318,14 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="promo-modal">
         <button class="promo-close" data-promo-close aria-label="Cerrar">×</button>
         <div class="promo-banner">
-          <span class="promo-decoration"></span>
-          <span class="promo-eyebrow">◉ &nbsp;PROMOCIÓN · HASTA 30 NOV</span>
-          <div class="promo-discount">10%</div>
+          <span class="promo-decoration" aria-hidden="true">${HALLOWEEN ? '🦇 🕸️ 🎃 🕸️ 🦇' : ''}</span>
+          <span class="promo-eyebrow">${HALLOWEEN ? '<span aria-hidden="true">🎃</span> &nbsp;PROMO DE HALLOWEEN · HASTA&nbsp;30&nbsp;NOV' : '◉ &nbsp;PROMOCIÓN · HASTA 30 NOV'}</span>
+          <div class="promo-discount">10<span class="pct">%</span></div>
         </div>
         <div class="promo-body">
           <h3 class="promo-title" id="promo-title">de descuento en NGS y de cashback en Sanger y oligos</h3>
           <p class="promo-subtitle">NGS: descuento directo, sin cashback · Sanger y oligos: crédito válido 1 año desde su emisión, solo para Sanger u oligos</p>
-          <p class="promo-deadline" style="margin:14px auto 16px; max-width:380px; padding:10px 14px; border:1px solid rgba(0,191,178,.6); border-radius:8px; background:rgba(0,191,178,.12); color:#fff; font-size:13.5px; line-height:1.45; font-weight:600; text-align:center;">Válido solo para muestras recibidas hasta el 30 de noviembre de 2026<br><span style="font-weight:400; font-size:12.5px; color:rgba(255,255,255,.78);">Síntesis de oligos: pedidos recibidos hasta esa fecha</span></p>
+          <p class="promo-deadline">Válido solo para muestras recibidas hasta el 30 de noviembre de 2026<br><span>Síntesis de oligos: pedidos recibidos hasta esa fecha</span></p>
           <div class="promo-services">
             <div class="promo-service-pill is-ngs">
               <span class="ico">🔬</span>
@@ -341,11 +351,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="promo-copy-btn" data-promo-copy>Copiar</button>
           </div>
           <div class="promo-actions">
-            <a href="contacto?promo=${PROMO.code}" class="promo-btn-order" data-promo-order>Cotizar ahora →</a>
+            <a href="${PATH_PREFIX}contacto?promo=${PROMO.code}" class="promo-btn-order" data-promo-order>${HALLOWEEN ? '<span>Cotizar ahora <span aria-hidden="true">🎃</span></span>' : 'Cotizar ahora →'}</a>
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
           <p class="promo-validity">Válido en España, Portugal, Chile y Perú · El descuento NGS no se aplica a precios especiales o de contrato · No acumulable con el Beneficio de fin de año CES de Macrogen Chile</p>
-          <button type="button" class="promo-btn-never" data-promo-never style="display:block; margin:12px auto 0; background:transparent; border:none; color:rgba(255,255,255,0.42); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:0.3px; font-weight:500; padding:6px 12px; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)';" onmouseout="this.style.color='rgba(255,255,255,0.42)';"><span aria-hidden="true">🚫</span> No mostrar más esta promoción</button>
+          <button type="button" class="promo-btn-never" data-promo-never style="display:block; margin:12px auto 0; background:transparent; border:none; color:rgba(255,255,255,0.55); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:0.3px; font-weight:500; padding:6px 12px; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)';" onmouseout="this.style.color='rgba(255,255,255,0.55)';"><span aria-hidden="true">🚫</span> No mostrar más esta promoción</button>
         </div>
       </div>
     `;
