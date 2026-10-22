@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qubit vs NanoDrop, RIN y DV200: QC de ADN y ARN para NGS | Blog Macrogen Iberoamérica</title>
+<meta name="description" content="Por qué Qubit y NanoDrop dan cifras distintas, qué indican 260/280 y 260/230, RIN frente a DV200, ADN de alto peso molecular y qué piden los criterios de QC de Macrogen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#001E62">
+<link rel="stylesheet" href="../assets/css/main.css">
+
+<link rel="canonical" href="https://macrogen-es.com/blog/control-calidad-adn-arn-ngs">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Macrogen Iberoamérica">
+<meta property="og:url" content="https://macrogen-es.com/blog/control-calidad-adn-arn-ngs">
+<meta property="og:title" content="Qubit vs NanoDrop, RIN y DV200: ¿pasará tu ADN o ARN el control de calidad? | Macrogen Blog">
+<meta property="og:description" content="Por qué Qubit y NanoDrop dan cifras distintas, qué indican 260/280 y 260/230, RIN frente a DV200, ADN de alto peso molecular y qué piden los criterios de QC de Macrogen.">
+<meta property="og:image" content="https://macrogen-es.com/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-10-22">
+<meta property="article:section" content="NGS">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Qubit vs NanoDrop, RIN y DV200: ¿pasará tu muestra el QC?">
+<meta name="twitter:description" content="Cantidad, pureza e integridad: qué mide cada método, qué librería tolera ARN degradado, qué ADN piden las lecturas largas y qué hacer si la muestra no cumple los criterios.">
+<meta name="twitter:image" content="https://macrogen-es.com/assets/img/og-image.png">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
+
+
+<!-- ============ Schema.org BlogPosting ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Qubit vs NanoDrop, RIN y DV200: ¿pasará tu ADN o ARN el control de calidad?",
+  "description": "Por qué Qubit y NanoDrop dan cifras distintas, qué indican 260/280 y 260/230, RIN frente a DV200, ADN de alto peso molecular y qué piden los criterios de QC de Macrogen.",
+  "datePublished": "2026-10-22",
+  "dateModified": "2026-10-22",
+  "inLanguage": "es",
+  "url": "https://macrogen-es.com/blog/control-calidad-adn-arn-ngs",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://macrogen-es.com/blog/control-calidad-adn-arn-ngs"
+  },
+  "image": "https://macrogen-es.com/assets/img/og-image.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Macrogen Iberoamérica",
+    "url": "https://macrogen-es.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Macrogen Iberoamérica",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://macrogen-es.com/assets/img/logo.png"
+    }
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img" width="522" height="147">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li class="nav-dropdown"><a href="../servicios" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs-genoma-completo"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes-exoma"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq-transcriptoma"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenomica-16s"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">Secuenciación Sanger · Electroforesis capilar <span class="count">(4)</span></h5>
+            <a href="../servicios/secuenciacion-sanger"><strong>Sanger</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <a href="../servicios/analisis-de-fragmentos"><strong>Análisis de fragmentos</strong><small>GeneScan · SSR · MSI</small></a>
+            <a href="../servicios/identificacion-bacteriana-16s"><strong>Identificación 16S/ITS</strong><small>Bacterias · hongos · BLAST</small></a>
+            <a href="../servicios/autenticacion-lineas-celulares-str"><strong>Cell Line ID · STR</strong><small>PowerPlex 6c · ICLAC</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis &amp; Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarrays"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Synthesis · Oligos &amp; Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/sintesis-oligos-adn"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/sintesis-oligos-arn"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/sintesis-peptidos"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/sintesis-de-genes"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">10 servicios genómicos · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../recursos/primer-designer" class="view-all" translate="no">Primer Designer · gratis →</a>
+            <a href="../servicios" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="../cotizador" data-nav="cotizador">NGS Explorador</a></li>
+      <li><a href="../servicios" data-nav="precios">Precios</a></li>
+      <li><a href="../recursos" data-nav="recursos">Recursos</a></li>
+      <li><a href="../blog" class="active" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../nosotros" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="../contacto" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+      <li class="nav-cta"><a href="../contacto" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Solicitar cotización</a></li>
+    </ul>
+  </div>
+</header>
+
+<article id="main" class="article">
+  <div class="container-narrow">
+    <div class="breadcrumb"><a href="../blog">Blog</a> <span class="sep">/</span> NGS</div>
+
+    <header class="article-header">
+      <div class="meta"><span class="cat">NGS · Muestras</span> · 22 octubre 2026 · 10 min de lectura</div>
+      <h1>Qubit vs NanoDrop, RIN y DV200: ¿pasará tu ADN o ARN el control de calidad?</h1>
+      <p style="font-size:1.1rem; color:var(--mc-mute); margin-bottom:0;">El NanoDrop marca 80 ng/µL, el Qubit 25 ng/µL y la librería que quieres pide una cantidad mínima. ¿Qué cifra vale? Esta guía explica qué mide cada método, cómo leer los ratios de pureza, cuándo importa el RIN y cuándo el DV200, qué ADN necesitan las lecturas largas y qué piden los criterios de QC de Macrogen antes de preparar la librería.</p>
+    </header>
+
+    <figure class="qc-hero" style="margin:32px 0 40px;">
+      <div class="qc-hero-box" style="background:#0A1929; border-radius:14px; box-shadow:0 8px 24px rgba(27,42,87,0.18);">
+        <div class="qc-hero-inner" style="background:#F8FAFC; border-radius:10px;">
+          <div style="font-size:9px; font-weight:800; letter-spacing:2px; color:#54637A; text-transform:uppercase; margin-bottom:10px;">Electroferograma de ARN · esquema ilustrativo</div>
+          <svg viewBox="0 0 400 375" role="img" aria-labelledby="qc-hero-title qc-hero-desc" style="display:block; width:100%; max-width:520px; height:auto; margin:0 auto;" font-family="Inter, system-ui, sans-serif">
+            <title id="qc-hero-title">ARN íntegro frente a ARN degradado</title>
+            <desc id="qc-hero-desc">Dos electroferogramas esquemáticos. Arriba, un ARN íntegro con un pico de marcador y dos picos altos de ARN ribosómico 18S y 28S. Abajo, un ARN degradado en el que la señal se concentra en fragmentos cortos y los picos 18S y 28S casi desaparecen; el área a la derecha de la línea de 200 nucleótidos, sombreada, representa el DV200.</desc>
+            <!-- Panel A · ARN íntegro -->
+            <g>
+              <text x="34" y="20" font-size="15" font-weight="700" fill="#001E62">ARN íntegro · RIN alto</text>
+              <text x="38" y="38" font-size="12" fill="#54637A">señal</text>
+              <line x1="34" y1="30" x2="34" y2="150" stroke="#B8C2D0" stroke-width="1"/>
+              <line x1="34" y1="150" x2="392" y2="150" stroke="#B8C2D0" stroke-width="1"/>
+              <path d="M128,150 L242,150 C250,150 253,90 258,90 C263,90 266,150 274,150 L304,150 C312,150 316,58 322,58 C328,58 332,150 340,150 L392,150 Z" fill="#00BFB2" fill-opacity="0.25"/>
+              <line x1="128" y1="30" x2="128" y2="150" stroke="#E0004D" stroke-width="1.2" stroke-dasharray="4 3"/>
+              <text x="132" y="40" font-size="13" font-weight="600" fill="#E0004D">200 nt</text>
+              <path d="M34,150 L54,150 C58,150 59,96 62,96 C65,96 66,150 70,150 L92,150 C97,150 99,141 102,141 C105,141 107,150 112,150 L242,150 C250,150 253,90 258,90 C263,90 266,150 274,150 L304,150 C312,150 316,58 322,58 C328,58 332,150 340,150 L392,150" fill="none" stroke="#001E62" stroke-width="2" stroke-linejoin="round"/>
+              <text x="62" y="90" font-size="12" fill="#54637A" text-anchor="middle">marcador</text>
+              <text x="258" y="82" font-size="13" font-weight="700" fill="#001E62" text-anchor="middle">18S</text>
+              <text x="322" y="50" font-size="13" font-weight="700" fill="#001E62" text-anchor="middle">28S</text>
+            </g>
+            <!-- Panel B · ARN degradado -->
+            <g transform="translate(0,190)">
+              <text x="34" y="20" font-size="15" font-weight="700" fill="#001E62">ARN degradado (p. ej., FFPE) · RIN bajo</text>
+              <text x="38" y="38" font-size="12" fill="#54637A">señal</text>
+              <line x1="34" y1="30" x2="34" y2="150" stroke="#B8C2D0" stroke-width="1"/>
+              <line x1="34" y1="150" x2="392" y2="150" stroke="#B8C2D0" stroke-width="1"/>
+              <path d="M74,150 C92,148 106,108 128,104 L128,150 Z" fill="#E0004D" fill-opacity="0.14"/>
+              <path d="M128,150 L128,104 C150,100 172,112 198,128 C220,140 236,144 248,144 C253,144 255,137 258,137 C261,137 263,145 270,146 C290,148 308,148 316,147 C319,147 320,143 322,143 C324,143 325,148 330,149 L392,150 Z" fill="#00BFB2" fill-opacity="0.25"/>
+              <line x1="128" y1="30" x2="128" y2="150" stroke="#E0004D" stroke-width="1.2" stroke-dasharray="4 3"/>
+              <text x="132" y="40" font-size="13" font-weight="600" fill="#E0004D">200 nt</text>
+              <path d="M34,150 L54,150 C58,150 59,96 62,96 C65,96 66,150 70,150 L74,150 C92,148 106,108 128,104 C150,100 172,112 198,128 C220,140 236,144 248,144 C253,144 255,137 258,137 C261,137 263,145 270,146 C290,148 308,148 316,147 C319,147 320,143 322,143 C324,143 325,148 330,149 L392,150" fill="none" stroke="#001E62" stroke-width="2" stroke-linejoin="round"/>
+              <text x="62" y="90" font-size="12" fill="#54637A" text-anchor="middle">marcador</text>
+              <text x="258" y="130" font-size="13" font-weight="700" fill="#001E62" text-anchor="middle">18S</text>
+              <text x="322" y="136" font-size="13" font-weight="700" fill="#001E62" text-anchor="middle">28S</text>
+              <rect x="240" y="34" width="12" height="12" fill="#00BFB2" fill-opacity="0.45"/>
+              <text x="258" y="44" font-size="13" fill="#001E62">&gt; 200 nt → DV200</text>
+              <rect x="240" y="54" width="12" height="12" fill="#E0004D" fill-opacity="0.3"/>
+              <text x="258" y="64" font-size="13" fill="#001E62">&lt; 200 nt</text>
+              <text x="392" y="172" font-size="13" fill="#54637A" text-anchor="end">tamaño del fragmento (nt) →</text>
+            </g>
+          </svg>
+        </div>
+        <div style="text-align:center; color:#fff; padding-top:12px;">
+          <span style="font-size:11px; letter-spacing:2.5px; font-weight:700; color:#3FA9C9; text-transform:uppercase;">RIN · DV200</span>
+          <p style="font-size:13px; color:#A8C0E0; margin:8px 0 0;">Esquema no a escala. En un ARN íntegro destacan los picos de rRNA 18S y 28S; en un ARN degradado, la señal se desplaza hacia fragmentos cortos. El RIN resume todo el perfil en una escala de 1 a 10; el DV200 es el porcentaje de ARN por encima de 200 nucleótidos.</p>
+        </div>
+      </div>
+    </figure>
+
+    <div class="article-body">
+      <style>
+      #main .article-body > p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+      #main .article-body .qc-fig { margin: 22px auto 30px; padding: 0; text-align: center; }
+      #main .article-body .qc-fig svg { display: block; width: 100%; max-width: 480px; height: auto; margin: 0 auto; background: #fff; border: 1px solid var(--mc-line); border-radius: 8px; padding: 8px 10px; box-sizing: border-box; }
+      #main .article-body .qc-fig figcaption { font-size: 12.5px; color: var(--mc-mute); margin: 10px auto 0; max-width: 600px; text-align: center; }
+      #main .qc-hero-box { padding: 28px; }
+      #main .qc-hero-inner { padding: 16px; }
+      @media (max-width: 600px) {
+        #main .qc-hero-box { padding: 14px; }
+        #main .qc-hero-inner { padding: 10px; }
+        #main .article-body .spec-table th, #main .article-body .spec-table td { padding: 9px 10px; font-size: 12.5px; }
+      }
+      </style>
+      <p>Un proyecto de NGS puede retrasarse antes de llegar al secuenciador: muestras con menos material del declarado, ARN degradado durante el transporte o restos del kit de extracción que inhiben la preparación de la librería. Al llegar al laboratorio, cada muestra pasa un control de calidad (QC) que comprueba tres cosas: <strong>cantidad</strong>, <strong>pureza</strong> e <strong>integridad</strong>.</p>
+      <p>Si sabes qué mide el laboratorio y contra qué criterios, puedes anticipar el resultado. Las cifras de Macrogen que citamos proceden de nuestros criterios de QC para <a href="../assets/docs/SQC_Criteria_SRS.pdf" target="_blank" rel="noopener">lecturas cortas (PDF; incluye también filas de PacBio y Nanopore)</a> y <a href="../assets/docs/SQC_Criteria_LRS.pdf" target="_blank" rel="noopener">lecturas largas (PDF)</a>; cuando damos un valor general, lo indicamos.</p>
+
+      <h2>1. Cantidad: por qué el NanoDrop y el Qubit no coinciden</h2>
+      <p>Es la duda más frecuente antes de un envío: el espectrofotómetro da una cifra y el fluorómetro, otra bastante menor. Ninguno está estropeado; miden cosas distintas.</p>
+      <p><strong>El NanoDrop (espectrofotometría UV)</strong> convierte la absorbancia a 260 nm en concentración: una unidad de absorbancia equivale a unos 50 ng/µL de ADN bicatenario o a unos 40 ng/µL de ARN. Pero a 260 nm absorbe cualquier ácido nucleico (ADN bicatenario o monocatenario, ARN, oligos, nucleótidos libres) y también algunos contaminantes, como el fenol.</p>
+      <p><strong>El Qubit (fluorometría)</strong> usa un colorante que solo emite fluorescencia unido a su diana: en el ensayo dsDNA, el ADN bicatenario. PicoGreen aplica el mismo principio en placa, y para ARN hay ensayos equivalentes, como RiboGreen o los kits de ARN de Qubit.</p>
+
+      <figure class="qc-fig">
+        <svg viewBox="0 0 360 236" role="img" aria-labelledby="qc-fig2-title qc-fig2-desc" font-family="Inter, system-ui, sans-serif">
+          <title id="qc-fig2-title">Qué cuenta cada método en la misma muestra de ADN</title>
+          <desc id="qc-fig2-desc">Dos barras horizontales. La barra del NanoDrop suma ADN bicatenario, ARN, ADN monocatenario y nucleótidos libres, y otras sustancias que absorben a 260 nanómetros. La barra del Qubit dsDNA solo incluye el ADN bicatenario; el resto aparece vacío con la etiqueta «no lo detecta».</desc>
+          <text x="16" y="22" font-size="15" font-weight="700" fill="#001E62">NanoDrop · absorbancia a 260 nm</text>
+          <rect x="16" y="32" width="160" height="34" fill="#001E62"/>
+          <rect x="176" y="32" width="72" height="34" fill="#00BFB2"/>
+          <rect x="248" y="32" width="50" height="34" fill="#8FDCD5"/>
+          <rect x="298" y="32" width="46" height="34" fill="#B8C2D0"/>
+          <text x="16" y="100" font-size="15" font-weight="700" fill="#001E62">Qubit dsDNA · fluorescencia</text>
+          <rect x="16" y="110" width="160" height="34" fill="#001E62"/>
+          <rect x="176.5" y="110.5" width="167" height="33" fill="#F8FAFC" stroke="#B8C2D0" stroke-dasharray="4 3"/>
+          <text x="260" y="132" font-size="13" fill="#54637A" text-anchor="middle">no lo detecta</text>
+          <rect x="16" y="164" width="12" height="12" fill="#001E62"/>
+          <text x="34" y="174" font-size="13" fill="#001E62">ADN bicatenario</text>
+          <rect x="190" y="164" width="12" height="12" fill="#00BFB2"/>
+          <text x="208" y="174" font-size="13" fill="#001E62">ARN</text>
+          <rect x="16" y="188" width="12" height="12" fill="#8FDCD5"/>
+          <text x="34" y="198" font-size="13" fill="#001E62">ADN monocatenario y nucleótidos libres</text>
+          <rect x="16" y="212" width="12" height="12" fill="#B8C2D0"/>
+          <text x="34" y="222" font-size="13" fill="#001E62">Otros que absorben a 260 nm (p. ej., fenol)</text>
+        </svg>
+        <figcaption>Esquema ilustrativo de una misma muestra de ADN, sin datos reales: la absorbancia suma todo lo que absorbe a 260 nm; el colorante del ensayo dsDNA solo detecta ADN bicatenario.</figcaption>
+      </figure>
+
+      <p>Por eso el NanoDrop suele dar una cifra igual o mayor que el Qubit. Si marca el doble o más (una referencia general, no un criterio formal), sospecha de ARN sin eliminar, de ADN degradado o de restos del kit de extracción.</p>
+      <p>Para NGS vale la fluorometría, porque las librerías se calculan sobre la masa de ADN bicatenario o de ARN. En Macrogen, el ADN se cuantifica por fluorescencia (Qubit) y su pureza se mide por absorbancia (NanoDrop); para Nanopore, la hoja de lecturas largas de los criterios de QC de Macrogen indica PicoGreen para la cantidad y Femto Pulse para el tamaño. Si declaras una cifra medida solo con NanoDrop, la muestra puede quedarse corta en recepción.</p>
+
+      <h2>2. Pureza: 260/280 y 260/230 en pocas líneas</h2>
+      <p>Los ratios de absorbancia no dicen cuánto ácido nucleico hay, sino qué más hay en el tubo. Los explicamos en detalle en la <a href="../blog/como-preparar-muestras-secuenciacion-sanger">guía de preparación de muestras para Sanger</a>; este es el resumen para NGS:</p>
+      <ul>
+        <li><strong>260/280</strong>: como referencia general, en torno a 1,8 en ADN y a 2,0 en ARN. Los valores bajos apuntan a proteínas o fenol; en ADN, un valor claramente alto puede indicar ARN contaminante.</li>
+        <li><strong>260/230</strong>: como referencia general, entre 2,0 y 2,2. Los valores bajos delatan sales de guanidina, fenol, hidratos de carbono o EDTA, todos capaces de inhibir las enzimas de la preparación de librerías.</li>
+        <li><strong>El espectro completo</strong> dice más que los números: un máximo desplazado hacia 270 nm sugiere fenol, y una absorbancia alta en torno a 230 nm, sales. Con concentraciones muy bajas, los ratios dejan de ser fiables.</li>
+      </ul>
+      <p>En los criterios de QC de Macrogen, la pureza aparece como requisito numérico en la librería PacBio HiFi: <strong>260/280 entre 1,8 y 2,0</strong> y <strong>260/230 de al menos 2,0</strong>. En lecturas largas, la limpieza del ADN pesa tanto como su tamaño (sección 4).</p>
+
+      <h2>3. Integridad del ARN: RIN, RQN y DV200</h2>
+      <p>El ARN se degrada con facilidad: basta una RNasa o una descongelación durante el transporte. Su integridad se mide por electroforesis automatizada (Bioanalyzer, TapeStation o Fragment Analyzer); en Macrogen, el RIN se mide con Agilent Bioanalyzer.</p>
+      <p><strong>RIN y RQN</strong> resumen el perfil en una escala de 1 (muy degradado) a 10 (íntegro). El RIN es el índice del Bioanalyzer (RIN<sup>e</sup> en TapeStation) y el RQN, el del Fragment Analyzer. Ambos analizan todo el electroferograma, no solo el cociente entre los rRNA 28S y 18S (el «ratio rRNA»). Tienen límites: en insectos (cuyo 28S se parte al desnaturalizarse y migra con el 18S) o en hojas (por el ARN de cloroplasto), el RIN puede salir bajo con un ARN en buen estado.</p>
+      <p><strong>El DV200</strong> es el porcentaje de fragmentos de ARN de más de 200 nucleótidos. Se pensó para ARN fragmentado, como el de tejido fijado en formol e incluido en parafina (FFPE), donde el RIN casi siempre es bajo y apenas discrimina entre muestras.</p>
+
+      <h3>¿Qué librería tolera un ARN degradado?</h3>
+      <ul>
+        <li><strong>Selección poli-A (mRNA-Seq).</strong> Captura el ARN mensajero (mRNA) por su cola poli-A del extremo 3′. Con ARN fragmentado, solo recupera los trozos cercanos a ese extremo y la cobertura se sesga hacia 3′. Necesita ARN íntegro.</li>
+        <li><strong>Depleción de rRNA (Total RNA-Seq, Ribo-Zero).</strong> Elimina el rRNA con sondas y conserva el resto, por lo que en general tolera mejor un ARN parcialmente degradado.</li>
+        <li><strong>Captura con sondas (tipo exoma de ARN).</strong> Enriquece las regiones codificantes por hibridación; es la opción habitual para ARN FFPE muy fragmentado.</li>
+      </ul>
+      <p>Los criterios de QC de Macrogen separan dos grupos. Las librerías poli-A (TruSeq Stranded mRNA) y Ribo-Zero estándar se evalúan por <strong>RIN (7,0)</strong> y <strong>ratio rRNA (1,0)</strong>, aunque la depleción de rRNA tolere mejor la degradación en general. Las pensadas para ARN FFPE (TruSeq RNA Access, SureSelect RNA Direct y SureSelect HS2 RNA) se evalúan por <strong>DV200 (50 %)</strong>, con la anotación «Hold» (en espera) junto a ese umbral. Si tu ARN viene de FFPE, dilo al cotizar. Como referencia general, por debajo de un DV200 del 30 % muchos protocolos lo consideran demasiado degradado incluso para una librería de captura.</p>
+
+      <h2>4. Integridad del ADN: lecturas cortas frente a lecturas largas</h2>
+      <p>Para el ADN, las métricas equivalentes son el <strong>DIN</strong> (TapeStation, de 1 a 10) y el <strong>GQN</strong> (Fragment Analyzer, que expresa qué fracción del ADN supera un tamaño umbral). Qué es «suficientemente íntegro» depende de la tecnología.</p>
+
+      <h3>Lecturas cortas (Illumina)</h3>
+      <p>La librería fragmenta el ADN a unos cientos de pares de bases (el 350 o el 550 de TruSeq DNA PCR-Free es el tamaño de inserto), así que basta con que no esté muy degradado. En los criterios de QC de Macrogen, la mayoría de las librerías de genoma completo y exoma piden un <strong>DIN de 7,0</strong>; las variantes para metagenoma bajan a 3,0 y las de FFPE no fijan DIN. La cantidad depende del kit: sin PCR hace falta más material (1,0 µg para TruSeq DNA PCR-Free 350) que con PCR (0,1 µg para TruSeq Nano DNA 350). Si tienes poco ADN, coméntalo antes de enviar.</p>
+
+      <h3>Lecturas largas (PacBio y Nanopore)</h3>
+      <p>Aquí manda el tamaño, porque la longitud de las lecturas depende de la del ADN de partida. Hace falta ADN de alto peso molecular (HMW), y su tamaño se mide con electroforesis capilar de campo pulsado, como Femto Pulse, porque la convencional no separa bien fragmentos de decenas de kilobases. Según los criterios de QC de Macrogen, <strong>PacBio Microbial</strong> pide 3,1 µg con un tamaño medio de 15.000 pb; <strong>PacBio HiFi</strong>, un tamaño medio de 30.000 pb y la pureza ya citada, y <strong>Nanopore ONT-LSK-114</strong>, 6,0 µg con un tamaño medio de 30.000 pb.</p>
+      <p>Esos criterios añaden que el rendimiento de Nanopore varía entre muestras y flow cells según el tamaño del ADN y sus propiedades químicas: un ADN largo con restos de la extracción puede rendir poco. También piden indicar en el pedido el tamaño del genoma y la profundidad necesaria.</p>
+      <p>Para conservar el ADN largo, evita el vórtex y las congelaciones repetidas, pipetea con puntas de boca ancha y usa métodos de extracción para HMW. Al cuantificarlo, mézclalo con suavidad y mide en varios puntos del tubo, porque se reparte de forma poco homogénea. Si no puedes extraer ADN de alto peso molecular en tu laboratorio, consúltanos antes de enviar: te diremos qué opciones hay para tu tipo de muestra.</p>
+
+      <h2>5. Lo que piden los criterios de QC de Macrogen</h2>
+      <p>Una selección de librerías frecuentes, con la cantidad total y los parámetros de integridad o pureza que fijan los criterios:</p>
+      <p class="table-hint" aria-hidden="true">Desliza para ver la tabla completa →</p>
+      <div class="table-scroll">
+      <table class="spec-table">
+        <thead>
+          <tr><th>Librería</th><th>Muestra</th><th>Cantidad total</th><th>Integridad y otros</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>TruSeq Stranded mRNA (poli-A)</td><td>ARN total</td><td>1,0 µg</td><td>RIN 7,0 · ratio rRNA 1,0</td></tr>
+          <tr><td>Illumina Stranded Total RNA (Ribo-Zero Plus)</td><td>ARN total</td><td>0,5 µg</td><td>RIN 7,0 · ratio rRNA 1,0</td></tr>
+          <tr><td>TruSeq RNA Access · SureSelect RNA Direct · SureSelect HS2 RNA</td><td>ARN FFPE</td><td>0,2 µg</td><td>DV200 50 % («Hold»)</td></tr>
+          <tr><td>PacBio Iso-Seq · Kinnex full-length RNA</td><td>ARN total</td><td>0,3 µg</td><td>RIN 7,0</td></tr>
+          <tr><td>TruSeq DNA PCR-Free (350)</td><td>ADN genómico</td><td>1,0 µg</td><td>DIN 7,0</td></tr>
+          <tr><td>TruSeq Nano DNA (350)</td><td>ADN genómico</td><td>0,1 µg</td><td>DIN 7,0</td></tr>
+          <tr><td>SureSelect V8 (exoma)</td><td>ADN genómico · ADN FFPE</td><td>0,5 µg · 0,2 µg</td><td>DIN 7,0 (FFPE: sin DIN)</td></tr>
+          <tr><td>PacBio HiFi</td><td>ADN HMW</td><td>5,1–7,1 µg*</td><td>Tamaño medio 30.000 pb · 260/280 1,8–2,0 · 260/230 ≥ 2,0</td></tr>
+          <tr><td>PacBio Microbial</td><td>ADN HMW</td><td>3,1 µg</td><td>Tamaño medio 15.000 pb</td></tr>
+          <tr><td>Nanopore ONT-LSK-114</td><td>ADN HMW</td><td>6,0 µg</td><td>Tamaño medio 30.000 pb</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:12.5px; color:var(--mc-mute); text-align:left;">Extracto de los criterios de QC de Macrogen (versión del 19 de febrero de 2025); consulta la fila de tu librería en los PDF de <a href="../assets/docs/SQC_Criteria_SRS.pdf" target="_blank" rel="noopener">lecturas cortas</a> y <a href="../assets/docs/SQC_Criteria_LRS.pdf" target="_blank" rel="noopener">lecturas largas</a>. *Para PacBio HiFi, la hoja de lecturas cortas indica 5,1 µg y la de lecturas largas, 7,1 µg y 260/230 &gt; 2,0: confirma los valores vigentes al cotizar.</p>
+
+      <h2>6. Contaminantes frecuentes y cómo se delatan</h2>
+      <p>Algunos contaminantes se ven en los ratios; otros, no:</p>
+      <ul>
+        <li><strong>Fenol</strong> (fenol-cloroformo, TRIzol): absorbe en torno a 270 nm, baja el 260/280, infla el NanoDrop e inhibe las enzimas.</li>
+        <li><strong>Sales de guanidina</strong> (tampones de lisis y unión de los kits de columna, TRIzol): bajan el 260/230 e inhiben la librería. Un lavado extra de la columna suele resolverlo.</li>
+        <li><strong>Etanol</strong> (tampón de lavado): apenas se ve en el espectro y no se detecta de forma fiable con los ratios, pero inhibe las enzimas. Centrifuga la columna vacía antes de eluir.</li>
+        <li><strong>EDTA</strong>: secuestra el magnesio que necesitan las polimerasas y las enzimas de fragmentación. Si eluyes en TE, que sea bajo en EDTA, e indica el tampón en el pedido.</li>
+        <li><strong>RNasas</strong>: no alteran los ratios; solo se ven en el RIN o el DV200. Usa material libre de RNasas, conserva el ARN a −80 °C y evita descongelarlo y recongelarlo.</li>
+        <li><strong>Hemo</strong> (sangre): inhibe las polimerasas; lo delatan un tono pardo o rojizo y una absorbancia en torno a 400–415 nm.</li>
+        <li><strong>Polisacáridos, polifenoles y ácidos húmicos</strong> (plantas, hongos, suelos, heces): bajan el 260/230 e inhiben las enzimas. Usa protocolos específicos, como los basados en CTAB para plantas.</li>
+        <li><strong>El ácido nucleico «equivocado»</strong>: ARN en una extracción de ADN (trátalo con RNasa) o ADN genómico en una de ARN, que genera lecturas intrónicas e intergénicas en RNA-Seq (trátalo con DNasa).</li>
+      </ul>
+      <p>Una regla útil: si los ratios son buenos pero el NanoDrop y el Qubit discrepan mucho, sospecha de otro ácido nucleico (ARN, ADN monocatenario o degradado); si los ratios son malos, de restos de la extracción.</p>
+
+      <h2>7. Qué pasa si la muestra no cumple los criterios</h2>
+      <p>En recepción, cada muestra se compara con la fila de la librería que pediste, así que la misma muestra puede servir para una y no para otra: 0,1 µg de ADN con un DIN de 7 alcanza la cantidad y el DIN que pide TruSeq Nano DNA (350), pero no la de TruSeq DNA PCR-Free (350), que es de 1,0 µg.</p>
+      <p>Los criterios de QC de Macrogen no detallan el procedimiento caso por caso, pero dan dos pistas: en las librerías de ARN FFPE, junto al umbral de DV200 figura la anotación «Hold» (en espera), y para Nanopore advierten de que la cantidad de datos puede variar según la muestra.</p>
+      <p>El procedimiento está en nuestros <a href="../terminos">términos y condiciones</a>: si una muestra no cumple los criterios, te lo comunicamos por escrito antes de procesarla y puedes elegir entre tres opciones:</p>
+      <ul>
+        <li><strong>Autorizar el procesamiento «at risk»</strong>: se prepara la librería igualmente, sin garantía de resultados.</li>
+        <li><strong>Pedir la devolución de la muestra</strong>, con el envío a tu cargo.</li>
+        <li><strong>Enviar una muestra de reemplazo</strong>: volver a extraer, limpiar o concentrar. Supone un nuevo envío y un nuevo QC, pero protege el resultado.</li>
+      </ul>
+      <p>Los plazos de entrega se cuentan desde la recepción de muestras conformes. No es lo mismo una cantidad algo justa con buena integridad que un ARN con un DV200 muy bajo. Si tu muestra queda en espera, pregúntanos qué implica cada opción para tu proyecto antes de decidir.</p>
+
+      <div style="background:#EAF6FB; border-left:3px solid var(--mc-teal); border-radius:8px; padding:16px 20px; margin:20px 0;">
+        <strong style="color:var(--mc-navy-ink); display:block; margin-bottom:6px;">Lista de verificación antes de enviar</strong>
+        <ul style="margin:0; font-size:13.5px; line-height:1.65;">
+          <li>¿Has revisado la fila de tu librería en los criterios de QC?</li>
+          <li>¿Declaras la cantidad medida por fluorometría (Qubit o PicoGreen)?</li>
+          <li>¿Envías con margen? La <a href="../assets/docs/guias-usuario/sample-delivery-guide-v2.pdf" target="_blank" rel="noopener">guía de entrega de muestras</a> de Macrogen pide preparar más de lo que exigen los criterios, en un volumen de 25 a 100 µL.</li>
+          <li>¿Los ratios 260/280 y 260/230 están en rango, con el espectro completo revisado?</li>
+          <li>ARN: ¿RIN medido (DV200 si es FFPE) y tratamiento con DNasa?</li>
+          <li>ADN para lecturas largas: ¿tamaño medido por campo pulsado, sin vórtex ni congelaciones repetidas?</li>
+          <li>¿Indicas en el pedido el tipo de muestra, el tampón y el método de extracción?</li>
+          <li>¿Tubos rotulados con marcador permanente y con los mismos nombres que la hoja de pedido?</li>
+          <li>¿El ARN viaja en hielo seco o, si usas un estabilizador, lo indicas en los comentarios del pedido?</li>
+        </ul>
+      </div>
+
+      <div data-promo-note style="background:linear-gradient(135deg,#FEF7E8,#FFE9D6); border:1.5px solid #F5A623; border-radius:12px; padding:20px 24px; margin:32px 0;">
+        <strong style="color:#B45309; display:block; margin-bottom:6px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;">PROMO10 · NGS · muestras recibidas hasta el 30 nov 2026</strong>
+        <h3 style="margin:0 0 10px; font-size:18px; color:#1B2A57;">Un QC fallido también cuesta tiempo</h3>
+        <p style="font-size:13.5px; margin:0 0 14px; color:#2A3A52;">Si una muestra no cumple los criterios, el reenvío y el nuevo QC retrasan los resultados. Si quieres aprovechar <code style="background:#1B2A57; color:#fff; padding:2px 8px; border-radius:4px; font-weight:700;">PROMO10</code>, envía con margen: en NGS es un 10 % de descuento directo sobre el precio habitual para muestras recibidas hasta el 30 de noviembre de 2026 (sin cashback; no se aplica a precios especiales o de contrato). Válida en España, Portugal, Chile y Perú; no acumulable con el Beneficio de fin de año CES de Macrogen Chile ni con otras promociones.</p>
+        <a href="../contacto?promo=PROMO10" class="btn btn-primary" style="font-size:14px;">Cotizar NGS con PROMO10 →</a>
+      </div>
+
+      <h2>Preguntas rápidas</h2>
+      <p><strong>¿Puedo cuantificar solo con NanoDrop?</strong> Para estimar la pureza, sí; para declarar la cantidad, mejor no, porque el QC de recepción cuantifica por fluorescencia. Si no tienes fluorómetro, envía con margen.</p>
+      <p><strong>¿Qué RIN necesito para RNA-Seq?</strong> En los criterios de QC de Macrogen, 7,0 (con un ratio rRNA de 1,0) para las librerías poli-A y Ribo-Zero estándar. Si el ARN es de FFPE, no te fíes del RIN: se evalúa por DV200, con un 50 % como referencia, en librerías de captura.</p>
+      <p><strong>¿Por qué las lecturas largas piden tanto ADN?</strong> Porque la preparación suele incluir cizallado, selección de tamaño y varias limpiezas en las que se pierde material, además del propio QC. En los criterios de QC de Macrogen, las librerías de genoma piden 3,1 µg en PacBio Microbial, 6,0 µg en Nanopore ONT-LSK-114 y entre 5,1 y 7,1 µg en PacBio HiFi, según la hoja (confírmalo al cotizar).</p>
+
+      <h2>Cómo lo hacemos en Macrogen</h2>
+      <p>Comparamos cada muestra con los criterios de la librería pedida y te atendemos en español desde <strong>Madrid</strong> y <strong>Santiago</strong>. Tienes el embalaje, el hielo seco y las direcciones de cada hub en <a href="../recursos/envio-de-muestras">envío de muestras</a>, y el detalle de cada servicio en <a href="../servicios/rna-seq-transcriptoma">RNA-Seq</a> y <a href="../servicios/wgs-genoma-completo">secuenciación de genoma completo</a>.</p>
+
+      <div style="background:#F0F4FA; border:1.5px solid var(--mc-border); border-radius:12px; padding:20px 24px; margin:32px 0;">
+        <strong style="color:var(--mc-navy-ink); display:block; margin-bottom:6px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;">Antes de enviar tus muestras</strong>
+        <h3 style="margin:0 0 10px; font-size:18px;">¿No sabes qué criterio aplica a tu muestra?</h3>
+        <p style="font-size:13.5px; margin:0 0 14px;">Cuéntanos el tipo de muestra, cómo la extrajiste y qué librería necesitas, y te indicamos qué criterios de QC aplican. Soporte en español desde Madrid y Santiago.</p>
+        <a href="../contacto" class="btn btn-primary" style="font-size:14px;">Consultar antes de enviar →</a>
+      </div>
+
+      <p style="margin-top:32px; padding-top:24px; border-top:1px solid var(--mc-border); font-size:13px; color:var(--mc-mute);">
+        ¿Dudas sobre el QC de tus muestras de ADN o ARN? Escríbenos a <a href="mailto:info-spain@macrogen.com" style="color:var(--mc-teal); font-weight:700;">info-spain@macrogen.com</a> o <a href="mailto:info-chile@macrogen.com" style="color:var(--mc-teal); font-weight:700;">info-chile@macrogen.com</a> y te orientamos en español.
+      </p>
+    </div>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/img/logo.png" alt="Macrogen" class="logo-img" width="522" height="147" loading="lazy" decoding="async">
+        <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
+        <p style="font-family:var(--mc-font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mc-teal); font-weight:500; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
+        <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>
+        <p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.services_heading">Servicios</h4>
+        <a href="../servicios/wgs-genoma-completo">WGS</a>
+        <a href="../servicios/wes-exoma">WES</a>
+        <a href="../servicios/rna-seq-transcriptoma">RNA-Seq</a>
+        <a href="../servicios/single-cell">Single Cell</a>
+        <a href="../servicios/metagenomica-16s">Metagenómica</a>
+        <a href="../servicios/secuenciacion-sanger">Secuenciación Sanger</a>
+        <a href="../servicios/sintesis">Síntesis</a>
+        <a href="../servicios" data-i18n="footer.service_view_all">Ver todos →</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.company_heading">Compañía</h4>
+        <a href="../nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="../blog" data-i18n="nav.blog">Blog</a>
+        <a href="../cotizador">NGS Explorador</a>
+        <a href="../contacto" data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div>
+        <h4>Recursos</h4>
+        <a href="../recursos">Centro de recursos</a>
+        <a href="../recursos/primer-designer" translate="no">Primer Designer</a>
+        <a href="../faq" data-i18n="nav.faq">FAQ</a>
+        <a href="../certificaciones">Certificaciones</a>
+        <a href="../esg">ESG</a>
+        <a href="../newsletter" data-i18n="nav.newsletter">Newsletter</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.hubs_heading">Hubs</h4>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Madrid</strong><br>C. de Martínez Villergas, 52<br>28027 Madrid · España<br>+34 911 138 378
+        </p>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Santiago</strong><br>Magdalena 140, Of. 401<br>Las Condes, Santiago · Chile<br>+56 9 5845 1395
+        </p>
+        <a href="mailto:info-spain@macrogen.com" style="font-size:12.5px;">info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12.5px;">info-chile@macrogen.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span>
+      <span>
+        <a href="../privacidad" data-i18n="footer.privacy">Privacidad</a>
+        <a href="../terminos" data-i18n="footer.terms">Términos</a>
+        <a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener">Portal de pedidos ↗</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/i18n.js"></script>
+</body>
+</html>
