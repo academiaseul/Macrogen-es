@@ -198,14 +198,13 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   cursor: pointer;
   transition: background var(--mc-t) var(--mc-ease), color var(--mc-t) var(--mc-ease), border-color var(--mc-t) var(--mc-ease);
   text-decoration: none;
-  white-space: nowrap;
   line-height: 1.2;
+  /* Labels stay on one line while they fit; a button wider than its column (long CTA on a
+     phone, "Descargar Sample Report (PDF · 2,9 MB)") wraps instead of pushing the page sideways */
+  white-space: normal;
+  max-width: 100%;
+  text-align: center;
 }
-/* Descargas PDF ("Descargar Sample Report (PDF · 2,9 MB)"): en columnas estrechas
-   el texto se parte en vez de desbordar la página */
-a.btn[href$=".pdf"] { white-space: normal; max-width: 100%; text-align: center; }
-/* Phones: long button labels wrap instead of pushing the page sideways */
-@media (max-width: 480px) { .btn { white-space: normal; max-width: 100%; text-align: center; } }
 .btn-primary { background: var(--mc-navy); color: var(--mc-on-navy); border-color: var(--mc-navy-ink); }
 .btn-primary:hover { background: var(--mc-navy-700); border-color: var(--mc-navy-700); color: var(--mc-on-navy); }
 .btn-navy { background: var(--mc-navy); color: var(--mc-on-navy); border-color: var(--mc-navy-ink); }
