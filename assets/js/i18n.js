@@ -22,11 +22,13 @@
     ko: '🇰🇷'
   };
 
+  // Switcher tooltips. Only nav/footer/home are curated (i18n/*.json); the rest
+  // of each page is Google Translate, so EN/PT/KO say so.
   const LABELS = {
     es: 'Español',
-    en: 'English',
-    pt: 'Português',
-    ko: 'KR'
+    en: 'English · machine translation',
+    pt: 'Português · tradução automática',
+    ko: '한국어 · 자동 번역'
   };
 
   // ============ Path resolution ============
@@ -162,33 +164,47 @@
     document.head.appendChild(script);
   }
 
-  function applyGoogleTranslate(lang) {
-    if (!gtReady) { pendingGtLang = lang; return; }
+  const GT_RELOAD_KEY = 'mc_gt_reload';
 
+  function clearGtCookies() {
+    const cookieDomain = '.' + window.location.hostname.replace(/^www\./, '');
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
+    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + cookieDomain + ';';
+  }
+
+  function hasGtCookie(lang) {
+    return document.cookie.split(';').some(c => c.trim() === 'googtrans=/es/' + lang);
+  }
+
+  function applyGoogleTranslate(lang) {
     if (lang === 'es') {
+      if (!gtReady) { pendingGtLang = lang; return; }
       // Restore original Spanish — reload to clear GT translation
       // (GT has no clean "untranslate" API, reload is the safest path)
-      const cookieDomain = '.' + window.location.hostname.replace(/^www\./, '');
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + cookieDomain + ';';
+      clearGtCookies();
       return;
     }
 
-    // Set GT cookie so the language sticks across pages (no flash on navigation)
-    document.cookie = 'googtrans=/es/' + lang + '; path=/;';
+    // GT reads the googtrans cookie when it initialises and translates the page
+    // by itself, so once the cookie targets this language there's nothing to do.
+    if (hasGtCookie(lang)) {
+      try { sessionStorage.removeItem(GT_RELOAD_KEY); } catch (e) {}
+      return;
+    }
 
-    // Trigger GT via its hidden combo select
-    const tryTrigger = (attempts) => {
-      const select = document.querySelector('.goog-te-combo');
-      if (select) {
-        select.value = lang;
-        select.dispatchEvent(new Event('change'));
-      } else if (attempts < 30) {
-        setTimeout(() => tryTrigger(attempts + 1), 200);
-      }
-    };
-    tryTrigger(0);
+    // Set GT cookie so the language sticks across pages (no flash on navigation),
+    // then reload once so GT picks it up: the SIMPLE layout renders no
+    // .goog-te-combo select we could drive. The session flag stops a reload
+    // loop if the cookie doesn't survive the reload.
+    clearGtCookies();
+    document.cookie = 'googtrans=/es/' + lang + '; path=/;';
+    if (!hasGtCookie(lang)) return; // cookies blocked: curated strings only
+    try {
+      if (sessionStorage.getItem(GT_RELOAD_KEY) === lang) return;
+      sessionStorage.setItem(GT_RELOAD_KEY, lang);
+    } catch (e) { return; }
+    window.location.reload();
   }
 
   // ============ Apply language ============

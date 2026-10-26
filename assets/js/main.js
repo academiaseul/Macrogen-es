@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <span class="promo-banner-icon" aria-hidden="true">${HALLOWEEN ? '🎃' : ''}</span>
       <div class="promo-banner-text">
         <strong>Aplicaremos tu beneficio PROMO10</strong>
-        <span>Código <code>${PROMO.code}</code> · ${PROMO.summary}. NGS y Sanger: muestras recibidas hasta el 30 nov 2026; oligos: pedidos recibidos hasta esa fecha. El descuento NGS no se aplica a precios especiales o de contrato. No acumulable con el Beneficio de fin de año CES de Macrogen Chile.</span>
+        <span>Código <code>${PROMO.code}</code> · ${PROMO.summary}. NGS y Sanger: muestras recibidas hasta el 30 nov 2026; oligos: pedidos recibidos hasta esa fecha. El descuento NGS no se aplica a precios especiales o de contrato. No acumulable con el Beneficio de fin de año CES de Macrogen Chile ni con otras promociones.</span>
       </div>
     ` : `
       <span class="promo-banner-icon"></span>
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="${PATH_PREFIX}contacto?promo=${PROMO.code}" class="promo-btn-order" data-promo-order>${HALLOWEEN ? '<span>Cotizar ahora <span aria-hidden="true">🎃</span></span>' : 'Cotizar ahora →'}</a>
             <button type="button" class="promo-btn-dismiss" data-promo-dismiss>Tal vez después</button>
           </div>
-          <p class="promo-validity">Válido en España, Portugal, Chile y Perú · El descuento NGS no se aplica a precios especiales o de contrato · No acumulable con el Beneficio de fin de año CES de Macrogen Chile</p>
+          <p class="promo-validity">Válido en España, Portugal, Chile y Perú · El descuento NGS no se aplica a precios especiales o de contrato · No acumulable con el Beneficio de fin de año CES de Macrogen Chile ni con otras promociones</p>
           <button type="button" class="promo-btn-never" data-promo-never style="display:block; margin:12px auto 0; background:transparent; border:none; color:rgba(255,255,255,0.55); font-size:11px; cursor:pointer; text-decoration:underline; letter-spacing:0.3px; font-weight:500; padding:6px 12px; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)';" onmouseout="this.style.color='rgba(255,255,255,0.55)';"><span aria-hidden="true">🚫</span> No mostrar más esta promoción</button>
         </div>
       </div>
