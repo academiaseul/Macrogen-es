@@ -738,7 +738,8 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const note = form.querySelector('[data-demo-msg]');
+      // Newsletter boxes keep the message just below the form, not inside it
+      const note = form.querySelector('[data-demo-msg]') || form.parentElement.querySelector('[data-demo-msg]');
       const inboxNote = form.querySelector('[data-inbox-note]');
       const submitBtn = form.querySelector('button[type="submit"]');
       const isNewsletter = !form.hasAttribute('data-country-form');
