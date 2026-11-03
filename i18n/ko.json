@@ -198,7 +198,7 @@
     "singlecell_sub": "10x Chromium",
     "metagenoma_sub": "16S · 18S · shotgun",
     "epigenoma_sub": "WGBS · RRBS · ChIP-seq",
-    "ces_title": "Sanger 시퀀싱 · 모세관 전기영동 <span class=\"count\">(4)</span>",
+    "ces_title": "CES · Sanger 및 Nanopore <span class=\"count\">(5)</span>",
     "sanger_sub": "ABI 3730xl · TAT 24–48시간",
     "other_title": "분석 & 기타 <span class=\"count\">(2)</span>",
     "microarray_sub": "Affymetrix · Illumina",
