@@ -290,12 +290,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const pop = document.createElement('aside');
       pop.className = 'wps-pop';
       pop.setAttribute('aria-label', 'Nuevo servicio: secuenciación completa de plásmidos');
+      pop.setAttribute('translate', 'no'); // curated EN/PT/KO strings in i18n/*.json, not Google Translate
       pop.innerHTML = `
         <button type="button" class="wps-pop-close" aria-label="Cerrar">×</button>
-        <p class="wps-pop-eyebrow">Nuevo · Oxford Nanopore</p>
-        <p class="wps-pop-title">Secuencia tu plásmido completo</p>
-        <p class="wps-pop-text">WPS: backbone e inserto en un solo servicio, sin cebadores. Desde <strong>USD 9</strong> · <strong>10 €</strong> por muestra hasta el 31 de enero de 2027.</p>
-        <a href="${PATH_PREFIX}${WPS_LAUNCH.page}" class="wps-pop-cta">Ver WPS →</a>
+        <p class="wps-pop-eyebrow" data-i18n="wps_page.cta_eyebrow">Nuevo · Oxford Nanopore</p>
+        <p class="wps-pop-title" data-i18n="wps_page.pop_title">Secuencia tu plásmido completo</p>
+        <p class="wps-pop-text" data-i18n-html="wps_page.pop_text">WPS: backbone e inserto en un solo servicio, sin cebadores. Desde <strong>USD 9</strong> · <strong>10 €</strong> por muestra hasta el 31 de enero de 2027.</p>
+        <a href="${PATH_PREFIX}${WPS_LAUNCH.page}" class="wps-pop-cta" data-i18n="wps_page.pop_cta">Ver WPS →</a>
       `;
       const remember = () => {
         try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
@@ -307,6 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       pop.querySelector('.wps-pop-cta').addEventListener('click', remember);
       document.body.appendChild(pop);
+      if (window.MacrogenI18n) window.MacrogenI18n.setLanguage(window.MacrogenI18n.getLanguage());
       requestAnimationFrame(() => pop.classList.add('is-open'));
     }
 
