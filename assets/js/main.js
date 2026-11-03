@@ -262,6 +262,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+  // ========== WPS launch: "Nuevo" marks in the menu + corner pop-up ==========
+  // Launch prices run until WPS_LAUNCH.ends (31 Jan 2027, inclusive, local time); after that the
+  // marks and the pop-up stop on their own. The pop-up waits for the PROMO10 modal and the consent
+  // banner to close, so it never stacks on them. Closing it or clicking through hides it for good.
+  // Preview: ?showwps=1 forces it on and clears the closed flag.
+  (function wpsLaunch() {
+    const WPS_LAUNCH = { ends: '2027-01-31', page: 'servicios/secuenciacion-plasmido-completo' };
+    const STORAGE_KEY = 'mc_wps_popup_closed';
+    const SHOW_AFTER_MS = 4000;
+    const GIVE_UP_AFTER_MS = 120000;
+
+    const force = new URLSearchParams(location.search).get('showwps') === '1';
+    if (!force && Date.now() > new Date(WPS_LAUNCH.ends + 'T23:59:59').getTime()) return;
+    document.documentElement.classList.add('wps-new');
+
+    // No pop-up on the WPS page itself, nor over the contact form.
+    if (!force && /secuenciacion-plasmido-completo|contacto/.test(location.pathname)) return;
+    if (force) {
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    }
+    let closed = false;
+    try { closed = localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) {}
+    if (closed) return;
+
+    function show() {
+      const pop = document.createElement('aside');
+      pop.className = 'wps-pop';
+      pop.setAttribute('aria-label', 'Nuevo servicio: secuenciación completa de plásmidos');
+      pop.innerHTML = `
+        <button type="button" class="wps-pop-close" aria-label="Cerrar">×</button>
+        <p class="wps-pop-eyebrow">Nuevo · Oxford Nanopore</p>
+        <p class="wps-pop-title">Secuencia tu plásmido completo</p>
+        <p class="wps-pop-text">WPS: backbone e inserto en un solo servicio, sin cebadores. Desde <strong>USD 9</strong> · <strong>10 €</strong> por muestra hasta el 31 de enero de 2027.</p>
+        <a href="${PATH_PREFIX}${WPS_LAUNCH.page}" class="wps-pop-cta">Ver WPS →</a>
+      `;
+      const remember = () => {
+        try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+      };
+      pop.querySelector('.wps-pop-close').addEventListener('click', () => {
+        remember();
+        pop.classList.remove('is-open');
+        setTimeout(() => pop.remove(), 300);
+      });
+      pop.querySelector('.wps-pop-cta').addEventListener('click', remember);
+      document.body.appendChild(pop);
+      requestAnimationFrame(() => pop.classList.add('is-open'));
+    }
+
+    const started = Date.now();
+    const timer = setInterval(() => {
+      const waited = Date.now() - started;
+      if (waited > GIVE_UP_AFTER_MS) { clearInterval(timer); return; }
+      if (waited < SHOW_AFTER_MS || document.querySelector('.promo-overlay, .consent-banner')) return;
+      clearInterval(timer);
+      show();
+    }, 500);
+  })();
+
   // ========== PROMO POPUP · PROMO10 · 10% off NGS + 10% cashback CES (Sanger) + Oligos ==========
   // Triggers only on home page (index.html or /). Runs until PROMO.ends (30 Nov 2026, local time).
   // Shows on every visit; only "No mostrar más" persists a dismissal (until the promo ends).
