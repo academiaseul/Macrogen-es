@@ -438,10 +438,13 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 
 /* ---------------------------- Mega menu --------------------------------- */
-.nav-dropdown { position: relative; }
+/* Se ancla al .site-header, no al <li> de "Servicios" (por eso .nav-dropdown no
+   lleva position): ese enlace va a la izquierda de la barra y, centrado sobre él,
+   el panel de 980 px se salía por la izquierda hasta los 1600 px de ancho.
+   Centrado en el header cabe siempre: flota solo a partir de 1136 px. */
 .nav-megamenu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% - 7px);
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
   width: 980px;
@@ -468,21 +471,14 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   transform: translateX(-50%) translateY(0);
   transition: opacity var(--mc-t) var(--mc-ease) 0s, transform var(--mc-t) var(--mc-ease) 0s;
 }
+/* Puente de hover entre el enlace y el panel. Corto a propósito: el panel llega
+   bajo los idiomas y el CTA, y una franja más alta taparía su parte inferior. */
 .nav-megamenu::before {
   content: '';
   position: absolute;
-  top: -22px; left: 0; right: 0;
-  height: 30px;
-}
-.nav-dropdown::after {
-  content: '';
-  position: absolute;
-  top: 100%; left: 0; right: 0;
+  top: -16px; left: 0; right: 0;
   height: 24px;
-  pointer-events: none;
 }
-.nav-dropdown:hover::after,
-.nav-dropdown.is-open::after { pointer-events: auto; }
 
 .megamenu-col h5 {
   font-family: var(--mc-font-mono);
@@ -613,7 +609,7 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
    El primer toque en "Servicios" lo abre (main.js añade .is-open); el segundo navega. */
 @media (max-width: 1135px) {
   .nav-menu > .nav-dropdown { align-self: stretch; }
-  .nav-dropdown::after, .nav-megamenu::before { display: none; }
+  .nav-megamenu::before { display: none; }
   .nav-megamenu {
     position: static;
     display: none;
