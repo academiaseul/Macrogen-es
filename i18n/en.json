@@ -270,7 +270,7 @@
     "th_size": "Plasmid size",
     "th_usd_sub": "Chile and Peru",
     "th_eur_sub": "Spain and Portugal",
-    "price_note": "Promotional prices per sample for orders placed in the portal between 4 November 2026 and 31 January 2027. Invoicing in USD (Chile and Peru) or EUR (Spain and Portugal); taxes depend on the billing country. Cannot be combined with other promotions.",
+    "price_note": "Promotional prices per sample for orders placed in the portal between 4 November 2026 and 31 January 2027. Invoicing in USD (Chile and Peru) or EUR (Spain and Portugal); taxes depend on the billing country. Cannot be combined with other promotions. The crossed-out price is the regular price of the product in the order portal.",
     "after_eyebrow": "Prices",
     "after_title": "Check the price of each WPS product",
     "after_text": "The current price of each WPS product appears when you create your order in the portal. If you have questions, write to us and we will help you choose.",
