@@ -471,14 +471,21 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   transform: translateX(-50%) translateY(0);
   transition: opacity var(--mc-t) var(--mc-ease) 0s, transform var(--mc-t) var(--mc-ease) 0s;
 }
-/* Puente de hover entre el enlace y el panel. Corto a propósito: el panel llega
-   bajo los idiomas y el CTA, y una franja más alta taparía su parte inferior. */
-.nav-megamenu::before {
+/* Puente de hover entre el enlace y el panel, del mismo ancho que este. Va en el
+   <li> porque el overflow del panel lo recortaría. Corto a propósito: el panel
+   llega bajo los idiomas y el CTA, y una franja más alta taparía su parte inferior. */
+.nav-dropdown::after {
   content: '';
   position: absolute;
-  top: -16px; left: 0; right: 0;
-  height: 24px;
+  top: calc(100% - 21px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 980px;
+  height: 16px;
+  pointer-events: none;
 }
+.nav-dropdown:hover::after,
+.nav-dropdown.is-open::after { pointer-events: auto; }
 
 .megamenu-col h5 {
   font-family: var(--mc-font-mono);
@@ -537,13 +544,33 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 .megamenu-footer .view-all { color: var(--mc-teal-ink); font-weight: 600; text-decoration: none; font-family: var(--mc-font-sans); font-size: 13px; }
 .megamenu-footer .view-all:hover { color: var(--mc-navy-ink); }
 
+/* Pantallas bajas (un portátil de 1366×768 deja unos 650 px útiles): el header es
+   sticky y el panel no se alcanzaría desplazando la página, así que las filas se
+   compactan y, si aun así no cabe, se desplaza por dentro. Los 40 px son la barra
+   promocional que hay sobre el header. */
+@media (min-width: 1136px) {
+  .nav-megamenu {
+    max-height: calc(100vh - var(--header-h, 70px) - 40px);
+    max-height: calc(100dvh - var(--header-h, 70px) - 40px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+@media (min-width: 1136px) and (max-height: 760px) {
+  .nav-megamenu { padding-top: 18px; padding-bottom: 18px; }
+  .megamenu-col h5 { margin-bottom: 6px; padding-bottom: 6px; }
+  .megamenu-col a { padding-top: 4px; padding-bottom: 4px; }
+  .megamenu-col a small { margin-top: 0; }
+  .megamenu-footer { padding-top: 10px; margin-top: 4px; }
+}
+
 @media (max-width: 1100px) { .nav-megamenu { grid-template-columns: repeat(2, 1fr); width: 680px; } }
 /* Dentro del menú hamburguesa el megamenú se despliega en línea, no flotante
    (si no, se abría centrado sobre "Servicios" y quedaba fuera de pantalla).
    El primer toque en "Servicios" lo abre (main.js añade .is-open); el segundo navega. */
 @media (max-width: 1135px) {
   .nav-menu > .nav-dropdown { align-self: stretch; }
-  .nav-megamenu::before { display: none; }
+  .nav-dropdown::after { display: none; }
   .nav-megamenu {
     position: static;
     display: none;
