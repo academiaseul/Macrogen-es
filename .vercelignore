@@ -22,3 +22,7 @@ _footer.html
 
 # Local tooling
 .claude/
+
+# Claude Code project instructions and search ignore list (not site content)
+CLAUDE.md
+.ignore

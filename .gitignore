@@ -14,3 +14,7 @@ desktop.ini
 
 .vercel
 .env*
+
+# Preview scratch output
+outputs/_*_tmp/
+outputs/_docx_placeholder.txt

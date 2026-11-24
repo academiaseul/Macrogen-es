@@ -1,0 +1,11 @@
+# Read by ripgrep (and so by Claude's Grep tool): keeps searches out of
+# vendored libraries and multi-MB report data. Git and Vercel ignore this file.
+assets/docs/**/data/
+assets/docs/**/js/lib/
+assets/docs/**/plotly/
+assets/docs/**/Krona/
+assets/docs/**/spgs/
+assets/docs/**/PhotoSwipe-master/
+*.min.js
+*.map
+outputs/
