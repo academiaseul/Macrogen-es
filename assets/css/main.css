@@ -64,6 +64,7 @@
   --mc-t: 200ms;
 
   --mc-container: 1200px;
+  --mc-header-max: 1370px;       /* la cabecera es más ancha que el contenido: 9 enlaces no caben en 1200 px */
 
   /* Tokens semánticos (permiten el modo oscuro sin tocar componentes) */
   --mc-navy-ink: var(--mc-navy);   /* navy usado como COLOR DE TEXTO sobre fondos claros */
@@ -250,9 +251,11 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Sin padding lateral a ≥1248 px (el header ocupa los 1200 px del contenedor);
-     por debajo recupera hasta 24 px de margen para que el logo no toque el borde. */
-  padding: 14px clamp(0px, calc(24px - (100vw - var(--mc-container)) / 2), 24px);
+  /* La cabecera llega a --mc-header-max (más que los 1200 px del contenido) y a partir de
+     ese ancho + 48 px va sin padding lateral; por debajo recupera hasta 24 px de margen
+     para que el logo no toque el borde. */
+  max-width: var(--mc-header-max);
+  padding: 14px clamp(0px, calc(24px - (100vw - var(--mc-header-max)) / 2), 24px);
   gap: 16px;
 }
 .nav-logo {
@@ -403,12 +406,27 @@ hr { border: none; border-top: 1px solid var(--mc-line); margin: 2.5rem 0; }
 }
 
 /* Compact-header rules for narrower desktops & long translations.
-   Logo + 8 enlaces + idiomas + modo oscuro + CTA llenan los 1200 px del
-   contenedor (medido 2026-10-22 al añadir Primer Designer): por debajo de
-   1250 px se oculta la etiqueta regional y a ≤1135 px entra el menú hamburguesa.
+   Logo + 9 enlaces + idiomas + modo oscuro + CTA (medido 2026-11-24 al añadir la
+   Calculadora de lecturas) necesitan ~1350 px con la etiqueta regional. Al estrecharse:
+     ≤1429 px      se oculta la etiqueta regional
+     1245–1309 px  el enlace muestra el nombre corto («Calc. lecturas»)
+     1136–1244 px  el enlace de la calculadora no cabe y se oculta (sigue en Recursos y en el pie)
+     ≤1135 px      menú hamburguesa, con el nombre completo
+   El nombre corto sale del atributo data-short del enlace (i18n: nav.read_calc_short), no de
+   un segundo <span>: así el HTML sin estilos lleva un solo texto.
+   Las reglas van en cascada con max-width (sin tramos min/max): con zoom el ancho es
+   fraccionario y un tramo «1245–1309» dejaría huecos entre 1309 y 1310.
    Tras cambiar enlaces o textos del menú, repetir el barrido de anchos. */
-@media (max-width: 1249px) { .nav-logo .region-tag { display: none; } }
+@media (max-width: 1429px) { .nav-logo .region-tag { display: none; } }
+@media (max-width: 1309px) {
+  .nav-menu .nav-full { display: none; }
+  .nav-menu .nav-calc a::before { content: attr(data-short); }
+}
+@media (max-width: 1244px) { .nav-menu .nav-calc { display: none; } }
 @media (max-width: 1135px) {
+  .nav-menu .nav-calc { display: block; }
+  .nav-menu .nav-full { display: inline; }
+  .nav-menu .nav-calc a::before { content: none; }
   .nav-logo .logo-img { height: 36px; }
   .nav-toggle { display: inline-block; }
   .nav-menu {

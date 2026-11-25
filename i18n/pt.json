@@ -15,6 +15,10 @@
     "newsletter": "Newsletter",
     "faq": "FAQ",
     "contact": "Contacto",
+    "read_calc": "Calculadora de leituras",
+    "read_calc_short": "Calc. leituras",
+    "read_calc_sub": "Gb ↔ leituras · 150PE, 100PE, 100SE… — gratuita, sem registo",
+    "read_calc_desc": "Converta Gb e leituras entre configurações NGS mantendo o mesmo número de fragmentos.",
     "quote_cta": "Pedir orçamento",
     "menu_open": "Abrir menu",
     "skip_to_content": "Saltar para o conteúdo"

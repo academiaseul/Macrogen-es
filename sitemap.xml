@@ -223,6 +223,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://macrogen-es.com/recursos/calculadora-de-lecturas</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://macrogen-es.com/blog/control-calidad-adn-arn-ngs</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>yearly</changefreq>

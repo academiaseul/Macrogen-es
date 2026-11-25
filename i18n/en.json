@@ -15,6 +15,10 @@
     "newsletter": "Newsletter",
     "faq": "FAQ",
     "contact": "Contact",
+    "read_calc": "Read Calculator",
+    "read_calc_short": "Read Calculator",
+    "read_calc_sub": "Gb ↔ reads · 150PE, 100PE, 100SE… — free, no sign-up",
+    "read_calc_desc": "Convert Gb and reads between NGS configurations while keeping the same number of fragments.",
     "quote_cta": "Request a quote",
     "menu_open": "Open menu",
     "skip_to_content": "Skip to content"

@@ -7,6 +7,7 @@ Static HTML site for Macrogen Iberoamérica (Madrid: ES + PT; Santiago: CL + PE)
 - `assets/css/main.css`, `assets/js/main.js`, `assets/js/i18n.js`: the shared design system and behaviour.
 - `i18n/{es,en,pt,ko}.json`: rewrite every `[data-i18n]` element on EVERY load, Spanish included. Change tagged copy in the JSON too, or it silently reverts.
 - `assets/toolkit/` + `recursos/primer-designer.html`: Primer Designer, the live source of truth. Own CSS, main.css NOT loaded (class collisions). Tests live in the sibling sandbox `../macrogen-primer-toolkit` (`node test/run-tests.mjs`).
+- `assets/calc-lecturas/` + `recursos/calculadora-de-lecturas.html`: Calculadora de lecturas (Gb ↔ reads between NGS configurations). Loads next to main.css, so every class and id is prefixed `rc-`. It carries its own ES/EN/PT/KO dictionaries in `calc.js`, follows the site language switcher (`i18n:applied`) and is marked `translate="no"`.
 - `assets/docs/`: sample-report bundles (≈550 MB, vendored libs and big JSON). Do not read or grep inside them unless the task is about a report. Never bump `?v=` in `assets/docs/**/report.html`.
 - `_nav.html`, `_footer.html`: source-of-truth header and footer. The header is identical on every page; edit it by script across all pages plus `_nav.html`, with latin1 byte-preserving I/O (privacidad/terminos look binary to grep).
 - `_private/`: internal, vercel-ignored. `_private/local-only/` is also gitignored (campaigns, bots, data). Never put internal files at the repo root.
@@ -14,7 +15,7 @@ Static HTML site for Macrogen Iberoamérica (Madrid: ES + PT; Santiago: CL + PE)
 
 ## Rules for changes
 - Cache busting: when HTML depends on a CSS/JS change, bump `?v=` for that file in every page in the same commit.
-- Header nav is at its width budget (8 links). After any nav or label change, sweep widths 1100–1600 px in ES/EN/PT/KO. Region tag hides ≤1249 px, hamburger ≤1135 px.
+- Header nav is at its width budget (9 links since 2026-11-24). The header is wider than the content (`--mc-header-max: 1370px` vs 1200 px). After any nav or label change, sweep widths 1100–1600 px in ES/EN/PT/KO. Region tag hides ≤1429 px, the calculator link shows its short label ("Calc. lecturas", from the link's `data-short`) ≤1309 px and hides ≤1244 px, hamburger ≤1135 px (full label again). Keep those rules as cascading `max-width` queries: `min/max` ranges leave gaps at fractional (zoomed) widths.
 - Brand tokens: keep legacy `--mc-*` names defined. Use the `*-ink` tokens (`--mc-teal-ink`, `--mc-green-ink`) for text, never the teal/green fills.
 - CI palette (CI Manual 2.0, copy in `_private/local-only/ci-manual.pdf`): navy #001E62 dominates, teal #00BFB2, green #84BD00, red #E0004D (regional designator next to the logo). Keep the user-chosen motion: right-drifting partner marquee, hero typing effect, blue scrollbar.
 - New blog posts: centre figures (max 600 px, caption centred) and justify body paragraphs, using the scoped `<style>` block in `blog/como-leer-reporte-ensamblaje-de-novo-microbiano.html`.

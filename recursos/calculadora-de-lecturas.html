@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de lecturas NGS: Gb y lecturas | Macrogen</title>
+<meta name="description" content="Convierte Gb y lecturas entre configuraciones NGS (150PE, 100PE, 100SE…) manteniendo el mismo número de fragmentos. Gratis, sin registro y en tu navegador.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#001E62">
+<link rel="stylesheet" href="../assets/css/main.css?v=20261124a">
+<link rel="stylesheet" href="../assets/calc-lecturas/calc.css?v=20261124a">
+
+<link rel="canonical" href="https://macrogen-es.com/recursos/calculadora-de-lecturas">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Macrogen Iberoamérica">
+<meta property="og:url" content="https://macrogen-es.com/recursos/calculadora-de-lecturas">
+<meta property="og:title" content="Calculadora de lecturas NGS: Gb y lecturas | Macrogen">
+<meta property="og:description" content="Convierte Gb y lecturas entre configuraciones de secuenciación NGS manteniendo el mismo número de fragmentos. Gratis y sin registro.">
+<meta property="og:image" content="https://macrogen-es.com/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de lecturas NGS: Gb y lecturas | Macrogen">
+<meta name="twitter:description" content="Convierte Gb y lecturas entre 150PE, 100PE, 100SE y otras configuraciones NGS. Gratis, sin registro y con cálculo local en tu navegador.">
+<meta name="twitter:image" content="https://macrogen-es.com/assets/img/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculadora de lecturas — Macrogen",
+  "url": "https://macrogen-es.com/recursos/calculadora-de-lecturas",
+  "description": "Calculadora que convierte Gb y lecturas entre configuraciones de secuenciación NGS (50SE, 75SE, 100SE, 50PE, 75PE, 100PE, 150PE, 250PE) manteniendo el mismo número de fragmentos. El cálculo ocurre en el navegador.",
+  "applicationCategory": "Utility",
+  "operatingSystem": "Web",
+  "inLanguage": ["es", "en", "pt", "ko"],
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Macrogen Iberoamérica",
+    "url": "https://macrogen-es.com/",
+    "logo": { "@type": "ImageObject", "url": "https://macrogen-es.com/assets/img/logo.png" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://macrogen-es.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Recursos", "item": "https://macrogen-es.com/recursos" },
+    { "@type": "ListItem", "position": 3, "name": "Calculadora de lecturas", "item": "https://macrogen-es.com/recursos/calculadora-de-lecturas" }
+  ]
+}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9W3JGVHY2D"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});gtag('config','G-9W3JGVHY2D',{'anonymize_ip':true});</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+  <div class="container nav">
+    <a href="/" class="nav-logo" aria-label="Macrogen Iberoamérica">
+      <img src="../assets/img/logo.png" alt="Macrogen — Humanizing Genomics" class="logo-img" width="522" height="147">
+      <span class="region-tag">Iberoamérica<small>ES · PT · CL · PE</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" data-i18n-attr="aria-label:nav.menu_open" aria-expanded="false">☰</button>
+    <ul class="nav-menu">
+      <li class="nav-dropdown"><a href="../servicios" data-i18n="nav.services">Servicios</a>
+        <div class="nav-megamenu" aria-label="Catálogo de servicios">
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ngs_title">NGS · Secuenciación <span class="count">(6)</span></h5>
+            <a href="../servicios/wgs-genoma-completo"><strong>WGS</strong><small data-i18n="megamenu.wgs_sub">Whole Genome Sequencing</small></a>
+            <a href="../servicios/wes-exoma"><strong>WES</strong><small data-i18n="megamenu.wes_sub">Whole Exome Sequencing</small></a>
+            <a href="../servicios/rna-seq-transcriptoma"><strong>RNA-Seq</strong><small data-i18n="megamenu.rnaseq_sub">Transcriptoma</small></a>
+            <a href="../servicios/single-cell"><strong>Single Cell</strong><small data-i18n="megamenu.singlecell_sub">10x Chromium</small></a>
+            <a href="../servicios/metagenomica-16s"><strong>Metagenómica</strong><small data-i18n="megamenu.metagenoma_sub">16S · 18S · shotgun</small></a>
+            <a href="../servicios/epigenoma"><strong>Epigenoma</strong><small data-i18n="megamenu.epigenoma_sub">WGBS · RRBS · ChIP-seq</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.ces_title">CES · Sanger y Nanopore <span class="count">(5)</span></h5>
+            <a href="../servicios/secuenciacion-sanger"><strong>Sanger</strong><small data-i18n="megamenu.sanger_sub">ABI 3730xl · TAT 24–48h</small></a>
+            <a href="../servicios/analisis-de-fragmentos"><strong>Análisis de fragmentos</strong><small>GeneScan · SSR · MSI</small></a>
+            <a href="../servicios/identificacion-bacteriana-16s"><strong>Identificación 16S/ITS</strong><small>Bacterias · hongos · BLAST</small></a>
+            <a href="../servicios/autenticacion-lineas-celulares-str"><strong>Cell Line ID · STR</strong><small>PowerPlex Fusion 6c · ICLAC</small></a>
+            <a href="../servicios/secuenciacion-plasmido-completo" class="mega-new"><strong><span data-i18n="megamenu.wps_name">WPS · Plásmido completo</span><span class="mega-badge" data-i18n="megamenu.new_badge">Nuevo</span></strong><small data-i18n="megamenu.wps_sub">Oxford Nanopore · sin cebadores</small></a>
+            <h5 style="margin-top:18px;" data-i18n-html="megamenu.other_title">Análisis &amp; Otros <span class="count">(2)</span></h5>
+            <a href="../servicios/microarrays"><strong>Microarrays</strong><small data-i18n="megamenu.microarray_sub">Affymetrix · Illumina</small></a>
+            <a href="../servicios/bioinformatica"><strong>Bioinformática</strong><small data-i18n="megamenu.bioinformatica_sub">Pipelines GATK</small></a>
+          </div>
+          <div class="megamenu-col">
+            <h5 data-i18n-html="megamenu.synth_title">Síntesis · Oligos &amp; Genes <span class="count">(4)</span></h5>
+            <a href="../servicios/sintesis-oligos-adn"><strong>DNA Oligos</strong><small data-i18n="megamenu.dna_sub">Desde $0,20 / base · MALDI-TOF</small></a>
+            <a href="../servicios/sintesis-oligos-arn"><strong>RNA Oligos</strong><small data-i18n="megamenu.rna_sub">Desde $4 / base · MerMade 12</small></a>
+            <a href="../servicios/sintesis-peptidos"><strong>Péptidos</strong><small data-i18n="megamenu.peptide_sub">Desde $77 · 3 mg garantizados</small></a>
+            <a href="../servicios/sintesis-de-genes"><strong>Gene Synthesis</strong><small data-i18n="megamenu.gene_sub">Desde $180 · validación Sanger</small></a>
+          </div>
+          <div class="megamenu-footer">
+            <span data-i18n="megamenu.footer_text">Genómica y síntesis · 1 sola ventanilla · Madrid + Santiago</span>
+            <a href="../recursos/primer-designer" class="view-all" translate="no">Primer Designer · gratis →</a>
+            <a href="../servicios" class="view-all" data-i18n="megamenu.footer_view_all">Ver catálogo completo →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="../cotizador" data-nav="cotizador">NGS Explorador</a></li>
+      <li><a href="../recursos/primer-designer" data-nav="primer-designer" translate="no">Primer Designer</a></li>
+      <li class="nav-calc"><a href="../recursos/calculadora-de-lecturas" class="active" data-nav="calculadora" data-short="Calc. lecturas" data-i18n-attr="data-short:nav.read_calc_short" translate="no"><span class="nav-full" data-i18n="nav.read_calc">Calculadora de lecturas</span></a></li>
+      <li><a href="../servicios" data-nav="precios">Precios</a></li>
+      <li><a href="../recursos" data-nav="recursos">Recursos</a></li>
+      <li><a href="../blog" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="../nosotros" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="../contacto" data-i18n="nav.contact">Contacto</a></li>
+      <li class="nav-lang"><div class="lang-switcher" data-lang-switcher></div></li>
+      <li class="nav-cta"><a href="../contacto" class="btn btn-primary btn-sm" data-i18n="nav.quote_cta">Solicitar cotización</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- La herramienta trae sus propios textos en ES/EN/PT/KO (assets/calc-lecturas/calc.js) y sigue el
+     selector de idioma del sitio; por eso el hero y el bloque .rc llevan translate="no". -->
+<section id="main" class="hero hero-mini rc-hero notranslate" translate="no">
+  <div class="container">
+    <div class="breadcrumb"><a href="../recursos" data-rc="crumb1">Recursos</a> <span class="sep">/</span> <span data-rc="crumb2">Calculadora de lecturas</span></div>
+    <span class="eyebrow" data-rc="eyebrow">Herramienta NGS · gratis, sin registro</span>
+    <h1><span data-rc="heroA">Calculadora de lecturas:</span> <span class="accent" data-rc="heroB">convierte Gb entre configuraciones.</span></h1>
+    <p class="lead" data-rc="lead">Convierte Gb entre configuraciones de secuenciación (150PE, 100PE, 100SE…) manteniendo el mismo número de fragmentos. Útil para planificar un proyecto o comparar cotizaciones entre configuraciones.</p>
+  </div>
+</section>
+
+<div class="container rc notranslate" translate="no">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="rc-i-minus" viewBox="0 0 16 16"><path d="M3.5 8h9"/></symbol>
+    <symbol id="rc-i-plus" viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9"/></symbol>
+    <symbol id="rc-i-swap" viewBox="0 0 16 16"><path d="M5 2.5v11M2.5 5 5 2.5 7.5 5M11 13.5v-11M8.5 11 11 13.5 13.5 11"/></symbol>
+    <symbol id="rc-i-copy" viewBox="0 0 16 16"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></symbol>
+    <symbol id="rc-i-reset" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 1 0 1.7-4"/><path d="M2.5 2.5v3h3"/></symbol>
+  </svg>
+
+  <section class="rc-sec" id="calculadora">
+    <div class="rc-head">
+      <h2 data-rc="calcT">Conversión</h2>
+      <p data-rc="calcP">El resultado se actualiza al instante mientras eliges.</p>
+    </div>
+    <noscript><p class="rc-noscript">Esta calculadora necesita JavaScript para funcionar.</p></noscript>
+    <div class="rc-calc">
+      <div class="rc-ftable">
+        <div class="rc-frow">
+          <div class="rc-lab"><span><span data-rc="s1">Origen</span> <span class="rc-req" aria-hidden="true">*</span></span><small data-rc="s1h">La que ya tienes</small></div>
+          <div class="rc-ctl"><div class="rc-chips" id="rc-chipsO" role="group"></div></div>
+        </div>
+        <div class="rc-frow">
+          <div class="rc-lab"><span><span data-rc="s2">Cantidad</span> <span class="rc-req" aria-hidden="true">*</span></span><small data-rc="s2h">En Gb o lecturas</small></div>
+          <div class="rc-ctl">
+            <div class="rc-qty">
+              <div class="rc-stepper" id="rc-stepper">
+                <button type="button" id="rc-minus" aria-label="Disminuir"><svg class="rc-i" aria-hidden="true"><use href="#rc-i-minus"/></svg></button>
+                <input id="rc-qty" type="text" inputmode="decimal" value="3" autocomplete="off" aria-label="Cantidad" aria-required="true" aria-invalid="false" aria-describedby="rc-err rc-hint">
+                <button type="button" id="rc-plus" aria-label="Aumentar"><svg class="rc-i" aria-hidden="true"><use href="#rc-i-plus"/></svg></button>
+              </div>
+              <div class="rc-seg" role="group" id="rc-unitSeg">
+                <button type="button" data-unit="gb" aria-pressed="true">Gb</button>
+                <button type="button" data-unit="reads" aria-pressed="false" data-rc="unitReads">Lecturas (M)</button>
+              </div>
+            </div>
+            <div class="rc-presets" id="rc-presets"></div>
+            <p class="rc-err" id="rc-err"></p>
+            <p class="rc-hint" id="rc-hint"></p>
+          </div>
+        </div>
+        <div class="rc-frow rc-dest">
+          <div class="rc-lab"><span><span data-rc="s3">Destino</span> <span class="rc-req" aria-hidden="true">*</span></span><small data-rc="s3h">La que quieres comparar</small></div>
+          <div class="rc-ctl">
+            <div class="rc-chips" id="rc-chipsD" role="group"></div>
+            <button type="button" class="rc-swap" id="rc-swap"><svg class="rc-i" aria-hidden="true"><use href="#rc-i-swap"/></svg><span data-rc="swap">Intercambiar origen y destino</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rc-result" tabindex="-1">
+        <div>
+          <div class="rc-res-label" data-rc="resLabel">Equivale a</div>
+          <div class="rc-big"><span class="rc-val" id="rc-resVal">2</span><span class="rc-unit">Gb</span><span class="rc-cfg" id="rc-resCfg">100PE</span></div>
+        </div>
+        <p class="rc-sentence" id="rc-sentence"></p>
+        <dl class="rc-facts">
+          <div><dt data-rc="stReadsO">Lecturas origen</dt><dd id="rc-stO">20 M</dd></div>
+          <div><dt data-rc="stReadsD">Lecturas destino</dt><dd id="rc-stD">20 M</dd></div>
+          <div><dt data-rc="stFactor">Factor</dt><dd id="rc-stF">×0,6667</dd></div>
+        </dl>
+        <div class="rc-diagram">
+          <h3 data-rc="diag">Qué se lee de cada fragmento</h3>
+          <div class="rc-frag"><span class="rc-frag-name" id="rc-dgOn">150PE</span><svg id="rc-dgO" viewBox="0 0 600 22" preserveAspectRatio="none" aria-hidden="true"></svg><span class="rc-frag-bp" id="rc-dgOb">300 bp</span></div>
+          <div class="rc-frag"><span class="rc-frag-name" id="rc-dgDn">100PE</span><svg id="rc-dgD" viewBox="0 0 600 22" preserveAspectRatio="none" aria-hidden="true"></svg><span class="rc-frag-bp" id="rc-dgDb">200 bp</span></div>
+        </div>
+        <div class="rc-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="rc-copy"><svg class="rc-i" aria-hidden="true"><use href="#rc-i-copy"/></svg><span data-rc="copy">Copiar resultado</span></button>
+          <button type="button" class="btn btn-ghost btn-sm" id="rc-reset"><svg class="rc-i" aria-hidden="true"><use href="#rc-i-reset"/></svg><span data-rc="reset">Volver al ejemplo</span></button>
+          <span class="rc-toast" id="rc-toast" hidden></span>
+        </div>
+      </div>
+    </div>
+    <p class="rc-sr" id="rc-live" role="status"></p>
+  </section>
+
+  <section class="rc-sec" id="como-usarla">
+    <div class="rc-head"><h2 data-rc="howT">Cómo usarla</h2><p data-rc="howP">Tres pasos. No hace falta pulsar ningún botón para calcular.</p></div>
+    <ol class="rc-steps">
+      <li><span class="rc-n">1</span><h3 data-rc="h1t">Elige el origen</h3><p data-rc="h1p">Toca tu configuración de partida, por ejemplo 150PE.</p></li>
+      <li><span class="rc-n">2</span><h3 data-rc="h2t">Escribe la cantidad</h3><p data-rc="h2p">Escribe los Gb, o cambia a Lecturas (M). También puedes usar + / − o las cantidades rápidas.</p></li>
+      <li><span class="rc-n">3</span><h3 data-rc="h3t">Elige el destino</h3><p data-rc="h3p">Toca la configuración que quieres comparar. El número grande es la cantidad equivalente.</p></li>
+    </ol>
+    <ul class="rc-tips">
+      <li data-rc="tip1"><span><b>Atajo:</b> toca una fila de la tabla o una celda de la matriz para cargar esa conversión.</span></li>
+      <li data-rc="tip2"><span><b>Intercambiar</b> invierte origen y destino y usa el resultado como nueva cantidad.</span></li>
+      <li data-rc="tip3"><span><b>Copiar resultado</b> deja una frase lista para pegar en un correo, un informe o una solicitud de cotización.</span></li>
+    </ul>
+  </section>
+
+  <section class="rc-sec" id="tabla">
+    <div class="rc-head"><h2 data-rc="tblT">Todas las configuraciones</h2><p id="rc-tblP"></p></div>
+    <div class="rc-tbl">
+      <table>
+        <thead><tr><th data-rc="c1">Configuración</th><th data-rc="c2">Longitud (bp)</th><th data-rc="c3">Tipo</th><th data-rc="c4">Bases / fragmento</th><th data-rc="c5">Factor</th><th>Gb</th><th data-rc="c7">Lecturas (M)</th></tr></thead>
+        <tbody id="rc-tbody"></tbody>
+      </table>
+    </div>
+    <div class="rc-sub">
+      <div class="rc-head"><h2 data-rc="mxT">Matriz de factores</h2><p data-rc="mxP">Fila = origen, columna = destino. Multiplica los Gb de origen por el factor. Toca una celda para usarla.</p></div>
+      <div class="rc-tbl"><table class="rc-matrix"><thead id="rc-mxHead"></thead><tbody id="rc-mxBody"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="rc-sec" id="metodo">
+    <div class="rc-head"><h2 data-rc="mT">Cómo se calcula</h2><p data-rc="mP">Se asume el mismo número de fragmentos (clusters) secuenciados. Solo cambia cuántas bases se leen de cada uno.</p></div>
+    <dl class="rc-method">
+      <div><dt data-rc="m1t">Bases por fragmento</dt><dd><span class="rc-f" data-rc="m1c">PE = 2 × longitud · SE = 1 × longitud</span><span class="rc-ex">150PE = 300 · 100PE = 200 · 100SE = 100 · 50SE = 50</span></dd></div>
+      <div><dt data-rc="m2t">Gb de destino</dt><dd><span class="rc-f" data-rc="m2c">Gb destino = Gb origen × (bases destino ÷ bases origen)</span><span class="rc-ex" data-rc="m2p">150PE → 100SE: 3 Gb × 100 / 300 = 1 Gb</span></dd></div>
+      <div><dt data-rc="m3t">Lecturas</dt><dd><span class="rc-f" data-rc="m3c">Lecturas (M) = Gb × 1000 ÷ longitud de lectura</span><span class="rc-ex" data-rc="m3p">En PE se cuentan ambos extremos: 3 Gb en 150PE = 20 M lecturas.</span></dd></div>
+    </dl>
+  </section>
+
+  <div class="rc-end">
+    <p data-rc="foot">Herramienta gratuita de Macrogen para la comunidad científica. Los valores son equivalencias teóricas: la configuración final se confirma al cotizar tu proyecto.</p>
+    <div class="rc-end-actions">
+      <a class="btn btn-ghost btn-sm" href="../cotizador" data-rc="ctaExplore">Abrir NGS Explorador</a>
+      <a class="btn btn-primary btn-sm" href="../contacto" data-rc="ctaQuote">Solicitar cotización</a>
+    </div>
+  </div>
+</div>
+
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/img/logo.png" alt="Macrogen" class="logo-img" width="522" height="147" loading="lazy" decoding="async">
+        <h4 style="margin-bottom:6px;" data-i18n="footer.brand_name">Macrogen Iberoamérica</h4>
+        <p style="font-family:var(--mc-font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mc-teal); font-weight:500; margin-bottom:14px;" data-i18n="footer.brand_countries">España · Portugal · Chile · Perú</p>
+        <p data-i18n-html="footer.brand_description">Operación conjunta de Macrogen Spain y Macrogen Chile, sirviendo a la comunidad científica iberoamericana desde dos hubs: Madrid y Santiago.</p>
+        <p style="margin-top:14px;"><strong style="color:#fff;" data-i18n="footer.brand_tagline">One Team. One Macrogen.</strong></p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.services_heading">Servicios</h4>
+        <a href="../servicios/wgs-genoma-completo">WGS</a>
+        <a href="../servicios/wes-exoma">WES</a>
+        <a href="../servicios/rna-seq-transcriptoma">RNA-Seq</a>
+        <a href="../servicios/single-cell">Single Cell</a>
+        <a href="../servicios/metagenomica-16s">Metagenómica</a>
+        <a href="../servicios/secuenciacion-sanger">Secuenciación Sanger</a>
+        <a href="../servicios/sintesis">Síntesis</a>
+        <a href="../servicios" data-i18n="footer.service_view_all">Ver todos →</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.company_heading">Compañía</h4>
+        <a href="../nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="../blog" data-i18n="nav.blog">Blog</a>
+        <a href="../cotizador">NGS Explorador</a>
+        <a href="../contacto" data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div>
+        <h4>Recursos</h4>
+        <a href="../recursos">Centro de recursos</a>
+        <a href="../recursos/primer-designer" translate="no">Primer Designer</a>
+        <a href="../recursos/calculadora-de-lecturas" data-i18n="nav.read_calc" translate="no">Calculadora de lecturas</a>
+        <a href="../faq" data-i18n="nav.faq">FAQ</a>
+        <a href="../certificaciones">Certificaciones</a>
+        <a href="../esg">ESG</a>
+        <a href="../newsletter" data-i18n="nav.newsletter">Newsletter</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.hubs_heading">Hubs</h4>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Madrid</strong><br>C. de Martínez Villergas, 52<br>28027 Madrid · España<br>+34 911 138 378
+        </p>
+        <p style="font-size:12.5px; color:var(--mc-light-blue); line-height:1.7; margin-bottom:14px;">
+          <strong style="color:#fff;">Santiago</strong><br>Magdalena 140, Of. 401<br>Las Condes, Santiago · Chile<br>+56 9 5845 1395
+        </p>
+        <a href="mailto:info-spain@macrogen.com" style="font-size:12.5px;">info-spain@macrogen.com</a><a href="mailto:info-chile@macrogen.com" style="font-size:12.5px;">info-chile@macrogen.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 Macrogen Iberoamérica · Agencia de Macrogen Inc. · Todos los derechos reservados.</span>
+      <span>
+        <a href="../privacidad" data-i18n="footer.privacy">Privacidad</a>
+        <a href="../terminos" data-i18n="footer.terms">Términos</a>
+        <a href="https://dna.macrogen.com/?utm_source=web-es" target="_blank" rel="noopener">Portal de pedidos ↗</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+  <script src="../assets/js/main.js?v=20261103b"></script>
+  <script src="../assets/js/i18n.js?v=20261025"></script>
+  <script src="../assets/calc-lecturas/calc.js?v=20261124a"></script>
+</body>
+</html>

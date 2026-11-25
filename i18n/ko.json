@@ -15,6 +15,10 @@
     "newsletter": "뉴스레터",
     "faq": "FAQ",
     "contact": "문의",
+    "read_calc": "리드 계산기",
+    "read_calc_short": "리드 계산기",
+    "read_calc_sub": "Gb ↔ 리드 · 150PE, 100PE, 100SE… — 무료, 가입 불필요",
+    "read_calc_desc": "동일한 fragment 수를 기준으로 NGS 구성 간 Gb와 리드를 환산합니다.",
     "quote_cta": "견적 요청",
     "menu_open": "메뉴 열기",
     "skip_to_content": "본문으로 건너뛰기"
